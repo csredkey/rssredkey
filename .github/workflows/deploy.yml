@@ -17,3 +17,4 @@ jobs:
       - name: Sync files to S3 bucket
         run: |
           aws s3 cp feed.xml s3://redkey.tech/feed.xml --region us-east-1
+          aws cloudfront create-invalidation --distribution-id E12FFP4BVWZKY --paths "/feed.xml"
