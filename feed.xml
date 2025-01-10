@@ -1,5 +1,403 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 10 Jan 2025 11:59:21 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, January 10th, 2025 https://isc.sans.edu/podcastdetail/9274</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Friday, January 10th, 2025 https://isc.sans.edu/podcastdetail/9274, (Fri, Jan 10th)</title><link>https://isc.sans.edu/diary/rss/31576</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31576</guid></item><item><title>Windows Defender Chrome Extension Detection, (Fri, Jan 10th)</title><link>https://isc.sans.edu/diary/rss/31574</link><description>&lt;p&gt;With the recent Cyberhaven Extension(2) attack, looking for specific Chrome extensions installed can be very helpful.   If you are running Defender with enhanced vulnerability management, Defender automatically catalogs installed extensions by going to Vulnerability Management -&gt; Inventories and selecting Browser Extension from the Defender Console.  Also, you can do Hunt Queries on the DeviceTvmBrowserExtensions table.  &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;With the recent Cyberhaven Extension(2) attack, looking for specific Chrome extensions installed can be very helpful. &amp;nbsp;&amp;nbsp;If you are running Defender with enhanced vulnerability management, Defender automatically catalogs installed extensions by going to Vulnerability Management -&amp;gt; Inventories and selecting Browser Extension from the Defender Console.&amp;nbsp;&amp;nbsp;Also, you can do Hunt Queries on the DeviceTvmBrowserExtensions table.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 10 Jan 2025 12:59:22 +0000</lastBuildDate><item><title>FunkSec – Alleged Top Ransomware Group Powered by AI</title><link>https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/</link><description>&lt;p&gt;Key Points Introduction The FunkSec ransomware group first emerged publicly in late 2024, and rapidly gained prominence by publishing over 85 claimed victims—more than any other ransomware group in the month of December. Presenting itself as a new Ransomware-as-a-Service (RaaS) operation, FunkSec appears to have no known connections to previously identified ransomware gangs, and little [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/"&gt;FunkSec – Alleged Top Ransomware Group Powered by AI&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The FunkSec ransomware group emerged in late 2024 and published over 85 victims in December, surpassing every other ransomware group that month.&lt;/li&gt;
+
+
+
+&lt;li&gt;FunkSec operators appear to use AI-assisted malware development which can enable even inexperienced actors to quickly produce and refine advanced tools.&lt;/li&gt;
+
+
+
+&lt;li&gt;The group’s activities straddle the line between hacktivism and cybercrime, complicating efforts to understand their true motivations.&lt;/li&gt;
+
+
+
+&lt;li&gt;Many of the group’s leaked datasets are recycled from previous hacktivism campaigns, raising doubts about the authenticity of their disclosures.&lt;/li&gt;
+
+
+
+&lt;li&gt;Current methods of assessing ransomware group threats often rely on the actors’ own claims, highlighting the need for more objective evaluation techniques.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;The FunkSec ransomware group first emerged publicly in late 2024, and rapidly gained prominence by publishing over 85 claimed victims—more than any other ransomware group in the month of December. Presenting itself as a new Ransomware-as-a-Service (RaaS) operation, FunkSec appears to have no known connections to previously identified ransomware gangs, and little information is currently available about its origins or operations.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our analysis of the group’s activity indicates that the impressive numbers of published victims may mask a more modest reality both in terms of actual victims as well as the group’s level of expertise. Most of FunkSec’s core operations are likely conducted by inexperienced actors. In addition, it is difficult to verify the authenticity of the leaked information as the group’s primary goal appears to be to gain visibility and recognition. Evidence suggests that in some instances, the leaked information was recycled from previous hacktivist-related leaks, raising questions about its authenticity.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this report, we explore FunkSec’s ties to hacktivist activity and provide an in-depth analysis of the group’s public operations and tools, including a custom encryptor likely developed by a relatively inexperienced malware author based in Algeria. In a surprising discovery, our findings indicate that the development of the group’s tools, including the encryptor, was likely AI-assisted, which may have contributed to their rapid iteration despite the author’s apparent lack of technical expertise&lt;/p&gt;
+
+
+
+&lt;p&gt;This case highlights the increasingly blurred line between hacktivism and cybercrime, emphasizing the challenges in distinguishing one from the other. Whether such a distinction genuinely exists—or whether the operators are even aware of or concerned with defining it—remains uncertain. More importantly, It also calls into question the reliability of current methods for assessing the risk posed by ransomware groups, especially when those assessments rely on the public claims of the actors themselves.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="background---funksec-activity"&gt;Background &amp;#8211; FunkSec Activity&lt;/h2&gt;
+
+
+
+&lt;p&gt;FunkSec is an emerging ransomware group that launched its data leak site (DLS) in December 2024 to centralize their ransomware activities. The group uses double extortion tactics, combining data theft with encryption to pressure victims into paying ransoms. Their DLS features breach announcements, a custom-developed DDoS tool, and, more recently, a custom ransomware offered as a Ransomware-as-a-Service (RaaS).&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 1 - FunkSec data leak site." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image1.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; FunkSec data leak site.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;FunkSec gained public attention due to their aggressive tactics and the number of their targets, with more than 85 claimed victims in little over a month of activity. Notably, FunkSec demanded unusually low ransoms, sometimes as little as $10,000, and sell stolen data to third parties at reduced prices. The group’s activities are widely discussed in cybercrime forums, further contributing to their growing notoriety.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2 – &amp;lt;span dir=" src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image2.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 –&amp;nbsp;Distribution of FunkSec claimed victims by country according to DLS.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Closer analysis of FunkSec’s activities and DarkWeb discussions offers some tantalizing hints about the group, namely that their motivations seem to straddle the line between hacktivism and cybercrime. Interestingly, some members linked to FunkSec previously engaged in hacktivist activities, adding a complex layer to their operations and raising questions about their true objectives. This blend of tactics and backgrounds made FunkSec a particularly intriguing case for deeper investigation.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="funksec-offerings"&gt;FunkSec Offerings&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="ransomware"&gt;Ransomware&lt;/h3&gt;
+
+
+
+&lt;p&gt;FunkSec operators recently began to offer their rapidly evolving custom ransomware. With each new version, many of them published only days apart, their website is updated to highlight the added features. In the announcement for the latest version V1.5, the operators boasted about its low detection rate, sharing a VirusTotal screenshot that showed it was detected by only three antivirus engines at the time of publication.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 3 - Funksec V1.5 publication announcement." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image3.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Funksec V1.5 publication announcement.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The file referenced in their publication(&lt;code&gt;5226ea8e0f516565ba825a1bbed10020982c16414750237068b602c5b4ac6abd&lt;/code&gt;), named&amp;nbsp;&lt;code&gt;dev.exe&lt;/code&gt;, was uploaded from an Algerian source, and truly was detected by only 3 engines at the time of upload. The ransomware is identified by using the extension &amp;#8220;.funksec”, written in Rust and compiled on the environment of&amp;nbsp;&lt;code&gt;C:\Users\Abdellah\&lt;/code&gt;. A full analysis of the malware is provided in the Technical Analysis section.&lt;/p&gt;
+
+
+
+&lt;p&gt;In our analysis of this ransomware, we uncovered all its versions which point to an ongoing development effort likely carried out by an inexperienced malware author. Notably, most of the versions were uploaded from Algeria, likely by the author himself. Analysis of those samples reveals two variants of the ransom notes. The first references FunkSec, and the second one references Ghost Algeria, another indication that the developer is from Algeria.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;img decoding=" src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image4.png" /&gt;&lt;img src="https://research.checkpoint.com/&amp;gt;&amp;lt;figcaption class=" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;br /&gt;Figure 4 &amp;#8211; Ransomware notes used by FunkLocker and Ghost Algeria.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Interestingly, the author also uploaded parts of the malware’s source code, written in Rust. The source code file, named&amp;nbsp;&lt;code&gt;*ransomware.rs*&lt;/code&gt;, has parts of the functionality of the compiled binaries and was uploaded to VirusTotal on December 15 from an Algerian source. This prototype version of the ransomware is a simplified implementation and includes these functions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Encrypt all files on the user’s system&lt;/strong&gt;&amp;nbsp;(in the&amp;nbsp;&lt;code&gt;C:\&lt;/code&gt;&amp;nbsp;directory) using a combination of RSA and AES encryption. The original files are deleted after encryption, and encrypted versions with a new extension (&lt;code&gt;.funksec&lt;/code&gt;) are created.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Create a ransom note&lt;/strong&gt;&amp;nbsp;(&lt;code&gt;readme.me&lt;/code&gt;) informing the user that their files have been encrypted and providing instructions for paying a ransom to obtain a decryption key.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Modify the system environment&lt;/strong&gt;&amp;nbsp;(e.g., changing the desktop background to black).&lt;/li&gt;
+
+
+
+&lt;li&gt;Check for&amp;nbsp;&lt;strong&gt;administrative/root privileges&lt;/strong&gt;&amp;nbsp;before executing.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="other-free-tools"&gt;Other free tools&lt;/h3&gt;
+
+
+
+&lt;p&gt;In addition to the ransomware, the FunkSec group offers additional tools, most of them commonly associated with hacktivist activity.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 5 - Additional offerings by FunkSec." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image6.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Additional offerings by FunkSec.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;FDDOS, a Python “Scorpion DDoS Tool”, is a network stress-testing tool designed to perform Distributed Denial-of-Service (DDoS) attacks using either HTTP or UDP flood methods.&lt;/li&gt;
+
+
+
+&lt;li&gt;JQRAXY_HVNC an HVNC Server and client C++ program is designed for remote desktop management, automation, and data interaction.&lt;/li&gt;
+
+
+
+&lt;li&gt;funkgenerate is a smart password generation and scraping tool designed to scrape emails and potential passwords from given URLs and generate new password suggestions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="associated-threat-actors"&gt;Associated Threat Actors&lt;/h2&gt;
+
+
+
+&lt;p&gt;In late 2024, FunkSec emerged without warning and quickly dominated ransomware victim feeds and monitors, seemingly under the guise of hacktivism. By targeting India and the U.S., and aligning with the “Free Palestine” movement, the group leveraged multiple personas and aliases to craft its image and gain visibility.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31003" src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image7-1024x346.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; FunkSec claims about US targets.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="scorpion"&gt;Scorpion&lt;/h3&gt;
+
+
+
+&lt;p&gt;Scorpion is the most prominent member of FunkSec and is associated with major portions of the group public profiles. This actor uses multiple aliases, most prominently&amp;nbsp;&lt;strong&gt;DesertStorm&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;The actor first surfaced on the Breached Forum, introducing the FunkSec name through a YouTube video posted via the channel “Scorpion” (@scorpioncybersec) in October 2024. The video alleged that FunkSec leaked a call between then-U.S. presidential candidate Donald Trump and Israeli Prime Minister Benjamin Netanyahu. However, the recording was clearly AI-generated.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 7 - Announcement of the allegedly leaked call between Donald
+Trump and Benjamin Netanyahu." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image8.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; Announcement of the allegedly leaked call between Donald Trump and Benjamin Netanyahu.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;DesertStorm’s YouTube profile listed their location as Russia, though the video’s shared URL suggested it was uploaded from Brazil. DesertStorm continued posting leaks on Breached Forum—most unverified or not credited to FunkSec—until the account was banned in November 2024.&lt;/p&gt;
+
+
+
+&lt;p&gt;In one of DesertStorm’s posts, they inadvertently shared compromising screenshots that revealed their location to be Algeria, with French-language keyboard settings. A suspected associate,&amp;nbsp;&lt;strong&gt;XTN&lt;/strong&gt;, publicly alerted DesertStorm to this operational security (OpSec) lapse, but DesertStorm did not remove the compromising information.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 8 - Screenshot tying DesertStorm to Algeria." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image9.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Screenshot tying DesertStorm to Algeria.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Before DesertStorm’s ban, the actor began tagging two other users,&amp;nbsp;&lt;strong&gt;El_Farado&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Blako&lt;/strong&gt;, in forum posts related to FunkSec leaks and activities. While Blako remained inactive on the forums, El Farado gradually assumed a prominent role, promoting FunkSec on forums, sharing leaks, and adding the group’s .onion site to their signature.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 9 -Connection between DesertStorm and El_farado" src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image10.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 -Connection between DesertStorm and El_farado&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The actor is also linked to a Keybase account under the name “Scorpionlord,” where they are listed as the admin of FunkSec. This account is tied to the FunkSec shame site and DesertStorm’s user on Breached Forum. Scorpionlord is also the username on two other cybercrime forums where the FunkSec’s website was promoted (these users were since removed).&lt;/p&gt;
+
+
+
+&lt;p&gt;Notably, El Farado’s Keybase profile was registered on the same day as Scorpionlord’s, suggesting a coordinated effort. A third Keybase profile,&amp;nbsp;&lt;strong&gt;Blako&lt;/strong&gt;, was registered only a few days later, further supporting the idea that these personas were all closely linked.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 10 - Scorpion Keybase profile." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image11.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; Scorpion Keybase profile.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="el_farado"&gt;El_farado&lt;/h3&gt;
+
+
+
+&lt;p&gt;El Farado emerged as a key figure in FunkSec’s operations after DesertStorm’s ban from Breached Forum in November 2024. El Farado took on the task of promoting FunkSec, ensuring its visibility on the forum and sharing alleged leaks.&lt;/p&gt;
+
+
+
+&lt;p&gt;Key connections to FunkSec include:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Tagged by DesertStorm:&lt;/strong&gt;&amp;nbsp;DesertStorm’s posts frequently tagged El Farado, linking them directly to FunkSec.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Keybase Profile Registration:&lt;/strong&gt;&amp;nbsp;El Farado’s Keybase account was registered on the same day as Scorpionlord’s, implying a strong connection between the two personas.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Promotional Activity:&lt;/strong&gt;&amp;nbsp;El Farado actively promoted FunkSec’s .onion site on Breached Forum and shared leaks (often unreliable or recycled).&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Rookie Behavior:&lt;/strong&gt;&amp;nbsp;El Farado occasionally posted threads asking basic hacking questions like “What do hackers do with leaked data?” This behavior suggests inexperience, corroborating some Scorpion’s admission of the group’s lack of technical know-how.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 11 - el_farado asking for hacking assistance." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image12.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 &amp;#8211; el_farado asking for hacking assistance.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="xtn"&gt;XTN&lt;/h3&gt;
+
+
+
+&lt;p&gt;XTN is associated with FunkSec’s “data sorting” service advertised on their website, while this service’s purpose is not fully clear. Their Keybase account, “xtnn,” connects to their Breached Forum profile, where they describe their location as “El Farado’s room” and reference El Farado in their signature. XTN further solidified their link to FunkSec by publicly warning DesertStorm about their OpSec lapse.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="bjorka"&gt;Bjorka&lt;/h3&gt;
+
+
+
+&lt;p&gt;Bjorka, a known Indonesian hacktivist, has a murkier connection to FunkSec. While leaks attributed to FunkSec were reposted by a user named Bjorka on DarkForums, no direct collaboration was verified. Additionally, a Telegram channel named “Bjorkanism” claimed credit for some FunkSec operations, referring to them as “Bjorkanism Ransomware (FunkSec).” These claims are not supported by Bjorka’s official platforms, suggesting attempts at impersonating FunkSec or at most, a loose affiliation.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 12 - Bjorkanism referenced as FunkSec ransomware." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image13.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 &amp;#8211; Bjorkanism referenced as FunkSec ransomware.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="related-hacktivist-groups"&gt;Related Hacktivist Groups&lt;/h3&gt;
+
+
+
+&lt;p&gt;FunkSec attempted to associate itself with several defunct hacktivist groups:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Ghost Algéria:&lt;/strong&gt;&amp;nbsp;Referenced in a ransomware note nearly identical to FunkSec’s.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Cyb3r Fl00d:&lt;/strong&gt;&amp;nbsp;A defacement screenshot from this group was included in FunkSec-related activity, with FunkSec claiming Cyb3r Fl00d was their “old group.”&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 13 -Affiliation between FunkSec and Cyb3r Fl00d" src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image14.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 -Affiliation between FunkSec and Cyb3r Fl00d&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These associations likely represent attempts to boost FunkSec’s credibility by aligning with well-known names rather than direct membership or collaboration.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="ai-assisted-capabilities"&gt;AI-Assisted capabilities&lt;/h2&gt;
+
+
+
+&lt;p&gt;The individuals behind FunkSec appear to have extensively leveraged AI to enhance their capabilities, as evidenced by their publications and tools. Their public script offerings include extensive code comments with perfect English (as opposed to very basic English in other mediums), likely generated by an LLM agent. Similar patterns are visible in the Rust source code linked to the group’s ransomware, suggesting it may have been developed with AI assistance.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 14 - Detailed comments in Scorpion DDoS script." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image15.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 &amp;#8211; Detailed comments in Scorpion DDoS script.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In some of their published messages, the group specifically linked the development of their ransomware to AI-assisted agents, likely providing it with the source code for the ransomware and simply shared the output on their site.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 15 - FunkSec claims of AI interpretation of their Ransomware
+code." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image16.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 &amp;#8211; FunkSec claims of AI interpretation of their Ransomware code.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The use of such tools aligns closely with the group’s public claims, as they also released an AI chatbot based on Miniapps to support their operations. Miniapps is a platform that facilitates the creation and use of AI applications and chatbots, often without the restrictions found in more popular systems like ChatGPT. The bot developed by FunkSec is specifically designed to support malicious activities.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 16 - Scorpion miniapps chat." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image17.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 &amp;#8211; Scorpion miniapps chat.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="technical-analysis"&gt;Technical Analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;To better understand the malware, we examined one of the circulated samples. This is a stripped Rust binary, which makes it challenging to effectively reverse engineer. In particular, it is subject to aggressive in-lining of library code (see our previous publication,&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/inside-akira-ransomwares-rust-experiment/"&gt;Inside Akira Ransomware’s Rust Experiment&lt;/a&gt;&amp;nbsp;for a clear demonstration of how this works, and how this complicates reverse engineering tasks), and contains many trait implementations that a disassembler may not recognize out of the box, many of which are wrappers for e.g.&amp;nbsp;&lt;code&gt;WriteFileEx&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;CryptGenRandom&lt;/code&gt;. However, a careful analysis reveals some interesting details.&lt;/p&gt;
+
+
+
+&lt;p&gt;Overall, we were mainly struck by the amount of redundancy in the binary. Control flow seems to repeat itself and call functions again and again from various execution paths; in a typical ransomware, these would only be called once. For example, in this sequence of operations:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 17 - Functions called multiple times in the FunkSec
+Ransomware." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image18.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17 &amp;#8211; Functions called multiple times in the FunkSec Ransomware.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Across the entire binary many of these functions are called twice, or even three or four times; the ‘disable security’ routine, seen above, is called twice in the same basic block. The below recursive function, which iterates into all subdirectories of a given directory and encrypts the targeted files in it, is called a total of&amp;nbsp;&lt;em&gt;five&lt;/em&gt;&amp;nbsp;times across the binary.&lt;/p&gt;
+
+
+
+&lt;p&gt;Some of the repetition is due to duplicated code that invokes the ‘encrypt all directories’ logic with different hardcoded constants each time, such as this invocation that uses the constant&amp;nbsp;&lt;code&gt;RansomwarePassword123&lt;/code&gt;:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 18 - &amp;lt;code&amp;gt;RansomwarePassword123&amp;lt;/code&amp;gt; constant in the
+code." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image19.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18 &amp;#8211;&amp;nbsp;&lt;code&gt;RansomwarePassword123&lt;/code&gt;&amp;nbsp;constant in the code.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Aside from the duplicated functionality, the main execution flow of the malware first calls the operations sequence seen earlier (“disable security”, and so on) and then transfers execution to an ‘encrypt all drives’ function. The operations sequence begins by checking whether it has elevated privileges (by trying to execute&amp;nbsp;&lt;code&gt;net session&lt;/code&gt;). If not, the binary attempts to relaunch itself with elevated privileges, using the method described&amp;nbsp;&lt;a href="https://stackoverflow.com/questions/71384840/how-to-execute-powershells-start-process-verb-runas-from-inside-a-batch-wher"&gt;here&lt;/a&gt;&amp;nbsp;(&lt;code&gt;start-process -wait -Verb runas -filepath '%~nx0' -ArgumentList '&amp;lt;arguments&amp;gt;'&lt;/code&gt;).&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 19 - Sample output of &amp;lt;code&amp;gt;net session&amp;lt;/code&amp;gt; without
+elevated privileges." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image20.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19 &amp;#8211; Sample output of&amp;nbsp;&lt;code&gt;net session&lt;/code&gt;&amp;nbsp;without elevated privileges.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Once it has elevated privileges, the malware executes the following commands:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Command&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Functionality&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Set-MpPreference -DisableRealtimeMonitoring $true&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Disable Windows Defender real-time protection.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;wevtutil sl Security /e:false&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Disable Security event logging.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;wevtutil sl Application /e:false&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Disable Application event logging.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Set-ExecutionPolicy Bypass -Scope Process -Force&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Disable restrictions placed by the&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.4"&gt;Powershell execution policy&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;vssadmin delete shadows /all /quiet&lt;/code&gt;&lt;/td&gt;&lt;td&gt;predictably, delete shadow copy backups.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The&amp;nbsp;&lt;code&gt;terminate_processes&lt;/code&gt;&amp;nbsp;function contains a hardcoded list of processes and services to terminate:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;chrome.exe&lt;/th&gt;&lt;th&gt;firefox.exe&lt;/th&gt;&lt;th&gt;msedge.exe&lt;/th&gt;&lt;th&gt;explorer.exe&lt;/th&gt;&lt;th&gt;outlook.exe&lt;/th&gt;&lt;th&gt;vlc.exe&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;spotify.exe&lt;/td&gt;&lt;td&gt;skype.exe&lt;/td&gt;&lt;td&gt;discord.exe&lt;/td&gt;&lt;td&gt;steam.exe&lt;/td&gt;&lt;td&gt;java.exe&lt;/td&gt;&lt;td&gt;python.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;node.exe&lt;/td&gt;&lt;td&gt;cmd.exe&lt;/td&gt;&lt;td&gt;powershell.exe&lt;/td&gt;&lt;td&gt;taskmgr.exe&lt;/td&gt;&lt;td&gt;wmplayer.exe&lt;/td&gt;&lt;td&gt;tscon.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;notepad.exe&lt;/td&gt;&lt;td&gt;spooler&lt;/td&gt;&lt;td&gt;bits&lt;/td&gt;&lt;td&gt;dnsclient&lt;/td&gt;&lt;td&gt;lanmanworkstation&lt;/td&gt;&lt;td&gt;winmgmt&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;netsh&lt;/td&gt;&lt;td&gt;iphlpsvc&lt;/td&gt;&lt;td&gt;wuauserv&lt;/td&gt;&lt;td&gt;RemoteAccess&lt;/td&gt;&lt;td&gt;ShellHWDetection&lt;/td&gt;&lt;td&gt;SCardSvr&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;TrkWks&lt;/td&gt;&lt;td&gt;wscsvc&lt;/td&gt;&lt;td&gt;CryptSvc&lt;/td&gt;&lt;td&gt;msiserver&lt;/td&gt;&lt;td&gt;MpsSvc&lt;/td&gt;&lt;td&gt;defragsvc&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;upnphost&lt;/td&gt;&lt;td&gt;WindowsUpdate&lt;/td&gt;&lt;td&gt;srservice&lt;/td&gt;&lt;td&gt;wsmprovhost&lt;/td&gt;&lt;td&gt;AppIDSvc&lt;/td&gt;&lt;td&gt;AudioEndpointBuilder&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Schedule&lt;/td&gt;&lt;td&gt;eventlog&lt;/td&gt;&lt;td&gt;PlugPlay&lt;/td&gt;&lt;td&gt;Netman&lt;/td&gt;&lt;td&gt;bthserv&lt;/td&gt;&lt;td&gt;ShellExperienceHost&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;SMB&lt;/td&gt;&lt;td&gt;WinDefend&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Next, the malware moves on to iterating over each letter drive, recursing through its subdirectories and encrypting each file with one of the targeted extensions. For file encryption, the symmetric encryption used is the chacha20 implementation available in the&amp;nbsp;&lt;a href="https://github.com/orion-rs/orion"&gt;orion.rs crate&lt;/a&gt;. Ephemeral keys are generated using a thin wrapper for&amp;nbsp;&lt;code&gt;CryptGenRandom&lt;/code&gt;&amp;nbsp;(and the descriptively-named&amp;nbsp;&lt;code&gt;SystemFunction036&lt;/code&gt;). The newly created filename, with the hardcoded&amp;nbsp;&lt;code&gt;.funksec&lt;/code&gt;&amp;nbsp;extension, is created using a call to Rust’s&amp;nbsp;&lt;code&gt;format!&lt;/code&gt;&amp;nbsp;&lt;a href="https://doc.rust-lang.org/std/fmt/"&gt;macro&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;The malware then writes to disk the (rather emoji-fied) ransom note.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 20 - FunkSec ransomware note." src="https://research.checkpoint.com/wp-content/uploads/2025/01/QZW5JB4KMR-image21.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20 &amp;#8211; FunkSec ransomware note.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="summary"&gt;Summary&lt;/h2&gt;
+
+
+
+&lt;p&gt;This report provides an in-depth analysis of FunkSec, a ransomware group with apparent hacktivist tendencies. The custom encryptor, developed by an inexperienced Algerian author, features AI-assisted elements which enables rapid development and improvement. FunkSec’s data leaks often recycle information from previous hacktivist campaigns, casting doubt on the authenticity of their claims. Despite these limitations, their Tor-based operations and low ransom demands have drawn widespread attention in cybercrime forums.&lt;/p&gt;
+
+
+
+&lt;p&gt;FunkSec’s operations highlight the role of AI in malware development, the overlap between hacktivism and cybercrime, and the challenges in verifying leaked data. It also raises questions about how we assess the threat posed by ransomware groups, as we often rely on the groups’ own claims. These findings reflect a changing threat landscape, where even low-skill actors can make use of accessible tools to cast a very large shadow.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.checkpoint.com/harmony/advanced-endpoint-protection/"&gt;Harmony Endpoint&lt;/a&gt;&amp;nbsp;provides comprehensive endpoint protection at the highest security level, crucial to avoid security breaches and data compromise and protects against this threat.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="iocs"&gt;IOCs:&lt;/h2&gt;
+
+
+
+&lt;pre class="wp-block-preformatted"&gt;c233aec7917cf34294c19dd60ff79a6e0fac5ed6f0cb57af98013c08201a7a1c
+66dbf939c00b09d8d22c692864b68c4a602e7a59c4b925b2e2bef57b1ad047bd
+dcf536edd67a98868759f4e72bcbd1f4404c70048a2a3257e77d8af06cb036ac
+b1ef7b267d887e34bf0242a94b38e7dc9fd5e6f8b2c5c440ce4ec98cc74642fb
+5226ea8e0f516565ba825a1bbed10020982c16414750237068b602c5b4ac6abd
+e622f3b743c7fc0a011b07a2e656aa2b5e50a4876721bcf1f405d582ca4cda22
+20ed21bfdb7aa970b12e7368eba8e26a711752f1cc5416b6fd6629d0e2a44e5d
+dd15ce869aa79884753e3baad19b0437075202be86268b84f3ec2303e1ecd966
+7e223a685d5324491bcacf3127869f9f3ec5d5100c5e7cb5af45a227e6ab4603&lt;/pre&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/"&gt;FunkSec – Alleged Top Ransomware Group Powered by AI&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30996</guid><category>Check Point Research Publications</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, January 10th, 2025 https://isc.sans.edu/podcastdetail/9274</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Friday, January 10th, 2025 https://isc.sans.edu/podcastdetail/9274, (Fri, Jan 10th)</title><link>https://isc.sans.edu/diary/rss/31576</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31576</guid></item><item><title>Windows Defender Chrome Extension Detection, (Fri, Jan 10th)</title><link>https://isc.sans.edu/diary/rss/31574</link><description>&lt;p&gt;With the recent Cyberhaven Extension(2) attack, looking for specific Chrome extensions installed can be very helpful.   If you are running Defender with enhanced vulnerability management, Defender automatically catalogs installed extensions by going to Vulnerability Management -&gt; Inventories and selecting Browser Extension from the Defender Console.  Also, you can do Hunt Queries on the DeviceTvmBrowserExtensions table.  &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;With the recent Cyberhaven Extension(2) attack, looking for specific Chrome extensions installed can be very helpful. &amp;nbsp;&amp;nbsp;If you are running Defender with enhanced vulnerability management, Defender automatically catalogs installed extensions by going to Vulnerability Management -&amp;gt; Inventories and selecting Browser Extension from the Defender Console.&amp;nbsp;&amp;nbsp;Also, you can do Hunt Queries on the DeviceTvmBrowserExtensions table.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
 
 &lt;p&gt;For those who do not have this feature, you can still look for malicious extensions by searching for the Chrome Extension ID. This ID is used for the folder name on the computer and is easy to find. If you have other Chrome variant browsers, this query will also catch extensions in them. The query at the bottom(1) covers all the IDs listed in the article for Cyberhaven.&lt;/p&gt;
 
@@ -13107,886 +13505,7 @@ www.sendmailer[.]org&lt;br /&gt;
 www.yoannturp[.]xyz&lt;br /&gt;
 xu10.1056[.]uk&lt;br /&gt;
 zoom-client[.]com&lt;/p&gt;
-&lt;/div&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=108328</guid><category>DPRK</category></item><item><title>CopyRh(ight)adamantys Campaign: Rhadamantys Exploits Intellectual Property Infringement Baits</title><link>https://research.checkpoint.com/2024/massive-phishing-campaign-deploys-latest-rhadamanthys-version/</link><description>&lt;p&gt;Key findings While we finalized this blog post, a technical analysis of this activity was&amp;#160;published&amp;#160;by fellow researchers from Cisco Talos. While it overlaps with our findings to some extent, our report provides additional extended information about the activity. Introduction Since July 2024, Check Point Research (CPR) has been tracking an extensive and ongoing phishing campaign [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/massive-phishing-campaign-deploys-latest-rhadamanthys-version/"&gt;CopyRh(ight)adamantys Campaign: Rhadamantys Exploits Intellectual Property Infringement Baits&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="key-findings"&gt;Key findings&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Check Point Research is tracking an ongoing, large scale and sophisticated phishing campaign deploying the newest version of the Rhadamanthys stealer (0.7). We dubbed this campaign CopyRh(ight)adamantys.&lt;/li&gt;
-
-
-
-&lt;li&gt;This campaign utilizes a copyright infringement theme to target various regions, including the United States, Europe, East Asia, and South America.&lt;/li&gt;
-
-
-
-&lt;li&gt;The campaign impersonates dozens of companies, while each email is sent to a specific targeted entity from a different Gmail account, adapting the impersonated company and the language per targeted entity. Almost 70% of the impersonated companies are from Entertainment /Media and Technology/Software sectors.&lt;/li&gt;
-
-
-
-&lt;li&gt;Analysis of the lures and targets in this campaign suggests the threat actor uses automation for lures distribution. Due to the scale of the campaign and the variety of the lures and sender emails, there is a possibility that the threat actor also utilized AI tools.&lt;/li&gt;
-
-
-
-&lt;li&gt;One of the main updates in the Rhadamanthys stealer version according to claims by the author, is AI-powered text recognition. However, we discovered that the component introduced by Rhadamanthys does not incorporate any of the modern AI engines, but instead uses much older classic machine learning, typical for OCR software.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;While we finalized this blog post, a technical analysis of this activity was&amp;nbsp;&lt;a href="https://blog.talosintelligence.com/threat-actors-use-copyright-infringement-phishing-lure-to-deploy-infostealers/"&gt;published&lt;/a&gt;&amp;nbsp;by fellow researchers from Cisco Talos. While it overlaps with our findings to some extent, our report provides additional extended information about the activity.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
-
-
-
-&lt;p&gt;Since July 2024, Check Point Research (CPR) has been tracking an extensive and ongoing phishing campaign that leads to the deployment of the Rhadamanthys stealer. This campaign masquerades as various companies and falsely claims that victims have committed copyright infringement related on their Facebook pages.&lt;/p&gt;
-
-
-
-&lt;p&gt;The phishing emails, typically sent from Gmail accounts, prompt recipients to download an archive file, which triggers the infection through DLL side-loading. The vulnerable binary then installs the latest version of the Rhadamanthys stealer (version 0.7), which includes new capabilities such as an alleged AI-powered OCR (optical character recognition) module.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this report, we share our&amp;nbsp;&lt;a href="https://research.checkpoint.com/2023/rhadamanthys-v0-5-0-a-deep-dive-into-the-stealers-components/"&gt;ongoing efforts&lt;/a&gt;&amp;nbsp;to study the use of the Rhadamanthys stealer, which both cybercriminals and state-sponsored actors have adopted. We provide an in-depth examination of the phishing campaign, the tactics used by the attackers, and the updates introduced in this latest version of Rhadamanthys.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="background"&gt;Background&lt;/h2&gt;
-
-
-
-&lt;p&gt;Throughout 2024, we have been monitoring threat actors’ activities leveraging the Rhadamanthys stealer, including its use by&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/bad-karma-no-justice-void-manticore-destructive-activities-in-israel/"&gt;Void Manticore&lt;/a&gt;, an Iranian actor operating in Israel and Albania. In one campaign tied to&amp;nbsp;&lt;strong&gt;Handala,&lt;/strong&gt;&amp;nbsp;a persona linked to Void Manticore, the Rhadamanthys stealer was distributed under the guise of a&amp;nbsp;&lt;a href="https://www.gov.il/he/pages/alert_1691"&gt;F5 update&lt;/a&gt;. This marked their first use of the stealer, which they continued to deploy in subsequent campaigns impersonating Israeli and international companies.&lt;/p&gt;
-
-
-
-&lt;p&gt;Simultaneously, Check Point Software Technologies began receiving reports of phishing lures mimicking Check Point- branded emails leading to the deployment of Rhadamanthys. Given Handala’s previous interest in Check Point and threats they published in their Telegram channel, our initial assumption was that they were also behind this campaign. However, further analysis revealed this was merely a coincidence and the Check Point lures were part of a larger, distinct cybercrime-oriented cluster, which we explore in detail.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30749" height="507" src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image1-1024x507.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;img alt="Figure 1 - Phishing email impersonating Check Point" src="https://research.checkpoint.com/s2_pandoc-html/media/image1.png" /&gt; &lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="copyrhightadamantys-emails"&gt;CopyRh(ight)adamantys Emails&lt;/h2&gt;
-
-
-
-&lt;p&gt;The newly identified cluster is characterized by spear-phishing emails sent from Gmail accounts allegedly from well-known companies claiming supposed copyright violations. These emails, which appear to come from the legal representatives of the impersonated companies, accuse the recipient of misusing their brand on the target’s social media page and requesting the removal of specific images and videos.&lt;/p&gt;
-
-
-
-&lt;p&gt;The removal instructions are said to be in a password-protected file. However, the attached file is a download link to&amp;nbsp;&lt;code&gt;appspot.com&lt;/code&gt;, linked to the Gmail account, which redirects the user to Dropbox or Discord to download a password-protected archive (with the password provided in the email).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2 – Malicious ZIP download link." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image2.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 – Malicious ZIP download link.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;We observed hundreds of emails impersonating dozens of companies, each sent to a specific address from a different Gmail account. Almost 70% of the impersonated companies are from Entertainment /Media and Technology/Software sectors. This is possibly due to the fact that those sectors have a high online presence and are more likely to send such requests than other sectors. These high profile sectors also have frequent copyright-related communications, making such phishing attempts appear more credible.&lt;/p&gt;
-
-
-
-&lt;p&gt;The attackers likely used an automated tool, possibly with AI integration, to generate both the emails and the accounts. While most emails are written in the recipient’s local language or English, occasional errors occur. For example, one email intended for an Israeli target was written in Korean instead of Hebrew, with only the target’s name correctly localized.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 3 - Phishing email written in Korean mistakenly sent to a
-target in Israel." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image3.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Phishing email written in Korean mistakenly sent to a target in Israel.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="infection-chain"&gt;&lt;br /&gt;&lt;strong&gt;Infection Chain&lt;/strong&gt;&lt;/h2&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30762" height="251" src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image4-1-1024x251.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;Figure 4 &amp;#8211; Copyright campaign infection chain.&lt;/p&gt;
-
-
-
-&lt;p&gt;As we stated, the infection begins with a spear-phishing email containing a link to download a password-protected archive. This archive typically includes three files: a legitimate executable, a DLL (which contains the packed Rhadamanthys), and a decoy Adobe ESPS or PDF file. When the executable is run, it utilizes DLL sideloading to load the malicious DLL, which subsequently unpacks and loads the Rhadamanthys components.&lt;/p&gt;
-
-
-
-&lt;p&gt;The legitimate executables and the names given to the DLL for sideloading:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Legitimate Executable (Often renamed)&lt;/th&gt;&lt;th&gt;Sideloaded DLL&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Launcher.exe&lt;/td&gt;&lt;td&gt;msimg32.dll&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AcroLicApp.exe&lt;/td&gt;&lt;td&gt;msimg32.dll&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AdobeARM.exe&lt;/td&gt;&lt;td&gt;SensApi.dll&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Once active, the stealer writes a significantly larger copy of the DLL into the&amp;nbsp;&lt;code&gt;Documents&lt;/code&gt;&amp;nbsp;folder, masquerading as a Firefox-related component (&lt;code&gt;FirefoxData.dll&lt;/code&gt;). It also creates a registry key for persistence:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 5 - Registry key added for persistence." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image5.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Registry key added for persistence.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The only difference between the dropped DLL and the one from the initial package is an appended empty overlay. This is a simple trick intended to evade hash-based detection, as the random padding changes the original hash of the executable. Sometimes, the enlarged size of the file may also cross the acceptable file size threshold defined by a particular antivirus engine, and as a result, the file is not scanned.&lt;/p&gt;
-
-
-
-&lt;p&gt;As the Rhadamanthys modules are loaded, they are injected into one of the following processes from the system32 directory:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;credwiz.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;OOBE-Maintenance.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;openwith.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;dllhost.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;rundll32.exe&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The process of loading Rhadamanthys modules and their general flow did not change much since the last version, 0.5.0, that we&amp;nbsp;&lt;a href="https://research.checkpoint.com/2023/rhadamanthys-v0-5-0-a-deep-dive-into-the-stealers-components/"&gt;described in detail&lt;/a&gt;&amp;nbsp;in our previous report. The initial Rhadamanthys executable has a hardcoded package from which Stage 2 is unpacked.&lt;/p&gt;
-
-
-
-&lt;p&gt;The role of Stage 2 is to run extensive evasion checks on the compromised machine, connect to the Command-and-Control server (C2), and download the next package which contains Stage 3. Stage 3, shipped steganographically in a WAV file, is a rich set of stealer modules that attack various targets. We described most of these modules in our &lt;a href="https://research.checkpoint.com/2023/rhadamanthys-v0-5-0-a-deep-dive-into-the-stealers-components/"&gt;previous article&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;A complete list of Rhadamanthys Stages 2 and 3 is available in Appendix A&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="targets"&gt;&lt;strong&gt;Targets&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The campaign’s targets are distributed across a wide geographic area, including the US, Europe, the Middle East, East Asia, and South America. However, it’s important to note that our target observations are limited by our customers’ that were targeted by this campaign. We believe this is part of a much larger campaign, with likely many more countries affected than we’ve seen.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 6 - Map of targeted countries according to Check Point’s
-telemetry." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image6.png" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;Figure 6 &amp;#8211; Map of targeted countries according to Check Point’s telemetry.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="attribution"&gt;Attribution&lt;/h2&gt;
-
-
-
-&lt;p&gt;Although Rhadamanthys was previously linked to nation-state threat actors like those from&amp;nbsp;&lt;a href="https://services.google.com/fh/files/misc/apt44-unearthing-sandworm.pdf"&gt;Russia&lt;/a&gt;&amp;nbsp;or Iran, we assess that this campaign is more likely the work of a cybercrime group rather than a state-sponsored operation for the following reasons:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Unlike nation-state actors, who typically target high-value assets such as government agencies or critical infrastructure, this campaign displays no such selectivity. Instead, it targets a diverse range of organizations with no clear strategic connections, reinforcing the conclusion that financial motives drive the attackers.&lt;/li&gt;
-
-
-
-&lt;li&gt;The infrastructure used, such as creating different Gmail accounts for each phishing attempt, indicates the possible use of automation tools possibly powered by AI. This level of operational efficiency, along with the indiscriminate targeting of multiple regions and sectors, points to a cybercrime group seeking to maximize financial returns by casting a wide net.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="rhadamanthys-0.7-1"&gt;Rhadamanthys 0.7&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;While working on this report, Recorded Future, a cyber security company,released a&amp;nbsp;comprehensive&amp;nbsp;&lt;a href="https://www.recordedfuture.com/research/rhadamanthys-stealer-adds-innovative-ai-feature-version"&gt;analysis&lt;/a&gt;&amp;nbsp;of Rhadamantys 0.7.&lt;/em&gt;The Rhadamanthys version used in this campaign, identified as 0.7, is the latest release at the time of this writing. It was introduced by the developer of the malware a few months ago in the following announcement:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-30758" height="197" src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image7-1024x197.png" width="1024" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;Figure 7 &amp;#8211; Source:&amp;nbsp;&lt;a href="https://x.com/g0njxa/status/1812902577530454023"&gt;https://x.com/g0njxa/status/1812902577530454023&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The author stated that text recognition is implemented with AI. As AI is currently a hot topic, this may help promote the product and show that it uses cutting-edge technology. However, as we found out, the component introduced by Rhadamanthys does not incorporate any of the modern AI engines but instead uses much older classic machine learning, typical for OCR software.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this latest release, the author announced many improvements. Some of the existing components were polished and modified. Only one new executable, the OCR component, was added.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="the-ocr-module"&gt;The OCR module&lt;/h3&gt;
-
-
-
-&lt;p&gt;In the package downloaded from the C2, we find the following:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;ImgDat (full path in Rhadamanthys Filesystem:&amp;nbsp;&lt;code&gt;/bin/amd64/imgdat.bin&lt;/code&gt;&amp;nbsp;) &amp;#8211; An executable in XS2 format.&lt;/li&gt;
-
-
-
-&lt;li&gt;bip39.txt (&lt;code&gt;/etc/bip39.txt&lt;/code&gt;) &amp;#8211; A small dictionary.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The ImgDat is the OCR module that the author mentioned in the announcement: &lt;em&gt;“Added AI graphics and PDF recognition to extract phases”.&lt;/em&gt; The newly added text file &lt;code&gt;bip39.txt&lt;/code&gt; is its configuration and contains a dictionary of search phrases that will be checked against the extracted text.&lt;/p&gt;
-
-
-
-&lt;p&gt;The name Bip39 suggests that it is related to the&amp;nbsp;&lt;a href="https://trezor.io/learn/a/what-is-bip39"&gt;Bitcoin Improvement Proposal 39&lt;/a&gt;, which states how to create phrases out of numbers to make wallet protection codes easier for humans to remember. According to the specification, Bip39 contains a dictionary of 2048 words &amp;#8211; just like the file we found. We compared it with the official Bip39 wordlist and confirmed that the content is the same: https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt (&lt;a href="https://www.blockplate.com/pages/bip-39-wordlist"&gt;https://www.blockplate.com/pages/bip-39-wordlist&lt;/a&gt;).&lt;/p&gt;
-
-
-
-&lt;p&gt;Based on this information, we can easily guess that the OCR module is applied to search for documents where such phrases may be stored, and the retrieved information will be further used in attacks on Bitcoin wallets. This set of phrases used for text recognition suggests that the campaign is motivated by financial gain rather than espionage purposes.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;How ImgDat is deployed&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The ImgDat executable is deployed by the main module of Stage 3 (coredll.bin), which is responsible for coordinating the work of all the stage&amp;#8217;s components. In the ImgDat module, calling the Entry Point retrieves a list of its exported functions that are used later.&lt;/p&gt;
-
-
-
-&lt;p&gt;The exported functions:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;code&gt;init&lt;/code&gt;&amp;nbsp;&amp;#8211; Initializes the OCR component with a given configuration and returns the context structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;delete&lt;/code&gt;&amp;nbsp;&amp;#8211; Destroys the initialized structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;process&lt;/code&gt;&amp;nbsp;&amp;#8211; Implements the main operations &amp;#8211; image processing and text extraction.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;Workflow:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;The function&amp;nbsp;&lt;code&gt;init&lt;/code&gt;&amp;nbsp;is called and the content of “bip39.txt” is passed to it to initialize the component with the given list of searched phrases. They are stored in the dedicated linked list that is a part of the context structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;The function&amp;nbsp;&lt;code&gt;process&lt;/code&gt;&amp;nbsp;is fetched from ImgDat. The core module walks through the disks of the infected machine and then calls this function on every retrieved path.&lt;/li&gt;
-
-
-
-&lt;li&gt;The function “process” from ImgDat is called a callback from within a filtering function. It first checks if the retrieved path contains the extension from the hardcoded list. The supported formats from which the module can retrieve the text:&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;BMP&lt;/li&gt;
-
-
-
-&lt;li&gt;JPEG&lt;/li&gt;
-
-
-
-&lt;li&gt;PNG&lt;/li&gt;
-
-
-
-&lt;li&gt;TIFF&lt;/li&gt;
-
-
-
-&lt;li&gt;WMF&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;If the extension matches, the file content is read and passed to the&amp;nbsp;&lt;code&gt;process&lt;/code&gt;&amp;nbsp;function from the ImgDat module.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;The OCR implementation&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The image is loaded via the&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-bitmap-flat"&gt;GDI+ interface&lt;/a&gt;&amp;nbsp;and then preprocessed to facilitate text recognition. First, all pixels from the image are loaded into the dedicated buffer:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 8 - Fragment of a function denoted as “read_bitmap_from_image”
-within the “process” API." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image8.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Fragment of a function denoted as “read_bitmap_from_image” within the “process” API.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The RGB components of the picture are compressed into a single byte.&lt;/p&gt;
-
-
-
-&lt;p&gt;The OCR functionality is implemented within the function denoted as&amp;nbsp;&lt;code&gt;extract_text&lt;/code&gt;&amp;nbsp;that is a part of the&amp;nbsp;&lt;code&gt;process&lt;/code&gt;&amp;nbsp;API. When we look inside, we can find a reference to&amp;nbsp;&lt;a href="https://encord.com/blog/image-thresholding-image-processing/"&gt;thresholding, a well known technique commonly applied in OCR software&lt;/a&gt;. Its role is to enhance the contrast to be able to distinguish the text from the background of the image.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 9 – Rhadamanthys OCR code." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image9.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 – Rhadamanthys OCR code.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;pre class="EnlighterJSRAW"&gt;[thresholding] image = %p , (%d , %d) (%d , %d)\n&lt;/pre&gt;
-
-
-
-&lt;p&gt;The image is then processed using a trained local machine learning model. Extracted sentences are stored in the dedicated structure.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 10 - Example of an input image (PNG) and the phrases extracted
-with the help of ImgDat." src="https://research.checkpoint.com/wp-content/uploads/2024/11/Z7IKVB5G75-image10.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; Example of an input image (PNG) and the phrases extracted with the help of ImgDat.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Finally, the extracted phrases are separated into words, which are then compared with the previously initialized token list. If there are enough matches (at least 9 strings from the list and at least 12 strings processed), the&amp;nbsp;&lt;code&gt;process&lt;/code&gt;&amp;nbsp;function returns&amp;nbsp;&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;The model has limited precision. For example, it handles only the most popular fonts and cannot recognize handwritten text. In addition, it doesn’t do well with text in mixed colors (especially if one line of the text is darker than the background and another is lighter).&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion-1"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;In this article, we analyzed a large-scale phishing campaign&amp;nbsp;discovered in July 2024. This campaign used a copyright infringement theme to spread the Rhadamanthys info stealer. This campaign employed tactics including DLL sideloading and anti-detection techniques, making the latest version of Rhadamanthys (0.7) more potent and more challenging to detect. We also examined Rhadamanthys’ new OCR features.&lt;/p&gt;
-
-
-
-&lt;p&gt;The campaign’s widespread and indiscriminate targeting of organizations across multiple regions suggests it was orchestrated by a financially motivated cybercrime group rather than a nation-state actor. Its global reach, automated phishing tactics, and diverse lures demonstrate how attackers continuously evolve to improve their success rates.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Check Point Customers Remain Protected Against the Threats Described in this Report&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Check Point’s&amp;nbsp;&lt;a href="https://www.checkpoint.com/infinity/zero-day-protection/"&gt;Threat Emulation&lt;/a&gt;&amp;nbsp;provides comprehensive coverage of attack tactics, file types, and operating systems:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;InfoStealer.Wins.Rhadamanthys.ta.V&lt;/li&gt;
-
-
-
-&lt;li&gt;InfoStealer.Wins.Rhadamanthys.*&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.checkpoint.com/harmony/advanced-endpoint-protection/"&gt;Harmony Endpoint&lt;/a&gt;&amp;nbsp;provides comprehensive endpoint protection at the highest security level, crucial to avoid security breaches and data compromise :&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;InfoStealer.Wins.Rhadamanthys.*&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.checkpoint.com/harmony/email-security/"&gt;&lt;strong&gt;Harmony Email and Collaboration&lt;/strong&gt;&lt;/a&gt;&amp;nbsp;provides comprehensive inline protection at the highest security level.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="appendix-a"&gt;Appendix A&lt;/h2&gt;
-
-
-
-&lt;p&gt;Stage 2 &amp;#8211; Unpacked from the hardcoded package:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Format&lt;/th&gt;&lt;th&gt;SHA256&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;dt.x86&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;bea558e8129fcb647e6f42c8beda4464e109dd3cd546342c0337dbd50616f991&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;early.x86&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;4fd469d08c051d6997f0471d91ccf96c173d27c8cff5bd70c3f2c5008faa786f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;early.x64&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;633b0fe4f3d2bfb18d4ad648ff223fe6763397daa033e9c5d79f2cae89a6c3b2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;netclient.x86&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;b97dd0279e112e0591b38064f59077102ab188b07a069cb104e66e4756e2570a&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;phexec.bin&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;13872271ee511aa83f3f27d5db248516652b10a079ad01f78ed734cd2a87ec77&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;prepare.bin&lt;/td&gt;&lt;td&gt;shellcode&lt;/td&gt;&lt;td&gt;d96ec4b08c08b81ba9075423d5e83bf330de09866066b4bdb459bcbac389a350&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;proto.x86&lt;/td&gt;&lt;td&gt;shellcode&lt;/td&gt;&lt;td&gt;a905226a2486ccc158d44cf4c1728e103472825fb189e05c17d998b9f5534d63&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage.x86&lt;/td&gt;&lt;td&gt;shellcode&lt;/td&gt;&lt;td&gt;44f3936ee158d2846664bf5cd795fd90a99441186b20b90ff241ba1b38a6a3e9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;strategy.x86&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;219a6387d91c4b2c8e91c8613192af950bd9c790114a238eb0e1e7c878f6e728&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;unhook.bin&lt;/td&gt;&lt;td&gt;XS1&lt;/td&gt;&lt;td&gt;37438095a5e7be0ce12997dc23d1ff117912989d2f24beab95284f9380f65834&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ua.txt&lt;/td&gt;&lt;td&gt;plain text&lt;/td&gt;&lt;td&gt;aeba4ece8c4bf51d9761e49fad983967e76c705a06999c556c099f39853f737c&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;processex.x&lt;/td&gt;&lt;td&gt;plain text&lt;/td&gt;&lt;td&gt;3ca87045da78292a6bba017138ff9ee42b4e626b64d0fee6d86a16cc3258c8c3&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Stage 3 &amp;#8211; Downloaded from the C2:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Format&lt;/th&gt;&lt;th&gt;SHA256&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;coredll.bin (32)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;3737501bbd4abd0844da016c0263399e3c670ae52952b30ca46c6c96cf4e318d&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;coredll.bin (64)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;6012386eab453f4fb1cfb88fb5b05ba9ec71a838029ea51bcff4c0b5a2fbfad2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;taskcore.bin (32)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;c0b319bb19092fe3c193e5139fcdf599502b669143b06c676e81f46ab50fb4ed&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;taskcore.bin (64)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;18273fa35c54332d8763cb17a5ae92de5636f3a05c507ce18d9d6a77c3139deb&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stubmod.bin (32)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;d97aa65123c26509e3fc1a9963962b7f707a50ddca44a9a12fd03e654ab5aa66&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stubmod.bin (64)&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;fd9fbfa809450415e8d0d79199ec8686cb7071d6e13a5b76f0ce1b03a2a61302&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;runtime.dll&lt;/td&gt;&lt;td&gt;PE, .NET&lt;/td&gt;&lt;td&gt;a87032195e38892b351641e08c81b92a1ea888c3c74a0c7464160e86613c4476&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;loader.dll&lt;/td&gt;&lt;td&gt;PE, .NET&lt;/td&gt;&lt;td&gt;3d010e3fce1b2c9ab5b8cc125be812e63b661ddcbde40509a49118c2330ef9d0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;KeePassHax.dll&lt;/td&gt;&lt;td&gt;PE, .NET&lt;/td&gt;&lt;td&gt;fcb00beaa88f7827999856ba12302086cadbc1252261d64379172f2927a6760e&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;imgdat.bin (32)&lt;/em&gt;&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;2625d99af56c79de32f9fba2332f63eb9c88707e9ea83985bce5df9022ced99a&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;imgdat.bin (64)&lt;/em&gt;&lt;/td&gt;&lt;td&gt;XS2&lt;/td&gt;&lt;td&gt;ffb264a19af7c8a8dd5357b62c45fcd3063ca946aa2710740c4e8b21f8e697d9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;bip39.txt&lt;/em&gt;&lt;/td&gt;&lt;td&gt;plain text&lt;/td&gt;&lt;td&gt;24ce42c2fd4a95c1b86bbee9bce1e1cf255bd0022e19bab6bd591afd68b7efdb&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lua extensions&lt;/td&gt;&lt;td&gt;LUA code&lt;/td&gt;&lt;td&gt;&amp;#8211;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="iocs"&gt;IOCs&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;C2:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;198.135.48.191&lt;/li&gt;
-
-
-
-&lt;li&gt;139.99.17.158&lt;/li&gt;
-
-
-
-&lt;li&gt;103.68.109.208&lt;/li&gt;
-
-
-
-&lt;li&gt;95.169.204.214&lt;/li&gt;
-
-
-
-&lt;li&gt;15.235.138.155&lt;/li&gt;
-
-
-
-&lt;li&gt;15.235.176.166&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Archives:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;d285677cba6acf848aa4869df74af959f60ef1bc1271b4032000fcdd44f407f2&lt;/li&gt;
-
-
-
-&lt;li&gt;2be6ad454fa9e87f78dea80d2855f1c14df81a881093a1a0d57f348377f477a8&lt;/li&gt;
-
-
-
-&lt;li&gt;9ef9c88cef51ee0fb77ea9a78dbe60651603ef807ddb6c44d5bda95cc9026527&lt;/li&gt;
-
-
-
-&lt;li&gt;e8aa9a061c6ea803faaf4c8d7a80c6886b4ee73d9a89a9dc6e87e3fecf7a6851&lt;/li&gt;
-
-
-
-&lt;li&gt;b1ac4ad92045e935c132214015188d27ec4382f930d0152dfb303695b708b38d&lt;/li&gt;
-
-
-
-&lt;li&gt;00086cf4f35b6fb7f897cfa2f0d5ad9876aa9819cdc87416c798005ce901d3a1&lt;/li&gt;
-
-
-
-&lt;li&gt;05e02f0f9b8625fe3959ae1219f31b0167d787fefc0a9d152edf6524d6859590&lt;/li&gt;
-
-
-
-&lt;li&gt;0a3dfe260dd7b038ddb8911689c899541391c188aff966261e7bd9d0280d153d&lt;/li&gt;
-
-
-
-&lt;li&gt;0b9bd95d815af9ea4a59840ef6fcdc7ccfd0e239c40974334cb4cfb41df530db&lt;/li&gt;
-
-
-
-&lt;li&gt;0de8d2d3217cebd37a2fe488713d1c288ae5a63d3d3b2a3495e2e636ba6a1f89&lt;/li&gt;
-
-
-
-&lt;li&gt;10eafd75429ffadee2384acd37b0d4e7ca26b83666e6786f2acaf1b1c29c3f17&lt;/li&gt;
-
-
-
-&lt;li&gt;12b7390835f30c1bcdeddd258e49684c98133cee4a6a2ccab869785567deae4f&lt;/li&gt;
-
-
-
-&lt;li&gt;2a276ca5b2e095cdac7b24e58b3f7a67cee7db2fb5c1568e4775909265c7e914&lt;/li&gt;
-
-
-
-&lt;li&gt;2aa58fa8d71bd2b4fd1ffac16a6461191bbf6f4b2c97455ae52800cce929a0f2&lt;/li&gt;
-
-
-
-&lt;li&gt;2e0c99758432a3759b5af6f190ec5cb72a5a84c977d8883dcf041c4de003f3d3&lt;/li&gt;
-
-
-
-&lt;li&gt;324dfc7bb75f27e6fba8d67dea67a63525efbe947bf8e29ef39980c6efc1c3f6&lt;/li&gt;
-
-
-
-&lt;li&gt;3448005600ccb0ae52443a4c227a657de9cd767b389e9a1ed75ef074709981bd&lt;/li&gt;
-
-
-
-&lt;li&gt;3de252c9023bc8920d77570acdfe21813532727af3f91d59af35fa8abcd3700f&lt;/li&gt;
-
-
-
-&lt;li&gt;3ecf2838b2e07e6d329d45cde7d0162ba47fea4b94bacb24838358314daed756&lt;/li&gt;
-
-
-
-&lt;li&gt;415ee9b12002f17ca4f36bef794fdb19884e22980e21bf8a15043258624c439b&lt;/li&gt;
-
-
-
-&lt;li&gt;416f3fa48b75ab168e3373dae77cab7f4702de5158835d23a02629e8c1d20156&lt;/li&gt;
-
-
-
-&lt;li&gt;41a3edb3a8e8d5cf093cbd02791911f6ee26df39a377fceb6b101d66a7b7aff2&lt;/li&gt;
-
-
-
-&lt;li&gt;4b33219c5cadb4d741044874f6f0184d45f43891d28ad5b489716d4da21310fd&lt;/li&gt;
-
-
-
-&lt;li&gt;4bbe0f6b5488a51295b15d8144d0a1c9b41bb86384299b88ea48e88c76704f52&lt;/li&gt;
-
-
-
-&lt;li&gt;4cbcfa2a8d56976eff1e8ac0ef4d7703d0b802f227975a0cc36f3dcd3a90e73e&lt;/li&gt;
-
-
-
-&lt;li&gt;5cec33e8f47855da3c4ce1f3953d750275864714b16e08a94605bc3889867caf&lt;/li&gt;
-
-
-
-&lt;li&gt;6044e08402d1abd52991f5c6a4749ba6aa29a0587ff196edf60b38862392e855&lt;/li&gt;
-
-
-
-&lt;li&gt;623bb3f1f476c37afc309d6c0ab89e216aaedc03b8a7ec1aaec5fb5085d78a97&lt;/li&gt;
-
-
-
-&lt;li&gt;741dfdae8948f3e430a5b7b66c8fb4b8a750695b67a84a12abc0b6089e8fba31&lt;/li&gt;
-
-
-
-&lt;li&gt;7990765022c4400a45f996046971b9e6b69cca5b06f8d2adb61bc267fd362197&lt;/li&gt;
-
-
-
-&lt;li&gt;7d7a3e254b7968400a301d83fcd44a69f655386b9b95998a36113cfb2e542720&lt;/li&gt;
-
-
-
-&lt;li&gt;7dc07b8aa268485e40ab78bfbb03a367d80ebd7b2c6c74961dc6842cae7086e1&lt;/li&gt;
-
-
-
-&lt;li&gt;7e270a80cd0f04f245309e8c75cfc2cb46dc075ba01a00b30f66cb8b5deaaf3f&lt;/li&gt;
-
-
-
-&lt;li&gt;865a4f2583679f7a40357b61301d75567cf516a5b8295dc8155e6d4aa2ce244a&lt;/li&gt;
-
-
-
-&lt;li&gt;878917b6a8d241031fc330eff771f416a9fffaecab42c39d57e58ac2d8f38f11&lt;/li&gt;
-
-
-
-&lt;li&gt;970e199e40511e90d6dd5d6f3c9f3701215fd881b1273fe2617bd44444b0bee9&lt;/li&gt;
-
-
-
-&lt;li&gt;9a249dfdc2c16700bc5add2455f2ed00e47a2610b7779cc33e40aac576a2a74d&lt;/li&gt;
-
-
-
-&lt;li&gt;9abf9fb94e2529d8819a3873f2025bdd90d14e75fe4af81e489f6d0560809f9c&lt;/li&gt;
-
-
-
-&lt;li&gt;9d10835f7717c89d17886b7e59cc2dfc9133bfaa044bad5f070e1c8e1212e257&lt;/li&gt;
-
-
-
-&lt;li&gt;a03d2956ff8d0ae4d96c9e6cced79b335b70eef10feb0f7202609cb8652179f6&lt;/li&gt;
-
-
-
-&lt;li&gt;a064bbc4b58642ab4d7118abc55fb81db6584cbc633800ad14048e8370a95ef2&lt;/li&gt;
-
-
-
-&lt;li&gt;a15d0aedc8b4e54a170b6ecc3d9a06835cc499f07b05c6ca261081ace505debf&lt;/li&gt;
-
-
-
-&lt;li&gt;a72083974e886856b7d985bdc79888234c8cd9012ed39b2566851fb0d86cca50&lt;/li&gt;
-
-
-
-&lt;li&gt;a8729621ca4310e8e1a7ad3e1426708f1e1954a16af420cd3ce46c501e9692ab&lt;/li&gt;
-
-
-
-&lt;li&gt;a9896a8f96407a5eedda08a63dd40967f0fe0b3926e7002b6e1abc11f6ab81cc&lt;/li&gt;
-
-
-
-&lt;li&gt;aa04c9307a9087455d21dfac02d7f322ab337cd5978f9161285a9c79379efecc&lt;/li&gt;
-
-
-
-&lt;li&gt;b36205464ead176a473ab43ea7b5e0c2b8749b3eb9549d65609be2337dce25db&lt;/li&gt;
-
-
-
-&lt;li&gt;b529c6df6164ff8badf30f942220a3126f99e3fc2c2ea1494aa3e305b3b53c1f&lt;/li&gt;
-
-
-
-&lt;li&gt;b9c4c8343ba75081954b2db54940585c6c0c9bb47e053ac1b9229b4fa8fc9293&lt;/li&gt;
-
-
-
-&lt;li&gt;be9c3feed5f6e81ccd375902c8c92616f77694b6cd14f69896d44dd4b1ea4990&lt;/li&gt;
-
-
-
-&lt;li&gt;c5bb808a88f9e729484c05a1bc3097157bbfbd28469e502f2ebc4c6e6135df42&lt;/li&gt;
-
-
-
-&lt;li&gt;c622c0f67eb5d9a90008e5e120065cd5a1a6e25c6e758e8205d377596059b8fe&lt;/li&gt;
-
-
-
-&lt;li&gt;ccb539bf17d479d9707ee717d0afb03cd57e9b6f023becf1abf9cdbd88e1b06c&lt;/li&gt;
-
-
-
-&lt;li&gt;cd3040c88a6fd71ed1ce8c2a5d0b13ed8e25e49835932a39891c514ef946dd29&lt;/li&gt;
-
-
-
-&lt;li&gt;ce2f00f1d0e71287e746d5a3507547f355297a3e45a7c2cc0322015916a0137c&lt;/li&gt;
-
-
-
-&lt;li&gt;d00d3adf81bf95ff4994dcbd2ae1305a6ee6b0edfad6eb55b87217f85645651a&lt;/li&gt;
-
-
-
-&lt;li&gt;d0e3f547e3efcc9d9794774a765b9c3950955e7ad752f3e630ebd5ab9425bcdc&lt;/li&gt;
-
-
-
-&lt;li&gt;d452461f3527d674de3e9b680026ceb2b02c56d6d3f7c94da3aab65c05f52c03&lt;/li&gt;
-
-
-
-&lt;li&gt;d57f45096e646837dec51129222fcbe79981c595721164009aec68be09bf5dcf&lt;/li&gt;
-
-
-
-&lt;li&gt;dbb4f7e6354621c316fbba7e7a15f59cf229684e16ab6d21027f310beecaf49b&lt;/li&gt;
-
-
-
-&lt;li&gt;dbdeede6f39936305c4c5bd8e4f7bfccb0b823c025130e7f8fa285e80383be0f&lt;/li&gt;
-
-
-
-&lt;li&gt;dc3d72f72247141efeba3c2ffd498025f68e0c4b34c9a4dc2686ffec09b6d401&lt;/li&gt;
-
-
-
-&lt;li&gt;de933f7b47707f4bf8d5a4aaef8b31f5059d3b8f465bcaae3e22438466e8390b&lt;/li&gt;
-
-
-
-&lt;li&gt;e6315b24e0311758da1c25daa5f2724da4f534ed7ed644cbf43f3cc64c4676a7&lt;/li&gt;
-
-
-
-&lt;li&gt;e9a18755312011e30081e7ce0fcc1db3e3aec3b9f3ed3a776dd38498830a2738&lt;/li&gt;
-
-
-
-&lt;li&gt;eb4e39d44ad016b8d6d1dc8dc25a9ea3d3e18df87516922fdbd995de15b68f54&lt;/li&gt;
-
-
-
-&lt;li&gt;ebd167ca477af620065548a9e55567682b0750625b3e078fc4498dd5adeabdc6&lt;/li&gt;
-
-
-
-&lt;li&gt;f2536e520d37512d868a418797974a5c11e67742824a5477100b7e3f5b2efbc3&lt;/li&gt;
-
-
-
-&lt;li&gt;f4fcba1c9d7f4ae8e3868f901035ea1e0e9e1122a362a83afd3d111c17a97d7a&lt;/li&gt;
-
-
-
-&lt;li&gt;f7eef906c7dc1ce2ffe586d4b7f316a5f5c6761b5cdbf22d892fbc87a5ee2f6f&lt;/li&gt;
-
-
-
-&lt;li&gt;fe55c1d263e0ea356d86afd8b2b1cedff570568e45b8a3810e05ea482b8a9329&lt;/li&gt;
-
-
-
-&lt;li&gt;fefba5ce20c71a71cfe35dd8ff06c514bf6ffde60356babf4f4bba66dd904b78&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;DLL:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;cf9d93951e558ed22815b34446cfa2bd2cf3d1582d8bd97912612f4d4128a64e&lt;/li&gt;
-
-
-
-&lt;li&gt;48aaa2dec95537cdf9fc471dbcbb4ff726be4a0647dbdf6300fa61858c2b0099&lt;/li&gt;
-
-
-
-&lt;li&gt;00fc4b8a4c65c06766608f3ef3f92385c8e147f5991dabe290e33dd14b39ad44&lt;/li&gt;
-
-
-
-&lt;li&gt;0ad65fd0897a6547f6febf398708ab2d423a8f8834b53136219cb490ec3ebd13&lt;/li&gt;
-
-
-
-&lt;li&gt;11ba24d023b544e28c37b6cb8afe27d06638175d7f56c2e4d4ff97bf7bd813b6&lt;/li&gt;
-
-
-
-&lt;li&gt;1a2399ecc38f3288206c75b55762d125d3d75254062a2c0d85c86e7f896736ac&lt;/li&gt;
-
-
-
-&lt;li&gt;258ffcc13dbe110bcce21b91f7f075995719791fdd3c9f55ea5934984fa4373d&lt;/li&gt;
-
-
-
-&lt;li&gt;2cbc1e8a4cb5d18a867666adbd3417bc88d48a74ae6500593959aec1a1c92d2d&lt;/li&gt;
-
-
-
-&lt;li&gt;342a5c7df2bdd040570f4b83c74366d4c96a90d6418149d432cb5e8577f2f6b1&lt;/li&gt;
-
-
-
-&lt;li&gt;3648e89e7449ea433a8b3ef0e5b605b5dc4157048c03b20dedc5e3b920fa8552&lt;/li&gt;
-
-
-
-&lt;li&gt;5418e42706bca4712ff2a3db67853eb42a2310660c51cff2f9020586cffedeb3&lt;/li&gt;
-
-
-
-&lt;li&gt;69573694d16b7ccadfa208ff976bfe1b3e36837aba3e5dc4dfc80e66341ef61e&lt;/li&gt;
-
-
-
-&lt;li&gt;6de4f65b1d738d84f8e825613092bbd360194195fe8a1c986e12a9bb704217c1&lt;/li&gt;
-
-
-
-&lt;li&gt;751f149665f87dd20cc8dff743f28e5da1ff2a5f04874d4b8569b9afceeedfec&lt;/li&gt;
-
-
-
-&lt;li&gt;78200cd816acbd39b6664c6582e06500f6d46085b62b49d2f914bea5a004197a&lt;/li&gt;
-
-
-
-&lt;li&gt;783c7f4bf23072343f6247ee14e54e4af0b147553ad1ef42b4e7fb44386d667c&lt;/li&gt;
-
-
-
-&lt;li&gt;7f99e506c17676b98dcc08e6a19f100ef933cde3e0423c6d4072f6802a9196bb&lt;/li&gt;
-
-
-
-&lt;li&gt;8d0b1174cbda6b102bb98c91ba123e9f404b9fad23b49a4e29f3cfd8d20a577a&lt;/li&gt;
-
-
-
-&lt;li&gt;90c7688e0dc23ba4530bac1d567bad920c4ef1c06cbf4b2d867eeb363271eefe&lt;/li&gt;
-
-
-
-&lt;li&gt;9102e564c3262b2c291e8ca3d67f8a55c06650aa86f617c919916f6053c03c9b&lt;/li&gt;
-
-
-
-&lt;li&gt;9327aa03760431b6d86eeb2f1a3efc36aa443b842b5116fbbe0f2a7794c4e70e&lt;/li&gt;
-
-
-
-&lt;li&gt;97286b6f3a6535ff1172ef65172e6967e3670c6b14a3313c3bf0d6c171b1fc85&lt;/li&gt;
-
-
-
-&lt;li&gt;98e28d3423f5d414effe3c0ed6fd0f1c8154942e5e127ecee5f051e1196ffc75&lt;/li&gt;
-
-
-
-&lt;li&gt;99c0bebdc8cb7b0948000a601f510fc70487f9da532be199b8641512a2db9839&lt;/li&gt;
-
-
-
-&lt;li&gt;9bdf49b27fd4d80ef087f63e0bfa0a0822686814863eca09ac506404ad76dfda&lt;/li&gt;
-
-
-
-&lt;li&gt;b2588061ba5ee9948bbccd320b40c6d7b8d6a693d181f3bce61e5e267f53aa7e&lt;/li&gt;
-
-
-
-&lt;li&gt;b936853a0c50a0cd0bc8b33103b55bd88e19c6c28768d990b954c11d714286ca&lt;/li&gt;
-
-
-
-&lt;li&gt;f2429f4bd09897653d0ffa41206a14cafa55356d5edc04dc0915c116867f8c27&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/massive-phishing-campaign-deploys-latest-rhadamanthys-version/"&gt;CopyRh(ight)adamantys Campaign: Rhadamantys Exploits Intellectual Property Infringement Baits&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30726</guid><category>Check Point Research Publications</category></item><item><title>Revolutionizing Risk Management in Application Security</title><link>https://www.veracode.com/blog/intro-appsec/revolutionizing-risk-management-application-security</link><description>In our hyper-connected reality, software applications are the unsung heroes of business operations. But, let's face it, with great tech comes great vulnerability to cyber shakedowns and data leaks. This begs the question: “Is scanning enough to manage risk?” Organizations are playing a high-stakes game of keeping their apps secure to safeguard their secrets. Let’s explore how to enhance application security by not only identifying vulnerabilities but also by prioritizing these threats, giving teams a playbook with the Next Best Actions to understand the root cause analysis of flaws and tackling them head-on.  
+&lt;/div&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=108328</guid><category>DPRK</category></item><item><title>Revolutionizing Risk Management in Application Security</title><link>https://www.veracode.com/blog/intro-appsec/revolutionizing-risk-management-application-security</link><description>In our hyper-connected reality, software applications are the unsung heroes of business operations. But, let's face it, with great tech comes great vulnerability to cyber shakedowns and data leaks. This begs the question: “Is scanning enough to manage risk?” Organizations are playing a high-stakes game of keeping their apps secure to safeguard their secrets. Let’s explore how to enhance application security by not only identifying vulnerabilities but also by prioritizing these threats, giving teams a playbook with the Next Best Actions to understand the root cause analysis of flaws and tackling them head-on.  
 The Challenge: Prioritizing and Remediating Vulnerabilities for Application Risk Management at Scale 
 Have you ever asked yourself, "What flaws do I fix first? Where is the issue originating from? I have hundreds, perhaps thousands of vulnerabilities, how many different point solutions do I have to go through to figure all of this out?"
 Questions like…</description><guid isPermaLink="false">https://www.veracode.com/ver66981</guid></item><item><title>How Organisations Are Failing to Process Personal Data Lawfully Under the GDPR</title><link>https://www.itgovernance.co.uk/blog/how-organisations-are-failing-to-process-personal-data-lawfully-under-the-gdpr</link><description>&lt;p&gt;Problems with consent, purpose limitation, retention periods, and more At the heart of the GDPR (General Data Protection Regulation) lie the Article 5 data protection principles. When I asked data privacy trainer and DPO (data protection officer) Andy Snow which principle organisations are most prone to getting wrong, he found it hard to pick just one. In part, this is due to how the principles naturally interlink – an issue with one principle naturally leads to issues with (some of) the others, too. Andy took the first principle as an example, saying: You’d think organisations can get something as basic &lt;/p&gt;
