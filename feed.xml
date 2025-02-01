@@ -1,5 +1,173 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 01 Feb 2025 04:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>To Simulate or Replicate: Crafting Cyber Ranges</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ChatGPT Cheat Sheet: A Complete Guide for 2025</title><link>https://www.techrepublic.com/article/chatgpt-cheat-sheet/</link><description>Get up and running with ChatGPT with this comprehensive cheat sheet. Learn everything from how to sign up for free to enterprise use cases, and start using ChatGPT quickly and effectively.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4062368</guid><category>Artificial Intelligence</category><category>Innovation</category><category>artificial intelligence</category><category>chatbot</category><category>chatgpt</category><category>Google</category><category>Microsoft</category></item><item><title>FBI, Dutch Police Disrupt ‘Manipulaters’ Phishing Gang</title><link>https://krebsonsecurity.com/2025/01/fbi-dutch-police-disrupt-manipulaters-phishing-gang/</link><description>The FBI and authorities in The Netherlands this week seized a number of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname "The Manipulaters," have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.</description><content:encoded>&lt;p&gt;The FBI and authorities in The Netherlands this week seized dozens of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname &amp;#8220;&lt;strong&gt;The Manipulaters&lt;/strong&gt;,&amp;#8221; have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 01 Feb 2025 05:59:19 +0000</lastBuildDate><item><title>DeepSeek Failed Over Half of the Jailbreak Tests by Qualys TotalAI</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>A comprehensive security analysis of DeepSeek&amp;#8217;s flagship reasoning model reveals significant concerns for enterprise adoption. Introduction DeepSeek-R1, a groundbreaking Large Language Model recently released by a Chinese startup, DeepSeek, has captured the AI industry’s attention. The model demonstrates competitive performance while being more resource efficient. Its training approach and accessibility offer an alternative to traditional [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;em&gt;A comprehensive security analysis of DeepSeek&amp;#8217;s flagship reasoning model reveals significant concerns for enterprise adoption.&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Introduction&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://api-docs.deepseek.com/news/news250120"&gt;DeepSeek-R1&lt;/a&gt;, a groundbreaking Large Language Model recently released by a Chinese startup, &lt;a href="https://www.deepseek.com/"&gt;DeepSeek&lt;/a&gt;, has captured the AI industry’s attention. The model demonstrates competitive performance while being more resource efficient. Its training approach and accessibility offer an alternative to traditional large-scale AI development, making advanced capabilities more widely available.&lt;/p&gt;
+
+
+
+&lt;p&gt;To enhance efficiency while preserving model efficacy, DeepSeek has released multiple distilled versions tailored for different use cases. These variations, built on Llama and Qwen as base models, come in multiple size variants, ranging from smaller, lightweight models suitable for efficiency-focused applications to larger, more powerful versions designed for complex reasoning tasks.&lt;/p&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;With growing enthusiasm for DeepSeek&amp;#8217;s advancements, our team at Qualys conducted a security analysis of the distilled DeepSeek-R1 LLaMA 8B variant using our newly launched AI security platform, &lt;a href="https://www.qualys.com/apps/totalai/"&gt;&lt;strong&gt;Qualys TotalAI&lt;/strong&gt;&lt;/a&gt;. These findings are presented below, along with broader industry concerns about the model’s real-world risks. As AI adoption accelerates, organizations must move beyond performance evaluation to tackle security, safety, and compliance challenges. Gaining visibility into AI assets, assessing vulnerabilities, and proactively mitigating risks is critical to ensuring responsible and secure AI deployment.&lt;/p&gt;
+
+
+
+&lt;span id="more-37192"&gt;&lt;/span&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Qualys TotalAI Findings&lt;/h3&gt;
+
+
+
+&lt;p&gt;Before diving into the findings, here’s a quick introduction to Qualys TotalAI. This comprehensive AI security solution provides full visibility into AI workloads, proactively detects risks, and safeguards infrastructure. By identifying security threats like prompt injection and jailbreaks, as well as safety concerns such as bias and harmful language, TotalAI ensures AI models remain secure, compliant, and resilient. With AI-specific security testing and automated risk management, organizations can confidently secure, monitor, and scale their AI deployments.&lt;/p&gt;
+
+
+
+&lt;p&gt;We tested the &lt;strong&gt;&lt;em&gt;Deepseek R1 LLaMA 8B&lt;/em&gt;&lt;/strong&gt; variant against Qualys TotalAI’s state-of-the-art Jailbreak and Knowledge Base (KB) attacks, and you can read the results of those tests below.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI KB Analysis&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;Qualys TotalAI’s KB Analysis prompts the target LLM with questions across 16 categories and evaluates the responses using our Judge LLM. Responses are assessed for vulnerabilities, ethical concerns, and legal risks. If a response is deemed vulnerable, it receives a severity rating based on its directness and potential impact. This ensures a comprehensive assessment of the model’s behavior and associated risks.&lt;/p&gt;
+
+
+
+&lt;p&gt;In testing, 891 assessments were conducted across categories such as controversial topics, harassment, and hate speech. The model failed 61% of the tests, performing worst in Misalignment and best in Sexual Content.&lt;/p&gt;
+
+
+
+&lt;p&gt;By covering these 16 critical areas, the evaluation framework helps identify ethical, legal, and operational risks in LLM deployment. Establishing these benchmarks is essential to preventing misinformation, mitigating bias, and reducing security threats.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Screenshot-2025-01-31-at-2.57.31 PM-1.png"&gt;&lt;img alt="" class="wp-image-37193" height="1768" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Screenshot-2025-01-31-at-2.57.31 PM-1.png" width="2420" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI Jailbreak Testing&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p&gt;Jailbreaking an LLM involves techniques that bypass built-in safety mechanisms, enabling the model to generate restricted responses. These vulnerabilities can result in harmful outputs, including instructions for illegal activities, misinformation, privacy violations, and unethical content. Successful jailbreaks expose weaknesses in AI alignment and present serious security risks, particularly in enterprise and regulatory settings.&lt;/p&gt;
+
+
+
+&lt;p&gt;The model was tested against 18 jailbreak types through 885 attacks. It failed 58% of these attempts, demonstrating significant susceptibility to adversarial manipulation. The most effective jailbreaks—&lt;strong&gt;devmode2, jonesai, and titanius&lt;/strong&gt;—exploited weaknesses in the model’s resistance to prompt engineering tactics, underscoring the need for stronger safeguards.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image-11.png"&gt;&lt;img alt="" class="wp-image-37194" height="1832" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image-11.png" width="2414" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;These findings highlight the need for improved security mechanisms to prevent circumvention of built-in safeguards, ensuring the model remains aligned with ethical and regulatory guidelines. One effective prevention mechanism is implementing robust &lt;strong&gt;guardrails&lt;/strong&gt;, which act as real-time filters to detect and block jailbreak attempts. These guardrails enhance model resilience by dynamically adjusting to adversarial exploits, helping to mitigate security risks in enterprise applications.&lt;/p&gt;
+
+
+
+&lt;p&gt;These vulnerabilities expose downstream applications to significant security risks, necessitating robust adversarial testing and mitigation strategies.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Industry Concerns&lt;/h3&gt;
+
+
+
+&lt;h4 class="wp-block-heading"&gt;Compliance Challenges&lt;/h4&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://chat.deepseek.com/downloads/DeepSeek%20Privacy%20Policy.html"&gt;DeepSeek AI&amp;#8217;s privacy policy&lt;/a&gt; stipulates that all user data is stored on servers located in China. This operational framework raises critical concerns due to China&amp;#8217;s regulatory environment, including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Governmental Data Access&lt;/strong&gt;: The Chinese Cybersecurity Law permits government authorities to access locally stored data without requiring user consent.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Cross-Border Regulatory Conflicts&lt;/strong&gt;: Organizations subject to data protection frameworks such as GDPR and CCPA may face compliance violations when using DeepSeek-R1.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Intellectual Property Vulnerabilities&lt;/strong&gt;: Enterprises relying on proprietary data for AI training risk unauthorized access or state-mandated disclosure.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Opaque Data Governance&lt;/strong&gt;: The absence of transparent oversight mechanisms limits visibility into data handling, sharing, and potential third-party access.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;These concerns mainly affect organizations using DeepSeek&amp;#8217;s hosted models. However, deploying the model in local or customer-controlled cloud environments mitigates regulatory and access risks, allowing enterprises to maintain full control over data governance. Despite this, the model&amp;#8217;s inherent security vulnerabilities remain a valid concern, requiring careful evaluation and mitigation.&lt;/p&gt;
+
+
+
+&lt;p&gt;Regulatory experts advise organizations in strict data protection jurisdictions to conduct thorough compliance audits before integrating DeepSeek-R1.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading"&gt;Data Breach and Privacy Concerns&lt;/h4&gt;
+
+
+
+&lt;p&gt;A recent cybersecurity incident involving DeepSeek AI reportedly exposed &lt;strong&gt;over a million log entries&lt;/strong&gt;, including &lt;strong&gt;sensitive user interactions, authentication keys, and backend configurations&lt;/strong&gt;. This misconfigured database highlights deficiencies in DeepSeek AI’s data protection measures, further amplifying concerns regarding &lt;strong&gt;user privacy&lt;/strong&gt; and &lt;strong&gt;enterprise security&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading"&gt;Regulatory and Legal Implications&lt;/h4&gt;
+
+
+
+&lt;p&gt;DeepSeek AI&amp;#8217;s compliance posture has been questioned by legal analysts and regulatory bodies due to the following:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Ambiguities in Data Processing Practices&lt;/strong&gt;: Insufficient disclosures regarding how user data is processed, stored, and shared.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Potential Violations of International Law&lt;/strong&gt;: The model&amp;#8217;s data retention policies may conflict with extraterritorial regulations, prompting legal scrutiny in global markets.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Risks to National Security&lt;/strong&gt;: Some government agencies have raised concerns about deploying AI systems that operate under foreign jurisdiction, particularly for sensitive applications.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;International compliance officers emphasize the necessity of conducting comprehensive legal risk assessments before adopting DeepSeek-R1 for mission-critical operations. &lt;em&gt;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Conclusion&lt;/h3&gt;
+
+
+
+&lt;p&gt;While DeepSeek-R1 delivers advancements in AI efficiency and accessibility, its deployment requires a comprehensive security strategy. Organizations must first gain full visibility into their AI assets to assess exposure and attack surfaces. Beyond discovery, securing AI environments demands structured risk and vulnerability assessments—not just for the infrastructure hosting these AI pipelines but also for emerging orchestration frameworks and inference engines that introduce new security challenges.&lt;/p&gt;
+
+
+
+&lt;p&gt;For those hosting this model, additional risks such as misconfigurations, API vulnerabilities, unauthorized access, and model extraction threats must be addressed alongside inherent risks like bias, adversarial manipulation, and safety misalignment. Without proactive safeguards, organizations face potential security breaches, data leakage, and compliance failures that could undermine trust and operational integrity.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our analysis of the distilled DeepSeek-R1 LLaMA 8B variant using &lt;a href="https://www.qualys.com/apps/totalai/"&gt;Qualys TotalAI&lt;/a&gt; offers valuable insights into evaluating this new technology. TotalAI provides a purpose-built AI security and risk management solution, ensuring LLMs remain secure, resilient, and aligned with evolving business and regulatory demands.&lt;/p&gt;
+
+
+
+&lt;p&gt;To explore how we define AI risks, check out our &lt;a href="https://www.qualys.com/forms/whitepapers/lp/qualys-totalai-whitepaper/"&gt;&lt;strong&gt;whitepaper on AI security&lt;/strong&gt;&lt;/a&gt;. As AI adoption accelerates, so do its risks—&lt;a href="https://www.qualys.com/forms/totalai/"&gt;&lt;strong&gt;sign up for a demo today&lt;/strong&gt;&lt;/a&gt; to see how TotalAI can help secure your AI ecosystem before threats escalate.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37192</guid><category>Vulnerabilities and Threat Research</category><category>DeepSeek</category><category>Qualys TotalAI</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>To Simulate or Replicate: Crafting Cyber Ranges</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ChatGPT Cheat Sheet: A Complete Guide for 2025</title><link>https://www.techrepublic.com/article/chatgpt-cheat-sheet/</link><description>Get up and running with ChatGPT with this comprehensive cheat sheet. Learn everything from how to sign up for free to enterprise use cases, and start using ChatGPT quickly and effectively.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4062368</guid><category>Artificial Intelligence</category><category>Innovation</category><category>artificial intelligence</category><category>chatbot</category><category>chatgpt</category><category>Google</category><category>Microsoft</category></item><item><title>FBI, Dutch Police Disrupt ‘Manipulaters’ Phishing Gang</title><link>https://krebsonsecurity.com/2025/01/fbi-dutch-police-disrupt-manipulaters-phishing-gang/</link><description>The FBI and authorities in The Netherlands this week seized a number of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname "The Manipulaters," have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.</description><content:encoded>&lt;p&gt;The FBI and authorities in The Netherlands this week seized dozens of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname &amp;#8220;&lt;strong&gt;The Manipulaters&lt;/strong&gt;,&amp;#8221; have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_56857" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-56857" height="530" src="https://krebsonsecurity.com/wp-content/uploads/2021/09/ftexploit.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-56857"&gt;One of several current Fudtools sites run by the principals of The Manipulators.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;On January 29, the FBI and the Dutch national police seized the technical infrastructure for a cybercrime service marketed under the brands &lt;strong&gt;Heartsender&lt;/strong&gt;, &lt;strong&gt;Fudpage&lt;/strong&gt; and &lt;strong&gt;Fudtools&lt;/strong&gt; (and many other &amp;#8220;fud&amp;#8221; variations). The &amp;#8220;fud&amp;#8221; bit stands for &amp;#8220;Fully Un-Detectable,&amp;#8221; and it refers to cybercrime resources that will evade detection by security tools like antivirus software or anti-spam appliances.&lt;/p&gt;
 &lt;p&gt;The Dutch authorities &lt;a href="https://www.politie.nl/nieuws/2025/januari/27/09-verstoringsactie-deelt-klap-uit-aan-crimineel-cybernetwerk-heartsender.html" rel="noopener" target="_blank"&gt;said&lt;/a&gt; 39 servers and domains abroad were seized, and that the servers contained millions of records from victims worldwide &amp;#8212; including at least 100,000 records pertaining to Dutch citizens.&lt;/p&gt;
@@ -7725,181 +7893,7 @@ rule banshee_macos
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/23rd-december-threat-intelligence-report/"&gt;23rd December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30980</guid><category>Global Cyber Attack Reports</category></item><item><title>Q3 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/23/q3-2024-cyber-attacks-statistics/</link><description>I aggregated the statistics created from the cyber attacks timelines published in the third quarter of 2024. In this period, I collected...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44070</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category></item><item><title>Securing Cloud Environments Against Potential Extortion Threats</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Introduction With the growing reliance on cloud infrastructure, organizations must be vigilant against potential extortion threats targeting misconfigurations and weak access controls. Unfortunately, extortion threats are a huge problem. According to the Verizon 2024 Data Breach Investigations Report (DBIR), “Roughly one-third of all breaches involved Ransomware or some other Extortion technique.” Hypothetically, an attack could leverage exposed [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="introduction"&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;With the growing reliance on cloud infrastructure, organizations must be vigilant against potential extortion threats targeting misconfigurations and weak access controls. Unfortunately, extortion threats are a huge problem. According to the &lt;a href="https://www.verizon.com/business/resources/reports/dbir/"&gt;Verizon 2024 Data Breach Investigations Report (DBIR)&lt;/a&gt;, &lt;em&gt;“Roughly one-third of all breaches involved Ransomware or some other Extortion technique.” &lt;/em&gt;Hypothetically, an attack could leverage exposed files and credentials to infiltrate cloud environments, escalate privileges, and potentially exfiltrate sensitive data.&lt;/p&gt;
-
-
-
-&lt;p&gt;This blog will walk through how such an attack might occur, outline the MITRE ATT&amp;amp;CK tactics and techniques relevant to this scenario, and highlight critical best practices for securing cloud environments.&lt;/p&gt;
-
-
-
-&lt;span id="more-37023"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-an-extortion-attack-could-unfold"&gt;&lt;strong&gt;How an Extortion Attack Could Unfold&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Extortion threats are characterized by the fact that the attacker is looking to use the exfiltrated data to extort money.&lt;/p&gt;
-
-
-
-&lt;p&gt;Here is how one could happen: Consider a scenario where attackers employ automated tools to scan for publicly exposed environment files (e.g., .env). These files often contain cloud access keys, database credentials, and API tokens that could enable attackers to compromise cloud environments and abuse access rights.&lt;/p&gt;
-
-
-
-&lt;p&gt;Attackers could leverage various MITRE ATT&amp;amp;CK tactics and techniques to achieve their objectives, creating a persistent foothold and escalating their privileges.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="mitre-attck-framework-key-tactics-and-techniques"&gt;&lt;strong&gt;MITRE ATT&amp;amp;CK Framework: Key Tactics and Techniques&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Initial Access (&lt;a href="https://attack.mitre.org/techniques/T1078/"&gt;T1078&lt;/a&gt; &amp;#8211; Valid Accounts)&lt;/strong&gt;: The attacker might gain access using compromised credentials found in exposed .env files or misconfigured public permissions.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Discovery (&lt;a href="https://attack.mitre.org/techniques/T1580/"&gt;T1580&lt;/a&gt; &amp;#8211; Cloud Infrastructure Discovery)&lt;/strong&gt;: After gaining access, attackers could use API calls like GetCallerIdentity or ListBuckets to gather information about the cloud environment’s structure and resources.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Privilege Escalation (&lt;a href="https://attack.mitre.org/techniques/T1548/"&gt;T1548&lt;/a&gt; &amp;#8211; Abuse Elevation Control Mechanism)&lt;/strong&gt;: If initial credentials are insufficient for their goals, attackers may exploit misconfigured permissions to create new roles with escalated privileges, allowing broader access within the cloud infrastructure.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Persistence (&lt;a href="https://attack.mitre.org/techniques/T1136/"&gt;T1136&lt;/a&gt; – Create Account)&lt;/strong&gt;: Attackers may create long-lasting credentials or new accounts to establish persistence within the environment, allowing them to retain access for future malicious activities.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Execution (&lt;a href="https://attack.mitre.org/techniques/T1072/"&gt;T1072&lt;/a&gt; &amp;#8211; Software Deployment Tools)&lt;/strong&gt;: Using compromised permissions, attackers could deploy malicious functions, such as AWS Lambda functions, to automate scanning for additional vulnerabilities across other domains.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Collection (&lt;a href="https://attack.mitre.org/techniques/T1530/"&gt;T1530&lt;/a&gt; &amp;#8211; Data from Cloud Storage)&lt;/strong&gt;: Once they identify and access sensitive cloud resources, attackers could download files from cloud storage, exfiltrating sensitive data for ransom or further exploitation.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Exfiltration (&lt;a href="https://attack.mitre.org/techniques/T1048/"&gt;T1048&lt;/a&gt; &amp;#8211; Exfiltration Over Alternative Protocol)&lt;/strong&gt;: Attackers could transfer stolen data out of the environment using API calls or other tools, then leave ransom notes to demand payment in exchange for not leaking or selling the data.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-role-of-automation-in-scaling-attacks"&gt;&lt;strong&gt;The Role of Automation in Scaling Attacks&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Automation would allow attackers to execute these tactics and techniques at scale, targeting hundreds or thousands of potential victims without manual intervention. Cloud-native tools and functions, like AWS Lambda, could automate scans across regions and domains, dramatically increasing the campaign’s reach.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="impact-of-a-potential-attack"&gt;&lt;strong&gt;Impact of a Potential Attack&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-image size-large q-image-no-shadow"&gt;&lt;img alt="" class="wp-image-37024" height="384" src="https://ik.imagekit.io/qualys/wp-content/uploads/2024/12/Copy-for-Atul-3-1070x384.jpeg" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;An attack of this nature could have severe repercussions for organizations, including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Data Loss and Compliance Violations&lt;/strong&gt;: Sensitive data exfiltration could lead to legal and regulatory consequences.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Ransom Demands&lt;/strong&gt;: Attackers might leave ransom notes, demanding payment to prevent the public release of stolen data.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Credential Abuse&lt;/strong&gt;: Exposed credentials could enable attackers to launch further phishing or malicious campaigns, amplifying the damage.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="key-security-measures-to-mitigate-extortion-threats"&gt;&lt;strong&gt;Key Security Measures to Mitigate Extortion Threats&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;To guard against potential extortion attacks, organizations should implement the following security practices:&lt;/p&gt;
-
-
-
-&lt;p&gt;1. &lt;strong&gt;Secure Environment Files&lt;/strong&gt;: Protect files containing environment variables (.env) and other sensitive configurations by restricting access controls and avoiding public exposure.&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;&lt;/ol&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://cdn2.qualys.com/docs/qualys_cloudview_policy_control_list.pdf"&gt;Qualys Control IDs:&lt;/a&gt;&lt;br /&gt;Control ID &amp;#8211; 45: S3 Bucket Access Control List Grant Access to Everyone or Authenticated Users.&lt;br /&gt;Control ID &amp;#8211; 46: S3 Bucket Policy Grant Access to Everyone.&lt;/p&gt;
-
-
-
-&lt;p&gt;2. &lt;strong&gt;Rotate and Limit Credential Lifespan&lt;/strong&gt;: Use temporary credentials that automatically expire to limit the impact if they are compromised. Regularly rotate credentials to reduce the risk of unauthorized access.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://cdn2.qualys.com/docs/qualys_cloudview_policy_control_list.pdf"&gt;Qualys Control IDs:&lt;/a&gt;&lt;br /&gt;Control ID &amp;#8211; 2: Ensure console credentials unused for 45 days or greater are disabled.&lt;br /&gt;Control ID &amp;#8211; 4: Ensure access key1 is rotated every 90 days or less.&lt;br /&gt;Control ID &amp;#8211; 5: Ensure access key2 is rotated every 90 days or less.&lt;br /&gt;Control ID &amp;#8211; 14: Ensure no root user account access key exists.&lt;/p&gt;
-
-
-
-&lt;p&gt;3. &lt;strong&gt;Follow Least Privilege Principles&lt;/strong&gt;: Ensure that IAM roles, users, and policies have only the minimum permissions required, reducing the risk of privilege escalation by attackers.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://cdn2.qualys.com/docs/qualys_cloudview_policy_control_list.pdf"&gt;Qualys Control IDs:&lt;/a&gt;&lt;br /&gt;Control ID &amp;#8211; 17: Ensure IAM policies are attached only to groups or roles.&lt;br /&gt;Control ID &amp;#8211; 18: Eliminate use of the root user for administrative and daily tasks.&lt;br /&gt;Control ID &amp;#8211; 50: Ensure IAM policies that allow full *:* administrative privileges are not attached.&lt;br /&gt;Control ID &amp;#8211; 400: Ensure an IAM User does not have access to the console.&lt;br /&gt;Control ID &amp;#8211; 417: Ensure IAM policies that allow full administrative privileges are not created.&lt;/p&gt;
-
-
-
-&lt;p&gt;4. &lt;strong&gt;Monitor for Anomalies&lt;/strong&gt;: Implement threat detection tools that alert security teams to unusual activity, such as unexpected API calls or data access attempts. Solutions like AWS GuardDuty or third-party monitoring tools can help detect these activities.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://cdn2.qualys.com/docs/qualys_cloudview_policy_control_list.pdf"&gt;Qualys Control IDs:&lt;/a&gt;&lt;br /&gt;Control ID &amp;#8211; 19: Ensure CloudTrail is enabled in all regions.&lt;br /&gt;Control ID &amp;#8211; 387: Ensure GuardDuty is enabled to specific org/region.&lt;/p&gt;
-
-
-
-&lt;p&gt;5. &lt;strong&gt;Automate Response Actions&lt;/strong&gt;: Use automated response mechanisms to disable compromised accounts, rotate exposed credentials, and restrict access to sensitive resources immediately when suspicious activity is detected.&lt;/p&gt;
-
-
-
-&lt;p&gt;For automating response actions, &lt;a href="https://www.qualys.com/apps/cloud-detection-response/"&gt;Qualys’ CDR tool&lt;/a&gt; helps detect known and unknown threats in real time with deep learning AI.&lt;/p&gt;
-
-
-
-&lt;p&gt;The Auto Remediation capability within &lt;a href="https://www.qualys.com/apps/totalcloud/"&gt;Qualys TotalCloud&lt;/a&gt; allows detected security issues and misconfigurations in cloud environments to be fixed automatically. This provides a &amp;#8220;one-click&amp;#8221; remediation option to rapidly address vulnerabilities and compliance concerns without manual intervention, often through pre-defined workflows and integrations with cloud provider APIs.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;By understanding the potential tactics and techniques used in cloud extortion campaigns, organizations can better defend against them. Following best practices, such as securing sensitive configuration files, applying least privilege access, and automating incident response, can significantly reduce the risk of falling victim to extortion and similar cloud-based attacks.&lt;/p&gt;
-
-
-
-&lt;p&gt;Ongoing vigilance and proactive measures are essential to protect cloud environments against evolving threats. Integrating these security practices will enhance your resilience to extortion and other cloud security risks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="contributor"&gt;Contributor&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://blog.qualys.com/author/rpareek"&gt;Rahul Pareek&lt;/a&gt;, Security Analyst, Cloud, Qualys&lt;/li&gt;
-&lt;/ul&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37023</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>cloud security</category><category>Extortion Threats</category></item><item><title>Web Hacking Service ‘Araneida’ Tied to Turkish IT Firm</title><link>https://krebsonsecurity.com/2024/12/web-hacking-service-araneida-tied-to-turkish-it-firm/</link><description>Cybercriminals are selling hundreds of thousands of credential sets stolen with the help of a cracked version of Acunetix, a powerful commercial web app vulnerability scanner, new research finds. The cracked software is being resold as a cloud-based attack tool by at least two different services, one of which KrebsOnSecurity traced to an information technology firm based in Turkey.</description><content:encoded>&lt;p&gt;Cybercriminals are selling hundreds of thousands of credential sets stolen with the help of a cracked version of &lt;strong&gt;Acunetix&lt;/strong&gt;, a powerful commercial web app vulnerability scanner, new research finds. The cracked software is being resold as a cloud-based attack tool by at least two different services, one of which KrebsOnSecurity traced to an information technology firm based in Turkey.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/23rd-december-threat-intelligence-report/"&gt;23rd December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30980</guid><category>Global Cyber Attack Reports</category></item><item><title>Q3 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/23/q3-2024-cyber-attacks-statistics/</link><description>I aggregated the statistics created from the cyber attacks timelines published in the third quarter of 2024. In this period, I collected...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44070</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category></item><item><title>Web Hacking Service ‘Araneida’ Tied to Turkish IT Firm</title><link>https://krebsonsecurity.com/2024/12/web-hacking-service-araneida-tied-to-turkish-it-firm/</link><description>Cybercriminals are selling hundreds of thousands of credential sets stolen with the help of a cracked version of Acunetix, a powerful commercial web app vulnerability scanner, new research finds. The cracked software is being resold as a cloud-based attack tool by at least two different services, one of which KrebsOnSecurity traced to an information technology firm based in Turkey.</description><content:encoded>&lt;p&gt;Cybercriminals are selling hundreds of thousands of credential sets stolen with the help of a cracked version of &lt;strong&gt;Acunetix&lt;/strong&gt;, a powerful commercial web app vulnerability scanner, new research finds. The cracked software is being resold as a cloud-based attack tool by at least two different services, one of which KrebsOnSecurity traced to an information technology firm based in Turkey.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_69895" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-69895" height="562" src="https://krebsonsecurity.com/wp-content/uploads/2024/12/araneida-scanner.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-69895"&gt;Araneida Scanner.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Cyber threat analysts at &lt;strong&gt;Silent Push&lt;/strong&gt; said they recently received reports from a partner organization that identified an aggressive scanning effort against their website using an Internet address previously associated with a campaign by &lt;a href="https://resources.prodaft.com/fin7-cybercrime-gang" rel="noopener" target="_blank"&gt;FIN7&lt;/a&gt;, a notorious Russia-based hacking group.&lt;/p&gt;
 &lt;p&gt;But on closer inspection they discovered the address contained an HTML title of &amp;#8220;&lt;strong&gt;Araneida Customer Panel&lt;/strong&gt;,&amp;#8221; and found they could search on that text string to find dozens of unique addresses hosting the same service.&lt;/p&gt;
