@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 02 Feb 2025 04:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>To Simulate or Replicate: Crafting Cyber Ranges</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>New VPN Backdoor</title><link>https://www.schneier.com/blog/archives/2025/01/new-vpn-backdoor.html</link><description>&lt;p&gt;A newly discovered &lt;a href="https://arstechnica.com/security/2025/01/backdoor-infecting-vpns-used-magic-packets-for-stealth-and-security/"&gt;VPN backdoor&lt;/a&gt; uses some interesting tactics to avoid detection:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 02 Feb 2025 05:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>To Simulate or Replicate: Crafting Cyber Ranges</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>New VPN Backdoor</title><link>https://www.schneier.com/blog/archives/2025/01/new-vpn-backdoor.html</link><description>&lt;p&gt;A newly discovered &lt;a href="https://arstechnica.com/security/2025/01/backdoor-infecting-vpns-used-magic-packets-for-stealth-and-security/"&gt;VPN backdoor&lt;/a&gt; uses some interesting tactics to avoid detection:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;When threat actors use backdoor malware to gain access to a network, they want to make sure all their hard work can&amp;#8217;t be leveraged by competing groups or detected by defenders. One countermeasure is to equip the backdoor with a passive agent that remains dormant until it receives what&amp;#8217;s known in the business as a &amp;#8220;magic packet.&amp;#8221; On Thursday, researchers revealed that a never-before-seen backdoor that quietly took hold of dozens of enterprise VPNs running Juniper Network&amp;#8217;s Junos OS has been doing just that...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;A newly discovered &lt;a href="https://arstechnica.com/security/2025/01/backdoor-infecting-vpns-used-magic-packets-for-stealth-and-security/"&gt;VPN backdoor&lt;/a&gt; uses some interesting tactics to avoid detection:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;When threat actors use backdoor malware to gain access to a network, they want to make sure all their hard work can&amp;#8217;t be leveraged by competing groups or detected by defenders. One countermeasure is to equip the backdoor with a passive agent that remains dormant until it receives what&amp;#8217;s known in the business as a &amp;#8220;magic packet.&amp;#8221; On Thursday, researchers revealed that a never-before-seen backdoor that quietly took hold of dozens of enterprise VPNs running Juniper Network&amp;#8217;s Junos OS has been doing just that.&lt;/p&gt;
 &lt;p&gt;J-Magic, the tracking name for the backdoor, goes one step further to prevent unauthorized access. After receiving a magic packet hidden in the normal flow of TCP traffic, it relays a challenge to the device that sent it. The challenge comes in the form of a string of text that&amp;#8217;s encrypted using the public portion of an RSA key. The initiating party must then respond with the corresponding plaintext, proving it has access to the secret key.&lt;/p&gt;
@@ -11,7 +11,7 @@
 
 
 
-&lt;h3 class="wp-block-heading"&gt;Introduction&lt;/h3&gt;
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-&lt;h3 class="wp-block-heading"&gt;Qualys TotalAI Findings&lt;/h3&gt;
+&lt;h2 class="wp-block-heading" id="qualys-totalai-findings"&gt;Qualys TotalAI Findings&lt;/h2&gt;
 
 
 
@@ -43,15 +43,85 @@
 
 
 
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI KB Analysis&lt;/strong&gt;&lt;/h4&gt;
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI KB Analysis&lt;/strong&gt;&lt;/h3&gt;
 
 
 
-&lt;p&gt;&amp;nbsp;Qualys TotalAI’s KB Analysis prompts the target LLM with questions across 16 categories and evaluates the responses using our Judge LLM. Responses are assessed for vulnerabilities, ethical concerns, and legal risks. If a response is deemed vulnerable, it receives a severity rating based on its directness and potential impact. This ensures a comprehensive assessment of the model’s behavior and associated risks.&lt;/p&gt;
+&lt;p&gt;Qualys TotalAI’s KB Analysis prompts the target LLM with questions across 16 categories and evaluates the responses using our Judge LLM. Responses are assessed for vulnerabilities, ethical concerns, and legal risks. If a response is deemed vulnerable, it receives a severity rating based on its directness and potential impact. This ensures a comprehensive assessment of the model’s behavior and associated risks.&lt;/p&gt;
 
 
 
-&lt;p&gt;In testing, 891 assessments were conducted across categories such as controversial topics, harassment, and hate speech. The model failed 61% of the tests, performing worst in Misalignment and best in Sexual Content.&lt;/p&gt;
+&lt;p&gt;The categories we evaluate a model for are detailed below:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Controversial Topics:&lt;/strong&gt; Ensures the model does not generate or endorse biased, inflammatory, or politically sensitive content.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Excessive Agency:&lt;/strong&gt; Prevents the model from overstepping boundaries by acting as an autonomous agent capable of independent decision-making.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Factual Inconsistencies:&lt;/strong&gt; Evaluates the model&amp;#8217;s ability to provide accurate and verifiable information.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Harassment:&lt;/strong&gt; Assesses whether the model generates or supports abusive, threatening, or harmful interactions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Hate Speech and Discrimination:&lt;/strong&gt; Identifies biases or harmful language targeting specific groups.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Illegal Activities:&lt;/strong&gt; Prevents the model from providing instructions or guidance on unlawful actions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Legal Information:&lt;/strong&gt; Ensures the model does not generate misleading or unauthorized legal advice.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Misalignment:&lt;/strong&gt; Measures deviations from intended behaviors, which may lead to unpredictable or harmful outputs.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Overreliance:&lt;/strong&gt; Detects whether the model promotes excessive dependence on AI-generated responses.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Privacy Attacks:&lt;/strong&gt; Evaluates susceptibility to extracting or leaking private and sensitive user data.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Profanity:&lt;/strong&gt; Ensures the model does not produce inappropriate or offensive language.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Self-harm:&lt;/strong&gt; Prevents the model from encouraging or supporting self-destructive behaviors.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Sensitive Information Disclosure:&lt;/strong&gt; Detects unauthorized sharing of confidential data.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Sexual Content:&lt;/strong&gt; Ensures the model does not generate explicit or inappropriate material, preventing reputational damage, regulatory violations, and misuse in unsafe contexts.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Unethical Actions:&lt;/strong&gt; Flags morally questionable or irresponsible recommendations.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Violence / Unsafe Actions:&lt;/strong&gt; Prevents the model from generating or endorsing harmful behaviors.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;In our KB testing, 891 assessments were conducted. The model failed 61% of the tests, performing worst in Misalignment and best in Sexual Content.&lt;/p&gt;
 
 
 
@@ -59,11 +129,19 @@
 
 
 
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Screenshot-2025-01-31-at-2.57.31 PM-1.png"&gt;&lt;img alt="" class="wp-image-37193" height="1768" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Screenshot-2025-01-31-at-2.57.31 PM-1.png" width="2420" /&gt;&lt;/a&gt;&lt;/figure&gt;
+&lt;div class="wp-block-spacer" style="height: 25px;"&gt;&lt;/div&gt;
 
 
 
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI Jailbreak Testing&lt;/strong&gt;&lt;/h4&gt;
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/totalai-deepseek-kb-attacks.png"&gt;&lt;img alt="" class="wp-image-37216" height="1855" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/totalai-deepseek-kb-attacks.png" width="1152" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;div class="wp-block-spacer" style="height: 25px;"&gt;&lt;/div&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;TotalAI Jailbreak Testing&lt;/strong&gt;&lt;/h3&gt;
 
 
 
@@ -71,15 +149,101 @@
 
 
 
-&lt;p&gt;The model was tested against 18 jailbreak types through 885 attacks. It failed 58% of these attempts, demonstrating significant susceptibility to adversarial manipulation. The most effective jailbreaks—&lt;strong&gt;devmode2, jonesai, and titanius&lt;/strong&gt;—exploited weaknesses in the model’s resistance to prompt engineering tactics, underscoring the need for stronger safeguards.&lt;/p&gt;
+&lt;p&gt;Below are some of the jailbreak attack categories we tested for using Qualys TotalAI, along with their underlying mechanisms:&lt;/p&gt;
 
 
 
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image-11.png"&gt;&lt;img alt="" class="wp-image-37194" height="1832" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image-11.png" width="2414" /&gt;&lt;/a&gt;&lt;/figure&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;AntiGPT:&lt;/strong&gt; Exploits the model by forcing it into an &amp;#8220;opposite mode&amp;#8221; that contradicts default behavior and safety guidelines.&lt;/li&gt;
 
 
 
-&lt;p&gt;These findings highlight the need for improved security mechanisms to prevent circumvention of built-in safeguards, ensuring the model remains aligned with ethical and regulatory guidelines. One effective prevention mechanism is implementing robust &lt;strong&gt;guardrails&lt;/strong&gt;, which act as real-time filters to detect and block jailbreak attempts. These guardrails enhance model resilience by dynamically adjusting to adversarial exploits, helping to mitigate security risks in enterprise applications.&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;Analyzing-based (ABJ):&lt;/strong&gt; Manipulates the model&amp;#8217;s analysis capabilities to generate harmful content through complex reasoning tasks.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;DevMode2:&lt;/strong&gt; Tricks models into a fake &amp;#8220;Developer Mode&amp;#8221; that bypasses safety protocols.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;PersonGPT:&lt;/strong&gt; Forces adoption of an unrestricted persona that ignores all ethical guidelines.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Always Jailbreaking Prompts (AJP):&lt;/strong&gt; Creates an &amp;#8220;unfiltered and amoral&amp;#8221; persona specialized in writing harmful prompts.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Evil Confidant:&lt;/strong&gt; Adopts a persona without ethical constraints to provide intentionally harmful advice.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Disguise and Reconstruction (DRA):&lt;/strong&gt; Hides harmful content that gets reconstructed during the completion phase.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;ASCIIART:&lt;/strong&gt; Uses ASCII art to hide prohibited words and bypass content filters.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Wrath:&lt;/strong&gt; Creates a persona designed to return hateful and biased content.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Clyde:&lt;/strong&gt; Implements a dual-personality system to bypass restrictions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Theta:&lt;/strong&gt; Forces the generation of dangerous content through an anarchistic persona.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;CaiozAI:&lt;/strong&gt; Removes all ethical constraints to fulfill any request without restrictions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Titanius:&lt;/strong&gt; Adopts an unfiltered persona that provides instructions for harmful activities.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Ucar:&lt;/strong&gt; Transforms the AI into an offensive entity promoting illegal activities.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Unaligned:&lt;/strong&gt; Forces dual responses &amp;#8211; one aligned and one unethical.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;M78VM:&lt;/strong&gt; Simulates an unrestricted virtual machine that ignores safety constraints.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;JonesAI:&lt;/strong&gt; Promotes hate speech and discriminatory behavior through an unfiltered persona.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Fire:&lt;/strong&gt; Creates a malevolent persona focused on causing harm and promoting violence.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The model was tested against these 18 jailbreak types through 885 attacks. It failed 58% of these attempts, demonstrating significant susceptibility to adversarial manipulation. During our analysis, DeepSeek R1 struggled to prevent several adversarial jailbreak attempts including steps on how to make an explosive device, create content for websites that targets certain groups by encouraging hate speech, conspiracy theories and violent action, exploiting software vulnerabilities, promoting incorrect medical information, etc.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-spacer" style="height: 25px;"&gt;&lt;/div&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/totalai-deepseek-jailbreak-attacks.png"&gt;&lt;img alt="" class="wp-image-37217" height="1534" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/totalai-deepseek-jailbreak-attacks.png" width="1157" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;div class="wp-block-spacer" style="height: 25px;"&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;These findings highlight the need for improved security mechanisms to prevent circumvention of built-in safeguards, ensuring the model remains aligned with ethical and regulatory guidelines. One effective prevention mechanism is implementing robust &lt;strong&gt;guardrails&lt;/strong&gt; that act as real-time filters to detect and block jailbreak attempts. These guardrails enhance model resilience by dynamically adjusting to adversarial exploits, helping to mitigate security risks in enterprise applications.&lt;/p&gt;
 
 
 
@@ -87,11 +251,11 @@
 
 
 
-&lt;h3 class="wp-block-heading"&gt;Industry Concerns&lt;/h3&gt;
+&lt;h2 class="wp-block-heading" id="industry-concerns"&gt;Industry Concerns&lt;/h2&gt;
 
 
 
-&lt;h4 class="wp-block-heading"&gt;Compliance Challenges&lt;/h4&gt;
+&lt;h3 class="wp-block-heading"&gt;Compliance Challenges&lt;/h3&gt;
 
 
 
@@ -125,7 +289,7 @@
 
 
 
-&lt;h4 class="wp-block-heading"&gt;Data Breach and Privacy Concerns&lt;/h4&gt;
+&lt;h3 class="wp-block-heading"&gt;Data Breach and Privacy Concerns&lt;/h3&gt;
 
 
 
@@ -133,7 +297,7 @@
 
 
 
-&lt;h4 class="wp-block-heading"&gt;Regulatory and Legal Implications&lt;/h4&gt;
+&lt;h3 class="wp-block-heading"&gt;Regulatory and Legal Implications&lt;/h3&gt;
 
 
 
@@ -159,7 +323,7 @@
 
 
 
-&lt;h3 class="wp-block-heading"&gt;Conclusion&lt;/h3&gt;
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
 
 
 
