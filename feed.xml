@@ -1,5 +1,454 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 06 Feb 2025 17:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>The Unbreakable Multi-Layer Anti-Debugging System</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>CISA Releases Six Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/06/cisa-releases-six-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released six Industrial Control Systems (ICS) advisories on February 6, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 06 Feb 2025 18:59:24 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>The Unbreakable Multi-Layer Anti-Debugging System</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Code injection attacks using publicly disclosed ASP.NET machine keys</title><link>https://www.microsoft.com/en-us/security/blog/2025/02/06/code-injection-attacks-using-publicly-disclosed-asp-net-machine-keys/</link><description>&lt;p&gt;Microsoft Threat Intelligence observed limited activity by an unattributed threat actor using a publicly available, static ASP.NET machine key to inject malicious code and deliver the Godzilla post-exploitation framework. In the course of investigating, remediating, and building protections against this activity, we observed an insecure practice whereby developers have incorporated various publicly disclosed ASP.NET machine keys from publicly accessible resources, such as code documentation and repositories, which threat actors have used to launch ViewState code injection attacks and perform malicious actions on target servers.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/06/code-injection-attacks-using-publicly-disclosed-asp-net-machine-keys/"&gt;Code injection attacks using publicly disclosed ASP.NET machine keys&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In December 2024, Microsoft Threat Intelligence observed limited activity by an unattributed threat actor using a publicly available, static ASP.NET machine key to inject malicious code and deliver the Godzilla post-exploitation framework. In the course of investigating, remediating, and building protections against this activity, we observed an insecure practice whereby developers have incorporated various publicly disclosed ASP.NET machine keys from publicly accessible resources, such as code documentation and repositories, which threat actors have used to perform malicious actions on target servers.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft has since identified over 3,000 publicly disclosed keys that could be used for these types of attacks, which are called ViewState code injection attacks. Whereas many previously known ViewState code injection attacks used compromised or stolen keys that are often sold on dark web forums, these publicly disclosed keys could pose a higher risk because they are available in multiple code repositories and could have been pushed into development code without modification.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft recommends that organizations do not copy keys from publicly available sources and to regularly rotate keys. Microsoft Defender for Endpoint can help reduce this risk by detecting publicly disclosed keys. To further discourage this practice, we have also removed key samples from limited instances where they were included in our own public documentation.&lt;/p&gt;
+
+
+
+&lt;p&gt;The limited malicious activity observed in December 2024 identified one publicly disclosed key that was used to inject malicious code. Microsoft Threat Intelligence continues to monitor the additional use of this attack technique. In this blog, we share more information about ViewState code injection attacks and provide recommendations for securing machine keys and monitoring configuration files.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-are-viewstate-code-injection-attacks"&gt;What are ViewState code injection attacks?&lt;/h2&gt;
+
+
+
+&lt;p&gt;ViewState is the method by which ASP.NET Web Forms preserve page and control state between postbacks. ViewState data is stored in a hidden field on the page and is encoded using Base64-encoding. To protect ViewState against tampering and information disclosure, the ASP.NET page framework uses machine keys: ValidationKey and DecryptionKey. ValidationKey is used to create a message authentication code (MAC) to be attached in the ViewState. DecryptionKey is related to the option of encrypting ViewState. These keys are either auto-generated and stored in registry or specified manually in config files.&lt;/p&gt;
+
+
+
+&lt;p&gt;If these keys are stolen or made accessible to threat actors, these threat actors can &lt;a href="https://www.zerodayinitiative.com/blog/2020/2/24/cve-2020-0688-remote-code-execution-on-microsoft-exchange-server-through-fixed-cryptographic-keys"&gt;craft a malicious ViewState using the stolen keys&lt;/a&gt; and send it to the website via a POST request. When the request is processed by ASP.NET Runtime on the targeted server, the ViewState is decrypted and validated successfully because the right keys are used. The malicious code is then loaded into the worker process memory and executed, providing the threat actor remote code execution capabilities on the target IIS web server.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="viewstate-code-injection-attack-leading-to-godzilla-post-exploit-framework"&gt;ViewState code injection attack leading to Godzilla post-exploit framework&lt;em&gt;&lt;/em&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;In December 2024, an unattributed threat actor conducted a ViewState code injection attack leveraging a publicly known machine key. The malicious ViewState payload reflectively loaded &lt;em&gt;assembly.dll &lt;/em&gt;(SHA-256: 19d87910d1a7ad9632161fd9dd6a54c8a059a64fc5f5a41cf5055cd37ec0499d), a Godzilla post-exploitation framework, followed by plugin modules. Godzilla’s functionality includes executing malicious commands, injecting shellcode into processes, and more.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Diagram showing publicly disclosed machine keys used by threat actors to launch ViewState code injection attacks. " class="wp-image-137296 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Fig1-machine-keys-attack-chain-1024x512.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;ViewState code injection attack chain leading to Godzilla.&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="recommendations"&gt;Recommendations&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft Defender for Endpoint customers can identify publicly disclosed keys in their environment based on the presence of the alert &lt;em&gt;Publicly disclosed ASP.NET machine key&lt;/em&gt;. This alert is for informational purposes and is not indicative of attack activity. Additionally, Microsoft has provided a list of hash values for identified publicly disclosed machine keys in &lt;a href="https://aka.ms/exposed-machine-keys"&gt;our Github repository&lt;/a&gt; and recommends checking machine keys in your environment using the provided script.&lt;/p&gt;
+
+
+
+&lt;p&gt;If publicly disclosed keys are identified in your environment, Microsoft recommends the following actions, depending on your scenario:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;If you are running an ASP.NET web application on .NET Framework and this is not part of Exchange Server or SharePoint, review the following potential setups:&lt;ul&gt;&lt;li&gt;You have set fixed key values using the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; element of the &lt;em&gt;web.config&lt;/em&gt; to align the encryption/decryption of ViewState values within multiple servers that are part of a web farm. This configuration assumes you have multiple web servers hosting the same instance of a web application to distribute load among them, and that requests that were originally served from one server in the farm could trigger POST requests to another server of the same farm.&lt;ul&gt;&lt;li&gt;In this case, you will need to rotate the values of your machine keys in all servers of the farm, either by using the IIS manager console or PowerShell (see details below). Ensure that you use the same newly generated values on all servers in the farm.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;You have set fixed key values using the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; element for a single server that is running your ASP.NET web application. In this scenario, removing the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; element from the configuration will revert the application to the auto-generated values for the ASP.NET machine keys that are stored inside your computer’s registry.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;See the below details on how the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; element can be removed by editing the &lt;em&gt;web.config&lt;/em&gt; configuration file or using the IIS manager console.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;If you are using SharePoint or Exchange web applications, SharePoint uses its own key management system, which allows the keys to be rotated as described in &lt;a href="https://support.microsoft.com/topic/resolving-view-state-message-authentication-code-mac-errors-6c0e9fd3-f8a8-c953-8fbe-ce840446a9f3"&gt;this article&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Follow the steps below for removing or replacing the ASP.NET machine key values in the &lt;em&gt;web.config&lt;/em&gt; configuration file using either the IIS manager console or PowerShell.&lt;/p&gt;
+
+
+
+&lt;p&gt;Using the IIS manager console:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;From the IIS manager console, select the website or web application that contains the fixed key values in the &lt;em&gt;web.config &lt;/em&gt;configuration file.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;span style="font-size: 1.25rem;"&gt;From the middle pane of the IIS manager console, select the &lt;/span&gt;&lt;strong style="font-size: 1.25rem;"&gt;Machine Key&lt;/strong&gt;&lt;span style="font-size: 1.25rem;"&gt; element icon.&lt;/span&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;span style="font-size: 1.25rem;"&gt;To create new machine key values, select the &lt;/span&gt;&lt;strong style="font-size: 1.25rem;"&gt;Generate Keys&lt;/strong&gt;&lt;span style="font-size: 1.25rem;"&gt; button on the right-hand side of the console, which will populate new values for &lt;/span&gt;&lt;em style="font-size: 1.25rem;"&gt;Validation&lt;/em&gt;&lt;span style="font-size: 1.25rem;"&gt; and &lt;/span&gt;&lt;em style="font-size: 1.25rem;"&gt;Decryption&lt;/em&gt;&lt;span style="font-size: 1.25rem;"&gt; key textboxes.&lt;/span&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;span style="font-size: 1.25rem;"&gt;Once the new values are populated, select the &lt;/span&gt;&lt;strong style="font-size: 1.25rem;"&gt;Apply&lt;/strong&gt;&lt;span style="font-size: 1.25rem;"&gt; button from the right-hand side pane to persist the new values into the &lt;/span&gt;&lt;em style="font-size: 1.25rem;"&gt;web.config&lt;/em&gt;&lt;span style="font-size: 1.25rem;"&gt; file for the target website or web application.&lt;/span&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;span style="font-size: 1.25rem;"&gt;To remove the fixed keys and rely on the auto-generated machine key values for ASP.NET, select the &lt;/span&gt;&lt;strong style="font-size: 1.25rem;"&gt;Automatically generate at runtime&lt;/strong&gt;&lt;span style="font-size: 1.25rem;"&gt; checkboxes for both the &lt;/span&gt;&lt;em style="font-size: 1.25rem;"&gt;Validation&lt;/em&gt;&lt;span style="font-size: 1.25rem;"&gt; and &lt;/span&gt;&lt;em style="font-size: 1.25rem;"&gt;Decryption&lt;/em&gt;&lt;span style="font-size: 1.25rem;"&gt; keys. This will render the two text fields for these values disabled.&lt;/span&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Proceed to select the &lt;strong&gt;Apply&lt;/strong&gt; button on the right-hand side of the console, which will remove the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; element from the &lt;em&gt;web.config&lt;/em&gt; file of the website or web application.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Using PowerShell:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Using PowerShell, create a .ps1 file (for example, &lt;em&gt;GenerateKeys.ps1&lt;/em&gt;) with the following content:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+function Generate-MachineKey {
+  &amp;#x5b;CmdletBinding()]
+  param (
+    &amp;#x5b;ValidateSet(&amp;quot;AES&amp;quot;, &amp;quot;DES&amp;quot;, &amp;quot;3DES&amp;quot;)]
+    &amp;#x5b;string]$decryptionAlgorithm = &amp;#039;AES&amp;#039;,
+    &amp;#x5b;ValidateSet(&amp;quot;MD5&amp;quot;, &amp;quot;SHA1&amp;quot;, &amp;quot;HMACSHA256&amp;quot;, &amp;quot;HMACSHA384&amp;quot;, &amp;quot;HMACSHA512&amp;quot;)]
+    &amp;#x5b;string]$validationAlgorithm = &amp;#039;HMACSHA256&amp;#039;
+  )
+  process {
+    function BinaryToHex {
+        &amp;#x5b;CmdLetBinding()]
+        param($bytes)
+        process {
+            $builder = new-object System.Text.StringBuilder
+            foreach ($b in $bytes) {
+              $builder = $builder.AppendFormat(&amp;#x5b;System.Globalization.CultureInfo]::InvariantCulture, &amp;quot;{0:X2}&amp;quot;, $b)
+            }
+            $builder
+        }
+    }
+    switch ($decryptionAlgorithm) {
+      &amp;quot;AES&amp;quot; { $decryptionObject = new-object System.Security.Cryptography.AesCryptoServiceProvider }
+      &amp;quot;DES&amp;quot; { $decryptionObject = new-object System.Security.Cryptography.DESCryptoServiceProvider }
+      &amp;quot;3DES&amp;quot; { $decryptionObject = new-object System.Security.Cryptography.TripleDESCryptoServiceProvider }
+    }
+    $decryptionObject.GenerateKey()
+    $decryptionKey = BinaryToHex($decryptionObject.Key)
+    $decryptionObject.Dispose()
+    switch ($validationAlgorithm) {
+      &amp;quot;MD5&amp;quot; { $validationObject = new-object System.Security.Cryptography.HMACMD5 }
+      &amp;quot;SHA1&amp;quot; { $validationObject = new-object System.Security.Cryptography.HMACSHA1 }
+      &amp;quot;HMACSHA256&amp;quot; { $validationObject = new-object System.Security.Cryptography.HMACSHA256 }
+      &amp;quot;HMACSHA385&amp;quot; { $validationObject = new-object System.Security.Cryptography.HMACSHA384 }
+      &amp;quot;HMACSHA512&amp;quot; { $validationObject = new-object System.Security.Cryptography.HMACSHA512 }
+    }
+    $validationKey = BinaryToHex($validationObject.Key)
+    $validationObject.Dispose()
+    &amp;#x5b;string]::Format(&amp;#x5b;System.Globalization.CultureInfo]::InvariantCulture,
+      &amp;quot;&amp;lt;machineKey decryption=`&amp;quot;{0}`&amp;quot; decryptionKey=`&amp;quot;{1}`&amp;quot; validation=`&amp;quot;{2}`&amp;quot; validationKey=`&amp;quot;{3}`&amp;quot; /&amp;gt;&amp;quot;,
+      $decryptionAlgorithm.ToUpperInvariant(), $decryptionKey,
+      $validationAlgorithm.ToUpperInvariant(), $validationKey)
+  }
+} 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Using a Windows PowerShell command prompt, navigate to the location containing your .ps1 file. Load the .ps1 file (for example, &lt;em&gt;GenerateKeys.ps1&lt;/em&gt;) by executing the following command:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+..\GenerateKeys.ps1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Call the function within the script file by executing the following command:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+Generate-MachineKey
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Copy the resulting &lt;em&gt;&amp;lt;machineKey&amp;gt; &lt;/em&gt;element to the &lt;em&gt;web.config&lt;/em&gt; file of your website or web application, replacing the existing one.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: If successful exploitation of publicly disclosed keys has occurred, rotating machine keys will not sufficiently address possible backdoors or persistence methods established by a threat actor or other post-exploitation activity, and additional investigation may be warranted. In particular, web-facing servers should be fully investigated and strongly considered for re-formatting and re-installation in an offline medium in cases where publicly disclosed keys have been identified, as these servers are most at risk of possible exploitation.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft also recommends the following best practices for securing machine keys and web servers:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Follow secure DevOps standards and securely generate machine keys. Avoid using default keys or keys listed in public resources.&lt;/li&gt;
+
+
+
+&lt;li&gt;At deployment, encrypt sensitive information like the &lt;a href="https://learn.microsoft.com/previous-versions/aspnet/dtkwfdky%28v%3dvs.100%29#to-encrypt-the-connectionstrings-and-machinekey-sections-of-the-webconfig-file"&gt;&lt;em&gt;machineKey&lt;/em&gt; and &lt;em&gt;connectionStrings&lt;/em&gt; elements in &lt;em&gt;web.config&lt;/em&gt;&lt;/a&gt;. This prevents these secrets from ever existing in plaintext on the file system, inhibiting an attacker’s ability to read these secrets at all.&lt;/li&gt;
+
+
+
+&lt;li&gt;Upgrade your application to use ASP.NET 4.8 to enable Antimalware Scan Interface (AMSI) capabilities.&lt;/li&gt;
+
+
+
+&lt;li&gt;Harden Windows Servers instances by using &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/overview-attack-surface-reduction"&gt;attack surface reduction rules&lt;/a&gt; such as &lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference#block-webshell-creation-for-servers"&gt;Block Webshell creation for Servers&lt;/a&gt;. Attack surface reduction rules are sweeping settings that are effective at stopping entire classes of threats.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-antivirus"&gt;Microsoft Defender Antivirus&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Defender Antivirus detects post-exploitation activity such as delivery of the Godzilla framework with the following components as the following malware. Note, however, that these alerts can also be triggered by unrelated threat activity and are not necessarily indicative of ViewState code injection attacks:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Backdoor:MSIL/GodZillaMod.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Trojan:Win32/WebShellTerminal&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li&gt;Backdoor:MSIL/Godzela&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-for-endpoint"&gt;Microsoft Defender for Endpoint&lt;/h3&gt;
+
+
+
+&lt;p&gt;The following Microsoft Defender for Endpoint alert indicates the presence of publicly disclosed machine keys but are not indicative of exploitation activity. To get this alert, you must be running Microsoft Defender Antivirus as your active antivirus. Customers who receive this alert should review our steps for rotating or removing machine keys in the Recommendations section.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Publicly disclosed ASP.NET machine key&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The following alert might also indicate threat activity such as code injection attacks. Note, however, that this alert can be also triggered by unrelated threat activity.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;IIS worker process loaded suspicious .NET assembly&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h2&gt;
+
+
+
+&lt;p&gt;Security Copilot customers can use the standalone experience to &lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts"&gt;create their own prompts&lt;/a&gt; or run the following &lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks"&gt;pre-built promptbooks&lt;/a&gt; to automate incident response or investigation tasks related to this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Incident investigation&lt;/li&gt;
+
+
+
+&lt;li&gt;Microsoft User analysis&lt;/li&gt;
+
+
+
+&lt;li&gt;Threat actor profile&lt;/li&gt;
+
+
+
+&lt;li&gt;Threat Intelligence 360 report based on MDTI article&lt;/li&gt;
+
+
+
+&lt;li&gt;Vulnerability impact assessment&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft recommends monitoring configuration files and configurable locations using the following audit policy settings, which will enable the logging of Event ID 4663 in the Windows Security Event Log. Before setting up auditing, note that:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;There are &lt;a href="https://learn.microsoft.com/previous-versions/aspnet/ms178685(v=vs.100)#scope-of-configuration-settings"&gt;different scopes to configuration settings&lt;/a&gt; as some have a global scope and some are effective only to the scope of the application, the root &lt;em&gt;web.config&lt;/em&gt; file, or the &lt;em&gt;machine.config&lt;/em&gt; file. Each scope has the potential to have the &lt;em&gt;&amp;lt;machineKey&amp;gt;&lt;/em&gt; section declared, possibly containing secrets.&lt;/li&gt;
+
+
+
+&lt;li&gt;The scope of a configuration section is defined in the &lt;em&gt;allowDefinition&lt;/em&gt; attribute of the &lt;a href="https://learn.microsoft.com/previous-versions/dotnet/netframework-4.0/ms228245(v=vs.100)"&gt;section Element for &lt;em&gt;configSections&lt;/em&gt; (General Settings Schema)&lt;/a&gt; element in the &lt;em&gt;machine.config&lt;/em&gt; file for all sections that are included with ASP.NET. The scope of a configuration setting is listed for each element in &lt;a href="https://learn.microsoft.com/previous-versions/dotnet/netframework-4.0/b5ysx397(v=vs.100)"&gt;ASP.NET Configuration Settings&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/previous-versions/dotnet/netframework-4.0/ms228112(v=vs.100)"&gt;General Configuration Settings (ASP.NET)&lt;/a&gt;, in the &lt;strong&gt;Element Information&lt;/strong&gt; table next to &lt;strong&gt;Configurable Locations&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;In configurations where it is specified to auto-generate keys at runtime, &lt;a href="https://devblogs.microsoft.com/dotnet/cryptographic-improvements-in-asp-net-4-5-pt-1/"&gt;keys are stored in the application pool identity registry hive&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;It is important to understand that these locations also may be called through the &lt;a href="https://learn.microsoft.com/windows-server/storage/file-server/volume-shadow-copy-service"&gt;Volume Shadow Copy Service&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Monitor access to ASP.NET configuration files by configuring Advanced Audit Policy settings:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Open the Group Policy Management Console from &lt;strong&gt;Server Manager&lt;/strong&gt; &amp;gt; &lt;strong&gt;Tools&lt;/strong&gt; &amp;gt; &lt;strong&gt;Group Policy Management&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Open a GPO that will apply policy to the ASP.NET application or web server.&lt;/li&gt;
+
+
+
+&lt;li&gt;From the window that opens, go to &lt;strong&gt;Computer Configuration&lt;/strong&gt; &amp;gt; &lt;strong&gt;Policies&lt;/strong&gt; &amp;gt; &lt;strong&gt;Windows Settings&lt;/strong&gt; &amp;gt; &lt;strong&gt;Security Settings&lt;/strong&gt; &amp;gt; &lt;strong&gt;Local Policies&lt;/strong&gt; &amp;gt; &lt;strong&gt;Audit Policy&lt;/strong&gt; &amp;gt; &lt;strong&gt;Audit object level access&lt;/strong&gt;.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Define these policy settings: &lt;strong&gt;Checked&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Success: &lt;strong&gt;Checked&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Failure: Optional&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;After enabling Audit object access, enable auditing on individual files through the Security Tab on file properties to audit sensitive configuration files:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Locate your &lt;em&gt;web.config&lt;/em&gt; or other configuration file of concern and open the &lt;strong&gt;Security Tab &lt;/strong&gt;and select the &lt;strong&gt;Advanced &lt;/strong&gt;button.&lt;/li&gt;
+
+
+
+&lt;li&gt;Select the &lt;strong&gt;Auditing &lt;/strong&gt;tab and &lt;strong&gt;Add &lt;/strong&gt;a new rule.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Select a principal &lt;/strong&gt;and resolve the principal &lt;strong&gt;Everyone&lt;/strong&gt;. Select the &lt;strong&gt;Read&lt;/strong&gt; checkbox at minimum.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Save &lt;/strong&gt;your changes by clicking &lt;strong&gt;Ok, Ok, Ok.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;After &lt;strong&gt;Audit object access &lt;/strong&gt;is configured, and &lt;strong&gt;Auditing &lt;/strong&gt;has been turned on for specific files, alerts can be viewed using &lt;a href="https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4663"&gt;Event ID 4663&lt;/a&gt; in the Windows Security Event Log. Information includes &lt;strong&gt;&lt;em&gt;SubjectUserName&lt;/em&gt;&lt;/strong&gt; accessing the file, and the &lt;strong&gt;&lt;em&gt;ProcessId&lt;/em&gt; &lt;/strong&gt;and &lt;strong&gt;&lt;em&gt;ProcessName&lt;/em&gt;&lt;/strong&gt;. Seeing a username or process that is not the IIS Application Pool service account or the &lt;em&gt;w3wp.exe&lt;/em&gt; process could be a sign of tampering and attempt to compromise a machine key.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-sentinel"&gt;Microsoft Sentinel&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Sentinel customers can use the TI Mapping analytics (a series of analytics all prefixed with ‘TI map’) to automatically match the malicious indicators mentioned in this blog post with data in their workspace. If the TI Map analytics are not currently deployed, customers can install the Threat Intelligence solution from the &lt;a href="https://learn.microsoft.com/azure/sentinel/sentinel-solutions-deploy"&gt;Microsoft Sentinel Content Hub&lt;/a&gt; to have the analytics rule deployed in their Sentinel workspace.&lt;/p&gt;
+
+
+
+&lt;p&gt;Additionally, once auditing is enabled for specific configuration files that may contain machine keys, Sentinel customers can leverage the &lt;em&gt;SecurityEvent&lt;/em&gt; table to analyze collected Event ID 4663 and identify potential anomalies and unauthorized or suspicious file access attempts. To begin the threat hunting process, the following query can be used as a starting point:&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+SecurityEvent 
+| where TimeGenerated &amp;gt; ago(1d)
+| where EventID == 4663 
+| where ObjectName contains &amp;quot;web.config&amp;quot;  or ObjectName contains &amp;quot;machine.config&amp;quot;
+| summarize StartTime = max(Time Generated), EndTime = min(TimeGenerated), count() by EventID, Account, Computer, Process, SubjectUserName, SubjectDomainName, ObjectName, ObjectType, ProcessName, ProcessId, AccountType, AccessMask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some of the key information captured in the result includes the &lt;em&gt;SubjectUserName&lt;/em&gt;, which identifies the user accessing the file, along with the associated &lt;em&gt;ProcessId&lt;/em&gt; and &lt;em&gt;ProcessName&lt;/em&gt;. Observing a username or process other than the expected IIS Application Pool service account or the standard &lt;em&gt;w3wp.exe&lt;/em&gt; process may signal potential tampering or an attempt to compromise the machine key.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of compromise&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;First seen&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Last seen&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;19d87910d1a7ad9632161fd9dd6a54c8a059a64fc5f5a41cf5055cd37ec0499d&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;Godzilla post-exploitation framework&lt;/td&gt;&lt;td&gt;2024-12-11&lt;/td&gt;&lt;td&gt;2024-12-19&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Microsoft has provided a list of hash values for identified publicly disclosed machine keys in &lt;a href="https://aka.ms/exposed-machine-keys"&gt;our Github repository&lt;/a&gt;. We recommend using the included script to compare the values against static keys in your environment to determine whether your machine keys have been disclosed in publicly accessible resources, and using the Recommendations listed above to rotate or remove machine keys.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://www.zerodayinitiative.com/blog/2020/2/24/cve-2020-0688-remote-code-execution-on-microsoft-exchange-server-through-fixed-cryptographic-keys"&gt;https://www.zerodayinitiative.com/blog/2020/2/24/cve-2020-0688-remote-code-execution-on-microsoft-exchange-server-through-fixed-cryptographic-keys&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the Microsoft Threat Intelligence Blog:&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog"&gt;https://aka.ms/threatintelblog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To get notified about new publications and to join discussions on social media, follow us on LinkedIn at &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;https://www.linkedin.com/showcase/microsoft-threat-intelligence&lt;/a&gt;, and on X (formerly Twitter) at&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;https://x.com/MsftSecIntel&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/06/code-injection-attacks-using-publicly-disclosed-asp-net-machine-keys/"&gt;Code injection attacks using publicly disclosed ASP.NET machine keys&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>CISA Releases Six Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/06/cisa-releases-six-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released six Industrial Control Systems (ICS) advisories on February 6, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-037-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-037-01"&gt;Schneider Electric EcoStruxure Power Monitoring Expert (PME)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-037-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-037-02"&gt;Schneider Electric EcoStruxure&lt;/a&gt;&lt;/li&gt;
@@ -8,7 +457,17 @@
 &lt;li&gt;ICSMA-25-037-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-01"&gt;MicroDicom DICOM Viewer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSMA-25-037-02 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-02"&gt;Orthanc Server&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22975</guid></item><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>The Unbreakable Multi-Layer Anti-Debugging System, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31658</link><description>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;#x27s review some of them&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements&amp;nbsp;many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;rsquo;s review some of them!&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22975</guid></item><item><title>CISA Adds Five Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/02/06/cisa-adds-five-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added five vulnerabilities to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn ext" href="https://www.cve.org/CVERecord?id=CVE-2025-0411" rel="noreferrer noopener" target="_blank" title="7-Zip Mark of the Web Bypass Vulnerability"&gt;CVE-2025-0411&lt;/a&gt; 7-Zip Mark of the Web Bypass Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2022-23748" title="Dante Discovery Process Control Vulnerability"&gt;CVE-2022-23748&lt;/a&gt; Dante Discovery Process Control Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2024-21413" title="Microsoft Outlook Improper Input Validation Vulnerability"&gt;CVE-2024-21413&lt;/a&gt; Microsoft Outlook Improper Input Validation Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2020-29574" title="CyberoamOS (CROS) SQL Injection Vulnerability"&gt;CVE-2020-29574&lt;/a&gt; CyberoamOS (CROS) SQL Injection Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2020-15069" title="Sophos XG Firewall Buffer Overflow Vulnerability"&gt;CVE-2020-15069&lt;/a&gt; Sophos XG Firewall Buffer Overflow Vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22962</guid></item><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>The Unbreakable Multi-Layer Anti-Debugging System, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31658</link><description>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;#x27s review some of them&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements&amp;nbsp;many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;rsquo;s review some of them!&lt;/p&gt;
 
 &lt;p&gt;Anti-debugging techniques are like a cat-and-mouse game. If you&amp;rsquo;re interested in malware analysis, this will show you how your task can be much more challenging if you&amp;rsquo;re prepared to face them. The file was found on VT with a low score of 2/62[&lt;a href="https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection"&gt;1&lt;/a&gt;]&amp;nbsp;(SHA256: 3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612). The file just contains only anti-debugging stuff and not real malware. I suspect the file to be a proof-of-concept.&lt;/p&gt;
 
@@ -5365,7 +5824,13 @@ union
 
 
 &lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/01/16/new-star-blizzard-spear-phishing-campaign-targets-whatsapp-accounts/"&gt;New Star Blizzard spear-phishing campaign targets WhatsApp accounts&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Blizzard</category><category>Star Blizzard (SEABORGIUM)</category></item><item><title>PI response to Home Office consultatation on codes of practice under the Investigatory Powers (Amendment) Act 2024</title><link>http://privacyinternational.org/advocacy/5512/pi-response-home-office-consultatation-codes-practice-under-investigatory-powers</link><guid isPermaLink="false">5512 at http://privacyinternational.org</guid></item><item><title>CISA Releases Twelve Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/01/16/cisa-releases-twelve-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released twelve Industrial Control Systems (ICS) advisories on January 16, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/01/16/new-star-blizzard-spear-phishing-campaign-targets-whatsapp-accounts/"&gt;New Star Blizzard spear-phishing campaign targets WhatsApp accounts&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Blizzard</category><category>Star Blizzard (SEABORGIUM)</category></item><item><title>PI response to Home Office consultatation on codes of practice under the Investigatory Powers (Amendment) Act 2024</title><link>http://privacyinternational.org/advocacy/5512/pi-response-home-office-consultatation-codes-practice-under-investigatory-powers</link><guid isPermaLink="false">5512 at http://privacyinternational.org</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/01/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2024-50603" title="Aviatrix Controllers OS Command Injection Vulnerability"&gt;CVE-2024-50603&lt;/a&gt;&amp;nbsp;Aviatrix Controllers OS Command Injection Vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22874</guid></item><item><title>CISA Releases Twelve Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/01/16/cisa-releases-twelve-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released twelve Industrial Control Systems (ICS) advisories on January 16, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-016-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-016-01"&gt;Siemens Mendix LDAP&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-016-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-016-02"&gt;Siemens Industrial Edge Management&lt;/a&gt;&lt;/li&gt;
@@ -5382,13 +5847,7 @@ union
 &lt;/ul&gt;
 &lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22884</guid></item><item><title>CISA and Partners Release Call to Action to Close the National Software Understanding Gap</title><link>https://www.cisa.gov/news-events/alerts/2025/01/16/cisa-and-partners-release-call-action-close-national-software-understanding-gap</link><description>&lt;p&gt;Today, CISA—in partnership with the&amp;nbsp;Defense Advanced Research Projects Agency (DARPA), the Office of the Under Secretary of Defense for Research and Engineering (OUSD R&amp;amp;E), and the National Security Agency (NSA)—published &lt;a href="https://www.cisa.gov/resources-tools/resources/closing-software-understanding-gap" title="Closing the Software Understanding Gap"&gt;Closing the Software Understanding Gap&lt;/a&gt;. This report urgently implores the U.S. government to take decisive and coordinated action.&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;Software understanding refers to assessing software-controlled systems across all conditions. Mission owners and operators often lack adequate capabilities for software understanding because technology manufacturers build software that greatly outstrips the ability to understand it. This gap, along with the lack of secure by design software being created by technology manufacturers, can lead to the exploitation of software vulnerabilities.&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;The U.S. government has engaged in activities that have paved the way toward improving software understanding, including research investments, mission agency initiatives, and policy actions. This report further explores the opportunity for enhanced coordination to strengthen technical foundations and progress towards a more vigorous understanding of software on a national scale. To learn more about development practices and principles that build cybersecurity into the design and manufacture of technology products, visit CISA’s &lt;a href="https://www.cisa.gov/securebydesign" title="Secure by Design"&gt;Secure by Design&lt;/a&gt; webpage.&lt;/p&gt;</description><guid isPermaLink="false">/node/22870</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/01/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2024-50603" title="Aviatrix Controllers OS Command Injection Vulnerability"&gt;CVE-2024-50603&lt;/a&gt;&amp;nbsp;Aviatrix Controllers OS Command Injection Vulnerability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22874</guid></item><item><title>Biden's Cyber Ambassador Urges Trump Not to Cede Ground to Russia and China in Global Tech Fight</title><link>https://www.wired.com/story/nathaniel-fick-us-cyber-ambassador-exit-interview/</link><description>Nathaniel Fick, the ambassador for cyberspace and digital policy, has led US tech diplomacy amid a rising tide of pressure from authoritarian regimes. Will the Trump administration undo that work?</description><guid isPermaLink="false">6786e0a0ca651dd96a0b8735</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Russia</category><category>China</category><category>Donald Trump</category><category>cybersecurity</category><category>politics</category><category>Iran</category><category>national security</category><category>cyberattacks</category><category>Being Diplomatic</category></item><item><title>16-31 October 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/01/16/16-31-october-2024-cyber-attacks-timeline/</link><description>In the second timeline of October 2024 I collected 120 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44219</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>October</category><category>Ransomware</category><category>Timeline</category></item><item><title>GitHub’s Deepfake Porn Crackdown Still Isn’t Working</title><link>https://www.wired.com/story/githubs-deepfake-porn-crackdown-still-isnt-working/</link><description>Over a dozen programs used by creators of nonconsensual explicit images have evaded detection on the developer platform, WIRED has found.</description><guid isPermaLink="false">6787928b02417dbd9044fe55</guid><category>Business</category><category>Security</category><category>porn</category><category>Crime</category><category>sex</category><category>Deepfakes</category><category>artificial intelligence</category><category>NSFW</category></item><item><title>Social Engineering Awareness Policy</title><link>https://www.techrepublic.com/resource-library/policy/social-engineering-awareness-policy/</link><description>Recent technological advancements have made people and things more interconnected. Unfortunately, people with malicious intent are also taking advantage of this capability. With this, the security of information systems has become more paramount for any organization. The purpose of this customizable Social Engineering Awareness Policy, written by Maria Carrisa Sanchez for TechRepublic Premium, is to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/social-engineering-awareness-policy/</guid><category>Cybersecurity</category></item><item><title>Quick Glossary: Encryption</title><link>https://www.techrepublic.com/resource-library/glossary/encryption/</link><description>The overall success of a business is often dependent on its ability to effectively share, transfer, and process vast amounts of data. Much of this shared data is sensitive and must be protected wherever it travels on and outside the enterprise network. The best way to accomplish the important task of securing business data is ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-encryption/</guid><category>Cybersecurity</category></item><item><title>Startup necromancy: Dead Google Apps domains can be compromised by new owners</title><link>https://arstechnica.com/security/2025/01/startup-necromancy-dead-google-apps-domains-can-be-compromised-by-new-owners/</link><description>Improperly winding down a Google Apps domain can leave logins accessible.</description><content:encoded>&lt;p&gt;Lots of startups use Google's productivity suite, known as Workspace, to handle email, documents, and other back-office matters. Relatedly, lots of business-minded webapps use Google's OAuth, i.e. "Sign in with Google." It's a low-friction feedback loop—up until the startup fails, the domain goes up for sale, and somebody forgot to close down all the Google stuff.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;The U.S. government has engaged in activities that have paved the way toward improving software understanding, including research investments, mission agency initiatives, and policy actions. This report further explores the opportunity for enhanced coordination to strengthen technical foundations and progress towards a more vigorous understanding of software on a national scale. To learn more about development practices and principles that build cybersecurity into the design and manufacture of technology products, visit CISA’s &lt;a href="https://www.cisa.gov/securebydesign" title="Secure by Design"&gt;Secure by Design&lt;/a&gt; webpage.&lt;/p&gt;</description><guid isPermaLink="false">/node/22870</guid></item><item><title>Biden's Cyber Ambassador Urges Trump Not to Cede Ground to Russia and China in Global Tech Fight</title><link>https://www.wired.com/story/nathaniel-fick-us-cyber-ambassador-exit-interview/</link><description>Nathaniel Fick, the ambassador for cyberspace and digital policy, has led US tech diplomacy amid a rising tide of pressure from authoritarian regimes. Will the Trump administration undo that work?</description><guid isPermaLink="false">6786e0a0ca651dd96a0b8735</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Russia</category><category>China</category><category>Donald Trump</category><category>cybersecurity</category><category>politics</category><category>Iran</category><category>national security</category><category>cyberattacks</category><category>Being Diplomatic</category></item><item><title>16-31 October 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/01/16/16-31-october-2024-cyber-attacks-timeline/</link><description>In the second timeline of October 2024 I collected 120 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44219</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>October</category><category>Ransomware</category><category>Timeline</category></item><item><title>GitHub’s Deepfake Porn Crackdown Still Isn’t Working</title><link>https://www.wired.com/story/githubs-deepfake-porn-crackdown-still-isnt-working/</link><description>Over a dozen programs used by creators of nonconsensual explicit images have evaded detection on the developer platform, WIRED has found.</description><guid isPermaLink="false">6787928b02417dbd9044fe55</guid><category>Business</category><category>Security</category><category>porn</category><category>Crime</category><category>sex</category><category>Deepfakes</category><category>artificial intelligence</category><category>NSFW</category></item><item><title>Social Engineering Awareness Policy</title><link>https://www.techrepublic.com/resource-library/policy/social-engineering-awareness-policy/</link><description>Recent technological advancements have made people and things more interconnected. Unfortunately, people with malicious intent are also taking advantage of this capability. With this, the security of information systems has become more paramount for any organization. The purpose of this customizable Social Engineering Awareness Policy, written by Maria Carrisa Sanchez for TechRepublic Premium, is to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/social-engineering-awareness-policy/</guid><category>Cybersecurity</category></item><item><title>Quick Glossary: Encryption</title><link>https://www.techrepublic.com/resource-library/glossary/encryption/</link><description>The overall success of a business is often dependent on its ability to effectively share, transfer, and process vast amounts of data. Much of this shared data is sensitive and must be protected wherever it travels on and outside the enterprise network. The best way to accomplish the important task of securing business data is ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-encryption/</guid><category>Cybersecurity</category></item><item><title>Startup necromancy: Dead Google Apps domains can be compromised by new owners</title><link>https://arstechnica.com/security/2025/01/startup-necromancy-dead-google-apps-domains-can-be-compromised-by-new-owners/</link><description>Improperly winding down a Google Apps domain can leave logins accessible.</description><content:encoded>&lt;p&gt;Lots of startups use Google's productivity suite, known as Workspace, to handle email, documents, and other back-office matters. Relatedly, lots of business-minded webapps use Google's OAuth, i.e. "Sign in with Google." It's a low-friction feedback loop—up until the startup fails, the domain goes up for sale, and somebody forgot to close down all the Google stuff.&lt;/p&gt;
 &lt;p&gt;Dylan Ayrey, of Truffle Security Co., &lt;a href="https://trufflesecurity.com/blog/millions-at-risk-due-to-google-s-oauth-flaw"&gt;suggests in a report&lt;/a&gt; that this problem is more serious than anyone, especially Google, is acknowledging. Many startups make the critical mistake of not properly closing their accounts—on both Google and other web-based apps—before letting their domains expire.&lt;/p&gt;
 &lt;p&gt;Given the number of people working for tech startups (6 million), the failure rate of said startups (90 percent), their usage of Google Workspaces (50 percent, all by Ayrey's numbers), and the speed at which startups tend to fall apart, there are a lot of Google-auth-connected domains up for sale at any time. That would not be an inherent problem, except that, as Ayrey shows, buying a domain with a still-active Google account can let you re-activate the Google accounts for former employees.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/01/startup-necromancy-dead-google-apps-domains-can-be-compromised-by-new-owners/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/01/startup-necromancy-dead-google-apps-domains-can-be-compromised-by-new-owners/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/security/2025/01/startup-necromancy-dead-google-apps-domains-can-be-compromised-by-new-owners/</guid><category>Google</category><category>Security</category><category>authentication</category><category>google</category><category>google account</category><category>google workspace</category><category>OAuth</category><category>security</category><category>slack</category><category>startups</category><category>zoom</category></item><item><title>Certificate Awareness &amp; Automated Renewal with Qualys CertView</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>The Challenges of Managing Digital Certificates Everything we do in the digital world relies on certificates. Whether this is accessing services using our computer or phone, for work or for leisure—certificates are ubiquitous. However, for many organizations, managing digital certificates can pose a major challenge. It can be extremely difficult to keep track of expiry [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="the-challenges-of-managing-digital-certificates"&gt;The Challenges of Managing Digital Certificates&lt;/h2&gt;
@@ -5833,41 +6292,7 @@ Check out the full list of researchers recognized this quarter here.</descriptio
               
             &lt;/a&gt;
           &lt;/div&gt;
-        &lt;p&gt;Irrespective of the industry, if your organization builds software, we encourage you to familiarize yourself with &lt;a href="https://www.cisa.gov/securebydesign"&gt;&lt;u&gt;CISA’s ‘Secure by Design’ principles&lt;/u&gt;&lt;/a&gt; and create a plan to implement them in your company. The commitment is built around seven security goals, prioritizing the security of customers.&lt;/p&gt;&lt;p&gt;The CISA Secure by Design pledge challenges organizations to think differently about security. By addressing vulnerabilities at their source, Cloudflare has demonstrated measurable progress in reducing systemic risks.&lt;/p&gt;&lt;p&gt;Cloudflare’s continued focus on addressing vulnerability classes through prevention mechanisms outlined above serves as a critical foundation. These efforts ensure the security of Cloudflare systems, employees, and customers. Cloudflare is invested in continuous innovation and building a safe digital world. &lt;/p&gt;&lt;p&gt;You can also find more updates on our &lt;a href="https://blog.cloudflare.com/"&gt;&lt;u&gt;blog&lt;/u&gt;&lt;/a&gt; as we build our roadmap to meet all seven CISA Secure by Design pledge goals by May 2025, such as our post about reaching &lt;a href="https://blog.cloudflare.com/cisa-pledge-commitment-bug-bounty-vip/"&gt;&lt;u&gt;Goal #5 of the pledge&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;As a cybersecurity company, Cloudflare considers product security an integral part of its DNA. We strongly believe in CISA’s principles issued in the &lt;a href="https://www.cisa.gov/securebydesign/pledge"&gt;&lt;u&gt;Secure by Design pledge&lt;/u&gt;&lt;/a&gt;, and will continue to uphold these principles in the work we do.&lt;/p&gt;</content:encoded><guid isPermaLink="false">4j7FBBC7QJi59ZFzmAG5Sx</guid><category>CISA</category><category>Policy &amp; Legal</category><category>Reliability</category><category>Security</category></item><item><title>Windscribe VPN Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/windscribe-vpn-review/</link><description>We evaluate the features, performance, security, and pricing of Windscribe VPN to help you determine if it's a reliable VPN service for your needs.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4176694</guid><category>Cloud Security</category><category>Security</category><category>VPN</category><category>windscribe review</category><category>windscribe VPN</category></item><item><title>CISA Releases the JCDC AI Cybersecurity Collaboration Playbook and Fact Sheet</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/cisa-releases-jcdc-ai-cybersecurity-collaboration-playbook-and-fact-sheet</link><description>&lt;p&gt;Today, CISA released the &lt;a href="https://cisa.gov/resources-tools/resources/ai-cybersecurity-collaboration-playbook"&gt;JCDC AI Cybersecurity Collaboration Playbook&lt;/a&gt; and &lt;a href="https://cisa.gov/resources-tools/resources/ai-cybersecurity-collaboration-playbook"&gt;Fact Sheet&lt;/a&gt; to&amp;nbsp;foster operational collaboration among government, industry, and international partners and strengthen artificial intelligence (AI) cybersecurity. The playbook provides voluntary information-sharing processes that, if adopted, can help protect organizations from emerging AI threats.&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;Specifically, the playbook:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Facilitates collaboration between federal agencies, private industry, international partners, and other stakeholders to raise awareness of AI cybersecurity risks and improve the resilience of AI systems.&lt;/li&gt;
-&lt;li&gt;Guides JCDC partners on how to voluntarily share information related to cybersecurity incidents and vulnerabilities associated with AI systems.&lt;/li&gt;
-&lt;li&gt;Delineates information-sharing protections and mechanisms.&lt;/li&gt;
-&lt;li&gt;Outlines CISA’s actions upon receiving shared information.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CISA urges JCDC partners to integrate the playbook into their incident response and information-sharing processes, make iterative improvements as needed, and provide feedback to CISA through&amp;nbsp;&lt;a href="mailto:CISA.JCDC@cisa.dhs.gov"&gt;CISA.JCDC@cisa.dhs.gov&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Not a partner? Join JCDC&amp;nbsp;to engage in synchronized cybersecurity planning, cyber defense, and response. Learn more by visiting CISA’s &lt;a href="https://www.cisa.gov/topics/partnerships-and-collaboration/joint-cyber-defense-collaborative"&gt;JCDC webpage&lt;/a&gt; and emailing&amp;nbsp;&lt;a href="mailto:CISA.JCDC@cisa.dhs.gov"&gt;CISA.JCDC@cisa.dhs.gov&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22843</guid></item><item><title>CISA Adds Four Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/cisa-adds-four-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added four vulnerabilities to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2024-55591" rel="noreferrer noopener" target="_blank" title="https://www.cve.org/cverecord?id=cve-2024-55591"&gt;CVE-2024-55591&lt;/a&gt; Fortinet FortiOS Authorization Bypass Vulnerability&lt;/li&gt;
-&lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2025-21333" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Heap-based Buffer Overflow Vulnerability"&gt;CVE-2025-21333&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Heap-based Buffer Overflow Vulnerability&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-21334" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability"&gt;CVE-2025-21334&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-21335" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability"&gt;CVE-2025-21335&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22849</guid></item><item><title>Microsoft Releases January 2025 Security Updates</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/microsoft-releases-january-2025-security-updates</link><description>&lt;p&gt;Microsoft released security updates to address vulnerabilities in multiple Microsoft products. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;CISA encourages users and administrators to review the following and apply necessary updates:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/releaseNote/2025-Jan" title="Microsoft Security Update Guide for January"&gt;Microsoft Security Update Guide for January&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">/node/22860</guid></item><item><title>Fortinet Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/fortinet-releases-security-updates-multiple-products</link><description>&lt;p&gt;Fortinet released security updates to address vulnerabilities in multiple Fortinet products. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&lt;/p&gt;
-&lt;p&gt;CISA encourages users and administrators to review the following and apply necessary updates:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.fortiguard.com/psirt?filter=1&amp;amp;product=FortiOS-6K7K%2CFortiOS&amp;amp;product=FortiSwitch&amp;amp;product=FortiSwitchManager&amp;amp;product=FortiAP&amp;amp;product=FortiAP-U&amp;amp;product=FortiAP-W2&amp;amp;product=FortiAP-S&amp;amp;product=FortiAP-C&amp;amp;product=FortiManager&amp;amp;product=FortiAnalyzer&amp;amp;product=FortiAnalyzer-BigData&amp;amp;product=FortiClientWindows&amp;amp;product=FortiClientEMS&amp;amp;product=FortiClientMac&amp;amp;product=FortiClientLinux&amp;amp;product=FortiClientiOS&amp;amp;product=FortiClientAndroid&amp;amp;product=FortiWeb&amp;amp;product=FortiWebManager&amp;amp;version=&amp;amp;date=2025&amp;amp;severity=5&amp;amp;severity=4" title="Fortinet Security Updates"&gt;Fortinet Security Updates&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">/node/22853</guid></item><item><title>Adobe Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/adobe-releases-security-updates-multiple-products</link><description>&lt;p&gt;Adobe released security updates to address vulnerabilities in multiple Adobe software products including Adobe Photoshop, Animate, and Illustrator for iPad. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;CISA encourages users and administrators to review the following Adobe Security Bulletin and apply necessary updates:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://helpx.adobe.com/security/security-bulletin.html" title="Adobe Product Security Updates for January"&gt;Adobe Product Security Updates for January&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22861</guid></item><item><title>Ivanti Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/ivanti-releases-security-updates-multiple-products</link><description>&lt;p&gt;Ivanti released security updates to address vulnerabilities in Ivanti Avalanche, Ivanti Application Control Engine, and Ivanti EPM.&amp;nbsp;&lt;/p&gt;
+        &lt;p&gt;Irrespective of the industry, if your organization builds software, we encourage you to familiarize yourself with &lt;a href="https://www.cisa.gov/securebydesign"&gt;&lt;u&gt;CISA’s ‘Secure by Design’ principles&lt;/u&gt;&lt;/a&gt; and create a plan to implement them in your company. The commitment is built around seven security goals, prioritizing the security of customers.&lt;/p&gt;&lt;p&gt;The CISA Secure by Design pledge challenges organizations to think differently about security. By addressing vulnerabilities at their source, Cloudflare has demonstrated measurable progress in reducing systemic risks.&lt;/p&gt;&lt;p&gt;Cloudflare’s continued focus on addressing vulnerability classes through prevention mechanisms outlined above serves as a critical foundation. These efforts ensure the security of Cloudflare systems, employees, and customers. Cloudflare is invested in continuous innovation and building a safe digital world. &lt;/p&gt;&lt;p&gt;You can also find more updates on our &lt;a href="https://blog.cloudflare.com/"&gt;&lt;u&gt;blog&lt;/u&gt;&lt;/a&gt; as we build our roadmap to meet all seven CISA Secure by Design pledge goals by May 2025, such as our post about reaching &lt;a href="https://blog.cloudflare.com/cisa-pledge-commitment-bug-bounty-vip/"&gt;&lt;u&gt;Goal #5 of the pledge&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;As a cybersecurity company, Cloudflare considers product security an integral part of its DNA. We strongly believe in CISA’s principles issued in the &lt;a href="https://www.cisa.gov/securebydesign/pledge"&gt;&lt;u&gt;Secure by Design pledge&lt;/u&gt;&lt;/a&gt;, and will continue to uphold these principles in the work we do.&lt;/p&gt;</content:encoded><guid isPermaLink="false">4j7FBBC7QJi59ZFzmAG5Sx</guid><category>CISA</category><category>Policy &amp; Legal</category><category>Reliability</category><category>Security</category></item><item><title>Windscribe VPN Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/windscribe-vpn-review/</link><description>We evaluate the features, performance, security, and pricing of Windscribe VPN to help you determine if it's a reliable VPN service for your needs.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4176694</guid><category>Cloud Security</category><category>Security</category><category>VPN</category><category>windscribe review</category><category>windscribe VPN</category></item><item><title>Ivanti Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/ivanti-releases-security-updates-multiple-products</link><description>&lt;p&gt;Ivanti released security updates to address vulnerabilities in Ivanti Avalanche, Ivanti Application Control Engine, and Ivanti EPM.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;CISA encourages users and administrators to review the following Ivanti security advisories and apply the necessary guidance and updates:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://forums.ivanti.com/s/article/Security-Advisory-Ivanti-Avalanche-6-4-7-Multiple-CVEs?language=en_US&amp;amp;_gl=1*1vtp72j*_gcl_au*NTM1ODE1MTIzLjE3MzU5Mjg1OTU." title="Ivanti Avalanche"&gt;Ivanti Avalanche&lt;/a&gt;&lt;/li&gt;
@@ -5880,7 +6305,41 @@ Check out the full list of researchers recognized this quarter here.</descriptio
 &lt;li&gt;ICSA-25-014-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-014-03"&gt;Schneider Electric EcoStruxure&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-014-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-014-04"&gt;Belledonne Communications Linphone-Desktop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22848</guid></item><item><title>Investigating A Web Shell Intrusion With Trend Micro™ Managed XDR</title><link>https://www.trendmicro.com/en_us/research/25/a/investigating-a-web-shell-intrusion-with-trend-micro--managed-xd.html</link><description>This blog discusses a web shell intrusion incident where attackers abused the IIS worker to exfiltrate stolen data.</description><guid isPermaLink="false">urn:uuid:422bf28a-7197-e34e-3f43-61e8c022c527</guid><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Risk Management</category></item><item><title>Why MSPs must offer 24/7 cybersecurity protection and response — and how OpenText MDR can help</title><link>https://www.webroot.com/blog/2025/01/13/why-msps-must-offer-24-7-cybersecurity-protection-and-response/</link><description>&lt;p&gt;In today’s cyber threat landscape, good enough is no longer good enough. Cyberattacks don’t clock out at 5 PM, and neither can your security strategy. For Managed Service Providers (MSPs), offering customers 24/7 cybersecurity protection and response isn’t just a competitive advantage—it’s an essential service for business continuity, customer trust, and staying ahead of attackers. [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22848</guid></item><item><title>Adobe Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/adobe-releases-security-updates-multiple-products</link><description>&lt;p&gt;Adobe released security updates to address vulnerabilities in multiple Adobe software products including Adobe Photoshop, Animate, and Illustrator for iPad. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review the following Adobe Security Bulletin and apply necessary updates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://helpx.adobe.com/security/security-bulletin.html" title="Adobe Product Security Updates for January"&gt;Adobe Product Security Updates for January&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22861</guid></item><item><title>Microsoft Releases January 2025 Security Updates</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/microsoft-releases-january-2025-security-updates</link><description>&lt;p&gt;Microsoft released security updates to address vulnerabilities in multiple Microsoft products. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review the following and apply necessary updates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/releaseNote/2025-Jan" title="Microsoft Security Update Guide for January"&gt;Microsoft Security Update Guide for January&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">/node/22860</guid></item><item><title>CISA Adds Four Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/cisa-adds-four-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added four vulnerabilities to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2024-55591" rel="noreferrer noopener" target="_blank" title="https://www.cve.org/cverecord?id=cve-2024-55591"&gt;CVE-2024-55591&lt;/a&gt; Fortinet FortiOS Authorization Bypass Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2025-21333" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Heap-based Buffer Overflow Vulnerability"&gt;CVE-2025-21333&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Heap-based Buffer Overflow Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-21334" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability"&gt;CVE-2025-21334&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-21335" title="Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability"&gt;CVE-2025-21335&lt;/a&gt; Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22849</guid></item><item><title>CISA Releases the JCDC AI Cybersecurity Collaboration Playbook and Fact Sheet</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/cisa-releases-jcdc-ai-cybersecurity-collaboration-playbook-and-fact-sheet</link><description>&lt;p&gt;Today, CISA released the &lt;a href="https://cisa.gov/resources-tools/resources/ai-cybersecurity-collaboration-playbook"&gt;JCDC AI Cybersecurity Collaboration Playbook&lt;/a&gt; and &lt;a href="https://cisa.gov/resources-tools/resources/ai-cybersecurity-collaboration-playbook"&gt;Fact Sheet&lt;/a&gt; to&amp;nbsp;foster operational collaboration among government, industry, and international partners and strengthen artificial intelligence (AI) cybersecurity. The playbook provides voluntary information-sharing processes that, if adopted, can help protect organizations from emerging AI threats.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Specifically, the playbook:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Facilitates collaboration between federal agencies, private industry, international partners, and other stakeholders to raise awareness of AI cybersecurity risks and improve the resilience of AI systems.&lt;/li&gt;
+&lt;li&gt;Guides JCDC partners on how to voluntarily share information related to cybersecurity incidents and vulnerabilities associated with AI systems.&lt;/li&gt;
+&lt;li&gt;Delineates information-sharing protections and mechanisms.&lt;/li&gt;
+&lt;li&gt;Outlines CISA’s actions upon receiving shared information.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CISA urges JCDC partners to integrate the playbook into their incident response and information-sharing processes, make iterative improvements as needed, and provide feedback to CISA through&amp;nbsp;&lt;a href="mailto:CISA.JCDC@cisa.dhs.gov"&gt;CISA.JCDC@cisa.dhs.gov&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Not a partner? Join JCDC&amp;nbsp;to engage in synchronized cybersecurity planning, cyber defense, and response. Learn more by visiting CISA’s &lt;a href="https://www.cisa.gov/topics/partnerships-and-collaboration/joint-cyber-defense-collaborative"&gt;JCDC webpage&lt;/a&gt; and emailing&amp;nbsp;&lt;a href="mailto:CISA.JCDC@cisa.dhs.gov"&gt;CISA.JCDC@cisa.dhs.gov&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22843</guid></item><item><title>Fortinet Releases Security Updates for Multiple Products</title><link>https://www.cisa.gov/news-events/alerts/2025/01/14/fortinet-releases-security-updates-multiple-products</link><description>&lt;p&gt;Fortinet released security updates to address vulnerabilities in multiple Fortinet products. A cyber threat actor could exploit some of these vulnerabilities to take control of an affected system.&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review the following and apply necessary updates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.fortiguard.com/psirt?filter=1&amp;amp;product=FortiOS-6K7K%2CFortiOS&amp;amp;product=FortiSwitch&amp;amp;product=FortiSwitchManager&amp;amp;product=FortiAP&amp;amp;product=FortiAP-U&amp;amp;product=FortiAP-W2&amp;amp;product=FortiAP-S&amp;amp;product=FortiAP-C&amp;amp;product=FortiManager&amp;amp;product=FortiAnalyzer&amp;amp;product=FortiAnalyzer-BigData&amp;amp;product=FortiClientWindows&amp;amp;product=FortiClientEMS&amp;amp;product=FortiClientMac&amp;amp;product=FortiClientLinux&amp;amp;product=FortiClientiOS&amp;amp;product=FortiClientAndroid&amp;amp;product=FortiWeb&amp;amp;product=FortiWebManager&amp;amp;version=&amp;amp;date=2025&amp;amp;severity=5&amp;amp;severity=4" title="Fortinet Security Updates"&gt;Fortinet Security Updates&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">/node/22853</guid></item><item><title>Investigating A Web Shell Intrusion With Trend Micro™ Managed XDR</title><link>https://www.trendmicro.com/en_us/research/25/a/investigating-a-web-shell-intrusion-with-trend-micro--managed-xd.html</link><description>This blog discusses a web shell intrusion incident where attackers abused the IIS worker to exfiltrate stolen data.</description><guid isPermaLink="false">urn:uuid:422bf28a-7197-e34e-3f43-61e8c022c527</guid><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Risk Management</category></item><item><title>Why MSPs must offer 24/7 cybersecurity protection and response — and how OpenText MDR can help</title><link>https://www.webroot.com/blog/2025/01/13/why-msps-must-offer-24-7-cybersecurity-protection-and-response/</link><description>&lt;p&gt;In today’s cyber threat landscape, good enough is no longer good enough. Cyberattacks don’t clock out at 5 PM, and neither can your security strategy. For Managed Service Providers (MSPs), offering customers 24/7 cybersecurity protection and response isn’t just a competitive advantage—it’s an essential service for business continuity, customer trust, and staying ahead of attackers. [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/01/13/why-msps-must-offer-24-7-cybersecurity-protection-and-response/" rel="nofollow"&gt;Why MSPs must offer 24/7 cybersecurity protection and response — and how OpenText MDR can help&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In today’s cyber threat landscape, good enough is no longer good enough. Cyberattacks don’t clock out at 5 PM, and neither can your security strategy. For Managed Service Providers (MSPs), offering customers 24/7 cybersecurity protection and response isn’t just a competitive advantage—it’s an essential service for business continuity, customer trust, and staying ahead of attackers.&lt;/p&gt;
 
 
@@ -6962,14 +7421,7 @@ dd15ce869aa79884753e3baad19b0437075202be86268b84f3ec2303e1ecd966
 7e223a685d5324491bcacf3127869f9f3ec5d5100c5e7cb5af45a227e6ab4603&lt;/pre&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/"&gt;FunkSec – Alleged Top Ransomware Group Powered by AI&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30996</guid><category>Check Point Research Publications</category></item><item><title>CISA Releases the Cybersecurity Performance Goals Adoption Report</title><link>https://www.cisa.gov/news-events/alerts/2025/01/10/cisa-releases-cybersecurity-performance-goals-adoption-report</link><description>&lt;p&gt;Today, CISA released the &lt;a href="https://cisa.gov/resources-tools/resources/cybersecurity-performance-goals-adoption-report"&gt;Cybersecurity Performance Goals Adoption Report&lt;/a&gt; to highlight how adoption of &lt;a href="https://www.cisa.gov/sites/default/files/2023-03/CISA_CPG_REPORT_v1.0.1_FINAL.pdf"&gt;Cybersecurity Performance Goals (CPGs)&lt;/a&gt; benefits our nation’s critical infrastructure sectors. Originally released in October 2022, CISA’s CPGs are voluntary practices that critical infrastructure owners can take to protect themselves against cyber threats.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;This report is based on analysis of 7,791 critical infrastructure organizations enrolled in &lt;a href="https://www.cisa.gov/cyber-hygiene-services"&gt;CISA’s Vulnerability Scanning service&lt;/a&gt; from Aug. 1, 2022, through Aug. 31, 2024.&amp;nbsp;Data reveals that four critical infrastructure sectors are most impacted by CPG adoption: Healthcare and Public Health, Water and Wastewater Systems, Communications, and Government Services and Facilities. These four sectors have strong partnerships with CISA.&lt;/p&gt;
-&lt;p&gt;As CISA strengthens partnerships across all &lt;a href="https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/critical-infrastructure-sectors"&gt;16 critical infrastructure sectors&lt;/a&gt;, the agency hopes that CPG adoption will continue to expand. CISA urges critical infrastructure to learn more by visiting &lt;a href="https://www.cisa.gov/cross-sector-cybersecurity-performance-goals"&gt;Cross-Sector Cybersecurity Performance Goals&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22816</guid></item><item><title>CISA Releases Four Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/01/10/cisa-releases-four-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released four Industrial Control Systems (ICS) advisories on January 10, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ICSA-25-010-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-010-01"&gt;Schneider Electric PowerChute Serial Shutdown&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-010-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-010-02"&gt;Schneider Electric Harmony HMI and Pro-face HMI Products&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-010-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-010-03-0"&gt;Delta Electronics DRASimuCAD&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
-&lt;li&gt;ICSA-24-345-06 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-345-06"&gt;Rockwell Automation Arena (Update A)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22815</guid></item><item><title>Trend Micro™ Managed XDR Analysis of Infection From Fake Installers and Cracks</title><link>https://www.trendmicro.com/en_us/research/25/a/how-cracks-and-installers-bring-malware-to-your-device.html</link><description>Our research shows how attackers use platforms like YouTube to spread fake installers via trusted hosting services, employing encryption to evade detection and steal sensitive browser data.</description><guid isPermaLink="false">urn:uuid:e0eb8943-e39a-7102-c821-f9d557360f85</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Banshee: The Stealer That “Stole Code” From MacOS XProtect</title><link>https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/</link><description>&lt;p&gt;Research by:&amp;#160;Antonis Terefos (@Tera0017) Key Points Introduction As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;As CISA strengthens partnerships across all &lt;a href="https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/critical-infrastructure-sectors"&gt;16 critical infrastructure sectors&lt;/a&gt;, the agency hopes that CPG adoption will continue to expand. CISA urges critical infrastructure to learn more by visiting &lt;a href="https://www.cisa.gov/cross-sector-cybersecurity-performance-goals"&gt;Cross-Sector Cybersecurity Performance Goals&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22816</guid></item><item><title>Trend Micro™ Managed XDR Analysis of Infection From Fake Installers and Cracks</title><link>https://www.trendmicro.com/en_us/research/25/a/how-cracks-and-installers-bring-malware-to-your-device.html</link><description>Our research shows how attackers use platforms like YouTube to spread fake installers via trusted hosting services, employing encryption to evade detection and steal sensitive browser data.</description><guid isPermaLink="false">urn:uuid:e0eb8943-e39a-7102-c821-f9d557360f85</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Banshee: The Stealer That “Stole Code” From MacOS XProtect</title><link>https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/</link><description>&lt;p&gt;Research by:&amp;#160;Antonis Terefos (@Tera0017) Key Points Introduction As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/"&gt;Banshee: The Stealer That &amp;#8220;Stole Code&amp;#8221; From MacOS XProtect&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt;&amp;nbsp;Antonis Terefos (&lt;a href="https://x.com/Tera0017"&gt;&lt;strong&gt;@Tera0017&lt;/strong&gt;&lt;/a&gt;)&lt;/p&gt;
 
 
@@ -8923,142 +9375,7 @@ rule banshee_macos
 &lt;p&gt;Max Smeets is the author of Ransom War: How Cyber Crime Became a Threat to National Security and No Shortcuts: Why States Struggle to Develop a Military Cyber Force. Max is Co-director of &lt;a href="https://virtual-routes.org/" rel="noopener noreferrer" target="_blank"&gt;Virtual Routes&lt;/a&gt; and Senior Researcher at ETH Zurich.&lt;/p&gt;
 &lt;h2&gt;About LABScon&lt;/h2&gt;
 &lt;p&gt;This presentation was featured live at &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon&lt;/a&gt; 2024, an immersive 3-day conference bringing together the world&amp;#8217;s top cybersecurity minds, hosted by SentinelOne&amp;#8217;s research arm, SentinelLabs.&lt;/p&gt;
-&lt;p&gt;Keep up with all the latest on &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon 2025&lt;/a&gt; here.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=110935</guid><category>LABScon</category><category>labscon24</category></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – New Translations</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update-new</link><description>As the year comes to a close, NIST continues to engage with our international partners to strengthen cybersecurity, including sharing over ten new international translations in over six languages as resources for our stakeholders around the world. These efforts were complemented by discussions on opportunities for future enhanced international collaboration and resource sharing. Here are some updates from the past few months: Our international engagement continues through our support to the Department of State and the International Trade Administration (ITA) during numerous international</description><guid isPermaLink="false">https://www.nist.gov/node/1869886</guid></item><item><title>September 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/19/september-2024-cyber-attacks-statistics/</link><description>After the corresponding cyber attacks timelines, it’s time to publish the statistics for September 2024 where I collected and analyzed 257 events. During September 2024...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44026</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category><category>Vulnerabilities</category></item><item><title>What Is Zero Trust Security?</title><link>https://www.techrepublic.com/resource-library/feature/what-is-zero-trust-security/</link><description>In today&amp;#8217;s dynamic threat environment, traditional security perimeters are proving to be increasingly vulnerable. Ray Fernandez, writing for TechRepublic Premium, presents an in-depth exploration of zero trust security that offers professionals a clear path to strengthening their security posture and compliance by providing a deep understanding of the concepts and principles, delving into its operational ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/what-is-zero-trust-security/</guid><category>Cybersecurity</category></item><item><title>Python-Based NodeStealer Version Targets Facebook Ads Manager</title><link>https://www.trendmicro.com/en_us/research/24/l/python-based-nodestealer.html</link><description>In this blog entry, Trend Micro’s Managed XDR team discuss their investigation into how the latest variant of NodeStealer is delivered through spear-phishing attacks, potentially leading to malware execution, data theft, and the exfiltration of sensitive information via Telegram.</description><guid isPermaLink="false">urn:uuid:6d380b53-30d1-17da-2558-a878f0b619e3</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>FedRAMP ATO Boosts Zero Trust for Federal Agencies</title><link>https://www.trendmicro.com/en_us/research/24/l/fedramp-ato-zero-trust.html</link><description>Trend Vision One™ for Government has obtained a FedRAMP Authorization to Operate (ATO). This milestone enables Federal government customers to leverage Trend’s platform to rapidly stop adversaries and control their cybersecurity risk posture.</description><guid isPermaLink="false">urn:uuid:0a91ae2c-f775-65ca-bdf9-8ed581fc7b84</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category></item><item><title>Foundry study highlights the benefits of a unified security platform in new e-book</title><link>https://www.microsoft.com/en-us/security/blog/2024/12/18/foundry-study-highlights-the-benefits-of-a-unified-security-platform-in-new-e-book/</link><description>&lt;p&gt;Microsoft commissioned Foundry to conduct a study to understand the current state of threat protection. Read the new e-book for research-driven insights into a unified security platform. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/12/18/foundry-study-highlights-the-benefits-of-a-unified-security-platform-in-new-e-book/"&gt;Foundry study highlights the benefits of a unified security platform in new e-book&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Microsoft observes more than 600 million ransomware, phishing, and identity attacks each day.¹ One major theme from our analysis of these attacks is clear—organizations with integrated tools have better visibility and more holistic defense than those using a broader portfolio of point solutions. Microsoft wanted to test this observation outside of its own telemetry, hiring Foundry to conduct a survey of senior-level IT decision makers with a primary role in security management at organizations with 500 or more employees to see what they’re experiencing.&lt;/p&gt;
-
-
-
-&lt;p&gt;The results are in, and they might be surprising. Of the study’s 156 respondents, those whose companies have implemented greater quantities of security solutions are experiencing a higher average number of security incidents—15.3 incidents versus 10.5 incidents for organizations with fewer security tools. That’s more than &lt;strong&gt;a 31% increase in self-reported incidents&lt;/strong&gt;. You can read up on the full results in the e-book &lt;a href="https://info.microsoft.com/ww-landing-foundry-a-unified-security-platform.html" rel="noreferrer noopener" target="_blank"&gt;The unified security platform era is here&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;This reinforces the observations Microsoft made based on its own telemetry. The security teams we see that prioritize deploying a diverse portfolio of “category leaders” often have overlapping policies and controls that create weak points. The silos created by separate solutions also make it hard to coordinate an effective defense before breaches happen, uncover the true scope of incidents, or to respond quickly.&lt;/p&gt;
-
-
-&lt;div class="wp-block-msxcm-cta-block theme-dark"&gt;
-	&lt;div class="card d-block mx-ng mx-md-0"&gt;
-		&lt;div class="row no-gutters bg-gray-800 text-white"&gt;
-
-							&lt;div class="col-md-4"&gt;
-					&lt;img alt="" class="card-img img-object-cover" height="370" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2024/12/original.png" width="370" /&gt;				&lt;/div&gt;
-			
-			&lt;div class="d-flex col-md"&gt;
-				&lt;div class="card-body align-self-center p-4 p-md-5"&gt;
-					&lt;h2&gt;The unified security platform era is here&lt;/h2&gt;
-
-					&lt;div class="mb-3"&gt;
-						&lt;p&gt;Read the e-book to gain research-driven insights into securing your organization with a unified security platform.&lt;/p&gt;
-					&lt;/div&gt;
-
-											&lt;div class="link-group"&gt;
-							&lt;a class="btn btn-primary bg-body text-body" href="https://info.microsoft.com/ww-landing-foundry-a-unified-security-platform.html" target="_blank"&gt;
-								&lt;span&gt;Get the e-book&lt;/span&gt;
-								&lt;span class="glyph-append glyph-append-chevron-right glyph-append-xsmall"&gt;&lt;/span&gt;
-							&lt;/a&gt;
-						&lt;/div&gt;
-									&lt;/div&gt;
-			&lt;/div&gt;
-
-					&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-consolidated-security-wins"&gt;Why consolidated security wins&lt;/h2&gt;
-
-
-
-&lt;p&gt;The initial stages of cyberattacks remain fairly consistent year over year—with brute force identity attacks, phishing and social engineering, and internet-exposed vulnerabilities continuing to be the most common. Threat actors are still largely using opportunity-based tactics for these first few steps. It’s only once someone’s credentials are obtained by bad actors that they begin taking more targeted action against a company’s infrastructure. When they do this, the would-be cyberattackers often conduct significant reconnaissance, demonstrating a tremendous understanding of the enterprise environment by targeting the seams between security solutions and taking advantage of technical debt. Examples of this could include a test app from an untracked satellite tenant that doesn’t enforce &lt;a href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-mfa-multi-factor-authentication"&gt;multifactor authentication&lt;/a&gt;, devices infected with malware, or legacy authentication protocols.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Graphs showing that on average, enterprises use around 14 different security tools. Forty seven percent of enterprises noted the number of security tools their organizations have adopted in the past year has remained the same, with thirty five percent of enterprises noting an increase in the number of security tools adopted in the past year, and eighteen percent noting a decrease in the number of security tools their organizations have adopted in the past year." class="wp-image-136914 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2024/12/Picture1-7-1024x543.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Diverse tool portfolios are very likely to lack the integration and signal sharing required to help security teams to understand how, or even if, cyberattackers are exploiting their infrastructure. As a result, cyberattackers have more seams they can exploit, they can remain undetected longer, and security teams will have a harder time ensuring they’ve fully removed the attackers’ access.&lt;/p&gt;
-
-
-
-&lt;p&gt;While there will never be a single comprehensive security tool, organizations that streamline their security stacks by adopting a security platform that integrates controls, policies, and signals will have a more resilient and comprehensively protected environment that can respond to cyberthreats more effectively. The research done by Foundry and Microsoft shows how this unified security approach helps security teams act more efficiently, reduce core metrics like mean time to repair and mean time to acknowledge, and improve their overall security posture. By eliminating many of the potential seams between standalone solutions, these companies were able to prevent, detect, and respond to many more security threats as they emerged.&lt;/p&gt;
-
-
-
-&lt;p&gt;A streamlined, unified security approach like the &lt;a href="https://aka.ms/DefendAgainstThreatsSolution"&gt;Microsoft unified security operations platform&lt;/a&gt;, which provides its users with a consistent data model and reduced silos, can also generate better results from automation and AI—both of which are powerful tools that help security operations (SecOps) teams close critical security gaps through improved exposure management, resiliency, and incident detection and response. Equally, SecOps teams that gain a single, centralized, and contextualized view of their company’s cyberthreat exposure are better able to measure and improve their security posture. By gaining the visibility and tools to conduct this kind of exposure management, these teams are able to shift from traditional, reactive detection and response-based security postures to more proactive postures that prioritize exposure-mitigating actions across devices, identities, applications, data, and their multicloud infrastructure.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="unified-security-means-fewer-cyberattacks-and-improved-posture"&gt;Unified security means fewer cyberattacks and improved posture&lt;/h2&gt;
-
-
-
-&lt;p&gt;The two biggest reported challenges facing respondents who were looking to improve their security posture were the complexity of their current environment and poor visibility across their security landscape. In fact, these challenges have become so universally apparent to the Foundry study’s survey participants that &lt;strong&gt;91% &lt;/strong&gt;of respondents operating a best-of-breed security approach are prioritizing vendor consolidation in the next 12 months. The same is true of 79% of respondents using 10 or more security tools. This strategy helps shift toward a more proactive security posture, and the Foundry study shows that it can also have a dramatically positive effect on the average number of security incidents a company faces. &amp;nbsp;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Bar chart showing the biggest challenges to achieving a successful security posture." class="wp-image-136915 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2024/12/Picture2-6-1024x773.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;As 2024 has shown, keeping software up to date and installing strong security measures isn’t enough. It is nearly impossible for any organization to “out-patch” threat actors. Everyone needs to shift away from working through lists of vulnerabilities and to focus more on thinking like a cyberattacker—viewing vulnerabilities not as a list, but as elements that could be chained together to breach our environments in order to reach critical assets.&lt;/p&gt;
-
-
-
-&lt;p&gt;This is made much more difficult when using a diverse array of security vendors for each of your main security domains. Gaining visibility into possible attack paths, prioritizing based on potential incident severity, and then confidently removing the vulnerabilities is all made vastly more difficult when the work needs to be done manually across dozens of silos.&lt;/p&gt;
-
-
-
-&lt;p&gt;A unified platform changes how risk exposure can be handled. For example, security teams can use attack paths to remove vulnerabilities as if they’re responding to security incidents—with a prioritized list, systematically addressed based on variables like sensitivity of data, importance of critical assets, and severity of exposure. And with the native integrations of a platform, this value can be extended beyond just managing vulnerabilities. If you’re investigating a new incident and you’re shown that one of the compromised entities could lead to critical assets, that context could make the difference between routine remediation and a board-level briefing.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-24 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-100 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://info.microsoft.com/ww-landing-foundry-a-unified-security-platform.html" rel="noreferrer noopener" target="_blank"&gt;Get the e-book for more insights on a unified security platform&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="setting-out-on-your-unified-security-platform-journey"&gt;Setting out on your unified security platform journey&lt;/h2&gt;
-
-
-
-&lt;p&gt;Reducing and consolidating security tools around a unified security platform is no small feat, either technologically or culturally. To get started, target a few small but key areas. This will give your security operations center (SOC) team a few quick wins and prove the value of consolidation to you and your stakeholders. You&amp;#8217;ll also be able to customize and refine your new environment, ensuring necessary integrations are in place for end-to-end visibility without disrupting operations. You may also want to focus on change management early on, reskilling team members in a way that provides ample time for them to ramp up before going live.&lt;/p&gt;
-
-
-
-&lt;p&gt;Moving to a unified security platform is not just about improving defenses, so don&amp;#8217;t forget to lend some of your time to maintaining positive employee experiences. Reducing friction across endpoint devices, apps, identities, and networks will make it easier for employees to access the systems and data they need. It also reduces the chance that employees will try to bypass new security policies in the interest of maintaining learned behaviors. To learn more about consolidating your security platform, the current state of threat protection, where organizations and security professionals are focusing with their current practices, and where they see opportunities for using AI in security operations, check out the new e-book &lt;a href="https://info.microsoft.com/ww-landing-foundry-a-unified-security-platform.html"&gt;The unified security platform era is here&lt;/a&gt;. And head over to the &lt;a href="https://www.microsoft.com/security/business/solutions/ai-powered-unified-secops-platform"&gt;Microsoft Security&lt;/a&gt; web page for more information about how Microsoft is innovating in the security space, including through the use of responsible AI.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p&gt;Learn more about the &lt;a href="https://aka.ms/DefendAgainstThreatsSolution"&gt;Microsoft unified security operations platform&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="about-the-research"&gt;About the research&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Foundry conducted an online study to understand the current state of cyberthreat protection, where organizations and security professionals are focusing with their current practices, and where they see opportunities for using AI in security operations.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;The study, commissioned by Microsoft, was conducted in June 2024. The 156 respondents comprised senior-level IT decision-makers with a primary role in security management, at organizations with 500 or more employees.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;¹&lt;a href="https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/microsoft-digital-defense-report-2024"&gt;Microsoft Digital Defense Report 2024&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/12/18/foundry-study-highlights-the-benefits-of-a-unified-security-platform-in-new-e-book/"&gt;Foundry study highlights the benefits of a unified security platform in new e-book&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>LABScon24 Replay | Let Them Eat Cake: “Secure by Upgrade” Software is a National Security Threat</title><link>https://www.sentinelone.com/labs/labscon24-replay-let-them-eat-cake-secure-by-upgrade-software-is-a-national-security-threat/</link><description>Kymberlee Price reveals the technical chaos facing SMBs as they struggle with solutions aimed at bigger fish in the face of expanding crimeware.</description><content:encoded>&lt;p&gt;Ransomware is doing more to change the security landscape than the last 20 years of Secure Development Lifecycle, DevSecOps, Zero Days, Breaches, or any corporate memo. Pair this with predatory pricing models from software vendors that sell security features as add-on products in premium or enterprise tier licenses, and you’ve got a perfect storm that hits small and medium sized businesses (SMBs) the hardest.&lt;/p&gt;
+&lt;p&gt;Keep up with all the latest on &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon 2025&lt;/a&gt; here.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=110935</guid><category>LABScon</category><category>labscon24</category></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – New Translations</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update-new</link><description>As the year comes to a close, NIST continues to engage with our international partners to strengthen cybersecurity, including sharing over ten new international translations in over six languages as resources for our stakeholders around the world. These efforts were complemented by discussions on opportunities for future enhanced international collaboration and resource sharing. Here are some updates from the past few months: Our international engagement continues through our support to the Department of State and the International Trade Administration (ITA) during numerous international</description><guid isPermaLink="false">https://www.nist.gov/node/1869886</guid></item><item><title>September 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/19/september-2024-cyber-attacks-statistics/</link><description>After the corresponding cyber attacks timelines, it’s time to publish the statistics for September 2024 where I collected and analyzed 257 events. During September 2024...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44026</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category><category>Vulnerabilities</category></item><item><title>What Is Zero Trust Security?</title><link>https://www.techrepublic.com/resource-library/feature/what-is-zero-trust-security/</link><description>In today&amp;#8217;s dynamic threat environment, traditional security perimeters are proving to be increasingly vulnerable. Ray Fernandez, writing for TechRepublic Premium, presents an in-depth exploration of zero trust security that offers professionals a clear path to strengthening their security posture and compliance by providing a deep understanding of the concepts and principles, delving into its operational ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/what-is-zero-trust-security/</guid><category>Cybersecurity</category></item><item><title>Python-Based NodeStealer Version Targets Facebook Ads Manager</title><link>https://www.trendmicro.com/en_us/research/24/l/python-based-nodestealer.html</link><description>In this blog entry, Trend Micro’s Managed XDR team discuss their investigation into how the latest variant of NodeStealer is delivered through spear-phishing attacks, potentially leading to malware execution, data theft, and the exfiltration of sensitive information via Telegram.</description><guid isPermaLink="false">urn:uuid:6d380b53-30d1-17da-2558-a878f0b619e3</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>FedRAMP ATO Boosts Zero Trust for Federal Agencies</title><link>https://www.trendmicro.com/en_us/research/24/l/fedramp-ato-zero-trust.html</link><description>Trend Vision One™ for Government has obtained a FedRAMP Authorization to Operate (ATO). This milestone enables Federal government customers to leverage Trend’s platform to rapidly stop adversaries and control their cybersecurity risk posture.</description><guid isPermaLink="false">urn:uuid:0a91ae2c-f775-65ca-bdf9-8ed581fc7b84</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category></item><item><title>LABScon24 Replay | Let Them Eat Cake: “Secure by Upgrade” Software is a National Security Threat</title><link>https://www.sentinelone.com/labs/labscon24-replay-let-them-eat-cake-secure-by-upgrade-software-is-a-national-security-threat/</link><description>Kymberlee Price reveals the technical chaos facing SMBs as they struggle with solutions aimed at bigger fish in the face of expanding crimeware.</description><content:encoded>&lt;p&gt;Ransomware is doing more to change the security landscape than the last 20 years of Secure Development Lifecycle, DevSecOps, Zero Days, Breaches, or any corporate memo. Pair this with predatory pricing models from software vendors that sell security features as add-on products in premium or enterprise tier licenses, and you’ve got a perfect storm that hits small and medium sized businesses (SMBs) the hardest.&lt;/p&gt;
 &lt;p&gt;In this hard-hitting talk, &lt;a href="https://www.linkedin.com/in/kymberleeprice/" rel="noopener" target="_blank"&gt;Kymberlee Price&lt;/a&gt; reveals the technical chaos facing the US’s largest employment sector: SMBs. With restricted budgets, a lack of expertise, no access to consumer reports by which to clearly compare products, and a SaaS industry that makes basic security features like SSO a premium add-on, many businesses remain easy pickings for threat actors in a rapidly expanding crimeware landscape.&lt;/p&gt;
 &lt;p&gt;Why should we care about this, is it really a national threat, and what can a bunch of security engineers do about it?&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
