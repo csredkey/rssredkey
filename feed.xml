@@ -1,5 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 13 Feb 2025 01:59:43 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>An ontology for threats, cybercrime and digital forensic investigation on Smart City Infrastructure</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ChatGPT Cheat Sheet: A Complete Guide for 2025</title><link>https://www.techrepublic.com/article/chatgpt-cheat-sheet/</link><description>Get up and running with ChatGPT with this comprehensive cheat sheet. Learn everything from how to sign up for free to enterprise use cases, and start using ChatGPT quickly and effectively.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4062368</guid><category>Artificial Intelligence</category><category>Innovation</category><category>artificial intelligence</category><category>chatbot</category><category>chatgpt</category><category>Google</category><category>Microsoft</category></item><item><title>Delivering Malware Through Abandoned Amazon S3 Buckets</title><link>https://www.schneier.com/blog/archives/2025/02/delivering-malware-through-abandoned-amazon-s3-buckets.html</link><description>&lt;p&gt;Here&amp;#8217;s a &lt;a href="https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/"&gt;supply-chain attack&lt;/a&gt; just waiting to happen. A group of researchers searched for, and then registered, abandoned Amazon S3 buckets for about $400. These buckets contained software libraries that are still used. Presumably the projects don&amp;#8217;t realize that they have been abandoned, and still ping them for patches, updates, and etc.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 13 Feb 2025 02:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, February 13th, 2025 https://isc.sans.edu/podcastdetail/9322</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Thursday, February 13th, 2025 https://isc.sans.edu/podcastdetail/9322, (Thu, Feb 13th)</title><link>https://isc.sans.edu/diary/rss/31682</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31682</guid></item><item><title>DShield SIEM Docker Updates, (Thu, Feb 13th)</title><link>https://isc.sans.edu/diary/rss/31680</link><description>&lt;p&gt;Over the past several weeks, I have been testing various enhancements to the &lt;a href="https://github.com/bruneaug/DShield-SIEM/tree/main"&gt;DShield SIEM&lt;/a&gt;, to process &lt;a href="https://github.com/bruneaug/DShield-Sensor"&gt;DShield sensor&lt;/a&gt; log from local and cloud sensors with Filebeat and Filebeat modules to easily send &lt;a href="https://www.elastic.co/guide/en/integrations/current/zeek.html"&gt;Zeek&lt;/a&gt; and &lt;a href="https://www.elastic.co/guide/en/integrations/current/netflow.html"&gt;NetFlow&lt;/a&gt; logs back to a local network ELK stack via home router natting. This is a list of updates and enhancements:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Over the past several weeks, I have been testing various enhancements to the &lt;a href="https://github.com/bruneaug/DShield-SIEM/tree/main"&gt;DShield SIEM&lt;/a&gt;, to process &lt;a href="https://github.com/bruneaug/DShield-Sensor"&gt;DShield sensor&lt;/a&gt; log from local and cloud sensors with Filebeat and Filebeat modules to easily send &lt;a href="https://www.elastic.co/guide/en/integrations/current/zeek.html"&gt;Zeek&lt;/a&gt; and &lt;a href="https://www.elastic.co/guide/en/integrations/current/netflow.html"&gt;NetFlow&lt;/a&gt; logs back to a local network ELK stack via home router natting. This is a list of updates and enhancements:&lt;/p&gt;
+
+&lt;p&gt;- Upgrade to the current version of Elastic &lt;a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/release-notes-8.17.2.html"&gt;8.17.2&lt;/a&gt;&lt;br /&gt;
+- A single script to configure the base configuration of all the docker files (change_perms.sh)&lt;br /&gt;
+- Addition of docker filebeat for cloud DShield sensor collection (Cowrie, Zeek &amp;amp; NetFlow logs)&lt;br /&gt;
+- Second filebeat to ingest ISC &amp;amp; Rosti Threat Intel IP data [&lt;a href="https://github.com/bruneaug/DShield-SIEM/blob/main/AddOn/ISC_threatintel.md"&gt;3&lt;/a&gt;]&lt;br /&gt;
+- Separation of GitHub DShield SIEM &amp;amp; DShield sensor scripts&lt;br /&gt;
+- Addition to docker Metricbeat for ELK Stack metric information&lt;br /&gt;
+- Updated dashboard that includes Zeek in the tab lists&lt;br /&gt;
+- Query in one dashboard is linked to the others&lt;br /&gt;
+- Tested the ELK Stack in a LXC Proxmox container [&lt;a href="https://github.com/bruneaug/DShield-SIEM/blob/main/AddOn/LXC_Container_DShield-SIEM.md"&gt;4&lt;/a&gt;]&lt;br /&gt;
+- The addition of ELK Stack monitoring of all the Beats and Logstash&lt;br /&gt;
+- Configured Logstash to parse logs with Beats pipelines (Zeek &amp;amp; NetFlow)&lt;br /&gt;
+- Removed and merged multiple steps to simplify the installation (change_perms.sh)&lt;br /&gt;
+- Updated some sections of the Troubleshooting document [&lt;a href="https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/Troubleshooting_SIEM_and_Sensor.md"&gt;5&lt;/a&gt;]&lt;br /&gt;
+- Updated some sections of the docker useful commands [&lt;a href="http://Updated some sections of the docker useful commands"&gt;6&lt;/a&gt;]&lt;br /&gt;
+- Updated the DShield SIEM network flow [&lt;a href="https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/DShield-SIEM-Flow.png"&gt;7&lt;/a&gt;]&lt;br /&gt;
+- Docker update steps to current version [&lt;a href="https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/docker_useful_commands..md#update-dshield-elk-to-the-latest-version"&gt;8&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;DShield SIEM Main Dashboard&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/DShield_SIEM_12Feb25.png" style="width: 1300px; height: 778px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;[1] https://github.com/bruneaug/DShield-SIEM/tree/main&lt;br /&gt;
+[2] https://github.com/bruneaug/DShield-Sensor&lt;br /&gt;
+[3] https://github.com/bruneaug/DShield-SIEM/blob/main/AddOn/ISC_threatintel.md&lt;br /&gt;
+[4] https://github.com/bruneaug/DShield-SIEM/blob/main/AddOn/LXC_Container_DShield-SIEM.md&lt;br /&gt;
+[5] https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/Troubleshooting_SIEM_and_Sensor.md&lt;br /&gt;
+[6] https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/docker_useful_commands..md&lt;br /&gt;
+[7] https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/DShield-SIEM-Flow.png&lt;br /&gt;
+[8] https://github.com/bruneaug/DShield-SIEM/blob/main/Troubleshooting/docker_useful_commands..md#update-dshield-elk-to-the-latest-version&lt;br /&gt;
+[9] https://www.elastic.co/guide/en/elasticsearch/reference/current/release-notes-8.17.2.html&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/bruneaug/"&gt;My GitHub Page&lt;/a&gt;&lt;br /&gt;
+Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
+gbruneau at isc dot sans dot edu&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31680</guid></item><item><title>ChatGPT Cheat Sheet: A Complete Guide for 2025</title><link>https://www.techrepublic.com/article/chatgpt-cheat-sheet/</link><description>Get up and running with ChatGPT with this comprehensive cheat sheet. Learn everything from how to sign up for free to enterprise use cases, and start using ChatGPT quickly and effectively.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4062368</guid><category>Artificial Intelligence</category><category>Innovation</category><category>artificial intelligence</category><category>chatbot</category><category>chatgpt</category><category>Google</category><category>Microsoft</category></item><item><title>Delivering Malware Through Abandoned Amazon S3 Buckets</title><link>https://www.schneier.com/blog/archives/2025/02/delivering-malware-through-abandoned-amazon-s3-buckets.html</link><description>&lt;p&gt;Here&amp;#8217;s a &lt;a href="https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/"&gt;supply-chain attack&lt;/a&gt; just waiting to happen. A group of researchers searched for, and then registered, abandoned Amazon S3 buckets for about $400. These buckets contained software libraries that are still used. Presumably the projects don&amp;#8217;t realize that they have been abandoned, and still ping them for patches, updates, and etc.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The TL;DR is that this time, we ended up discovering ~150 Amazon S3 buckets that had previously been used across commercial and open source software products, governments, and infrastructure deployment/update pipelines&amp;#8212;and then abandoned...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;Here&amp;#8217;s a &lt;a href="https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/"&gt;supply-chain attack&lt;/a&gt; just waiting to happen. A group of researchers searched for, and then registered, abandoned Amazon S3 buckets for about $400. These buckets contained software libraries that are still used. Presumably the projects don&amp;#8217;t realize that they have been abandoned, and still ping them for patches, updates, and etc.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The TL;DR is that this time, we ended up discovering ~150 Amazon S3 buckets that had previously been used across commercial and open source software products, governments, and infrastructure deployment/update pipelines&amp;#8212;and then abandoned.&lt;/p&gt;
 &lt;p&gt;Naturally, we registered them, just to see what would happen&amp;#8212;&amp;#8221;how many people are really trying to request software updates from S3 buckets that appear to have been abandoned months or even years ago?&amp;#8221;, we naively thought to ourselves.&lt;/p&gt;&lt;/blockquote&gt;
@@ -3163,7 +3203,7 @@ Jan Kopriva&lt;br /&gt;
 &lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31664</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>ISC Stormcast For Friday, February 7th, 2025 https://isc.sans.edu/podcastdetail/9314, (Fri, Feb 7th)</title><link>https://isc.sans.edu/diary/rss/31662</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31662</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31664</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
 &lt;p&gt;On Thursday, mobile security company &lt;a href="https://www.nowsecure.com/blog/2025/02/06/nowsecure-uncovers-multiple-security-and-privacy-flaws-in-deepseek-ios-mobile-app/"&gt;NowSecure reported&lt;/a&gt; that the app sends sensitive data over unencrypted channels, making the data readable to anyone who can monitor the traffic. More sophisticated attackers could also tamper with the data while it's in transit. Apple strongly encourages iPhone and iPad developers to enforce encryption of data sent over the wire using ATS (&lt;a href="https://developer.apple.com/documentation/security/preventing-insecure-network-connections"&gt;App Transport Security&lt;/a&gt;). For unknown reasons, that protection is globally disabled in the app, NowSecure said.&lt;/p&gt;
 &lt;h2&gt;Basic security protections MIA&lt;/h2&gt;
 &lt;p&gt;What’s more, the data is sent to servers that are controlled by ByteDance, the Chinese company that owns TikTok. While some of that data is properly encrypted using transport layer security, once it's decrypted on the ByteDance-controlled servers, it can be cross-referenced with user data collected elsewhere to identify specific users and potentially track queries and other usage.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
@@ -3650,133 +3690,7 @@ SecurityEvent
 &lt;li&gt;ICSMA-25-037-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-01"&gt;MicroDicom DICOM Viewer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSMA-25-037-02 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-02"&gt;Orthanc Server&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22975</guid></item><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>The Unbreakable Multi-Layer Anti-Debugging System, (Thu, Feb 6th)</title><link>https://isc.sans.edu/diary/rss/31658</link><description>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;#x27s review some of them&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The title of this diary is based on the string I found in a malicious Python script that implements&amp;nbsp;many anti-debugging techniques. If some were common, others were interesting and demonstrated how low-level high-level languages like Python can access operating system information. Let&amp;rsquo;s review some of them!&lt;/p&gt;
-
-&lt;p&gt;Anti-debugging techniques are like a cat-and-mouse game. If you&amp;rsquo;re interested in malware analysis, this will show you how your task can be much more challenging if you&amp;rsquo;re prepared to face them. The file was found on VT with a low score of 2/62[&lt;a href="https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection"&gt;1&lt;/a&gt;]&amp;nbsp;(SHA256: 3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612). The file just contains only anti-debugging stuff and not real malware. I suspect the file to be a proof-of-concept.&lt;/p&gt;
-
-&lt;p&gt;The script is multi-threaded and launches all the techniques in parallel:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def anti_debug_check():
-    &amp;quot;&amp;quot;&amp;quot; ? The Unbreakable Multi-Layer Anti-Debugging System &amp;quot;&amp;quot;&amp;quot;
-    threads = [
-        threading.Thread(target=detect_debugger),
-        threading.Thread(target=detect_debugger_processes),
-        threading.Thread(target=detect_vm),
-        threading.Thread(target=detect_api_hooks),
-        threading.Thread(target=detect_breakpoints),
-        threading.Thread(target=detect_sandbox),
-        threading.Thread(target=detect_cpu_usage),
-        threading.Thread(target=detect_memory_tampering),
-        threading.Thread(target=detect_mouse_movements),
-        threading.Thread(target=detect_execution_speed),
-        threading.Thread(target=detect_registry_keys),
-        threading.Thread(target=detect_screenshot),
-        threading.Thread(target=infinite_loop_debugger_trap),
-        threading.Thread(target=inject_fake_code),
-        threading.Thread(target=polymorphic_self_mutation)
-    ]
-    for t in threads:
-        t.daemon = True
-        t.start()
-    for t in threads:
-        t.join()&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s focus on the interesting ones. &amp;laquo;&amp;nbsp;polymorphic_self_mutation&amp;nbsp;&amp;raquo; will change the Python script file. In a Python program, the variable &amp;quot;__file__&amp;quot; contains the path of the currently executed script. This variable is used to read the content of the script, randomize the lines, and overwrite it:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def polymorphic_self_mutation():
-    &amp;quot;&amp;quot;&amp;quot; ? Self-Mutating Code to Avoid Static Analysis &amp;quot;&amp;quot;&amp;quot;
-    with open(__file__, &amp;quot;r&amp;quot;, encoding=&amp;quot;utf-8&amp;quot;) as f:
-        lines = f.readlines()
-    with open(__file__, &amp;quot;w&amp;quot;, encoding=&amp;quot;utf-8&amp;quot;) as f:
-        random.shuffle(lines)
-        f.writelines(lines)&lt;/pre&gt;
-
-&lt;p&gt;The new file will have, for example, a different hash and will be more difficult to hunt.&lt;/p&gt;
-
-&lt;p&gt;The next technique is a typical Python trick provided by sys.gettrace[&lt;a href="https://docs.python.org/3/library/sys.html#sys.gettrace"&gt;2&lt;/a&gt;].&amp;nbsp;If a debugger is attached to the Python process, this function will return a trace function. The purpose of this technique is to loop forever if a debugger is attached to the Python script.&amp;nbsp;&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def infinite_loop_debugger_trap():
-    &amp;quot;&amp;quot;&amp;quot; ? If Debugger is Attached, Trap it in an Infinite Loop &amp;quot;&amp;quot;&amp;quot;
-    while sys.gettrace():
-        pass  # Debugger is stuck here forever&lt;/pre&gt;
-
-&lt;p&gt;I like the &amp;laquo;&amp;nbsp;memory tampering&amp;nbsp;&amp;raquo; technique: The script computes its hash and recheck it at regular intervals:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def detect_memory_tampering():
-    original_hash = hashlib.md5(open(sys.argv[0], &amp;quot;rb&amp;quot;).read()).hexdigest()
-    while True:
-        time.sleep(2)
-        current_hash = hashlib.md5(open(sys.argv[0], &amp;quot;rb&amp;quot;).read()).hexdigest()
-        if current_hash != original_hash:
-            kill_system()&lt;/pre&gt;
-
-&lt;p&gt;The next one relies on the API call IsDebuggerPresent(). This one is often hooked to prevent the simple detection of a debugger.&amp;nbsp;The value 0xE9 is the op-code for a long jump&amp;hellip; This hooking technique is called &amp;laquo;&amp;nbsp;trampoline&amp;nbsp;&amp;raquo;. If the very first byte of the API call loaded in memory is 0xE9, it has been hooked!&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def detect_api_hooks():
-    kernel32 = ctypes.windll.kernel32
-    original_bytes = ctypes.create_string_buffer(5)
-    kernel32.ReadProcessMemory(kernel32.GetCurrentProcess(), kernel32.IsDebuggerPresent, original_bytes, 5, None)
-    if original_bytes.raw[0] == 0xE9:  # Hook detected
-        kill_system()&lt;/pre&gt;
-
-&lt;p&gt;When you debug, you probably use breakpoints, right? The following code helps to detect hardware breakpoints:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def detect_breakpoints():
-    context = ctypes.create_string_buffer(0x4C)
-    context_ptr = ctypes.byref(context)
-    context_offset = struct.calcsize(&amp;quot;Q&amp;quot;) * 6
-    ctypes.windll.kernel32.RtlCaptureContext(context_ptr)
-    dr0, dr1, dr2, dr3 = struct.unpack_from(&amp;quot;4Q&amp;quot;, context.raw, context_offset)
-    if dr0 or dr1 or dr2 or dr3:
-        kill_system()&lt;/pre&gt;
-
-&lt;p&gt;Hardware breakpoints are used to avoid patching the program. They contain the address where to pause the execution. Hardware breakpoints are CPU registers: DRO to&amp;nbsp;DR3 (on Intel CPU&amp;rsquo;s). RtlCaptureContext()[&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext"&gt;3&lt;/a&gt;] is used to get the current threat&amp;rsquo;s execution state which includes the registers. With the help of unpack, the script fills the variable corresponding to the registers, if one of them is not empty, there is a hardware breakpoint defined!&lt;/p&gt;
-
-&lt;p&gt;Other checks are really common: detection of suspicious process names, and specific registry keys, &amp;hellip; I'll not cover them.&lt;/p&gt;
-
-&lt;p&gt;You can see that all functions will call kill_system() if tests are successful. This function will just annoy the malware analysts by crashing (or trying to crash) the system:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def kill_system():
-    &amp;quot;&amp;quot;&amp;quot; ? THE ULTIMATE KILL-SWITCH ? &amp;quot;&amp;quot;&amp;quot;
-    try:
-        ctypes.windll.ntdll.NtRaiseHardError(0xDEADDEAD, 0, 0, 0, 6, ctypes.byref(ctypes.c_ulong()))
-    except:
-        os.system(&amp;quot;shutdown /s /t 0&amp;quot;)  # Force shutdown&lt;/pre&gt;
-
-&lt;p&gt;The purpose of the function is&amp;nbsp;easy to understand but when NtRaiseHardError[&lt;a href="https://github.com/AgnivaMaity/NtRaiseHardError-Example"&gt;4&lt;/a&gt;] is invoked, it does not automatically cause a kernel panic or system-wide crash. Instead, the system can handle the error in various ways, including logging the event, presenting an error dialog, or terminating the application that called the function. I tried in a VM:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-C:\Users\REM&amp;gt;python
-Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 25 2016, 22:18:55) [MSC v.1900 64 bit (AMD64)] on win32
-Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
-&amp;gt;&amp;gt;&amp;gt; import ctypes
-&amp;gt;&amp;gt;&amp;gt; ctypes.windll.ntdll.NtRaiseHardError(0xDEADDEAD, 0, 0, 0, 6, ctypes.byref(ctypes.c_ulong()))
--1073741727
-&amp;gt;&amp;gt;&amp;gt;&lt;/pre&gt;
-
-&lt;p&gt;When you convert the value -1073741727 to hexadecimal, you get 0xC000001F, which is a Windows NTSTATUS code. Specifically, this error code indicates a STATUS_INVALID_PARAMETER error...&lt;/p&gt;
-
-&lt;p&gt;The Python script is a great example of multiple techniques that can be implemented in malware!&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href="https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection"&gt;https://www.virustotal.com/gui/file/3a216b238bae042312ab810c0d07fdc49e8eddc97a2dec3958fb6b1f4ecd4612/detection&lt;/a&gt;&lt;br /&gt;
-[2]&amp;nbsp;&lt;a href="https://docs.python.org/3/library/sys.html#sys.gettrace"&gt;https://docs.python.org/3/library/sys.html#sys.gettrace&lt;/a&gt;&lt;br /&gt;
-[3]&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext"&gt;https://learn.microsoft.com/en-us/windows/win32/api/winnt/nf-winnt-rtlcapturecontext&lt;/a&gt;&lt;br /&gt;
-[4]&amp;nbsp;&lt;a href="https://github.com/AgnivaMaity/NtRaiseHardError-Example"&gt;https://github.com/AgnivaMaity/NtRaiseHardError-Example&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
-Xameco&lt;br /&gt;
-Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
-&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31658</guid></item><item><title>DOGE Teen Owns ‘Tesla.Sexy LLC’ and Worked at Startup That Has Hired Convicted Hackers</title><link>https://www.wired.com/story/edward-coristine-tesla-sexy-path-networks-doge/</link><description>Experts question whether Edward Coristine, a DOGE staffer who has gone by “Big Balls” online, would pass the background check typically required for access to sensitive US government systems.</description><guid isPermaLink="false">67a3c05b1763be00fb0096bc</guid><category>Security</category><category>Security / National Security</category><category>Politics / Politics News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Russia</category><category>politics</category><category>government</category><category>DOGE</category><category>Elon Musk</category><category>Work History</category></item><item><title>Passkeys: The future of secure and seamless authentication</title><link>https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/</link><description>&lt;p&gt;What are passkeys? You may have seen the term &amp;#8220;passkeys&amp;#8221; appearing more frequently in tech news, app updates, and security discussions. Major companies like Apple, Google, and Microsoft are rolling out passkeys as a replacement for passwords, promising both enhanced security and a smoother user experience. But what exactly are passkeys, and why are they [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/22975</guid></item><item><title>1-15 November 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/02/06/1-15-november-2024-cyber-attacks-timeline/</link><description>In the first timeline of November 2024 I collected 128 events with a threat landscape dominated by malware...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44325</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>DOGE Teen Owns ‘Tesla.Sexy LLC’ and Worked at Startup That Has Hired Convicted Hackers</title><link>https://www.wired.com/story/edward-coristine-tesla-sexy-path-networks-doge/</link><description>Experts question whether Edward Coristine, a DOGE staffer who has gone by “Big Balls” online, would pass the background check typically required for access to sensitive US government systems.</description><guid isPermaLink="false">67a3c05b1763be00fb0096bc</guid><category>Security</category><category>Security / National Security</category><category>Politics / Politics News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Russia</category><category>politics</category><category>government</category><category>DOGE</category><category>Elon Musk</category><category>Work History</category></item><item><title>Passkeys: The future of secure and seamless authentication</title><link>https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/</link><description>&lt;p&gt;What are passkeys? You may have seen the term &amp;#8220;passkeys&amp;#8221; appearing more frequently in tech news, app updates, and security discussions. Major companies like Apple, Google, and Microsoft are rolling out passkeys as a replacement for passwords, promising both enhanced security and a smoother user experience. But what exactly are passkeys, and why are they [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/05/passkeys-the-future-of-secure-and-seamless-authentication/" rel="nofollow"&gt;Passkeys: The future of secure and seamless authentication&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;What are passkeys?&lt;/h2&gt;
 
 
