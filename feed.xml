@@ -1,5 +1,320 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 14 Feb 2025 01:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, February 13th, 2025 https://isc.sans.edu/podcastdetail/9322</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Nearly a Year Later, Mozilla is Still Promoting OneRep</title><link>https://krebsonsecurity.com/2025/02/nearly-a-year-later-mozilla-is-still-promoting-onerep/</link><description>In mid-March 2024, KrebsOnSecurity revealed that the founder of the personal data removal service Onerep also founded dozens of people-search companies. Shortly after that investigation was published, Mozilla said it would stop bundling Onerep with the Firefox browser and wind down its partnership. But nearly a year later, Mozilla is still promoting it to Firefox users.</description><content:encoded>&lt;p&gt;In mid-March 2024, KrebsOnSecurity revealed that the founder of the personal data removal service &lt;strong&gt;Onerep&lt;/strong&gt; also founded dozens of people-search companies. Shortly after that investigation was published, &lt;strong&gt;Mozilla&lt;/strong&gt; said it would stop bundling Onerep with the &lt;strong&gt;Firefox&lt;/strong&gt; browser and wind down its partnership with the company. But nearly a year later, Mozilla is still promoting it to Firefox users.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 14 Feb 2025 02:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, February 14th, 2025 https://isc.sans.edu/podcastdetail/9324</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Friday, February 14th, 2025 https://isc.sans.edu/podcastdetail/9324, (Fri, Feb 14th)</title><link>https://isc.sans.edu/diary/rss/31684</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31684</guid></item><item><title>Storm-2372 conducts device code phishing campaign</title><link>https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/</link><description>&lt;p&gt;Microsoft Threat Intelligence Center discovered an active and successful device code phishing campaign by a threat actor we track as Storm-2372. Our ongoing investigation indicates that this campaign has been active since August 2024 with the actor creating lures that resemble messaging app experiences including WhatsApp, Signal, and Microsoft Teams. Storm-2372’s targets during this time have included government, non-governmental organizations (NGOs), information technology (IT) services and technology, defense, telecommunications, health, higher education, and energy/oil and gas in Europe, North America, Africa, and the Middle East. Microsoft assesses with medium confidence that Storm-2372 aligns with Russian interests, victimology, and tradecraft.   &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/"&gt;Storm-2372 conducts device code phishing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;&lt;strong&gt;Executive summary&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Today we’re sharing that Microsoft discovered cyberattacks being launched by a group we call Storm-2372, who we assess with medium confidence aligns with Russia’s interests and tradecraft. The attacks appear to have been ongoing since August 2024 and have targeted governments, NGOs, and a wide range of industries in multiple regions. The attacks use a specific phishing technique called “device code phishing” that tricks users to log into productivity apps while Storm-2372 actors capture the information from the log in (tokens) that they can use to then access compromised accounts. These tokens are part of an industry standard and, while these phishing lures used Microsoft and other apps to trick users, they do not reflect a vulnerability unique to Microsoft nor have we found any vulnerabilities in our code base enabling this activity.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;p&gt;Microsoft Threat Intelligence Center discovered an active and successful device code phishing campaign by a threat actor we track as Storm-2372. Our ongoing investigation indicates that this campaign has been active since August 2024 with the actor creating lures that resemble messaging app experiences including WhatsApp, Signal, and Microsoft Teams. Storm-2372’s targets during this time have included government, non-governmental organizations (NGOs), information technology (IT) services and technology, defense, telecommunications, health, higher education, and energy/oil and gas in Europe, North America, Africa, and the Middle East. Microsoft assesses with medium confidence that Storm-2372 aligns with Russian interests, victimology, and tradecraft.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;In device code phishing, threat actors exploit the device code authentication flow to capture authentication tokens, which they then use to access target accounts, and further gain access to data and other services that the compromised account has access to. This technique could enable persistent access as long as the tokens remain valid, making this attack technique attractive to threat actors.&lt;/p&gt;
+
+
+
+&lt;p&gt;The phishing attack identified in this blog masquerades as Microsoft Teams meeting invitations delivered through email. When targets click the meeting invitation, they are prompted to authenticate using a threat actor-generated device code. The actor then receives the valid access token from the user interaction, stealing the authenticated session.&lt;/p&gt;
+
+
+
+&lt;p&gt;Because of the active threat represented by Storm-2372 and other threat actors exploiting device code phishing techniques, we are sharing our latest research, detections, and mitigation guidance on this campaign to raise awareness of the observed tactics, techniques, and procedures (TTPs), educate organizations on how to harden their attack surfaces, and disrupt future operations by this threat actor. Microsoft uses Storm designations as a temporary name given to an unknown, emerging, or developing cluster of threat activity, allowing Microsoft to track it as a unique set of information until we reach high confidence about the origin or identity of the threat actor behind the activity.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft Threat Intelligence Center continues to track campaigns launched by Storm-2372, and, when able, directly notifies customers who have been targeted or compromised, providing them with the necessary information to help secure their environments. Microsoft is also tracking other groups using similar techniques, including those documented by Volexity in their &lt;a href="https://www.volexity.com/blog/2025/02/13/multiple-russian-threat-actors-targeting-microsoft-device-code-authentication/"&gt;recent publication&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-does-device-code-phishing-work"&gt;How does device code phishing work?&lt;/h2&gt;
+
+
+
+&lt;p&gt;A device code authentication flow is a numeric or alphanumeric code used to authenticate an account from an input-constrained device that does not have the ability to perform an interactive authentication using a web flow and thus must perform this authentication on another device to sign-in. In device code phishing, threat actors exploit the device code authentication flow.&lt;/p&gt;
+
+
+
+&lt;p&gt;During the attack, the threat actor generates a legitimate device code request and tricks the target into entering it into a legitimate sign-in page. This grants the actor access and enables them to capture the authentication—access and refresh—tokens that are generated, then use those tokens to access the target’s accounts and data. The actor can also use these phished authentication tokens to gain access to other services where the user has permissions, such as email or cloud storage, without needing a password. The threat actor continues to have access so long as the tokens remain valid. The attacker can then use the valid access token to move laterally within the environment.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram showing the device code phishing attack chain" class="wp-image-137469 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Device-code-phishing-attack-chain.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. Device code phishing attack cycle&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="storm-2372-phishing-lure-and-access"&gt;Storm-2372 phishing lure and access&lt;/h2&gt;
+
+
+
+&lt;p&gt;Storm-2372’s device code phishing campaign has been active since August 2024. Observed early activity indicates that Storm-2372 likely targeted potential victims using third-party messaging services including WhatsApp, Signal, and Microsoft Teams, falsely posing as a prominent person relevant to the target to develop rapport before sending subsequent invitations to online events or meetings via phishing emails.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshots of Signal messages from threat actor" class="wp-image-137475 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Signal-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Sample messages from the threat actor posing as a prominent person and building rapport on Signal&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The invitations lure the user into completing a device code authentication request emulating the experience of the messaging service, which provides Storm-2372 initial access to victim accounts and enables Graph API data collection activities, such as email harvesting.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of Microsoft Teams lure" class="wp-image-137471 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Fig2.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Example of lure used in phishing campaign&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;On the device code authentication page, the user is tricked into entering the code that the threat actor included as the ID for the fake Teams meeting invitation.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="post-compromise-activity"&gt;Post-compromise activity&lt;/h2&gt;
+
+
+
+&lt;p&gt;Once the victim uses the device code to authenticate, the threat actor receives the valid access token. The threat actor then uses this valid session to move laterally within the newly compromised network by sending additional phishing messages containing links for device code authentication to other users through intra-organizational emails originating from the victim’s account.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of device code authentication page" class="wp-image-137472 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Fig3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Legitimate device code authentication page&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Additionally, Microsoft observed Storm-2372 using Microsoft Graph to search through messages of the account they’ve compromised. The threat actor was using keyword searching to view messages containing words such as username, password, admin, teamviewer, anydesk, credentials, secret, ministry, and gov. Microsoft then observed email exfiltration via Microsoft Graph of the emails found from these searches.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attribution"&gt;Attribution&lt;/h2&gt;
+
+
+
+&lt;p&gt;The actor that Microsoft tracks as Storm-2372 is a suspected nation-state actor working toward Russian state interests. It notably has used device code phishing to compromise targets of interest. Storm-2372 likely initially approaches targets through third-party messaging services, posing as a prominent individual relevant to the target to develop rapport before sending invites to online events or meetings. These invites lure the user into device code authentication that grants initial access to Storm-2372 and enables Graph API data collection activities such as email harvesting.&lt;/p&gt;
+
+
+
+&lt;p&gt;Storm-2372 targets include government, NGOs, IT services and technology, defense, telecommunications, health, higher education, and energy/oil and gas in Europe, North America, Africa, and the Middle East.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p&gt;To harden networks against the Storm-2372 activity described above, defenders can implement the following:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Only allow device code flow where necessary. Microsoft recommends &lt;a href="https://learn.microsoft.com/entra/identity/conditional-access/policy-block-authentication-flows"&gt;blocking device code flow wherever possible&lt;/a&gt;. Where necessary, configure Microsoft Entra ID’s &lt;a href="https://learn.microsoft.com/entra/identity/conditional-access/concept-authentication-flows"&gt;device code flow&lt;/a&gt; in your Conditional Access policies.&lt;/li&gt;
+
+
+
+&lt;li&gt;Educate users about common phishing techniques. Sign-in prompts should clearly identify the application being authenticated to. As of 2021, Microsoft Azure interactions prompt the user to confirm (“Cancel” or “Continue”) that they are signing in to the app they expect, which is an option frequently missing from phishing sign-ins.&lt;/li&gt;
+
+
+
+&lt;li&gt;If suspected Storm-2372 or other device code phishing activity is identified, &lt;a href="https://learn.microsoft.com/graph/api/user-revokesigninsessions"&gt;revoke the user&amp;#8217;s refresh tokens by calling &lt;em&gt;revokeSignInSessions&lt;/em&gt;&lt;/a&gt;. Consider &lt;a href="https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser#create-a-conditional-access-policy"&gt;setting a Conditional Access Policy to force re-authentication&lt;/a&gt; for users.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/azure/active-directory/identity-protection/howto-identity-protection-configure-risk-policies"&gt;Implement a sign-in risk policy&lt;/a&gt; to automate response to risky sign-ins. A sign-in risk represents the probability that a given authentication request isn&amp;#8217;t authorized by the identity owner. A sign-in risk-based policy can be implemented by adding a sign-in risk condition to Conditional Access policies that evaluates the risk level of a specific user or group. Based on the risk level (high/medium/low), a policy can be configured to block access or force multi-factor authentication.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;When a user is a high risk and &lt;a href="https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation"&gt;Conditional access evaluation is enabled&lt;/a&gt;, the user’s access is revoked, and they are forced to re-authenticate.&lt;/li&gt;
+
+
+
+&lt;li&gt;For regular activity monitoring, use &lt;a href="https://portal.azure.com/#view/Microsoft_AAD_IAM/SecurityMenuBlade/~/RiskySignIns"&gt;Risky sign-in reports&lt;/a&gt;, which surface attempted and successful user access activities where the legitimate owner might not have performed the sign-in. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Require &lt;a href="https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication"&gt;multifactor authentication (MFA)&lt;/a&gt;. While certain attacks such as device code phishing attempt to evade MFA, implementation of MFA remains an essential pillar in identity security and is highly effective at stopping a variety of threats.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Leverage &lt;a href="https://learn.microsoft.com/entra/identity/authentication/concept-authentication-methods"&gt;phishing-resistant authentication methods&lt;/a&gt; such as FIDO Tokens, or &lt;a href="https://www.microsoft.com/security/mobile-authenticator-app"&gt;Microsoft Authenticator&lt;/a&gt; with passkey. Avoid telephony-based MFA methods to avoid risks associated with SIM-jacking.&lt;/li&gt;
+
+
+
+&lt;li&gt;Block &lt;a href="https://learn.microsoft.com/entra/identity/conditional-access/block-legacy-authentication"&gt;legacy authentication with Microsoft Entra by using Conditional Access&lt;/a&gt;. Legacy authentication protocols do not have the ability to enforce MFA, as legacy MFA (per-user MFA prompts) is susceptible to abuse.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Centralize your organization’s identity management into a single platform. If your organization is a hybrid environment, integrate your on-premises directories with your cloud directories. If your organization is using a third-party for identity management, ensure this data is being logged in a SIEM or connected to Microsoft Entra to fully monitor for malicious identity access from a centralized location. The added benefits to centralizing all identity data is to facilitate implementation of &lt;a href="https://learn.microsoft.com/azure/active-directory/manage-apps/plan-sso-deployment"&gt;Single Sign On (SSO)&lt;/a&gt; and provide users with a more seamless authentication process, as well as configure Entra ID’s machine learning models to operate on all identity data, thus learning the difference between legitimate access and malicious access quicker and easier. It is recommended to &lt;a href="https://learn.microsoft.com/azure/active-directory/hybrid/connect/how-to-connect-password-hash-synchronization"&gt;synchronize all user accounts&lt;/a&gt; except administrative and high privileged ones when doing this to maintain a boundary between the on-premises environment and the cloud environment, in case of a breach.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/entra/architecture/security-operations-introduction"&gt;Secure accounts with credential hygiene&lt;/a&gt;: practice the &lt;a href="https://learn.microsoft.com/azure/active-directory/roles/delegate-by-task"&gt;principle of least privilege&lt;/a&gt; and audit privileged account activity in your Entra ID environments to slow and stop attackers.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-for-office-365"&gt;Microsoft Defender for Office 365&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Defender for Office 365 detects malicious activity associated with this threat through the following alerts:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;This email has traits consistent with phishing&lt;/li&gt;
+
+
+
+&lt;li&gt;This HTML has traits consistent with phishing&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-entra-id-protection"&gt;Microsoft Entra ID Protection&lt;/h3&gt;
+
+
+
+&lt;p&gt;The following Microsoft Entra ID Protection risk detections inform Entra ID user risk events and can indicate associated threat activity, including unusual user activity consistent with known attack patterns identified by Microsoft Threat Intelligence research:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Activity from Anonymous IP address (RiskEventType: anonymizedIPAddress)&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks#microsoft-entra-threat-intelligence-sign-in"&gt;Microsoft Entra threat intelligence (sign-in)&lt;/a&gt;: (RiskEventType: investigationsThreatIntelligence)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr"&gt;Microsoft Defender XDR&lt;/h3&gt;
+
+
+
+&lt;p&gt;The following query can help identify possible device code phishing attempts:&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+let suspiciousUserClicks = materialize(UrlClickEvents
+    | where ActionType in (&amp;quot;ClickAllowed&amp;quot;, &amp;quot;UrlScanInProgress&amp;quot;, &amp;quot;UrlErrorPage&amp;quot;) or IsClickedThrough != &amp;quot;0&amp;quot;
+    | where UrlChain has_any (&amp;quot;microsoft.com/devicelogin&amp;quot;, &amp;quot;login.microsoftonline.com/common/oauth2/deviceauth&amp;quot;)
+    | extend AccountUpn = tolower(AccountUpn)
+    | project ClickTime = Timestamp, ActionType, UrlChain, NetworkMessageId, Url, AccountUpn);
+//Check for Risky Sign-In in the short time window
+let interestedUsersUpn = suspiciousUserClicks
+    | where isnotempty(AccountUpn)
+    | distinct AccountUpn;
+let suspiciousSignIns = materialize(AADSignInEventsBeta
+    | where ErrorCode == 0
+    | where AccountUpn in~ (interestedUsersUpn)
+    | where RiskLevelDuringSignIn in (10, 50, 100)
+    | extend AccountUpn = tolower(AccountUpn)
+    | join kind=inner suspiciousUserClicks on AccountUpn
+    | where (Timestamp - ClickTime) between (-2min .. 7min)
+    | project Timestamp, ReportId, ClickTime, AccountUpn, RiskLevelDuringSignIn, SessionId, IPAddress, Url
+);
+//Validate errorCode 50199 followed by success in 5 minute time interval for the interested user, which suggests a pause for the code which the user provided from the phishing email
+let interestedSessionUsers = suspiciousSignIns
+    | where isnotempty(AccountUpn)
+    | distinct AccountUpn;
+let shortIntervalSignInAttemptUsers = materialize(AADSignInEventsBeta
+    | where AccountUpn in~ (interestedSessionUsers)
+    | where ErrorCode in (0, 50199)
+    | summarize ErrorCodes = make_set(ErrorCode) by AccountUpn, CorrelationId, SessionId
+    | where ErrorCodes has_all (0, 50199)
+    | distinct AccountUpn);
+suspiciousSignIns
+| where AccountUpn in (shortIntervalSignInAttemptUsers)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-sentinel"&gt;Microsoft Sentinel&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Sentinel customers can use the following queries to detect phishing attempts and email exfiltration attempts via Graph API. While these queries are not specific to threat actors, they can help you stay vigilant and safeguard your organization from phishing attacks:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Microsoft%20Defender%20XDR/Hunting%20Queries/Email%20Queries/QR%20code/Campaign%20with%20suspicious%20keywords.yaml"&gt;Campaign with suspicious keywords&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Microsoft%20Defender%20XDR/Hunting%20Queries/EmailDelivered-ToInbox.yaml"&gt;Determine Successfully Delivered Phishing Emails to Inbox/Junk folder.&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Detections/MultipleDataSources/SucessfullSiginFromPhingLink.yaml"&gt;Successful Signin from Phishing Link&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Detections/MultipleDataSources/PhishinglinkExecutionObserved.yaml"&gt;Phishing link click observed in Network Traffic&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Initial%20access/SuspiciousUrlClicked.yaml"&gt;Suspicious URL clicked&lt;/a&gt; &lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Exfiltration/Anomaly%20of%20MailItemAccess%20by%20GraphAPI%20%5BNobelium%5D.yaml"&gt;Anomaly of MailItemAccess by GraphAPI&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Exfiltration/OAuth%20Apps%20accessing%20user%20mail%20via%20GraphAPI%20%5BNobelium%5D.yaml"&gt;OAuth Apps accessing user mail via GraphAPI&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Exfiltration/OAuth%20Apps%20reading%20mail%20both%20via%20GraphAPI%20and%20directly%20%5BNobelium%5D.yaml"&gt;OAuth Apps reading mail both via GraphAPI and directly&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Exfiltration/OAuth%20Apps%20reading%20mail%20via%20GraphAPI%20anomaly%20%5BNobelium%5D.yaml"&gt;OAuth Apps reading mail via GraphAPI anomaly&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://www.blackhillsinfosec.com/dynamic-device-code-phishing/"&gt;https://www.blackhillsinfosec.com/dynamic-device-code-phishing/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://www.huntress.com/blog/oh-auth-2-0-device-code-phishing-in-google-cloud-and-azure#:~:text=Attacker%20crafts%20a%20convincing%20email,And%20then%E2%80%A6"&gt;https://www.huntress.com/blog/oh-auth-2-0-device-code-phishing-in-google-cloud-and-azure&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://github.com/secureworks/family-of-client-ids-research?tab=readme-ov-file#which-client-applications-are-compatible-with-each-other"&gt;https://github.com/secureworks/family-of-client-ids-research?tab=readme-ov-file#which-client-applications-are-compatible-with-each-other&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the Microsoft Threat Intelligence Blog:&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog"&gt;https://aka.ms/threatintelblog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To get notified about new publications and to join discussions on social media, follow us on LinkedIn at &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;https://www.linkedin.com/showcase/microsoft-threat-intelligence&lt;/a&gt;, and on X (formerly Twitter) at&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;https://x.com/MsftSecIntel&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/"&gt;Storm-2372 conducts device code phishing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Nearly a Year Later, Mozilla is Still Promoting OneRep</title><link>https://krebsonsecurity.com/2025/02/nearly-a-year-later-mozilla-is-still-promoting-onerep/</link><description>In mid-March 2024, KrebsOnSecurity revealed that the founder of the personal data removal service Onerep also founded dozens of people-search companies. Shortly after that investigation was published, Mozilla said it would stop bundling Onerep with the Firefox browser and wind down its partnership. But nearly a year later, Mozilla is still promoting it to Firefox users.</description><content:encoded>&lt;p&gt;In mid-March 2024, KrebsOnSecurity revealed that the founder of the personal data removal service &lt;strong&gt;Onerep&lt;/strong&gt; also founded dozens of people-search companies. Shortly after that investigation was published, &lt;strong&gt;Mozilla&lt;/strong&gt; said it would stop bundling Onerep with the &lt;strong&gt;Firefox&lt;/strong&gt; browser and wind down its partnership with the company. But nearly a year later, Mozilla is still promoting it to Firefox users.&lt;/p&gt;
 &lt;p&gt;Mozilla offers Onerep to Firefox users on a subscription basis as part of &lt;a href="https://www.mozilla.org/en-US/about/legal/terms/subscription-services/" rel="noopener" target="_blank"&gt;Mozilla Monitor Plus&lt;/a&gt;. Launched in 2018 under the name &lt;a href="https://en.wikipedia.org/wiki/Firefox_Monitor" rel="noopener" target="_blank"&gt;Firefox Monitor&lt;/a&gt;, Mozilla Monitor also checks data from the website &lt;a href="https://haveibeenpwned.com/" rel="noopener" target="_blank"&gt;Have I Been Pwned?&lt;/a&gt; to let users know when their email addresses or password are leaked in data breaches.&lt;/p&gt;
 &lt;p&gt;The ink on that partnership agreement had barely dried before KrebsOnSecurity &lt;a href="https://krebsonsecurity.com/2024/03/ceo-of-data-privacy-company-onerep-com-founded-dozens-of-people-search-firms/" rel="noopener" target="_blank"&gt;published a story&lt;/a&gt; showing that Onerep’s Belarusian CEO and founder &lt;strong&gt;Dimitiri Shelest&lt;/strong&gt; launched dozens of people-search services since 2010, including a still-active data broker called &lt;strong&gt;Nuwber&lt;/strong&gt; that sells background reports on people. This seemed to contradict Onerep&amp;#8217;s stated motto, &amp;#8220;We believe that no one should compromise personal online security and get a profit from it.”&lt;/p&gt;
 &lt;p&gt;Shelest released &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2024/03/Dimitri-Shelest-Letter-_-Comment-on-Krebs-article-3.20.24-1.pdf" rel="noopener" target="_blank"&gt;a lengthy statement&lt;/a&gt; (PDF) wherein he acknowledged maintaining an ownership stake in &lt;strong&gt;Nuwber&lt;/strong&gt;, a consumer data broker he founded in 2015 — around the same time he started Onerep.&lt;/p&gt;
@@ -3567,51 +3882,7 @@ Senior handler&lt;br /&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;br /&gt;The Symantec Threat Hunter team, part of Broadcom, contributed to this guidance.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22977</guid></item><item><title>SSL 2.0 turns 30 this Sunday... Perhaps the time has come to let it die&amp;#x3f;, (Fri, Feb 7th)</title><link>https://isc.sans.edu/diary/rss/31664</link><description>&lt;p&gt;The SSL 2.0 protocol was originally published back in February of 1995&amp;&amp;#x23;x5b;&lt;a href="https://datatracker.ietf.org/doc/html/rfc6176&amp;#x23;ref-SSL2"&gt;1&lt;/a&gt;&amp;#x5d;, and although it was quickly found to have significant security weaknesses, and a more secure alternative was released only a year later&amp;&amp;#x23;x5b;&lt;a href="https://en.wikipedia.org/wiki/Transport&amp;#x5f;Layer&amp;#x5f;Security&amp;#x23;SSL&amp;#x5f;1.0,&amp;#x5f;2.0,&amp;#x5f;and&amp;#x5f;3.0"&gt;2&lt;/a&gt;&amp;#x5d;, it still received a fairly wide adoption.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The SSL 2.0 protocol was originally published back in February of 1995[&lt;a href="https://datatracker.ietf.org/doc/html/rfc6176#ref-SSL2"&gt;1&lt;/a&gt;], and although it was quickly found to have significant security weaknesses, and a more secure alternative was released only a year later[&lt;a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0"&gt;2&lt;/a&gt;], it still received a fairly wide adoption.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/25-02-07-trends.png" style="display: none;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Nevertheless, since it was officially deprecated nearly 14 years ago, in March of 2011[&lt;a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#History_and_development"&gt;3&lt;/a&gt;], and all newer IT systems subsequently lack support for it, one might reasonably expect that this outdated and insecure protocol would now be the stuff of legends more than something one might see in one&amp;rsquo;s daily life. Or &amp;ndash; rather &amp;ndash; while there are undoubtedly numerous legacy systems in existence that still support SSL 2.0, and even use it in the context of local networks, one would probably not expect to see large numbers of servers that still support this protocol exposed to the internet&amp;hellip; Though, as we have discussed previously [&lt;a href="https://isc.sans.edu/diary/29908"&gt;4&lt;/a&gt;,&lt;a href="https://isc.sans.edu/diary/31550"&gt;5&lt;/a&gt;], one would be wrong.&lt;/p&gt;
-
-&lt;p&gt;Still, since the aforementioned protocol will celebrate its 30th birthday this Sunday, I thought it might be worthwhile to take a closer look at how common it is at this point, and what systems still support it.&lt;/p&gt;
-
-&lt;p&gt;Going by the numbers from Shodan, at the time of writing, there still appear to be nearly 423 thousand public IP addresses, on which servers supporting SSL 2.0 are accessible on some port[&lt;a href="https://www.shodan.io/search?query=ssl.version%3Asslv2"&gt;6&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;Looking at the most common ports, we can see that the overwhelming majority of systems that still support the outdated protocol are almost certainly web servers, and that most of what remains seems to consist primarily of e-mail servers&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/25-02-07-ports.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/25-02-07-ports.png" style="border-width: 1px; border-style: solid; width: 800px; height: 353px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;If we look at the countries, where at least 1000 SSL 2.0-enabled servers appear to be located, we can see that only three countries together &amp;ndash; the United States, Kazakhstan and Tunisia &amp;ndash; host more than half of what is out there&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/25-02-07-countries.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/25-02-07-countries.png" style="border-width: 1px; border-style: solid; width: 801px; height: 519px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We have discussed the situation at the top of the list &amp;ndash; especially in Kazakhstan &amp;ndash; previously[&lt;a href="https://isc.sans.edu/diary/29988"&gt;7&lt;/a&gt;], and although the overall numbers are still certainly high, it seems worth mentioning that even in these countries, the numbers of SSL 2.0 enabled systems (at least web servers, as you can see in the following chart) has decreased significantly over the past two years&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/25-02-07-kz-tn-us.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/25-02-07-kz-tn-us.png" style="border-width: 1px; border-style: solid; width: 800px; height: 364px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Since we are on the topic of changes in the number of servers that still support SSL 2.0, we should also look at how the overall global situation has evolved over time&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/25-02-07-trends.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/25-02-07-trends.png" style="border-width: 1px; border-style: solid; width: 801px; height: 364px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As we can see, the rate of removal of SSL 2.0 enabled systems from the internet has significantly increased in approximately the last 3 months, which is quite fortunate. Not because the protocol itself is weak, but because any device that still supports it is &amp;ndash; given its long-ago deprecation &amp;ndash; significantly outdated, and therefore most likely contains old and significant vulnerabilities.&lt;/p&gt;
-
-&lt;p&gt;The road still before us certainly isn&amp;rsquo;t short &amp;ndash; over 422 thousand servers that support the outdated protocol remain on the internet &amp;ndash; nevertheless, the situation seems to be getting better. We can only hope that with its 30th birthday quickly approaching, the time is finally comming to let SSL 2.0 &amp;ndash; and most of the systems that support it &amp;ndash; go, at least on the global internet&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href="https://datatracker.ietf.org/doc/html/rfc6176#ref-SSL2"&gt;https://datatracker.ietf.org/doc/html/rfc6176#ref-SSL2&lt;/a&gt;&lt;br /&gt;
-[2] &lt;a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0"&gt;https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0&lt;/a&gt;&lt;br /&gt;
-[3] &lt;a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#History_and_development"&gt;https://en.wikipedia.org/wiki/Transport_Layer_Security#History_and_development&lt;/a&gt;&lt;br /&gt;
-[4] &lt;a href="https://isc.sans.edu/diary/29908"&gt;https://isc.sans.edu/diary/29908&lt;/a&gt;&lt;br /&gt;
-[5] &lt;a href="https://isc.sans.edu/diary/31550"&gt;https://isc.sans.edu/diary/31550&lt;/a&gt;&lt;br /&gt;
-[6] &lt;a href="https://www.shodan.io/search?query=ssl.version%3Asslv2"&gt;https://www.shodan.io/search?query=ssl.version%3Asslv2&lt;/a&gt;&lt;br /&gt;
-[7] &lt;a href="https://isc.sans.edu/diary/29988"&gt;https://isc.sans.edu/diary/29988&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;-----------&lt;br /&gt;
-Jan Kopriva&lt;br /&gt;
-&lt;a href="https://www.linkedin.com/in/jan-kopriva/"&gt;LinkedIn&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31664</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;The Symantec Threat Hunter team, part of Broadcom, contributed to this guidance.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22977</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
 &lt;p&gt;On Thursday, mobile security company &lt;a href="https://www.nowsecure.com/blog/2025/02/06/nowsecure-uncovers-multiple-security-and-privacy-flaws-in-deepseek-ios-mobile-app/"&gt;NowSecure reported&lt;/a&gt; that the app sends sensitive data over unencrypted channels, making the data readable to anyone who can monitor the traffic. More sophisticated attackers could also tamper with the data while it's in transit. Apple strongly encourages iPhone and iPad developers to enforce encryption of data sent over the wire using ATS (&lt;a href="https://developer.apple.com/documentation/security/preventing-insecure-network-connections"&gt;App Transport Security&lt;/a&gt;). For unknown reasons, that protection is globally disabled in the app, NowSecure said.&lt;/p&gt;
 &lt;h2&gt;Basic security protections MIA&lt;/h2&gt;
 &lt;p&gt;What’s more, the data is sent to servers that are controlled by ByteDance, the Chinese company that owns TikTok. While some of that data is properly encrypted using transport layer security, once it's decrypted on the ByteDance-controlled servers, it can be cross-referenced with user data collected elsewhere to identify specific users and potentially track queries and other usage.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
@@ -9129,300 +9400,7 @@ Check out the full list of researchers recognized this quarter here.</descriptio
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/01/13/why-msps-must-offer-24-7-cybersecurity-protection-and-response/" rel="nofollow"&gt;Why MSPs must offer 24/7 cybersecurity protection and response — and how OpenText MDR can help&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33579</guid><category>Threat Lab</category></item><item><title>12 Organisations tell Just Eat, Uber, and Deliveroo: Time to Deliver Answers</title><link>http://privacyinternational.org/news-analysis/5510/12-organisations-tell-just-eat-uber-and-deliveroo-time-deliver-answers</link><guid isPermaLink="false">5510 at http://privacyinternational.org</guid></item><item><title>Time to deliver answers: An open letter to Just Eat Takeaway, Uber and Deliveroo</title><link>http://privacyinternational.org/advocacy/5509/time-deliver-answers-open-letter-just-eat-takeaway-uber-and-deliveroo</link><guid isPermaLink="false">5509 at http://privacyinternational.org</guid></item><item><title>Analyzing CVE-2024-44243, a macOS System Integrity Protection bypass through kernel extensions</title><link>https://www.microsoft.com/en-us/security/blog/2025/01/13/analyzing-cve-2024-44243-a-macos-system-integrity-protection-bypass-through-kernel-extensions/</link><description>&lt;p&gt;Microsoft discovered a macOS vulnerability allowing attackers to bypass System Integrity Protection (SIP) by loading third party kernel extensions, which could lead to serious consequences, such as allowing attackers to install rootkits, create persistent malware, bypass Transparency, Consent, and Control (TCC), and expand the attack surface to perform other unauthorized operations.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/01/13/analyzing-cve-2024-44243-a-macos-system-integrity-protection-bypass-through-kernel-extensions/"&gt;Analyzing CVE-2024-44243, a macOS System Integrity Protection bypass through kernel extensions&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Microsoft Threat Intelligence discovered a new macOS vulnerability that could allow attackers to bypass Apple’s &lt;a href="https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection" rel="noreferrer noopener" target="_blank"&gt;System Integrity Protection&lt;/a&gt; (SIP) in macOS by loading third party kernel extensions. SIP is a security technology that restricts the performance of operations that may compromise system integrity; thus, a SIP bypass affects the overall security of the operating system. Bypassing SIP could lead to serious consequences, such as increasing the potential for attackers and malware authors to successfully install rootkits, create persistent malware, bypass Transparency, Consent and Control (TCC), and expand the attack surface for additional techniques and exploits.&lt;/p&gt;
-
-
-
-&lt;p&gt;We shared these findings with Apple through &lt;a href="https://www.microsoft.com/msrc/cvd"&gt;Coordinated Vulnerability Disclosure&lt;/a&gt; (CVD) via &lt;a href="https://www.microsoft.com/msrc/msvr"&gt;Microsoft Security Vulnerability Research&lt;/a&gt; (MSVR). A fix for this vulnerability, now identified as &lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-44243" rel="noreferrer noopener" target="_blank"&gt;CVE-2024-44243&lt;/a&gt;, was included in the &lt;a href="https://support.apple.com/en-us/121839" rel="noreferrer noopener" target="_blank"&gt;security updates&lt;/a&gt; released by Apple on December 11, 2024. The findings were discovered in parallel between Microsoft and &lt;a href="https://x.com/patch1t" rel="noreferrer noopener" target="_blank"&gt;Mickey Jin&lt;/a&gt;, who also responsibly reported the vulnerability to Apple. Users should ensure their systems are up to date. We thank the Apple security team for their collaboration and efforts in fixing this issue.&lt;/p&gt;
-
-
-
-&lt;p&gt;In many cases, special entitlements are leveraged to bypass security mechanisms like SIP, making it essential to monitor specially entitled processes for anomalous behavior. This need for proactive monitoring is only further emphasized when a specially entitled process invokes kernel extensions from third party organizations without proper validation or reduced privileges, which an attacker could exploit to install a kernel driver (rootkit) in a way that could evade detection by security solutions. Following our previous SIP bypass blog posts (&lt;a href="https://www.microsoft.com/security/blog/2021/10/28/microsoft-finds-new-macos-vulnerability-shrootless-that-could-bypass-system-integrity-protection/"&gt;Shrootless&lt;/a&gt;, &lt;a href="https://www.microsoft.com/security/blog/2023/05/30/new-macos-vulnerability-migraine-could-bypass-system-integrity-protection/"&gt;Migraine&lt;/a&gt;), our team set up mechanisms to proactively alert on potentially attacker-controlled child processes of special entitled processes, which enabled Microsoft Defender and our researcher team to ultimately identify CVE-2024-44243.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this blog post, we detail the connection between entitlements and SIP and explain how CVE-2024-44243 could be used to bypass SIP security measures. This research also highlights some of the benefits and challenges of kernel-based monitoring. Prohibiting third party code to run in the kernel can increase macOS reliability, the tradeoff being that it reduces monitoring capabilities for security solutions. If SIP is bypassed, the entire operating system can no longer be considered reliable, and with reduced monitoring visibility, threat actors can tamper with any security solutions on the device to evade detection. As such, this research is being presented to the broader security community to underline the critical role of responsible disclosure and collaborative efforts in securing devices across platforms.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="understanding-sip-and-entitled-processes"&gt;Understanding SIP and entitled processes&lt;/h2&gt;
-
-
-
-&lt;p&gt;As previously covered in our previous SIP bypass blogposts (&lt;a href="https://www.microsoft.com/security/blog/2021/10/28/microsoft-finds-new-macos-vulnerability-shrootless-that-could-bypass-system-integrity-protection/"&gt;Shrootless&lt;/a&gt;, &lt;a href="https://www.microsoft.com/security/blog/2023/05/30/new-macos-vulnerability-migraine-could-bypass-system-integrity-protection/"&gt;Migraine&lt;/a&gt;), SIP (also known as “rootless”) is a macOS mechanism that enforces several operating system protections against the root user, including the ability to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Load arbitrary kernel drivers&lt;/li&gt;
-
-
-
-&lt;li&gt;Change non-volatile random-access memory (NVARM) variables&lt;/li&gt;
-
-
-
-&lt;li&gt;Get task ports for Apple-signed processes&lt;/li&gt;
-
-
-
-&lt;li&gt;Allow kernel debugging&lt;/li&gt;
-
-
-
-&lt;li&gt;Modify sensitive files that are a part of the operating system&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;One interesting fact about SIP is that bypassing just one of those restrictions is likely to lead to bypasses of all other SIP restrictions – for example:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;SIP policy is controlled by NVRAM variables, so modifying NVRAM variables bypasses SIP.&lt;/li&gt;
-
-
-
-&lt;li&gt;Kernel code execution (either through kernel extensions or debugging) can change SIP since it is enforced at the kernel level.&lt;/li&gt;
-
-
-
-&lt;li&gt;Modifying sensitive files on the file system can bypass SIP, for instance, by modifying the list of allowed kernel extensions and then loading that kernel extension.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;SIP bypasses have traditionally focused on special binaries with specific &lt;a href="https://developer.apple.com/documentation/bundleresources/entitlements" rel="noreferrer noopener" target="_blank"&gt;entitlements&lt;/a&gt;. As a reminder, entitlements are special capabilities a process might have and are a part of the digital signature of the process. Therefore, entitlements cannot be easily forged by attackers. In addition to the well-documented entitlements available for software developers, certain entitlements are reserved only for processes that have specific operating system functions, such as system updates, debugging capabilities, memory tracing, and security extensions. We refer to them as private entitlements, as their name would commonly start with a &lt;em&gt;com.apple.private&lt;/em&gt; prefix. There are many of those special entitlements, most are not documented by Apple at all.&lt;/p&gt;
-
-
-
-&lt;p&gt;Our team has identified the criticality in monitoring anomalous behavior by those specially entitled processes, as in many cases special entitlements could be used for bypassing security mechanisms. For example:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table table"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Entitlement&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;com.apple.rootless.install&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Processes entitled with the &lt;em&gt;com.apple.rootless.install&lt;/em&gt; entitlement can bypass SIP file system checks. Several examples that abuse that entitlement have been reported, including: &lt;br /&gt;&amp;#8211; Reported by Stefan Esser and &lt;a href="https://www.slideshare.net/slideshow/syscan360-stefan-esser-os-x-el-capitan-sinking-the-ship/59926048" rel="noreferrer noopener" target="_blank"&gt;presented&lt;/a&gt; at SyScan360, this vulnerability misused the fact that &lt;em&gt;fsck_cs&lt;/em&gt; follows symbolic links and could therefore write to arbitrary file paths.&lt;br /&gt;&amp;#8211; CVE-2022-26712 – &lt;a href="https://jhftss.github.io/CVE-2022-26712-The-POC-For-SIP-Bypass-Is-Even-Tweetable/" rel="noreferrer noopener" target="_blank"&gt;reported&lt;/a&gt; by Mickey Jin. The vulnerability abuses the &lt;em&gt;SystemShoveService.xpc&lt;/em&gt; XPC service, which is entitled with the &lt;em&gt;com.apple.rootless.install&lt;/em&gt; entitlement.&lt;br /&gt; &lt;br /&gt;Note that this is not a complete list of vulnerabilities associated with that entitlement.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;com.apple.rootless.install.heritable&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Processes entitled with the &lt;em&gt;com.apple.rootless.install.heritable&lt;/em&gt; inherit the &lt;em&gt;com.apple.rootless.install&lt;/em&gt; entitlement to all their child processes. Notable examples include: &lt;br /&gt;&amp;#8211; CVE-2019-8561 – &lt;a href="https://www.trendmicro.com/en_us/research/22/k/cve-2019-8561-a-hard-to-banish-packagekit-framework-vulnerabilit.html" rel="noreferrer noopener" target="_blank"&gt;discovered&lt;/a&gt; by Trend Micro. The vulnerability leverages a Time-of-check-time-of-use (TOCTOU) issue in the &lt;em&gt;system_installd&lt;/em&gt; binary.&lt;br /&gt;&amp;#8211; CVE-2020–9854 – &lt;a href="https://objective-see.org/blog/blog_0x4D.html" rel="noreferrer noopener" target="_blank"&gt;reported&lt;/a&gt; by Ilias Morad, which exploited a specific installer script that was spawned by &lt;em&gt;system_installd&lt;/em&gt; and allowed an arbitrary process execution from a command-line argument.&lt;br /&gt;&amp;#8211; CVE-2021-30892 – reported by Microsoft Defender, known as “&lt;a href="https://www.microsoft.com/security/blog/2021/10/28/microsoft-finds-new-macos-vulnerability-shrootless-that-could-bypass-system-integrity-protection/"&gt;Shrootless&lt;/a&gt;”. The vulnerability abuses Apple-signed package that includes shell script components and abuses the &lt;em&gt;system_installd&lt;/em&gt; binary.&lt;br /&gt;&amp;#8211; CVE-2022-22583 – &lt;a href="https://perception-point.io/blog/technical-analysis-cve-2022-22583/" rel="noreferrer noopener" target="_blank"&gt;reported&lt;/a&gt; by Perception Point. This vulnerability is a variant on our previously reported Shrootless vulnerability and takes advantage of a the &lt;em&gt;/tmp&lt;/em&gt; symbolic link used by &lt;em&gt;system_installd&lt;/em&gt;.&lt;br /&gt;&amp;#8211; CVE-2023-32369 – reported by Microsoft Defender, known as “&lt;a href="https://www.microsoft.com/security/blog/2023/05/30/new-macos-vulnerability-migraine-could-bypass-system-integrity-protection/"&gt;Migraine&lt;/a&gt;”. The exploit abuses the system migration daemon (&lt;em&gt;migrationd&lt;/em&gt; ). &lt;br /&gt;&lt;br /&gt;Note that this is not a complete list of vulnerabilities associated with that entitlement.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;There are other entitlements that could be used for other types of vulnerabilities, such as the &lt;em&gt;com.apple.private.tcc.allow&lt;/em&gt; entitlement, which could be used for &lt;a href="https://www.microsoft.com/security/blog/2022/01/10/new-macos-vulnerability-powerdir-could-lead-to-unauthorized-user-data-access/"&gt;TCC bypasses&lt;/a&gt;, which we also monitor. However, in this blog post we will focus on SIP-related entitlements only.&lt;/p&gt;
-
-
-
-&lt;p&gt;Due to the sensitive nature of the &lt;em&gt;com.apple.rootless.install.heritable&lt;/em&gt; entitlement, it is evident that monitoring anomalous child processes of processes entitled with &lt;em&gt;com.apple.rootless.install.heritable&lt;/em&gt; is important for security research.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="discovery-of-sip-bypasses-through-custom-file-systems"&gt;Discovery of SIP bypasses through custom file systems&lt;/h2&gt;
-
-
-
-&lt;p&gt;One of the processes entitled with the previously described &lt;em&gt;com.apple.rootless.install.heritable&lt;/em&gt; entitlement is &lt;em&gt;storagekitd&lt;/em&gt;, which is a daemon that handles disk state-keeping by the Storage Kit private framework.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code depicting storagekitd and its SIP-related entitlements" class="wp-image-137048" height="535" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/image.jpg" width="937" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1. storagekitd and its SIP-related entitlements&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;As shown, &lt;em&gt;storagekitd&lt;/em&gt; has many SIP bypassing capabilities, including the &lt;em&gt;com.apple.rootless.install.heritable&lt;/em&gt;, which means all its child processes are of great interest.&lt;/p&gt;
-
-
-
-&lt;p&gt;Using &lt;a href="https://learn.microsoft.com/defender-xdr/advanced-hunting-query-language"&gt;advanced hunting query language&lt;/a&gt;, we can look for all child processes of the &lt;em&gt;storagekitd&lt;/em&gt; daemon:&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; gutter: false; title: ; notranslate"&gt;
-DeviceProcessEvents
-| where InitiatingProcessFileName == &amp;quot;storagekitd&amp;quot;
-    and FolderPath !startswith &amp;quot;/System&amp;quot;
-    and FolderPath !startswith &amp;quot;/sbin&amp;quot;
-    and FolderPath !startswith &amp;quot;/bin&amp;quot;
-    and FolderPath !startswith &amp;quot;/usr&amp;quot;
-| summarize by ProcessCommandLine
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Interestingly, we found several processes, which we immediately investigated:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Example path&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;/Library/Filesystems/iboysoft_NTFS.fs/Contents/Resources/newfs_ms_ntfs&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Custom NTFS implementation from &lt;a href="https://iboysoft.com" rel="noreferrer noopener" target="_blank"&gt;iBoysoft&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;/Library/Filesystems/tuxera_ntfs.fs/Contents/Resources/newfs_tuxera_ntfs&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Custom NTFS implementation from &lt;a href="https://ntfsformac.tuxera.com" rel="noreferrer noopener" target="_blank"&gt;Tuxera&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;/Library/Filesystems/ufsd_ExtFS.fs/Contents/Resources/fsck_ufsd_ExtFS&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Custom EXT file system implementation from &lt;a href="https://www.paragon-software.com" rel="noreferrer noopener" target="_blank"&gt;Paragon&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;/Library/Filesystems/ufsd_NTFS.fs/Contents/Resources/fsck_ufsd_NTFS&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Custom NTFS implementation from &lt;a href="https://www.paragon-software.com" rel="noreferrer noopener" target="_blank"&gt;Paragon&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;/Library/Filesystems/easeus_NTFS.fs/Contents/Resources/newfs_easeus_NTFS&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Custom NTFS implementation from &lt;a href="https://toolbox.easeus.com/ntfs-for-mac/" rel="noreferrer noopener" target="_blank"&gt;EaseUS&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;We therefore attempted to install those solutions. By overriding the binaries under the relevant bundle under &lt;em&gt;/Library/Filesystems&lt;/em&gt; and triggering them with the Disk Utility app, we proved that we were able to bypass SIP protections, overriding the Apple kernel extensions exclusion list. Moreover, we have successfully been able to automate our process with the &lt;a href="https://ss64.com/mac/diskutil.html" rel="noreferrer noopener" target="_blank"&gt;diskutil&lt;/a&gt; utility, which, similarly to the &lt;a href="https://support.apple.com/guide/disk-utility/welcome/mac" rel="noreferrer noopener" target="_blank"&gt;Disk Utility&lt;/a&gt; app, uses the Storage Kit private framework:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code depicting storagekitd leading to SIP being bypassed" class="wp-image-137065 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/Figure-2.-SIP-bypass-done-by-triggering-storagekitd-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 2. SIP bypass done by triggering storagekitd&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;It’s important to note everything described in this blog post is a macOS vulnerability due to &lt;em&gt;storagekitd’s&lt;/em&gt; ability to invoke arbitrary processes without proper validation or dropping privileges, rather than a vulnerability in each of those products.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="experimenting-with-custom-file-systems"&gt;Experimenting with custom file systems&lt;/h2&gt;
-
-
-
-&lt;p&gt;Mounting filesystems on macOS involves the Disk Arbitration daemon (&lt;em&gt;diskarbitrationd&lt;/em&gt;), which supports filesystems that are implemented in the kernel (APFS, HFS+) and those that are implemented in userspace. Filesystems implemented in userspace are known as User Filesystems (UserFS). macOS comes pre-shipped with several such filesystem implementations, each appears as a file system bundle (&lt;em&gt;*.fs&lt;/em&gt;) under &lt;em&gt;/System/Library/Filesystems and /Library/Filesystems&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code depicting custom filesystem bundles" class="wp-image-137072 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/Figure-3.-Custom-filesystem-bundles-3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 3. Custom filesystem bundles&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;While the structure of file system bundles is not-well documented, the &lt;em&gt;diskarbitrationd&lt;/em&gt; is fully &lt;a href="https://github.com/apple-open-source/macos/tree/master/DiskArbitration" rel="noreferrer noopener" target="_blank"&gt;open-source&lt;/a&gt;, which shows what properties are expected from such a bundle. The structure is as follows:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;A dictionary of &lt;em&gt;FSMediaTypes&lt;/em&gt; exists, in which the key is the file system formal name (or a designated GUID), and the value contains various content hints.&lt;/li&gt;
-
-
-
-&lt;li&gt;More importantly, the bundle information clearly specifies the binary file names and command line-arguments that will be used for specific operations, such as mounting, repairing, and probing.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://powerofcommunity.net/poc2024/Csaba%20Fitzl,%20Apple%20Disk-O%20Party.pdf" rel="noreferrer noopener" target="_blank"&gt;As described&lt;/a&gt; by Csaba Fitzl of Kandji in POC2024, upon mounting, the disk utility consults a specialized daemon known as the Storage Kit daemon (&lt;em&gt;storagekitd&lt;/em&gt;), which, in turn, uses the Disk Arbitration daemon (&lt;em&gt;diskarbitrationd&lt;/em&gt;) to invoke the right mount process via &lt;em&gt;posix_spawn&lt;/em&gt;. However, we noticed certain operations (such as “&lt;em&gt;disk repair&lt;/em&gt;”) are directly invoked under &lt;em&gt;storagekitd&lt;/em&gt;. Since an attacker that can run as root can drop a new file system bundle to &lt;em&gt;/Library/Filesystems&lt;/em&gt;, they can later trigger &lt;em&gt;storagekitd &lt;/em&gt;to spawn custom binaries, hence bypassing SIP.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code depicting the new file system registration, including the name and executables to be run" class="wp-image-137050" height="952" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/image-2.jpg" width="677" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4. New file system registration that includes the name and the executables to be run&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot depicting the Disk Utility recognizing the registered file system" class="wp-image-137046" height="714" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/image-1.jpg" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5. Registered file system recognized by the Disk Utility&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Triggering the &lt;em&gt;erase&lt;/em&gt; operation on the newly created file system can bypass SIP protections as well.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="detecting-the-vulnerability-with-microsoft-defender-for-endpoint-monitoring"&gt;Detecting the vulnerability with Microsoft Defender for Endpoint monitoring&lt;/h2&gt;
-
-
-
-&lt;p&gt;System Integrity Protection (SIP) serves as a critical safeguard against malware, attackers, and other cybersecurity threats, establishing a fundamental layer of protection for macOS systems. Bypassing SIP impacts the entire operating system’s security and could lead to severe consequences, emphasizing the necessity for comprehensive security solutions that can detect anomalous behavior from specially entitled processes. The challenge of detecting such threats is compounded by the inherent limitations in kernel-level visibility on macOS, making it difficult for traditional security measures to spot and mitigate these sophisticated attacks.&lt;/p&gt;
-
-
-
-&lt;p&gt;As our research demonstrates, an attacker with the ability to run as root could have exploited CVE-2024-44243 by loading third party kernel extensions to bypass SIP. To address these challenges, &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-vulnerability-management/defender-vulnerability-management"&gt;Microsoft Defender Vulnerability Management&lt;/a&gt;&amp;nbsp;quickly identifies and resolves CVE-2024-44243 and similar vulnerabilities&amp;nbsp;while &lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt; offers robust monitoring capabilities designed to detect and alert on anomalous behavior associated with specially entitled processes on macOS. Proactive monitoring for such anomalies is crucial to enable defenders to stay ahead of emerging threats and mitigate potential risks effectively. By leveraging these advanced detection mechanisms, organizations can gain greater visibility into activities that may indicate an attempt to exploit vulnerabilities that bypass SIP and other protection technologies across platforms.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code depicting a SIP bypass alert in Microsoft Defender for Endpoint" class="wp-image-137051 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/01/image-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 6. Microsoft Defender for Endpoint Potential System Integrity Protection bypass alert&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;This research underscores the importance of shared knowledge and collaborative efforts within the security community. We’d like to again thank Apple for their work in addressing this vulnerability, and Mickey Jin for responsibly disclosing the vulnerability in parallel with Microsoft. We believe that disseminating this information will not only foster responsible disclosure but also encourage collective action to fortify defenses against developing threats. By working together and leveraging the insights gained from these findings, we can better protect our systems and respond effectively to evolving security challenges.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jonathan Bar Or&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Microsoft Defender Research Team&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection"&gt;https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-44243"&gt;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-44243&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://support.apple.com/en-us/121839"&gt;https://support.apple.com/en-us/121839&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://x.com/patch1t"&gt;https://x.com/patch1t&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/bundleresources/entitlements"&gt;https://developer.apple.com/documentation/bundleresources/entitlements&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.slideshare.net/slideshow/syscan360-stefan-esser-os-x-el-capitan-sinking-the-ship/59926048"&gt;https://www.slideshare.net/slideshow/syscan360-stefan-esser-os-x-el-capitan-sinking-the-ship/59926048&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://jhftss.github.io/CVE-2022-26712-The-POC-For-SIP-Bypass-Is-Even-Tweetable/"&gt;https://jhftss.github.io/CVE-2022-26712-The-POC-For-SIP-Bypass-Is-Even-Tweetable/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.trendmicro.com/en_us/research/22/k/cve-2019-8561-a-hard-to-banish-packagekit-framework-vulnerabilit.html"&gt;https://www.trendmicro.com/en_us/research/22/k/cve-2019-8561-a-hard-to-banish-packagekit-framework-vulnerabilit.html&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://objective-see.org/blog/blog_0x4D.html"&gt;https://objective-see.org/blog/blog_0x4D.html&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://perception-point.io/blog/technical-analysis-cve-2022-22583/"&gt;https://perception-point.io/blog/technical-analysis-cve-2022-22583/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://iboysoft.com/"&gt;https://iboysoft.com/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://ntfsformac.tuxera.com/"&gt;https://ntfsformac.tuxera.com/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.paragon-software.com/"&gt;https://www.paragon-software.com/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://toolbox.easeus.com/ntfs-for-mac/"&gt;https://toolbox.easeus.com/ntfs-for-mac/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://ss64.com/mac/diskutil.html"&gt;https://ss64.com/mac/diskutil.html&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://support.apple.com/guide/disk-utility/welcome/mac"&gt;https://support.apple.com/guide/disk-utility/welcome/mac&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://github.com/apple-open-source/macos/tree/master/DiskArbitration"&gt;https://github.com/apple-open-source/macos/tree/master/DiskArbitration&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://powerofcommunity.net/poc2024/Csaba%20Fitzl,%20Apple%20Disk-O%20Party.pdf"&gt;https://powerofcommunity.net/poc2024/Csaba%20Fitzl,%20Apple%20Disk-O%20Party.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the Microsoft Threat Intelligence Blog:&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog"&gt;https://aka.ms/threatintelblog&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;To get notified about new publications and to join discussions on social media, follow us on LinkedIn at &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;https://www.linkedin.com/showcase/microsoft-threat-intelligence&lt;/a&gt;, and on X (formerly Twitter) at&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;https://x.com/MsftSecIntel&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/01/13/analyzing-cve-2024-44243-a-macos-system-integrity-protection-bypass-through-kernel-extensions/"&gt;Analyzing CVE-2024-44243, a macOS System Integrity Protection bypass through kernel extensions&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>macOS</category></item><item><title>Bitwarden vs 1Password: Battle of the Best – Who Wins?</title><link>https://www.techrepublic.com/article/bitwarden-vs-1password/</link><description>Bitwarden and 1Password are two of the top password managers. Find out which password manager is the best for you using this comprehensive comparison.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3976494</guid><category>Cloud Security</category><category>Security</category><category>1Password</category><category>Bitwarden</category><category>password manager</category></item><item><title>13th January – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/13th-january-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 13th January, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The International Civil Aviation Organization (ICAO), that is part of the UN, confirmed a compromise of its recruitment database that exposed 42,000 recruitment applications. The data contains records from April 2016 to [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/01/13/why-msps-must-offer-24-7-cybersecurity-protection-and-response/" rel="nofollow"&gt;Why MSPs must offer 24/7 cybersecurity protection and response — and how OpenText MDR can help&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33579</guid><category>Threat Lab</category></item><item><title>12 Organisations tell Just Eat, Uber, and Deliveroo: Time to Deliver Answers</title><link>http://privacyinternational.org/news-analysis/5510/12-organisations-tell-just-eat-uber-and-deliveroo-time-deliver-answers</link><guid isPermaLink="false">5510 at http://privacyinternational.org</guid></item><item><title>Time to deliver answers: An open letter to Just Eat Takeaway, Uber and Deliveroo</title><link>http://privacyinternational.org/advocacy/5509/time-deliver-answers-open-letter-just-eat-takeaway-uber-and-deliveroo</link><guid isPermaLink="false">5509 at http://privacyinternational.org</guid></item><item><title>Bitwarden vs 1Password: Battle of the Best – Who Wins?</title><link>https://www.techrepublic.com/article/bitwarden-vs-1password/</link><description>Bitwarden and 1Password are two of the top password managers. Find out which password manager is the best for you using this comprehensive comparison.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3976494</guid><category>Cloud Security</category><category>Security</category><category>1Password</category><category>Bitwarden</category><category>password manager</category></item><item><title>13th January – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/13th-january-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 13th January, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The International Civil Aviation Organization (ICAO), that is part of the UN, confirmed a compromise of its recruitment database that exposed 42,000 recruitment applications. The data contains records from April 2016 to [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/13th-january-threat-intelligence-report/"&gt;13th January – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>For the latest discoveries in cyber research for the week of 13th January, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/01/Threat_Intelligence_News_2025-01-13.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;
