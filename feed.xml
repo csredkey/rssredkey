@@ -1,5 +1,283 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 25 Feb 2025 18:59:19 +0000</lastBuildDate><item><title>Defense Lessons From the Black Basta Ransomware Playbook</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The cybersecurity world was rocked last week by a massive leak of Black Basta’s internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership. We’ve analyzed these newly [&amp;#8230;]</description><content:encoded>&lt;p&gt;The cybersecurity world was rocked last week by a &lt;a href="https://therecord.media/black-basta-ransomware-group-chat-logs-leaked"&gt;massive leak&lt;/a&gt; of &lt;a href="https://blog.qualys.com/vulnerabilities-threat-research/2024/09/19/black-basta-ransomware-what-you-need-to-know"&gt;Black Basta’s&lt;/a&gt; internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 25 Feb 2025 19:59:19 +0000</lastBuildDate><item><title>A Team of Female Founders Is Launching Cloud Security Tech That Could Overhaul AI Protection</title><link>https://www.wired.com/story/edera-cloud-tech-security/</link><description>Cloud “container” defenses have inconsistencies that can give attackers too much access. A new company, Edera, is taking on that challenge and the problem of the male-dominated startup world.</description><guid isPermaLink="false">67bcc22adf77363d702aa3fc</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>Business / Artificial Intelligence</category><category>Startups</category><category>Cloud Computing</category><category>artificial intelligence</category><category>security</category><category>cybersecurity</category><category>Balancing Act</category></item><item><title>How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation</title><link>https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/</link><description>&lt;p&gt;By: Dikla Barda, Roaman Zaikin &amp;#38; Oded Vanunu  On February 24, Check Point Blockchain Threat Intel System observed a sophisticated attack on a DeFi protocol, Infini.&amp;#160; Infini is a digital banking platform in the crypto space that offers its users savings yields and other financial services. The platform aims to make crypto assets more accessible [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/"&gt;How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation &lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;em&gt;By: Dikla Barda, Roaman Zaikin &amp;amp; Oded Vanunu &lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;On February 24, Check Point Blockchain Threat Intel System observed a sophisticated attack on a DeFi protocol, &lt;strong&gt;Infini&lt;/strong&gt;.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31185" height="367" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-3-1024x367.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Infini is a digital banking platform in the crypto space that offers its users savings yields and other financial services. The platform aims to make crypto assets more accessible practical for everyday transactions.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Unfortunately, this project recently suffered a security breach that targeted its yield management system, resulting in the loss of approximately 50 million USDC. The attacker exploited compromised private keys, carefully manipulated access controls, and executed a precise sequence of transactions to drain funds.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Here, we’ll break down this heist step by step.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The Compromised Private Key&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The attack began with transactions&amp;nbsp; from address 0xc49b5e5B9DA66B9126c1a62e9761E6b2147DE3E1, which held administrative privileges in the protocol. Infini has stated that they believe this private key may have been compromised.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Private key security is one of the most challenging aspects of blockchain security. Even with best practices in place, sophisticated attackers can sometimes gain access through various vectors, including phishing, malware, or other techniques. Without a full investigation, it&amp;#8217;s premature to draw conclude exactly how the administrative access was obtained.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;With this key, the attacker could sign transactions as if they were the legitimate owners—a critical first step that gave them initial access to the protocol.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Exploiting the Role-Based Access Control System&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Looking at the decompiled contract code, we can see the core function that determines role authorization:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31181" height="71" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-1024x71.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The compromised address&amp;nbsp; had admin privileges, which allowed the attacker to grant the REDEEMER_ROLE to themselves using the stolen key.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-31183" height="182" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-1.png" width="750" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Setting Up the Extraction Path&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Before funds could be withdrawn, the attacker needed to register their address as a valid destination. Looking at the contract code, we can see the critical function:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31182" height="71" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-1024x71.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This function registers an address in the map_4 mapping, which the withdrawal function checks during execution.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The attacker used the compromised key to call this function and register their address as a valid destination, setting up the path for the funds to exit the protocol.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31184" height="851" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-2-1024x851.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The Withdrawal Function&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The heart of this exploit was the ability to call the token redemption function, which has the hex signature 0xcfda09ef. Let&amp;#8217;s examine this critical function:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31187" height="905" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-5-1024x905.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This function works by:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Checking that the caller has the REDEEMER_ROLE &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="2"&gt;
+&lt;li&gt;Verifying the token is valid, and the destination is registered &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="3"&gt;
+&lt;li&gt;Checking if the contract has enough tokens directly &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="4"&gt;
+&lt;li&gt;If not, pulling tokens from the specified strategy &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="5"&gt;
+&lt;li&gt;Finally, transferring tokens to the destination address &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;With the REDEEMER_ROLE and their address registered in map_4, the attacker could now call this function to drain funds to their&amp;nbsp; wallet.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The Execution&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The attack culminated in a transaction that called the 0xcfda09ef function with these parameters:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Copy&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;0xcfda09ef000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000229dc42982570000000000000000000000003ac96134fb0e42a52d33045aee50b89790f05ed0000000000000000000000000e0e83f21d5b6da61c9cf75d3b89fbcacfbfde32700000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;When decoded:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Token: 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 (USDC) &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Amount: 0x0000000000000000000000000000000000000000000000000000229dc4298257  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Destination: 0x3ac96134fb0e42a52d33045aee50b89790f05ed0 (Attacker-controlled) &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Strategy: 0x0e0e83f21d5b6da61c9cf75d3b89fbcacfbfde327 (Yield strategy holding funds) &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Extra data: Empty byte array &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The Bounty Offer&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Following the attack, Infini took an approach that has become increasingly common in the DeFi space. The protocol team sent an on-chain message to the attacker, offering a bounty of 20% of the stolen funds (approximately 10 million USDC) if the remaining funds were returned.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The message was embedded in a transaction to the attacker&amp;#8217;s wallet and read:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-31186" height="372" src="https://research.checkpoint.com/wp-content/uploads/2025/02/image-4-1024x372.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This approach, sometimes called a &amp;#8220;white hat agreement&amp;#8221; or &amp;#8220;bug bounty after the fact,&amp;#8221; has occasionally been successful in recovering funds from attacks where the exploiter is primarily motivated by financial gain rather than causing harm to the protocol. The strategy acknowledges that legal recovery of crypto assets can be difficult and time-consuming, while offering the attacker a legitimate way to profit from their discovery without risking legal consequences.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;As of the time of writing, it remains to be seen whether the attacker will accept this offer.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Security Lessons&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This attack highlights several critical security considerations for DeFi protocols:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;&lt;strong&gt;Private Key Security&lt;/strong&gt;: This compromise was caused by a stolen private key. Hardware wallets, multi-signature schemes, and proper key management are essential. &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Role Separation&lt;/strong&gt;: The compromised account had both administrative access to grant roles and could add destination addresses. Better separation of duties might have mitigated the impact. &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Time-Locks and Monitoring&lt;/strong&gt;: Implementation of time-locks for sensitive operations and active monitoring could have detected and potentially prevented the attack before completion. &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="4"&gt;
+&lt;li&gt;&lt;strong&gt;Withdrawal Limits&lt;/strong&gt;: The protocol lacked maximum withdrawal limits, allowing the attacker to drain funds in a single transaction. &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This case study demonstrates how seemingly isolated security vulnerabilities can be chained together into devastating attacks. The attacker methodically:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Obtained a private key with administrative privileges &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="2"&gt;
+&lt;li&gt;Granted themselves the REDEEMER_ROLE &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="3"&gt;
+&lt;li&gt;Registered their address as a valid destination &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="4"&gt;
+&lt;li&gt;Called the withdrawal function to drain approximately 50 million USDC &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Each step built upon the previous one, ultimately leading to a complete protocol compromise. While the code contained various security checks, the fundamental issue was that once the private key was compromised, the role-based system could be manipulated from within.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This attack reinforces that security is only as strong as its weakest link, and sophisticated attackers will exploit multiple small vulnerabilities to achieve their goals.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/"&gt;How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation &lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31180</guid><category>Web 3.0 Security</category></item><item><title>Defense Lessons From the Black Basta Ransomware Playbook</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The cybersecurity world was rocked last week by a massive leak of Black Basta’s internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership. We’ve analyzed these newly [&amp;#8230;]</description><content:encoded>&lt;p&gt;The cybersecurity world was rocked last week by a &lt;a href="https://therecord.media/black-basta-ransomware-group-chat-logs-leaked"&gt;massive leak&lt;/a&gt; of &lt;a href="https://blog.qualys.com/vulnerabilities-threat-research/2024/09/19/black-basta-ransomware-what-you-need-to-know"&gt;Black Basta’s&lt;/a&gt; internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership.&lt;/p&gt;
 
 
 
@@ -6982,7 +7260,7 @@ $owa and $jq and $ajax and $keypress and $which and (2 of ($encoding*)) and (1 o
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22983</guid></item><item><title>Identity Theft Protection Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/identify-theft-protection/</link><description>Help protect your employees and customers from identity theft. This customizable policy, written by Scott Matteson for TechRepublic Premium, outlines precautions for reducing risk, signs to watch out for, and steps to take if you suspect identity theft has occurred. While such misfortune may not be 100% preventable for everyone who follows these guidelines (since ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/identify-theft-protection-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Your Personal Note-Taking Assistant Is Just $39.99 for Life</title><link>https://www.techrepublic.com/article/my-notes-ai-pro-plan-lifetime-access/</link><description>Record, transcribe, summarize, and keep all your notes organized with this powerful app for Apple devices.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4286729</guid><category>Apple</category><category>Artificial Intelligence</category><category>Software</category><category>TR Academy</category><category>ai apps</category><category>artificial intelligence</category><category>ipad</category><category>iphone</category><category>Mac</category><category>my notes ai pro plan</category><category>note taking software</category><category>productivity software</category><category>transcription software</category></item><item><title>Quick Glossary: Artificial Intelligence</title><link>https://www.techrepublic.com/resource-library/glossary/artificial-intelligence/</link><description>Artificial intelligence comes in many varieties, from tools that respond to customers via chat to complicated machine learning algorithms that predict the trajectory of an entire organization. AI is used across a wide range of industries, and the advent of generative AI and agentic AI has added some interesting developments to an already lively field. ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-artificial-intelligence/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>US Funding Cuts Are Helping Criminals Get Away With Child Abuse and Human Trafficking</title><link>https://www.wired.com/story/doge-usaid-state-department-child-exploitation/</link><description>Services supporting victims of online child exploitation and trafficking around the world have faced USAID and State Department cuts—and children are suffering as a result, sources tell WIRED.</description><guid isPermaLink="false">67a88646e98a8d60241a203a</guid><category>Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Elon Musk</category><category>government</category><category>Crime</category><category>DOGE</category><category>politics</category><category>State Department</category><category>Horror Stories</category></item><item><title>Build a stronger security strategy with proactive and reactive incident response: Cyberattack Series</title><link>https://www.microsoft.com/en-us/security/blog/2025/02/10/build-a-stronger-security-strategy-with-proactive-and-reactive-incident-response-cyberattack-series/</link><description>&lt;p&gt;Find out how a cyberattack by Storm-2077 was halted faster because the Microsoft Incident Response team is both proactive and reactive at the same time.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22983</guid></item><item><title>Identity Theft Protection Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/identify-theft-protection/</link><description>Help protect your employees and customers from identity theft. This customizable policy, written by Scott Matteson for TechRepublic Premium, outlines precautions for reducing risk, signs to watch out for, and steps to take if you suspect identity theft has occurred. While such misfortune may not be 100% preventable for everyone who follows these guidelines (since ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/identify-theft-protection-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Your Personal Note-Taking Assistant Is Just $39.99 for Life</title><link>https://www.techrepublic.com/article/my-notes-ai-pro-plan-lifetime-access/</link><description>Record, transcribe, summarize, and keep all your notes organized with this powerful app for Apple devices.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4286729</guid><category>Apple</category><category>Artificial Intelligence</category><category>Software</category><category>TR Academy</category><category>ai apps</category><category>artificial intelligence</category><category>ipad</category><category>iphone</category><category>Mac</category><category>my notes ai pro plan</category><category>note taking software</category><category>productivity software</category><category>transcription software</category></item><item><title>Quick Glossary: Artificial Intelligence</title><link>https://www.techrepublic.com/resource-library/glossary/artificial-intelligence/</link><description>Artificial intelligence comes in many varieties, from tools that respond to customers via chat to complicated machine learning algorithms that predict the trajectory of an entire organization. AI is used across a wide range of industries, and the advent of generative AI and agentic AI has added some interesting developments to an already lively field. ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-artificial-intelligence/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Build a stronger security strategy with proactive and reactive incident response: Cyberattack Series</title><link>https://www.microsoft.com/en-us/security/blog/2025/02/10/build-a-stronger-security-strategy-with-proactive-and-reactive-incident-response-cyberattack-series/</link><description>&lt;p&gt;Find out how a cyberattack by Storm-2077 was halted faster because the Microsoft Incident Response team is both proactive and reactive at the same time.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/10/build-a-stronger-security-strategy-with-proactive-and-reactive-incident-response-cyberattack-series/"&gt;Build a stronger security strategy with proactive and reactive incident response: Cyberattack Series&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;There are countless statistics about cybercrime and one of the most impactful is that for threat actors. Their profits continue to increase year over year and are on track to rise from $9.22 trillion in 2024 to $13.82 trillion by 2028.&lt;sup&gt;1&lt;/sup&gt; If the financial drain caused by threat actors were pooled it would be ranked as the third largest gross domestic product (GDP) by country, trailing behind the number two spot, which is China at $18.27 trillion.&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
 
 
@@ -12015,44 +12293,7 @@ rule banshee_macos
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/30th-december-threat-intelligence-report/"&gt;30th December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30985</guid><category>Global Cyber Attack Reports</category></item><item><title>23rd December – Threat Intelligence Report</title><link>https://research.checkpoint.com/2024/23rd-december-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 23rd December, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The State of Rhode Island has issued a notification that RIBridges, the state&amp;#8217;s portal for social services, has suffered a cyber attack and data leak. According to the reports, the breach was [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/23rd-december-threat-intelligence-report/"&gt;23rd December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 23rd December, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2024/12/Threat_Intelligence_News_2024-12-23.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The State of Rhode Island has issued a &lt;a href="https://admin.ri.gov/ribridges-alert"&gt;notification&lt;/a&gt; that RIBridges, the state&amp;#8217;s portal for social services, has suffered a cyber attack and data leak. According to the reports, the breach was likely caused by a ransomware attack, including compromise of personal information of hundreds of thousands of the state&amp;#8217;s residents.&lt;/li&gt;
-&lt;li&gt;US identity and access management solutions company, Beyond Trust, has &lt;a href="https://www.beyondtrust.com/remote-support-saas-service-security-investigation"&gt;suffered&lt;/a&gt; a breach affecting its Remote Support product for some its customers. The attackers gained access to a Remote Support API key, which allowed them access to local application accounts.&lt;/li&gt;
-&lt;li&gt;Namibia&amp;#8217;s state telecom company, Telecom Namibia, has &lt;a href="https://www.bbc.com/news/articles/ce3l509e6x7o"&gt;suffered&lt;/a&gt; a ransomware attack. According to reports, the company was breached by the ransomware group Hunters International, which has stolen more than 600GB of data.&lt;/li&gt;
-&lt;li&gt;Healthcare software company Phreesia &lt;a href="https://www.bleepingcomputer.com/news/security/connectoncall-breach-exposes-health-data-of-over-910-000-patients/"&gt;disclosed&lt;/a&gt; a breach of its subsidiary, ConnectOnCall, impacting 914,138 patients&amp;#8217; personal and health data. The breach occurred between February and May 2024, allowing unauthorized access to personal identifiable information and medical records. The compromised data involved communications between patients and healthcare providers.&lt;/li&gt;
-&lt;li&gt;Ukrainian Justice Ministry &lt;a href="https://www.reuters.com/technology/cybersecurity/ukraine-says-russian-cyberattack-hits-state-registries-no-data-lost-2024-12-20/"&gt;suffered&lt;/a&gt; a cyber attack by Russia-linked actors that shutdown various online services. The threat actors prepared the cyberattack through several months, while the Ukrainian security service&amp;#8217;s cyber department attribute the attack to the Russian military intelligence (GRU).&lt;/li&gt;
-&lt;li&gt;The Texas Tech University Health Sciences Center has &lt;a href="https://www.bleepingcomputer.com/news/security/texas-tech-university-system-data-breach-impacts-14-million-patients/"&gt;disclosed&lt;/a&gt; a ransomware attack that occurred in September and caused disruption of some systems and applications. The attack resulted in extraction of the combined data of 1,465,000 people that include personal identifiable information, financial details and medical data. Interlock ransomware claimed credit for the attack.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point Threat Emulation and Harmony Endpoint provide protection against this threat&lt;/em&gt; &lt;em&gt;(Ransomware.Win.Interlock)&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ascension Health ransomware attack &lt;a href="https://www.bleepingcomputer.com/news/security/ascension-health-data-of-56-million-stolen-in-ransomware-attack/"&gt;resulted&lt;/a&gt; in exposure of 5.6 million people’s data. Black Basta ransomware targeted Ascension in May, disrupting operations for weeks. Recently Ascension confirmed that the attackers extracted medical records, financial data and personal identifiable information.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point Threat Emulation and Harmony Endpoint provide protection against this threat &lt;/em&gt;&lt;em&gt;(Ransomware.Win.BlackBasta)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;VULNERABILITIES AND PATCHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Google has &lt;a href="https://chromereleases.googleblog.com/2024/12/stable-channel-update-for-desktop_18.html"&gt;released&lt;/a&gt; a security update for Google Chrome, addressing five security vulnerabilities. One of the vulnerabilities, CVE-2024-12692, is a high severity type confusion vulnerability. This vulnerability was reported to Google on December 5&lt;sup&gt;th&lt;/sup&gt; and could lead to heap corruption via a crafted HTML page.&lt;/li&gt;
-&lt;li&gt;Researchers have &lt;a href="https://unit42.paloaltonetworks.com/azure-data-factory-apache-airflow-vulnerabilities/"&gt;identified&lt;/a&gt; vulnerabilities in Azure Data Factory’s Apache Airflow integration that could allow attackers to gain unauthorized access. The flaws include misconfigured Kubernetes RBAC, weak authentication in Azure’s internal Geneva service, and secret handling issues. Exploitation of these issues could lead to access, data exfiltration, and malware deployment.&lt;/li&gt;
-&lt;li&gt;Severe security vulnerability was &lt;a href="https://www.securityweek.com/fortinet-patches-critical-fortiwlm-vulnerability/"&gt;discovered&lt;/a&gt; in FortiWLM Wireless Manager. This vulnerability (CVE-2023-34990) enables remote code execution through unauthorized access to log files and critical system files enabled by relative path traversal.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point IPS blade provides protection against this threat &lt;/em&gt;&lt;em&gt;(Web Servers Malicious URL Directory Traversal)&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The Australian Cyber Security Center (ACSC) has &lt;a href="https://www.cyber.gov.au/about-us/view-all-content/alerts-and-advisories/critical-security-vulnerability-affecting-apache-struts2-below-6-4-0"&gt;alerted&lt;/a&gt; organizations to a critical vulnerability in Apache Struts2 before version 6.4.0, which largely affects Java-based applications. The file upload flaw (CVE-2024-53677) can lead to extensive security breaches, including remote code execution, by exploiting path traversal flaws and manipulating file upload parameters.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point IPS blade provides protection against this threat (Java Server Pages Backdoor)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;THREAT INTELLIGENCE REPORTS&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check Point researchers &lt;a href="https://blog.checkpoint.com/securing-user-and-access/google-calendar-notifications-bypassing-email-security-policies/"&gt;discovered&lt;/a&gt; a phishing campaign abusing Google Calendar and Google Drawings to bypass email security. Attackers manipulate email headers to impersonate Google Calendar notifications, tricking users into visiting malicious pages that steal sensitive data for financial scams.&lt;/li&gt;
-&lt;li&gt;Researchers have &lt;a href="https://www.reversinglabs.com/blog/a-new-playground-malicious-campaigns-proliferate-from-vscode-to-npm"&gt;identified&lt;/a&gt; a campaign of malicious extensions targeting integrated development environment (IDE) software VSCode. Initially targeting crypto community, the latest malicious extensions all impersonate Zoom application. The campaign was also expanded to NPM package manager, introducing malicious JavaScript packages.&lt;/li&gt;
-&lt;li&gt;Researchers &lt;a href="https://unit42.paloaltonetworks.com/european-phishing-campaign/"&gt;found&lt;/a&gt; that threat actors abused a legitimate tool for leads generation to harvest Microsoft Azure credentials. The threat actors targeted automotive, chemical and manufacturing industries with fake forms created through HubSpot Free Form Builder service that consequently redirected to attacker-controlled phishing domains, impersonating Outlook Web Application.&lt;/li&gt;
-&lt;li&gt;Researchers &lt;a href="https://securelist.com/lazarus-new-malware/115059/"&gt;report&lt;/a&gt; on evolution of tools, techniques and procedures (TTPs) of North Korean hacking group Lazarus. In their latest attacks targeting the nuclear sector, the group introduced CookiePlus, a novel framework malware capable of downloading DLL and shellcode. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/23rd-december-threat-intelligence-report/"&gt;23rd December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30980</guid><category>Global Cyber Attack Reports</category></item><item><title>Q3 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/23/q3-2024-cyber-attacks-statistics/</link><description>I aggregated the statistics created from the cyber attacks timelines published in the third quarter of 2024. In this period, I collected...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44070</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category></item><item><title>LABScon24 Replay | The Ransomware Trust Paradox</title><link>https://www.sentinelone.com/labs/labscon24-replay-the-ransomware-trust-paradox/</link><description>Max Smeets explores how ransomware groups leverage public reporting and why we must disrupt the trust dynamic between threat actors and victims.</description><content:encoded>&lt;p&gt;In his Keynote talk at LABScon 24, Max Smeets explores how ransomware operators build a unique relationship between themselves and their victims. In contrast to most other threat actors, ransomware operators rely on and leverage public visibility into their activities. Unlike APTs and other threat actors that prize stealth, ransomware gangs seek to publicize their attacks in order to convince future victims that they are trustworthy enough to deliver on their promises &amp;#8211; providing a decryptor and deleting stolen data &amp;#8211; if paid.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2024/30th-december-threat-intelligence-report/"&gt;30th December – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30985</guid><category>Global Cyber Attack Reports</category></item><item><title>Q3 2024 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2024/12/23/q3-2024-cyber-attacks-statistics/</link><description>I aggregated the statistics created from the cyber attacks timelines published in the third quarter of 2024. In this period, I collected...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44070</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>Ransomware</category><category>Statistics</category></item><item><title>LABScon24 Replay | The Ransomware Trust Paradox</title><link>https://www.sentinelone.com/labs/labscon24-replay-the-ransomware-trust-paradox/</link><description>Max Smeets explores how ransomware groups leverage public reporting and why we must disrupt the trust dynamic between threat actors and victims.</description><content:encoded>&lt;p&gt;In his Keynote talk at LABScon 24, Max Smeets explores how ransomware operators build a unique relationship between themselves and their victims. In contrast to most other threat actors, ransomware operators rely on and leverage public visibility into their activities. Unlike APTs and other threat actors that prize stealth, ransomware gangs seek to publicize their attacks in order to convince future victims that they are trustworthy enough to deliver on their promises &amp;#8211; providing a decryptor and deleting stolen data &amp;#8211; if paid.&lt;/p&gt;
 &lt;p&gt;In &amp;#8216;The Ransomware Trust Paradox&amp;#8217;, Max observes that this notion of trust is not only a prerequisite for ransomware gangs&amp;#8217; profitability but also relies on media and security vendor reporting. Detailing the mechanisms by which ransomware operators establish trust, build brand awareness, and foster a reputation for reliability, this talk is essential viewing for anyone reporting on crimeware activities.&lt;/p&gt;
 &lt;p&gt;Max calls for the establishment of a reporting code of ethics for threat intelligence and the media, and a shift in policy to undermine the trust dynamics between threat actors and their victims.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
