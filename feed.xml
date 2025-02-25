@@ -1,5 +1,179 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 25 Feb 2025 17:59:19 +0000</lastBuildDate><item><title>North Korean Hackers Steal $1.5B in Cryptocurrency</title><link>https://www.schneier.com/blog/archives/2025/02/north-korean-hackers-steal-1-5b-in-cryptocurrency.html</link><description>&lt;p&gt;It looks like a &lt;a href="https://arstechnica.com/security/2025/02/how-north-korea-pulled-off-a-1-5-billion-crypto-heist-the-biggest-in-history/"&gt;very sophisticated&lt;/a&gt; attack against the Dubai-based exchange Bybit:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 25 Feb 2025 18:59:19 +0000</lastBuildDate><item><title>Defense Lessons From the Black Basta Ransomware Playbook</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The cybersecurity world was rocked last week by a massive leak of Black Basta’s internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership. We’ve analyzed these newly [&amp;#8230;]</description><content:encoded>&lt;p&gt;The cybersecurity world was rocked last week by a &lt;a href="https://therecord.media/black-basta-ransomware-group-chat-logs-leaked"&gt;massive leak&lt;/a&gt; of &lt;a href="https://blog.qualys.com/vulnerabilities-threat-research/2024/09/19/black-basta-ransomware-what-you-need-to-know"&gt;Black Basta’s&lt;/a&gt; internal communications that emerged from the group’s chat logs. Triggered by internal conflicts and a retaliatory data dump following attacks on Russian banks, the exposed records offer a rare glimpse into Black Basta’s tactics, operations, and leadership.&lt;/p&gt;
+
+
+
+&lt;p&gt;We’ve analyzed these newly unveiled tactics, and in this blog, we equip security teams with clear, actionable insights. We aim to highlight the key lessons learned—like immediate patching, tighter access controls, and rapid incident response—and provide an urgent call to action. This practical guide aims to help organizations strengthen their defenses against evolving ransomware threats and mitigate potential damage.&lt;/p&gt;
+
+
+
+&lt;span id="more-37340"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="know-your-enemys-playbook"&gt;&lt;strong&gt;Know Your Enemy’s Playbook&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Understanding Black Basta’s attack tactics is critical for enterprises seeking to fortify their defenses. The Black Basta ransomware group leverages known vulnerabilities, misconfigurations, and insufficient security controls to breach systems. Their internal discussions reveal active targeting of exposed RDP servers, weak authentication mechanisms, and the deployment of malware droppers disguised as legitimate files​​.&lt;/p&gt;
+
+
+
+&lt;p&gt;Key attack vectors used by Black Basta include scanning for exposed RDP and VPN services—often relying on default VPN credentials or brute-forcing stolen credentials to gain initial access—and exploiting publicly known CVEs when systems remain unpatched. MSI and VBS-based malware droppers are frequently utilized to deliver malicious payloads, with Rundll32.exe leveraged to execute harmful DLLs. Credential harvesting and privilege escalation are also central to these tactics.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Patch Now: Top 20 CVEs Actively Exploited by Black Basta Ransomware Gangs&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Black Basta Ransomware gangs are relentless, and leaked conversations reveal their playbook: a hit list of weaponized vulnerabilities they exploit against enterprise networks. For IT security professionals and practitioners, this isn’t just a list—it’s a call to action.&lt;/p&gt;
+
+
+
+&lt;p&gt;Below is a practical table featuring the Top 20 CVEs that demand immediate attention. These are the flaws ransomware crews are buzzing about, and your organization could be next if these aren’t patched &lt;em&gt;yesterday&lt;/em&gt;. Qualys is proud to have coverage for all 62 CVEs mentioned in the leaked documents, the full list of CVEs mentioned can be found in Appendix A.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th class="has-text-align-left"&gt;#&lt;/th&gt;&lt;th class="has-text-align-left"&gt;Name&lt;/th&gt;&lt;th class="has-text-align-left"&gt;CVE&lt;/th&gt;&lt;th class="has-text-align-left"&gt;Product&lt;/th&gt;&lt;th class="has-text-align-left"&gt;QVS&lt;/th&gt;&lt;th class="has-text-align-left"&gt;QID&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;1&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Follina&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-30190&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Office&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;91909&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;2&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Log4Shell&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2021-44228&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Apache Log4j (Java apps)&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;376157, 730297, 178935, etc&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;3&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Spring4Shell&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-22965&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Spring Framework (Java)&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;376506, 984158, 376514, etc&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;4&lt;/td&gt;&lt;td class="has-text-align-left"&gt;F5 BIG-IP&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-1388&lt;/td&gt;&lt;td class="has-text-align-left"&gt;F5 BIG-IP load balancers&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;376577, 730489&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;5&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Chrome Zero-Day&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-0609&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Google Chrome&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;376416, 690793, 179083, etc&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;6&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Office&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2017-11882&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Office &lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;110308&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;7&lt;/td&gt;&lt;td class="has-text-align-left"&gt;ProxyNotShell&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-41082/41040&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Exchange Server&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;50122, 730621&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;8&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Zimbra&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-27925/41352&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Zimbra Collaboration Suite&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;376769, 378336&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;9&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Atlassian Confluence RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-26134&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Confluence Server&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;730514, 376657&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;10&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Zyxel RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2022-30525&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Zyxel Firewalls&lt;/td&gt;&lt;td class="has-text-align-left"&gt;96&lt;/td&gt;&lt;td class="has-text-align-left"&gt;730491&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;11&lt;/td&gt;&lt;td class="has-text-align-left"&gt;FortiGate SSL VPN RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-21762&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Fortinet SSL VPN&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;44170&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;12&lt;/td&gt;&lt;td class="has-text-align-left"&gt;GlobalProtect RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-3400&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Palo Alto Networks PAN-OS&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;731378, 731456, 731460&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;13&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Outlook&lt;/td&gt;&lt;td class="has-text-align-left"&gt;&lt;strong&gt;*CVE-2023-23397&lt;/strong&gt;&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Outlook&lt;/td&gt;&lt;td class="has-text-align-left"&gt;92&lt;/td&gt;&lt;td class="has-text-align-left"&gt;110428&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;14&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Windows Sandbox Escape&lt;/td&gt;&lt;td class="has-text-align-left"&gt;&lt;strong&gt;*CVE-2023-28252&lt;/strong&gt;&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Windows &lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;92005, 92003&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;15&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Juniper SRX Firewall RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;&lt;strong&gt;*CVE-2023-36844-47&lt;/strong&gt;&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Juniper SRX firewalls&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;44099&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;16&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Linux LPE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-1086&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Linux kernels&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;755747, 755751, 755750&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;17&lt;/td&gt;&lt;td class="has-text-align-left"&gt;ScreenConnect RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-1709&lt;/td&gt;&lt;td class="has-text-align-left"&gt;ConnectWise ScreenConnect&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;379390&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;18&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Ivanti SSL-VPN Pre-Auth RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;&lt;strong&gt;&lt;strong&gt;*CVE-2024-21887/21893&lt;/strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Ivanti Connect Secure&lt;/td&gt;&lt;td class="has-text-align-left"&gt;100&lt;/td&gt;&lt;td class="has-text-align-left"&gt;731074&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;19&lt;/td&gt;&lt;td class="has-text-align-left"&gt;FortiSIEM RCE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-23108/23109&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Fortinet FortiSIEM&lt;/td&gt;&lt;td class="has-text-align-left"&gt;72&lt;/td&gt;&lt;td class="has-text-align-left"&gt;379902&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;20&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Windows LPE&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CVE-2024-26169&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft Windows&lt;/td&gt;&lt;td class="has-text-align-left"&gt;95&lt;/td&gt;&lt;td class="has-text-align-left"&gt;92121&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Note: CVEs marked with an asterisk (*) are not explicitly mentioned; however, based on their characteristics and the details discussed in the leaked data, they have been mapped to the corresponding CVEs.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Security teams must immediately patch the above-mentioned vulnerabilities that are actively exploited in ransomware campaigns.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Talk to Qualys Experts to see how you can implement this guidance today.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/request-a-call/" style="background-color: #ed2e26;"&gt;Schedule Today&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Most Wanted: Critical Misconfigurations to Fix Immediately&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The table below highlights the top misconfigurations routinely exploited by Black Basta ransomware operators—real-world vulnerabilities integral to their attack workflow. Because attackers are actively scanning your perimeter for these weaknesses, treat them as “Patch Now” issues to stay one step ahead of ransomware threats.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th class="has-text-align-left"&gt;#&lt;/th&gt;&lt;th class="has-text-align-left"&gt;&lt;strong&gt;Misconfiguration&lt;/strong&gt;&lt;/th&gt;&lt;th class="has-text-align-left"&gt;&lt;strong&gt;Product&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;1&lt;/td&gt;&lt;td class="has-text-align-left"&gt;SMBv1 Enabled on Legacy Systems&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Windows Servers&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;2&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Default Credentials&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Servers,&amp;nbsp; Routers,&amp;nbsp; VPNs,&amp;nbsp; IoT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;3&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Weak VPN Configurations&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Cisco, Fortinet,&amp;nbsp; GlobalProtect&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;4&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Exposed RDP Without Filtering&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Windows Servers&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;5&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Public S3 Buckets&lt;/td&gt;&lt;td class="has-text-align-left"&gt;AWS S3 Storage&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;6&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Open Jenkins Servers&lt;/td&gt;&lt;td class="has-text-align-left"&gt;CI/CD Pipelines&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;7&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Unpatched Cisco ASA Firewalls&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Cisco ASA Devices&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;8&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Weak MSSQL Authentication&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Microsoft SQL Servers&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;9&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Citrix Netscaler Misconfigs&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Citrix ADC/NetScaler&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="has-text-align-left"&gt;10&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Shadow IT/Subdomains&lt;/td&gt;&lt;td class="has-text-align-left"&gt;Orphaned DNS Records&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;The Initial Access Problem&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Black Basta employs a layered approach involving credential theft, service exploitation (such as RDP brute force), social engineering, and persistence. They obtain credentials through phishing, supply chain compromises, dark web purchases, and by locating exposed services using tools like Shodan or Fofa (automated scanners), followed by brute-force attacks on accessible login portals (e.g., RDP). Internal communications confirm multiple tactics for establishing an initial foothold. This layered approach includes:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Exploitation of Exposed Services &amp;amp; Misconfigurations: &lt;/strong&gt;They aggressively search for internet-facing vulnerabilities, particularly in Jenkins CI/CD instances, VMware ESXi hosts, Citrix gateways, and VPNs with weak credentials. &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Abuse of Third-Party Services for Payload Hosting: &lt;/strong&gt;To evade detection, they rely on legitimate file-sharing platforms like transfer.sh, temp.sh, and send.vis.ee for hosting malicious payloads, reducing the need for custom infrastructure.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Data Exfiltration, Social Engineering, and Voice Phishing: &lt;/strong&gt;Before deploying ransomware, they archive and extract entire file directories. Internal chats mention targeting legal and financial documents and using custom-built tool to automate data extraction. Beyond email phishing, Black Basta members impersonate IT support staff via phone calls, tricking employees into revealing credentials.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attackers-move-fast"&gt;&lt;strong&gt;Attackers Move Fast&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Ransomware groups are no longer taking their time once they breach an organization’s network. Recently leaked data from Black Basta shows they’re moving from initial access to network-wide compromise within hours—sometimes even minutes.&lt;/p&gt;
+
+
+
+&lt;p&gt;Ransomware operators are accelerating their attacks, leaving organizations with little time to respond. To prevent widespread damage, it’s critical to proactively detect known exploited vulnerabilities and minimize the attack surface. The longer you wait, the more likely attackers will exfiltrate data and lock down your environment. In many cases, automated scripts run post-exploitation tasks such as dumping credentials, disabling security tools, and deploying ransomware.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-qualys-can-help"&gt;&lt;strong&gt;How Qualys Can Help&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The recent leak of the Black Basta ransomware group’s internal chat logs has provided unprecedented insights into its operations, tools, and tactics. Qualys’ product suite aligns perfectly with the critical recommendations we’ve highlighted, offering a unified approach to cybersecurity.&lt;/p&gt;
+
+
+
+&lt;p&gt;The &lt;a href="https://www.qualys.com/apps/cybersecurity-asset-management/"&gt;CyberSecurity Asset Management (CSAM)&lt;/a&gt; solution provides complete visibility of assets, which is in line with the comprehensive asset discovery needed. &lt;a href="https://www.qualys.com/apps/patch-management/"&gt;Qualys Patch Management&lt;/a&gt; delivers an advanced automated solution for timely software updates. Meanwhile, &lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/"&gt;Qualys VMDR&lt;/a&gt; streamlines discovering, assessing, and prioritizing vulnerabilities. With its TruRisk scoring, the platform takes vulnerability management to the next level by incorporating risk-based prioritization, leading to more effective cybersecurity measures.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/BlackBasta_EDR.png"&gt;&lt;img alt="" class="wp-image-37343" height="1080" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/BlackBasta_EDR.png" width="1920" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Our solutions are equipped to detect and mitigate the tactics, techniques, and procedures (TTPs) employed by Black Basta. This includes indicators of compromise (IOCs) and indicators of attack (IOAs) derived from the leaked logs, such as IP addresses, domains, and malware hashes used by the group. Our &lt;a href="https://www.qualys.com/tru/"&gt;dedicated threat research team&lt;/a&gt; actively analyzes emerging data, including the leaked Black Basta logs. This allows us to identify novel IOCs and adapt our detection mechanisms in real time. For instance, details from the logs about vulnerabilities exploited in Citrix, Ivanti, and Fortinet products have been integrated into our detection capabilities. Using our proprietary AI models, we continuously scan for credible and trending threat intelligence across the web. These models automatically craft detection logic for emerging threats like Black Basta’s operations.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;&lt;strong&gt;Talk to Qualys Experts to see how you can implement this guidance today.&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/request-a-call/" style="background-color: #ed2e26;"&gt;Schedule Today&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;VMDR QQL for Black Basta&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Qualys Query Language (QQL) is a powerful search tool within VMDR (Vulnerability Management, Detection, and Response) that helps security teams quickly identify and prioritize vulnerabilities. With QQL for Black Basta, you can instantly query your environment to detect assets exposed to ransomware-targeted CVEs, misconfigurations, and security gaps. This enables faster remediation and risk-based prioritization, helping organizations stay ahead of evolving threats like Black Basta.&lt;/p&gt;
+
+
+
+&lt;pre&gt;&lt;div class="q-code"&gt;vulnerabilities.vulnerability.threatIntel.malwareName:"Black Basta"&lt;/div&gt;&lt;/pre&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-34.png"&gt;&lt;img alt="" class="wp-image-37345" height="956" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-34.png" width="1896" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-33.png"&gt;&lt;img alt="" class="wp-image-37346" height="897" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-33.png" width="1846" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-32.png"&gt;&lt;img alt="" class="wp-image-37347" height="903" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/02/image-32.png" width="1837" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Appendix A:&lt;/h3&gt;
+
+
+
+&lt;p&gt;CVE-2017-11882, CVE-2021-26855, CVE-2021-28482, CVE-2021-40444, CVE-2021-42278, CVE-2021-42287, CVE-2021-42321, CVE-2021-44228, CVE-2022-0609, CVE-2022-1388, CVE-2022-22965, CVE-2022-26134, CVE-2022-27925, CVE-2022-30190, CVE-2022-30525, CVE-2022-37042, CVE-2022-37969, CVE-2022-41040, CVE-2022-41082, CVE-2022-41352, CVE-2023-20198, CVE-2023-21716, CVE-2023-22515, CVE-2023-29357, CVE-2023-35628, CVE-2023-36394, CVE-2023-36745, CVE-2023-36845, CVE-2023-36874, CVE-2023-36884, CVE-2023-38831, CVE-2023-42115, CVE-2023-42793, CVE-2023-4966, CVE-2023-6875, CVE-2023-7027, CVE-2023-7028, CVE-2024-1086, CVE-2024-1709, CVE-2024-21338, CVE-2024-21378, CVE-2024-21413, CVE-2024-21683, CVE-2024-21762, CVE-2024-23108, CVE-2024-23109, CVE-2024-23113, CVE-2024-23897, CVE-2024-24919, CVE-2024-25600, CVE-2024-26169, CVE-2024-27198, CVE-2024-3400, CVE-2017-5753, CVE-2017-5754, CVE-2020-1472, CVE-2023-23397, CVE-2023-3466, CVE-2023-3467, CVE-2023-3519, CVE-2023-36844, CVE-2024-1708&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37340</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>Black Basta</category><category>ransomware</category><category>ransomware defense</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, February 25th, 2025 https://isc.sans.edu/podcastdetail/9338</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>North Korean Hackers Steal $1.5B in Cryptocurrency</title><link>https://www.schneier.com/blog/archives/2025/02/north-korean-hackers-steal-1-5b-in-cryptocurrency.html</link><description>&lt;p&gt;It looks like a &lt;a href="https://arstechnica.com/security/2025/02/how-north-korea-pulled-off-a-1-5-billion-crypto-heist-the-biggest-in-history/"&gt;very sophisticated&lt;/a&gt; attack against the Dubai-based exchange Bybit:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Bybit officials &lt;a href="https://announcements.bybit.com/article/incident-update---eth-cold-wallet-incident-blt292c0454d26e9140/"&gt;disclosed&lt;/a&gt; the theft of more than 400,000 ethereum and staked ethereum coins just hours after it occurred. The notification said the digital loot had been stored in a &amp;#8220;Multisig Cold Wallet&amp;#8221; when, somehow, it was transferred to one of the exchange&amp;#8217;s hot wallets. From there, the cryptocurrency was transferred out of Bybit altogether and into wallets controlled by the unknown attackers.&lt;/p&gt;
 &lt;p&gt;[&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;&amp;#8230;a subsequent investigation by Safe found no signs of unauthorized access to its infrastructure, no compromises of other Safe wallets, and no obvious vulnerabilities in the Safe codebase. As investigators continued to dig in, they finally settled on the true cause. Bybit ultimately said that the fraudulent transaction was &amp;#8220;manipulated by a sophisticated attack that altered the smart contract logic and masked the signing interface, enabling the attacker to gain control of the ETH Cold Wallet.&amp;#8221;...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;It looks like a &lt;a href="https://arstechnica.com/security/2025/02/how-north-korea-pulled-off-a-1-5-billion-crypto-heist-the-biggest-in-history/"&gt;very sophisticated&lt;/a&gt; attack against the Dubai-based exchange Bybit:&lt;/p&gt;
@@ -103,7 +277,7 @@
 
 
 
-&lt;p&gt;&lt;em&gt;Have cloud security challenges or interested in speaking to an expert? We’re here to help—&lt;/em&gt;&lt;a href="https://www.qualys.com/forms/totalcloud-demo/"&gt;&lt;em&gt;reach out to us&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37326</guid><category>Product and Tech</category><category>qualys KCS</category><category>qualys kubernetes and container security</category><category>redhat</category><category>vulnerability scanning</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, February 25th, 2025 https://isc.sans.edu/podcastdetail/9338</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>NordPass vs LastPass: Compare Features, Security, and Pricing for 2025</title><link>https://www.techrepublic.com/article/nordpass-vs-lastpass/</link><description>Explore the differences between NordPass and LastPass to determine which one is the best fit for your password management needs.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4206683</guid><category>Cloud Security</category><category>lastpass</category><category>nordpass</category><category>password manager</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/25/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on February 25, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Have cloud security challenges or interested in speaking to an expert? We’re here to help—&lt;/em&gt;&lt;a href="https://www.qualys.com/forms/totalcloud-demo/"&gt;&lt;em&gt;reach out to us&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37326</guid><category>Product and Tech</category><category>qualys KCS</category><category>qualys kubernetes and container security</category><category>redhat</category><category>vulnerability scanning</category></item><item><title>NordPass vs LastPass: Compare Features, Security, and Pricing for 2025</title><link>https://www.techrepublic.com/article/nordpass-vs-lastpass/</link><description>Explore the differences between NordPass and LastPass to determine which one is the best fit for your password management needs.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4206683</guid><category>Cloud Security</category><category>lastpass</category><category>nordpass</category><category>password manager</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/25/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on February 25, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-056-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-056-01"&gt;Rockwell Automation PowerFlex 755&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;li&gt;ICSMA-25-030-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-030-01"&gt;Contec Health CMS8000 Patient Monitor (Update A)&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
@@ -8811,285 +8985,7 @@ SecurityEvent
 &lt;li&gt;A recently discovered ransomware called Windows Locker, first observed on GitHub in December 2024, &lt;a href="https://www.cyfirma.com/research/windows-locker-ransomware/"&gt;targets&lt;/a&gt; victims by encrypting files and modifying registry keys for persistence. It prevents standard recovery methods and uses AES encryption techniques to encrypt data. Additionally, Windows Locker deletes shadow copies, leaving users unable to retrieve manipulated files.&lt;/li&gt;
 &lt;li&gt;A technical analysis of Arcus Media ransomware &lt;a href="https://www.halcyon.ai/blog/arcus-media-ransomware-displays-novel-process-targeting-selective-encryption-and-recovery-disruption"&gt;shows&lt;/a&gt; it elevates privileges using the ShellExecuteExW API without administrative access and maintains registry-based persistence. It halts critical processes like SQL servers and email clients via the CreateToolhelp32Snapshot API, encrypts files with the ChaCha20 cipher adding &amp;#8220;[Encrypted].Arcus&amp;#8221; to filenames, and hinders recovery by deleting shadow backups, disabling system recovery, and clearing event logs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/3rd-february-threat-intelligence-report/"&gt;3rd February – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31049</guid><category>Global Cyber Attack Reports</category></item><item><title>6 Best No-Log VPNs for 2025</title><link>https://www.techrepublic.com/article/best-no-log-vpn/</link><description>Looking for the best anonymous (no-log) VPN? Check out our comprehensive list to find the top VPN services that prioritize anonymity and security.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4209722</guid><category>Cloud Security</category><category>Top Products</category><category>no logs vpn</category><category>VPN</category></item><item><title>Qualys TotalAppSec Delivers AI-powered Unified Application Risk Management for Modern Web Apps and APIs</title><link>https://blog.qualys.com/category/product-tech</link><description>&amp;#8220;If you can’t measure it, you can’t manage it.&amp;#8221; &amp;#8211; This adage rings truer than ever in the world of cybersecurity. Today, the modern attack surface has exploded, fueled by APIs that now drive 83% of all web traffic, powering critical integrations, microservices, and digital experiences. Security teams are left in the dark as developers [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;em&gt;&amp;#8220;If you can’t measure it, you can’t manage it.&amp;#8221;&lt;/em&gt; &amp;#8211; This adage rings truer than ever in the world of cybersecurity.&lt;/p&gt;
-
-
-
-&lt;p&gt;Today, the modern attack surface has exploded, fueled by APIs that now &lt;a href="https://www.akamai.com/newsroom/press-release/state-of-the-internet-security-retail-attacks-and-api-traffic"&gt;drive 83% of all web traffic&lt;/a&gt;, powering critical integrations, microservices, and digital experiences. Security teams are left in the dark as developers introduce APIs at an exponential pace, creating blind spots. Organizations are fighting shadow APIs, misconfigured endpoints as well as operational complexity of fragmented tools that fail to deliver a unified picture of risk.&lt;/p&gt;
-
-
-
-&lt;p&gt;This is where &lt;strong&gt;Qualys TotalAppSec&lt;/strong&gt; changes the game. By unifying web application scanning, API security, and web malware detection under one AI-powered solution, TotalAppSec equips organizations to measure, communicate, and eliminate risks across their entire application attack surface.&lt;/p&gt;
-
-
-
-&lt;span id="more-37180"&gt;&lt;/span&gt;
-
-
-
-&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="web-apps-and-apis-the-expanding-attack-surface"&gt;Web Apps and APIs: The Expanding Attack Surface&lt;/h2&gt;
-
-
-
-&lt;p&gt;In cybersecurity, risk is a moving target. While new-age technology drives innovation, it also expands the attack surface in ways that can be both quantified and strategically mitigated.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.verizon.com/business/resources/reports/dbir/"&gt;Web applications remain the top entry point for breaches&lt;/a&gt;&lt;strong&gt; &amp;#8211; 68%&lt;/strong&gt; involving third-party risks like the human element and &lt;strong&gt;32%&lt;/strong&gt; linked to ransomware, often delivered through compromised web apps and APIs. Adding to this complexity, APIs now dominate internet traffic, but their ubiquity makes them prime targets, as evident by countless breaches that exploited APIs.&lt;/p&gt;
-
-
-
-&lt;p&gt;With the &lt;a href="https://www.ibm.com/reports/data-breach"&gt;global cost of a breach at $4.88 million&lt;/a&gt;, organizations face a critical challenge, underscoring the financial impact of failing to secure web applications and APIs. Compounded &lt;a href="https://www.verizon.com/about/news/2024-data-breach-investigations-report-vulnerability-exploitation-boom"&gt;by 55-day remediation delays&lt;/a&gt;, cybercriminals exploit this window of opportunity.&lt;/p&gt;
-
-
-
-&lt;p&gt;As organizations adopt multi-cloud environments and embrace rapid development cycles, the question isn’t if cybercriminals will target their web apps and APIs—it’s when.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="top-challenges-faced-by-security-leaders"&gt;Top Challenges Faced by Security Leaders&lt;/h2&gt;
-
-
-
-&lt;p&gt;Security leaders face a triad of challenges that undermine their ability to manage application risk effectively.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;1. Lack of Visibility into Unknown and Shadow Web Apps &amp;amp; APIs&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The lack of visibility into shadow and forgotten APIs leaves organizations exposed to risks. With 300+ APIs per enterprise, many go undocumented, bypassing security protocols and exposing sensitive data. As Forrester highlights, without a comprehensive API inventory, you cannot defend what you cannot see—a critical challenge for modern application security.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;2. Fragmented and Siloed Security Testing Tools&lt;/h3&gt;
-
-
-
-&lt;p&gt;Disparate tools like SAST, DAST, SCA, and API security solutions operate in silos, creating fragmented workflows and limited API coverage. They fail to assess runtime threats or underlying infrastructure vulnerabilities, leaving critical security gaps. Conflicting results from different security tools and false positives waste time, delaying response and leaving risks unaddressed for weeks or months.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;3. Overwhelming Vulnerabilities with No Clear Prioritization Strategy&lt;/h3&gt;
-
-
-
-&lt;p&gt;Not all vulnerabilities are equal. Without context—how a vulnerability in one component impacts another—security teams mis-prioritize remediation. As a result, time is wasted on low-risk issues while high-risk threats remain unchecked, exposing organizations to potentially critical business disruptions amid an overwhelming volume of web app and API vulnerabilities.&lt;/p&gt;
-
-
-
-&lt;p&gt;These challenges are more than operational headaches; they represent a fundamental misalignment between security workflows and the rapidly evolving threat landscape.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-qualys-totalappsec"&gt;Introducing Qualys TotalAppSec&lt;/h2&gt;
-
-
-
-&lt;p&gt;Qualys TotalAppSec emerges as the definitive solution for unified application risk management. By combining comprehensive discovery, automated risk assessment, and remediation into a single, AI-powered solution, TotalAppSec enables organizations to proactively address risks across web applications and APIs while embedding security throughout the development lifecycle.&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Unified platform for application risk management &amp;#8211; &lt;/strong&gt;TotalAppSec consolidates complete discovery of web apps &amp;amp; APIs, web app and API security testing, API compliance testing, risk prioritization, and integrated remediation into one platform. This unified approach provides security teams with a comprehensive view of their web attack surface and a clear path to mitigate risks.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Extensive coverage across diverse environments &amp;#8211; &lt;/strong&gt;Whether the web assets are on-premises, multi-cloud, containerized, or hosted in API gateways, TotalAppSec ensures complete visibility. Its ability to integrate with both native Qualys tools (e.g., VMDR, CSAM, EASM, TotalCloud) and third-party platforms (e.g., AWS, Azure, Mulesoft, APIgee) enables organizations to manage all web apps &amp;amp; APIs &amp;#8211; known and unknown, shadow and forgotten &amp;#8211; from a single view.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/WAS-PR-3.png"&gt;&lt;img alt="" class="wp-image-37181" height="4596" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/WAS-PR-3.png" width="5859" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="qualys-totalappsec-in-action"&gt;Qualys TotalAppSec in Action&lt;/h2&gt;
-
-
-
-&lt;p&gt;The power of &lt;strong&gt;Qualys TotalAppSec&lt;/strong&gt; lies in its ability to deliver actionable insights and streamlined workflows across three critical pillars: &lt;strong&gt;Discovery&lt;/strong&gt;, &lt;strong&gt;Risk Assessment&lt;/strong&gt;, and &lt;strong&gt;Response&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Discover: Complete Visibility Across Your Application Ecosystem&lt;/h3&gt;
-
-
-
-&lt;p&gt;TotalAppSec empowers organizations to achieve a comprehensive inventory of known, unknown, forgotten, and shadow web apps and APIs.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Comprehensive discovery &amp;#8211; &lt;/strong&gt;TotalAppSec identifies web applications and APIs across diverse environments, including on-prem, multi-cloud, API gateways, and containers. With native integrations into Qualys tools like VMDR, CSAM/EASM, and TotalCloud, as well as third-party platforms like AWS, Azure, Kubernetes, Mulesoft, and APIgee, organizations can gain full visibility into their attack surface.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-5.png"&gt;&lt;img alt="" class="wp-image-37183" height="3240" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-5.png" width="5760" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Detection of shadow APIs and forgotten web apps &amp;#8211;&lt;/strong&gt; Shadow APIs and forgotten applications pose significant risks, often flying under the radar of traditional tools. TotalAppSec automatically uncovers these hidden assets, bringing them into the fold for proactive monitoring.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Risk Assessment: Accurate, Automated, and Unified&lt;/h3&gt;
-
-
-
-&lt;p&gt;TotalAppSec delivers automated risk assessment that identifies and evaluates vulnerabilities in real time.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Automated security and compliance testing &lt;/strong&gt;&amp;#8211; TotalAppSec conducts automated security testing for web app and API vulnerabilities like OWASP Top 10 risks, OWASP API Top 10, PII &amp;amp; sensitive data exposures, injection attacks, rate limiting, authentication flaws, authorization issues, zero-day malware, and more. TotalAppSec performs both active and passive compliance monitoring to identify any drift or inconsistencies in API implementation and documentation in adherence to the OpenAPI Specification (OAS v3).&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Consolidated view of third-party tools &amp;#8211;&lt;/strong&gt; By consolidating findings from third-party manual PEN testing tools such as BurpSuite and Bugcrowd, TotalAppSec provides a single source of truth for risk assessment.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-1.png"&gt;&lt;img alt="" class="wp-image-37184" height="1752" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-1.png" width="3456" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Response: Prioritize and Remediate What Matters Most&lt;/h3&gt;
-
-
-
-&lt;p&gt;TotalAppSec transforms reactive security into a proactive, business-aligned process by integrating automated prioritization and remediation directly into operational workflows.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;TruRisk&lt;sup&gt;TM&lt;/sup&gt; Scoring &amp;#8211;&lt;/strong&gt; By leveraging the Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; score, TotalAppSec prioritizes vulnerabilities based on asset criticality, exploitability, and business impact to focus remediation efforts where it matters most. By correlating risks across web apps, APIs, and infrastructure, TotalAppSec’s TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; score quantifies true application risk &amp;#8211; not just isolated vulnerabilities. Using 25+ threat intelligence feeds, it prioritizes high-impact attack chains, reducing MTTR and enabling risk-informed decisions that prevent cascading breaches, compliance failures, and operational disruptions.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/06-TruRisk-Score.png"&gt;&lt;img alt="" class="wp-image-37185" height="3092" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/06-TruRisk-Score.png" width="6016" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Integrated remediation workflows &amp;#8211;&lt;/strong&gt; TotalAppSec automates ticket creation and integrates seamlessly with tools like Jira and ServiceNow. Combined with direct integration into CI/CD pipelines like Azure DevOps, Jenkins, TeamCity, Bamboo, etc., developers receive actionable tasks assigned in real time to remediate vulnerabilities early in the software development lifecycle.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-4.png"&gt;&lt;img alt="" class="wp-image-37186" height="3093" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image-4.png" width="6016" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Advanced AI Capabilities for Modern Application Security&lt;/h3&gt;
-
-
-
-&lt;p&gt;As the threat landscape continues to evolve, traditional approaches to application security often fall short in addressing today’s sophisticated risks. To stay ahead, organizations need advanced capabilities that not only detect but also prioritize and mitigate risks efficiently. This is where Qualys TotalAppSec leads the charge. With its deep learning-based web malware detection and AI-powered Quick Scan, TotalAppSec redefines how security teams secure their application ecosystems with greater agility and precision.&lt;/p&gt;
-
-
-
-&lt;p&gt;1. &lt;strong&gt;Deep learning-based web malware detection&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Modern malware threats evolve rapidly, often bypassing traditional signature-based detection methods. TotalAppSec addresses this challenge with its deep-learning algorithms and advanced AI models to identify both known and zero-day malware threats. By analyzing files using heuristic, behavioral, and reputational analysis techniques, TotalAppSec uncovers and identifies embedded malware that might otherwise remain hidden.&lt;/p&gt;
-
-
-
-&lt;p&gt;What sets this approach apart is its ability to detect malicious patterns without relying on predefined signatures. Using a deep learning model trained on vast datasets, TotalAppSec generates unique &amp;#8220;neural fingerprints&amp;#8221; for each file, comparing them against patterns of known and emerging malware.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image3.png"&gt;&lt;img alt="" class="wp-image-37187" height="1752" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/TAS-Image3.png" width="3456" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;2. &lt;strong&gt;AI-powered quick scan&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;When time is of the essence, the AI-powered quick scan in TotalAppSec ensures that vulnerabilities are identified and prioritized without delaying critical development timelines. It uses deep learning to cluster vulnerabilities and narrow its focus on areas of greatest risk, &lt;strong&gt;delivering&lt;/strong&gt; &lt;strong&gt;96% detection accuracy&lt;/strong&gt; while &lt;strong&gt;reducing scan times by up to 80%&lt;/strong&gt;. By dynamically learning from scan results in real time, the system continually improves its efficiency, providing organizations with actionable insights faster than traditional scanning methods. With its ability to cluster vulnerabilities by similar characteristics and focus on high-risk areas, Quick Scan ensures that critical issues are addressed early in the software development lifecycle. This makes it an ideal tool for Shift-Left security practices, enabling teams to maintain velocity without compromising on security.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Discover how Qualys TotalAppSec can help you measure, communicate, and eliminate web application and API risks. Sign up for your 30-day free trial today.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/totalappsec/" style="background-color: #ed2e26;"&gt;Start Your Trial&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="totalappsec-unifying-application-risk-for-a-complete-view-of-security-posture"&gt;TotalAppSec &amp;#8211; Unifying Application Risk for a Complete View of Security Posture&lt;/h2&gt;
-
-
-
-&lt;p&gt;Security teams often struggle with incomplete risk assessments because application security is treated as a collection of independent layers &amp;#8211; web apps, APIs, and the infrastructure that supports them. However, attackers don’t think in silos. They chain vulnerabilities across these layers to maximize impact.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;So, what’s the real risk of an application?&lt;/em&gt; If you assess web app vulnerabilities separately from API risks and infrastructure exposures, you miss the compounding effect that turn a minor misconfiguration into a high-impact breach.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Take this example:&lt;/strong&gt; A publicly exposed API with weak authentication (&lt;strong&gt;API risk&lt;/strong&gt;) running an application vulnerable to an OWASP Top 10 issue (&lt;strong&gt;web app risk&lt;/strong&gt;) – both hosted on an unpatched server running outdated software (&lt;strong&gt;infrastructure risk&lt;/strong&gt;).&lt;/p&gt;
-
-
-
-&lt;p&gt;Individually, each issue might rank as a moderate risk. But correlated together, it creates a cascading high-risk impact &amp;#8211; attackers can compromise the entire application stack, leading to data exfiltration, compliance failures, and operational downtime.&lt;/p&gt;
-
-
-
-&lt;p&gt;This is what TotalAppSec quantifies. Instead of separate, incomplete risk scores, TotalAppSec delivers&lt;strong&gt; a single TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; score&lt;/strong&gt;—one that reflects the &lt;strong&gt;true business impact&lt;/strong&gt; of an application’s vulnerabilities.&lt;/p&gt;
-
-
-
-&lt;p&gt;Security teams can prioritize remediation efforts based on correlated, high-risk scenarios, reducing MTTR (Mean Time to Remediate) and ensuring that critical applications receive immediate attention.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p class="has-text-align-center"&gt;&lt;em&gt;If you can’t quantify risk across an entire application, you can’t effectively reduce it.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;TotalAppSec ensures security leaders aren’t reacting to individual alerts &amp;#8211; but making data-driven, risk-informed decisions to protect their most critical assets.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Join us for the TotalAppSec Launch Webinar and discover how to transform your application security strategy.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.brighttalk.com/webcast/11673/634786" style="background-color: #ed2e26;"&gt;Register Today&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37180</guid><category>Product and Tech</category><category>Qualys TotalAppSec</category></item><item><title>Native Sensors vs. Integrations for XDR Platforms?</title><link>https://www.trendmicro.com/en_us/research/25/b/native-sensors-integrations-xdr-platform.html</link><description>Native sensors vs. integrations in XDR: Native sensors offer faster deployment, real-time detection, and deeper visibility, while integrations may add complexity and delays. Learn how to optimize your XDR strategy for improved security.</description><guid isPermaLink="false">urn:uuid:1c5621d3-1218-6ee1-1a70-0489dc8bde01</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>FBI, Dutch Police Disrupt ‘Manipulaters’ Phishing Gang</title><link>https://krebsonsecurity.com/2025/01/fbi-dutch-police-disrupt-manipulaters-phishing-gang/</link><description>The FBI and authorities in The Netherlands this week seized a number of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname "The Manipulaters," have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.</description><content:encoded>&lt;p&gt;The FBI and authorities in The Netherlands this week seized dozens of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname &amp;#8220;&lt;strong&gt;The Manipulaters&lt;/strong&gt;,&amp;#8221; have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/3rd-february-threat-intelligence-report/"&gt;3rd February – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31049</guid><category>Global Cyber Attack Reports</category></item><item><title>6 Best No-Log VPNs for 2025</title><link>https://www.techrepublic.com/article/best-no-log-vpn/</link><description>Looking for the best anonymous (no-log) VPN? Check out our comprehensive list to find the top VPN services that prioritize anonymity and security.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4209722</guid><category>Cloud Security</category><category>Top Products</category><category>no logs vpn</category><category>VPN</category></item><item><title>Native Sensors vs. Integrations for XDR Platforms?</title><link>https://www.trendmicro.com/en_us/research/25/b/native-sensors-integrations-xdr-platform.html</link><description>Native sensors vs. integrations in XDR: Native sensors offer faster deployment, real-time detection, and deeper visibility, while integrations may add complexity and delays. Learn how to optimize your XDR strategy for improved security.</description><guid isPermaLink="false">urn:uuid:1c5621d3-1218-6ee1-1a70-0489dc8bde01</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>FBI, Dutch Police Disrupt ‘Manipulaters’ Phishing Gang</title><link>https://krebsonsecurity.com/2025/01/fbi-dutch-police-disrupt-manipulaters-phishing-gang/</link><description>The FBI and authorities in The Netherlands this week seized a number of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname "The Manipulaters," have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.</description><content:encoded>&lt;p&gt;The FBI and authorities in The Netherlands this week seized dozens of servers and domains for a hugely popular spam and malware dissemination service operating out of Pakistan. The proprietors of the service, who use the collective nickname &amp;#8220;&lt;strong&gt;The Manipulaters&lt;/strong&gt;,&amp;#8221; have been the subject of three stories published here since 2015. The FBI said the main clientele are organized crime groups that try to trick victim companies into making payments to a third party.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_56857" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-56857" height="530" src="https://krebsonsecurity.com/wp-content/uploads/2021/09/ftexploit.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-56857"&gt;One of several current Fudtools sites run by the principals of The Manipulators.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;On January 29, the FBI and the Dutch national police seized the technical infrastructure for a cybercrime service marketed under the brands &lt;strong&gt;Heartsender&lt;/strong&gt;, &lt;strong&gt;Fudpage&lt;/strong&gt; and &lt;strong&gt;Fudtools&lt;/strong&gt; (and many other &amp;#8220;fud&amp;#8221; variations). The &amp;#8220;fud&amp;#8221; bit stands for &amp;#8220;Fully Un-Detectable,&amp;#8221; and it refers to cybercrime resources that will evade detection by security tools like antivirus software or anti-spam appliances.&lt;/p&gt;
 &lt;p&gt;The Dutch authorities &lt;a href="https://www.politie.nl/nieuws/2025/januari/27/09-verstoringsactie-deelt-klap-uit-aan-crimineel-cybernetwerk-heartsender.html" rel="noopener" target="_blank"&gt;said&lt;/a&gt; 39 servers and domains abroad were seized, and that the servers contained millions of records from victims worldwide &amp;#8212; including at least 100,000 records pertaining to Dutch citizens.&lt;/p&gt;
