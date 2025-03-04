@@ -1,5 +1,116 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 04 Mar 2025 18:59:25 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Romanian Distillery Scanning for SMTP Credentials</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Romanian Distillery Scanning for SMTP Credentials, (Tue, Mar 4th)</title><link>https://isc.sans.edu/diary/rss/31736</link><description>&lt;p&gt;Lately, attackers have gotten more creative and aggressive in trying to find various credential files on exposed web servers. Our "&lt;a href="https://isc.sans.edu/weblogs/firstseenurls.html"&gt;First Seen&lt;/a&gt;" page each day shows many new versions of scans for secrets files like ".env". &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Lately, attackers have gotten more creative and aggressive in trying to find various credential files on exposed web servers. Our &amp;quot;&lt;a href="https://isc.sans.edu/weblogs/firstseenurls.html"&gt;First Seen&lt;/a&gt;&amp;quot; page each day shows many new versions of scans for secrets files like &amp;quot;.env&amp;quot;.&amp;nbsp;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 04 Mar 2025 19:59:22 +0000</lastBuildDate><item><title>MWC 2025: Nothing Shows Off (3A) Phones With AI Organization Tool</title><link>https://www.techrepublic.com/article/nothing-phone-3a-essential-space/</link><description>AI-powered Essential Space is a favorites tab for screenshots, photos, to-do lists, and more that Nothing said is coming soon.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4295018</guid><category>Android</category><category>Artificial Intelligence</category><category>Hardware</category><category>Mobility</category><category>Software</category><category>android</category><category>artificial intelligence</category><category>mobile</category><category>nothing phone</category><category>smartphones</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Romanian Distillery Scanning for SMTP Credentials</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Securing generative AI models on Azure AI Foundry</title><link>https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/</link><description>&lt;p&gt;Discover how Microsoft secures AI models on Azure AI Foundry, ensuring robust security and trustworthy deployments for your AI systems. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/"&gt;Securing generative AI models on Azure AI Foundry&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;New generative AI models with a broad range of capabilities are emerging every week. In this world of rapid innovation, when choosing the models to integrate into your AI system, it is crucial to make a thoughtful risk assessment that ensures a balance between leveraging new advancements and maintaining robust security. At Microsoft, we are focusing on making our AI development platform a secure and trustworthy place where you can explore and innovate with confidence.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Here we’ll talk about one key part of that: how we secure the models and the runtime environment itself. How do we protect against a bad model compromising your AI system, your larger cloud estate, or even Microsoft’s own infrastructure?  &lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-microsoft-protects-data-and-software-in-ai-systems"&gt;How Microsoft protects data and software in AI systems&lt;/h2&gt;
+
+
+
+&lt;p&gt;But before we set off on that, let me set to rest one very common misconception about how data is used in AI systems. Microsoft does &lt;em&gt;not&lt;/em&gt; use customer data to train shared models, nor does it share your logs or content with model providers. Our AI products and platforms are part of our standard product offerings, subject to the same terms and trust boundaries you’ve come to expect from Microsoft, and your model inputs and outputs are considered customer content and handled with the same protection as your documents and email messages. Our AI platform offerings (&lt;a href="https://azure.microsoft.com/products/ai-foundry" rel="noreferrer noopener" target="_blank"&gt;Azure AI Foundry&lt;/a&gt; and &lt;a href="https://azure.microsoft.com/products/ai-services/openai-service" rel="noreferrer noopener" target="_blank"&gt;Azure OpenAI Service&lt;/a&gt;) are 100% hosted by Microsoft on its own servers, with no runtime connections to the model providers. We do offer some features, such as model fine-tuning, that allow you to use your data to create better models for your own use—but these are &lt;em&gt;your&lt;/em&gt; models that stay in your tenant.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;So, turning to model security: the first thing to remember is that models are just software, running in &lt;a href="https://azure.microsoft.com/products/virtual-machines" rel="noreferrer noopener" target="_blank"&gt;Azure Virtual Machines&lt;/a&gt; (VM) and accessed through an API; they don’t have any magic powers to break out of that VM, any more than any other software you might run in a VM. Azure is already quite defended against software running in a VM attempting to attack Microsoft’s infrastructure—bad actors try to do that every day, not needing AI for it, and AI Foundry inherits all of those protections. This is a “zero-trust” architecture: Azure services do not assume that things running on Azure are safe!&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-msxcm-kicker-container"&gt;
+	&lt;div class=" wp-block-msxcm-kicker-block wp-block-msxcm-kicker--align-left"&gt;
+		&lt;p class="wp-block-msxcm-kicker__title small text-neutral-400 text-uppercase"&gt;
+			What is Zero Trust?		&lt;/p&gt;
+		&lt;a class="wp-block-msxcm-kicker__cta btn btn-link p-0 text-decoration-none" href="https://www.microsoft.com/security/business/zero-trust" target="_blank"&gt;
+			&lt;span&gt;Learn more&lt;/span&gt; &lt;span class="glyph-append glyph-append-xsmall wp-block-msxcm-kicker__glyph glyph-append-go"&gt;&lt;/span&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Now, it &lt;em&gt;is&lt;/em&gt; possible to conceal malware inside an AI model. This could pose a danger to you in the same way that malware in any other open- or closed-source software might. To mitigate this risk, for our highest-visibility models we scan and test them before release:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Malware analysis&lt;/strong&gt;: Scans AI models for embedded malicious code that could serve as an infection vector and launchpad for malware. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Vulnerability assessment&lt;/strong&gt;: Scans for common vulnerabilities and exposures (CVEs) and zero-day vulnerabilities targeting AI models. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Backdoor detection&lt;/strong&gt;: Scans model functionality for evidence of supply chain attacks and backdoors such as arbitrary code execution and network calls. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Model integrity&lt;/strong&gt;: Analyzes an AI model’s layers, components, and tensors to detect tampering or corruption. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;You can identify which models have been scanned by the indication on their model card—no customer action is required to get this benefit. For especially high-visibility models like &lt;a href="https://ai.azure.com/explore/models/DeepSeek-R1/version/1/registry/azureml-deepseek" rel="noreferrer noopener" target="_blank"&gt;DeepSeek R1&lt;/a&gt;, we go even further and have teams of experts tear apart the software—examining its source code, having red teams probe the system adversarially, and so on—to search for any potential issues before releasing the model. This higher level of scanning doesn’t (yet) have an explicit indicator in the model card, but given its public visibility we wanted to get the scanning done before we had the UI elements ready.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="defending-and-governing-ai-models"&gt;Defending and governing AI models&lt;/h2&gt;
+
+
+
+&lt;p&gt;Of course, as security professionals you presumably realize that no scans can detect all malicious action. This is the same problem an organization faces with any other third-party software, and organizations should address it in the usual manner: trust in that software should come in part from trusted intermediaries like Microsoft, but above all should be rooted in an organization’s own trust (or lack thereof) for its provider.  &lt;/p&gt;
+
+
+
+&lt;p&gt;For those wanting a more secure experience, once you’ve chosen and deployed a model, you can use the full suite of Microsoft’s security products to defend and govern it. You can read more about how to do that here: &lt;a href="https://www.microsoft.com/security/blog/2025/02/13/securing-deepseek-and-other-ai-systems-with-microsoft-security" rel="noreferrer noopener" target="_blank"&gt;Securing DeepSeek and other AI systems with Microsoft Security&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;And of course, as the quality and behavior of each model is different, you should evaluate any model not just for security, but for whether it fits your specific use case, by testing it as part of your complete system. This is part of the wider approach to how to secure AI systems which we’ll come back to, in depth, in an upcoming blog.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="using-microsoft-security-to-secure-ai-models-and-customer-data"&gt;Using Microsoft Security to secure AI models and customer data&lt;/h2&gt;
+
+
+
+&lt;p&gt;In summary, the key points of our approach to securing models on &lt;a href="https://azure.microsoft.com/products/ai-foundry" rel="noreferrer noopener" target="_blank"&gt;Azure AI Foundry&lt;/a&gt; are:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Microsoft carries out a variety of security investigations for key AI models before hosting them in the &lt;a href="https://azure.microsoft.com/products/ai-model-catalog"&gt;Azure AI Foundry Model Catalogue&lt;/a&gt;, and continues to monitor for changes that may impact the trustworthiness of each model for our customers. You can use the information on the model card, as well as your trust (or lack thereof) in any given model builder, to assess your position towards any model the way you would for any third-party software library.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="2"&gt;
+&lt;li&gt;All models hosted on Azure are isolated within the customer tenant boundary. There is no access to or from the model provider, including close partners like OpenAI.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="3"&gt;
+&lt;li&gt;Customer data &lt;a href="https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy" rel="noreferrer noopener" target="_blank"&gt;is not used to train models&lt;/a&gt;, nor is it made available outside of the Azure tenant (unless the customer designs their system to do so).&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more-with-microsoft-security"&gt;Learn more with Microsoft Security&lt;/h2&gt;
+
+
+
+&lt;p&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/"&gt;Securing generative AI models on Azure AI Foundry&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Azure</category></item><item><title>Romanian Distillery Scanning for SMTP Credentials, (Tue, Mar 4th)</title><link>https://isc.sans.edu/diary/rss/31736</link><description>&lt;p&gt;Lately, attackers have gotten more creative and aggressive in trying to find various credential files on exposed web servers. Our "&lt;a href="https://isc.sans.edu/weblogs/firstseenurls.html"&gt;First Seen&lt;/a&gt;" page each day shows many new versions of scans for secrets files like ".env". &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Lately, attackers have gotten more creative and aggressive in trying to find various credential files on exposed web servers. Our &amp;quot;&lt;a href="https://isc.sans.edu/weblogs/firstseenurls.html"&gt;First Seen&lt;/a&gt;&amp;quot; page each day shows many new versions of scans for secrets files like &amp;quot;.env&amp;quot;.&amp;nbsp;&lt;/p&gt;
 
 &lt;p&gt;Yesterday, I noted a couple of requests that stuck out a bit:&lt;/p&gt;
 
@@ -6102,7 +6213,7 @@ if __name__ == "__main__":
 
 
 
-&lt;p&gt;To stay up to date with our TRU team’s latest discoveries, &lt;a href="https://blog.qualys.com/"&gt;subscribe to our blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37293</guid><category>Vulnerabilities and Threat Research</category><category>CVE-2025-26465</category><category>CVE-2025-26466</category><category>OpenSSH</category></item><item><title>Top Reasons Why Employees Are Using AI at Work</title><link>https://www.techrepublic.com/resource-library/feature/reasons-why-employees-are-using-ai-at-work/</link><description>Employees are motivated to use AI at work, regardless of company policy or training. But why? Kara Sherrer, writing for TechRepublic Premium, takes a deep dive into the research to investigate employees’ reasons for using AI at work. The feature also explores the most common ways that employees are currently using AI and some areas ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/top-reasons-why-employees-are-using-ai-at-work/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Earth Preta Mixes Legitimate and Malicious Components to Sidestep Detection</title><link>https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html</link><description>Our Threat Hunting team discusses Earth Preta’s latest technique, in which the APT group leverages MAVInject and Setup Factory to deploy payloads, bypass ESET antivirus, and maintain control over compromised systems.</description><guid isPermaLink="false">urn:uuid:c5720b0c-196b-4c49-0977-4013a70d888a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Helping civil society monitor cyber attacks with the CyberPeaceTracer and Cloudflare Email Security</title><link>https://blog.cloudflare.com/helping-civil-society-monitor-attacks-with-the-cyberpeacetracer-and-cloudflare-email-security/</link><description>We’re proud to collaborate with CyberPeace Institute by powering its latest initiative, the CyberPeace Tracer, a platform that enables civil society organizations to proactively report cyber threats.</description><content:encoded>&lt;p&gt;Civil society organizations have always been at the forefront of humanitarian relief efforts, as well as safeguarding civil and human rights. These organizations play a large role in delivering services during crises, whether it is &lt;a href="https://www.cloudflare.com/case-studies/awaq-ongd/"&gt;&lt;u&gt;fighting climate change&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/case-studies/valdosta-amateur-radio-club/"&gt;&lt;u&gt;support during natural disasters&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/case-studies/hera-digital-health/"&gt;&lt;u&gt;providing health services to marginalized communities&lt;/u&gt;&lt;/a&gt; and &lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;more. &lt;/u&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;What do many of these organizations have in common? Many times, it’s cyber attacks from adversaries looking to steal sensitive information or disrupt their operations. Cloudflare has seen this firsthand when providing free cybersecurity services to vulnerable groups through programs like &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo,&lt;/u&gt;&lt;/a&gt; and found that in aggregate, organizations protected under the project experience an average of 95 million attacks per day. While cyber attacks are a problem across all industries in the digital age, civil society organizations are disproportionately targeted, many times due to their advocacy, and because attackers know that they typically operate with limited resources. In most cases, these organizations don’t even know they have been attacked until it is too late. &lt;/p&gt;&lt;p&gt;Over the last 10 years of Project Galileo, we’ve had the opportunity to work more closely with leading civil society organizations. This has led to a number of exciting new partnerships, including our work with the &lt;a href="https://cyberpeaceinstitute.org/"&gt;&lt;u&gt;CyberPeace Institute&lt;/u&gt;&lt;/a&gt;. That’s why we’re excited to share work on a new resource, the &lt;a href="https://cyberpeacetracer.ngo/"&gt;&lt;u&gt;CyberPeace Tracer&lt;/u&gt;&lt;/a&gt;. This resource will enable researchers, civil society, governments, and other organizations to understand threats and data-driven insights about the cyber threat landscape of the vulnerable communities we serve.&lt;/p&gt;
+&lt;p&gt;To stay up to date with our TRU team’s latest discoveries, &lt;a href="https://blog.qualys.com/"&gt;subscribe to our blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37293</guid><category>Vulnerabilities and Threat Research</category><category>CVE-2025-26465</category><category>CVE-2025-26466</category><category>OpenSSH</category></item><item><title>Earth Preta Mixes Legitimate and Malicious Components to Sidestep Detection</title><link>https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html</link><description>Our Threat Hunting team discusses Earth Preta’s latest technique, in which the APT group leverages MAVInject and Setup Factory to deploy payloads, bypass ESET antivirus, and maintain control over compromised systems.</description><guid isPermaLink="false">urn:uuid:c5720b0c-196b-4c49-0977-4013a70d888a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Helping civil society monitor cyber attacks with the CyberPeaceTracer and Cloudflare Email Security</title><link>https://blog.cloudflare.com/helping-civil-society-monitor-attacks-with-the-cyberpeacetracer-and-cloudflare-email-security/</link><description>We’re proud to collaborate with CyberPeace Institute by powering its latest initiative, the CyberPeace Tracer, a platform that enables civil society organizations to proactively report cyber threats.</description><content:encoded>&lt;p&gt;Civil society organizations have always been at the forefront of humanitarian relief efforts, as well as safeguarding civil and human rights. These organizations play a large role in delivering services during crises, whether it is &lt;a href="https://www.cloudflare.com/case-studies/awaq-ongd/"&gt;&lt;u&gt;fighting climate change&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/case-studies/valdosta-amateur-radio-club/"&gt;&lt;u&gt;support during natural disasters&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/case-studies/hera-digital-health/"&gt;&lt;u&gt;providing health services to marginalized communities&lt;/u&gt;&lt;/a&gt; and &lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;more. &lt;/u&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;What do many of these organizations have in common? Many times, it’s cyber attacks from adversaries looking to steal sensitive information or disrupt their operations. Cloudflare has seen this firsthand when providing free cybersecurity services to vulnerable groups through programs like &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo,&lt;/u&gt;&lt;/a&gt; and found that in aggregate, organizations protected under the project experience an average of 95 million attacks per day. While cyber attacks are a problem across all industries in the digital age, civil society organizations are disproportionately targeted, many times due to their advocacy, and because attackers know that they typically operate with limited resources. In most cases, these organizations don’t even know they have been attacked until it is too late. &lt;/p&gt;&lt;p&gt;Over the last 10 years of Project Galileo, we’ve had the opportunity to work more closely with leading civil society organizations. This has led to a number of exciting new partnerships, including our work with the &lt;a href="https://cyberpeaceinstitute.org/"&gt;&lt;u&gt;CyberPeace Institute&lt;/u&gt;&lt;/a&gt;. That’s why we’re excited to share work on a new resource, the &lt;a href="https://cyberpeacetracer.ngo/"&gt;&lt;u&gt;CyberPeace Tracer&lt;/u&gt;&lt;/a&gt;. This resource will enable researchers, civil society, governments, and other organizations to understand threats and data-driven insights about the cyber threat landscape of the vulnerable communities we serve.&lt;/p&gt;
           &lt;div&gt;
             &lt;h3&gt;Partnership with CyberPeace Institute &lt;/h3&gt;
             &lt;a href="https://blog.cloudflare.com/tag/security/rss#partnership-with-cyberpeace-institute"&gt;
@@ -9810,320 +9921,7 @@ SecurityEvent
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22942</guid></item><item><title>Quick Glossary: Cybersecurity Attacks</title><link>https://www.techrepublic.com/resource-library/glossary/cybersecurity-attacks/</link><description>It doesn’t matter whether your organization is a huge multinational business enterprise or a one-person operation. At some point, your computer networks and systems will be attacked by someone with criminal intent. Cybersecurity attacks, in all their various forms, are inevitable and relentless. This quick glossary, written by Mark W. Kaelin for TechRepublic Premium, explains ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-cybersecurity-attacks/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>CVE-2025-0411: Ukrainian Organizations Targeted in Zero-Day Campaign and Homoglyph Attacks</title><link>https://www.trendmicro.com/en_us/research/25/a/cve-2025-0411-ukrainian-organizations-targeted.html</link><description>The Trend ZDI team offers an analysis on how CVE-2025-0411, a zero-day vulnerability in 7-Zip, was actively exploited to target Ukrainian organizations in a SmokeLoader campaign involving homoglyph attacks.</description><guid isPermaLink="false">urn:uuid:d7fcc4f4-6b09-2e0c-6276-e90accf96a5b</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Hear from Microsoft Security experts at these top cybersecurity events in 2025</title><link>https://www.microsoft.com/en-us/security/blog/2025/02/03/hear-from-microsoft-security-experts-at-these-top-cybersecurity-events-in-2025/</link><description>&lt;p&gt;Security events offer a valuable opportunity to learn about the latest trends and solutions, evolve your skills for cyberthreats, and meet like-minded security professionals. See where you can meet Microsoft Security in 2025. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/03/hear-from-microsoft-security-experts-at-these-top-cybersecurity-events-in-2025/"&gt;Hear from Microsoft Security experts at these top cybersecurity events in 2025&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Inspiration can spark in an instant when you’re at a conference. Perhaps you discover a new tool during a keynote that could save you hours of time. Or maybe a peer shares a story over coffee that makes you rethink an approach. One conversation, one session, or one event could give you fresh ideas, renewed excitement, and a vision for what to do next.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the current AI landscape, inspiration and information are more important than ever for security professionals to stay ahead of threat actors. So if you’re looking to boost your skills and stay ahead of the threat landscape, join Microsoft Security at the top cybersecurity events in 2025. &lt;/p&gt;
-
-
-
-&lt;p&gt;Whether you join us at an industry staple like RSAC or one of our own events like Microsoft Secure, you can benefit in several key ways:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Get insights and strategies needed to overcome obstacles and drive your security initiatives forward with confidence.&lt;/li&gt;
-
-
-
-&lt;li&gt;See live demos of the latest products, product features, skills, and tools you can use in your work. Be among the first to hear about Microsoft Security innovations, such as Microsoft’s Secure Future Initiative and XSPA (cross-site port attack) updates attendees of Microsoft Ignite 2024 heard.&lt;/li&gt;
-
-
-
-&lt;li&gt;Learn from Microsoft Security experts on global threat intelligence.&lt;/li&gt;
-
-
-
-&lt;li&gt;Network with other like-minded security pros, learn best practices from your peers, and meet one-on-one with our experts.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Whatever your role, there’s an event for you and a path to successfully safeguarding your organization. &lt;/p&gt;
-
-
-&lt;div class="wp-block-msxcm-cta-block"&gt;
-	&lt;div class="card d-block mx-ng mx-md-0"&gt;
-		&lt;div class="row no-gutters"&gt;
-
-							&lt;div class="col-md-4"&gt;
-					&lt;img alt="A group of men standing around a table with laptops" class="card-img img-object-cover" height="633" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Picture1.jpg" width="950" /&gt;				&lt;/div&gt;
-			
-			&lt;div class="d-flex col-md"&gt;
-				&lt;div class="card-body align-self-center p-4 p-md-5"&gt;
-					&lt;h2&gt;Microsoft at RSAC&lt;/h2&gt;
-
-					&lt;div class="mb-3"&gt;
-						&lt;p&gt;From our signature Pre-Day to hands-on demos and one-on-one meetings, discover how Microsoft Security can give you the advantage you need in the era of AI.&lt;/p&gt;
-					&lt;/div&gt;
-
-											&lt;div class="link-group"&gt;
-							&lt;a class="btn btn-link text-decoration-none p-0" href="https://MicrosoftSecurityEvents.eventbuilder.com/MicrosoftRSAC2025events?source=blog_othersecurityblogs%20" target="_blank"&gt;
-								&lt;span&gt;Register now&lt;/span&gt;
-								&lt;span class="glyph-append glyph-append-chevron-right glyph-append-xsmall"&gt;&lt;/span&gt;
-							&lt;/a&gt;
-						&lt;/div&gt;
-									&lt;/div&gt;
-			&lt;/div&gt;
-
-					&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conferences-to-inspire-and-engage-everyone"&gt;Conferences to inspire and engage everyone&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Large crowd of people attending Microsoft Ignite in Chicago, November 2024." class="wp-image-137260" height="648" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Picture2-1024x648.jpg" width="1024" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Security professionals of all levels can benefit from attending one of the biggest cybersecurity events, including RSAC, Black Hat, plus two premier Microsoft events—Microsoft Secure (virtual) and Microsoft Ignite (in-person and virtual). If you love being the first to hear about Microsoft product innovations, don’t miss these Microsoft events with insights every security professional can put to good use.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-secure"&gt;Microsoft Secure&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Date&lt;/strong&gt;: April 9, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: Online only&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft Secure is Microsoft’s cybersecurity conference. This year’s one-hour digital showcase will spotlight AI-first, end-to-end security innovations with clear use cases and customer stories of how they use our tools daily. Attendees will deep-dive into cybersecurity products and strategies along with thousands of other cybersecurity professionals.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="rsac"&gt;RSAC&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: April 27-May 1, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: San Francisco, CA&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.rsaconference.com/events/2025-usa" rel="noreferrer noopener" target="_blank"&gt;RSAC 2025&lt;/a&gt; is a can’t-miss security conference, bringing together more than 40,000 security professionals to discuss the latest cybersecurity challenges and innovation with the best of the best. With the theme of &amp;#8220;Many Voices. One Community,&amp;#8221; RSAC will feature keynotes, track sessions, interactive sessions, networking opportunities, and an expo designed to foster advanced security strategies.&lt;/p&gt;
-
-
-
-&lt;p&gt;Throughout RSAC, Microsoft Security will showcase end-to-end security innovations and share world class threat and regulatory intelligence to give you the advantage you need in the era of AI. From our signature Pre-Day to hands-on demos and one-on-one meetings, discover how Microsoft Security can give you the advantage you need in the era of AI.​ Check out the &lt;a href="https://MicrosoftSecurityEvents.eventbuilder.com/MicrosoftRSAC2025events?source=blog_security2025events"&gt;full Microsoft at RSAC experience&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-13 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://microsoftsecurityevents.eventbuilder.com/MicrosoftRSAC2025events?source=blog_security2025events" rel="noreferrer noopener" target="_blank"&gt;Learn more about the Microsoft Events at RSA Conference 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="black-hat"&gt;Black Hat&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: August 2-7, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: Las Vegas, NV&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;a href="https://www.blackhat.com/upcoming.html#usa"&gt;Black Hat Conference&lt;/a&gt; is a premier learning event in the cybersecurity industry, known for its in-depth technical sessions and cutting-edge research presentations on topics like critical infrastructure and information security research news.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft is a key sponsor of the conference each year, where we showcase our latest discoveries and AI research on real-world problems and solutions. Last year, our AI Red Teaming in Practice training sessions and our AI Summit roundtables were a hit. Black Hat is also known for its security community celebrations, including the Cybersecurity Woman of the Year Awards and the Researcher celebrations, which we take part in every year.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-14 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.blackhat.com/upcoming.html#usa" rel="noreferrer noopener" target="_blank"&gt;Learn more about the Black Hat Conference 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-ignite"&gt;Microsoft Ignite&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: November 17-21, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: San Francisco, CA, and online&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://ignite.microsoft.com/en-US/home"&gt;Microsoft Ignite&lt;/a&gt; is Microsoft’s biggest annual conference for developers, IT professionals, business leaders, security professionals, and partners. Thousands of security professionals like you attend every year to hear the biggest security product announcements from Microsoft Security and gain training and skilling to prepare for future advancements in AI. Security professionals of all levels can join interactive labs, workshops, keynotes, technical breakout sessions, demos, and more, led by Microsoft Security leaders and experts.&lt;/p&gt;
-
-
-
-&lt;p&gt;Over the past few years, we’ve really boosted Microsoft Security experiences at Microsoft Ignite. Last year, we hosted the Microsoft Ignite Security Forum for security leaders and two workshops on AI red teaming and Microsoft 365 Copilot deployment. Plus, we hosted more than &lt;a href="https://ignite.microsoft.com/en-US/sessions?filter=topic%2FlogicalValue%3ESecurity"&gt;30 sessions&lt;/a&gt; demoing new features to help you secure your environment, use your favorite Microsoft tools safely and securely, and make sure your organizational processes prioritize security first.&lt;/p&gt;
-
-
-
-&lt;p&gt;If you attend Microsoft Ignite in person this year, you won’t want to miss our Security Leaders Dinner or the security community party. If you’re not able to attend in person, you can register for our virtual event.​ Sign up to learn more.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-15 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://ignite.microsoft.com/en-US/home" rel="noreferrer noopener" target="_blank"&gt;Learn more about Microsoft Ignite 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="events-for-security-leaders-and-decision-makers"&gt;Events for security leaders and decision-makers&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A woman presenting during the Microsoft AI Tour." class="wp-image-137261" height="682" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Picture3-1024x682.jpg" width="1024" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-ai-tour"&gt;Microsoft AI Tour&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: Through May 30, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: Multiple worldwide&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;a href="https://aitour.microsoft.com/home?wt.mc_ID=AITourFY25_Security_corp_bl_oo_bl_Security_2025Events" rel="noreferrer noopener" target="_blank"&gt;Microsoft AI Tour&lt;/a&gt; is a free, one-day event for executives that explores the ways AI can drive growth and create lasting value in multiple cities around the globe. Whether you’re a functional decision-maker who evaluates investments, an IT team member charged with security, or a CISO revamping your security strategy, there will be valuable security content tailored to your needs.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft Security&amp;#8217;s top business leaders attend AI tour locations worldwide to share with you how &lt;a href="https://www.microsoft.com/security/business/ai-machine-learning/microsoft-copilot-security"&gt;Microsoft Security Copilot&lt;/a&gt; lets you protect at the speed and scale of AI. They are also available to meet with you.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-16 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://aitour.microsoft.com/home?wt.mc_ID=AITourFY25_Security_corp_bl_oo_bl_Security_2025Events" rel="noreferrer noopener" target="_blank"&gt;Reserve your spot at an event near you&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Event location&lt;/th&gt;&lt;th&gt;Event date&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Dubai, United Arab Emirates&lt;/td&gt;&lt;td&gt;February 6, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Singapore, Southeast Asia&lt;/td&gt;&lt;td&gt;February 19, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Tokyo, Japan&lt;/td&gt;&lt;td&gt;February 26-27, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;London, United Kingdom&lt;/td&gt;&lt;td&gt;March 5, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Brussels, Belgium&lt;/td&gt;&lt;td&gt;March 25, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Seoul, South Korea&lt;/td&gt;&lt;td&gt;March 26, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Paris, France&lt;/td&gt;&lt;td&gt;March 26, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Madrid, Spain&lt;/td&gt;&lt;td&gt;March 27, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Tokyo, Japan&lt;/td&gt;&lt;td&gt;March 27, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Beijing, China&lt;/td&gt;&lt;td&gt;April 23, 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Athens, Greece&lt;/td&gt;&lt;td&gt;May 27-30, 2025&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="gartner-security-and-risk-management-summit"&gt;Gartner Security and Risk Management Summit&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: June 9-11, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: National Harbor, MD&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;a href="https://www.gartner.com/en/conferences/na/security-risk-management-us" rel="noreferrer noopener" target="_blank"&gt;Gartner Security and Risk Management Summit&lt;/a&gt; (Gartner SRM) explores trends in cybersecurity risk management, including the integration of generative AI, being an effective CISO, the importance of balancing response and recovery efforts with prevention, combating misinformation, and closing the cybersecurity skills gap to build a resilient workforce.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft Security executives host sessions at Gartner SRM to help you ensure the security of AI systems and adopt AI to drive innovation and efficiency. Our most popular topics center around securing and governing AI.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-17 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.gartner.com/en/conferences/na/security-risk-management-us" rel="noreferrer noopener" target="_blank"&gt;Learn more about the Gartner Security and Risk Management Summit&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="events-for-technical-and-security-practitioners"&gt;Events for technical and security practitioners&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="People attending the Microsoft booth at RSAC 2024." class="wp-image-137263" height="683" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/Picture4-1024x683.jpg" width="1024" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Security teams look for conferences that provide specialized knowledge on the industry in which they work or on a narrow cybersecurity topic. &lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="legalweekdates-march-24-27-2025location-new-york-ny"&gt;Legalweek&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: March 24-27, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: New York, NY&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.event.law.com/legalweek" rel="noreferrer noopener" target="_blank"&gt;Legalweek&lt;/a&gt; is a weeklong conference where approximately 6,000 members of the legal community will gather to network with their peers, explore emerging trends, spotlight the latest tech, and offer a roadmap through industry shifts. Topics explored at past Legalweek conferences include the ethical and regulatory impact of using your data to train AI, litigation in the age of cybersecurity, and maximizing efficiency and legal automation. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;This year, we’ll be sponsoring three sessions on AI and one on collaboration in complex litigation. As in years past, Microsoft is hosting an Executive Breakfast at Legalweek from 7:30 AM ET-8:45 AM ET on Tuesday, March 25, 2025. &lt;a href="https://MSExecBreakfastLegalWeek.eventbuilder.com/event/89515?source=blog" rel="noreferrer noopener" target="_blank"&gt;RSVP today&lt;/a&gt; and stop by Booth #3103 in New York Hilton Midtown Americas Hall 2 to learn more about the latest &lt;a href="https://www.microsoft.com/en-us/security/business/microsoft-purview"&gt;Microsoft Purview&lt;/a&gt; innovations. If you’d like to meet with our team while at Legalweek, &lt;a href="https://aka.ms/LwCustomerMeetings/Blog"&gt;sign up for a one-on-one meeting&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-18 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.event.law.com/legalweek" rel="noreferrer noopener" target="_blank"&gt;Learn more about Legalweek 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="identiverse"&gt;Identiverse&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: June 3-6, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: Las Vegas, NV&lt;/p&gt;
-
-
-
-&lt;p&gt;Limiting access to AI, apps, and resources to those with the proper permissions is a crucial part of security. The &lt;a href="https://identiverse.com/" rel="noreferrer noopener" target="_blank"&gt;Identiverse conference&lt;/a&gt; provides education, collaboration, and insight into the future of identity security. More than 2,500 attendees will share insights, develop new ideas, and advance the state of modern digital identity and security.&lt;/p&gt;
-
-
-
-&lt;p&gt;The event features sessions on best practices, industry trends, and latest technologies; an exhibition hall to showcase the latest identity solution innovations; and networking opportunities. Microsoft will host a booth where attendees can connect with Microsoft Security experts and leaders.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-19 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://identiverse.com/" rel="noreferrer noopener" target="_blank"&gt;Learn more about Identiverse 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="events-for-developers"&gt;Events for developers&lt;/h2&gt;
-
-
-
-&lt;p&gt;The cybersecurity talent shortage is requiring many to step up even if cybersecurity isn’t in their official job description. If you are an IT professional being tasked with cybersecurity or someone with an eagerness to learn cybersecurity tactics, join our Microsoft events aimed at helping you uplevel your cybersecurity skills.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-build"&gt;Microsoft Build&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;: May 19-22, 2025&lt;br /&gt;&lt;strong&gt;Location&lt;/strong&gt;: Seattle, WA&lt;/p&gt;
-
-
-
-&lt;p&gt;Security is a team sport and developers are increasingly the first string team members who build security into the development of applications. &lt;a href="https://build.microsoft.com/en-US/home" rel="noreferrer noopener" target="_blank"&gt;Microsoft Build Conference 2025&lt;/a&gt; is Microsoft’s developer-focused event. It will showcase exciting updates and innovations from Microsoft Security for developers to create AI-enabled security solutions for their organizations.&lt;/p&gt;
-
-
-
-&lt;p&gt;The event includes connection opportunities, demos, and security-focused sessions. Past topics have included using AI to accelerate development processes, tools for enhancing the developer experience, and strategies for building in the cloud. Stay up to date on Microsoft Build news and &lt;a href="https://register.buildinfo.microsoft.com/" rel="noreferrer noopener" target="_blank"&gt;find out when registration is open&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-20 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://build.microsoft.com/en-US/home" rel="noreferrer noopener" target="_blank"&gt;Learn more about the Microsoft Build Conference 2025&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="find-your-inspiration-at-an-event-this-year"&gt;Find your inspiration at an event this year&lt;/h2&gt;
-
-
-
-&lt;p&gt;Cybersecurity events foster a culture of continuous learning and adaptation, empowering you to stay ahead of emerging cyberthreats and maintain a resilient security posture. The ideas will flow freely at these events. Whether you attend one of the biggest conferences of the year or a smaller event (or both), you’ll be in good company. Microsoft Security will be there be, too, excited to share and eager to learn.&lt;/p&gt;
-
-
-
-&lt;p&gt;Hope to see you at a future event!&lt;/p&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/02/03/hear-from-microsoft-security-experts-at-these-top-cybersecurity-events-in-2025/"&gt;Hear from Microsoft Security experts at these top cybersecurity events in 2025&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>MDR for MSPs: Navigating EDR compatibility</title><link>https://www.webroot.com/blog/2025/02/03/mdr-for-msps-navigating-edr-compatibility/</link><description>&lt;p&gt;When it comes to endpoint detection and response (EDR) compatibility within an MDR offering, managed service providers (MSPs) are weighing two key priorities: native EDR integration or the flexibility to support multiple solutions. According to a recent OpenText survey, opinions are split almost evenly. While 52% of MSPs view native compatibility as moderately or very [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22942</guid></item><item><title>Quick Glossary: Cybersecurity Attacks</title><link>https://www.techrepublic.com/resource-library/glossary/cybersecurity-attacks/</link><description>It doesn’t matter whether your organization is a huge multinational business enterprise or a one-person operation. At some point, your computer networks and systems will be attacked by someone with criminal intent. Cybersecurity attacks, in all their various forms, are inevitable and relentless. This quick glossary, written by Mark W. Kaelin for TechRepublic Premium, explains ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-cybersecurity-attacks/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>CVE-2025-0411: Ukrainian Organizations Targeted in Zero-Day Campaign and Homoglyph Attacks</title><link>https://www.trendmicro.com/en_us/research/25/a/cve-2025-0411-ukrainian-organizations-targeted.html</link><description>The Trend ZDI team offers an analysis on how CVE-2025-0411, a zero-day vulnerability in 7-Zip, was actively exploited to target Ukrainian organizations in a SmokeLoader campaign involving homoglyph attacks.</description><guid isPermaLink="false">urn:uuid:d7fcc4f4-6b09-2e0c-6276-e90accf96a5b</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>MDR for MSPs: Navigating EDR compatibility</title><link>https://www.webroot.com/blog/2025/02/03/mdr-for-msps-navigating-edr-compatibility/</link><description>&lt;p&gt;When it comes to endpoint detection and response (EDR) compatibility within an MDR offering, managed service providers (MSPs) are weighing two key priorities: native EDR integration or the flexibility to support multiple solutions. According to a recent OpenText survey, opinions are split almost evenly. While 52% of MSPs view native compatibility as moderately or very [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/03/mdr-for-msps-navigating-edr-compatibility/" rel="nofollow"&gt;MDR for MSPs: Navigating EDR compatibility&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;When it comes to endpoint detection and response (EDR) compatibility within an MDR offering, managed service providers (MSPs) are weighing two key priorities: native EDR integration or the flexibility to support multiple solutions. According to a recent OpenText survey, opinions are split almost evenly. While 52% of MSPs view native compatibility as moderately or very important, 48% place greater value on flexibility.&lt;/p&gt;
 
 
