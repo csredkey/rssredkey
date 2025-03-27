@@ -1,5 +1,101 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 27 Mar 2025 16:59:22 +0000</lastBuildDate><item><title>When Getting Phished Puts You in Mortal Danger</title><link>https://krebsonsecurity.com/2025/03/when-getting-phished-puts-you-in-mortal-danger/</link><description>Many successful phishing attacks result in a financial loss or malware infection. But falling for some phishing scams, like those currently targeting Russians searching online for organizations that are fighting the Kremlin war machine, can cost you your freedom or your life.</description><content:encoded>&lt;p&gt;Many successful phishing attacks result in a financial loss or malware infection. But falling for some phishing scams, like those currently targeting Russians searching online for organizations that are fighting the Kremlin war machine, can cost you your freedom or your life.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 27 Mar 2025 17:59:23 +0000</lastBuildDate><item><title>Qualys TRU Discovers Three Bypasses of Ubuntu Unprivileged User Namespace Restrictions</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The Qualys Threat Research Unit (TRU) recently disclosed three security bypasses in Ubuntu&amp;#8217;s unprivileged user namespace restrictions. Qualys responsibly disclosed these vulnerabilities to the Ubuntu Security Team on January 15, 2025, and has been working with Ubuntu since then. Qualys TRU uncovered three distinct bypasses of these namespace restrictions, each enabling local attackers to create [&amp;#8230;]</description><content:encoded>&lt;p&gt;The &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; recently disclosed three security bypasses in Ubuntu&amp;#8217;s unprivileged user namespace restrictions. Qualys responsibly disclosed these vulnerabilities to the Ubuntu Security Team on January 15, 2025, and has been working with Ubuntu since then.&lt;/p&gt;
+
+
+
+&lt;p&gt;Qualys TRU uncovered three distinct bypasses of these namespace restrictions, each enabling local attackers to create user namespaces with full administrative capabilities. These bypasses facilitate exploiting vulnerabilities in kernel components requiring powerful administrative privileges within a confined environment. The restrictions on unprivileged user namespaces were initially introduced in Ubuntu 23.10 and enabled by default in Ubuntu 24.04. It is important to note that these bypasses alone do not enable complete system takeover; however, they become dangerous when combined with other vulnerabilities, typically kernel-related.&lt;/p&gt;
+
+
+
+&lt;span id="more-37478"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-are-the-user-namespace-in-linux-and-why-are-they-important"&gt;&lt;strong&gt;What are the User Namespace in Linux and Why are they important?&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Most major Linux distributions permit unprivileged users to create namespaces in which they effectively gain full administrative rights. While beneficial for creating containers and sandboxes, this significantly expands the kernel’s attack surface. When new kernel vulnerabilities emerge, namespaces often make these exploitable by unprivileged users. Ubuntu is notably proactive in mitigating such risks by preventing unprivileged users from acquiring capabilities within namespaces.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="affected-ubuntu-versions"&gt;&lt;strong&gt;Affected Ubuntu versions:&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The security bypasses affect Ubuntu version 24.04 and later. Ubuntu 23.10 introduces built-in unprivileged user namespace restrictions, though they are not enabled by default. These protections were introduced in this release, and users who have previously enabled and relied on them are affected.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="technical-details"&gt;&lt;strong&gt;Technical Details&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;You can find the technical details of these security bypasses at:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.qualys.com/2025/three-bypasses-of-Ubuntu-unprivileged-user-namespace-restrictions.txt"&gt;https://www.qualys.com/2025/three-bypasses-of-Ubuntu-unprivileged-user-namespace-restrictions.txt&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="leverage-qualys-trurisk-eliminate-to-mitigate-these-risks"&gt;&lt;strong&gt;&lt;strong&gt;Leverage Qualys TruRisk Eliminate to Mitigate These Risks&lt;/strong&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;To help organizations address these risks quickly, customers leveraging the Qualys agent can use the TruRisk Eliminate module. This module is fully integrated with the VM module to efficiently assign all of the IG QIDs to the team responsible for those Ubuntu servers. It allows the team to test and deploy the mitigation directly from the Qualys console, leveraging the Qualys agent. There is nothing new to install.&lt;/p&gt;
+
+
+
+&lt;p&gt;The same researchers who uncovered these Ubuntu bypasses have proactively developed and thoroughly tested those mitigation scripts, ensuring organizations can rapidly and effectively neutralize this new threat.&lt;/p&gt;
+
+
+
+&lt;p&gt;If you are not subscribed to the TruRisk Eliminate module, you can visit &lt;a href="https://www.qualys.com/forms/trurisk-eliminate/"&gt;this page&lt;/a&gt; to start a trial or ask your TAM to enable a trial for you.&lt;/p&gt;
+
+
+
+&lt;p&gt;Once the TruRisk Eliminate module is enabled, you can address this risk by visit VMDR and Vulnerabilities tab, and select all the vulns on the assets you would like to mitigate this vulnerability on and use Actions-&amp;gt; View Risk Eliminate:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37479" height="451" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/03/Ubuntu-First-1070x451.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Use the Mitigate Now button or multi-select vulnerability and select Actions -&amp;gt; Create Mitigation Job to start a mitigation job that will apply the mitigation to your assets.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37480" height="491" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/03/Ubuntu-Second-1070x491.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Note: While this feature can rapidly reduce bypass risk, using it broadly may introduce operational risks or lead to undesired application behavior. We recommend thorough testing in a controlled environment to confirm compatibility and maintain system stability.&lt;/p&gt;
+
+
+
+&lt;p&gt;With &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;Qualys TruRisk Eliminate&lt;/a&gt;, security teams have an immediate, actionable path to risk reduction.&lt;/p&gt;
+
+
+
+&lt;p&gt;This scenario underscores why mitigation should be an essential component of any comprehensive cybersecurity strategy, as it provides a critical layer of defense precisely when patches are absent.&lt;/p&gt;
+
+
+
+&lt;p&gt;For more information and details on minimizing the attack surface for these flaws, please visit the Ubuntu&amp;#8217;s post at: &lt;a href="https://discourse.ubuntu.com/t/understanding-apparmor-user-namespace-restriction"&gt;https://discourse.ubuntu.com/t/understanding-apparmor-user-namespace-restriction&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Cybersecurity today requires more than reactive patching—it demands agility and the ability to quickly mitigate vulnerabilities, especially when traditional patching isn&amp;#8217;t feasible. Organizations need proactive methods that allow them to neutralize threats rapidly and effectively, minimizing risk exposure even in complex scenarios. Approaches like virtual patching and real-time mitigations are becoming essential components of a robust cybersecurity strategy.&lt;/p&gt;
+
+
+
+&lt;p&gt;Explore how solutions such as &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;Qualys TruRisk Eliminate&lt;/a&gt; can help organizations stay ahead of vulnerabilities, keeping critical infrastructure protected even when conventional patches aren&amp;#8217;t available.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37478</guid><category>Vulnerabilities and Threat Research</category><category>Ubuntu</category><category>vulnerability</category></item><item><title>When Getting Phished Puts You in Mortal Danger</title><link>https://krebsonsecurity.com/2025/03/when-getting-phished-puts-you-in-mortal-danger/</link><description>Many successful phishing attacks result in a financial loss or malware infection. But falling for some phishing scams, like those currently targeting Russians searching online for organizations that are fighting the Kremlin war machine, can cost you your freedom or your life.</description><content:encoded>&lt;p&gt;Many successful phishing attacks result in a financial loss or malware infection. But falling for some phishing scams, like those currently targeting Russians searching online for organizations that are fighting the Kremlin war machine, can cost you your freedom or your life.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_70811" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-70811" height="420" src="https://krebsonsecurity.com/wp-content/uploads/2025/03/legionlibertyarmy.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-70811"&gt;The real website of the Ukrainian paramilitary group &amp;#8220;Freedom of Russia&amp;#8221; legion. The text has been machine-translated from Russian.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Researchers at the security firm &lt;strong&gt;Silent Push&lt;/strong&gt; mapped a network of several dozen phishing domains that spoof the recruitment websites of Ukrainian paramilitary groups, as well as Ukrainian government intelligence sites.&lt;/p&gt;
 &lt;p&gt;The website &lt;strong&gt;legiohliberty[.]army&lt;/strong&gt; features a carbon copy of the homepage for the &lt;a href="https://en.wikipedia.org/wiki/Freedom_of_Russia_Legion" rel="noopener" target="_blank"&gt;Freedom of Russia Legion&lt;/a&gt; (a.k.a. &amp;#8220;Free Russia Legion&amp;#8221;), a three-year-old Ukraine-based paramilitary unit made up of Russian citizens who oppose Vladimir Putin and his invasion of Ukraine.&lt;/p&gt;
@@ -22,7 +118,160 @@
 &lt;p&gt;&amp;#8220;This keeps happening regularly, but usually there are no details about how exactly the person gets caught,&amp;#8221; he said. &amp;#8220;All cases related to state treason [and] terrorism are classified, so there are barely any details.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;Tamoian said while he has no direct evidence linking any of the reported arrests and convictions to these phishing sites, he is certain the sites are part of a larger campaign by the Russian government.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Considering that they keep them alive and keep spawning more, I assume it might be an efficient thing,&amp;#8221; he said. &amp;#8220;They are on top of DuckDuckGo and Yandex, so it unfortunately works.&amp;#8221;&lt;/p&gt;
-&lt;p&gt;Further reading: Silent Push report, &lt;a href="https://www.silentpush.com/blog/russian-intelligence-phishing" rel="noopener" target="_blank"&gt;Russian Intelligence Targeting its Citizens and Informants&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=70785</guid><category>A Little Sunshine</category><category>Russia's War on Ukraine</category><category>Artem Tamoian</category><category>DuckDuckGo</category><category>Freedom of Russia legion</category><category>Russian Volunteer Corps</category><category>Silent Push</category><category>Stark Industries Solutions Ltd</category><category>Yandex</category><category>Zach Edwards</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, March 27th, 2025 https://isc.sans.edu/podcastdetail/9382</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>How DevOps Can Move Fast and Stay Secure with TruRisk</title><link>https://blog.qualys.com/category/product-tech</link><description>Don’t Spend Your Time Fixing Too Many Vulnerabilities In modern DevOps, speed is everything—and so is security. But for most teams, the two feel constantly at odds. The reality? You’re probably spending valuable time fixing vulnerabilities that don’t actually matter. Moreover, there’s always the risk of a regression from an unnecessary patch which can further [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="dont-spend-your-time-fixing-too-many-vulnerabilities"&gt;Don’t Spend Your Time Fixing Too Many Vulnerabilities&lt;/h2&gt;
+&lt;p&gt;Further reading: Silent Push report, &lt;a href="https://www.silentpush.com/blog/russian-intelligence-phishing" rel="noopener" target="_blank"&gt;Russian Intelligence Targeting its Citizens and Informants&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=70785</guid><category>A Little Sunshine</category><category>Russia's War on Ukraine</category><category>Artem Tamoian</category><category>DuckDuckGo</category><category>Freedom of Russia legion</category><category>Russian Volunteer Corps</category><category>Silent Push</category><category>Stark Industries Solutions Ltd</category><category>Yandex</category><category>Zach Edwards</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, March 27th, 2025 https://isc.sans.edu/podcastdetail/9382</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>US Department of Labor’s journey to Zero Trust security with Microsoft Entra ID</title><link>https://www.microsoft.com/en-us/security/blog/2025/03/27/us-department-of-labors-journey-to-zero-trust-security-with-microsoft-entra-id/</link><description>&lt;p&gt;Discover how the US Department of Labor enhanced security and modernized authentication with Microsoft Entra ID and phishing-resistant authentication. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/27/us-department-of-labors-journey-to-zero-trust-security-with-microsoft-entra-id/"&gt;US Department of Labor’s journey to Zero Trust security with Microsoft Entra ID&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For several years, Microsoft has been helping United States federal and state government groups, including military departments and civilian agencies, transition to a Zero Trust security model. Advanced features in &lt;a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"&gt;Microsoft Entra ID&lt;/a&gt; have helped these organizations meet requirements to employ centralized identity management systems, to use phishing-resistant multifactor authentication, and to consider device-level signals for authorizing access to resources.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"&gt;Manage and protect with Microsoft Entra ID&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p&gt;The US Department of Labor (DOL) has been on a journey to consolidate their identity systems and modernize authentication to applications. In this blog post, I’ll describe the benefits they’re gaining from supplementing personal identity verification (PIV) cards with device-bound passkeys implemented through the Microsoft Authenticator app and from adding risk signals to Microsoft Entra Conditional Access policies.&lt;/p&gt;
+
+
+
+&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;To review how Microsoft Entra ID can help your department or agency meet federal cybersecurity requirements, while reducing complexity and improving the user experience, visit &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/08/26/how-microsoft-entra-id-supports-us-government-agencies-in-meeting-identity-security-requirements/?msockid=19c63df6c7b66c801d3c29f1c69b6d43"&gt;Microsoft Entra ID: Enhancing identity security for US agencies&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="adopting-microsoft-entra-id-as-a-centralized-identity-system"&gt;Adopting Microsoft Entra ID as a centralized identity system&lt;/h2&gt;
+
+
+
+&lt;p&gt;Like many organizations, DOL first used Entra ID (then called Azure Active Directory) when they adopted Microsoft 365. At that time, they were maintaining multiple identity technologies, including on-premises Active Directory, Active Directory Federation Services, and Ping Federate. This fragmented strategy required users to authenticate to different applications using different identity systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;With the help of their Identity, Credential, and Access Management (ICAM) group, DOL worked to consolidate all their identity systems to Entra ID. They chose Entra ID because it supports the necessary protocols (such as SAML and OIDC) to deliver a single sign-on (SSO) experience for most of their applications. This effort, which took about a year, included reaching out to application owners and encouraging them to move their applications off of Kerberos, ideally by adopting MSAL (Microsoft Authentication Library), so their applications could easily integrate with Entra ID.&lt;/p&gt;
+
+
+
+&lt;p&gt;Integrating applications with Entra ID makes it possible to strengthen security by applying &lt;a href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-conditional-access"&gt;Conditional Access&lt;/a&gt; policies to them. DOL at first applied simple Conditional Access policies that only allowed access to applications from &lt;a href="https://learn.microsoft.com/en-us/entra/identity/devices/concept-hybrid-join" rel="noreferrer noopener" target="_blank"&gt;hybrid-joined&lt;/a&gt; Government Furnished Equipment (GFE devices). The COVID-19 pandemic accelerated their adoption of additional features, such as &lt;a href="https://learn.microsoft.com/en-us/mem/intune/protect/device-compliance-get-started" rel="noreferrer noopener" target="_blank"&gt;enforcing device compliance through Microsoft Intune&lt;/a&gt; and reporting device risk to other security services through &lt;a href="https://learn.microsoft.com/en-us/mem/intune/protect/advanced-threat-protection-configure" rel="noreferrer noopener" target="_blank"&gt;integration with Microsoft Defender for Endpoint&lt;/a&gt;. Policies could then make access decisions based on device risk, such as only granting access to applications from devices with “low risk” or “no risk.”&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-conditional-access"&gt;Increase protection with Microsoft Entra Conditional Access&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;For an introduction to Microsoft Entra Conditional Access, visit &lt;a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" rel="noreferrer noopener" target="_blank"&gt;our documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="upleveling-static-conditional-access-policies-to-risk-based-conditional-access-policies"&gt;Upleveling static Conditional Access policies to risk-based Conditional Access policies&lt;/h2&gt;
+
+
+
+&lt;p&gt;In 2022, when new regulations required government agencies to apply more stringent cybersecurity standards to protect against sophisticated online attacks, DOL decided to strengthen their &lt;a href="https://www.microsoft.com/security/business/zero-trust"&gt;Zero Trust&lt;/a&gt; implementation with phishing-resistant authentication and dynamic risk-based Conditional Access policies. Both would help them enforce the Zero Trust principle of least privilege access.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-id-protection"&gt;Microsoft Entra ID Protection&lt;/a&gt; capabilities made it possible for Conditional Access policies to assess sign-in risk and user risk, in addition to device risk, before granting access. Policies would tolerate different levels of user risk depending on whether the user signs in as a ‘privileged user’ or as a ‘regular user.’ Access for users deemed high-risk would always be blocked. Privileged users with low or medium risk would also be blocked. Regular users with low risk would have to reauthenticate within a set period of time, while users with medium risk would have to reauthenticate more frequently.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-id-protection"&gt;Block identity takeover with Microsoft Entra ID Protection&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Two graphics listing the different types of risk detections in Microsoft Entra ID protection. " class="wp-image-138091 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture1-1024x576.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;For more in-depth information on risk-based Conditional Access policies, visit &lt;a href="https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-policies" rel="noreferrer noopener" target="_blank"&gt;our documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="adding-a-layer-of-security-for-privileged-users"&gt;Adding a layer of security for privileged users&lt;/h2&gt;
+
+
+
+&lt;p&gt;A subset of DOL employees may operate as a ‘privileged user’ for some tasks and as a ‘regular user’ for others. To access less sensitive applications such as Microsoft 365, these employees sign in as a ‘regular user’ using a government-issued PIV card or Windows Hello for Business from their GFE device. To access highly sensitive applications and resources, or to execute sensitive tasks, they must sign in using a separate account that has privileged access rights.&lt;/p&gt;
+
+
+
+&lt;p&gt;Previously, the DOL assigned usernames, passwords, and basic multifactor authentication to privileged accounts, but this still left some risk of credential theft from phishing attacks. Since the most important accounts to secure are those with administrative rights, DOL chose to make privileged accounts more secure with phishing-resistant authentication, specifically, with device-bound passkeys in the Microsoft Authenticator app. This is faster and less expensive to support than issuing employees users a second PIV card and a second GFE device.&lt;/p&gt;
+
+
+
+&lt;p&gt;Privileged users only need to install the Microsoft Authenticator app on their government-issued cell phone. They don’t have to visit a special portal to provision and onboard their passkey. They simply sign in for the first time on their mobile phone using a Temporary Access Pass and set up their passkey in one fast, frictionless workflow. As an added benefit, passkeys also reduce the time to authenticate to DOL applications. According to Microsoft testing, signing in with a passkey is eight times faster than using a password and traditional multifactor authentication.&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;After DOL finishes deploying passkeys for their privileged users, they plan to roll out passkeys to the rest of their workforce as a secondary authentication method that complements other passwordless methods such as Windows Hello for Business and certificate-based authentication (CBA).&lt;/p&gt;
+
+
+
+&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;To explore phishing-resistant authentication methods available with Microsoft Entra, explore the video series &lt;a href="https://aka.ms/DontGetPhished" rel="noreferrer noopener" target="_blank"&gt;Phishing-resistant authentication in Microsoft Entra ID&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="using-report-only-mode-in-conditional-access-as-a-modeling-tool"&gt;Using “report-only” mode in Conditional Access as a modeling tool&lt;/h2&gt;
+
+
+
+&lt;p&gt;Every organization that modernizes their identity strategy and authentication methods, as DOL did, strengthens security, improves flexibility, and reduces costs. Using a modern, deeply integrated security toolset will also provide valuable new insights. For example, you can use Conditional Access as a modeling and planning tool. By running policies in report-only mode, you can better understand your environment, investigate user behavior to uncover risk scenarios not visible to the human eye, and model solutions for those scenarios. This helps you decide which controls to apply to close any security gaps you discover.&lt;/p&gt;
+
+
+
+&lt;p&gt;DOL rolled out risk-based Conditional Access policies, in report-only mode, that enforce the use of passkeys by privileged users. In the activity reports, they observed employees signing in with their privileged accounts, then visiting portals that they should access as regular users, not as admins. DOL then adjusted their policies to block such behavior.&lt;/p&gt;
+
+
+
+&lt;p&gt;Running risk-based policies in report-only mode exposed behavior that DOL could then use policies to control. It also helped them to uncover inconsistencies and redundancies that reflected unaddressed technical debt; for example, policies that collided. Their goal is to consolidate and simplify their static policies into fewer, more comprehensive risk-based policies that block dangerous or unauthorized behavior while allowing employees to sign in faster and more securely to get their work done.&lt;/p&gt;
+
+
+
+&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;To learn more about Conditional Access report-only mode, visit &lt;a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only" rel="noreferrer noopener" target="_blank"&gt;our documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="looking-ahead"&gt;Looking ahead&lt;/h2&gt;
+
+
+
+&lt;p&gt;So far, DOL has integrated more than 200 applications with Entra ID for SSO. The team is still in the monitoring phase as they work to consolidate Conditional Access policies and ensure compliance with security requirements, such as the use of passkeys for accessing high-value assets. Not only are they reducing the number of policies they must maintain, but their logs are also cleaner, and it’s easier to find insights.&lt;/p&gt;
+
+
+
+&lt;p&gt;DOL’s future plans include implementing attestation, which will ensure that employees use a genuine version of the Authenticator app published by Microsoft before registering a passkey. They’re also investigating joining devices to Entra ID so they can centrally manage them from the cloud for easier deployment of updates, policies, and applications. This will also allow them to use policy to enforce enrollment in Windows Hello for Business, further advancing their transition to phishing-resistant authentication.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;Learn more about &lt;a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"&gt;Microsoft Entra ID&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/12/12/convincing-a-billion-users-to-love-passkeys-ux-design-insights-from-microsoft-to-boost-adoption-and-security/?msockid=19c63df6c7b66c801d3c29f1c69b6d43"&gt;Convincing a billion users to love passkeys: UX design insights from Microsoft to boost adoption and security&lt;/a&gt;, Sangeeta Ranjit and Scott Bingham. December 12, 2024.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/27/us-department-of-labors-journey-to-zero-trust-security-with-microsoft-entra-id/"&gt;US Department of Labor’s journey to Zero Trust security with Microsoft Entra ID&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>How DevOps Can Move Fast and Stay Secure with TruRisk</title><link>https://blog.qualys.com/category/product-tech</link><description>Don’t Spend Your Time Fixing Too Many Vulnerabilities In modern DevOps, speed is everything—and so is security. But for most teams, the two feel constantly at odds. The reality? You’re probably spending valuable time fixing vulnerabilities that don’t actually matter. Moreover, there’s always the risk of a regression from an unnecessary patch which can further [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="dont-spend-your-time-fixing-too-many-vulnerabilities"&gt;Don’t Spend Your Time Fixing Too Many Vulnerabilities&lt;/h2&gt;
 
 
 
@@ -3369,7 +3618,7 @@ This improvement is particularly beneficial for users accessing sites through pr
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-4 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://msrc.microsoft.com/" rel="noreferrer noopener" target="_blank"&gt;Learn more about the Microsoft Security Response Center&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -9063,118 +9312,7 @@ CveId,VulnerabilitySeverityLevel,CvssScore,IsExploitAvailable,PublishedDate,Vuln
 
 
 &lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/05/silk-typhoon-targeting-it-supply-chain/"&gt;Silk Typhoon targeting IT supply chain&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Silk Typhoon (HAFNIUM)</category><category>Typhoon</category></item><item><title>Gartner’s 6 Cybersecurity Trends for 2025 – No Surprise That AI Features Prominently</title><link>https://www.techrepublic.com/article/gartner-cybesecurity-trends-2025/</link><description>From addressing burnout to managing machine identities enterprise-wide, here are key topics that CISOs and cybersecurity teams should be focused on this year.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4295233</guid><category>Cybersecurity</category></item><item><title>From Event to Insight: Unpacking a B2B Business Email Compromise (BEC) Scenario</title><link>https://www.trendmicro.com/en_us/research/25/c/from-event-to-insight.html</link><description>Trend Micro™ Managed XDR assisted in an investigation of a B2B BEC attack that unveiled an entangled mesh weaved by the threat actor with the help of a compromised server, ensnaring three business partners in a scheme that spanned for days. This article features investigation insights, a proposed incident timeline, and recommended security practices.</description><guid isPermaLink="false">urn:uuid:bda21144-e6f1-939b-937b-1a8844d92521</guid><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Securing generative AI models on Azure AI Foundry</title><link>https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/</link><description>&lt;p&gt;Discover how Microsoft secures AI models on Azure AI Foundry, ensuring robust security and trustworthy deployments for your AI systems. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/"&gt;Securing generative AI models on Azure AI Foundry&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;New generative AI models with a broad range of capabilities are emerging every week. In this world of rapid innovation, when choosing the models to integrate into your AI system, it is crucial to make a thoughtful risk assessment that ensures a balance between leveraging new advancements and maintaining robust security. At Microsoft, we are focusing on making our AI development platform a secure and trustworthy place where you can explore and innovate with confidence.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Here we’ll talk about one key part of that: how we secure the models and the runtime environment itself. How do we protect against a bad model compromising your AI system, your larger cloud estate, or even Microsoft’s own infrastructure?&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-microsoft-protects-data-and-software-in-ai-systems"&gt;How Microsoft protects data and software in AI systems&lt;/h2&gt;
-
-
-
-&lt;p&gt;But before we set off on that, let me set to rest one very common misconception about how data is used in AI systems. Microsoft does &lt;em&gt;not&lt;/em&gt; use customer data to train shared models, nor does it share your logs or content with model providers. Our AI products and platforms are part of our standard product offerings, subject to the same terms and trust boundaries you’ve come to expect from Microsoft, and your model inputs and outputs are considered customer content and handled with the same protection as your documents and email messages. Our AI platform offerings (&lt;a href="https://azure.microsoft.com/products/ai-foundry" rel="noreferrer noopener" target="_blank"&gt;Azure AI Foundry&lt;/a&gt; and &lt;a href="https://azure.microsoft.com/products/ai-services/openai-service" rel="noreferrer noopener" target="_blank"&gt;Azure OpenAI Service&lt;/a&gt;) are 100% hosted by Microsoft on its own servers, with no runtime connections to the model providers. We do offer some features, such as model fine-tuning, that allow you to use your data to create better models for your own use—but these are &lt;em&gt;your&lt;/em&gt; models that stay in your tenant.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;So, turning to model security: the first thing to remember is that models are just software, running in &lt;a href="https://azure.microsoft.com/products/virtual-machines" rel="noreferrer noopener" target="_blank"&gt;Azure Virtual Machines&lt;/a&gt; (VM) and accessed through an API; they don’t have any magic powers to break out of that VM, any more than any other software you might run in a VM. Azure is already quite defended against software running in a VM attempting to attack Microsoft’s infrastructure—bad actors try to do that every day, not needing AI for it, and AI Foundry inherits all of those protections. This is a “zero-trust” architecture: Azure services do not assume that things running on Azure are safe!&amp;nbsp;&lt;/p&gt;
-
-
-&lt;div class="wp-block-msxcm-kicker-container"&gt;
-	&lt;div class=" wp-block-msxcm-kicker-block wp-block-msxcm-kicker--align-left"&gt;
-		&lt;p class="wp-block-msxcm-kicker__title small text-neutral-400 text-uppercase"&gt;
-			What is Zero Trust?		&lt;/p&gt;
-		&lt;a class="wp-block-msxcm-kicker__cta btn btn-link p-0 text-decoration-none" href="https://www.microsoft.com/security/business/zero-trust" target="_blank"&gt;
-			&lt;span&gt;Learn more&lt;/span&gt; &lt;span class="glyph-append glyph-append-xsmall wp-block-msxcm-kicker__glyph glyph-append-go"&gt;&lt;/span&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p&gt;Now, it &lt;em&gt;is&lt;/em&gt; possible to conceal malware inside an AI model. This could pose a danger to you in the same way that malware in any other open- or closed-source software might. To mitigate this risk, for our highest-visibility models we scan and test them before release:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Malware analysis&lt;/strong&gt;: Scans AI models for embedded malicious code that could serve as an infection vector and launchpad for malware.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Vulnerability assessment&lt;/strong&gt;: Scans for common vulnerabilities and exposures (CVEs) and zero-day vulnerabilities targeting AI models.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Backdoor detection&lt;/strong&gt;: Scans model functionality for evidence of supply chain attacks and backdoors such as arbitrary code execution and network calls.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Model integrity&lt;/strong&gt;: Analyzes an AI model’s layers, components, and tensors to detect tampering or corruption.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;You can identify which models have been scanned by the indication on their model card—no customer action is required to get this benefit. For especially high-visibility models like &lt;a href="https://ai.azure.com/explore/models/DeepSeek-R1/version/1/registry/azureml-deepseek" rel="noreferrer noopener" target="_blank"&gt;DeepSeek R1&lt;/a&gt;, we go even further and have teams of experts tear apart the software—examining its source code, having red teams probe the system adversarially, and so on—to search for any potential issues before releasing the model. This higher level of scanning doesn’t (yet) have an explicit indicator in the model card, but given its public visibility we wanted to get the scanning done before we had the UI elements ready.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="defending-and-governing-ai-models"&gt;Defending and governing AI models&lt;/h2&gt;
-
-
-
-&lt;p&gt;Of course, as security professionals you presumably realize that no scans can detect all malicious action. This is the same problem an organization faces with any other third-party software, and organizations should address it in the usual manner: trust in that software should come in part from trusted intermediaries like Microsoft, but above all should be rooted in an organization’s own trust (or lack thereof) for its provider.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;For those wanting a more secure experience, once you’ve chosen and deployed a model, you can use the full suite of Microsoft’s security products to defend and govern it. You can read more about how to do that here: &lt;a href="https://www.microsoft.com/security/blog/2025/02/13/securing-deepseek-and-other-ai-systems-with-microsoft-security" rel="noreferrer noopener" target="_blank"&gt;Securing DeepSeek and other AI systems with Microsoft Security&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;And of course, as the quality and behavior of each model is different, you should evaluate any model not just for security, but for whether it fits your specific use case, by testing it as part of your complete system. This is part of the wider approach to how to secure AI systems which we’ll come back to, in depth, in an upcoming blog.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="using-microsoft-security-to-secure-ai-models-and-customer-data"&gt;Using Microsoft Security to secure AI models and customer data&lt;/h2&gt;
-
-
-
-&lt;p&gt;In summary, the key points of our approach to securing models on &lt;a href="https://azure.microsoft.com/products/ai-foundry" rel="noreferrer noopener" target="_blank"&gt;Azure AI Foundry&lt;/a&gt; are:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list" start="1"&gt;
-&lt;li&gt;Microsoft carries out a variety of security investigations for key AI models before hosting them in the &lt;a href="https://azure.microsoft.com/products/ai-model-catalog"&gt;Azure AI Foundry Model Catalogue&lt;/a&gt;, and continues to monitor for changes that may impact the trustworthiness of each model for our customers. You can use the information on the model card, as well as your trust (or lack thereof) in any given model builder, to assess your position towards any model the way you would for any third-party software library.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="2"&gt;
-&lt;li&gt;All models hosted on Azure are isolated within the customer tenant boundary. There is no access to or from the model provider, including close partners like OpenAI.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="3"&gt;
-&lt;li&gt;Customer data &lt;a href="https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy" rel="noreferrer noopener" target="_blank"&gt;is not used to train models&lt;/a&gt;, nor is it made available outside of the Azure tenant (unless the customer designs their system to do so).&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more-with-microsoft-security"&gt;Learn more with Microsoft Security&lt;/h2&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/04/securing-generative-ai-models-on-azure-ai-foundry/"&gt;Securing generative AI models on Azure AI Foundry&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Azure</category></item><item><title>How to Use KeePass: Step-by-Step Guide</title><link>https://www.techrepublic.com/article/how-to-use-keepass/</link><description>​KeePass is a popular and free password management tool. Learn about the benefits and techniques to get the most of out of it.</description><category>Cloud Security</category><category>Security</category><category>KeePass</category><category>password manager</category></item><item><title>CISA Releases Eight Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/03/04/cisa-releases-eight-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released eight Industrial Control Systems (ICS) advisories on March 4, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/05/silk-typhoon-targeting-it-supply-chain/"&gt;Silk Typhoon targeting IT supply chain&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Silk Typhoon (HAFNIUM)</category><category>Typhoon</category></item><item><title>Gartner’s 6 Cybersecurity Trends for 2025 – No Surprise That AI Features Prominently</title><link>https://www.techrepublic.com/article/gartner-cybesecurity-trends-2025/</link><description>From addressing burnout to managing machine identities enterprise-wide, here are key topics that CISOs and cybersecurity teams should be focused on this year.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4295233</guid><category>Cybersecurity</category></item><item><title>From Event to Insight: Unpacking a B2B Business Email Compromise (BEC) Scenario</title><link>https://www.trendmicro.com/en_us/research/25/c/from-event-to-insight.html</link><description>Trend Micro™ Managed XDR assisted in an investigation of a B2B BEC attack that unveiled an entangled mesh weaved by the threat actor with the help of a compromised server, ensnaring three business partners in a scheme that spanned for days. This article features investigation insights, a proposed incident timeline, and recommended security practices.</description><guid isPermaLink="false">urn:uuid:bda21144-e6f1-939b-937b-1a8844d92521</guid><category>Trend Micro Research : Web</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>How to Use KeePass: Step-by-Step Guide</title><link>https://www.techrepublic.com/article/how-to-use-keepass/</link><description>​KeePass is a popular and free password management tool. Learn about the benefits and techniques to get the most of out of it.</description><category>Cloud Security</category><category>Security</category><category>KeePass</category><category>password manager</category></item><item><title>CISA Releases Eight Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/03/04/cisa-releases-eight-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released eight Industrial Control Systems (ICS) advisories on March 4, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-063-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-063-01"&gt;Carrier Block Load&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-063-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-063-02"&gt;Keysight Ixia Vision Product Family&lt;/a&gt;&lt;/li&gt;
@@ -13261,155 +13399,7 @@ Assist the product to check for missed scans and manual analysis and marking err
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;These leaks yield insight into the complex ecosystem of relationships between government entities and China’s private sector cybersecurity companies. While many countries have significant overlap between government requirements and private sector cybersecurity firms, the ties between these entities in China are much deeper and represent the state’s grasp on managing public opinion through online enforcement.&lt;/p&gt;
 &lt;p&gt;The September 2023 situation in Shanghai provides insight into how local and national government interests are enforced through private sector partnerships. The CCP’s strategy of controlling information is multifaceted and requires significant investment in resources that enable the monitoring and alteration of content that citizens engage with. While there are still many unknown factors regarding how such censorship is applied, these findings yield insights into how collaboration occurs between the government and other entities in China.&lt;/p&gt;
-&lt;p&gt;The nature of how this data was leaked remains unclear, but the materials show that TopSec engineers were documenting their work in a highly granular way that included entire commands used to perform the outlined tasks. Considering the types of information in this leak, organizations should evaluate how their systems and infrastructure engineers are logging work. Proper credential management is essential to securing sensitive environments. Infrastructure engineers should rely on a secrets manager that integrates with the CI/CD pipeline rather than running commands from playbooks that include hardcoded credentials. This results in only variable names being stored in commands instead of sensitive credentials and lowers the likelihood that an unexpected disclosure could result in further compromise.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=114581</guid><category>China</category></item><item><title>Multi-Factor Authentication Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/multifactor-authentication/</link><description>The need to safeguard sensitive data and systems from unauthorized access is always a major concern. This is especially true for companies that handle vast amounts of documents, such as personal information, financial accounts, and proprietary business resources. Different forms of cyberattacks are becoming more complex, and traditional single-factor authentication methods (e.g., passwords) seem to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/multi-factor-authentication-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Tech &amp; Work</category></item><item><title>Streamline Security: Automate Database Compliance with Qualys Cloud Agent</title><link>https://blog.qualys.com/category/product-tech</link><description>Compliance audit failures remain a critical challenge for organizations, particularly in database security. According to the 2024 Thales Data Threat Report, nearly 43% of companies failed at least one compliance audit in the past year. This is a significant concern because audit failures correlate strongly with security incidents—organizations that failed audits were ten times more [&amp;#8230;]</description><content:encoded>&lt;p&gt;Compliance audit failures remain a critical challenge for organizations, particularly in database security. According to the &lt;a href="https://cpl.thalesgroup.com/data-threat-report"&gt;2024 Thales Data Threat Report&lt;/a&gt;, nearly 43% of companies failed at least one compliance audit in the past year. This is a significant concern because audit failures correlate strongly with security incidents—organizations that failed audits were ten times more likely to experience data breaches, with 31% of non-compliant organizations reporting breaches, compared to only 3% among those that met compliance standards. This underscores the essential role of compliance in maintaining data security as new threats evolve.&lt;/p&gt;
-
-
-
-&lt;p&gt;The increase in cyber threats, especially ransomware and malware, is driving up the pressure on compliance efforts. Human error is a prominent factor, contributing to a large portion of breaches and complicating the compliance landscape, necessitating robust data management and security practices.&lt;/p&gt;
-
-
-
-&lt;p&gt;In response, many organizations are adopting automated compliance solutions, which streamline the audit process and reduce security gaps stemming from human oversight. Automated tools enable organizations to stay audit-ready and more secure, even as regulations change and cyber threats grow more sophisticated.&lt;/p&gt;
-
-
-
-&lt;span id="more-37106"&gt;&lt;/span&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Sign up for our February 27, 2025 webinar, &lt;em&gt;Streamline Your Security: Automate Compliance Database Assessments with Qualys Cloud Agent&lt;/em&gt;. &lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.brighttalk.com/webcast/11673/635317?utm_source=blog&amp;#038;utm_medium=website&amp;#038;utm_campaign=635317" style="background-color: #ed2e26;"&gt;Register Today&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-importance-of-database-compliance-and-challenges"&gt;&lt;strong&gt;The Importance of Database Compliance and Challenges&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Database compliance has become a priority across industries in today&amp;#8217;s data-driven world. With regulations like GDPR, PCI DSS, CIS, and HIPAA imposing stringent requirements, non-compliance poses risks such as data breaches that compromise sensitive information, substantial financial penalties that can affect the organization’s stability, and reputational damage that undermines stakeholder trust. Compliance protects sensitive data, builds customer trust, and maintains an organization’s reputation, and is increasingly vital as regulatory enforcement intensifies. This environment calls for a comprehensive approach to database security management, integrating best practices to keep data secure and compliant.&lt;/p&gt;
-
-
-
-&lt;p&gt;Traditional authenticated compliance scans face significant challenges despite offering advantages such as centralized management and scalability. Failing to securely share and manage credentials for database access increases the risk of unauthorized access, creating potential security vulnerabilities.&lt;/p&gt;
-
-
-
-&lt;p&gt;Network-based scans can consume substantial bandwidth, potentially impacting system and network performance, particularly in large environments. Authentication and authorization failures are also common, causing delays and requiring repeated attempts to access resources. These failures can slow down the scanning process and affect overall network efficiency.&lt;/p&gt;
-
-
-
-&lt;p&gt;Furthermore, remote scanners may struggle to detect issues hidden behind firewalls, VPNs, or complex network configurations. Together, these factors complicate the overall management of compliance scans.&lt;/p&gt;
-
-
-
-&lt;p&gt;Qualys Policy Compliance&amp;#8217;s current offering provides comprehensive database compliance policy coverage and offers flexibility through various data collection sensors, such as scanners and cloud agents.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Database-Assessment_2@2x.png"&gt;&lt;img alt="" class="wp-image-37122" height="1254" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Database-Assessment_2@2x.png" width="2114" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Even though Qualys Scanner encounters challenges like those associated with traditional authenticated remote scanning, it addresses many of these issues by offering long-standing support for database authentication and assessment for policy compliance. With a vast scope of supported databases, Qualys Scanner streamlines the process of scanning and assessing database environments, helping organizations ensure compliance while minimizing performance impact.&lt;/p&gt;
-
-
-
-&lt;p&gt;In contrast, the Qualys Cloud Agent has so far only supported OS-level database assessments. Although its scope has been more limited than the Qualys Scanner—primarily focusing on OS-AUTH level controls for specific database technologies—it offers a flexible and secure method for performing assessments, even in complex or challenging environments. There is no network impact, and it is also best suited for assets where you are unable to get credentials, see continuous authentication failures, or have servers that are sensitive to port scans.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Database-Assessment_3@2x.png"&gt;&lt;img alt="" class="wp-image-37123" height="1254" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Database-Assessment_3@2x.png" width="2114" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;While the cloud agent has been excellent at monitoring, it previously lacked the capability to perform comprehensive database assessments due to its inability to log into databases directly.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-qualys-cloud-agents-database-authentication-and-assessment"&gt;&lt;strong&gt;Introducing Qualys Cloud Agent’s Database Authentication and Assessment&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;To address these challenges head-on, Qualys is enhancing its capabilities with the introduction of a database assessment feature using the Qualys Cloud Agent. This robust, cloud-native solution is designed to continuously monitor and assess databases for compliance with security policies, providing organizations with the tools they need to stay ahead of potential risks. With support for Oracle and MS SQL databases, Qualys Cloud Agent ensures adherence to multiple CIS, DISA, NIST, and many more benchmark policies, reinforcing a strong security posture.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Graphic-4@2x.png"&gt;&lt;img alt="" class="wp-image-37125" height="1254" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/Graphic-4@2x.png" width="2114" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The Cloud Agent&amp;#8217;s Database Authentication and Assessment feature enables secure, automated database assessments by connecting directly to a vault provider to retrieve credentials and authenticate databases. This approach enables organizations to streamline database security management effectively. This innovative approach not only enhances the organization&amp;#8217;s overall security posture but also ensures compliance without the manual overhead traditionally associated with database assessments.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="key-features-of-database-assessment"&gt;&lt;strong&gt;Key Features of Database Assessment&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;1. &lt;strong&gt;Vault and Secret Manager Integration&lt;/strong&gt;: Supports integration with CyberArk Vault and different secret manager types (Credential Provider, Central Credential Provider) for secure database credential management.&lt;/p&gt;
-
-
-
-&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;2. &lt;strong&gt;Database Assessment Configuration&lt;/strong&gt;: Cloud Agent connects directly to a vault provider (e.g., CyberArk Vault) to securely fetch credentials for Oracle and SQL Server database assessments.&lt;br /&gt;3. &lt;strong&gt;Assessment Management&lt;/strong&gt;: The Assessment tab allows creating, viewing, editing, and deleting database assessments, with options for tagging and assigning profiles.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="benefits-of-the-database-assessment-feature"&gt;&lt;strong&gt;Benefits of the Database Assessment Feature&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p&gt;1. &lt;strong&gt;Regulatory Compliance&lt;/strong&gt;: The ability to perform policy compliance checks ensures that organizations can meet the stringent requirements of regulations like GDPR, PCI DSS, CIS, ISO, and HIPAA, thereby mitigating the risk of costly penalties.&amp;nbsp;&lt;br /&gt;2. &lt;strong&gt;Enhanced Compliance Posture&lt;/strong&gt;: Identifying misconfigurations early allows organizations to address misconfigurations before they are exploited, improving overall security and compliance. By remediating these issues proactively, companies can reduce the risk of breaches and ensure adherence to regulatory standards, avoiding audit failures and penalties.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/db_assessment.png"&gt;&lt;img alt="" class="wp-image-37126" height="1470" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/01/db_assessment.png" width="1705" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;3. &lt;strong&gt;Comprehensive Assessments&lt;/strong&gt;: The Qualys Cloud Agent performs in-depth assessments of databases, identifying compliance gaps that could pose risks to the organization.&amp;nbsp;&lt;br /&gt;4. &lt;strong&gt;Continuous Monitoring&lt;/strong&gt;: With real-time monitoring capabilities, organizations can stay informed about their database security status and quickly address any compliance issues as they arise.&amp;nbsp;&lt;br /&gt;5. &lt;strong&gt;Automation&lt;/strong&gt;: The Qualys Cloud Agent performs daily automated scans, eliminating the need for manual scheduling. This lets organizations reduce the time and resources required for manual checks, allowing security teams to focus on strategic initiatives rather than routine compliance tasks.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-to-get-started"&gt;&lt;strong&gt;How to Get Started&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;By April 2025, the feature will be enabled by default for all Qualys Policy Compliance-enabled accounts. Until then, customers must contact Qualys support or the respective Technical Account Manager (TAM) to enable the feature.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The launch of the database assessment feature via the Qualys Cloud Agent represents a significant advancement in database security. By providing organizations with the tools to automate compliance checks and continuously monitor their databases, Qualys empowers businesses to protect their sensitive data more effectively than ever before. In an age where data breaches and regulatory penalties can have devastating consequences, the ability to ensure compliance and enhance security posture is not just beneficial—it is essential for sustained business success.&lt;/p&gt;
-
-
-
-&lt;p&gt;With Qualys, organizations can navigate the complexities of database security with confidence, knowing they have a powerful ally in their quest for compliance and security excellence.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Contact your TAM and Enable Today!&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Current Qualys customers can contact their technical account manager (TAM) to arrange a demo and discuss how this feature can be tailored to their specific needs.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37106</guid><category>Product and Tech</category><category>Qualys Cloud Agent</category></item><item><title>The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions</title><link>https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/</link><description>&lt;p&gt;Executive Summary Why We Care about Sandbox Emulation As a discipline, information security involves a vast web of entry vectors, mitigations, and counter-mitigations. Among these, one of the most impactful points of conflict between attackers and defenders is what happens when binaries are subjected to sandbox emulation. Purely static analysis has been understood to be [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The nature of how this data was leaked remains unclear, but the materials show that TopSec engineers were documenting their work in a highly granular way that included entire commands used to perform the outlined tasks. Considering the types of information in this leak, organizations should evaluate how their systems and infrastructure engineers are logging work. Proper credential management is essential to securing sensitive environments. Infrastructure engineers should rely on a secrets manager that integrates with the CI/CD pipeline rather than running commands from playbooks that include hardcoded credentials. This results in only variable names being stored in commands instead of sensitive credentials and lowers the likelihood that an unexpected disclosure could result in further compromise.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=114581</guid><category>China</category></item><item><title>Multi-Factor Authentication Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/multifactor-authentication/</link><description>The need to safeguard sensitive data and systems from unauthorized access is always a major concern. This is especially true for companies that handle vast amounts of documents, such as personal information, financial accounts, and proprietary business resources. Different forms of cyberattacks are becoming more complex, and traditional single-factor authentication methods (e.g., passwords) seem to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/multi-factor-authentication-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Tech &amp; Work</category></item><item><title>The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions</title><link>https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/</link><description>&lt;p&gt;Executive Summary Why We Care about Sandbox Emulation As a discipline, information security involves a vast web of entry vectors, mitigations, and counter-mitigations. Among these, one of the most impactful points of conflict between attackers and defenders is what happens when binaries are subjected to sandbox emulation. Purely static analysis has been understood to be [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/"&gt;The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;/p&gt;
 
 
