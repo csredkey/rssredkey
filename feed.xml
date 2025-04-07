@@ -1,5 +1,353 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 07 Apr 2025 15:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>XORsearch: Searching With Regexes</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>PRESS RELEASE: Privacy International and Liberty complaint against Government’s ‘backdoor’ access to Apple data to be heard by Tribunal</title><link>http://privacyinternational.org/press-release/5553/press-release-privacy-international-and-liberty-complaint-against-governments</link><guid isPermaLink="false">5553 at http://privacyinternational.org</guid></item><item><title>XORsearch: Searching With Regexes, (Mon, Apr 7th)</title><link>https://isc.sans.edu/diary/rss/31834</link><description>&lt;p&gt;Xavier asked me a question from one of his FOR610 students: "how can you perform a regex search with XORsearch"&amp;#x3f;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Xavier asked me a question from one of his FOR610 students: &amp;quot;how can you perform a regex search with XORsearch&amp;quot;?&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 07 Apr 2025 16:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>XORsearch: Searching With Regexes</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Steps to TruRisk™ – 2: Measuring the Likelihood of Vulnerability Exploitation</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>Cybersecurity programs rely on various methods to measure the risk associated with vulnerabilities for prioritization, such as CVSS, EPSS, CISA KEV, or even internally developed systems that combine multiple approaches. While these methods help assess whether a specific vulnerability exists on an asset and define its severity, traditional frameworks like CVSS often overlook the likelihood [&amp;#8230;]</description><content:encoded>&lt;p&gt;Cybersecurity programs rely on various methods to measure the risk associated with vulnerabilities for prioritization, such as CVSS, EPSS, CISA KEV, or even internally developed systems that combine multiple approaches. While these methods help assess whether a specific vulnerability exists on an asset and define its severity, traditional frameworks like CVSS often overlook the likelihood of exploitation. While EPSS and CISA KEV provide more direct insight into the likelihood of exploitation, many programs still rely heavily on severity scores alone, which can leave gaps in understanding the true risk. This oversight can hinder organizations from making fully informed decisions about managing risk for their business and digital assets.&lt;/p&gt;
+
+
+
+&lt;p&gt;To bridge this gap, Qualys Vulnerability Score (QVS) and Qualys Detection Score (QDS), key components of &lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt;&lt;/a&gt;, leverage over 25 sources of threat intelligence to measure the likelihood of vulnerability exploitation. While other methods may only capture part of the picture or require additional calculations, we aggregate and analyze this data automatically through one comprehensive solution. Our continuously updated scores provide cybersecurity teams with confidence in their assessments, give remediation owners assurance that their efforts are making a measurable impact, and offer business stakeholders certainty that risk management strategies are effectively reducing organizational exposure.&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog is the second installment in the &lt;a href="https://blog.qualys.com/product-tech/2024/12/18/steps-to-trurisk-insight-to-action-with-vmdr"&gt;five-part Steps to TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; series&lt;/a&gt; on operationalizing a risk-based vulnerability management program with Qualys TruRisk. In this post, we explore why adopting such a system is essential for driving meaningful risk reduction.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;Before we dive into Step 2&lt;/em&gt;, e&lt;em&gt;xplore the &lt;strong&gt;&lt;a href="https://blog.qualys.com/product-tech/2025/03/10/steps-to-trurisk-1-shift-to-priority-driven-strategies"&gt;Step 1&lt;/a&gt; of our five-part series&lt;/strong&gt; to get insights into priority-driven risk management strategies!&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p class="has-cyan-bluish-gray-color has-text-color has-link-color wp-elements-6c5da5ad5c0c7d23114e2fd94063cc6c"&gt;&lt;/p&gt;
+
+
+
+&lt;span id="more-37522"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="victory-belongs-to-the-well-informed"&gt;Victory Belongs to the Well-Informed&lt;/h2&gt;
+
+
+
+&lt;p&gt;Success in any battle, whether on the battlefield or in cybersecurity, depends on more than sheer strength. It requires intelligence, strategic insights, and the ability to act on the right information at the right time. Leaders throughout history have turned to covert networks to uncover critical information, disrupt enemy plans, and anticipate the next move. One of the most striking examples comes from the American Revolution, where intelligence networks provided critical insights that helped shape strategic decisions.&lt;/p&gt;
+
+
+
+&lt;p&gt;In 1775, thirteen American colonies stood on the brink of Revolutionary war against the most powerful military and colonial force in the world. Victory would demand more than sheer firepower, it would require intelligence, grit, and relentless innovation.&lt;/p&gt;
+
+
+
+&lt;p&gt;During the war, George Washington relied on an intelligence network to track enemy movements and gain a strategic edge—proving that timely, accurate insights can turn the tide of conflict. He authorized the Culper Ring, a covert intelligence network operating behind enemy lines. Its members risked their lives to gather and relay critical information, using coded messages, dead drops, and invisible ink to evade detection. Their intelligence shaped key strategic decisions, exposing threats, disrupting enemy plans, and keeping the Continental Army ahead of its adversaries. Victory in war was not won by force alone, but through precision, deception, and the mastery of strategy.&lt;/p&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;&lt;em&gt;The necessity of procuring good Intelligence is apparent and need not be further urged. &lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;&lt;em&gt;– George Washington&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex"&gt;
+&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/culper_figure_1.jpg"&gt;&lt;img alt="" class="wp-image-37526" height="1614" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/culper_figure_1-1070x1614.jpg" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/culper_figure_2-1.jpg"&gt;&lt;img alt="" class="wp-image-37525" height="679" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/culper_figure_2-1.jpg" width="501" /&gt;&lt;/a&gt;&lt;/figure&gt;
+&lt;figcaption class="blocks-gallery-caption wp-element-caption"&gt;&lt;em&gt;Culper-Ring Codebook&amp;nbsp; | Lydia Darrah Giving Warning: Photo Credit &amp;#8211; Mount Vernon | US History&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This same principle applies to cybersecurity today. Organizations are constantly under siege by evolving cyber threats. But the challenge isn’t just about fending off attacks, it’s about knowing where to focus. With thousands of vulnerabilities and alerts flooding security teams daily, the real struggle is identifying which risks matter most and require immediate action.&lt;/p&gt;
+
+
+
+&lt;p&gt;By delivering clear, contextualized risk intelligence, Qualys TruRisk helps businesses cut through the noise, prioritize the most pressing threats, and allocate resources effectively. Just as intelligence networks shaped the outcomes of historic conflicts, actionable cybersecurity insights can mean the difference between a reactive defense and a proactive, strategic advantage.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="defining-the-components-of-likelihood-of-exploit"&gt;Defining the Components of Likelihood of Exploit&lt;/h2&gt;
+
+
+
+&lt;p&gt;The likelihood of vulnerability exploitation is a key part of the risk equation, expressed as &lt;strong&gt;Risk = Likelihood × Impact&lt;/strong&gt;. Likelihood itself is determined by &lt;strong&gt;Threat × Vulnerability&lt;/strong&gt;. &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;A vulnerability is a weakness in a system or process that could be exploited by a threat.&lt;/li&gt;
+
+
+
+&lt;li&gt;A threat is any action or event that could adversely affect that system or process.&lt;/li&gt;
+
+
+
+&lt;li&gt;Exploitation occurs when an attacker takes advantage of a vulnerability.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;For risk to exist, a vulnerability must have a corresponding threat that can exploit it. If a vulnerability exists but is not actively exploited and no known proof of concept is available, then the likelihood of exploitation is very low. Conversely, if a credible threat exists but the vulnerability has been patched, the likelihood of exploitation is effectively zero.&lt;/p&gt;
+
+
+
+&lt;p&gt;To truly manage risk, it&amp;#8217;s important to understand how the likelihood of exploitation works. Think of it like this: a vulnerability is like an unlocked door, and a threat is someone who knows how to walk through it. But for risk to become real, there needs to be a perfect storm—an active threat ready to exploit that open door. If the door’s locked, even the most skilled intruder can’t get through. By assessing both vulnerabilities and active threats, organizations can focus on the risks that matter most. A well-informed approach ensures that resources are allocated efficiently, reducing exposure to real-world attacks while avoiding unnecessary panic over theoretical risks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-role-of-cvss-epss-and-cisa-kev-in-risk-assessment"&gt;The Role of CVSS, EPSS, and CISA KEV in Risk Assessment&lt;/h2&gt;
+
+
+
+&lt;p&gt;CVSS is the industry standard for measuring the severity of a vulnerability. However, CVSS lacks organizational context. It quantifies how dangerous a vulnerability could be, but not how dangerous it actually is to a specific organization. It does not consider security controls in place, the criticality of the affected asset, or environmental factors that may impact risk. Additionally, CVSS temporal metrics, which attempt to account for exploit code maturity, are not updated consistently, making them unreliable for dynamic risk assessment.&lt;/p&gt;
+
+
+
+&lt;p&gt;One challenge with CVSS is that over half of all vulnerabilities are categorized as Critical or High. Another challenge is that out of the full breadth of CVEs listed in the NVD, only about 3 to 4 percent contribute to the highest risk. These include vulnerabilities with active exploits, inclusion in the CISA KEV catalog, exploitation by malware or ransomware, use by threat actors, or widespread recognition, often called celebrity vulnerabilities. Without additional context, organizations struggle to determine which vulnerabilities should be prioritized. If everything is labeled critical, then nothing truly is, leading to inefficiencies in remediation efforts.&lt;/p&gt;
+
+
+
+&lt;p&gt;To address this, EPSS and CISA KEV focus on the likelihood of exploitation, providing valuable insight into which vulnerabilities pose the most immediate risk. However, these models do not factor in severity as defined by CVSS, meaning they must be used alongside other assessments to provide a complete risk picture.&lt;/p&gt;
+
+
+
+&lt;p&gt;Given the overwhelming number of vulnerabilities and limited remediation resources, organizations need a risk-based approach that incorporates both severity and likelihood while also factoring in asset context. While CVSS does provide mechanisms for integrating temporal and environmental factors, applying these consistently can be complex and time-consuming, requiring additional effort to define and maintain reliable metrics.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-case-for-context-why-meaningful-remediation-is-critical"&gt;The Case for Context: Why Meaningful Remediation is Critical&lt;/h2&gt;
+
+
+
+&lt;p&gt;One point of contention between IT and Cybersecurity is that the IT teams perceive that the Cybersecurity team which is going through and identifying a volume of vulnerabilities is not looking deeper into the how likely the vulnerability is to be an actual problem. IT teams often feel that they are being asked to remediate issues simply because a vulnerability appears technically severe under certain conditions—even when there is no proof of concept or active exploitation. This disconnect can create frustration, as teams struggle to prioritize meaningful security efforts over theoretical risks.&lt;/p&gt;
+
+
+
+&lt;p&gt;It is better if the IT teams know that their contributions for risk reduction highly matter to the organization and are a vital part of the business strategy. That they are truly helping defend the organization against a vulnerability that pose a legitimate threat, instead of digging the proverbial ditch that devolves into what feels like busywork by reducing a never-ending tumult of volumetrics that doesn’t really move the needle of risk in an organization. This deteriorates the credibility of the Cybersecurity team, and it leaves the IT teams doing work that feels devoid of meaning.&lt;/p&gt;
+
+
+
+&lt;p&gt;Restoring trust between IT and Cybersecurity starts with focusing on real threats. To shift from high-volume remediation to high-impact action, teams need risk context. This is where QVS and QDS become a game changer. QVS scores vulnerabilities by their likelihood of exploitation, while QDS applies that insight at the asset level—factoring in compensating controls to show true risk. Together, they provide a new kind of clarity to the teams and help them move from reactive remediation to strategic risk reduction.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-vulnerability-score-qvs-a-unified-measure-of-exploitability"&gt;Qualys Vulnerability Score (QVS): A Unified Measure of Exploitability&lt;/h2&gt;
+
+
+
+&lt;p&gt;The Qualys Vulnerability Score (QVS) quantifies the likelihood of exploitation by consolidating all threat intelligence associated with a CVE into a single score. The risk factors that contribute to each QVS score provide clear evidence to stakeholders, making it easier to understand the risk associated with a vulnerability.&lt;/p&gt;
+
+
+
+&lt;p&gt;QVS is derived from two key factors:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Technical Details&lt;/strong&gt; (CVSS score)&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Temporal Details&lt;/strong&gt; (External threat intelligence, exploit code maturity and trending data)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Qualys calculates a QVS for every vulnerability in the National Vulnerability Database (NVD), whether or not a Qualys detection has been built for it. This serves two purposes:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;The score is ready for when a Qualys detection is delivered to the platform.&lt;/li&gt;
+
+
+
+&lt;li&gt;It enables Enterprise TruRisk Management (ETM) customers to measure the likelihood of exploit for vulnerabilities imported from other vulnerability detection tools that standardize at the CVE level.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;This approach leads to a more comprehensive measure of risk across assets, helping organizations strengthen their cybersecurity posture.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-detection-score-qds-operationalizing-risk"&gt;Qualys Detection Score (QDS): Operationalizing Risk&lt;/h2&gt;
+
+
+
+&lt;p&gt;For VMDR, the Qualys Detection Score (QDS) is derived from the highest Qualys Vulnerability Score (QVS) among any associated CVEs. When multiple CVEs contribute to a QID, the CVE with the highest CVSS score is used in the QDS calculation.&lt;/p&gt;
+
+
+
+&lt;p&gt;QDS is derived from two factors:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;The highest QVS of all associated CVEs&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Compensating Controls&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;To learn more, explore &amp;#8216;Understanding Qualys Detection Scores&amp;#8217; in our &lt;a href="https://docs.qualys.com/en/etm/1.0.0/appendix/calculating_true_risk_score.htm"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; documentation&lt;/a&gt;, which includes a table listing the factors present at each QDS level.&lt;/p&gt;
+
+
+
+&lt;p&gt;QDS values assigned to vulnerabilities are also applied to web assets with Total Application Security (TAS), Container workloads in Container Security (CS), and are reflected on assets in Global AssetView/Cybersecurity Asset Management that are entitled for VMDR.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Compensating Controls&lt;/h3&gt;
+
+
+
+&lt;p&gt;The QDS assigned to an asset represents the inherent risk of that vulnerability. With &lt;a href="https://www.qualys.com/apps/trurisk-mitigate/"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; Mitigate&lt;/a&gt;, part of our &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt; portfolio, customers can apply compensating controls to endpoints, reducing the QDS score to reflect residual risk. This is particularly valuable when a vendor has not yet released a patch for a new vulnerability, and a configuration change on the asset can reduce its exposure risk.&lt;/p&gt;
+
+
+
+&lt;p&gt;When reviewing the TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2122.png" style="height: 1em;" /&gt; score for an asset, the individual vulnerability scores that contribute to that score are expressed as QDS values. We will explore this further in Step 3 of our &lt;em&gt;Five-Steps to TruRi&lt;/em&gt;sk blog series.&lt;/p&gt;
+
+
+
+&lt;p&gt;For example, with CVE-2021-34527 (Print Nightmare), stopping the print service would prevent exploitation of the vulnerability. However, since the underlying code facilitating the vulnerability remains on the system, the risk is still assessed, but the QDS score for that asset will be reduced. When prioritizing vulnerabilities across your environment, those that remain unmitigated will receive higher scrutiny.&lt;/p&gt;
+
+
+
+&lt;p&gt;Additionally, we offer a beta feature for PC Control mitigation. If a PC Control passes for certain vulnerabilities, we’ll reduce the QDS for affected assets. To learn more about activating this beta feature and to obtain release notes, please reach out to your TAM.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Using QDS Beyond Vulnerabilities&lt;/h3&gt;
+
+
+
+&lt;p&gt;QDS score assessments are not limited to vulnerabilities found throughout the Qualys platform. Risk factors beyond vulnerabilities can generate their own QDS scores, which contribute to an asset&amp;#8217;s TruRisk score provided the subscription owner has adopted the Cybersecurity Asset Management (CSAM) and Policy Compliance modules.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Unauthorized Ports (CSAM) – Assigns a QDS score based on the risk posed by open ports..&lt;/li&gt;
+
+
+
+&lt;li&gt;End of Support (CSAM) – Assigns a QDS score based on vulnerabilities associated with End of Life or End of Service status of operating systems or software.&lt;/li&gt;
+
+
+
+&lt;li&gt;Missing Required Software (CSAM) – Applies a custom QDS score when defined software required for asset protection is missing.&lt;/li&gt;
+
+
+
+&lt;li&gt;Unauthorized Software (CSAM) – Applies a QDS score when defined rules identify software on an asset that poses organizational risk.&lt;/li&gt;
+
+
+
+&lt;li&gt;Misconfigurations (PC) &amp;#8211; Applies a QDS score to assets based on failed controls linked to misconfigurations.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="practical-evaluation-of-qds-vs-cvss"&gt;Practical Evaluation of QDS vs CVSS&lt;/h2&gt;
+
+
+
+&lt;p&gt;Risk appetite refers to the level of risk an organization is willing to accept in pursuit of its objectives before requiring mitigation or action. In vulnerability prioritization, organizations may choose to accept the risk associated with certain vulnerabilities such as those with low CVSS or Qualys Severity scores while placing greater emphasis on remediating vulnerabilities with higher scores, even if no immediate threat is detected.&lt;/p&gt;
+
+
+
+&lt;p&gt;However, a vulnerability with a low CVSS score can still have a high QDS score. This often happens because attackers tend to exploit overlooked vulnerabilities, leveraging them to evade detection. Organizations relying solely on CVSS or traditional vulnerability management policies and SLAs may miss these risks, leaving them exposed.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Low CVSS criticality, with high QDS&lt;/h3&gt;
+
+
+
+&lt;p&gt;To identify vulnerabilities with a QDS of 90 or higher and Low CVSS criticality, use the following QQL query:&lt;/p&gt;
+
+
+
+&lt;p class="has-vivid-cyan-blue-color has-text-color has-link-color wp-elements-037e28e8a039e442b7662e4c300cec27"&gt;&lt;em&gt;vulnerabilities.detectionScore&amp;gt;=90 and vulnerabilities.vulnerability.criticality:LOW&lt;/em&gt;&amp;nbsp; &lt;em&gt;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;In the example result below, CVE-2023-20867 has a CVSS score of 3.9, yet it appears on the CISA KEV list, is linked to an active malware campaign, and is being exploited by multiple threat actors demonstrating why QDS provides critical insights beyond CVSS alone.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/qds_figure_3-1.png"&gt;&lt;img alt="" class="wp-image-37527" height="493" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/qds_figure_3-1-1070x493.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;High to Critical CVSS, Low QDS&lt;/h3&gt;
+
+
+
+&lt;p&gt;Conversely, some vulnerabilities may have a high CVSS score but a low QDS score if they lack active exploitation or associated threats.&lt;/p&gt;
+
+
+
+&lt;p&gt;To identify vulnerabilities with a QDS of 70 or lower and Critical CVSS classification, use the following QQL query:&lt;/p&gt;
+
+
+
+&lt;p class="has-vivid-cyan-blue-color has-text-color has-link-color wp-elements-2650596b82938cc9d32688242c1028b4"&gt;&lt;em&gt;vulnerabilities.detectionScore&amp;gt;=70 and vulnerabilities.vulnerability.criticality:LOW&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;For example, CVE-2021-43905 has a critical CVSS score of 9.6, yet its QDS remains low due to the absence of known exploits or malware activity so the likelihood of exploitation is low.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/qds_figure_4-1.png"&gt;&lt;img alt="" class="wp-image-37528" height="493" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/qds_figure_4-1-1070x493.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Understanding the distinction between CVSS and QDS will enable you to fine-tune your organization’s vulnerability strategy. Rather than solely relying on static severity scores, prioritize efforts using real world risk factors will ensure remediation efforts are directed where they matter most.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="from-overload-to-actionable-insights"&gt;From Overload to Actionable Insights&lt;/h2&gt;
+
+
+
+&lt;p&gt;Security teams often face an overwhelming number of vulnerabilities, many of which may never be exploited. The challenge isn’t just finding vulnerabilities but knowing which ones actually matter. TruRisk Step 2 provides the intelligence needed to move from raw data to actionable insights, ensuring that security efforts are focused on the threats that pose the greatest risk to the organization. By combining real-time threat intelligence with asset context and exploitability data, security teams can prioritize remediation with confidence.&lt;/p&gt;
+
+
+
+&lt;p&gt;With tools like the Qualys Vulnerability Score (QVS) and Qualys Detection Score (QDS), teams can go beyond generic severity ratings and understand the real likelihood of exploitation. This shifts security from a reactive approach—where teams chase every possible risk—to a strategic model that balances efficiency with effectiveness. The result is a security program that not only reduces risk but also aligns with broader business objectives, ensuring that resources are used where they have the most impact.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;If you&amp;#8217;re not yet using VMDR to measure, communicate, and eliminate risk, we invite you to start a risk-free 30-day trial.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/vmdr/" style="background-color: #ed2e26;"&gt;Try Now&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Contributors&lt;/h3&gt;
+
+
+
+&lt;p&gt;Anthony Williams, Subject Matter Expert, VMDR&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37522</guid><category>Product and Tech</category><category>VMDR</category><category>Qualys TruRisk</category><category>TruRisk Score</category><category>vulnerability management</category></item><item><title>PRESS RELEASE: Privacy International and Liberty complaint against Government’s ‘backdoor’ access to Apple data to be heard by Tribunal</title><link>http://privacyinternational.org/press-release/5553/press-release-privacy-international-and-liberty-complaint-against-governments</link><guid isPermaLink="false">5553 at http://privacyinternational.org</guid></item><item><title>XORsearch: Searching With Regexes, (Mon, Apr 7th)</title><link>https://isc.sans.edu/diary/rss/31834</link><description>&lt;p&gt;Xavier asked me a question from one of his FOR610 students: "how can you perform a regex search with XORsearch"&amp;#x3f;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Xavier asked me a question from one of his FOR610 students: &amp;quot;how can you perform a regex search with XORsearch&amp;quot;?&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://blog.didierstevens.com/programs/xorsearch/"&gt;XORsearch&lt;/a&gt; is a tool like grep but it performs a brute-force attack on the input file, trying out different encodings like XOR.&lt;/p&gt;
 
@@ -12666,97 +13014,7 @@ tsarinahome.com&lt;/p&gt;
 
 
 
-&lt;p&gt;CVE-2017-11882, CVE-2021-26855, CVE-2021-28482, CVE-2021-40444, CVE-2021-42278, CVE-2021-42287, CVE-2021-42321, CVE-2021-44228, CVE-2022-0609, CVE-2022-1388, CVE-2022-22965, CVE-2022-26134, CVE-2022-27925, CVE-2022-30190, CVE-2022-30525, CVE-2022-37042, CVE-2022-37969, CVE-2022-41040, CVE-2022-41082, CVE-2022-41352, CVE-2023-20198, CVE-2023-21716, CVE-2023-22515, CVE-2023-29357, CVE-2023-35628, CVE-2023-36394, CVE-2023-36745, CVE-2023-36845, CVE-2023-36874, CVE-2023-36884, CVE-2023-38831, CVE-2023-42115, CVE-2023-42793, CVE-2023-4966, CVE-2023-6875, CVE-2023-7027, CVE-2023-7028, CVE-2024-1086, CVE-2024-1709, CVE-2024-21338, CVE-2024-21378, CVE-2024-21413, CVE-2024-21683, CVE-2024-21762, CVE-2024-23108, CVE-2024-23109, CVE-2024-23113, CVE-2024-23897, CVE-2024-24919, CVE-2024-25600, CVE-2024-26169, CVE-2024-27198, CVE-2024-3400, CVE-2017-5753, CVE-2017-5754, CVE-2020-1472, CVE-2023-23397, CVE-2023-3466, CVE-2023-3467, CVE-2023-3519, CVE-2023-36844, CVE-2024-1708&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37340</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>Black Basta</category><category>ransomware</category><category>ransomware defense</category></item><item><title>Qualys TotalCloud KCS Achieves Red Hat Vulnerability Scanner Certification</title><link>https://blog.qualys.com/category/product-tech</link><description>We’re excited to announce that Qualys TotalCloud Kubernetes and Container Security (KCS) has achieved the Red Hat Vulnerability Scanning Certification, reinforcing our commitment to unbiased, 6-sigma accurate vulnerability detection. By meeting Red Hat’s rigorous security standards, Qualys TotalCloud KCS extends its industry-leading accuracy across Red Hat OpenShift, Quay.io, RHEL, and CoreOS—critical components in modern cloud-native [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re excited to announce that &lt;a href="https://www.qualys.com/apps/container-security/"&gt;Qualys TotalCloud Kubernetes and Container Security (KCS)&lt;/a&gt; has achieved the &lt;strong&gt;&lt;a href="https://catalog.redhat.com/software/vulnerability-scanner/detail/267277"&gt;Red Hat Vulnerability Scanning Certification&lt;/a&gt;&lt;/strong&gt;, reinforcing our commitment to unbiased, 6-sigma accurate vulnerability detection. By meeting Red Hat’s rigorous security standards, Qualys TotalCloud KCS extends its industry-leading accuracy across Red Hat OpenShift, Quay.io, RHEL, and CoreOS—critical components in modern cloud-native and containerized environments.&lt;/p&gt;
-
-
-
-&lt;span id="more-37326"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-evolution-of-vulnerability-management-context-clarity-confidence"&gt;&lt;strong&gt;The Evolution of Vulnerability Management: Context, Clarity, Confidence&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Today, &lt;a href="https://www.qualys.com/apps/container-security/"&gt;vulnerability management&lt;/a&gt; is more than just identifying security gaps—it’s about precise, real-time risk assessment with minimal noise. Security teams struggle with overwhelming alerts, false positives, and incomplete data, making it difficult to focus on real threats.&lt;/p&gt;
-
-
-
-&lt;p&gt;Unlike traditional scanners that often rely on assumptions, incomplete data, or generic CVE feeds, Qualys TotalCloud KCS takes a fundamentally different approach. Our scanning methodology integrates official insights from Red Hat’s Product Security Team with our 25+ security intelligence feeds, ensuring:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Combined Context and Correlation From Red Hat&lt;/strong&gt;: By integrating Red Hat’s official security intelligence with Qualys’ 25+ security feeds, we provide richer vulnerability context and deeper correlation. This ensures that security teams get the most relevant and actionable insights—mapping vulnerabilities across Red Hat containers, images, and workloads with enriched intelligence from multiple sources.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Zero Noise, No Guesswork&lt;/strong&gt;: Qualys TotalCloud KCS eliminates unnecessary noise by leveraging Red Hat’s authoritative security intelligence. If Red Hat determines a vulnerability does not affect an asset, TotalCloud KCS suppresses it from reports. Related CVEs are consolidated into a single detection, reducing alert fatigue and making remediation efforts more focused.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Instant, Verified Patch Guidance&lt;/strong&gt;: When a fix is available, Qualys TotalCloud KCS directly links to Red Hat-approved patches, streamlining remediation and reducing the time to resolution.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Automated Risk Propagation&lt;/strong&gt;: Vulnerabilities detected in &lt;strong&gt;Quay.io registries&lt;/strong&gt; automatically propagate to running containers, ensuring real-time risk visibility and proactive security measures.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;By taking this approach, Qualys TotalCloud KCS not only enhances detection accuracy but also simplifies security operations, helping enterprises maintain compliance and reduce risk with confidence.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Qualys was recognized in the 2024 Gartner &lt;strong&gt;Market Guide for&lt;/strong&gt; CNAPP&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/whitepapers/2024-gartner-market-guide-for-cloud-native-application-protection-platforms/" style="background-color: #ed2e26;"&gt;Download the Report&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="a-true-unbiased-approach-to-vulnerability-management-and-response"&gt;&lt;strong&gt;A True Unbiased Approach to Vulnerability Management and Response&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;At Qualys, we recognize that achieving the highest levels of accuracy requires an open, multi-source strategy. While others may rely on proprietary risk-scoring or third-party interpretations, Qualys TotalCloud KCS prioritizes transparency and accuracy by going straight to the source—ingesting Red Hat’s OVAL v2 security feed and additional intelligence to enhance detection, prioritization, and remediation.&lt;/p&gt;
-
-
-
-&lt;p&gt;This approach is a game-changer for enterprises struggling with alert fatigue. Through this expanded partnership, Qualys eliminates the noise, accelerates response times, and delivers unparalleled visibility into Red Hat container security. As our &lt;a href="https://docs.qualys.com/en/vm/latest/knowledgebase/knowledgebase_lp.htm"&gt;Vulnerability KnowledgeBase&lt;/a&gt; continues to integrate Red Hat’s latest research and patch guidance, enterprises can confidently rely on the industry’s most trusted, precise, and risk-prioritized vulnerability management.&lt;/p&gt;
-
-
-
-&lt;p&gt;Leveraging TruRisk Prioritization, TotalCloud KCS uniquely combines asset criticality, active attack context, and vulnerability exploitability information to filter out the noise and help security teams focus on truly what matters. Our data-driven insights reveal that, on average, customers using &lt;a href="https://docs.qualys.com/en/cs/latest/container_assets/cs_truRisk_score.htm#:~:text=Qualys%20TruRisk%E2%84%A2%20Score,699%20score%20indicates%20medium%20risk"&gt;Qualys TruRisk Score and Qualys Detection Score (QDS)&lt;/a&gt; prioritize 20% fewer vulnerabilities compared to traditional CVSS scoring—leading to more efficient and impactful security operations.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-future-of-secure-red-hat-environments"&gt;&lt;strong&gt;The Future of Secure Red Hat Environments&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Security in Red Hat environments demands more than just scanning—it requires continuous risk assessment, automated intelligence, and an unbiased approach to vulnerability management. With the Red Hat Vulnerability Scanner Certification, Qualys solidifies its position as the industry leader in providing precise, trusted, and risk-prioritized vulnerability management solutions.&lt;/p&gt;
-
-
-
-&lt;p&gt;As our partnership with Red Hat continues to expand, we remain committed to delivering security solutions that help enterprises eliminate noise, accelerate response times, and enhance cloud-native security.&lt;/p&gt;
-
-
-
-&lt;p&gt;We believe security teams deserve more than alerts. Our mission is to provide them with a solution that offers the clarity and confidence to act decisively—because &lt;strong&gt;others scan, Qualys secures.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Have cloud security challenges or interested in speaking to an expert? We’re here to help—&lt;/em&gt;&lt;a href="https://www.qualys.com/forms/totalcloud-demo/"&gt;&lt;em&gt;reach out to us&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37326</guid><category>Product and Tech</category><category>qualys KCS</category><category>qualys kubernetes and container security</category><category>redhat</category><category>vulnerability scanning</category></item><item><title>Ghostwriter | New Campaign Targets Ukrainian Government and Belarusian Opposition</title><link>https://www.sentinelone.com/labs/ghostwriter-new-campaign-targets-ukrainian-government-and-belarusian-opposition/</link><description>Latest Ghostwriter campaign brings Belarusian opposition into its sights for the first time as it continues weaponizing XLS docs to drop malware.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+&lt;p&gt;CVE-2017-11882, CVE-2021-26855, CVE-2021-28482, CVE-2021-40444, CVE-2021-42278, CVE-2021-42287, CVE-2021-42321, CVE-2021-44228, CVE-2022-0609, CVE-2022-1388, CVE-2022-22965, CVE-2022-26134, CVE-2022-27925, CVE-2022-30190, CVE-2022-30525, CVE-2022-37042, CVE-2022-37969, CVE-2022-41040, CVE-2022-41082, CVE-2022-41352, CVE-2023-20198, CVE-2023-21716, CVE-2023-22515, CVE-2023-29357, CVE-2023-35628, CVE-2023-36394, CVE-2023-36745, CVE-2023-36845, CVE-2023-36874, CVE-2023-36884, CVE-2023-38831, CVE-2023-42115, CVE-2023-42793, CVE-2023-4966, CVE-2023-6875, CVE-2023-7027, CVE-2023-7028, CVE-2024-1086, CVE-2024-1709, CVE-2024-21338, CVE-2024-21378, CVE-2024-21413, CVE-2024-21683, CVE-2024-21762, CVE-2024-23108, CVE-2024-23109, CVE-2024-23113, CVE-2024-23897, CVE-2024-24919, CVE-2024-25600, CVE-2024-26169, CVE-2024-27198, CVE-2024-3400, CVE-2017-5753, CVE-2017-5754, CVE-2020-1472, CVE-2023-23397, CVE-2023-3466, CVE-2023-3467, CVE-2023-3519, CVE-2023-36844, CVE-2024-1708&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37340</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>Black Basta</category><category>ransomware</category><category>ransomware defense</category></item><item><title>Ghostwriter | New Campaign Targets Ukrainian Government and Belarusian Opposition</title><link>https://www.sentinelone.com/labs/ghostwriter-new-campaign-targets-ukrainian-government-and-belarusian-opposition/</link><description>Latest Ghostwriter campaign brings Belarusian opposition into its sights for the first time as it continues weaponizing XLS docs to drop malware.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;SentinelLABS has observed a campaign targeting opposition activists in Belarus as well as Ukrainian military and government organizations.&lt;/li&gt;
 &lt;li&gt;The campaign has been in preparation since July-August 2024 and entered the active phase in November-December 2024.&lt;/li&gt;
