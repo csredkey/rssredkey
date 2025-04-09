@@ -1,5 +1,229 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 09 Apr 2025 15:59:22 +0000</lastBuildDate><item><title>AkiraBot | AI-Powered Bot Bypasses CAPTCHAs, Spams Websites At Scale</title><link>https://www.sentinelone.com/labs/akirabot-ai-powered-bot-bypasses-captchas-spams-websites-at-scale/</link><description>AkiraBot uses OpenAI to generate custom outreach messages to spam chat widgets and website contact forms at scale.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 09 Apr 2025 16:59:28 +0000</lastBuildDate><item><title>Stanford’s 2025 AI Index Reveals an Industry at a Crossroads</title><link>https://www.techrepublic.com/article/news-stanford-2025-ai-index/</link><description>Stanford University’s 2025 AI Index shows an industry in flux, with models increasing in complexity but public perception still sometimes negative.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4301508</guid><category>Artificial Intelligence</category><category>International</category><category>News</category><category>Software</category></item><item><title>How cyberattackers exploit domain controllers using ransomware</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/09/how-cyberattackers-exploit-domain-controllers-using-ransomware/</link><description>&lt;p&gt;Read how cyberattackers exploit domain controllers to gain privileged system access where they deploy ransomware that causes widespread damage and operational disruption.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/09/how-cyberattackers-exploit-domain-controllers-using-ransomware/"&gt;How cyberattackers exploit domain controllers using ransomware&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In recent years, human-operated cyberattacks have undergone a dramatic transformation. These attacks, once characterized by sporadic and opportunistic attacks, have evolved into highly sophisticated, targeted campaigns aimed at causing maximum damage to organizations, with the average cost of a ransomware attack reaching $9.36 million in 2024.&lt;sup&gt;1&lt;/sup&gt; A key catalyst to this evolution is the rise of ransomware as a primary tool for financial extortion—an approach that hinges on crippling an organization’s operations by encrypting critical data and demanding a ransom for its release. &lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;&amp;nbsp;disrupts ransomware attacks in an average of three minutes, only kicking in when more than 99.99% confident&amp;nbsp;in the presence of a cyberattack.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Disrupt ransomware with Microsoft Defender for Endpoint&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-evolution-of-ransomware-attacks"&gt;The evolution of ransomware attacks&lt;/h2&gt;
+
+
+&lt;div class="wp-block-msxcm-kicker-container"&gt;
+	&lt;div class=" wp-block-msxcm-kicker-block wp-block-msxcm-kicker--align-right"&gt;
+		&lt;p class="wp-block-msxcm-kicker__title small text-neutral-400 text-uppercase"&gt;
+			What is ransomware?		&lt;/p&gt;
+		&lt;a class="wp-block-msxcm-kicker__cta btn btn-link p-0 text-decoration-none" href="https://www.microsoft.com/en-us/security/business/security-101/what-is-ransomware"&gt;
+			&lt;span&gt;Learn more&lt;/span&gt; &lt;span class="glyph-append glyph-append-xsmall wp-block-msxcm-kicker__glyph glyph-append-go"&gt;&lt;/span&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Modern ransomware campaigns are meticulously planned. Cyberattackers understand that their chances of securing a ransom increase significantly if they can inflict widespread damage across a victim’s environment. The rationale is simple: paying the ransom becomes the most viable option when the alternative—restoring the environment and recovering data—is technically unfeasible, time-consuming, and costly. &lt;/p&gt;
+
+
+
+&lt;p&gt;This level of damage happens in minutes and even seconds, where bad actors embed themselves within an organization’s environment, laying the groundwork for a coordinated cyberattack that can encrypt dozens, hundreds, or even thousands of devices within &lt;strong&gt;minutes&lt;/strong&gt;. To execute such a campaign, threat actors must overcome several challenges such as evading protection, mapping the network, maintaining their code execution ability, and preserving persistency in the environment, building their way to securing &lt;strong&gt;two major prerequisites&lt;/strong&gt; necessary to execute ransomware on multiple devices simultaneously:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;High-privilege accounts&lt;/strong&gt;: Whether cyberattackers choose to drop files and encrypt the devices locally or perform remote operations over the network, they must obtain the ability to authenticate to a device. In an on-premises environment, cyberattackers usually target domain admin accounts or other high-privilege accounts, as those can authenticate to the most critical resources in the environment.  &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Access to central network assets&lt;/strong&gt;: To execute the ransomware attack as fast and as wide as possible, threat actors aim to achieve access to a central asset in the network that is exposed to many endpoints. Thus, they can leverage the possession of high-privilege accounts and connect to all devices visible in their line of sight.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-role-of-domain-controllers-in-ransomware-campaigns"&gt;The role of domain controllers in ransomware campaigns&lt;/h2&gt;
+
+
+
+&lt;p&gt;Domain controllers are the backbone of any on-premises environment, managing identity and access through Active Directory (AD). They play a pivotal role in enabling cyberattackers to achieve their goals by fulfilling two critical requirements: &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="1-compromising-highly-privileged-accounts"&gt;1. Compromising highly privileged accounts&lt;/h3&gt;
+
+
+
+&lt;p&gt;Domain controllers house the AD database, which contains sensitive information about all user accounts, including highly privileged accounts like domain admins. By compromising a domain controller, threat actors can: &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Extract password hashes&lt;/strong&gt;: Dumping the NTDS.dit file allows cyberattackers to obtain password hashes for every user account.  &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Create and elevate privileged accounts&lt;/strong&gt;: Cyberattackers can generate new accounts or manipulate existing ones, assigning them elevated permissions, ensuring continued control over the environment.  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;
+  With these capabilities, cyberattackers can authenticate as highly privileged users, facilitating lateral movement across the network. This level of access enables them to deploy ransomware on a scale, maximizing the impact of their attack.
+&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="2-exploiting-centralized-network-access"&gt;2. Exploiting centralized network access&lt;/h3&gt;
+
+
+
+&lt;p&gt;
+  Domain controllers handle crucial tasks like authenticating users and devices, managing user accounts and policies, and keeping the AD database consistent across the network. Because of these important roles, many devices need to interact with domain controllers regularly to ensure security, efficient resource management, and operational continuity. That&amp;#8217;s why domain controllers need to be central in the network and accessible to many endpoints, making them a prime target for cyberattackers looking to cause maximum damage with ransomware attacks.
+&lt;/p&gt;
+
+
+
+&lt;p&gt;
+  Given these factors, it’s no surprise that domain controllers are frequently at the center of ransomware operations. Cyberattackers consistently target them to gain privileged access, move laterally, and rapidly deploy ransomware across an environment. We’ve seen in &lt;strong&gt;more than 78% of human-operated cyberattacks, threat actors successfully breach a domain controller&lt;/strong&gt;. Additionally, &lt;strong&gt;in more than 35% of cases, the primary spreader device—the system responsible for distributing ransomware at scale—is a domain controller,&lt;/strong&gt; highlighting its crucial role in enabling widespread encryption and operational disruption.
+&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="case-study-ransomware-attack-using-a-compromised-domain-controller"&gt;Case study: Ransomware attack using a compromised domain controller&lt;/h2&gt;
+
+
+
+&lt;p&gt;
+  In one notable case, a small-medium manufacturer fell victim to a well-known, highly skilled threat actor, commonly identified as Storm-0300, attempting to execute a widespread ransomware attack:
+&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="How Microsoft Defender for Endpoint's automatic attack disruption helped contain a widespread ransomware attack called Storm-0300." class="wp-image-138336 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/SecurityBlog_Ransomwaregraphic-Edited-Slide-for-ransmoware-blog-1-1024x576.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="pre-domain-compromise-activity"&gt;Pre domain-compromise activity&lt;/h3&gt;
+
+
+
+&lt;p&gt;After gaining initial access, presumably through leveraging the customer’s VPN infrastructure, and prior to obtaining domain admin privileges, the cyberattackers initiated a series of actions focused on mapping potential assets and escalating privileges. A wide, remote execution of secrets dump is detected on &lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;-onboarded devices and User 1 (domain user) is contained by attack disruption.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="post-domain-compromise-activity"&gt;Post domain-compromise activity&lt;/h3&gt;
+
+
+
+&lt;p&gt;
+  Once securing domain admin (User 2) credentials, potentially through leveraging the victim’s non-onboarded estate, the attacker immediately attempts to connect to the victim’s domain controller (DC1) using Remote Desktop Protocol (RDP) from the cyberattacker&amp;#8217;s controlled device. When gaining access to DC1, the cyberattacker leverages the device to perform the following set of actions:
+&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Reconnaissance&lt;/strong&gt;—The cyberattacker leverages the domain controller’s wide network visibility and high privileges to map the network using different tools, focusing on servers and network shares.  &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Defense evasion&lt;/strong&gt;—Leveraging the domain controller’s native group policy functionality, the cyberattacker attempts to tamper with the victim’s antivirus by modifying security-related group policy settings.   &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Persistence&lt;/strong&gt;—The cyberattacker leverages the direct access to Active Directory, creating new domain users (User 3 and User 4) and adding them to the domain admin group, thus establishing a set of highly privileged users that would later on be used to execute the ransomware attack.&lt;strong&gt; &lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="encryption-over-the-network"&gt;Encryption over the network&lt;/h3&gt;
+
+
+
+&lt;p&gt;Once the cyberattacker takes control over a set of highly privileged users, this provides them access to any domain-joined resource, including comprehensive network access and visibility. It will also allow them to set up tools for the encryption phase of the cyberattack. &lt;/p&gt;
+
+
+
+&lt;p&gt;Assuming they’re able to validate a domain controller&amp;#8217;s effectiveness, they begin by running the payload locally on the domain controller. Attack disruption detects the threat actor’s attempt to run the payload and contains User 2, User 3, and the cyberattacker-controlled device used to RDP to the domain controller. &lt;/p&gt;
+
+
+
+&lt;p&gt;
+  After successfully containing Users 2 and 3, the cyberattacker proceeded to log in to the domain controller using User 4, who had not yet been utilized. After logging into the device, the cyberattacker attempted to encrypt numerous devices over the network from the domain controller, leveraging the access provided by User 4. 
+&lt;/p&gt;
+
+
+
+&lt;p&gt;
+  Attack disruption detects the initiation of encryption over the network and automatically granularly contains device DC1 and User 4, blocking the attempted remote encryption on all Microsoft Defender for Endpoint-onboarded and targeted devices. 
+&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Help secure endpoints with Microsoft Defender for Endpoint&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="protecting-your-domain-controllers"&gt;Protecting your domain controllers&lt;/h2&gt;
+
+
+
+&lt;p&gt;Given the central role of domain controllers in ransomware attacks, protecting them is critical to preventing large-scale damage. However, securing domain controllers is particularly challenging due to their fundamental role in network operations. Unlike other endpoints, domain controllers must remain highly accessible to authenticate users, enforce policies, and manage resources across the environment. This level of accessibility makes it difficult to apply traditional security measures without disrupting business continuity. Hence, security teams constantly face the complex challenge of striking the right balance between security and operational functionality. &lt;/p&gt;
+
+
+
+&lt;p&gt;To address this challenge, Defender for Endpoint introduced contain high value assets (HVA), an expansion of our contain device capability designed to automatically contain HVAs like domain controllers in a granular manner. This feature builds on Defender for Endpoint’s capability to classify device roles and criticality levels to deliver a custom, role-based containment policy, meaning that if a sensitive device, such a domain controller, is compromised, it is immediately contained in less than three minutes, preventing the cyberattacker from moving laterally and deploying ransomware, while at the same time maintaining the operational functionality of the device. The ability of the domain controller to distinguish between malicious and benign behavior helps keep essential authentication and directory services up and running. This approach provides rapid, automated cyberattack containment without sacrificing business continuity, allowing organizations to stay resilient against sophisticated human-operated cyberthreats.&lt;/p&gt;
+
+
+
+&lt;p&gt;Now your organization’s domain controllers can leverage automatic attack disruption as an extra line of defense against malicious actors trying to overtake high value assets and exert costly ransomware attacks. &lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;
+  Explore these resources to stay updated on the latest automatic attack disruption capabilities:
+&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Learn more about &lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Read about the &lt;a href="https://aka.ms/containIP-HVA"&gt;new containment features&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Learn how attack disruption safeguards your domain controllers in this &lt;a href="https://www.youtube.com/watch?v=BUGoxeoSffs"&gt;video&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Check out our latest &lt;a href="https://aka.ms/disruptinfo"&gt;infographic&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Read about &lt;a href="https://aka.ms/disruptdocs"&gt;automatic attack disruption&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;a href="https://www.statista.com/statistics/273575/us-average-cost-incurred-by-a-data-breach/#:~:text=Average%20cost%20per%20data%20breach%20in%20the%20United%20States%202006%2D2024&amp;amp;text=As%20of%202024%2C%20the%20average,million%20U.S.%20dollars%20in%202024." rel="noreferrer noopener" target="_blank"&gt;Average cost per data breach in the United States 2006-2024&lt;/a&gt;, Ani Petrosyan. October 10, 2024.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/09/how-cyberattackers-exploit-domain-controllers-using-ransomware/"&gt;How cyberattackers exploit domain controllers using ransomware&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Ransomware</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Wednesday, April 9th, 2025 https://isc.sans.edu/podcastdetail/9400</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>AkiraBot | AI-Powered Bot Bypasses CAPTCHAs, Spams Websites At Scale</title><link>https://www.sentinelone.com/labs/akirabot-ai-powered-bot-bypasses-captchas-spams-websites-at-scale/</link><description>AkiraBot uses OpenAI to generate custom outreach messages to spam chat widgets and website contact forms at scale.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;AkiraBot is a framework used to spam website chats and contact forms &lt;em&gt;en masse&lt;/em&gt; to promote a low-quality SEO service.&lt;/li&gt;
 &lt;li&gt;SentinelLABS assesses that AkiraBot has targeted more than 400,000 websites and successfully spammed at least 80,000 websites since September 2024.&lt;/li&gt;
@@ -181,7 +405,7 @@ e12c6911997d7c2af5550b7e989f1dc57b6733b8&lt;br /&gt;
 eae675812c4274502051d6f2d36348f77a8464a0&lt;br /&gt;
 f1c7c5d0870fd0abb7e419f2c2ba8df42fa74667&lt;br /&gt;
 f2e71c9cbc4a18482a11ca3f54f2c958973360b4&lt;br /&gt;
-fb7fdcc2fe11e95065a0ce9041348984427ca0f4&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=117809</guid><category>MalSpam</category><category>OpenAI</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Wednesday, April 9th, 2025 https://isc.sans.edu/podcastdetail/9400</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>5 Reasons Why You Should Use a Password Manager</title><link>https://www.techrepublic.com/article/5-reasons-why-you-should-use-a-password-manager/</link><description>Find out why you should consider using a password manager to protect your data and improve password management.</description><category>Cloud Security</category><category>Security</category><category>password managers</category></item><item><title>ISC Stormcast For Wednesday, April 9th, 2025 https://isc.sans.edu/podcastdetail/9400, (Wed, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/31842</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31842</guid></item><item><title>Incident Response Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/incident-response-policy/</link><description>Enhance your organization&amp;#8217;s operations and use this IT policy to deal quickly with any security breach. Customizable Document — Ready for use as-is or for edits. Boost Your Processes — This nine-page document outlines defining an incident, assigning an incident response team, documenting a plan, and conducting a response. Expertly-Curated — Written by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/incident-response-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Obfuscated Malicious Python Scripts with PyArmor, (Wed, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/31840</link><description>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;#x27s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;rsquo;s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;
+fb7fdcc2fe11e95065a0ce9041348984427ca0f4&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=117809</guid><category>MalSpam</category><category>OpenAI</category></item><item><title>5 Reasons Why You Should Use a Password Manager</title><link>https://www.techrepublic.com/article/5-reasons-why-you-should-use-a-password-manager/</link><description>Find out why you should consider using a password manager to protect your data and improve password management.</description><category>Cloud Security</category><category>Security</category><category>password managers</category></item><item><title>ISC Stormcast For Wednesday, April 9th, 2025 https://isc.sans.edu/podcastdetail/9400, (Wed, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/31842</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31842</guid></item><item><title>Incident Response Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/incident-response-policy/</link><description>Enhance your organization&amp;#8217;s operations and use this IT policy to deal quickly with any security breach. Customizable Document — Ready for use as-is or for edits. Boost Your Processes — This nine-page document outlines defining an incident, assigning an incident response team, documenting a plan, and conducting a response. Expertly-Curated — Written by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/incident-response-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Obfuscated Malicious Python Scripts with PyArmor, (Wed, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/31840</link><description>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;#x27s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Obfuscation is very important for many developers. They may protect their code for multiple reasons like copyright, anti-cheat (games), or to protect their code from being reused. If an obfuscated program does not mean automatically that it is malicious, it&amp;rsquo;s often a good sign. For malware developers, obfuscation helps bypass many static security controls and slows down the reverse analysis process.&lt;/p&gt;
 
 &lt;p&gt;There are two main ways to obfuscate your code: directly at development time (strings obfuscation, code pollution, functions and variables names, &amp;hellip;) or through another tool that will take the original program as input and generate a brand new one.&lt;/p&gt;
 
@@ -2678,7 +2902,7 @@ DeviceNetworkEvents
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/microsoft-incident-response"&gt;Learn more about Microsoft Incident Response&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -2708,7 +2932,7 @@ DeviceNetworkEvents
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-4 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/zero-trust?rtc=1"&gt;Assume breach and verify each request with the Zero Trust model&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -4632,7 +4856,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 &lt;p&gt;Integrity is essential to trust, on both technical and human levels. Looking forward, integrity controls will fundamentally shape AI development by moving from optional features to core architectural requirements, much as SSL certificates evolved from a banking luxury to a baseline expectation for any Web service.&lt;/p&gt;
 &lt;p&gt;Web 3.0 protocols can build integrity controls into their foundation, creating a more reliable infrastructure for AI systems. Today, we take availability for granted; anything less than 100% uptime for critical websites is intolerable. In the future, we will need the same assurances for integrity. Success will require following practical guidelines for maintaining data integrity throughout the AI lifecycle&amp;#8212;from data collection through model training and finally to deployment, use, and evolution. These guidelines will address not just technical controls but also governance structures and human oversight, similar to how privacy policies evolved from legal boilerplate into comprehensive frameworks for data stewardship. Common standards and protocols, developed through industry collaboration and regulatory frameworks, will ensure consistent integrity controls across different AI systems and applications.&lt;/p&gt;
 &lt;p&gt;Just as the HTTPS protocol created a foundation for trusted e-commerce, it&amp;#8217;s time for new integrity-focused standards to enable the trusted AI services of tomorrow.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This essay was written with Davi Ottenheimer, and originally appeared in &lt;a href="https://dl.acm.org/doi/10.1145/3723438"&gt;Communications of the ACM&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70082</guid><category>Uncategorized</category><category>Internet</category><category>protocols</category><category>web</category></item><item><title>Intel CEO Tan Starts Company’s Pivot: Spin Off Non-Core Assets</title><link>https://www.techrepublic.com/article/news-intel-ceo-tan-core-business/</link><description>During the Intel Vision conference, Tan also said he would focus on boosting Intel’s chip foundry work and recruiting quality engineering talent.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300499</guid><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>News</category><category>artificial intelligence</category><category>broadcom</category><category>cpu processors</category><category>intel</category><category>nvidia</category><category>tsmc</category></item><item><title>How Can AI Be Used Safely? Researchers From Harvard, MIT, IBM &amp; Microsoft Weigh In</title><link>https://www.techrepublic.com/article/news-ai-research-aaai/</link><description>A new report by the AAAI defines the current trends and the research challenges required to make AI more capable and reliable, so the technology can be safely used.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300476</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>academic research</category><category>ai</category><category>ai agents</category><category>ai ethics</category><category>ai research</category><category>ai safety</category><category>artificial intelligence</category><category>ibm</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This essay was written with Davi Ottenheimer, and originally appeared in &lt;a href="https://dl.acm.org/doi/10.1145/3723438"&gt;Communications of the ACM&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70082</guid><category>Uncategorized</category><category>Internet</category><category>protocols</category><category>web</category></item><item><title>Intel CEO Tan Starts Company’s Pivot: Spin Off Non-Core Assets</title><link>https://www.techrepublic.com/article/news-intel-ceo-tan-core-business/</link><description>During the Intel Vision conference, Tan also said he would focus on boosting Intel’s chip foundry work and recruiting quality engineering talent.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300499</guid><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>News</category><category>artificial intelligence</category><category>broadcom</category><category>cpu processors</category><category>intel</category><category>nvidia</category><category>tsmc</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/"&gt;Transforming public sector security operations in the AI era&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The cyberthreat landscape is evolving at an unprecedented pace, becoming increasingly dangerous and complex. Nation-state threat actors and cybercriminals are employing advanced tactics and generative AI to execute highly sophisticated attacks. This situation is further compounded by outdated technology and systems, shortage of cybersecurity talent, and antiquated processes, which are inefficient in handling the scale, complexity, and ever-evolving nature of these cyberattacks. With 62% of all cyberattacks targeting public sector organizations, it is crucial for these sectors to leverage state-of-the-art technology, powered by generative AI, to &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" rel="noreferrer noopener" target="_blank"&gt;transform their cyber defense&lt;/a&gt; and stay ahead of these evolving threats.&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
 
 
@@ -5281,7 +5505,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Microsoft Purview: Built to safeguard your AI innovation&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -5336,7 +5560,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-4 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/information-protection/microsoft-purview-data-loss-prevention"&gt;Learn more about Microsoft Purview Data Loss Prevention&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -5421,7 +5645,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Learn more about Microsoft Purview&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -6201,7 +6425,7 @@ This story explores a slew of recent actions by the Trump administration that th
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-8 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"&gt;Manage and protect with Microsoft Entra ID&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -6233,7 +6457,7 @@ This story explores a slew of recent actions by the Trump administration that th
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-9 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-conditional-access"&gt;Increase protection with Microsoft Entra Conditional Access&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -6257,7 +6481,7 @@ This story explores a slew of recent actions by the Trump administration that th
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-8 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-10 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/identity-access/microsoft-entra-id-protection"&gt;Block identity takeover with Microsoft Entra ID Protection&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -7562,113 +7786,7 @@ AI-generated content may be incorrect." src="https://blog.qualys.com/wp-content/
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23161</guid></item><item><title>Cybersecurity for Small Businesses: Challenges and Best Practices</title><link>https://www.techrepublic.com/resource-library/guide/cybersecurity-for-small-businesses/</link><description>Strengthen cybersecurity and ensure success for your small business with this comprehensive guide. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This 11-page PDF explains the threat landscape, the challenges, and best practices. Expert Guidance — Written by Franklin Okeke through 22 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/cybersecurity-for-small-businesses-challenges-and-best-practices/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Google Acquires Startup Wiz for $32B to Make ‘Cybersecurity More Accessible And Simpler’</title><link>https://www.techrepublic.com/article/news-google-wiz-acquisition-cloud-security/</link><description>Google’s agreement to buy cloud security startup Wiz will face antitrust scrutiny amid Alphabet’s ongoing legal battles.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4298234</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Google</category><category>Microsoft</category><category>News</category><category>Security</category><category>alphabet</category><category>artificial intelligence</category><category>cloud</category><category>cyber security</category><category>developers</category><category>google cloud</category><category>m&amp;a</category><category>mergers and acquisitions</category><category>multicloud</category><category>security</category><category>wiz</category></item><item><title>AI innovation requires AI security: Hear what’s new at Microsoft Secure</title><link>https://techcommunity.microsoft.com/blog/microsoft-security-blog/ai-innovation-requires-ai-security-hear-what%E2%80%99s-new-at-microsoft-secure/4394130</link><description>&lt;p&gt;When you’re secure—innovation happens. But, the fast pace of AI often outpaces traditional security measures, leaving gaps that bad actors can take advantage of. As a security professional, you’re the hero in this battle between protecting vast amounts of data while ensuring AI systems remain transparent and compliant. What you need in this time of new threats and complexity in securing interconnected AI applications is a proactive, innovative approach to stay ahead. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/ai-innovation-requires-ai-security-hear-what%E2%80%99s-new-at-microsoft-secure/4394130"&gt;AI innovation requires AI security: Hear what’s new at Microsoft Secure&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;When you’re secure—innovation happens. But, the fast pace of AI often outpaces traditional security measures, leaving gaps that bad actors can take advantage of. As a security professional, you’re the hero in this battle between protecting vast amounts of data while ensuring AI systems remain transparent and compliant. What you need in this time of new threats and complexity in securing interconnected AI applications is a proactive, innovative approach to stay ahead. &lt;/p&gt;
-
-
-
-&lt;p&gt;That’s why we’re excited to invite you to &lt;a href="https://register.secure.microsoft.com/?ocid=cmm5ap8qlhk" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Microsoft Secure on April 9&lt;/strong&gt;&lt;/a&gt;, a one-hour online event designed specifically for professionals like you. At Microsoft Secure, discover AI innovations for the security lifecycle designed to give you smarter, faster, stronger security. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Why should you attend?&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;At Microsoft Secure, you’ll get a first look into AI-first tools coming soon to help you in your day-to-day work. Plus, we’ll share how you can maximize what you’ve got in your hands right now.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;In 60 minutes, you’ll learn how you can:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Harden your defenses&lt;/strong&gt;: Learn how to secure your data used by AI, AI apps, and AI cloud workloads. Discover the latest tools and techniques to fortify your defenses against evolving threats. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Secure your AI investments&lt;/strong&gt;: Use data security, protection against AI-specific cyberthreats, and compliance tools to secure your AI investments. Our experts will share best practices and strategies to safeguard your AI initiatives, ensuring they remain resilient against emerging threats. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Discover AI-first tools and best practices&lt;/strong&gt;: Hear about new AI-first tools, demos, and best practices across your favorite Microsoft Security solutions. These sessions will provide you with practical insights and hands-on experiences to strengthen your security posture and leverage AI-driven solutions effectively.  &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Keep up with what’s happening in security&lt;/strong&gt;: Get the latest reports on security trends and platform innovations directly from Microsoft Security leaders. This is your chance to gain insights that can help you stay ahead of emerging threats. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;What can you expect?&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Led by security experts, Microsoft Secure is your chance to find out how to use solutions that can help you operate efficiently, stay compliant, and be more secure.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Hear from organizations like yours&lt;/strong&gt;: Explore compelling customer stories that showcase how end-to-end security can boost, not burden, your teams. These real-world examples will highlight the benefits of comprehensive security solutions and demonstrate how they can enhance productivity and efficiency without compromising on safety. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Engage with Microsoft Security experts&lt;/strong&gt;: Engage with Microsoft Security experts through live Q&amp;amp;A sessions. This interactive format will allow you to connect directly with our experts, ask questions, and gain valuable insights tailored to your specific needs. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;[Insert image with speaker lineup]&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Check out the full agenda &lt;a href="https://register.secure.microsoft.com/?ocid=cmm5ap8qlhk" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft Secure is more than just an event; it’s a community of like-minded professionals dedicated to moving the field of cybersecurity forward. Join us to get valuable insights, discover innovative solutions, and connect with industry leaders and peers who share your passion for security. Don’t miss this opportunity to elevate your security game and make a real impact in your organization.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Join us on April 9, 2025? &lt;a href="https://register.secure.microsoft.com/?ocid=cmm5ap8qlhk" rel="noreferrer noopener" target="_blank"&gt;Register now&lt;/a&gt; and pick the broadcast that works for your time zone.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Microsoft Secure&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Wednesday, April 9, 2025&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;8:00 AM-9:00 AM Pacific Time (UTC-7)&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Thursday, April 10, 2025&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;10:00 AM &amp;#8211; 11:00 AM Central European Time (GMT+1)&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Thursday, April 10, 2025&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;12:00 PM &amp;#8211; 1:00 PM Singapore Time (GMT+8)&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/ai-innovation-requires-ai-security-hear-what%E2%80%99s-new-at-microsoft-secure/4394130"&gt;AI innovation requires AI security: Hear what’s new at Microsoft Secure&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Unleashing improved context for threat actor activity with our Cloudforce One threat events platform</title><link>https://blog.cloudflare.com/threat-events-platform/</link><description>Gain real-time insights with our new threat events platform. This tool empowers your cybersecurity defense with actionable intelligence to stay ahead of attacks and protect your critical assets.</description><content:encoded>&lt;p&gt;Today, one of the greatest challenges that cyber defenders face is analyzing detection hits from indicator feeds, which provide metadata about specific indicators of compromise (IOCs), like IP addresses, &lt;a href="https://www.cloudflare.com/learning/network-layer/what-is-an-autonomous-system/"&gt;&lt;u&gt;ASNs&lt;/u&gt;&lt;/a&gt;, domains, URLs, and hashes. While indicator feeds have proliferated across the threat intelligence industry, most feeds contain no contextual information about why an indicator was placed on the feed. Another limitation of most feeds today is that they focus solely on blockable indicators and cannot easily accommodate more complex cases, such as a threat actor exploiting a CVE or an insider threat. Instead, this sort of complex threat intelligence is left for long form reporting. However, long-form reporting comes with its own challenges, such as the time required for writing and editing, which can lead to significant delays in releasing timely threat intelligence.&lt;/p&gt;&lt;p&gt;To help address these challenges, we are excited to launch our &lt;a href="https://developers.cloudflare.com/security-center/cloudforce-one/#analyze-threat-events"&gt;&lt;u&gt;threat events platform&lt;/u&gt;&lt;/a&gt; for Cloudforce One customers. Every day, Cloudflare blocks billions of cyber threats. This new platform contains contextual data about the threats we monitor and mitigate on the Cloudflare network and is designed to empower security practitioners and decision makers with actionable insights from a global perspective. &lt;/p&gt;&lt;p&gt;On average, we process 71 million HTTP requests per second and 44 million DNS queries per second. This volume of traffic provides us with valuable insights and a comprehensive view of current (real-time) threats. The new threat events platform leverages the insights from this traffic to offer a comprehensive, real-time view of threat activity occurring on the Internet, enabling &lt;a href="https://www.cloudflare.com/application-services/products/cloudforceone/"&gt;&lt;u&gt;Cloudforce One&lt;/u&gt;&lt;/a&gt; customers to better protect their assets and respond to emerging threats.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23161</guid></item><item><title>Cybersecurity for Small Businesses: Challenges and Best Practices</title><link>https://www.techrepublic.com/resource-library/guide/cybersecurity-for-small-businesses/</link><description>Strengthen cybersecurity and ensure success for your small business with this comprehensive guide. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This 11-page PDF explains the threat landscape, the challenges, and best practices. Expert Guidance — Written by Franklin Okeke through 22 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/cybersecurity-for-small-businesses-challenges-and-best-practices/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Google Acquires Startup Wiz for $32B to Make ‘Cybersecurity More Accessible And Simpler’</title><link>https://www.techrepublic.com/article/news-google-wiz-acquisition-cloud-security/</link><description>Google’s agreement to buy cloud security startup Wiz will face antitrust scrutiny amid Alphabet’s ongoing legal battles.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4298234</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Google</category><category>Microsoft</category><category>News</category><category>Security</category><category>alphabet</category><category>artificial intelligence</category><category>cloud</category><category>cyber security</category><category>developers</category><category>google cloud</category><category>m&amp;a</category><category>mergers and acquisitions</category><category>multicloud</category><category>security</category><category>wiz</category></item><item><title>Unleashing improved context for threat actor activity with our Cloudforce One threat events platform</title><link>https://blog.cloudflare.com/threat-events-platform/</link><description>Gain real-time insights with our new threat events platform. This tool empowers your cybersecurity defense with actionable intelligence to stay ahead of attacks and protect your critical assets.</description><content:encoded>&lt;p&gt;Today, one of the greatest challenges that cyber defenders face is analyzing detection hits from indicator feeds, which provide metadata about specific indicators of compromise (IOCs), like IP addresses, &lt;a href="https://www.cloudflare.com/learning/network-layer/what-is-an-autonomous-system/"&gt;&lt;u&gt;ASNs&lt;/u&gt;&lt;/a&gt;, domains, URLs, and hashes. While indicator feeds have proliferated across the threat intelligence industry, most feeds contain no contextual information about why an indicator was placed on the feed. Another limitation of most feeds today is that they focus solely on blockable indicators and cannot easily accommodate more complex cases, such as a threat actor exploiting a CVE or an insider threat. Instead, this sort of complex threat intelligence is left for long form reporting. However, long-form reporting comes with its own challenges, such as the time required for writing and editing, which can lead to significant delays in releasing timely threat intelligence.&lt;/p&gt;&lt;p&gt;To help address these challenges, we are excited to launch our &lt;a href="https://developers.cloudflare.com/security-center/cloudforce-one/#analyze-threat-events"&gt;&lt;u&gt;threat events platform&lt;/u&gt;&lt;/a&gt; for Cloudforce One customers. Every day, Cloudflare blocks billions of cyber threats. This new platform contains contextual data about the threats we monitor and mitigate on the Cloudflare network and is designed to empower security practitioners and decision makers with actionable insights from a global perspective. &lt;/p&gt;&lt;p&gt;On average, we process 71 million HTTP requests per second and 44 million DNS queries per second. This volume of traffic provides us with valuable insights and a comprehensive view of current (real-time) threats. The new threat events platform leverages the insights from this traffic to offer a comprehensive, real-time view of threat activity occurring on the Internet, enabling &lt;a href="https://www.cloudflare.com/application-services/products/cloudforceone/"&gt;&lt;u&gt;Cloudforce One&lt;/u&gt;&lt;/a&gt; customers to better protect their assets and respond to emerging threats.&lt;/p&gt;
           &lt;div&gt;
             &lt;h3&gt;How we built the threat events platform leveraging Cloudflare’s traffic insights&lt;/h3&gt;
             &lt;a href="https://blog.cloudflare.com/tag/security/rss#how-we-built-the-threat-events-platform-leveraging-cloudflares-traffic-insights"&gt;
