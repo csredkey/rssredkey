@@ -1,5 +1,781 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 14 Apr 2025 15:59:28 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>xorsearch.py: Searching With Regexes</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Troy Hunt Gets Phished</title><link>https://www.schneier.com/blog/archives/2025/04/troy-hunt-gets-phished.html</link><description>&lt;p&gt;In case you need proof that &lt;i&gt;anyone&lt;/i&gt;, even people who do cybersecurity for a living, Troy Hunt has a long, iterative &lt;a href="https://www.troyhunt.com/a-sneaky-phish-just-grabbed-my-mailchimp-mailing-list/"&gt;story&lt;/a&gt; on his webpage about how he got phished. Worth reading.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 14 Apr 2025 16:59:26 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>xorsearch.py: Searching With Regexes</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Amazon’s New Nova Sonic AI Model Features a ‘More Human-like Voice’</title><link>https://www.techrepublic.com/article/news-amazon-nova-sonic-ai/</link><description>The Nova Sonic voice AI model can respond to the speaker’s words, as well as their tone, inflection, and pacing.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4301706</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>ai</category><category>ai voice models</category><category>amazon nova sonic</category><category>artificial intelligence</category><category>Google</category><category>openai</category></item><item><title>Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking</title><link>https://research.checkpoint.com/2025/waiting-thread-hijacking/</link><description>&lt;p&gt;Research by: hasherezade Key Points Introduction Process injection is one of the&amp;#160;important techniques used by attackers. We can find its variants implemented in almost every malware. It serves purposes such as: In&amp;#160;our previous blog&amp;#160;on&amp;#160;process injections&amp;#160;we explained the foundations of this topic and basic ideas behind detection and prevention. We also proposed a new technique dubbed&amp;#160;Thread [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/waiting-thread-hijacking/"&gt;Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt; hasherezade&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h1&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Process Injection is one of the important techniques in the attackers’ toolkit. In the constant cat-and-mouse game, attackers try to invent its new implementations that bypass defenses, using creative methods and lesser-known APIs.&lt;/li&gt;
+
+
+
+&lt;li&gt;Combining common building blocks in an atypical way, Check Point Research was able to create a much stealthier version of a known method, Thread Execution Hijacking.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h1&gt;
+
+
+
+&lt;p&gt;Process injection is one of the&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055"&gt;important techniques used by attackers&lt;/a&gt;. We can find its variants implemented in almost every malware. It serves purposes such as:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;defense evasion: hiding malicious modules under the cover of a different process&lt;/li&gt;
+
+
+
+&lt;li&gt;interference with existing processes: reading their memory, hooking used APIs, etc.&lt;/li&gt;
+
+
+
+&lt;li&gt;privilege escalation&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;In&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;our previous blog&lt;/a&gt;&amp;nbsp;on&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/"&gt;process injections&lt;/a&gt;&amp;nbsp;we explained the foundations of this topic and basic ideas behind detection and prevention. We also proposed a new technique dubbed&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;Thread Name-Calling&lt;/a&gt;&amp;nbsp;&amp;#8211; abusing the Thread Name API that was originally intended to assign names to running threads. The technique allowed writing to a process using a handle without write access. Remote execution was achieved through&amp;nbsp;&lt;a href="https://repnz.github.io/posts/apc/user-apc/#ntqueueapcthreadex2-some-new-friends-in-the-fast-ring"&gt;the new API for Asynchronous Procedure Calls (APC)&lt;/a&gt;, requesting a Special User APC. With the help of those building blocks, we were able to inject a payload and run it without being noticed by most tested EDRs (Endpoint Detection &amp;amp; Response systems). While remote write was implemented using an unexpected API, execution wasn’t completely novel since it was a variant of&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/004"&gt;APC injection&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;In the current research, we aim for the same goal: stealthy injection into a running process. This time we approach the problem from the opposite direction. We use common allocate and write primitives to achieve unexpected code execution. Furthermore, we show how to extend the implementation and obfuscate the called sequence of APIs in order to tamper behavioral signatures that could be used for detection. The described technique intercepts the flow of a waiting thread and misuses it for the execution of an implant &amp;#8211; that’s why we dubbed it Waiting Thread Hijacking (WTH). It can be treated as an evolution of classic&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;Thread Hijacking&lt;/a&gt;. Unlike the older method, WTH avoids using APIs that trigger most alerts, such as&amp;nbsp;&lt;code&gt;SuspendThread&lt;/code&gt;&amp;nbsp;/&amp;nbsp;&lt;code&gt;ResumeThread&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;&lt;code&gt;SetThreadContext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;It involves handles with the following access:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;For the target process:&amp;nbsp;&lt;code&gt;PROCESS_VM_OPERATION&lt;/code&gt;,&amp;nbsp;&lt;code&gt;PROCESS_VM_READ&lt;/code&gt;,&amp;nbsp;&lt;code&gt;PROCESS_VM_WRITE&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;For the target thread:&amp;nbsp;&lt;code&gt;THREAD_GET_CONTEXT&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Used APIs:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;code&gt;NtQuerySystemInformation&lt;/code&gt;&amp;nbsp;(with a parameter of&amp;nbsp;&lt;code&gt;SystemProcessInformation&lt;/code&gt;&amp;nbsp;)&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;GetThreadContext&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;ReadProcessMemory&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;VirtualAllocEx&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;WriteProcessMemory&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;code&gt;VirtualProtectEx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The considered target is a 64-bit process with&amp;nbsp;&lt;a href="https://jsecurity101.medium.com/better-know-a-data-source-process-integrity-levels-8338f3b74990"&gt;medium integrity&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="executing-remote-code"&gt;Executing Remote Code&lt;/h1&gt;
+
+
+
+&lt;p&gt;To prevent remote code execution, AVs and EDRs try to monitor APIs related to known techniques (examples of monitored functions can be found in Mr-Un1k0d3r’s repository: https://github.com/Mr-Un1k0d3r/EDRs). The implementation of restrictions differs from product to product. While some products tolerate remote allocation and write, an attempt to run the implant will surely result in detection. Options for triggering execution are very limited, and all APIs meant for this purpose are closely watched. That’s why finding a new, unexpected way to do so is one of the biggest challenges attackers and red teamers face while trying to implement code injection.&lt;/p&gt;
+
+
+
+&lt;p&gt;The basic constraint is that code runs on&amp;nbsp;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=4"&gt;threads&lt;/a&gt;. This leaves us with two possibilities: either to create a new thread in the target process, or to use some of the existing ones.&lt;/p&gt;
+
+
+
+&lt;p&gt;An alternative way to run code are&amp;nbsp;&lt;a href="https://www.ired.team/offensive-security/code-injection-process-injection/executing-shellcode-with-createfiber"&gt;fibers&lt;/a&gt;&amp;nbsp;(example:&amp;nbsp;&lt;em&gt;ImmoralFiber,&amp;nbsp;&lt;a href="https://github.com/JanielDary/ImmoralFiber"&gt;BlackHat Asia 2024&lt;/a&gt;&lt;/em&gt;), although at a low level they are still&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/fibers"&gt;managed by threads&lt;/a&gt;. While using fibers can help in hiding execution within a local process, it is not much helpful in achieving remote execution. In order to use them to run code within a remote process, the target must already have existing fibers. This drastically narrows down the list of possible targets, making this method unusable in most real-life scenarios.&lt;/p&gt;
+
+
+
+&lt;p&gt;The common approaches to remotely execute injected code:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Remote thread creation&lt;/li&gt;
+
+
+
+&lt;li&gt;Adding a function to the APC queue of an existing thread&lt;/li&gt;
+
+
+
+&lt;li&gt;Direct manipulation of an existing thread’s context (&lt;code&gt;GetThreadContext&lt;/code&gt;/&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;). This includes using&amp;nbsp;&lt;a href="https://www.alex-ionescu.com/rtlremotecall/"&gt;&lt;code&gt;RtlRemoteCall&lt;/code&gt;&lt;/a&gt;&amp;nbsp;API (since it calls&amp;nbsp;&lt;code&gt;GetThreadContext&lt;/code&gt;/&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;&amp;nbsp;underneath).&lt;/li&gt;
+
+
+
+&lt;li&gt;Installing hooks&lt;/li&gt;
+
+
+
+&lt;li&gt;Replacing the defined callbacks&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Let’s analyze each option one by one.&lt;/p&gt;
+
+
+
+&lt;p&gt;Creating a remote thread is straightforward, and involves using one of the APIs from the&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadscreateremotethread"&gt;CreateRemoteThread&lt;/a&gt;&amp;nbsp;series. Although we may&amp;nbsp;&lt;a href="https://aliongreen.github.io/posts/remote-thread-injection.html"&gt;apply it in various ways&lt;/a&gt;, calling high- or low-level versions of those functions or even using raw syscalls, the end result won’t be very stealthy. Creation of a new thread generates a kernel callback that makes an EDR quickly notified about the suspicious intentions (via&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreatethreadnotifyroutine"&gt;&lt;code&gt;PsSetCreateThreadNotifyRoutine&lt;/code&gt;&lt;/a&gt;/&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreatethreadnotifyroutineex"&gt;&lt;code&gt;Ex&lt;/code&gt;&lt;/a&gt;&lt;strong&gt;)&lt;/strong&gt;,&lt;/p&gt;
+
+
+
+&lt;p&gt;This leads to the conclusion that what pays off more is giving up on creating new threads altogether, and somehow hopping onto an existing one. The most straightforward and convenient way is using APC, as it was explained in details in the&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;blog about Thread Name-Calling&lt;/a&gt;. This method however also has its drawbacks. In this scenario a kernel callback won’t be triggered, but yet, it generates an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-"&gt;ETW event&lt;/a&gt;, for which an AV/EDR product can listen. Second, a handle to the thread must be opened with&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;&amp;nbsp;access. The event of opening a handle also generates a kernel callback (that can be monitored in kernel mode via&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-obregistercallbacks"&gt;ObRegisterCallbacks&lt;/a&gt;), so we should tend to avoid suspicious flags, and minimize the requested access.&lt;/p&gt;
+
+
+
+&lt;p&gt;Direct manipulation of an existing thread is a part of another old and well-known method, called&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;thread execution hijacking&lt;/a&gt;. It involves finding a thread within the target process, suspending it, changing its context to redirect the execution flow into our own code, and then resuming it. Just like APC injection, it requires the thread handle to be open with&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;, plus another suspicious flag:&amp;nbsp;&lt;code&gt;THREAD_SUSPEND_RESUME&lt;/code&gt;. Another problem is that the APIs related to this method are usually monitored, which will get us stopped by an EDR. If we give up on all functions that require modifications of the thread context, we are left with simple writes to the target process’ memory. This seems like not much, but using it creatively can still achieve code execution.&lt;/p&gt;
+
+
+
+&lt;p&gt;One of the basic ideas from this category is API hooking. We can predict that there are some functions within the process that will be called at some point. If we intercept them, we can get our code to run alongside. There are multiple different options to implement hooks: inline as well as in IAT (Import Address Table) or EAT (Export Address Table). However, installing them requires overwriting a part of the loaded DLL, which often raises alerts.&lt;/p&gt;
+
+
+
+&lt;p&gt;The more creative approach is based on the fact that a process may use various callbacks executed on particular events. If we overwrite a pointer to the callback function, we can force our code to be executed instead. There are a variety of publications detailing different methods from this group. A few examples include:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1055/005/"&gt;Overwriting TLS callbacks&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1574/013/"&gt;Overwriting Kernel Callback Table&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Overwriting GUI callbacks (examples:&amp;nbsp;&lt;a href="https://web.archive.org/web/20240316160018/https://modexp.wordpress.com/2019/04/25/seven-window-injection-methods/"&gt;odzhan blog&lt;/a&gt;&amp;nbsp;#1)&lt;/li&gt;
+
+
+
+&lt;li&gt;Overwriting ETW callbacks (example:&amp;nbsp;&lt;a href="https://web.archive.org/web/20240324163515/https://modexp.wordpress.com/2020/04/08/red-teams-etw/"&gt;odzhan blog&lt;/a&gt;&amp;nbsp;#2)&lt;/li&gt;
+
+
+
+&lt;li&gt;PROPagate &amp;#8211; running code using Windows subclassing (&lt;a href="https://www.hexacorn.com/blog/2017/10/26/propagate-a-new-code-injection-trick/"&gt;hexacorn blog&lt;/a&gt;&amp;nbsp;#1,&amp;nbsp;&lt;a href="https://www.hexacorn.com/blog/2017/11/03/propagate-a-new-code-injection-trick-64-bit-and-32-bit/"&gt;hexacorn blog&lt;/a&gt;&amp;nbsp;#2)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;An interesting and novel addition to this group was a technique described by Alon Leviev in his publication on&amp;nbsp;&lt;a href="https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/"&gt;Thread “Pool-Party”&lt;/a&gt;. His idea is based on the fact that Windows makes heavy use of&amp;nbsp;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6"&gt;thread pools&lt;/a&gt;. By getting a handle to the Worker Factory of the target, we can manipulate its structure to link to our implant and enforce its execution. For example, we can overwrite the start address within the Worker Factory’s structure redirecting it to our shellcode, and then trigger its run. It is also possible to install a new work item into the remote process by manually writing its structure and attaching it to the Worker Factory’s queue.&lt;/p&gt;
+
+
+
+&lt;p&gt;In the solution that we are going to introduce, some of the observations mentioned in the Alon’s paper will be used as well. However, the whole technique is much simpler and based on manipulating one of the threads that are products of the factory rather than the factory itself.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="what-the-hell-is-waiting-thread-hijacking"&gt;What Problems Waiting Thread Hijacking Solves?&lt;/h1&gt;
+
+
+
+&lt;p&gt;Waiting Thread Hijacking is a method inspired by the concepts of the&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;classic Thread Execution Hijacking&lt;/a&gt;, and the research about the&amp;nbsp;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6"&gt;Thread Pool&lt;/a&gt;. However, its usage is not strictly limited to the threads belonging to the thread pool.&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s think about what the biggest problems with the classic Thread Execution Hijacking are.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;First of all, we have to suspend a remote thread, and resume it afterwards. This may create some synchronization issues in the target application. But most importantly, it forces us to use&amp;nbsp;&lt;code&gt;SuspendThread&lt;/code&gt;/&amp;nbsp;&lt;code&gt;ResumeThread&lt;/code&gt;&amp;nbsp;API, and the thread handle with the access&amp;nbsp;&lt;code&gt;THREAD_SUSPEND_RESUME&lt;/code&gt;. Those are suspicious indicators that will surely be observed by an EDR.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;em&gt;If only we could find a process where this is done automatically on the target side, we would avoid this hurdle…&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Second, we need to redirect execution of the suspended thread to the implant. In the classic version of this technique,&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;&amp;nbsp;(or its low-level equivalent,&amp;nbsp;&lt;a href="https://ntdoc.m417z.com/ntsetcontextthread"&gt;&lt;code&gt;NtSetContextThread&lt;/code&gt;&lt;/a&gt;) is used. The redirection is done by modifying the Instruction Pointer. The direct setting of the thread context is very suspicious, and&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;noisy (generates two different ETW events)&lt;/a&gt;. It will most likely get us flagged by the AV/EDR. Also, it requires&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;&amp;nbsp;access on the handle, which we would like to avoid.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;em&gt;Is it possible to change the thread’s execution flow without manually modifying its context?&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Finally, returning to the original execution flow won’t be seamless. We need to store the original thread context somewhere, and restore it at our shellcode’s exit. The stability of the target process may be at risk.
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;em&gt;Is it possible to just return to the original execution without the need to set the thread context again?&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;It turns out, those limitations can be overcome with a few simple tricks.&lt;/p&gt;
+
+
+
+&lt;p&gt;An old-school step used in the exploitation of buffer overflows is replacing the return address of the function with our own address. A working exploit may involve other primitives, like allocation of executable memory, or adding the execution permission. In order to circumvent this, restrictions like&amp;nbsp;&lt;a href="https://www.ired.team/offensive-security/defense-evasion/acg-arbitrary-code-guard-processdynamiccodepolicy"&gt;DCP (Dynamic Code Prohibited)&lt;/a&gt; have been invented. Those are also the typical events that Anti-exploit software will monitor. However, DCP policies do not apply if the executable memory is allocated within the target via an external process. It turns out, that the event of replacing the return address may also go unnoticed if it is done externally. In the current technique, we take advantage of it.&lt;/p&gt;
+
+
+
+&lt;p&gt;Still, we need to be very selective under which circumstances the return address can be overwritten. Since we have to avoid manual suspending/resuming of threads, we will use the threads that let us achieve the same effect by their own features. That is, waiting threads, which return addresses we can manipulate without destabilizing the whole application. Such threads can easily be found thanks to Thread Pools.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="thread-pools-basics"&gt;Thread Pools Basics&lt;/h2&gt;
+
+
+
+&lt;p&gt;The&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools"&gt;concept of Thread Pools&lt;/a&gt;&amp;nbsp;has been around since early editions of Windows, and its modern form was introduced in Vista. The details of the API, and its evolution are&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools"&gt;described on MSDN&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Thread Pools are the way of optimizing the thread creation and task processing. Rather than creating a new thread each time when there is some new event to handle, we have a set of ready-made threads that are reused. Part of the Thread Pool architecture is the presence of work queue and waiter threads.&lt;/p&gt;
+
+
+
+&lt;p&gt;By inspecting processes using tools like Process Explorer or&amp;nbsp;&lt;a href="https://systeminformer.com/"&gt;System Informer&lt;/a&gt;, you can observe the thread pool mechanism at work. Most of the default Windows processes consist of multiple threads, many of which are in a waiting state. The callstacks of those threads contain functions prefixed with&amp;nbsp;&lt;code&gt;Tp*&lt;/code&gt;&amp;nbsp;&amp;#8211; that stand for Thread Pool.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 2 - View from ProcessExplorer. Example of the callstack of a
+thread belonging to a pool, and waiting in the WrQueue." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId58.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; View from ProcessExplorer. Example of the callstack of a thread belonging to a pool, and waiting in the WrQueue.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="taking-advantage-of-thread-pools"&gt;Taking Advantage of Thread Pools&lt;/h2&gt;
+
+
+
+&lt;p&gt;On any modern Windows system we find&amp;nbsp;&lt;a href="https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/"&gt;plenty of processes with waiting threads&lt;/a&gt;, that are managed by a Thread Pool. They can provide the building blocks to create a stealthier version of Thread Execution Hijacking.&lt;/p&gt;
+
+
+
+&lt;p&gt;Rather than suspending and then resuming one of the existing threads, we can take advantage of one of the waiting threads that are dormant. These threads will automatically reactivate on the awaited event, giving us exactly the effect that we wanted to achieve, without the need of calling external APIs.&lt;/p&gt;
+
+
+
+&lt;p&gt;Another problem to solve was related to changing the thread context. This time we won’t manipulate the instruction pointer directly. In the considered case, we are dealing with the thread that waits on a syscall for its completion. The last executed function was simply a corresponding syscall wrapper within NTDLL. Knowing that those wrappers use a very simple layout, we are sure that the last element on the stack is a return address. So, we can simply get the context of the thread, read the stack pointer, and then replace the return address with the pointer to our own code.&lt;/p&gt;
+
+
+
+&lt;p&gt;All that is needed to perform those operations is a thread handle with&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-security-and-access-rights"&gt;&lt;code&gt;THREAD_GET_CONTEXT&lt;/code&gt;&lt;/a&gt;, and a process handle with the read/write permissions (&amp;nbsp;&lt;code&gt;PROCESS_VM_READ | [PROCESS_VM_WRITE](https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights)&lt;/code&gt;&amp;nbsp;).&lt;/p&gt;
+
+
+
+&lt;p&gt;While interference in threads involving suspending/resuming and manual context setting will be blocked by most EDRs, this approach allows to avoid the common triggers and achieve the code execution.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="identifying-suitable-threads"&gt;Identifying Suitable Threads&lt;/h2&gt;
+
+
+
+&lt;p&gt;In theory, any waiting thread, regardless of the wait reason, can be subject to hijacking. But of course we don’t want to introduce synchronization issues in the attacked application. One of the safe options is to pick threads with the wait reason&amp;nbsp;&lt;code&gt;WrQueue&lt;/code&gt;. This reason indicates that the thread is waiting on a&amp;nbsp;&lt;code&gt;KQUEUE&lt;/code&gt;&amp;nbsp;object, which is a kernel object used to manage queues of IRPs.&lt;/p&gt;
+
+
+
+&lt;p&gt;To find them, we use the native function&amp;nbsp;&lt;code&gt;NtQuerySystemInformation&lt;/code&gt;&amp;nbsp;with a parameter&amp;nbsp;&lt;code&gt;SystemProcessInformation&lt;/code&gt;, allowing us to enumerate all processes and threads and extract useful information. For each thread, it retrieves the structure&amp;nbsp;&lt;a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/api/ex/sysinfo/thread.htm"&gt;&lt;code&gt;SYSTEM_THREAD_INFORMATION&lt;/code&gt;&lt;/a&gt;. The field&amp;nbsp;&lt;code&gt;ThreadState&lt;/code&gt;&amp;nbsp;allows checking if the thread is currently waiting, and the&amp;nbsp;&lt;code&gt;WaitReason&lt;/code&gt;&amp;nbsp;gives more information on what caused it.&lt;/p&gt;
+
+
+
+&lt;p&gt;The presence of the&amp;nbsp;&lt;code&gt;WrQueue&lt;/code&gt;&amp;nbsp;wait reason indicates that we are dealing with one of two possible scenarios.&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;The wait happens inside the&amp;nbsp;&lt;code&gt;NtRemoveIoCompletion&lt;/code&gt;&amp;nbsp;that was called by kernelbase →&amp;nbsp;&lt;code&gt;GetQueuedCompletionStatus&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31353" height="270" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId66.png" width="866" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Inside the function&amp;nbsp;&lt;code&gt;GetQueuedCompletionStatus&lt;/code&gt;&amp;nbsp;. The highlighted line shows the return address of the syscall wrapper.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;The wait happens inside&amp;nbsp;&lt;code&gt;NtWaitForWorkViaWorkerFactory&lt;/code&gt;&amp;nbsp;that was called by ntdll →&amp;nbsp;&lt;code&gt;TppWorkerThread&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 4 - Inside the function &amp;lt;code&amp;gt;TppWorkerThread&amp;lt;/code&amp;gt; . The
+highlighted line shows the return address of the syscall wrapper." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId69.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Inside the function&amp;nbsp;&lt;code&gt;TppWorkerThread&lt;/code&gt;&amp;nbsp;. The highlighted line shows the return address of the syscall wrapper.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;The original return address is highlighted in gray on each picture.&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;In both cases, the situation is favorable for hijacking. The thread waits on syscall completion within a syscall wrapper function. Those wrappers do not create stack frames. The first argument at the top of the stack is the return address, leading back to the caller’s function.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="ensuring-a-happy-ending"&gt;Ensuring a Happy Ending&lt;/h2&gt;
+
+
+
+&lt;p&gt;One of the important things to remember while implementing an injection method, is ensuring that after executing our code the target application won’t crash.&lt;/p&gt;
+
+
+
+&lt;p&gt;In Waiting Thread Hijacking, we replace the original address with our own. So, once the wait finishes, the return address will be picked from the stack, and followed. Since now it is overwritten with the pointer to our shellcode, that will lead to the execution of the implant. However, we interrupted the normal execution flow of the function, so there is a risk to the stability of the target process. One way to prevent the crash at the end, is to make the shellcode never return &amp;#8211; i.e.&amp;nbsp;by making it stuck in the infinite&amp;nbsp;&lt;code&gt;Sleep&lt;/code&gt;&amp;nbsp;loop. But it is not the best solution. For example, we will miss processing some events for which the thread was originally waiting. While this might not cause a critical issue, it’s still suboptimal.&lt;/p&gt;
+
+
+
+&lt;p&gt;Fortunately, restoring the original execution flow is relatively straightforward with an appropriate stub.&lt;/p&gt;
+
+
+
+&lt;p&gt;The template:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[SAVED_RET_PTR] ; space where the original return pointer will be saved
+pushf           ; store original flags, and values of registers:
+push rax 
+push rcx
+push rdx
+push rbx
+push rbp
+push rsi
+push rdi
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13tebAddress
+push r14
+push r15
+call shellcode_main ; call our main shellcode function
+pop r15             ;restore original flags, and values of registers:
+pop r14
+pop r13
+pop r12
+pop r11
+pop r10
+pop r9
+pop r8
+pop rdi
+pop rsi
+pop rbp
+pop rbx
+pop rdx
+pop rcx
+pop rax
+popf
+jmp qword ptr ds:[SAVED_RET_PTR] ;jump to the original return address
+[shellcode_main] ; the vital part of the shellcode&lt;/pre&gt;
+
+
+
+&lt;p&gt;The stub starts from a free space of a pointer size. This is where the previous return address will be saved by the injector, before being replaced. The code starts after that. It saves the flags, and all the general purpose registers that may contain vital data needed to continue with normal execution later. With the context saved, we can now execute the shellcode responsible for any planned activity (in case of a PoC, that is, traditionally, popping up the calc.exe). After the main function returned, we restore the previously saved registers and flags, and then jump to the original return address.&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s see it in action.&lt;/p&gt;
+
+
+
+&lt;p&gt;Step 1 &amp;#8211; As the wait finished, the execution is about to follow the return address. In our case, the address on the stack has been replaced.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31355" height="223" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId73.png" width="880" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; Inside the syscall wrapper:&amp;nbsp;&lt;code&gt;NtWaitForWorkViaWorkerFactory&lt;/code&gt;. Upon the syscall completion, the function will pick the first entry from the stack, that was overwritten, and use it as a return address.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step 2 &amp;#8211; The shellcode starts execution from saving all the flags, and registers. They will be restored at the end, to recover the original values.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31356" height="435" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId76.png" width="975" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; View of the stub within the implanted shellcode. The right panel shows the values of the registers BEFORE the shellcode execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step 3 &amp;#8211; The shellcode finished its execution. The registers are restored to the same state as they were in the beginning. The jump at the end of the shellcode will take us back to the original return address.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31357" height="461" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId79.png" width="981" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; View of the stub within the implanted shellcode. The right panel shows the values of the registers AFTER the shellcode execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step 4 &amp;#8211; The execution returns to the original function.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 8 - After the implant finished, the execution flow returned to
+the place where the syscall wrapper would normally return." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId82.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; After the implant finished, the execution flow returned to the place where the syscall wrapper would normally return.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="implementation"&gt;Implementation&lt;/h1&gt;
+
+
+
+&lt;p&gt;Having all those building blocks, let’s have a look at the final implementation.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31359" height="321" src="https://research.checkpoint.com/wp-content/uploads/2025/04/rId87.gif" width="621" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Animation showing all the main steps of Waiting Thread Hijacking.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The writes (and possible allocation) are done in a standard way, using&amp;nbsp;&lt;code&gt;VirtualAllocEx&lt;/code&gt;&amp;nbsp;+&amp;nbsp;&lt;code&gt;WriteProcessMemory&lt;/code&gt;. After the shellcode is planted in the target, we proceed to set up for its execution. Enumerating all the threads in the process, we scan for those that are currently in a waiting mode, select one of them, and overwrite its return address. Once the thread switches back to the active mode, it will resume its execution returning to the replaced address, which now leads to the implant. After executing the implant, the thread should return seamlessly to its casual duties.&lt;/p&gt;
+
+
+
+&lt;p&gt;Code snippet:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;bool check_ret_target(LPVOID ret)
+{
+    HMODULE mod = get_module_by_address((LPVOID)ret);
+    if (mod == NULL) {
+        std::cout &amp;lt;&amp;lt; "Pointer not in any recognized module.\n";
+        return false;
+    }
+    if (mod == GetModuleHandleA("ntdll.dll") || 
+        mod == GetModuleHandleA("kernelbase.dll") || 
+        mod == GetModuleHandleA("kernel32.dll"))
+    {
+        return true;
+    }
+    std::cout &amp;lt;&amp;lt; "Pointer not in ntdll/kernel32.\n";
+    return false;
+}
+
+bool run_injected(DWORD pid, ULONGLONG shellcodePtr, KWAIT_REASON wait_reason)
+{
+    std::cout &amp;lt;&amp;lt; "Enumerating threads of PID: " &amp;lt;&amp;lt; pid &amp;lt;&amp;lt; "\n";
+    std::map&amp;lt;DWORD, thread_info&gt; threads_info;
+    if (!pesieve::util::fetch_threads_info(pid, threads_info)) {
+        return false;
+    }
+
+    HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, pid);
+    if (!hProcess) return false;
+
+    CONTEXT ctx = { 0 };
+    ULONGLONG suitable_ret_ptr = 0;
+    ULONGLONG suitable_ret = 0;
+    std::cout &amp;lt;&amp;lt; "Threads: " &amp;lt;&amp;lt; threads_info.size() &amp;lt;&amp;lt; std::endl;
+    for (auto itr = threads_info.begin(); itr != threads_info.end(); ++itr) {
+        thread_info&amp;amp; info = itr-&gt;second;
+
+        if (!info.is_extended) return false;
+        
+        if (info.ext.state == Waiting) {
+            std::cout &amp;lt;&amp;lt; "TID: " &amp;lt;&amp;lt; info.tid &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; " : wait reason: " &amp;lt;&amp;lt; std::dec &amp;lt;&amp;lt; info.ext.wait_reason &amp;lt;&amp;lt; "\n";
+            if (info.ext.wait_reason != wait_reason || !read_context(info.tid, ctx)) {
+                continue;
+            }
+            ULONGLONG ret = read_return_ptr&amp;lt;ULONGLONG&gt;(hProcess, ctx.Rsp);
+            std::cout &amp;lt;&amp;lt; "RET: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; ret &amp;lt;&amp;lt; "\n";
+            if (!suitable_ret_ptr) {
+                if (!check_ret_target((LPVOID)ret)) {
+                    std::cout &amp;lt;&amp;lt; "Not supported ret target. Skipping!\n";
+                    continue;
+                }
+                suitable_ret_ptr = ctx.Rsp;
+                suitable_ret = ret;
+                std::cout &amp;lt;&amp;lt; "\tUsing as a target!\n";
+                break; 
+            }
+        }
+        else {
+            std::cout &amp;lt;&amp;lt; "TID: " &amp;lt;&amp;lt; itr-&gt;first &amp;lt;&amp;lt; "is NOT waiting, State: " &amp;lt;&amp;lt; info.ext.state &amp;lt;&amp;lt; "\n";
+        }
+    }
+    bool is_injected = false;
+    if (suitable_ret_ptr) {
+        // overwrite the shellcode with the jump back
+        SIZE_T written = 0;
+        if (ntapi::WriteProcessMemory(hProcess, (LPVOID)shellcodePtr, &amp;amp;suitable_ret, sizeof(suitable_ret), &amp;amp;written) &amp;amp;&amp;amp; written == sizeof(suitable_ret)) {
+            std::cout &amp;lt;&amp;lt; "Shellcode ptr overwritten! Written: " &amp;lt;&amp;lt; written &amp;lt;&amp;lt; " \n";
+        }
+        else {
+            std::cout &amp;lt;&amp;lt; "Failed to overwrite shellcode jmp back: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; GetLastError() &amp;lt;&amp;lt; "\n";
+            return false;
+        }
+        if (!protect_memory(pid, (LPVOID)shellcodePtr, sizeof(g_payload), PAGE_EXECUTE_READ)) {
+            std::cerr &amp;lt;&amp;lt; "Failed making memory executable!\n";
+            return false;
+        }
+
+        shellcodePtr += 0x8; // after the saved return...
+        std::cout &amp;lt;&amp;lt; "Trying to overwrite: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; suitable_ret_ptr &amp;lt;&amp;lt; " -&gt; " &amp;lt;&amp;lt; suitable_ret &amp;lt;&amp;lt; " with: " &amp;lt;&amp;lt; shellcodePtr &amp;lt;&amp;lt; std::endl;
+        if (ntapi::WriteProcessMemory(hProcess, (LPVOID)suitable_ret_ptr, &amp;amp;shellcodePtr, sizeof(shellcodePtr), &amp;amp;written) &amp;amp;&amp;amp; written == sizeof(shellcodePtr)) {
+            std::cout &amp;lt;&amp;lt; "Ret overwritten!\n";
+            is_injected = true;
+        }
+    }
+    CloseHandle(hProcess);
+    return is_injected;
+}
+
+bool execute_injection(DWORD processID)
+{
+    LPVOID shellcodePtr = NULL;
+
+    {
+        HANDLE hProcess = OpenProcess(PROCESS_VM_OPERATION, FALSE, processID);
+        if (!hProcess) return false;
+
+        shellcodePtr = ntapi::VirtualAllocEx(hProcess, nullptr, sizeof(g_payload), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+        CloseHandle(hProcess);
+        if (!shellcodePtr) return false;
+    }
+
+    {
+        HANDLE hProcess = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_WRITE, FALSE, processID);
+        if (!hProcess) return false;
+
+        SIZE_T written = 0;
+        bool isOk = ntapi::WriteProcessMemory(hProcess, (LPVOID)shellcodePtr, g_payload, sizeof(g_payload), &amp;amp;written);
+        CloseHandle(hProcess);
+        if (!isOk) return false;
+    }
+    return run_injected(processID, (ULONG_PTR)shellcodePtr, WrQueue);
+}&lt;/pre&gt;
+
+
+
+&lt;p&gt;The complete source code of the&amp;nbsp;&lt;a href="https://github.com/hasherezade/waiting_thread_hijacking"&gt;PoC is available on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="demo"&gt;Demo&lt;/h1&gt;
+
+
+
+&lt;p&gt;Demo on Windows 11 24H2&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"&gt;&lt;div class="wp-block-embed__wrapper"&gt;
+
+&lt;/div&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Source code:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://github.com/hasherezade/waiting_thread_hijacking"&gt;https://github.com/hasherezade/waiting_thread_hijacking&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="execution-flow-obfuscation"&gt;Execution flow obfuscation&lt;/h1&gt;
+
+
+
+&lt;p&gt;Some products base their detection on behavioral signatures, which consist of sequences of API calls made in conjunction. While a single write done to a remote process might get a pass, if the same process makes other interesting calls, it may create a marker of an injection technique.&lt;/p&gt;
+
+
+
+&lt;p&gt;One way to throw off process-centric behavioral signatures is to apply a simple obfuscation and split each step of our technique into a different child process.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this model, allocation with read-write access is executed by the first process. The allocated address is then stored in an environment variable and passed to the next child process, which fills the new memory area with content. Then, the final child process changes the access rights of the allocated memory to read-execute. The last child process replaces the return pointer of the waiting thread, redirecting it to the previously written shellcode.&lt;/p&gt;
+
+
+
+&lt;p&gt;We can also split the execution into three steps instead of four, if we’re willing to accept a small concurrency risk. Using Waiting Thread Hijacking, the execution of the implant is not instantaneous and instead depends on a received event. So, making the shellcode executable can be done as the last step, after the pointer on the stack was already replaced.&lt;/p&gt;
+
+
+
+&lt;p&gt;A demo enriched with this obfuscation method is available when compiling the PoC with a flag:&amp;nbsp;&lt;code&gt;SPLIT_STEPS&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h1&gt;
+
+
+
+&lt;p&gt;Waiting Thread Hijacking relies on writing to a remote process. However, some Endpoint Detection and Response (EDR) systems may prevent any attempt at remote write, effectively thwarting this technique.&lt;/p&gt;
+
+
+
+&lt;p&gt;To overcome these limitations, it would be best to use an unconventional write (as demonstrated in the blog about Thread Name-Calling). But here comes the chicken-and-egg problem: to do so, we need to execute remotely some API. So, it defeats the purpose of this technique, which is stealthy execution. Techniques like&amp;nbsp;&lt;a href="https://undev.ninja/nina-x64-process-injection/"&gt;NINA&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://blog.sevagas.com/IMG/pdf/code_injection_series_part5.pdf"&gt;GhostWriting&lt;/a&gt;&amp;nbsp;try to solve the write problem without using APCs (Asynchronous Procedure Calls), but they come with their own trade-offs. For example, they make use of&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;SetThreadContext&lt;/a&gt;, which is still detectable and blocked by many EDR systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;On the other hand, there are some products that are very restrictive about remote execution methods but more lenient about allocations and writes. In such cases, WTH can still be effective in hiding the point at which the implanted code was run, remaining undetected despite using a common write primitive.&lt;/p&gt;
+
+
+
+&lt;p&gt;Different EDRs have different mechanisms of working, and by diversifying the arsenal of techniques, we can increase our success ratio in Red Teaming endeavors. Using WTH we were able to bypass some EDRs that stopped Thread Name-Calling. However, the opposite effect also occurred. No injection technique is perfect; each has its pros and cons, and as always, we are forced to trade off one suspicious indicator against another.&lt;/p&gt;
+
+
+
+&lt;p&gt;This technique doesn’t use rare APIs or sophisticated structures. Thanks to this simplicity, it’s easy to implement, but harder to detect by statically analyzing the sample, i.e.&amp;nbsp;using YARA rules. All used APIs occur commonly in benign executables as well. The best way to catch it is by watching behavior, stopping remote writes immediately, or examining where they lead.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Check Point customers remain protected from the threats described in this research.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Check Point’s&amp;nbsp;&lt;a href="https://www.checkpoint.com/harmony/advanced-endpoint-protection/"&gt;Harmony Endpoint&lt;/a&gt;&amp;nbsp;provides comprehensive endpoint protection at the highest security level, crucial to avoid security breaches and data compromise. Behavioral Guard protections were developed and deployed to protect customers against the threats described in this research.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Harmony Endpoint protections:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;WaitingThreadHijackBlock&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="references"&gt;References&lt;/h1&gt;
+
+
+
+&lt;p&gt;Compendiums of known process injection techniques:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://i.blackhat.com/USA-19/Thursday/us-19-Kotler-Process-Injection-Techniques-Gotta-Catch-Them-All-wp.pdf"&gt;https://i.blackhat.com/USA-19/Thursday/us-19-Kotler-Process-Injection-Techniques-Gotta-Catch-Them-All-wp.pdf&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://www.elastic.co/blog/ten-process-injection-techniques-technical-survey-common-and-trending-process"&gt;https://www.elastic.co/blog/ten-process-injection-techniques-technical-survey-common-and-trending-process&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1055/"&gt;https://attack.mitre.org/techniques/T1055/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;https://www.ired.team/offensive-security/code-injection-process-injection&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;On Classic Thread Hijacking:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://www.ired.team/offensive-security/code-injection-process-injection/injecting-to-remote-process-via-thread-hijacking&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;On derivatives of Thread Hijacking:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://infosecwriteups.com/t-rop-h-thread-hijacking-without-executable-memory-allocation-d746c102a9ca"&gt;https://infosecwriteups.com/t-rop-h-thread-hijacking-without-executable-memory-allocation-d746c102a9ca&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;On SetThreadContext and the alerts that it triggers:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;On Waiting Threads and Thread Pool:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/"&gt;https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools"&gt;https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Using Thread Pool for injections:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://i.blackhat.com/EU-23/Presentations/EU-23-Leviev-The-Pool-Party-You-Will-Never-Forget.pdf"&gt;https://i.blackhat.com/EU-23/Presentations/EU-23-Leviev-The-Pool-Party-You-Will-Never-Forget.pdf&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;https://vvinoth.com/post/threadpools/&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Another technique taking advantage of waiting threads:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://www.unknowncheats.me/forum/anti-cheat-bypass/261176-silentjack-ultimate-handle-hijacking-user-mode-multi-ac-bypass-eac-tested.html"&gt;https://www.unknowncheats.me/forum/anti-cheat-bypass/261176-silentjack-ultimate-handle-hijacking-user-mode-multi-ac-bypass-eac-tested.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/waiting-thread-hijacking/"&gt;Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31349</guid><category>Check Point Research Publications</category></item><item><title>Explore how to secure AI by attending our Learn Live Series</title><link>https://techcommunity.microsoft.com/blog/microsoft-security-blog/explore-how-to-secure-ai-by-attending-our-learn-live-series/4399703</link><description>&lt;p&gt;Register to attend one or all our Learn Live sessions to learn how to secure your environment for AI adoption.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/explore-how-to-secure-ai-by-attending-our-learn-live-series/4399703"&gt;Explore how to secure AI by attending our Learn Live Series&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;As organizations develop, use, and increasingly rely on AI applications, they must address new and amplified security risks. Are you prepared to secure your environment for AI adoption? How about identifying threats to your AI and safeguarding data? Register to attend one or all our Learn Live sessions.&lt;br /&gt;Register to attend Learn Live: Security for AI with Microsoft Purview and Defender for Cloud starting April 15&lt;/p&gt;
+
+
+
+&lt;p&gt;In this month-long webinar series, IT pros and security practitioners can hone their security skillsets with a deeper understanding of AI-centric challenges, opportunities, and best practices using Microsoft Security solutions.&lt;/p&gt;
+
+
+
+&lt;p&gt;Each session will follow a hosted demo format and cover a Microsoft Learn module (topics listed below). You can ask the SMEs questions via the chat as they show you how to use Microsoft Purview and Microsoft Defender for Cloud to protect your organization in the age of AI.&lt;/p&gt;
+
+
+
+&lt;p&gt;Learn Live dates/topics include:&lt;/p&gt;
+
+
+
+&lt;p&gt;April 15 at 12pm PST – Manage AI Data Security Challenges with Microsoft Purview: Microsoft Purview helps you strengthen data security in AI environments, providing tools to handle challenges from AI technology. Learn to safeguard your data and adapt to evolving security challenges in AI technology. This session will help you:&lt;br /&gt;Understand sensitivity labels in Microsoft 365 Copilot&lt;br /&gt;Secure against generative AI data exposure with endpoint Data Loss Prevention&lt;br /&gt;Detect generative AI usage with Insider Risk Management&lt;br /&gt;Dynamically protect sensitive data with Adaptive Protection&lt;br /&gt;April 22 at 12pm PST – Manage Compliance with Microsoft Purview with Microsoft 365 Copilot: Use Microsoft Purview for compliance management with Microsoft 365 Copilot. You&amp;#8217;ll learn how to handle compliance aspects of Copilot&amp;#8217;s AI functionalities through Purview. This session will teach you how to:&lt;br /&gt;Audit Copilot interactions within Microsoft 365 using Microsoft Purview&lt;br /&gt;Investigate Copilot interactions using Microsoft Purview eDiscovery&lt;br /&gt;Manage Copilot data retention with Microsoft Purview Data Lifecycle Management&lt;br /&gt;Monitor and mitigate risks in Copilot interactions using Microsoft Purview Communication Compliance&lt;br /&gt;April 29 at 12pm PST – Identify and Mitigate AI Data Security Risks: Microsoft Purview Data Security Posture Management (DSPM) for AI helps organizations monitor AI activity, enforce security policies, and prevent unauthorized data exposure. Learn how to configure DSPM for AI, track AI interactions, run data assessments, and apply security controls to reduce risks associated with AI usage. You will learn how to:&lt;br /&gt;Explain the purpose and benefits of Microsoft Purview DSPM for AI&lt;br /&gt;Set up and configure DSPM for AI to monitor AI interactions&lt;br /&gt;Identify and analyze AI security risks using reports and insights&lt;br /&gt;Run and review AI data assessments to detect oversharing risks&lt;br /&gt;Apply security policies, such as DLP and sensitivity labels, to protect AI-referenced data&lt;br /&gt;May 13 at 10am PST – Enable Advanced Protection for AI Workloads with Microsoft Defender for Cloud: As organizations use and develop AI applications, they need to address new and amplified security risks. Prepare your environment for secure AI adoption to safeguard your data and identify threats to your AI. This session will help you:&lt;br /&gt;Understand how Defender for Cloud can protect AI workloads&lt;br /&gt;Enable threat protection workloads for AI&lt;br /&gt;Gain application and end user context for AI alerts&lt;br /&gt;Register today for these new sessions. We look forward to seeing you!&lt;/p&gt;
+
+
+
+&lt;p&gt;If you’re unable to attend a session, don’t worry—the recordings will be made available on-demand via YouTube.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/explore-how-to-secure-ai-by-attending-our-learn-live-series/4399703"&gt;Explore how to secure AI by attending our Learn Live Series&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Troy Hunt Gets Phished</title><link>https://www.schneier.com/blog/archives/2025/04/troy-hunt-gets-phished.html</link><description>&lt;p&gt;In case you need proof that &lt;i&gt;anyone&lt;/i&gt;, even people who do cybersecurity for a living, Troy Hunt has a long, iterative &lt;a href="https://www.troyhunt.com/a-sneaky-phish-just-grabbed-my-mailchimp-mailing-list/"&gt;story&lt;/a&gt; on his webpage about how he got phished. Worth reading.&lt;/p&gt;
 &lt;p&gt;EDITED TO ADD (4/14): Commentary from &lt;a href="https://shostack.org/blog/learning-from-troy-hunts-sneaky-phish/"&gt;Adam Shostack&lt;/a&gt; and &lt;a href="https://pluralistic.net/2025/04/05/troy-hunt/#teach-a-man-to-phish"&gt;Cory Doctorow&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In case you need proof that &lt;i&gt;anyone&lt;/i&gt;, even people who do cybersecurity for a living, Troy Hunt has a long, iterative &lt;a href="https://www.troyhunt.com/a-sneaky-phish-just-grabbed-my-mailchimp-mailing-list/"&gt;story&lt;/a&gt; on his webpage about how he got phished. Worth reading.&lt;/p&gt;
 &lt;p&gt;EDITED TO ADD (4/14): Commentary from &lt;a href="https://shostack.org/blog/learning-from-troy-hunts-sneaky-phish/"&gt;Adam Shostack&lt;/a&gt; and &lt;a href="https://pluralistic.net/2025/04/05/troy-hunt/#teach-a-man-to-phish"&gt;Cory Doctorow&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70084</guid><category>Uncategorized</category><category>phishing</category><category>social engineering</category></item><item><title>14th April – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/14th-april-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 14th April, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The United States Office of the Comptroller of the Currency (OCC), an independent bureau of the Department of the Treasury, has suffered a significant security breach. Threat actors have gained access to [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/14th-april-threat-intelligence-report/"&gt;14th April – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 14th April, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/04/Threat_Intelligence_News_2025-04-14.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
@@ -66,7 +842,7 @@
 &lt;ol&gt;
 &lt;li&gt;The First International Workshop on Reimagining Democracy (IWORD) was held December 7&amp;#8212;8, 2022. The Second IWORD was held December 12&amp;#8212;13, 2023. Both took place at the Harvard Kennedy School. The sponsors were the Ford Foundation, the Knight Foundation, and the Ash and Belfer Centers of the Kennedy School. See &lt;a href="http://www.schneier.com/blog/archives/2022/12/reimagining-democracy.html"&gt;Schneier, &amp;#8220;Recreating Democracy&amp;#8221;&lt;/a&gt; and &lt;a href="http://www.schneier.com/blog/archives/2024/01/second-interdisciplinary-workshop-on-reimagining-democracy.html"&gt;Schneier, &amp;#8220;Second Interdisciplinary Workshop.&amp;#8221;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;This essay was originally published in &lt;a href="https://read.dukeupress.edu/common-knowledge/article-abstract/30/3/354/398268/Reimagining-Democracy"&gt;Common Knowledge&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70105</guid><category>Uncategorized</category><category>AI</category><category>conferences</category><category>democracy</category></item><item><title>The Most Dangerous Hackers You’ve Never Heard Of</title><link>https://www.wired.com/story/most-dangerous-hackers-youve-never-heard-of/</link><description>From crypto kingpins to sophisticated scammers, these are the lesser-known hacking groups that should be on your radar.</description><guid isPermaLink="false">67f6c720e6bb9fca5313d510</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Paywall Exclude</category><category>Bad Company</category></item><item><title>Gamaredon: The Turncoat Spies Relentlessly Hacking Ukraine</title><link>https://www.wired.com/story/gamaredon-turncoat-spies-hacking-ukraine/</link><description>For the past decade, this group of FSB hackers—including “traitor” Ukrainian intelligence officers—has used a grinding barrage of intrusion campaigns to make life hell for their former countrymen and cybersecurity defenders.</description><guid isPermaLink="false">67ed60817ad18e0dec89afa4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Russia</category><category>Ukraine</category><category>war</category><category>hacking</category><category>cybersecurity</category><category>national security</category><category>hackers</category><category>Bad Company</category></item><item><title>CyberAv3ngers: The Iranian Saboteurs Hacking Water and Gas Systems Worldwide</title><link>https://www.wired.com/story/cyberav3ngers-iran-hacking-water-and-gas-industrial-systems/</link><description>Despite their hacktivist front, CyberAv3ngers is a rare state-sponsored hacker group bent on putting industrial infrastructure at risk—and has already caused global disruption.</description><guid isPermaLink="false">67eee89377f929d11fe8fe7f</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>hacking</category><category>Russia</category><category>Iran</category><category>malware</category><category>security</category><category>national security</category><category>critical infrastructure</category><category>Bad Company</category></item><item><title>Brass Typhoon: The Chinese Hacking Group Lurking in the Shadows</title><link>https://www.wired.com/story/brass-typhoon-china-cyberspies/</link><description>Though less well-known than groups like Volt Typhoon and Salt Typhoon, Brass Typhoon, or APT 41, is an infamous, longtime espionage actor that foreshadowed recent telecom hacks.</description><guid isPermaLink="false">67f6aaddecfbf60d2d31744a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>China</category><category>hacks</category><category>cybersecurity</category><category>hacking</category><category>malware</category><category>Crime</category><category>espionage</category><category>national security</category><category>Bad Company</category></item><item><title>TraderTraitor: The Kings of the Crypto Heist</title><link>https://www.wired.com/story/tradertraitor-north-korea-crypto-theft/</link><description>Allegedly responsible for the theft of $1.5 billion in cryptocurrency from a single exchange, North Korea’s TraderTraitor is one of the most sophisticated cybercrime groups in the world.</description><guid isPermaLink="false">67f6a9dc4d0632f97a5a5a19</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>hacking</category><category>cryptocurrency</category><category>cybersecurity</category><category>security</category><category>bitcoin</category><category>malware</category><category>Bad Company</category></item><item><title>Black Basta: The Fallen Ransomware Gang That Lives On</title><link>https://www.wired.com/story/black-basta-ransomware-gang/</link><description>After a series of setbacks, the notorious Black Basta ransomware gang went underground. Researchers are bracing for its probable return in a new form.</description><guid isPermaLink="false">67f6a89803c66e7896f605ec</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>hacking</category><category>cybersecurity</category><category>malware</category><category>vulnerabilities</category><category>security</category><category>ransomware</category><category>Bad Company</category></item><item><title>Smishing Triad: The Scam Group Stealing the World’s Riches</title><link>https://www.wired.com/story/smishing-triad-scam-group/</link><description>Millions of scam text messages are sent every month. The Chinese cybercriminals behind many of them are expanding their operations—and quickly innovating.</description><guid isPermaLink="false">67f6a96fbb508ba698b749c3</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>China</category><category>hacking</category><category>security</category><category>malware</category><category>vulnerabilities</category><category>scams</category><category>Crime</category><category>Bad Company</category></item><item><title>xorsearch.py: Searching With Regexes, (Mon, Apr 14th)</title><link>https://isc.sans.edu/diary/rss/31854</link><description>&lt;p&gt;As promised in diary entry "&lt;a href="https://isc.sans.edu/diary/XORsearch&amp;#x2b;Searching&amp;#x2b;With&amp;#x2b;Regexes/31834"&gt;XORsearch: Searching With Regexes&lt;/a&gt;", I will outline another method to search with xorsearch and regexes.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;As promised in diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/XORsearch+Searching+With+Regexes/31834"&gt;XORsearch: Searching With Regexes&lt;/a&gt;&amp;quot;, I will outline another method to search with xorsearch and regexes.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This essay was originally published in &lt;a href="https://read.dukeupress.edu/common-knowledge/article-abstract/30/3/354/398268/Reimagining-Democracy"&gt;Common Knowledge&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70105</guid><category>Uncategorized</category><category>AI</category><category>conferences</category><category>democracy</category></item><item><title>The Most Dangerous Hackers You’ve Never Heard Of</title><link>https://www.wired.com/story/most-dangerous-hackers-youve-never-heard-of/</link><description>From crypto kingpins to sophisticated scammers, these are the lesser-known hacking groups that should be on your radar.</description><guid isPermaLink="false">67f6c720e6bb9fca5313d510</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Paywall Exclude</category><category>Bad Company</category></item><item><title>TraderTraitor: The Kings of the Crypto Heist</title><link>https://www.wired.com/story/tradertraitor-north-korea-crypto-theft/</link><description>Allegedly responsible for the theft of $1.5 billion in cryptocurrency from a single exchange, North Korea’s TraderTraitor is one of the most sophisticated cybercrime groups in the world.</description><guid isPermaLink="false">67f6a9dc4d0632f97a5a5a19</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>hacking</category><category>cryptocurrency</category><category>cybersecurity</category><category>security</category><category>bitcoin</category><category>malware</category><category>Bad Company</category></item><item><title>Smishing Triad: The Scam Group Stealing the World’s Riches</title><link>https://www.wired.com/story/smishing-triad-scam-group/</link><description>Millions of scam text messages are sent every month. The Chinese cybercriminals behind many of them are expanding their operations—and quickly innovating.</description><guid isPermaLink="false">67f6a96fbb508ba698b749c3</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>China</category><category>hacking</category><category>security</category><category>malware</category><category>vulnerabilities</category><category>scams</category><category>Crime</category><category>Bad Company</category></item><item><title>Brass Typhoon: The Chinese Hacking Group Lurking in the Shadows</title><link>https://www.wired.com/story/brass-typhoon-china-cyberspies/</link><description>Though less well-known than groups like Volt Typhoon and Salt Typhoon, Brass Typhoon, or APT 41, is an infamous, longtime espionage actor that foreshadowed recent telecom hacks.</description><guid isPermaLink="false">67f6aaddecfbf60d2d31744a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>China</category><category>hacks</category><category>cybersecurity</category><category>hacking</category><category>malware</category><category>Crime</category><category>espionage</category><category>national security</category><category>Bad Company</category></item><item><title>Gamaredon: The Turncoat Spies Relentlessly Hacking Ukraine</title><link>https://www.wired.com/story/gamaredon-turncoat-spies-hacking-ukraine/</link><description>For the past decade, this group of FSB hackers—including “traitor” Ukrainian intelligence officers—has used a grinding barrage of intrusion campaigns to make life hell for their former countrymen and cybersecurity defenders.</description><guid isPermaLink="false">67ed60817ad18e0dec89afa4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Russia</category><category>Ukraine</category><category>war</category><category>hacking</category><category>cybersecurity</category><category>national security</category><category>hackers</category><category>Bad Company</category></item><item><title>CyberAv3ngers: The Iranian Saboteurs Hacking Water and Gas Systems Worldwide</title><link>https://www.wired.com/story/cyberav3ngers-iran-hacking-water-and-gas-industrial-systems/</link><description>Despite their hacktivist front, CyberAv3ngers is a rare state-sponsored hacker group bent on putting industrial infrastructure at risk—and has already caused global disruption.</description><guid isPermaLink="false">67eee89377f929d11fe8fe7f</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>hacking</category><category>Russia</category><category>Iran</category><category>malware</category><category>security</category><category>national security</category><category>critical infrastructure</category><category>Bad Company</category></item><item><title>Black Basta: The Fallen Ransomware Gang That Lives On</title><link>https://www.wired.com/story/black-basta-ransomware-gang/</link><description>After a series of setbacks, the notorious Black Basta ransomware gang went underground. Researchers are bracing for its probable return in a new form.</description><guid isPermaLink="false">67f6a89803c66e7896f605ec</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>hacking</category><category>cybersecurity</category><category>malware</category><category>vulnerabilities</category><category>security</category><category>ransomware</category><category>Bad Company</category></item><item><title>xorsearch.py: Searching With Regexes, (Mon, Apr 14th)</title><link>https://isc.sans.edu/diary/rss/31854</link><description>&lt;p&gt;As promised in diary entry "&lt;a href="https://isc.sans.edu/diary/XORsearch&amp;#x2b;Searching&amp;#x2b;With&amp;#x2b;Regexes/31834"&gt;XORsearch: Searching With Regexes&lt;/a&gt;", I will outline another method to search with xorsearch and regexes.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;As promised in diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/XORsearch+Searching+With+Regexes/31834"&gt;XORsearch: Searching With Regexes&lt;/a&gt;&amp;quot;, I will outline another method to search with xorsearch and regexes.&lt;/p&gt;
 
 &lt;p&gt;In stead of &lt;a href="https://blog.didierstevens.com/programs/xorsearch/"&gt;XORsearch.exe&lt;/a&gt;, the original tool that is written in C and compiled, we will use &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/xorsearch.py"&gt;xorsearch.py&lt;/a&gt;, a new tool written in Python.&lt;/p&gt;
 
@@ -1157,7 +1933,17 @@ export class ReportWorkflow extends WorkflowEntrypoint&amp;lt;Env, ReportType&am
 &lt;li&gt;ICSA-25-100-09 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-100-09"&gt;ABB Arctic Wireless Gateways&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;li&gt;ICSMA-25-100-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-100-01"&gt;INFINITT Healthcare INFINITT PACS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23242</guid></item><item><title>Natural Language Processing Use Cases</title><link>https://www.techrepublic.com/resource-library/feature/natural-language-processing-use-cases/</link><description>Understand the technology better. This feature explores the practical use cases of NLP and its growing importance in today&amp;#8217;s digital environment. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 11-page PDF looks at business and customer service, healthcare, finance and banking, and more. Expert Guidance — ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/natural-language-processing-use-cases/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Mobile Device Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/mobile-device-security/</link><description>Dismiss the dangers and boost your organization&amp;#8217;s security via this IT policy. Customizable Document — Ready for use as-is or for edits. Enhance Your Cybersecurity — This nine-page document explains requirements for users and the IT department. Expertly-Curated — Written by Scott Matteson through 18 hours of research, writing, and editing. This resource is available ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/mobile-device-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Tech &amp; Work</category></item><item><title>AI Vulnerability Finding</title><link>https://www.schneier.com/blog/archives/2025/04/ai-vulnerability-finding.html</link><description>&lt;p&gt;Microsoft is &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/analyzing-open-source-bootloaders-finding-vulnerabilities-faster-with-ai/"&gt;reporting&lt;/a&gt; that its AI systems are able to find &lt;a href="https://www.bleepingcomputer.com/news/security/microsoft-uses-ai-to-find-flaws-in-grub2-u-boot-barebox-bootloaders/"&gt;new vulnerabilities&lt;/a&gt; in source code:&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23242</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/04/upcoming-speaking-engagements-45.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I&amp;#8217;m giving an online talk on AI and trust for the &lt;a href="https://plamadiso.weizenbaum-institut.de/events-2025/"&gt;Weizenbaum Institute&lt;/a&gt; on April 24, 2025 at 2:00 PM CEST (8:00 AM ET).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;</description><content:encoded>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I&amp;#8217;m giving an online talk on AI and trust for the &lt;a href="https://plamadiso.weizenbaum-institut.de/events-2025/"&gt;Weizenbaum Institute&lt;/a&gt; on April 24, 2025 at 2:00 PM CEST (8:00 AM ET).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70115</guid><category>Uncategorized</category><category>Schneier news</category></item><item><title>Natural Language Processing Use Cases</title><link>https://www.techrepublic.com/resource-library/feature/natural-language-processing-use-cases/</link><description>Understand the technology better. This feature explores the practical use cases of NLP and its growing importance in today&amp;#8217;s digital environment. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 11-page PDF looks at business and customer service, healthcare, finance and banking, and more. Expert Guidance — ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/natural-language-processing-use-cases/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Mobile Device Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/mobile-device-security/</link><description>Dismiss the dangers and boost your organization&amp;#8217;s security via this IT policy. Customizable Document — Ready for use as-is or for edits. Enhance Your Cybersecurity — This nine-page document explains requirements for users and the IT department. Expertly-Curated — Written by Scott Matteson through 18 hours of research, writing, and editing. This resource is available ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/mobile-device-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Tech &amp; Work</category></item><item><title>AI Vulnerability Finding</title><link>https://www.schneier.com/blog/archives/2025/04/ai-vulnerability-finding.html</link><description>&lt;p&gt;Microsoft is &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/analyzing-open-source-bootloaders-finding-vulnerabilities-faster-with-ai/"&gt;reporting&lt;/a&gt; that its AI systems are able to find &lt;a href="https://www.bleepingcomputer.com/news/security/microsoft-uses-ai-to-find-flaws-in-grub2-u-boot-barebox-bootloaders/"&gt;new vulnerabilities&lt;/a&gt; in source code:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Microsoft discovered eleven vulnerabilities in GRUB2, including integer and buffer overflows in filesystem parsers, command flaws, and a side-channel in cryptographic comparison.&lt;/p&gt;
 &lt;p&gt;Additionally, 9 buffer overflows in parsing SquashFS, EXT4, CramFS, JFFS2, and symlinks were discovered in U-Boot and Barebox, which require physical access to exploit.&lt;/p&gt;
 &lt;p&gt;The newly discovered flaws impact devices relying on UEFI Secure Boot, and if the right conditions are met, attackers can bypass security protections to execute arbitrary code on the device...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;Microsoft is &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/analyzing-open-source-bootloaders-finding-vulnerabilities-faster-with-ai/"&gt;reporting&lt;/a&gt; that its AI systems are able to find &lt;a href="https://www.bleepingcomputer.com/news/security/microsoft-uses-ai-to-find-flaws-in-grub2-u-boot-barebox-bootloaders/"&gt;new vulnerabilities&lt;/a&gt; in source code:&lt;/p&gt;
@@ -6244,30 +7030,7 @@ let ioc_domains = dynamic(&amp;#x5b;&amp;quot;slgndocline.onlxtg.com &amp;quot;,
 &lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23214</guid></item><item><title>NSA, CISA, FBI, and International Partners Release Cybersecurity Advisory on “Fast Flux,” a National Security Threat</title><link>https://www.cisa.gov/news-events/alerts/2025/04/03/nsa-cisa-fbi-and-international-partners-release-cybersecurity-advisory-fast-flux-national-security</link><description>&lt;p&gt;Today, CISA—in partnership with the National Security Agency (NSA), Federal Bureau of Investigation (FBI), Australian Signals Directorate’s Australian Cyber Security Centre (ASD’s ACSC), Canadian Centre for Cyber Security (CCCS), and New Zealand’s National Cyber Security Centre (NCSC-NZ)—released joint Cybersecurity Advisory &lt;a href="https://media.defense.gov/2025/Apr/02/2003681172/-1/-1/0/CSA-FAST-FLUX.PDF"&gt;Fast Flux: A National Security Threat&lt;/a&gt; (PDF, 841 KB). This advisory warns organizations, internet service providers (ISPs), and cybersecurity service providers of the ongoing threat of fast flux enabled malicious activities and provides guidance on detection and mitigations to safeguard critical infrastructure and national security.&lt;/p&gt;
 &lt;p&gt;“Fast flux” is a technique used to obfuscate the locations of malicious servers through rapidly changing Domain Name System (DNS) records associated with a single domain name. This threat exploits a gap commonly found in network defenses, making the tracking and blocking of malicious fast flux activities difficult.&lt;/p&gt;
 &lt;p&gt;The authoring agencies strongly recommend adopting a multi-layered approach to detection and mitigation to reduce risk of compromise by fast flux-enabled threats. Service providers, especially Protective DNS providers (PDNS), should track, share information about, and block fast flux as part of their provided cybersecurity services. Government and critical infrastructure organizations should close this ongoing gap in network defenses by using cybersecurity and PDNS services that block malicious fast flux activity.&lt;/p&gt;
-&lt;p&gt;For more information on PDNS services, see &lt;a href="https://media.defense.gov/2025/Mar/24/2003675043/-1/-1/0/CSI-SELECTING-A-PROTECTIVE-DNS-SERVICE-V1.3.PDF" title="Selecting a Protective DNS Service"&gt;Selecting a Protective DNS Service&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23207</guid></item><item><title>Custom AI Data Centers: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/custom-ai-data-centers-benefits-and-best-practices/</link><description>Learn how data centers will need to be architected to host AI successfully. Constantly Updated — The feature contains the latest and most accurate details. Enhance Your Knowledge — This 10-page PDF examines computing density, outsourcing, liquid cooling, GPU supply, and more. Expert Guidance — Created by Drew Robb through 20 hours of research, writing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/custom-ai-data-centers-benefits-and-best-practices/</guid><category>Artificial Intelligence</category><category>Data</category><category>IT Resources</category></item><item><title>Google DeepMind Proposes AI ‘Monitors’ to Police Hyperintelligent Models</title><link>https://www.techrepublic.com/article/news-google-deepmind-safety-monitor-guardrails/</link><description>DeepMind’s approach to AGI safety and security splits threats into four categories. One solution could be a “monitor” AI.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300978</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>Security</category><category>agi</category><category>artificial intelligence</category><category>cybersecurity</category><category>frontier models</category><category>google deepmind</category></item><item><title>Our key achievements from 2024</title><link>http://privacyinternational.org/long-read/5551/our-key-achievements-2024</link><guid isPermaLink="false">5551 at http://privacyinternational.org</guid></item><item><title>Cybersecurity Professor Faced China-Funding Inquiry Before Disappearing, Sources Say</title><link>https://www.wired.com/story/xiaofeng-wang-indiana-university-research-probe-china/</link><description>A lawyer for Xiaofeng Wang and his wife says they are “safe” after FBI searches of their homes and Wang’s sudden dismissal from Indiana University, where he taught for over 20 years.</description><guid isPermaLink="false">67ec08020ba8e7cf76d9d15e</guid><category>Security</category><category>Security / Security News</category><category>cybersecurity</category><category>privacy</category><category>encryption</category><category>China</category><category>academia</category><category>Crime</category><category>national security</category><category>Deciphering</category></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Web 3.0 Requires Data Integrity</title><link>https://www.schneier.com/blog/archives/2025/04/web-3-0-requires-data-integrity.html</link><description>&lt;p&gt;If you&amp;#8217;ve ever taken a computer security class, you&amp;#8217;ve probably learned about the three legs of computer security&amp;#8212;confidentiality, integrity, and availability&amp;#8212;known as the &lt;a href="https://www.nist.gov/image/cia-triad"&gt;CIA triad&lt;/a&gt;. When we talk about a system being secure, that&amp;#8217;s what we&amp;#8217;re referring to. All are important, but to different degrees in different contexts. In a world populated by artificial intelligence (AI) systems and artificial intelligent agents, integrity will be paramount.&lt;/p&gt;
-&lt;p&gt;What is data integrity? It&amp;#8217;s ensuring that no one can modify data&amp;#8212;that&amp;#8217;s the security angle&amp;#8212;but it&amp;#8217;s much more than that. It encompasses accuracy, completeness, and quality of data&amp;#8212;all over both time and space. It&amp;#8217;s preventing accidental data loss; the &amp;#8220;undo&amp;#8221; button is a primitive integrity measure. It&amp;#8217;s also making sure that data is accurate when it&amp;#8217;s collected&amp;#8212;that it comes from a trustworthy source, that nothing important is missing, and that it doesn&amp;#8217;t change as it moves from format to format. The ability to restart your computer is another integrity measure...&lt;/p&gt;</description><content:encoded>&lt;p&gt;If you&amp;#8217;ve ever taken a computer security class, you&amp;#8217;ve probably learned about the three legs of computer security&amp;#8212;confidentiality, integrity, and availability&amp;#8212;known as the &lt;a href="https://www.nist.gov/image/cia-triad"&gt;CIA triad&lt;/a&gt;. When we talk about a system being secure, that&amp;#8217;s what we&amp;#8217;re referring to. All are important, but to different degrees in different contexts. In a world populated by artificial intelligence (AI) systems and artificial intelligent agents, integrity will be paramount.&lt;/p&gt;
-&lt;p&gt;What is data integrity? It&amp;#8217;s ensuring that no one can modify data&amp;#8212;that&amp;#8217;s the security angle&amp;#8212;but it&amp;#8217;s much more than that. It encompasses accuracy, completeness, and quality of data&amp;#8212;all over both time and space. It&amp;#8217;s preventing accidental data loss; the &amp;#8220;undo&amp;#8221; button is a primitive integrity measure. It&amp;#8217;s also making sure that data is accurate when it&amp;#8217;s collected&amp;#8212;that it comes from a trustworthy source, that nothing important is missing, and that it doesn&amp;#8217;t change as it moves from format to format. The ability to restart your computer is another integrity measure.&lt;/p&gt;
-&lt;p&gt;The CIA triad has evolved with the Internet. The first iteration of the Web&amp;#8212;Web 1.0 of the 1990s and early 2000s&amp;#8212;prioritized availability. This era saw organizations and individuals rush to digitize their content, creating what has become an unprecedented repository of human knowledge. Organizations worldwide established their digital presence, leading to massive digitization projects where quantity took precedence over quality. The emphasis on making information available overshadowed other concerns.&lt;/p&gt;
-&lt;p&gt;As Web technologies matured, the focus shifted to protecting the vast amounts of data flowing through online systems. This is Web 2.0: the Internet of today. Interactive features and user-generated content transformed the Web from a read-only medium to a participatory platform. The increase in personal data, and the emergence of interactive platforms for e-commerce, social media, and online everything demanded both data protection and user privacy. Confidentiality became paramount.&lt;/p&gt;
-&lt;p&gt;We stand at the threshold of a new Web paradigm: Web 3.0. This is a distributed, decentralized, intelligent Web. Peer-to-peer social-networking systems promise to break the tech monopolies&amp;#8217; control on how we interact with each other. Tim Berners-Lee&amp;#8217;s open W3C protocol, Solid, represents a fundamental shift in how we think about data ownership and control. A future filled with AI agents requires verifiable, trustworthy personal data and computation. In this world, data integrity takes center stage.&lt;/p&gt;
-&lt;p&gt;For example, the 5G communications revolution isn&amp;#8217;t just about faster access to videos; it&amp;#8217;s about Internet-connected things talking to other Internet-connected things without our intervention. Without data integrity, for example, there&amp;#8217;s no real-time car-to-car communications about road movements and conditions. There&amp;#8217;s no drone swarm coordination, smart power grid, or reliable mesh networking. And there&amp;#8217;s no way to securely empower AI agents.&lt;/p&gt;
-&lt;p&gt;In particular, AI systems require robust integrity controls because of how they process data. This means technical controls to ensure data is accurate, that its meaning is preserved as it is processed, that it produces reliable results, and that humans can reliably alter it when it&amp;#8217;s wrong. Just as a scientific instrument must be calibrated to measure reality accurately, AI systems need integrity controls that preserve the connection between their data and ground truth.&lt;/p&gt;
-&lt;p&gt;This goes beyond preventing data tampering. It means building systems that maintain verifiable chains of trust between their inputs, processing, and outputs, so humans can understand and validate what the AI is doing. AI systems need clean, consistent, and verifiable control processes to learn and make decisions effectively. Without this foundation of verifiable truth, AI systems risk becoming a series of opaque boxes.&lt;/p&gt;
-&lt;p&gt;Recent history provides many sobering examples of integrity failures that naturally undermine public trust in AI systems. Machine-learning (ML) models trained without thought on expansive datasets have produced predictably biased results in hiring systems. Autonomous vehicles with incorrect data have made incorrect&amp;#8212;and fatal&amp;#8212;decisions. Medical diagnosis systems have given flawed recommendations without being able to explain themselves. A lack of integrity controls undermines AI systems and harms people who depend on them.&lt;/p&gt;
-&lt;p&gt;They also highlight how AI integrity failures can manifest at multiple levels of system operation. At the training level, data may be subtly corrupted or biased even before model development begins. At the model level, mathematical foundations and training processes can introduce new integrity issues even with clean data. During execution, environmental changes and runtime modifications can corrupt previously valid models. And at the output level, the challenge of verifying AI-generated content and tracking it through system chains creates new integrity concerns. Each level compounds the challenges of the ones before it, ultimately manifesting in human costs, such as reinforced biases and diminished agency.&lt;/p&gt;
-&lt;p&gt;Think of it like protecting a house. You don&amp;#8217;t just lock a door; you also use safe concrete foundations, sturdy framing, a durable roof, secure double-pane windows, and maybe motion-sensor cameras. Similarly, we need digital security at every layer to ensure the whole system can be trusted.&lt;/p&gt;
-&lt;p&gt;This layered approach to understanding security becomes increasingly critical as AI systems grow in complexity and autonomy, particularly with large language models (LLMs) and deep-learning systems making high-stakes decisions. We need to verify the integrity of each layer when building and deploying digital systems that impact human lives and societal outcomes.&lt;/p&gt;
-&lt;p&gt;At the foundation level, bits are stored in computer hardware. This represents the most basic encoding of our data, model weights, and computational instructions. The next layer up is the file system architecture: the way those binary sequences are organized into structured files and directories that a computer can efficiently access and process. In AI systems, this includes how we store and organize training data, model checkpoints, and hyperparameter configurations.&lt;/p&gt;
-&lt;p&gt;On top of that are the application layers&amp;#8212;the programs and frameworks, such as PyTorch and TensorFlow, that allow us to train models, process data, and generate outputs. This layer handles the complex mathematics of neural networks, gradient descent, and other ML operations.&lt;/p&gt;
-&lt;p&gt;Finally, at the user-interface level, we have visualization and interaction systems&amp;#8212;what humans actually see and engage with. For AI systems, this could be everything from confidence scores and prediction probabilities to generated text and images or autonomous robot movements.&lt;/p&gt;
-&lt;p&gt;Why does this layered perspective matter? Vulnerabilities and integrity issues can manifest at any level, so understanding these layers helps security experts and AI researchers perform comprehensive threat modeling. This enables the implementation of defense-in-depth strategies&amp;#8212;from cryptographic verification of training data to robust model architectures to interpretable outputs. This multi-layered security approach becomes especially crucial as AI systems take on more autonomous decision-making roles in critical domains such as healthcare, finance, and public safety. We must ensure integrity and reliability at every level of the stack.&lt;/p&gt;
-&lt;p&gt;The risks of deploying AI without proper integrity control measures are severe and often underappreciated. When AI systems operate without sufficient security measures to handle corrupted or manipulated data, they can produce subtly flawed outputs that appear valid on the surface. The failures can cascade through interconnected systems, amplifying errors and biases. Without proper integrity controls, an AI system might train on polluted data, make decisions based on misleading assumptions, or have outputs altered without detection. The results of this can range from degraded performance to catastrophic failures.&lt;/p&gt;
-&lt;p&gt;We see four areas where integrity is paramount in this Web 3.0 world. The first is granular access, which allows users and organizations to maintain precise control over who can access and modify what information and for what purposes. The second is authentication&amp;#8212;much more nuanced than the simple &amp;#8220;Who are you?&amp;#8221; authentication mechanisms of today&amp;#8212;which ensures that data access is properly verified and authorized at every step. The third is transparent data ownership, which allows data owners to know when and how their data is used and creates an auditable trail of data providence. Finally, the fourth is access standardization: common interfaces and protocols that enable consistent data access while maintaining security.&lt;/p&gt;
-&lt;p&gt;Luckily, we&amp;#8217;re not starting from scratch. There are open W3C protocols that address some of this: &lt;a href="https://www.w3.org/TR/did-1.0/"&gt;decentralized identifiers&lt;/a&gt; for verifiable digital identity, the &lt;a href="https://www.w3.org/TR/vc-data-model-2.0/"&gt;verifiable credentials data model&lt;/a&gt; for expressing digital credentials, &lt;a href="https://www.w3.org/TR/activitypub/"&gt;ActivityPub&lt;/a&gt; for decentralized social networking (that&amp;#8217;s what Mastodon uses), &lt;a href="https://solidproject.org/"&gt;Solid&lt;/a&gt; for distributed data storage and retrieval, and &lt;a href="https://www.w3.org/TR/webauthn-2/"&gt;WebAuthn&lt;/a&gt; for strong authentication standards. By providing standardized ways to verify data provenance and maintain data integrity throughout its lifecycle, Web 3.0 creates the trusted environment that AI systems require to operate reliably. This architectural leap for integrity control in the hands of users helps ensure that data remains trustworthy from generation and collection through processing and storage.&lt;/p&gt;
-&lt;p&gt;Integrity is essential to trust, on both technical and human levels. Looking forward, integrity controls will fundamentally shape AI development by moving from optional features to core architectural requirements, much as SSL certificates evolved from a banking luxury to a baseline expectation for any Web service.&lt;/p&gt;
-&lt;p&gt;Web 3.0 protocols can build integrity controls into their foundation, creating a more reliable infrastructure for AI systems. Today, we take availability for granted; anything less than 100% uptime for critical websites is intolerable. In the future, we will need the same assurances for integrity. Success will require following practical guidelines for maintaining data integrity throughout the AI lifecycle&amp;#8212;from data collection through model training and finally to deployment, use, and evolution. These guidelines will address not just technical controls but also governance structures and human oversight, similar to how privacy policies evolved from legal boilerplate into comprehensive frameworks for data stewardship. Common standards and protocols, developed through industry collaboration and regulatory frameworks, will ensure consistent integrity controls across different AI systems and applications.&lt;/p&gt;
-&lt;p&gt;Just as the HTTPS protocol created a foundation for trusted e-commerce, it&amp;#8217;s time for new integrity-focused standards to enable the trusted AI services of tomorrow.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This essay was written with Davi Ottenheimer, and originally appeared in &lt;a href="https://dl.acm.org/doi/10.1145/3723438"&gt;Communications of the ACM&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70082</guid><category>Uncategorized</category><category>Internet</category><category>protocols</category><category>web</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
+&lt;p&gt;For more information on PDNS services, see &lt;a href="https://media.defense.gov/2025/Mar/24/2003675043/-1/-1/0/CSI-SELECTING-A-PROTECTIVE-DNS-SERVICE-V1.3.PDF" title="Selecting a Protective DNS Service"&gt;Selecting a Protective DNS Service&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23207</guid></item><item><title>Custom AI Data Centers: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/custom-ai-data-centers-benefits-and-best-practices/</link><description>Learn how data centers will need to be architected to host AI successfully. Constantly Updated — The feature contains the latest and most accurate details. Enhance Your Knowledge — This 10-page PDF examines computing density, outsourcing, liquid cooling, GPU supply, and more. Expert Guidance — Created by Drew Robb through 20 hours of research, writing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/custom-ai-data-centers-benefits-and-best-practices/</guid><category>Artificial Intelligence</category><category>Data</category><category>IT Resources</category></item><item><title>Our key achievements from 2024</title><link>http://privacyinternational.org/long-read/5551/our-key-achievements-2024</link><guid isPermaLink="false">5551 at http://privacyinternational.org</guid></item><item><title>Cybersecurity Professor Faced China-Funding Inquiry Before Disappearing, Sources Say</title><link>https://www.wired.com/story/xiaofeng-wang-indiana-university-research-probe-china/</link><description>A lawyer for Xiaofeng Wang and his wife says they are “safe” after FBI searches of their homes and Wang’s sudden dismissal from Indiana University, where he taught for over 20 years.</description><guid isPermaLink="false">67ec08020ba8e7cf76d9d15e</guid><category>Security</category><category>Security / Security News</category><category>cybersecurity</category><category>privacy</category><category>encryption</category><category>China</category><category>academia</category><category>Crime</category><category>national security</category><category>Deciphering</category></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/"&gt;Transforming public sector security operations in the AI era&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The cyberthreat landscape is evolving at an unprecedented pace, becoming increasingly dangerous and complex. Nation-state threat actors and cybercriminals are employing advanced tactics and generative AI to execute highly sophisticated attacks. This situation is further compounded by outdated technology and systems, shortage of cybersecurity talent, and antiquated processes, which are inefficient in handling the scale, complexity, and ever-evolving nature of these cyberattacks. With 62% of all cyberattacks targeting public sector organizations, it is crucial for these sectors to leverage state-of-the-art technology, powered by generative AI, to &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" rel="noreferrer noopener" target="_blank"&gt;transform their cyber defense&lt;/a&gt; and stay ahead of these evolving threats.&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
 
 
@@ -6905,193 +7668,7 @@ let ioc_domains = dynamic(&amp;#x5b;&amp;quot;slgndocline.onlxtg.com &amp;quot;,
 
 
 &lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/analyzing-open-source-bootloaders-finding-vulnerabilities-faster-with-ai/"&gt;Analyzing open-source bootloaders: Finding vulnerabilities faster with AI&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Linux</category><category>Windows</category></item><item><title>New innovations in Microsoft Purview for protected, AI-ready data</title><link>https://www.microsoft.com/en-us/security/blog/2025/03/31/new-innovations-in-microsoft-purview-for-protected-ai-ready-data/</link><description>&lt;p&gt;Microsoft Purview delivers a comprehensive set of solutions that help customers seamlessly secure and confidently activate data in the era of AI.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/new-innovations-in-microsoft-purview-for-protected-ai-ready-data/"&gt;New innovations in Microsoft Purview for protected, AI-ready data&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The Microsoft Fabric and &lt;a href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Microsoft Purview&lt;/a&gt; teams are excited to be in Las Vegas from March 31 to April 2, 2025, for the second annual and highly anticipated &lt;a href="https://fabricconf.com/#!/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Fabric Community Conference&lt;/a&gt;. With more than 200 sessions, 13 focused tracks, 21 hands-on workshops, and two keynotes, attendees can expect an engaging and informative experience. The conference offers a unique opportunity for the community to connect and exchange insights on key topics such as data and AI.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Microsoft Purview: Built to safeguard your AI innovation&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p&gt;AI innovation is impacting every industry, business process, and individual. About 75% of knowledge workers today are currently using some sort of AI in their day to day.&lt;sup&gt;1&lt;/sup&gt; At the same time, the regulatory landscape is evolving at an unprecedented pace. Around the world, at least 69 countries have proposed more than 1,000 AI-related policy initiatives and legal frameworks to address public concerns around AI safety and governance.&lt;sup&gt;2&lt;/sup&gt; With the need to adhere to regulations and policy frameworks for AI transformation, a comprehensive solution is needed to address security, governance, and privacy concerns. Additionally, with the convergence of the responsibilities of cybersecurity and data teams, customers are asking for a solution that turns data security and data governance into a team sport to address issues such data discovery, data classification, data loss prevention, and data quality in a unified way. Microsoft Purview delivers a comprehensive set of solutions that address these needs, helping customers &lt;strong&gt;seamlessly secure &lt;/strong&gt;and &lt;strong&gt;confidently activate &lt;/strong&gt;their data in the era of AI.&lt;/p&gt;
-
-
-
-&lt;p&gt;We are excited to announce new innovations that help security and data teams accelerate their organization’s AI transformation:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Enhancing &lt;a href="https://www.microsoft.com/security/business/information-protection/microsoft-purview-data-loss-prevention"&gt;Microsoft Purview Data Loss Prevention&lt;/a&gt; (Purview DLP) support for lakehouse in &lt;a href="https://www.microsoft.com/en-us/microsoft-fabric/resources/data-101/what-is-fabric?msockid=378841e457df63d1127e52bb53df6d3c"&gt;Microsoft Fabric&lt;/a&gt; to help prevent sensitive data loss by restricting access. &lt;/li&gt;
-
-
-
-&lt;li&gt;Expanding Purview DLP policy support for additional Fabric items such as KQL databases and Mirrored databases to send users notification through policy tips when they are working with sensitive data.&lt;/li&gt;
-
-
-
-&lt;li&gt;Microsoft Purview integration with Copilot in Fabric, specifically for Power BI.&lt;/li&gt;
-
-
-
-&lt;li&gt;Data Observability within the Microsoft Purview Unified Catalog.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="seamlessly-secure-data"&gt;Seamlessly secure data&lt;/h2&gt;
-
-
-
-&lt;p&gt;Microsoft Purview is extending its proven data security value delivered to millions of Microsoft 365 users worldwide, to the Microsoft data platform. This helps users drive consistency across their multicloud and multiplatform data estate and simplify risks related to data leaks, oversharing, and risky user behavior as more users are managing and handling data in the era of AI.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="1-enhancing-microsoft-purview-data-loss-prevention-dlp-support-for-lakehouse-in-fabric-to-help-prevent-sensitive-data-loss-by-restricting-access"&gt;1. Enhancing Microsoft Purview Data Loss Prevention (DLP) support for lakehouse in Fabric to help prevent sensitive data loss by restricting access&lt;/h3&gt;
-
-
-
-&lt;p&gt;Microsoft Purview Data Security capabilities are used by hundreds of thousands of customers for their integration with Microsoft 365 data. Since last year’s Microsoft Fabric Community Conference, Microsoft Purview has extended &lt;a href="https://www.microsoft.com/security/business/information-protection/microsoft-purview-information-protection"&gt;Microsoft Purview Information Protection&lt;/a&gt; and Purview DLP policy tip value across the data estate, including Fabric. Currently, Purview DLP supports the ability to show users notifications for when they are working with sensitive data in lakehouse. We are excited to share that we are enhancing the DLP value in lakehouse to prevent sensitive data leakage to guest users by restricting access. Data Security admins can configure policies and limit access to only internal users or data owners based on the sensitive data found. This control is valuable for when a Fabric tenant includes guest users and domain owners want to limit access to internal proprietary data in their lakehouses. &lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Purview DLP restricting access to a Fabric lakehouse" class="wp-image-138196 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture1-2.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Figure 1. DLP policy restricting access for guest users in&lt;s&gt;to&lt;/s&gt; lakehouse due to &lt;em&gt;personally identifiable information&lt;/em&gt;&lt;/em&gt; (&lt;em&gt;PII) data discovered&lt;/em&gt; &lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/information-protection/microsoft-purview-data-loss-prevention"&gt;Learn more about Microsoft Purview Data Loss Prevention&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="2-expanding-dlp-policy-support-for-additional-fabric-items-such-as-kql-databases-and-mirrored-databases-to-show-users-notification-through-policy-tips-when-they-are-working-with-sensitive-data"&gt;2. Expanding DLP policy support for additional Fabric items such as KQL databases and Mirrored databases to show users notification through policy tips when they are working with sensitive data&lt;/h3&gt;
-
-
-
-&lt;p&gt;A key part of securing sensitive data is to provide visibility to your users on where and how they are interacting with sensitive data. Purview DLP policies can help notify users when they are working with sensitive data through policy tips in lakehouse in Fabric. We are excited to announce that we are extending policy tips support for additional Fabric items—KQL databases and Mirrored databases in preview. (Mirrored Database sources include Azure Cosmos DB, Azure SQL Database, Azure SQL Managed Instance, Azure Databricks Unity Catalog, and Snowflake, with more sources available soon). KQL databases are the only databases used for real-time analytics so detecting sensitive data that comes through real-time analytics is huge for Fabric customers. Purview DLP for Mirrored databases reduces the security risk of sensitive data leakage when data is transferred in Fabric. We are happy to extend Purview DLP value to more data sources, providing end-to-end protection for customers within their Fabric environments, all to prepare for the safe deployment of AI.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Purview DLP triggering a policy tip for a KQL database" class="wp-image-138198 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture2.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Figure 2. Policy tip triggered by Purview DLP due to PII being discovered in KQL databases.&lt;/em&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Purview DLP triggering a policy tip for a Mirrored database" class="wp-image-138199 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture3.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Figure 3. Policy tip triggered by Purview DLP due to PII being discovered in Mirrored databases.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="3-microsoft-purview-for-copilot-in-fabric"&gt;3. Microsoft Purview for Copilot in Fabric&lt;/h3&gt;
-
-
-
-&lt;p&gt;As organizations adopt AI, implementing data controls and a &lt;a href="https://www.microsoft.com/en-us/security/business/zero-trust"&gt;Zero Trust&lt;/a&gt; approach is crucial to mitigate risks like data oversharing and leakage, and potential non-compliant usage in AI. We are excited to announce Microsoft Purview capabilities in preview for Copilot in Fabric, starting with Copilot for Power BI. By combining Microsoft Purview and Copilot for Power BI, users can:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Discover data risks&lt;/strong&gt; such as sensitive data in user prompts and responses and receive recommended actions in their Microsoft Purview Data Security Posture Management (DSPM) dashboard to reduce these risks.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Identify risky AI usage&lt;/strong&gt; with &lt;a href="https://www.microsoft.com/security/business/risk-management/microsoft-purview-insider-risk-management"&gt;Microsoft Purview Insider Risk Management&lt;/a&gt; to investigate risky AI usage, such as an inadvertent user who has neglected security best practices and shared sensitive data in AI or a departing employee using AI to find sensitive data and exfiltrating the data through a USB device.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Govern AI usage&lt;/strong&gt; with Microsoft Purview Audit, Microsoft Purview eDiscovery, retention policies, and non-compliant usage detection.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Microsoft Purview dashboard view displaying reports on Copilot in Fabric&amp;rsquo;s interactions over time, user activities, and the data entered and shared within the copilot." class="wp-image-138207 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture4.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Figure 4. Purview DSPM for AI provides admins with comprehensive reports on Copilot in Fabric&amp;#8217;s user activities, as well as data entered and shared within the copilot.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="confidently-activate-data"&gt;Confidently activate data&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="4-data-observability-now-in-preview-within-microsoft-purview-unified-catalog"&gt;4. Data observability, now in preview, within Microsoft Purview Unified Catalog&lt;/h3&gt;
-
-
-
-&lt;p&gt;Within the Unified Catalog in Microsoft Purview, users can easily identify the root cause of data quality issues by visually investigating the relationship between governance domains, data products, glossary terms, and data assets associated with them through its lineage. Data assets and their respective data quality are visible across your multicloud, hybrid data estate. Maintaining high data quality is core to driving trustworthy AI innovation forward, and with the new data observability capabilities in Microsoft Purview, users can now improve how fast they can investigate and resolve root cause issues to improve data quality and respond to regulatory reporting requirements. &lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Microsoft Purview dashboard displaying data quality within a Data Product." class="wp-image-138189" height="474" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/03/Picture2.jpg" width="800" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Figure 5. Lineage view of data assets that showcases data quality within a Data Product&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-purview-and-microsoft-fabric-can-help-secure-and-activate-data"&gt;Microsoft Purview and Microsoft Fabric can help secure and activate data&lt;/h2&gt;
-
-
-
-&lt;p&gt;As your organization continues to implement AI, Microsoft Fabric and Microsoft Purview will serve as key solutions to safely activate your data for AI. Stay tuned for even more exciting innovations to come and check out the &lt;a href="https://aka.ms/Fabric-Con-Blog-2025"&gt;Fabric blog&lt;/a&gt; to read more about the innovations in Fabric.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Learn more about Microsoft Purview&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p&gt;Explore these resources to stay updated on our product innovations in security and governance for your data:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Learn how to secure and govern your entire data estate with &lt;a href="https://www.microsoft.com/security/business/microsoft-purview"&gt;Microsoft Purview&lt;/a&gt;. &lt;/li&gt;
-
-
-
-&lt;li&gt;Learn more about &lt;a href="https://aka.ms/Try-Purview-Governance"&gt;Microsoft Purview Data Governance&lt;/a&gt;. &lt;/li&gt;
-
-
-
-&lt;li&gt;Get started with &lt;a href="https://aka.ms/try-fabric"&gt;Microsoft Fabric&lt;/a&gt;. &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#_ftnref1" id="_ftn1"&gt;&lt;/a&gt;1&lt;a href="https://aka.ms/WTI"&gt;Work Trends Index&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;2&lt;a href="https://www.mindfoundry.ai/blog/ai-regulations-around-the-world"&gt;AI Regulations around the World &amp;#8211; 2025&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/new-innovations-in-microsoft-purview-for-protected-ai-ready-data/"&gt;New innovations in Microsoft Purview for protected, AI-ready data&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Top Tech Conferences &amp; Events to Add to Your Calendar in 2025</title><link>https://www.techrepublic.com/article/top-tech-conferences-events/</link><description>A great way to stay current with the latest technology trends and innovations is by attending conferences. Read and bookmark our tech events guide.</description><guid isPermaLink="false">https://www.techrepublic.com/article/2022-tech-conferences-and-events-to-add-to-your-calendar/</guid><category>Apple</category><category>Australia</category><category>Big Data</category><category>Cloud Security</category><category>CXO</category><category>Google</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>Security</category><category>United Kingdom</category><category>tech conferences</category><category>tech events</category></item><item><title>LABScon24 Replay | A Walking Red Flag (With Yellow Stars)</title><link>https://www.sentinelone.com/labs/labscon24-replay-a-walking-red-flag-with-yellow-stars/</link><description>Dakota Cary and Eugenio Benincasa explore China's CTF ecosystem, highlighting competitions held by the Ministry of State Security and the PLA.</description><content:encoded>&lt;p&gt;APT40 used CTFs at Hainan University to recruit hackers and source software vulnerabilities for operations. Jiangsu MSS received vulnerabilities from the Tianfu Cup. iSoon hosted their own CTF before their files were leaked on Github. Chinese intelligence cutouts tried to pitch US participants at RealWorldCTF. The list goes on.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/31/analyzing-open-source-bootloaders-finding-vulnerabilities-faster-with-ai/"&gt;Analyzing open-source bootloaders: Finding vulnerabilities faster with AI&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Linux</category><category>Windows</category></item><item><title>Top Tech Conferences &amp; Events to Add to Your Calendar in 2025</title><link>https://www.techrepublic.com/article/top-tech-conferences-events/</link><description>A great way to stay current with the latest technology trends and innovations is by attending conferences. Read and bookmark our tech events guide.</description><guid isPermaLink="false">https://www.techrepublic.com/article/2022-tech-conferences-and-events-to-add-to-your-calendar/</guid><category>Apple</category><category>Australia</category><category>Big Data</category><category>Cloud Security</category><category>CXO</category><category>Google</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>Security</category><category>United Kingdom</category><category>tech conferences</category><category>tech events</category></item><item><title>LABScon24 Replay | A Walking Red Flag (With Yellow Stars)</title><link>https://www.sentinelone.com/labs/labscon24-replay-a-walking-red-flag-with-yellow-stars/</link><description>Dakota Cary and Eugenio Benincasa explore China's CTF ecosystem, highlighting competitions held by the Ministry of State Security and the PLA.</description><content:encoded>&lt;p&gt;APT40 used CTFs at Hainan University to recruit hackers and source software vulnerabilities for operations. Jiangsu MSS received vulnerabilities from the Tianfu Cup. iSoon hosted their own CTF before their files were leaked on Github. Chinese intelligence cutouts tried to pitch US participants at RealWorldCTF. The list goes on.&lt;/p&gt;
 &lt;p&gt;A diverse ecosystem of CTFs exists in China and it has, until now, been largely ignored. Since 2017 when the PRC government issued rules to bolster cybersecurity competitions, incorporate them into talent cultivation and training programs, and limit the amount of money to be paid out in rewards, China’s security ecosystem has launched more than 150 unique competitions. Including competitions that are held annually, the number of events since 2017 exceeds 400.&lt;/p&gt;
 &lt;p&gt;Not all these competitions are software vulnerability competitions like Tianfu Cup—in fact, few are. Most are aimed at talent cultivation and recruiting, and many are hosted by the military, the intelligence services, or other arms of the state.&lt;/p&gt;
 &lt;p&gt;This talk explores the diversity of China’s CTF ecosystem, its major leagues and events, and the annual number of participants across society. It highlights competitions held expressly by the Ministry of State Security and the PLA—delving into the competitions’ particulars. Defenders with appropriate CTI collection capabilities will better understand how to target their collection efforts on specific individuals in China.&lt;/p&gt;
@@ -14663,454 +15240,7 @@ Assist the product to check for missed scans and manual analysis and marking err
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;These leaks yield insight into the complex ecosystem of relationships between government entities and China’s private sector cybersecurity companies. While many countries have significant overlap between government requirements and private sector cybersecurity firms, the ties between these entities in China are much deeper and represent the state’s grasp on managing public opinion through online enforcement.&lt;/p&gt;
 &lt;p&gt;The September 2023 situation in Shanghai provides insight into how local and national government interests are enforced through private sector partnerships. The CCP’s strategy of controlling information is multifaceted and requires significant investment in resources that enable the monitoring and alteration of content that citizens engage with. While there are still many unknown factors regarding how such censorship is applied, these findings yield insights into how collaboration occurs between the government and other entities in China.&lt;/p&gt;
-&lt;p&gt;The nature of how this data was leaked remains unclear, but the materials show that TopSec engineers were documenting their work in a highly granular way that included entire commands used to perform the outlined tasks. Considering the types of information in this leak, organizations should evaluate how their systems and infrastructure engineers are logging work. Proper credential management is essential to securing sensitive environments. Infrastructure engineers should rely on a secrets manager that integrates with the CI/CD pipeline rather than running commands from playbooks that include hardcoded credentials. This results in only variable names being stored in commands instead of sensitive credentials and lowers the likelihood that an unexpected disclosure could result in further compromise.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=114581</guid><category>China</category></item><item><title>The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions</title><link>https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/</link><description>&lt;p&gt;Executive Summary Why We Care about Sandbox Emulation As a discipline, information security involves a vast web of entry vectors, mitigations, and counter-mitigations. Among these, one of the most impactful points of conflict between attackers and defenders is what happens when binaries are subjected to sandbox emulation. Purely static analysis has been understood to be [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/"&gt;The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;/p&gt;
-
-
-&lt;h2 class="wp-block-heading" id="executive-summary"&gt;Executive Summary&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;We describe, in very general terms, how we were able to evade detection by taking advantage of statistical anomalies in the human interaction modules of several sandbox solutions.&lt;/li&gt;
-
-
-
-&lt;li&gt;We provide an alternative algorithm for simulated mouse human interaction, including its specifications, parameters, source code, and several visual demonstrations.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-we-care-about-sandbox-emulation"&gt;Why We Care about Sandbox Emulation&lt;/h2&gt;
-
-
-
-&lt;p&gt;As a discipline, information security involves a vast web of entry vectors, mitigations, and counter-mitigations. Among these, one of the most impactful points of conflict between attackers and defenders is what happens when binaries are subjected to sandbox emulation. Purely static analysis has been understood to be a game that attackers win, and defenders lose: code can be obfuscated (“packed”, “crypted”, “virtualized”, take your pick), forcing any analysis to first run it in some way in order to understand it. If you can tell anything at all about a binary’s functionality at face value, it’s due to its author’s lack of effort, not their lack of means.&lt;/p&gt;
-
-
-
-&lt;p&gt;The same is far from true about sandbox emulation. Countermeasures to sandbox emulations do exist, but each comes with its own baggage, disadvantages, and chance of outright failure. No one-click silver bullet has popularly emerged in the attacker arsenal to just trivialize sandboxes. Some attackers may mistakenly believe they can ‘solve’ sandbox emulation by compiling the&amp;nbsp;&lt;a href="https://github.com/ayoubfaouzi/al-khaser"&gt;al-khaser test suite&lt;/a&gt;&amp;nbsp;into their binary and refusing to run if a test fails, but unlike packing, which is a one-way operation, a test suite like this can be flipped around and used as a shield: anyone operating a sandbox can verify that their sandbox passes all the tests. In this way, paradoxically, by publicizing numerous sandbox evasions, projects like al-khaser have significantly cut down the maneuvering space available to attackers.&lt;/p&gt;
-
-
-
-&lt;p&gt;As a result of all this, the sandbox is one of the focal points where malicious campaigns sink or swim. Binaries that will just execute obvious malicious functionality in a sandbox are, in some fundamental sense, naked and ripe for detection, and so attackers are naturally pressured to add sandbox evasions. The moment they do, we’ve flipped the script on them: now&amp;nbsp;&lt;em&gt;they&lt;/em&gt;&amp;nbsp;have to worry about false negatives and false positives. A failed evasion or a falsely triggered evasion both result in the attack chain being cut short. Depending on the attacker’s motivation, this directly equals lost money, lost power, or lost prestige.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="looking-one-step-ahead"&gt;Looking One Step Ahead&lt;/h2&gt;
-
-
-
-&lt;p&gt;A natural question to ask is, “Who wins this game in the long run?” That is, if sandboxes and evasions continue to get better, is the natural end result of this process the uber-sandbox that will force binaries to expose all their latent malicious behavior or the uber-evasion that can allow malware to run only when advantageous to attackers? We won’t fully explore this question here, as its scope is huge and involves some notions that we would rather not help find their way to the attacker TTP mainstream (as Lovecraft cautioned, “Do not call up that which you cannot put down”). But we can reasonably discuss some of the next moves attackers might make as long as it’s feasible to get ahead of them.&lt;/p&gt;
-
-
-
-&lt;p&gt;Observing the way many evasions work as seen in (e.g.) the al-khaser test suite and taking it at face value can lead to a mistaken mental model where ‘evasions’ must result from simple glitches that can be fixed, or otherwise from naive responses by the sandbox to a query about something: some file, some registry key, a disk drive size, some other artifact. One might complacently reason that sandboxes simply need to ‘fix all the glitches and patch all the query results’, and that sandbox hardening is in this way reduced to going through a gigantic check list and is effectively a solved problem. Unfortunately, this approach falls apart in cases where satisfying the query&amp;nbsp;&lt;em&gt;requires,&lt;/em&gt;&amp;nbsp;in a strong sense, some intrinsic resource that the sandbox does not have access to.&lt;/p&gt;
-
-
-
-&lt;p&gt;One example of such a scenario is all evasions having to do with ‘human interaction’. A human is not a simple&amp;nbsp;&lt;code&gt;TRUE&lt;/code&gt;&amp;nbsp;result of a call to&amp;nbsp;&lt;code&gt;IsHumanPresent()&lt;/code&gt;. Humans have behaviors, tendencies, resources, and capabilities. Until such time that every sandbox has a dedicated AI convinced that it is human and going on about its day-to-day routine in a way indistinguishable from one, this is a difficult and, we argue, under-explored frontier in the sandbox evasion space.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this article, we first outline an example of such an evasion that bypasses several sandboxes, then provide an implemented mitigation.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="extremely-vague-outline-of-how-the-evasion-works"&gt;Extremely Vague Outline of How the Evasion Works&lt;/h2&gt;
-
-
-
-&lt;p&gt;Evasions based on mouse movements are not new. For example, certain strains of malware from the early 2020s would periodically sample the mouse position and wait for the &lt;code&gt;xor&lt;/code&gt; of the X and Y positions to reach a certain value. This was an implicit condition on the number of different values the cursor position would take; it defeated some naive mouse movement emulation algorithms that picked a new random position for the mouse every second or so. This, and some slightly more advanced examples, prompted off-the-shelf sandbox solutions to introduce hardening in the form of less obviously auto-generated mouse movements. One particularly popular movement model used for this purpose is the random walk. Whenever some predetermined amount of time passes, the cursor is moved in some chosen direction by some distance, chosen by a process that has at least some random element.&lt;/p&gt;
-
-
-
-&lt;p&gt;It is really not our intention here for this to be a copy-paste-able widget or even a guide for successfully evading sandboxes. So we will not quite give the specifics here, but we will say that in many cases, implementations of random walks are vulnerable to a statistical attack. We created a proof-of-concept binary that evaded detection by several off-the-shelf sandboxes but would reliably trigger whenever we let a human naturally move the cursor for a while using a mouse.&lt;/p&gt;
-
-
-
-&lt;p&gt;Having verified that this is possible, we set out to design an algorithm for simulated mouse movement that will resist this attack (and, hopefully, this kind of attack in general; a short discussion on this issue follows the technical exposition).&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="detailed-implementation-of-the-counter-evasion"&gt;Detailed Implementation of the Counter-Evasion&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="top-level-summary"&gt;Top Level Summary&lt;/h3&gt;
-
-
-
-&lt;p&gt;The simulated mouse movement algorithm is comprised of the following loop:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Wait&amp;nbsp;\(\text{wait_baseline}\)&amp;nbsp;milliseconds, multiplied by the output of an exponential distribution with a mean parameter \(\mu_{\text{wait}}\).&lt;/li&gt;
-
-
-
-&lt;li&gt;Choose the next “target” mouse position \(v_{\text{next}}\) from a Gaussian centered on the current mouse position \(v_{\text{cur}}\), with the coordinates independent and the standard deviation \(\sigma_x\)&amp;nbsp;equal to screen width multiplied by a motility parameter&amp;nbsp;\(m\), with&amp;nbsp;\(0 \leq m \leq \frac{1}{2}\)&amp;nbsp;(and similarly for \(\sigma_y\); if this lands outside the screen boundaries, just pick again.)&lt;/li&gt;
-
-
-
-&lt;li&gt;Pick the length of time used to travel from&amp;nbsp;\(v_{\text{cur}}\)&amp;nbsp;to&amp;nbsp;\(v_{\text{next}}\)&amp;nbsp;by sampling from an exponential distribution with a mean&amp;nbsp;\(\mu_{\text{move}}\). Scale the result to the distance&amp;nbsp;\(|v_{\text{next}}-v_{\text{cur}}|\).&lt;/li&gt;
-
-
-
-&lt;li&gt;Chart a “path prototype” \(\varphi: [0,1] \rightarrow [0,1]^2\)&amp;nbsp;which will set the rate of advancement from&amp;nbsp;\(v_{\text{cur}}\)&amp;nbsp;to&amp;nbsp;\(v_{\text{next}}\). The axis-wise components of&amp;nbsp;\(\varphi\)&amp;nbsp;are each generated separately, by averaging \(\text{wave_count}\)&amp;nbsp;random ‘waves’. Each ‘wave’ is a sine function with a frequency picked uniformly from 0 to \(\text{max_freq}\)&amp;nbsp;and a random shift picked uniformly from \([0,\tau]\) (&lt;a href="https://tauday.com/tau-manifesto"&gt;for the uninitiated&lt;/a&gt;, \(\tau = 2\pi\)). The sum of these waves is adjusted so that \(f(0)=0\) and \(f(1)=1\).&lt;/li&gt;
-
-
-
-&lt;li&gt;Each \(\text{interval}\), update the mouse cursor position along the planned path, until it reaches&amp;nbsp;&amp;nbsp;\(v_{\text{next}}\).&lt;/li&gt;
-
-
-
-&lt;li&gt;Set \(v_{\text{cur}}=v_{\text{next}}\) and repeat.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;The code corresponding to this top level behavior is below.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;def generate_movement(t: timedelta) -&gt; List[Coor]:
-    output_len = int(floor((t.total_seconds() * TIME.MS_IN_S) / TIME.INTERVAL))
-    result : List[Coor] = []
-    cur_pos : Coor = gauss_step_from(
-        [SCR.WIDTH//2,SCR.HEIGHT//2],
-        [SCR.WIDTH,SCR.HEIGHT]
-    )
-    while len(result) &amp;lt; output_len:
-        
-        next_pos = gauss_step_from(cur_pos,[SCR.WIDTH,SCR.HEIGHT])
-        mov_time = pick_movement_time(cur_pos,next_pos)
-        mov_steps = time_to_steps(mov_time)
-        path = gen_path(cur_pos,next_pos,mov_steps)
-        result += path
-        
-        
-        wait_time = timedelta(milliseconds=np.random.exponential(WAIT.EXP_DIST_MEAN)*WAIT.GLOBAL_COEF)
-        wait_steps = time_to_steps(wait_time)
-        result += [result[-1]]*wait_steps
-
-        cur_pos = next_pos
-    
-    result = result[:output_len]
-    return result&lt;/pre&gt;
-
-
-
-&lt;p&gt;The entire code is available in&amp;nbsp;&lt;strong&gt;Appendix A&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;We will now explain each of these steps in a bit more detail.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="waiting"&gt;Waiting&lt;/h3&gt;
-
-
-
-&lt;p&gt;We model “user wants to move the cursor to a new location” events as the output of a Poisson distribution. This distribution can be considered as modeling the throughput of an event pipeline where incoming events occur independently of each other (such as the calls in a call center). This is probably not the&amp;nbsp;&lt;em&gt;best possible&lt;/em&gt;&amp;nbsp;approximation to human behavior. Still, it is a better approximation than having the delay between one mouse movement and the next be a fixed interval or picking it uniformly.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31075" height="725" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId27-1024x725.png" style="width: 494px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; Poisson distribution probability mass function for various mean value parameters \(\mu\). This distribution can only take integer values; the continuous green line is a visual aid.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;When implementing the simulated mouse movement in practice, the value we care about specifically is the amount of time to delay the next movement. The Poisson distribution equivalently models a process where the time from one event to the next is distributed according to the exponential distribution.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31076" height="718" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId30-1024x718.png" style="width: 470px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Exponential distribution probability mass function for various mean value parameters \(\mu\).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;To help visualize what this means about the frequency of events, we include below an animation of incoming events distributed this way (each event represented by a bright white light). The delay between one event and the next is the sample of an exponential distribution with mean&amp;nbsp;\(\mu\), multiplied by a \(\text{time_unit}\)&amp;nbsp;of 1 second.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31082" height="460" src="https://research.checkpoint.com/wp-content/uploads/2025/02/rId33.gif" width="400" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Visualization of exponentially distributed delay between events.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="setting-next-cursor-destination"&gt;Setting Next Cursor Destination&lt;/h3&gt;
-
-
-
-&lt;p&gt;The entire mouse movement, in general, is composed of “segments” that each have a start point and end point. These are not straight lines (perhaps the visualizations in the next sections will help clarify that), but their generation is based on a set starting point and ending point. When generating a new segment, the starting point is the cursor’s current location, and the ending point is sampled from a two-dimensional Gaussian (normal distribution) centered at the current location. The standard deviation along each axis is taken to be&amp;nbsp;&lt;em&gt;mL&lt;/em&gt;&amp;nbsp;where m is a “motility parameter”&amp;nbsp;\(0 \leq m \leq \frac{1}{2}\)&amp;nbsp;and L is the total pixel size of that axis (so for an 1920&amp;#215;1080 screen, \(L_x = 1920\) and \(L_y = 1080\)). Below, we include some heat map visualizations for several initial locations on the screen and values of&amp;nbsp;\(m\), for a 16:9 aspect ratio.&amp;nbsp;\(c_x\)&amp;nbsp;and&amp;nbsp;\(c_y\)&amp;nbsp;are the Gaussian mean coordinates normalized to the range&amp;nbsp;\([0,1]\).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31077" height="553" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId37-1024x553.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; Heat map of probability density of next cursor destination based on current cursor destination. \(c_x\) and \(c_y\) are coordinates normalized to the range \([0,1]\). \(m\) is the motility parameter; it is used to determine the Gaussian standard deviation, e.g. \(\sigma_x = mL_x\) where \(L_x\) is the screen width.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="charting-the-path-prototype"&gt;Charting the Path Prototype&lt;/h3&gt;
-
-
-
-&lt;p&gt;To properly tackle this part, we first introduce the notion of a path prototype. This is probably easier to visualize in one coordinate. Suppose we want to move from&amp;nbsp;\(x=20\)&amp;nbsp;to&amp;nbsp;\(x=80\)&amp;nbsp;during some unit of time. A “prototype” for this movement is a function \(\varphi: [0,1] \rightarrow [0,1]\)&amp;nbsp;that maps “the portion of allotted time that has elapsed” to “the portion of the path we have traveled”. More concretely, the output value of&amp;nbsp;\(\varphi\)&amp;nbsp;is naturally interpreted as a linear combination of the source point and the destination point: so in this example, if&amp;nbsp;\(\varphi(0.5) = \frac{1}{6}\)&amp;nbsp;this implies that when half the travel time has elapsed, the cursor has moved to&amp;nbsp;\(x=30\), having traveled only 10 units out of the 60 required for the whole journey. For obvious reasons we require that a well-formed prototype should have \(\varphi(0)=0\) and \(\varphi(1)=1\).&lt;/p&gt;
-
-
-
-&lt;p&gt;The simplest prototype is \(\varphi(x)=x\)&amp;nbsp;which implies that the cursor moves from the source to the destination at a constant rate, but other prototypes are possible &amp;#8211; some of them not even monotonously increasing, like the example on the right.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31109" height="427" src="https://research.checkpoint.com/wp-content/uploads/2025/02/composite_animation_converted-1.gif" width="800" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Visualization of 1-dimensional movement corresponding to three different prototypes.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Composing two prototypes, one per coordinate, naturally gives an analogous 2d prototype for moving from \((0,0)\) to \((1,1)\).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31110" height="450" src="https://research.checkpoint.com/wp-content/uploads/2025/02/2d_prototype_converted.gif" width="540" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; Visualization of compound prototype resulting from the combination of two different prototypes, one for the \(x\)-axis and another for the \(y\)-axis.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;To generate prototypes that have some variety, we can begin by looking at “periodic noise” of the form \(f(x) = \sin(n \tau x + \phi)\), which has two parameters:&amp;nbsp;\(n\)&amp;nbsp;(frequency) and&amp;nbsp;\(\phi\)&amp;nbsp;(phase). We can choose a parameter \(\text{wave_count}\)&amp;nbsp;and pick this many random noise functions, with each \(\phi\) picked uniformly from \([0,\tau]\)&amp;nbsp;and each&amp;nbsp;\(n\)&amp;nbsp;picked uniformly from 1 to some parameter \(\text{max_freq}\)&amp;nbsp;(our experience has been that letting&amp;nbsp;\(\text{max_freq}\)&amp;nbsp;exceed 5 leads to unstable, jittery results).&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 7 - Noise is generated by averaging several sine waves each
-with a random shift and random frequency (up to some limit)." src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId47.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; Noise is generated by averaging several sine waves each with a random shift and random frequency (up to some limit).&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;It’s not immediately clear how to get a prototype from this “composite noise” (let’s denote it&amp;nbsp;\(h\)), as it doesn’t have \(h(0)=0\) and \(h(1)=1\), and its values can span the whole range \(-1 \leq h(x) \leq 1\)&amp;nbsp;(because it is the average of many sine waves with this property). To solve this, first of all instead of \(h\)&amp;nbsp;we can use&amp;nbsp;\(\tilde h = \frac{h(x) + 1}{2}\)&amp;nbsp;(which has the desired range, \(0 \leq \tilde h (x) \leq 1\) for \(0 \leq x \leq 1\)). Then, we can take a pointwise linear combination of \(\tilde h\) and \(f(x)=x\). Meaning, we can define \(\varphi(x) = (1-\psi(x))x + \psi(x) \tilde h (x)\), where \(\psi\)&amp;nbsp;is some suitable “combining” function that has \(\psi(0) = \psi(1) = 0\), with \(0 \leq \psi(x) \leq 1\)&amp;nbsp;for all \(0 \leq x \leq 1\)&amp;nbsp;(you might want to algebraically follow what happens to \(\varphi\)&amp;nbsp;when \(x=0\)&amp;nbsp;and when \(x=1\), or just be convinced by the below diagrams). A convenient choice is \(\psi(x) = 4(x-x^2)\), which for the above combined noise gives the following prototype \(\varphi\):&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31079" height="775" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId50-1024x775.png" style="width: 576px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; By computing \(\varphi(x)=(1-\psi(x))x+\psi(x)\frac{h(x)+1}{2}\) where \(\psi(x)=4(x-x^2)\), we obtain a valid prototype \(\varphi\) (pictured) from the noise \(h\).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The logic described above is implemented using the following code.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;def gen_path_proto_1d() -&gt; Prototype:
-    wave = lambda n,shift: lambda x: sin(n*tau*x+shift)
-    freqs = [random.choice(range(1,PROTO.MAX_FREQ+1)) for _ in range(PROTO.NUM_WAVES)]
-    profile = {f:np.random.uniform()*tau for f in freqs}
-    h = lambda x: sum([wave(f,s)(x) for (f,s) in profile.items()])/len(profile)
-    psi = lambda x: 4*(x-x**2)
-    f = lambda x: x*(1-psi(x))+((h(x)+1)/2)*psi(x)
-    return f&lt;/pre&gt;
-
-
-
-&lt;p&gt;Below is a collection of 25 randomly generated different prototypes using the above process.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31080" height="1024" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId53-1024x1024.png" style="width: 734px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 &amp;#8211; 25 randomly generated prototypes. These were generated with the parameters \(\text{wave_count}=5\), \(\text{max_freq}=4\).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="charting-the-actual-path"&gt;Charting the Actual Path&lt;/h3&gt;
-
-
-
-&lt;p&gt;Once a source point and a destination point on the screen are chosen, as well as path prototypes for both the \(x\) and \(y\) coordinates and a desired time for the trip to take place, creating the actual cursor movement is a matter of algebra — for each point in time seeing what portion \(0 \leq r \leq 1\)&amp;nbsp;of the trip has elapsed, what values the prototypes \(\varphi_x\) and \(\varphi_y\)&amp;nbsp;take at that \(r\), and finally computing the corresponding linear combinations of \(v_{\text{cur}}\) and \(v_{\text{next}}\)&amp;nbsp;at the \(x\)&amp;nbsp;coordinate and&amp;nbsp;\(y\)&amp;nbsp;coordinate.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s see an example. Suppose we are charting a path between two points on a 1920&amp;#215;1080 display. We have determined that the journey should take \(T= 5_{\text{sec}}\). Using the above method, we generate path prototypes, one per each coordinate.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31081" height="520" src="https://research.checkpoint.com/wp-content/uploads/2025/02/B11FRZWCH2-rId57-1024x520.png" style="width: 666px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; 2 randomly generated prototypes. These were generated with the parameters \(\text{wave_count}=6\), \(\text{max_freq}=4\).&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Applying these two prototypes to the movement between \(v_{\text{cur}}\) and \(v_{\text{next}}\), one then obtains the following cursor movement.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31085" height="450" src="https://research.checkpoint.com/wp-content/uploads/2025/02/rId60.gif" width="800" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 &amp;#8211; Resulting movement induced by the two randomly generated prototypes seen in the previous figure.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;As explained earlier, the full simulated mouse movement is just a sequence of these paths, where the next destination is sampled from a Gaussian centered around the current position, and there is an exponentially distributed delay between one path and the next.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31086" height="450" src="https://research.checkpoint.com/wp-content/uploads/2025/02/rId63.gif" width="800" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 &amp;#8211; Sample chain movement generated by the simulation algorithm over time.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="feasibility-of-counter-counter-evasions-and-so-on"&gt;Feasibility of Counter-Counter-Evasions and so on&lt;/h2&gt;
-
-
-
-&lt;p&gt;At this point, it is natural to ask how favorable the prospects are of an attacker trying to construct an evasion again, sidestepping a sandbox that employs this kind of simulated mouse movement. We think the answer is nuanced and is influenced mainly by the following considerations.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;The theoretical ceiling for the sophistication of evasions and counter-evasions in this space is very high.&lt;/strong&gt;&amp;nbsp;To intuitively understand this, consider that if a human tries to decide whether the mouse movement in the above animation is simulated or human-generated, there’s a decent chance they would answer correctly. But it won’t be so straightforward to properly motivate this answer or explain the considerations involved to a Python script.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;These sorts of games favor incremental improvement by their nature.&lt;/strong&gt;&amp;nbsp;There are many detections, mitigations, plays, and counter-plays where the thought of “What if my opponent plays their hand perfectly” is actively harmful. Usually, they won’t, and now, instead of taking advantage of this, you are helplessly staring at some esoteric and intractable general class of problem. It’s great to think about the holy grail of perfect solutions, but it’s often more practical to raise the bar and make attacks more of a hassle than before.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;As we get deeper into the game, diagnostic pressure on the attacker grows.&lt;/strong&gt;&amp;nbsp;This is, as we’ve already noted, a rare scenario where attackers are the ones who have to worry about false positives and false negatives. When we constructed our original evasion, we reached a very high degree of confidence. Specifically, we were able to programmatically quantify some concrete metric by which the simulation behaved in a way that no human ever would, with virtual certainty. When this degree of confidence is not within reach, the calculus changes. It’s not very clear what a malicious binary should do with, let’s say, 75% certainty that it’s running in a sandbox.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;We encourage you to do more than just copy-paste the code!&lt;/strong&gt;&amp;nbsp;Change the parameters, or even randomize reasonable values per run. Try another distribution for&amp;nbsp;&lt;code&gt;base_movement_time&lt;/code&gt;. Call&amp;nbsp;&lt;code&gt;generate_movement&lt;/code&gt;&amp;nbsp;and interpolate the result with a bunch of other not-obviously-auto-generated stuff. Get creative. If there is no single algorithm to beat, attackers are at a further disadvantage.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;The universe of sandbox evasions is very large and very strange. Even something as prosaic as minor quirks in a mouse movement can, in theory, spell the difference between a successful attack and an attack stopped in its tracks or between a targeted analysis taking an hour and taking half a week. Malware authors are doing their best to come up with new evasions all the time, and it’s hard to imagine a sweeping solution to all their many creative ideas. To win the day, defenders must take many Sisyphean small steps, closing half-open avenues and raising walls ever so slightly higher. The best we can hope for is that one day a malware author with a half-baked evasion idea on their mind reads this and says “never mind, I’m going to try something else”.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="appendix-a-full-code-of-simulated-mouse-movement-module"&gt;Appendix A: Full Code of Simulated Mouse Movement Module&lt;/h2&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;import numpy as np
-import random
-import time
-from math import floor,sqrt,sin,tau
-from datetime import timedelta
-from typing import Tuple, List, Callable
-import platform
-
-def get_display_resolution() -&gt; Tuple[int,int]:
-    if platform.system() == 'Windows':
-        import ctypes
-        user32 = ctypes.windll.user32
-        user32.SetProcessDPIAware()
-        return user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
-    if platform.system() == 'Linux':
-        from Xlib.display import Display
-        screen = Display(':0').screen()
-        return (screen.width_in_pixels, screen.height_in_pixels)
-    print("Could not get screen resolution.")
-    exit(1)
-
-#parameters
-
-#All time intervals are in ms
-class TIME:
-    MS_IN_S = 1000
-    INTERVAL = 10
-
-class MOV:
-    GLOBAL_COEF = 15000
-    MIN_TIME = 100
-    EXP_DIST_MEAN = 1
-    DEST_MOTILITY = 0.25
-
-class WAIT:
-    GLOBAL_COEF = 500
-    EXP_DIST_MEAN = 1
-
-class SCR:
-    WIDTH, HEIGHT = get_display_resolution()
-
-class PROTO:
-    MAX_FREQ = 4
-    NUM_WAVES = 6
-
-type Coor = List[int]
-type Prototype = Callable[[float],float]
-
-#functions
-
-def generate_movement(t: timedelta) -&gt; List[Coor]:
-    output_len = int(floor((t.total_seconds() * TIME.MS_IN_S) / TIME.INTERVAL))
-    result : List[Coor] = []
-    cur_pos : Coor = gauss_step_from(
-        [SCR.WIDTH//2,SCR.HEIGHT//2],
-        [SCR.WIDTH,SCR.HEIGHT]
-    )
-    while len(result) &amp;lt; output_len:
-        #move
-        next_pos = gauss_step_from(cur_pos,[SCR.WIDTH,SCR.HEIGHT])
-        mov_time = pick_movement_time(cur_pos,next_pos)
-        mov_steps = time_to_steps(mov_time)
-        path = gen_path(cur_pos,next_pos,mov_steps)
-        result += path
-        
-        #wait
-        wait_time = timedelta(milliseconds=np.random.exponential(WAIT.EXP_DIST_MEAN)*WAIT.GLOBAL_COEF)
-        wait_steps = time_to_steps(wait_time)
-        result += [result[-1]]*wait_steps
-
-        cur_pos = next_pos
-    
-    result = result[:output_len]
-    return result
-
-def time_to_steps(t: timedelta) -&gt; int:
-    return int(floor(t.total_seconds()*TIME.MS_IN_S / TIME.INTERVAL))
-
-def pick_movement_time(cur_pos: Coor, next_pos: Coor) -&gt; timedelta:
-    mlc = mov_len_coef(cur_pos,next_pos)
-    base_movement_time = np.random.exponential(MOV.EXP_DIST_MEAN)
-    return timedelta(milliseconds=max(
-        MOV.MIN_TIME,
-        base_movement_time*mlc*MOV.GLOBAL_COEF
-    ))
-
-def gauss_step_from(src: Coor, bound: Coor) -&gt; Coor:
-    assert len(src)==len(bound)
-    dim = len(src)
-    assert(0 &amp;lt; MOV.DEST_MOTILITY &amp;lt;= 0.5)
-    assert(all([0&amp;lt;=src[i]&amp;lt;=bound[i] for i in range(dim)]))
-    
-    def gauss_step_1d(src,bound):
-        result = None
-        while not result or not 0 &amp;lt; result &amp;lt; bound:
-            result = round(np.random.normal(src, bound*MOV.DEST_MOTILITY)) 
-        return result
-
-    return [gauss_step_1d(src[i],bound[i]) for i in range(len(src))]
-
-def mov_len_coef(src: Coor,dst: Coor) -&gt; float:
-    abs_dist =  sqrt((dst[0]-src[0])**2+(dst[1]-src[1])**2)
-    screen_diag = sqrt(SCR.WIDTH**2+SCR.HEIGHT**2)
-    return abs_dist / screen_diag
-
-    
-def gen_path_proto_1d() -&gt; Prototype:
-    wave = lambda n,shift: lambda x: sin(n*tau*x+shift)
-    freqs = [random.choice(range(1,PROTO.MAX_FREQ+1)) for _ in range(PROTO.NUM_WAVES)]
-    profile = {f:np.random.uniform()*tau for f in freqs}
-    h = lambda x: sum([wave(f,s)(x) for (f,s) in profile.items()])/len(profile)
-    psi = lambda x: 4*(x-x**2)
-    f = lambda x: x*(1-psi(x))+((h(x)+1)/2)*psi(x)
-    return f
-
-def actualize_path_1d(proto: Prototype, start: int, end: int, steps: int) -&gt; List[int]:
-    r = lambda i: proto(i/steps)
-    samples = steps+1 # @---@---@---@ ||| ---*3 whereas @*(3+1)
-    return [round(start*(1-r(i)) + end*r(i)) for i in range(samples)]
-
-def gen_path(src: Coor, dst: Coor, steps: int) -&gt; List[Coor]:
-    assert(len(src)==len(dst))
-    dim = len(src)
-    protos = [gen_path_proto_1d() for _ in range(dim)]
-    path = [actualize_path_1d(protos[i],src[i],dst[i],steps) for i in range(dim)]
-    return list(np.transpose(path))
-
-def demo(coors: List[Coor]):
-    from pynput.mouse import Controller
-    mouse = Controller()
-    for coor in coors:
-        mouse.position = coor
-        time.sleep(TIME.INTERVAL/TIME.MS_IN_S)
-
-if __name__ == "__main__":
-    coors = generate_movement(timedelta(seconds=30))
-    demo(coors)&lt;/pre&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/the-cat-and-mouse-game-exploiting-statistical-weaknesses-in-human-interaction-anti-evasions/"&gt;The Cat and Mouse Game: Exploiting Statistical Weaknesses in Human Interaction Anti-Evasions&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31073</guid><category>Check Point Research Publications</category></item><item><title>Updated Shadowpad Malware Leads to Ransomware Deployment</title><link>https://www.trendmicro.com/en_us/research/25/b/updated-shadowpad-malware-leads-to-ransomware-deployment.html</link><description>In this blog, we discuss about how Shadowpad is being used to deploy a new undetected ransomware family. They deploy the malware exploiting weak passwords and bypassing multi-factor authentication</description><guid isPermaLink="false">urn:uuid:c393e3c4-4e87-1e44-e2c0-bf3e1173b2ba</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>MSPs weigh in: Key SOAR benefits driving MDR success</title><link>https://www.webroot.com/blog/2025/02/19/msps-weigh-in-key-soar-benefits-driving-mdr-success/</link><description>&lt;p&gt;OpenText recently surveyed 255 MSPs to uncover key trends shaping the future of Managed Detection and Response (MDR). One technology area it explored was security orchestration, automation, and response (SOAR)—the workhorse behind automating security workflows. The survey revealed several key benefits of SOAR in MDR, highlighting how it can help MSPs and SMBs improve incident [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The nature of how this data was leaked remains unclear, but the materials show that TopSec engineers were documenting their work in a highly granular way that included entire commands used to perform the outlined tasks. Considering the types of information in this leak, organizations should evaluate how their systems and infrastructure engineers are logging work. Proper credential management is essential to securing sensitive environments. Infrastructure engineers should rely on a secrets manager that integrates with the CI/CD pipeline rather than running commands from playbooks that include hardcoded credentials. This results in only variable names being stored in commands instead of sensitive credentials and lowers the likelihood that an unexpected disclosure could result in further compromise.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=114581</guid><category>China</category></item><item><title>Updated Shadowpad Malware Leads to Ransomware Deployment</title><link>https://www.trendmicro.com/en_us/research/25/b/updated-shadowpad-malware-leads-to-ransomware-deployment.html</link><description>In this blog, we discuss about how Shadowpad is being used to deploy a new undetected ransomware family. They deploy the malware exploiting weak passwords and bypassing multi-factor authentication</description><guid isPermaLink="false">urn:uuid:c393e3c4-4e87-1e44-e2c0-bf3e1173b2ba</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>MSPs weigh in: Key SOAR benefits driving MDR success</title><link>https://www.webroot.com/blog/2025/02/19/msps-weigh-in-key-soar-benefits-driving-mdr-success/</link><description>&lt;p&gt;OpenText recently surveyed 255 MSPs to uncover key trends shaping the future of Managed Detection and Response (MDR). One technology area it explored was security orchestration, automation, and response (SOAR)—the workhorse behind automating security workflows. The survey revealed several key benefits of SOAR in MDR, highlighting how it can help MSPs and SMBs improve incident [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/02/19/msps-weigh-in-key-soar-benefits-driving-mdr-success/" rel="nofollow"&gt;MSPs weigh in: Key SOAR benefits driving MDR success&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;OpenText recently surveyed 255 MSPs to uncover key trends shaping the future of Managed Detection and Response (MDR). One technology area it explored was security orchestration, automation, and response (SOAR)—the workhorse behind automating security workflows. The survey revealed several key benefits of SOAR in MDR, highlighting how it can help MSPs and SMBs improve incident response, reduce alert fatigue, and deliver round-the-clock security.&lt;/p&gt;
 
 
