@@ -1,5 +1,459 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 15 Apr 2025 17:59:27 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Online Services Again Abused to Exfiltrate Data</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Slopsquatting</title><link>https://www.schneier.com/blog/archives/2025/04/slopsquatting.html</link><description>&lt;p&gt;As AI coding assistants invent nonexistent software libraries to download and use, enterprising attackers &lt;a href="https://www.theregister.com/2025/04/12/ai_code_suggestions_sabotage_supply_chain/"&gt;create and upload&lt;/a&gt; libraries with those names&amp;#8212;laced with malware, of course.&lt;/p&gt;</description><content:encoded>&lt;p&gt;As AI coding assistants invent nonexistent software libraries to download and use, enterprising attackers &lt;a href="https://www.theregister.com/2025/04/12/ai_code_suggestions_sabotage_supply_chain/"&gt;create and upload&lt;/a&gt; libraries with those names&amp;#8212;laced with malware, of course.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70134</guid><category>Uncategorized</category><category>AI</category><category>LLM</category><category>malware</category></item><item><title>​​Transforming security​ with Microsoft Security Exposure Management initiatives​</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/15/transforming-security-with-microsoft-security-exposure-management-initiatives/</link><description>&lt;p&gt;Microsoft Secure Score is important, but the increasing sophistication of security requirements has driven the development of more comprehensive security initiatives using Microsoft Security Exposure Management. &lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 15 Apr 2025 18:59:27 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Online Services Again Abused to Exfiltrate Data</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Threat actors misuse Node.js to deliver malware and other malicious payloads</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/15/threat-actors-misuse-node-js-to-deliver-malware-and-other-malicious-payloads/</link><description>&lt;p&gt;Since October 2024, Microsoft Defender Experts has observed and helped multiple customers address campaigns leveraging Node.js to deliver malware and other payloads that ultimately lead to information theft and data exfiltration.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/15/threat-actors-misuse-node-js-to-deliver-malware-and-other-malicious-payloads/"&gt;Threat actors misuse Node.js to deliver malware and other malicious payloads&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Since October 2024, Microsoft Defender Experts (DEX) has observed and helped multiple customers address campaigns leveraging Node.js to deliver malware and other payloads that ultimately lead to information theft and data exfiltration. While traditional scripting languages like Python, PHP, and AutoIT remain widely used in threats, threat actors are now leveraging compiled JavaScript—or even running the scripts directly in the command line using Node.js—to facilitate malicious activity. This shift in threat actor techniques, tactics, and procedures (TTPs) might indicate that while Node.js-related malware aren’t as prevalent, they’re quickly becoming a part of the continuously evolving threat landscape.&lt;/p&gt;
+
+
+
+&lt;p&gt;Node.js is an open-source, cross-platform JavaScript runtime environment that allows JavaScript code to run outside of a web browser. It’s widely used and trusted by developers because it lets them build frontend and backend applications. However, threat actors are also leveraging these Node.js characteristics to try to blend malware with legitimate applications, bypass conventional security controls, and persist in target environments. &amp;nbsp;&lt;br /&gt;&lt;br /&gt;Among the most recent attacks we’ve observed leveraging Node.js include a malvertising campaign related to cryptocurrency trading that attempts to lure users into downloading a malicious installer disguised as legitimate software. The said campaign is still active as of April 2025. This blog provides details of its attack chain, along with an example of the emerging inline script execution technique. This blog also includes recommendations to help users and defenders reduce the impact of these attacks in their environments.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="malicious-ads-deliver-compiled-node-js-executables"&gt;Malicious ads deliver compiled Node.js executables&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.microsoft.com/en-us/microsoft-365-life-hacks/privacy-and-safety/what-is-malvertising"&gt;Malvertising&lt;/a&gt; has been one of the most prevalent techniques in Node.js attacks we’ve observed in customer environments. Attackers use malvertising campaigns to lure targets to fraudulent websites, where the targets then unknowingly download a malicious installer disguised as legitimate software. These fake websites often take advantage of popular themes such as financial services, software updates, and trending applications.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this campaign, the downloaded installer contains a malicious DLL that gathers system information and sets up a scheduled task for persistence. This sets the stage for its other techniques and activities, such as defense evasion, data collection, and payload delivery and execution.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram of the campaign depicting the threat actor luring target users into downloading an installer using malvertisements. The installer creates a scheduled task to run PowerShell commands and downloads additional scripts from C2 to perform various defense evasion tactics, like excluding a process and folder from being scanned. Detailed information such as system, user, and browser data is harvested and sent to the threat actor's C2 through HTTP POST." class="wp-image-138454 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-1.-Overview-of-the-malvertising-campaign-leveraging-Node.js.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1. Overview of the malvertising campaign leveraging Node.js&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="initial-access-and-persistence"&gt;Initial access and persistence&lt;/h3&gt;
+
+
+
+&lt;p&gt;This campaign uses malicious ads with a cryptocurrency trading theme to lure the target user into visiting a website and downloading a malicious installer disguised as a legitimate file from cryptocurrency-trading platforms like Binance or TradingView. This installer is a Wix-built package containing a malicious &lt;em&gt;CustomActions.dll&lt;/em&gt;. When launched, the installer loads the DLL, which then gathers basic system information through a Windows Management Instrumentation (WMI) query and creates a scheduled task to ensure persistence of a PowerShell command. Simultaneously, the DLL launches a decoy by opening an &lt;em&gt;msedge_proxy&lt;/em&gt; window that displays a legitimate cryptocurrency trading website.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="defense-evasion"&gt;Defense evasion&lt;/h3&gt;
+
+
+
+&lt;p&gt;The created scheduled task runs PowerShell commands designed to exclude both the PowerShell process and the current directory from being scanned by Microsoft Defender for Endpoint. This action prevents subsequent PowerShell executions from being flagged, allowing the attack to continue undisturbed.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the command line used for exclusions" class="wp-image-138455 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-2.-Command-line-used-for-the-exclusions.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 2. Command line used for the exclusions&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="data-collection-and-exfiltration"&gt;Data collection and exfiltration&lt;/h3&gt;
+
+
+
+&lt;p&gt;With the exclusions set, an obfuscated PowerShell command is then launched through scheduled tasks to continuously fetch and run scripts from remote URLs. These scripts gather detailed system information, including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Windows information:&lt;/strong&gt; Registered owner, system root, installed software, email addresses&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;BIOS information:&lt;/strong&gt; Manufacturer, name, release date, version&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;System information:&lt;/strong&gt; Name, domain, manufacturer, model, domain membership, memory, logical processors, graphics processing units (GPUs), processors, network adapters&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Operating system information:&lt;/strong&gt; Name, version, locale, user access control (UAC) settings, country, language, time zone, install date&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;All this information is structured into a nested hash table, converted into JSON format, and then sent using HTTP POST to the attacker’s command-and-control (C2) server.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="A screen shot of the malicious script that gathers and exfiltrates data" class="wp-image-138456 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-3.-Excerpts-from-the-script-that-gathers-and-exfiltrates-data.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 3. Excerpts from the script that gathers and exfiltrates data&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="payload-delivery"&gt;Payload delivery&lt;/h3&gt;
+
+
+
+&lt;p&gt;After the data collection activity, another PowerShell script is launched to perform the following actions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Download an archive file from the C2 and extract its contents, which typically include:&lt;ul&gt;&lt;li&gt;&lt;em&gt;node.exe&lt;/em&gt; (Node.js runtime)&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;A JSC file (JavaScript compiled file)&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Several supporting library files/modules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Turn off proxy settings in the Windows registry&lt;/li&gt;
+
+
+
+&lt;li&gt;Launch the JSC that starts the attack’s next stage&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="A screen shot of the malicious script that downloads and launches the payload" class="wp-image-138457 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-4.-Excerpts-from-the-script-that-downloads-and-launches-the-payload.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4. Excerpts from the script that downloads and launches the payload&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="payload-execution"&gt;Payload execution&lt;/h3&gt;
+
+
+
+&lt;p&gt;The Node.js executable launches the downloaded JSC file, which then performs the following routines:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Load multiple library modules&lt;/li&gt;
+
+
+
+&lt;li&gt;Establish network connections&lt;/li&gt;
+
+
+
+&lt;li&gt;Add certificates to the device&lt;/li&gt;
+
+
+
+&lt;li&gt;Read and possibly exfiltrate sensitive browser information&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;These routines might indicate follow-on malicious activities such as credential theft, evasion, or secondary payload execution, which are commonly observed in other malware campaigns leveraging Node.js.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the command line used to launch the JSC file" class="wp-image-138459 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-5.-Command-line-used-to-launch-the-JSC-file.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5. Command line used to launch the JSC file&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="beyond-executables-inline-script-execution-in-node-js"&gt;Beyond executables: Inline script execution in Node.js&lt;/h2&gt;
+
+
+
+&lt;p&gt;Another notable technique we’ve observed emerging from campaigns leveraging Node.js involves inline JavaScript execution. In this technique, malicious scripts are run directly through Node.js to facilitate the deployment of malware.&lt;/p&gt;
+
+
+
+&lt;p&gt;One observed instance of this method was through a ClickFix social engineering attack, which attempts to deceive users into executing a malicious PowerShell command. This command initiates the download and installation of multiple components, including the Node.js binary (&lt;em&gt;node.exe&lt;/em&gt;) and additional required modules. Once all the files are in place, the PowerShell script uses the Node.js environment to execute a JavaScript code directly in the command, rather than running it from a file.&lt;/p&gt;
+
+
+
+&lt;p&gt;The JavaScript further conducts network discovery by executing commands to map the domain structure and identify high-value assets. It also disguises the command-and-control traffic as legitimate Cloudflare activity and gains persistence by modifying registry run keys.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="A screen shot of the malicious script, highlighting hardcoded C2 servers" class="wp-image-138460 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-6.-Excerpts-from-the-malicious-script-highlighting-hardcoded-C2-servers.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 6. Excerpts from the malicious script, highlighting hardcoded C2 servers&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="A screen shot of the malicious script except, highlighting core HTTP functions" class="wp-image-138461 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/Figure-7.-Excerpts-from-the-malicious-script-highlighting-core-HTTP-functions.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 7. Excerpts from the malicious script, highlighting core HTTP functions&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="recommendations"&gt;Recommendations&lt;/h2&gt;
+
+
+
+&lt;p&gt;Organizations can follow these recommendations to mitigate threats associated with Node.js misuse: &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Educate users.&lt;/strong&gt; Warn them about the risks of downloading software from unverified sources. &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Monitor Node.js execution.&lt;/strong&gt; Flag unauthorized &lt;em&gt;node.exe&lt;/em&gt; processes. &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Enforce PowerShell logging.&lt;/strong&gt; Turn on script block logging to track obfuscation. &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Turn&lt;/strong&gt;&lt;strong&gt; on endpoint protection.&lt;/strong&gt; Ensure endpoint detection and response (EDR) or extended detection and response (XDR) solutions are actively monitoring script execution. &lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Restrict outbound C2 communications.&lt;/strong&gt; Implement firewall rules to block suspicious domains. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Microsoft also recommends the following mitigations to reduce the impact of this threat.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Turn on &lt;a href="https://learn.microsoft.com/defender-endpoint/enable-cloud-protection-microsoft-defender-antivirus" rel="noreferrer noopener" target="_blank"&gt;cloud-delivered protection&lt;/a&gt; in Microsoft Defender Antivirus or the equivalent for your antivirus product to cover rapidly evolving attacker tools and techniques. Cloud-based machine learning protections block a majority of new and unknown threats.&lt;/li&gt;
+
+
+
+&lt;li&gt;Run &lt;a href="https://learn.microsoft.com/defender-endpoint/edr-in-block-mode" rel="noreferrer noopener" target="_blank"&gt;EDR in block mode&lt;/a&gt; so that Microsoft Defender for Endpoint can block malicious artifacts, even when your non-Microsoft antivirus does not detect the threat or when Microsoft Defender Antivirus is running in passive mode. EDR in block mode works behind the scenes to remediate malicious artifacts that are detected post-breach.&lt;/li&gt;
+
+
+
+&lt;li&gt;Allow &lt;a href="https://learn.microsoft.com/defender-endpoint/automated-investigations" rel="noreferrer noopener" target="_blank"&gt;investigation and remediation&lt;/a&gt; in full automated mode to allow Microsoft Defender for Endpoint to take immediate action on alerts to resolve breaches, significantly reducing alert volume.&lt;/li&gt;
+
+
+
+&lt;li&gt;Understand and use PowerShell’s &lt;a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_execution_policies"&gt;execution policies&lt;/a&gt;, which control how scripts are loaded and run. Set an appropriate execution policy based on your needs. Remember that execution policy alone is not foolproof; it can be bypassed.&lt;/li&gt;
+
+
+
+&lt;li&gt;Turn on and monitor PowerShell logging.&lt;ul&gt;&lt;li&gt;Turn on script block logging, module logging, and transcription. These logs provide a trail of activity and help identify malicious behavior.&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Dive deeper into &lt;a href="https://learn.microsoft.com/powershell/scripting/security/security-features" rel="noreferrer noopener" target="_blank"&gt;PowerShell security features&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Turn on &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection"&gt;tamper protection features&lt;/a&gt; to prevent attackers from stopping security services. Combine tamper protection with the &lt;a href="https://learn.microsoft.com/windows/client-management/mdm/defender-csp"&gt;DisableLocalAdminMerge&lt;/a&gt; setting to prevent attackers from using local administrator privileges to set antivirus exclusions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Microsoft Defender XDR customers can turn on&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction" rel="noreferrer noopener" target="_blank"&gt;attack surface reduction rules&lt;/a&gt;&amp;nbsp;to prevent common attack techniques:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference#block-executable-files-from-running-unless-they-meet-a-prevalence-age-or-trusted-list-criterion" rel="noreferrer noopener" target="_blank"&gt;Block executable files from running unless they meet a prevalence, age, or trusted list criterion&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference#block-execution-of-potentially-obfuscated-scripts" rel="noreferrer noopener" target="_blank"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference#block-javascript-or-vbscript-from-launching-downloaded-executable-content" rel="noreferrer noopener" target="_blank"&gt;Block JavaScript or VBScript from launching downloaded executable content&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-for-endpoint"&gt;Microsoft Defender for Endpoint&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The following alerts might indicate threat activity associated with this threat. These alerts, however, can be triggered by unrelated threat activity.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Suspicious PowerShell download or encoded command execution &lt;/li&gt;
+
+
+
+&lt;li&gt;Suspicious Task Scheduler activity &lt;/li&gt;
+
+
+
+&lt;li&gt;Suspicious behavior by powershell.exe was observed &lt;/li&gt;
+
+
+
+&lt;li&gt;Node binary loading suspicious combination of libraries &lt;/li&gt;
+
+
+
+&lt;li&gt;Activity that might lead to information stealer &lt;/li&gt;
+
+
+
+&lt;li&gt;Possible theft of passwords and other sensitive web browser information &lt;/li&gt;
+
+
+
+&lt;li&gt;Suspicious DPAPI Activity &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h2&gt;
+
+
+
+&lt;p&gt;Security Copilot customers can use the standalone experience to &lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts"&gt;create their own prompts&lt;/a&gt; or run the following &lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks"&gt;pre-built promptbooks&lt;/a&gt; to automate incident response or investigation tasks related to this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Incident investigation&lt;/li&gt;
+
+
+
+&lt;li&gt;Microsoft User analysis&lt;/li&gt;
+
+
+
+&lt;li&gt;Threat Intelligence 360 report based on MDTI article&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h2&gt;
+
+
+
+&lt;p&gt;Microsoft customers can use the following reports in Microsoft products to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-threat-intelligence"&gt;Microsoft Defender Threat Intelligence&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://security.microsoft.com/intel-explorer/articles/9d235c30"&gt;ClickFix and spoofed IT apps deliver RATs via Node.js over Cloudflare Quick Tunnels&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Microsoft Security Copilot customers can also use the &lt;a href="https://learn.microsoft.com/defender/threat-intelligence/security-copilot-and-defender-threat-intelligence?bc=%2Fsecurity-copilot%2Fbreadcrumb%2Ftoc.json&amp;amp;toc=%2Fsecurity-copilot%2Ftoc.json#turn-on-the-security-copilot-integration-in-defender-ti"&gt;Microsoft Security Copilot integration&lt;/a&gt; in Microsoft Defender Threat Intelligence, either in the Security Copilot standalone portal or in the &lt;a href="https://learn.microsoft.com/defender/threat-intelligence/using-copilot-threat-intelligence-defender-xdr"&gt;embedded experience&lt;/a&gt; in the Microsoft Defender portal to get more information about this threat actor.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr"&gt;Microsoft Defender XDR&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Defender XDR customers can run the following query to find related activity in their networks:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Suspicious JSC file&lt;/strong&gt; &lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceProcessEvents  
+| where isnotempty(DeviceId)  
+| where ProcessVersionInfoOriginalFileName == &amp;#039;node.exe&amp;#039;   
+| where (ProcessCommandLine has_all (&amp;quot;.jsc&amp;quot;, &amp;quot;.js&amp;quot;) and ProcessCommandLine matches regex @&amp;quot;\\\w*.jsc&amp;quot;) 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Suspicious inline JavaScript execution&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p&gt;Identify suspicious inline JavaScript&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceProcessEvents  
+| where isnotempty(DeviceId)  
+| where ProcessVersionInfoOriginalFileName == &amp;#039;node.exe&amp;#039;   
+| where ProcessCommandLine has_all (&amp;#039;http&amp;#039;, &amp;#039;execSync&amp;#039;,  &amp;#039;spawn&amp;#039;, &amp;#039;fs&amp;#039;, &amp;#039;path&amp;#039;, &amp;#039;zlib&amp;#039;) 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Node.js-based infostealer activity&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p&gt;Detect malicious access to sensitive credentials using Windows DPAPI&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceEvents 
+| where isnotempty(DeviceId) 
+| where EtwEventId == 16385   
+| where InitiatingProcessParentFileName endswith &amp;quot;powershell.exe&amp;quot; 
+| where InitiatingProcessFileName =~ &amp;quot;node.exe&amp;quot; 
+| where InitiatingProcessCommandLine  has_all (&amp;quot;-r&amp;quot;, &amp;quot;.js&amp;quot;) and InitiatingProcessCommandLine endswith &amp;quot;.jsc&amp;quot; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-sentinel"&gt;Microsoft Sentinel&lt;/h3&gt;
+
+
+
+&lt;p&gt;Microsoft Sentinel customers can use the TI Mapping analytics (a series of analytics all prefixed with ‘TI map’) to automatically match the malicious domain indicators mentioned in this blog post with data in their workspace. If the TI Map analytics are not currently deployed, customers can install the Threat Intelligence solution from the &lt;a href="https://learn.microsoft.com/azure/sentinel/sentinel-solutions-deploy"&gt;Microsoft Sentinel Content Hub&lt;/a&gt; to have the analytics rule deployed in their Sentinel workspace.&lt;/p&gt;
+
+
+
+&lt;p&gt;Below are the queries using &lt;a href="https://learn.microsoft.com/azure/sentinel/normalization"&gt;Sentinel Advanced Security Information Model (ASIM) functions&lt;/a&gt; to hunt threats across both Microsoft first-party and third-party data sources. ASIM also supports deploying parsers to specific workspaces &lt;a href="https://aka.ms/DeployASIM"&gt;from GitHub&lt;/a&gt;, using an ARM template or manually.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://github.com/Azure/Azure-Sentinel/blob/master/Hunting%20Queries/Microsoft%20365%20Defender/Persistence/scheduled%20task%20creation.yaml"&gt;Scheduled Task Creation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Detect network indicators of compromise communication to C2 servers:&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+let selectedTimestamp = datetime(2025-04-15T00:00:00.0000000Z);
+let ip = dynamic(&amp;#x5b;&amp;#039;216.245.184.181&amp;#039;, &amp;#039;212.237.217.182&amp;#039;, &amp;#039;168.119.96.41&amp;#039;]);
+let url = dynamic(&amp;#x5b;&amp;#039;sublime-forecasts-pale-scored.trycloudflare.com&amp;#039;, &amp;#039;washing-cartridges-watts-flags.trycloudflare.com&amp;#039;, &amp;#039;investigators-boxing-trademark-threatened.trycloudflare.com&amp;#039;, &amp;#039;fotos-phillips-princess-baker.trycloudflare.com&amp;#039;, &amp;#039;casting-advisors-older-invitations.trycloudflare.com&amp;#039;, &amp;#039;complement-parliamentary-chairs-hc.trycloudflare.com&amp;#039;]);
+search in (AlertEvidence,BehaviorEntities,CommonSecurityLog,DeviceInfo,DeviceNetworkEvents,DeviceNetworkInfo,DnsEvents,SecurityEvent,VMConnection,WindowsFirewall)
+TimeGenerated between ((selectedTimestamp - 1m) .. (selectedTimestamp + 90d)) // from April 15th runs the search for last 90 days, change the above selectedTimestamp or 90d accordingly.
+and 
+(RemoteIP in (ip) or DestinationIP in (ip) or DeviceCustomIPv6Address1 in (ip) or DeviceCustomIPv6Address2 in (ip) or DeviceCustomIPv6Address3 in (ip) or DeviceCustomIPv6Address4 in (ip) or 
+MaliciousIP in (ip) or SourceIP in (ip) or PublicIP in (ip) or LocalIPType in (ip) or RemoteIPType in (ip) or IPAddresses in (ip) or IPv4Dhcp in (ip) or IPv6Dhcp in (ip) or IpAddress in (ip) or 
+NASIPv4Address in (ip) or NASIPv6Address in (ip) or RemoteIpAddress in (ip) or RemoteUrl in (url))
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="mitre-att-ck-tactics-and-techniques-observed"&gt;MITRE ATT&amp;amp;CK tactics and techniques observed&amp;nbsp;&lt;br /&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Technique&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Initial Access&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1189 Drive-by Compromise&amp;nbsp;&lt;/td&gt;&lt;td&gt;Malware is downloaded from malicious websites, such as fake cryptocurrency trading websites&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Persistence&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1053.005 Scheduled Task/Job: Scheduled Task&amp;nbsp;&lt;/td&gt;&lt;td&gt;Ensures persistence by scheduling tasks or modifying registry settings&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Defense Evasion&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1564.001 Hide Artifacts: Hidden Files and Directories&amp;nbsp;&lt;br /&gt;T1027 Obfuscated Files or Information&amp;nbsp;&lt;br /&gt;T1497.003 Virtualization/Sandbox Evasion: Time Based Evasion&amp;nbsp;&lt;/td&gt;&lt;td&gt;Bypasses security controls using hidden files, obfuscation, and sandbox detection&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Discovery&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1082 System Information Discovery&amp;nbsp;&lt;/td&gt;&lt;td&gt;Gathers detailed system information, including hardware and software data&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Credential Access&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1003 OS Credential Dumping&lt;/td&gt;&lt;td&gt;Extracts system credentials and browser data&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Collection&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1005 Data from Local System&lt;br /&gt;T1082 System Information Discovery&amp;nbsp;&lt;/td&gt;&lt;td&gt;Captures system details, installed software, emails, BIOS data, running tasks, and network information&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Command and Control&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1071.001 Application Layer Protocol: Web Protocols&amp;nbsp;&lt;br /&gt;T1105 Ingress Tool Transfer&amp;nbsp;&lt;/td&gt;&lt;td&gt;Periodically connects to remote servers (for example, Cloudflare tunnels) to send stolen data and receive commands&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Exfiltration&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;T1041 Exfiltration Over C2 Channel&amp;nbsp;&lt;/td&gt;&lt;td&gt;Sends collected data to a remote server through HTTP POST&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;To know how Microsoft can help your team stop similar threats and prevent future compromise with human-led managed services, check out &lt;a href="https://www.microsoft.com/security/business/services/microsoft-defender-experts-xdr"&gt;Microsoft Defender Experts for XDR&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the Microsoft Threat Intelligence Blog:&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog"&gt;https://aka.ms/threatintelblog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To get notified about new publications and to join discussions on social media, follow us on LinkedIn at &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;https://www.linkedin.com/showcase/microsoft-threat-intelligence&lt;/a&gt;, and on X (formerly Twitter) at&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;https://x.com/MsftSecIntel&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/15/threat-actors-misuse-node-js-to-deliver-malware-and-other-malicious-payloads/"&gt;Threat actors misuse Node.js to deliver malware and other malicious payloads&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Credential theft</category><category>Windows</category></item><item><title>Slopsquatting</title><link>https://www.schneier.com/blog/archives/2025/04/slopsquatting.html</link><description>&lt;p&gt;As AI coding assistants invent nonexistent software libraries to download and use, enterprising attackers &lt;a href="https://www.theregister.com/2025/04/12/ai_code_suggestions_sabotage_supply_chain/"&gt;create and upload&lt;/a&gt; libraries with those names&amp;#8212;laced with malware, of course.&lt;/p&gt;</description><content:encoded>&lt;p&gt;As AI coding assistants invent nonexistent software libraries to download and use, enterprising attackers &lt;a href="https://www.theregister.com/2025/04/12/ai_code_suggestions_sabotage_supply_chain/"&gt;create and upload&lt;/a&gt; libraries with those names&amp;#8212;laced with malware, of course.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70134</guid><category>Uncategorized</category><category>AI</category><category>LLM</category><category>malware</category></item><item><title>​​Transforming security​ with Microsoft Security Exposure Management initiatives​</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/15/transforming-security-with-microsoft-security-exposure-management-initiatives/</link><description>&lt;p&gt;Microsoft Secure Score is important, but the increasing sophistication of security requirements has driven the development of more comprehensive security initiatives using Microsoft Security Exposure Management. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/15/transforming-security-with-microsoft-security-exposure-management-initiatives/"&gt;​​Transforming security​ with Microsoft Security Exposure Management initiatives​ &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Just as nature sheds its winter coat, it&amp;#8217;s time to prune outdated security measures and plant the seeds of a more robust defense. For years, &lt;a href="https://learn.microsoft.com/defender-xdr/microsoft-secure-score-improvement-actions"&gt;Microsoft Secure Score&lt;/a&gt; has served as a foundational tool for organizations to assess their security posture. By providing a numerical representation of security posture based on configurations and recommended controls within Microsoft products, it has offered valuable baseline measurements and helped organizations benchmark their efforts.&lt;/p&gt;
 
 
@@ -6561,157 +7015,7 @@ let ioc_domains = dynamic(&amp;#x5b;&amp;quot;slgndocline.onlxtg.com &amp;quot;,
 &lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23214</guid></item><item><title>NSA, CISA, FBI, and International Partners Release Cybersecurity Advisory on “Fast Flux,” a National Security Threat</title><link>https://www.cisa.gov/news-events/alerts/2025/04/03/nsa-cisa-fbi-and-international-partners-release-cybersecurity-advisory-fast-flux-national-security</link><description>&lt;p&gt;Today, CISA—in partnership with the National Security Agency (NSA), Federal Bureau of Investigation (FBI), Australian Signals Directorate’s Australian Cyber Security Centre (ASD’s ACSC), Canadian Centre for Cyber Security (CCCS), and New Zealand’s National Cyber Security Centre (NCSC-NZ)—released joint Cybersecurity Advisory &lt;a href="https://media.defense.gov/2025/Apr/02/2003681172/-1/-1/0/CSA-FAST-FLUX.PDF"&gt;Fast Flux: A National Security Threat&lt;/a&gt; (PDF, 841 KB). This advisory warns organizations, internet service providers (ISPs), and cybersecurity service providers of the ongoing threat of fast flux enabled malicious activities and provides guidance on detection and mitigations to safeguard critical infrastructure and national security.&lt;/p&gt;
 &lt;p&gt;“Fast flux” is a technique used to obfuscate the locations of malicious servers through rapidly changing Domain Name System (DNS) records associated with a single domain name. This threat exploits a gap commonly found in network defenses, making the tracking and blocking of malicious fast flux activities difficult.&lt;/p&gt;
 &lt;p&gt;The authoring agencies strongly recommend adopting a multi-layered approach to detection and mitigation to reduce risk of compromise by fast flux-enabled threats. Service providers, especially Protective DNS providers (PDNS), should track, share information about, and block fast flux as part of their provided cybersecurity services. Government and critical infrastructure organizations should close this ongoing gap in network defenses by using cybersecurity and PDNS services that block malicious fast flux activity.&lt;/p&gt;
-&lt;p&gt;For more information on PDNS services, see &lt;a href="https://media.defense.gov/2025/Mar/24/2003675043/-1/-1/0/CSI-SELECTING-A-PROTECTIVE-DNS-SERVICE-V1.3.PDF" title="Selecting a Protective DNS Service"&gt;Selecting a Protective DNS Service&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23207</guid></item><item><title>Our key achievements from 2024</title><link>http://privacyinternational.org/long-read/5551/our-key-achievements-2024</link><guid isPermaLink="false">5551 at http://privacyinternational.org</guid></item><item><title>Cybersecurity Professor Faced China-Funding Inquiry Before Disappearing, Sources Say</title><link>https://www.wired.com/story/xiaofeng-wang-indiana-university-research-probe-china/</link><description>A lawyer for Xiaofeng Wang and his wife says they are “safe” after FBI searches of their homes and Wang’s sudden dismissal from Indiana University, where he taught for over 20 years.</description><guid isPermaLink="false">67ec08020ba8e7cf76d9d15e</guid><category>Security</category><category>Security / Security News</category><category>cybersecurity</category><category>privacy</category><category>encryption</category><category>China</category><category>academia</category><category>Crime</category><category>national security</category><category>Deciphering</category></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Transforming public sector security operations in the AI era</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/</link><description>&lt;p&gt;Read how Microsoft’s unified security operations platform can use generative AI to transform cybersecurity for the public sector. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/"&gt;Transforming public sector security operations in the AI era&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The cyberthreat landscape is evolving at an unprecedented pace, becoming increasingly dangerous and complex. Nation-state threat actors and cybercriminals are employing advanced tactics and generative AI to execute highly sophisticated attacks. This situation is further compounded by outdated technology and systems, shortage of cybersecurity talent, and antiquated processes, which are inefficient in handling the scale, complexity, and ever-evolving nature of these cyberattacks. With 62% of all cyberattacks targeting public sector organizations, it is crucial for these sectors to leverage state-of-the-art technology, powered by generative AI, to &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" rel="noreferrer noopener" target="_blank"&gt;transform their cyber defense&lt;/a&gt; and stay ahead of these evolving threats.&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-msxcm-cta-block"&gt;
-	&lt;div class="card d-block mx-ng mx-md-0"&gt;
-		&lt;div class="row no-gutters material-color-brand-dark"&gt;
-
-			
-			&lt;div class="d-flex col-md"&gt;
-				&lt;div class="card-body align-self-center p-4 p-md-5"&gt;
-					
-					&lt;h2&gt;Microsoft’s Unified Security Operations for Public Sector&lt;/h2&gt;
-
-					&lt;div class="mb-3"&gt;
-						&lt;p&gt;Discover how Microsoft helps public sectors modernize security operations to enhance cyber defense and streamline processes.&lt;/p&gt;
-					&lt;/div&gt;
-
-											&lt;div class="link-group"&gt;
-							&lt;a class="btn btn-primary bg-body text-body" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" target="_blank"&gt;
-								&lt;span&gt;Read the datasheet&lt;/span&gt;
-								&lt;span class="glyph-append glyph-append-chevron-right glyph-append-xsmall"&gt;&lt;/span&gt;
-							&lt;/a&gt;
-						&lt;/div&gt;
-									&lt;/div&gt;
-			&lt;/div&gt;
-
-							&lt;div class="col-md-4"&gt;
-					&lt;img alt="Computer programmer working at night in office." class="card-img img-object-cover" height="683" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/02/MSC24-China-business-Getty-1469706272-rgb-1024x683.jpg" width="1024" /&gt;				&lt;/div&gt;
-					&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-s-unified-security-operations-for-public-sector"&gt;Microsoft’s unified security operations for public sector&lt;/h2&gt;
-
-
-
-&lt;p&gt;Embracing modern security technology, processes, and continuous skill development is vital for protecting public sector organizations. By leveraging innovations powered by generative AI, unparalleled threat intelligence, and best practices, public sectors can transform their security operations to effectively defend against emerging cyberthreats.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;AI-powered security operations:&lt;/strong&gt; Microsoft delivers innovations to effectively protect against today&amp;#8217;s complex threat landscape. The AI-powered unified security operations platform offers an enhanced and streamlined approach to security operations by integrating &lt;a href="https://www.microsoft.com/en-us/security/business/security-101/what-is-siem"&gt;security information and event management&lt;/a&gt; (SIEM), security orchestration, automation, and response (SOAR), &lt;a href="https://www.microsoft.com/en-us/security/business/security-101/what-is-xdr"&gt;extended detection and response&lt;/a&gt; (XDR), posture and exposure management, cloud security, threat intelligence, and AI into a single, cohesive experience, eliminating silos and providing end-to-end security operations (SecOps). The unified platform boosts analyst efficiency, reduces context switching, and delivers quicker time to value with less integration work.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft is committed to helping public sector customers accelerate threat detection and response through improved security posture across organizations with richer insights, multi-tenant management, early warnings, and increased efficiency through automation and generative AI. Through automatic attack disruption, &lt;a href="https://www.microsoft.com/security/business/siem-and-xdr/microsoft-defender-xdr"&gt;Microsoft Defender XDR&lt;/a&gt; utilizes robust threat intelligence, advanced AI and machine learning to detect and contain sophisticated cyberattacks in real time, significantly reducing their impact. This high-fidelity detection and protection capability disrupts more than 40,000 incidents each month, like identity threats and human-operated cyberattacks, while maintaining a false positive rate below 1%.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;&amp;#8220;Speed is an important factor against adversaries, and gaining situational awareness across a complex landscape of threats is therefore key.&amp;#8221;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;—Customer in the healthcare industry&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;People and process modernization&lt;/strong&gt;: Public-private partnerships play a vital role in fostering the exchange of best practices and developing standardized processes that drive efficiency in incident response and threat intelligence sharing. For example, adapting the threat triage process to leverage generative AI agents can enable teams to scale significantly with agents autonomously analyzing and triaging vast volumes of alerts in real time, prioritize critical cyberthreats, and recommend specific remediation steps based on historical patterns. These collaborations also empower organizations to build teams equipped with cutting-edge skills and a comprehensive understanding of generative AI capabilities, helping them stay ahead of emerging cyberthreats.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Collective cyber defense and threat intelligence&lt;/strong&gt;: Using Microsoft’s global threat intelligence insights, public sector organizations can collaborate with each other and across other sectors to share deeper cyberthreat insights efficiently. This partnership enables public sector organizations to exchange threat intelligence in a standardized manner within a region or country.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;&amp;#8220;Collective defense collaborations are driven by mutual interests with industry peers and cybersecurity alliances on improving security postures and responding more effectively to emerging threats.&amp;#8221;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;—Customer in the transport industry&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-power-of-generative-ai-in-cyber-operations"&gt;The power of generative AI in cyber operations&lt;/h2&gt;
-
-
-
-&lt;p&gt;Generative AI brings several transformative benefits to cybersecurity, making it a cornerstone for public sector security operations center (SOC) modernization.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Enhanced threat detection and response&lt;/strong&gt;: Generative AI has the potential to sift through data from firewalls, endpoints, and cloud workloads, surfacing actionable cyberthreats that might go unnoticed in manual reviews. Unlike traditional rule-based detection methods, generative AI can identify attack patterns, adapt to emerging cyberthreats, and prioritize incidents based on risk severity, helping security teams focus on the most critical issues. Generative AI can go beyond simply surfacing cyberthreats; it can contextualize attack signals, predict potential breaches, and recommend guided responses for remediation strategies, reducing the burden on security analysts. &lt;a href="https://www.microsoft.com/security/business/ai-machine-learning/microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/a&gt; is already covering a range of use cases and is expanding rapidly to seize the full potential of generative AI. By providing guided incident investigation and response, Security Copilot helps security operations center (SOC) teams to detect and respond to cyberthreats more effectively. It can help teams to learn about malicious actors and campaigns, provide rapid summaries, and even contact the user to check for suspicious behavior. Adoption is associated with 30% reduction in security incident mean time to resolution (MTTR).&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Reduced operational overheads&lt;/strong&gt;: By automating routine tasks, generative AI can free analysts from repetitive processes like alert triage or patch validation, enabling them to focus on advanced threat hunting. Security teams can already leverage Security Copilot to translate complex scripts into natural language, highlighting and explaining key parts to enhance team skills and reduce investigation time for advanced investigations as much as by 85%, helping security teams operate at scale.&lt;sup&gt;3&lt;/sup&gt;&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;&amp;#8220;Increased support from AI is critical given the significant capacity challenge in the public sector: a shortage of talent, an influx of threats, and an ever-increasing volume of data, assets, and organizations.&amp;#8221;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;—National SOC customer&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="building-a-resilient-digital-future-together"&gt;Building a resilient digital future together&lt;/h2&gt;
-
-
-
-&lt;p&gt;As nation-state threat actors and cybercriminals increasingly employ generative AI in their cyberattacks, public sector organizations can no longer rely on fragmented, manual defenses. The path forward lies in public-private collaboration, centered on co-designing and innovating solutions tailored to the public sector’s unique needs.&lt;/p&gt;
-
-
-
-&lt;p&gt;By adopting Microsoft Security solutions, public sector organizations can leverage combined resources, expertise, and cutting-edge technology to fortify critical infrastructure, safeguard citizen data, and strengthen public trust.&lt;/p&gt;
-
-
-
-&lt;p&gt;Now is the time to act: &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/atlas-data-sheet-013025-v2.pdf" rel="noreferrer noopener" target="_blank"&gt;Modernize your cyber defense in the AI era&lt;/a&gt; to collectively forge a more secure and resilient digital future for government and public sector operations.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p&gt;Learn more about the &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/ai-powered-unified-secops-platform?msockid=13c31299ffe1622232f30313fe8b631f"&gt;AI-Powered Security Operations Platform&lt;/a&gt; for more details on the unified Security Operations platform.&lt;/p&gt;
-
-
-
-&lt;p&gt;Learn more about &lt;a href="https://www.microsoft.com/security/business/siem-and-xdr/microsoft-sentinel"&gt;Microsoft Sentinel&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;a href="https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/microsoft-digital-defense-report-2024"&gt;Microsoft Digital Defense Report 2024&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;a href="https://aka.ms/securitycopilotmttrresearch" rel="noreferrer noopener" target="_blank"&gt;Generative AI and Security Operations Center Productivity: Evidence from Live Operations&lt;/a&gt;, Microsoft study. James Bono, Alec Xu, Justin Grana. November 24, 2024.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;a href="https://tei.forrester.com/go/microsoft/microsoft_sentinel/?lang=en-us" rel="noreferrer noopener" target="_blank"&gt;Forrester Total Economic Impact™ of Microsoft Sentinel&lt;/a&gt;. The Total Economic Impact&lt;sup&gt;(TM)&lt;/sup&gt; Of Microsoft Sentinel, a commissioned study conducted by Forrester Consulting, March 2024. Results are based on a composite organization representative of interviewed customers.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/01/transforming-public-sector-security-operations-in-the-ai-era/"&gt;Transforming public sector security operations in the AI era&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Happy 21st Birthday, Gmail! Google’s Present to Enterprise Gmail Users: End-to-End Encryption</title><link>https://www.techrepublic.com/article/news-gmail-end-to-end-encryption/</link><description>The new feature is more accessible than S/MIME because it eliminates the need for certificate management.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300462</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category><category>cloud security</category><category>cybersecurity</category><category>encryption</category><category>Gmail</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/04/01/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on April 1, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;For more information on PDNS services, see &lt;a href="https://media.defense.gov/2025/Mar/24/2003675043/-1/-1/0/CSI-SELECTING-A-PROTECTIVE-DNS-SERVICE-V1.3.PDF" title="Selecting a Protective DNS Service"&gt;Selecting a Protective DNS Service&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23207</guid></item><item><title>Our key achievements from 2024</title><link>http://privacyinternational.org/long-read/5551/our-key-achievements-2024</link><guid isPermaLink="false">5551 at http://privacyinternational.org</guid></item><item><title>Cybersecurity Professor Faced China-Funding Inquiry Before Disappearing, Sources Say</title><link>https://www.wired.com/story/xiaofeng-wang-indiana-university-research-probe-china/</link><description>A lawyer for Xiaofeng Wang and his wife says they are “safe” after FBI searches of their homes and Wang’s sudden dismissal from Indiana University, where he taught for over 20 years.</description><guid isPermaLink="false">67ec08020ba8e7cf76d9d15e</guid><category>Security</category><category>Security / Security News</category><category>cybersecurity</category><category>privacy</category><category>encryption</category><category>China</category><category>academia</category><category>Crime</category><category>national security</category><category>Deciphering</category></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Happy 21st Birthday, Gmail! Google’s Present to Enterprise Gmail Users: End-to-End Encryption</title><link>https://www.techrepublic.com/article/news-gmail-end-to-end-encryption/</link><description>The new feature is more accessible than S/MIME because it eliminates the need for certificate management.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300462</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category><category>cloud security</category><category>cybersecurity</category><category>encryption</category><category>Gmail</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/04/01/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on April 1, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-091-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-091-01"&gt;Rockwell Automation Lifecycle Services with Veeam Backup and Replication&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;li&gt;ICSA-24-331-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-331-04"&gt;Hitachi Energy MicroSCADA Pro/X SYS600 (Update A)&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
