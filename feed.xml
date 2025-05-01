@@ -1,5 +1,310 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 01 May 2025 16:59:20 +0000</lastBuildDate><item><title>US as a Surveillance State</title><link>https://www.schneier.com/blog/archives/2025/05/us-as-a-surveillance-state.html</link><description>&lt;p&gt;Two essays were &lt;a href="https://www.theatlantic.com/technology/archive/2025/04/american-panopticon/682616/"&gt;just&lt;/a&gt; &lt;a href="https://www.nytimes.com/2025/04/30/opinion/musk-doge-data-ai.html"&gt;published&lt;/a&gt; on DOGE&amp;#8217;s data collection and aggregation, and how it ends with a modern surveillance state.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 01 May 2025 17:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Steganography Analysis With pngdump.py: Bitstreams</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Analyzing CVE-2025-31191: A macOS security-scoped bookmarks-based sandbox escape</title><link>https://www.microsoft.com/en-us/security/blog/2025/05/01/analyzing-cve-2025-31191-a-macos-security-scoped-bookmarks-based-sandbox-escape/</link><description>&lt;p&gt;Microsoft uncovered a vulnerability in macOS that could allow specially crafted codes to escape the App Sandbox and run unrestricted on the system. We shared our findings with Apple and a fix was released for this vulnerability, now identified as CVE-2025-31191. We encourage macOS users to apply security updates as soon as possible. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/01/analyzing-cve-2025-31191-a-macos-security-scoped-bookmarks-based-sandbox-escape/"&gt;Analyzing CVE-2025-31191: A macOS security-scoped bookmarks-based sandbox escape&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In April 2024, Microsoft uncovered a vulnerability in macOS that could allow specially crafted codes to escape the App Sandbox and run unrestricted on the system. An attacker could create an exploit to escape the App Sandbox without user interaction required for &lt;strong&gt;any&lt;/strong&gt; sandboxed app using &lt;a href="https://developer.apple.com/documentation/professional_video_applications/fcpxml_reference/asset/media-rep/bookmark/enabling_security-scoped_bookmark_and_url_access?language=objc" rel="noreferrer noopener" target="_blank"&gt;security-scoped bookmarks&lt;/a&gt;. With the ability to run code unrestricted on the affected device, attackers could perform further malicious actions like elevating privileges, exfiltrating data, and deploying additional payloads.  Microsoft’s Threat Intelligence research demonstrates that these exploits would need to be complex, and require Office macros to be enabled, in order to successfully target the Microsoft Office app.&lt;/p&gt;
+
+
+
+&lt;p&gt;Similar to our discovery of another &lt;a href="https://www.microsoft.com/security/blog/2022/07/13/uncovering-a-macos-app-sandbox-escape-vulnerability-a-deep-dive-into-cve-2022-26706/"&gt;sandbox escape vulnerability in 2022&lt;/a&gt;, we uncovered this issue while researching potential methods to run and detect malicious macros in Microsoft Office on macOS. After discovering this issue, we shared our findings with Apple through &lt;a href="https://www.microsoft.com/msrc/cvd"&gt;Coordinated Vulnerability Disclosure (CVD)&lt;/a&gt; via &lt;a href="https://www.microsoft.com/msrc/msvr"&gt;Microsoft Security Vulnerability Research (MSVR)&lt;/a&gt;. Apple released a fix for this vulnerability, now identified as CVE-2025-31191, as part of &lt;a href="https://support.apple.com/en-us/122375" rel="noreferrer noopener" target="_blank"&gt;security updates&lt;/a&gt; released on March 31, 2025. We want to thank the Apple product security team for their collaboration and responsiveness. We encourage macOS users to apply security updates as soon as possible.&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog post details our investigation into using Office macros to escape the macOS App Sandbox and how we uncovered the CVE-2025-31191 vulnerability. We further demonstrate how the exploit could allow an attacker to delete and replace a keychain entry used to sign security-scoped bookmarks to ultimately escape the App Sandbox without user interaction. This research underscores how security solutions like Microsoft Defender for Endpoint protect devices from cross-platform threats, as well as how collaboration and responsible disclosure are essential to defend users across all platforms and devices.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-macos-app-sandbox-and-office-macros"&gt;The macOS App Sandbox and Office macros&lt;/h2&gt;
+
+
+
+&lt;p&gt;The macOS &lt;a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html" rel="noreferrer noopener" target="_blank"&gt;App Sandbox&lt;/a&gt; is a security mechanism employed on macOS applications, enforcing strict fine-grained rules on what an app can or cannot do. For example, an app can specify whether it should have internet access or whether it should be able to access specific files. To get apps signed by Apple and published in the Mac App Store, developers must have sandbox rules defined for their apps.&lt;/p&gt;
+
+
+
+&lt;p&gt;Since 2022, Apple has made significant changes to how the App Sandbox is enforced from within &lt;a href="https://developer.apple.com/documentation/coreservices/launch_services" rel="noreferrer noopener" target="_blank"&gt;Launch Services&lt;/a&gt;, making them aware of the &lt;a href="https://developer.apple.com/documentation/xpc" rel="noreferrer noopener" target="_blank"&gt;XPC&lt;/a&gt; client being sandboxed. That means vulnerabilities that use Launch Services, such as the &lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-26706" rel="noreferrer noopener" target="_blank"&gt;CVE-2022-26706&lt;/a&gt; vulnerability, as well as &lt;a href="https://perception-point.io/blog/technical-analysis-of-cve-2021-30864/" rel="noreferrer noopener" target="_blank"&gt;CVE-2021-30864&lt;/a&gt;, &lt;a href="https://wojciechregula.blog/post/macos-sandbox-escape-via-terminal/" rel="noreferrer noopener" target="_blank"&gt;CVE-2022-26696&lt;/a&gt;, and &lt;a href="https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c" rel="noreferrer noopener" target="_blank"&gt;others&lt;/a&gt;, will not work anymore. Since Microsoft Office is heavily sandboxed on macOS, it seems that the impact of malicious Office macros is minimal and cannot be trivially used as an initial access vector.&lt;/p&gt;
+
+
+
+&lt;p&gt;Nevertheless, our team decided to perform a threat landscape analysis. With modern Microsoft Office for macOS being heavily sandboxed, two new VBA APIs have been introduced and &lt;a href="https://learn.microsoft.com/office/vba/api/overview/office-mac"&gt;documented&lt;/a&gt;:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/office/vba/office-mac/applescripttask"&gt;&lt;em&gt;AppleScriptTask&lt;/em&gt;&lt;/a&gt;. This API allows a Microsoft Office macro to run a preassigned &lt;a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" rel="noreferrer noopener" target="_blank"&gt;AppleScript&lt;/a&gt;. The script must be under the directory &lt;em&gt;~/Library/Application Scripts/[bundle id]/&lt;/em&gt;, which is not accessible for writing from within Office itself. Therefore, script execution cannot be used for VBA-based sandbox escape purposes.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/office/vba/office-mac/grantaccesstomultiplefiles"&gt;&lt;em&gt;GrantAccessToMultipleFiles&lt;/em&gt;&lt;/a&gt;. This API grants read and write access to files out of the sandbox from within the macro, which involves heavy user interaction to select and approve those files.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Since the &lt;em&gt;AppleScriptTask&lt;/em&gt; API did not have obvious vulnerabilities, we started focusing on the &lt;em&gt;GrantAccessToMultipleFiles&lt;/em&gt; API.&lt;/p&gt;
+
+
+
+&lt;p&gt;Interestingly, we noticed that the user’s choice is persistently saved and used, even between reboots. This indicates that the user’s consent is stored in a file that we can attempt to access. An attacker could aim to obtain write and read access to arbitrary files without the user’s consent and then escape the macOS App Sandbox by abusing files that would later be used by other apps (such as the file &lt;em&gt;~/.zshenv&lt;/em&gt; that we &lt;a href="https://www.microsoft.com/security/blog/2022/07/13/uncovering-a-macos-app-sandbox-escape-vulnerability-a-deep-dive-into-cve-2022-26706/"&gt;analyzed in the past&lt;/a&gt;). In such an attack, the attacker could rely on &lt;a href="https://attack.mitre.org/techniques/T1204/" rel="noreferrer noopener" target="_blank"&gt;unsuspecting users approving file access&lt;/a&gt; to allow trivial sandbox escapes.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the proof of concept code for an attack involving user interaction" class="wp-image-138742" height="691" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-6.jpg" width="1019" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1. Proof of concept code for an attack that does involve user interaction&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the typical user interaction requiring explicit selection of the folder to grant access to" class="wp-image-138748 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-18.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 2. Typical user interaction requiring explicit selection of the folder to grant access to&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="file-access-approval-using-kernel-tokens"&gt;File access approval using kernel tokens&lt;/h2&gt;
+
+
+
+&lt;p&gt;We discovered that the file that persists the user’s choices is a &lt;a href="https://wikipedia.org/wiki/Property_list" rel="noreferrer noopener" target="_blank"&gt;PLIST&lt;/a&gt; file under the &lt;em&gt;Containers&lt;/em&gt; folder. The &lt;em&gt;Containers&lt;/em&gt; folder is a special folder in which App Sandbox rules do not apply, which means that the sandboxed app has full access to files there. This is quite attractive for vulnerability research purposes since it means that an attacker might be able to add entries to that file and simply get access to arbitrary files mentioned in that PLIST file.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft Office uses a macOS mechanism called &lt;a href="https://developer.apple.com/documentation/professional_video_applications/fcpxml_reference/asset/media-rep/bookmark/enabling_security-scoped_bookmark_and_url_access?language=objc" rel="noreferrer noopener" target="_blank"&gt;security-scoped bookmarks&lt;/a&gt;, which is a mechanism designed by Apple to specifically bypass the App Sandbox rules using explicit, persistent user choices. We do note that the file seems to contain binary signatures, so frivolously adding new entries or modifying existing ones is not possible.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the secure bookmarks PLIST file saving the signed user choices with typical metadata" class="wp-image-138749 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-19.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 3. The secure bookmarks PLIST file saving the signed user choices with typical metadata&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Therefore, our team decided to reverse engineer large parts of the macOS modules that support this behavior. However, to fully understand and appreciate the security design of security-scoped bookmarks, it’s important to understand how sandboxed apps typically get access to files.&lt;/p&gt;
+
+
+
+&lt;p&gt;In general, sandboxed apps typically get access to files if a user selects them using the Open dialog. That dialog is controlled by an un-sandboxed service called &lt;em&gt;com.apple.appkit.xpc.openAndSavePanelService.xpc&lt;/em&gt;. After the user selects the files, that un-sandboxed service transfers access to the selected files to the sandboxed app (using &lt;a href="https://wikipedia.org/wiki/Inter-process_communication" rel="noreferrer noopener" target="_blank"&gt;IPC&lt;/a&gt;) via a mechanism called sandbox extensions, which was documented well by Jonathan Levin &lt;a href="https://newosxbook.com/files/HITSB.pdf" rel="noreferrer noopener" target="_blank"&gt;in the past&lt;/a&gt;. Essentially, sandbox extensions are tokens created and signed by the kernel that grant the possessing process the ability to access those files, typically using the lower-level API under &lt;em&gt;libsystem_sandbox.dylib&lt;/em&gt;. In our case, the Open dialog service passes a sandbox extension token from the kernel to Microsoft Office, which then uses the token for file access purposes, bypassing App Sandbox checks. The token itself contains:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;HMAC-SHA256 authentication. The key used for that HMAC is generated in each boot by the &lt;em&gt;Sandbox.kext&lt;/em&gt; kernel extension.&lt;/li&gt;
+
+
+
+&lt;li&gt;Volume, node information, and other file metadata.&lt;/li&gt;
+
+
+
+&lt;li&gt;Capability (such as &lt;em&gt;com.apple.app-sandbox.read-write&lt;/em&gt;).&lt;/li&gt;
+
+
+
+&lt;li&gt;File path.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Because the key that is used to sign the HMAC-SHA256 blob is generated in each new boot, the token cannot persist between reboots. To solve that problem, Apple came up with security-scoped bookmarks, which do something very similar. A new un-sandboxed process called &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; was introduced, which can perform two important tasks:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Given a sandbox extension token, validate its authenticity and generate a new, serializable object called “bookmark,” which will have a long-term HMAC-SHA256 authentication.&lt;/li&gt;
+
+
+
+&lt;li&gt;Given a bookmark, validate its authenticity and generate a new sandbox extension token.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Applications such as Microsoft Office could then use those capabilities to maintain long-term file access:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;On the first call to &lt;em&gt;GrantAccessToMultipleFiles&lt;/em&gt;, Office checks if there are file entries in its &lt;em&gt;securebookmarks.plist&lt;/em&gt; file. Since there are no matching entries, Office consults the Open dialog service, which requires user interaction and receives a sandbox extension token. That token is sent to the &lt;em&gt;ScopredBookmarkAgent&lt;/em&gt;, which validates the token and then signs it with its own unique, long-term cryptographic key. That data is then serialized by Office to the &lt;em&gt;securebookmarks.plist&lt;/em&gt; file for later use.&lt;/li&gt;
+
+
+
+&lt;li&gt;On the next call to &lt;em&gt;GrantAccessToMultipleFiles&lt;/em&gt;, Office finds the entry in its &lt;em&gt;securebookmarks.plist&lt;/em&gt; file and sends the data to the &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt;, which validates the signature and generates a sandbox extension token that Office can use without user interaction involved.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;The HMAC-SHA256 authentication blob generated by &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; cannot be forged unless an attacker has the cryptographic key. The signing key is unique for each app and calculated as such:&lt;/p&gt;
+
+
+
+&lt;p&gt;cryptoKey=HMAC-256(secret, “[bundle-id]”)&lt;/p&gt;
+
+
+
+&lt;p&gt;The bundle ID is known (for instance, &lt;em&gt;com.microsoft.Word&lt;/em&gt;) and the key persists in &lt;a href="https://support.apple.com/guide/keychain-access/what-is-keychain-access-kyca1083/mac" rel="noreferrer noopener" target="_blank"&gt;Keychain Access on macOS&lt;/a&gt;, saved in the keychain entry &lt;em&gt;com.apple.scopedbookmarksagent.xpc&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Therefore, knowing the secret that is stored in the keychain is essential to retrieving the cryptoKey, and that’s the only barrier against an attacker signing their own bookmark entries.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="escaping-the-app-sandbox-via-the-keychain"&gt;Escaping the App Sandbox via the keychain&lt;/h2&gt;
+
+
+
+&lt;p&gt;The macOS keychain can be thought of as a built-in password manager, conceptually similar to how &lt;a href="https://learn.microsoft.com/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication"&gt;Credential Manager&lt;/a&gt; works on Windows. The keychain is a container for passwords and has Access Control Lists (&lt;a href="https://developer.apple.com/documentation/security/keychain_services/access_control_lists" rel="noreferrer noopener" target="_blank"&gt;ACL&lt;/a&gt;) that dictate which process can access each keychain item. The keychain entry we are interested in is &lt;em&gt;com.apple.scopedbookmarksagent.xpc&lt;/em&gt;, and its ACL dictates only the &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; has access to it, which is an excellent security decision by Apple, since injection to that process is not trivial, especially from a sandboxed context.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the Access Control List for the scoped bookmarks secret used for signing purposes" class="wp-image-138746 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-17.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4. The &lt;em&gt;Access Control List for the scoped bookmarks secret used for signing purposes&lt;/em&gt;&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;It seems as if an attacker cannot do much as they operate within the sandboxed app context and not the &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; context, so attackers cannot get the key and, therefore, cannot sign arbitrary new entries in the PLIST file indirectly used by the &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt;. However, we discovered that the ACL only controls the ability to read the secret. An attacker could completely avoid reading the existing secret and instead can delete the existing entry and &lt;strong&gt;add a new entry&lt;/strong&gt;, with a well-known secret. In addition, the attacker could control the new entry’s ACL and allow anyone to read the contents of the secret, including &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt;:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of the deletion of the old security-scoped bookmarks secret and assigning a new one from within a sandboxed session" class="wp-image-138750 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-20-1024x344.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5. Deletion of the old security-scoped bookmarks secret and assigning a new one from within a sandboxed session&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Therefore, an attacker can create an elaborate exploit:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Delete the old signing secret from the keychain and decide on a new known secret that is accessible to all processes.&lt;/li&gt;
+
+
+
+&lt;li&gt;Calculate the cryptographic key for an app since its bundle ID is known (&lt;em&gt;key = HMAC-SHA256(knownSecret, [bundle-id])&lt;/em&gt;).&lt;/li&gt;
+
+
+
+&lt;li&gt;Artificially sign new entries in the persistent scoped bookmarks PLIST file that is accessible since it persists in the &lt;em&gt;Containers&lt;/em&gt; directory.&lt;/li&gt;
+
+
+
+&lt;li&gt;Invoke &lt;em&gt;GrantAccessToMultipleFiles&lt;/em&gt;, which sends the newly self-signed bookmarks to &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt;. Since &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; uses the new secret, the bookmarks are considered authentic, and therefore &lt;em&gt;ScopedBookmarkAgent&lt;/em&gt; grants the sandboxed app the access token &lt;strong&gt;without user interaction&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Use the new arbitrary file access capability to escape the macOS sandbox.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;As corroborated by our research, this exploit works against any sandboxed app that uses security-scoped bookmarks and is therefore a generic macOS sandbox escape.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="strengthening-device-security-through-vulnerability-management-and-threat-intelligence-sharing"&gt;Strengthening device security through vulnerability management and threat intelligence sharing&lt;/h2&gt;
+
+
+
+&lt;p&gt;Security technologies such as the macOS App Sandbox are designed to protect the device from malware and other cybersecurity threats, both as a default security measure and a final safeguard. Nonetheless, attackers continue to find new ways of breaking through these defenses for these same reasons, as they can gain full access to the device and run any files or processes they want without being detected by conventional security solutions.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our research on the CVE-2025-31191 vulnerability highlights why organizations need a security solution like &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-vulnerability-management/defender-vulnerability-management"&gt;Microsoft Defender Vulnerability Management&lt;/a&gt; that enables them to identify and remediate vulnerabilities and misconfigurations on devices in real time and prioritize those in need of immediate attention.&amp;nbsp;Additionally, &lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;&amp;nbsp;detects and alerts on anomalous device activities using advanced behavioral analytics and machine learning. In this case, Microsoft Defender for Endpoint detects sandboxed apps controlling security keys that normally are not accessed by those apps. Moreover, in the context of our exploit, Defender for Endpoint detects such behavior as suspicious and blocks the activity, rendering the exploit unusable.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of Microsoft Defender for Endpoint detection the exploit with the alert Suspicious Keychain item manipulation" class="wp-image-138751 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/image-21.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 6. Detection of the exploit&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Lastly, this research emphasizes the value and necessity of responsible disclosure and collaboration throughout the security community. Vulnerability discoveries, cooperation between security researchers and vendors, and coordinated response across the security community are all paramount to defend against the ever-growing and ever-changing threats across platforms. These activities, along with other forms of threat intelligence sharing, strengthen and enhance our security technologies to help safeguard users across platforms and devices.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.microsoft.com/microsoft-365/security/endpoint-defender"&gt;Learn how Microsoft Defender for Endpoint delivers a complete endpoint security solution across all platforms.&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Jonathan Bar Or&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;Microsoft Threat Intelligence&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://support.apple.com/en-us/122375" rel="noreferrer noopener" target="_blank"&gt;https://support.apple.com/en-us/122375&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/security/app-sandbox" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/documentation/security/app-sandbox&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/coreservices/launch_services" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/documentation/coreservices/launch_services&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/xpc" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/documentation/xpc&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-26706" rel="noreferrer noopener" target="_blank"&gt;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-26706&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c" rel="noreferrer noopener" target="_blank"&gt;https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://perception-point.io/a-technical-analysis-of-cve-2021-30864-bypassing-app-sandbox-restrictions/" rel="noreferrer noopener" target="_blank"&gt;https://perception-point.io/a-technical-analysis-of-cve-2021-30864-bypassing-app-sandbox-restrictions/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://wojciechregula.blog/post/macos-sandbox-escape-via-terminal/" rel="noreferrer noopener" target="_blank"&gt;https://wojciechregula.blog/post/macos-sandbox-escape-via-terminal/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1204/" rel="noreferrer noopener" target="_blank"&gt;https://attack.mitre.org/techniques/T1204/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://wikipedia.org/wiki/Property_list" rel="noreferrer noopener" target="_blank"&gt;https://wikipedia.org/wiki/Property_list&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/professional_video_applications/fcpxml_reference/asset/media-rep/bookmark/enabling_security-scoped_bookmark_and_url_access?language=objc" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/documentation/professional_video_applications/fcpxml_reference/asset/media-rep/bookmark/enabling_security-scoped_bookmark_and_url_access?language=objc&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://wikipedia.org/wiki/Inter-process_communication" rel="noreferrer noopener" target="_blank"&gt;https://wikipedia.org/wiki/Inter-process_communication&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://newosxbook.com/files/HITSB.pdf" rel="noreferrer noopener" target="_blank"&gt;https://newosxbook.com/files/HITSB.pdf&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://support.apple.com/guide/keychain-access/what-is-keychain-access-kyca1083/mac" rel="noreferrer noopener" target="_blank"&gt;https://support.apple.com/guide/keychain-access/what-is-keychain-access-kyca1083/mac&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://developer.apple.com/documentation/security/keychain_services/access_control_lists" rel="noreferrer noopener" target="_blank"&gt;https://developer.apple.com/documentation/security/keychain_services/access_control_lists&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the Microsoft Threat Intelligence Blog:&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog"&gt;https://aka.ms/threatintelblog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To get notified about new publications and to join discussions on social media, follow us on LinkedIn at &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;https://www.linkedin.com/showcase/microsoft-threat-intelligence&lt;/a&gt;, and on X (formerly Twitter) at &lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;https://x.com/MsftSecIntel&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the Microsoft Threat Intelligence podcast: &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;https://thecyberwire.com/podcasts/microsoft-threat-intelligence&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/01/analyzing-cve-2025-31191-a-macos-security-scoped-bookmarks-based-sandbox-escape/"&gt;Analyzing CVE-2025-31191: A macOS security-scoped bookmarks-based sandbox escape&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>macOS</category></item><item><title>US as a Surveillance State</title><link>https://www.schneier.com/blog/archives/2025/05/us-as-a-surveillance-state.html</link><description>&lt;p&gt;Two essays were &lt;a href="https://www.theatlantic.com/technology/archive/2025/04/american-panopticon/682616/"&gt;just&lt;/a&gt; &lt;a href="https://www.nytimes.com/2025/04/30/opinion/musk-doge-data-ai.html"&gt;published&lt;/a&gt; on DOGE&amp;#8217;s data collection and aggregation, and how it ends with a modern surveillance state.&lt;/p&gt;
 &lt;p&gt;It&amp;#8217;s good to see this finally being talked about.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Two essays were &lt;a href="https://www.theatlantic.com/technology/archive/2025/04/american-panopticon/682616/"&gt;just&lt;/a&gt; &lt;a href="https://www.nytimes.com/2025/04/30/opinion/musk-doge-data-ai.html"&gt;published&lt;/a&gt; on DOGE&amp;#8217;s data collection and aggregation, and how it ends with a modern surveillance state.&lt;/p&gt;
 &lt;p&gt;It&amp;#8217;s good to see this finally being talked about.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70195</guid><category>Uncategorized</category><category>data collection</category><category>national security policy</category><category>privacy</category><category>surveillance</category></item><item><title>Pushing passkeys forward: Microsoft’s latest updates for simpler, safer sign-ins</title><link>https://www.microsoft.com/en-us/security/blog/2025/05/01/pushing-passkeys-forward-microsofts-latest-updates-for-simpler-safer-sign-ins/</link><description>&lt;p&gt;Celebrate World Passkey Day with Microsoft! Join us in embracing passkeys for secure, passwordless sign-ins. Learn more about our commitment to a safer digital future.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/01/pushing-passkeys-forward-microsofts-latest-updates-for-simpler-safer-sign-ins/"&gt;Pushing passkeys forward: Microsoft’s latest updates for simpler, safer sign-ins&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;
@@ -113,7 +418,7 @@
 
 
 &lt;p&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;a href="https://techcommunity.microsoft.com/blog/microsoft-entra-blog/new-user-experience-for-consumer-authentication/3822035" style="font-size: revert;"&gt;New user experience for customer authentication&lt;/a&gt;, Robin Goldstein. March 26, 2025.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/01/pushing-passkeys-forward-microsofts-latest-updates-for-simpler-safer-sign-ins/"&gt;Pushing passkeys forward: Microsoft’s latest updates for simpler, safer sign-ins&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Think Twice Before Creating That ChatGPT Action Figure</title><link>https://www.wired.com/story/chatgpt-image-generator-action-figure-privacy/</link><description>People are using ChatGPT’s new image generator to take part in viral social media trends. But using it also puts your privacy at risk—unless you take a few simple steps to protect yourself.</description><guid isPermaLink="false">681251985a0662bff10b2ba2</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security Advice</category><category>Business / Artificial Intelligence</category><category>OpenAI</category><category>ChatGPT</category><category>artificial intelligence</category><category>privacy</category><category>machine learning</category><category>algorithms</category><category>Social Media</category><category>Give and Take</category></item><item><title>Meta Launches AI App That Rivals ChatGPT — With Familiar, ‘More Personal,’ Twist</title><link>https://www.techrepublic.com/article/news-meta-ai-app/</link><description>Meta is launching a standalone AI app powered by Llama 4, blending voice tech with social personalization from Facebook and Instagram for a smarter assistant.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304389</guid><category>Artificial Intelligence</category><category>Australia</category><category>Innovation</category><category>International</category><category>Mobility</category><category>News</category><category>ai</category><category>app</category><category>artificial intelligence</category><category>chatpgt</category><category>facebook</category><category>instagram</category><category>llama 4</category><category>meta</category><category>meta ai app</category><category>mobile apps</category><category>openai chatgpt</category><category>social media</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Steganography Analysis With pngdump.py: Bitstreams</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/05/01/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on May 1, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/01/pushing-passkeys-forward-microsofts-latest-updates-for-simpler-safer-sign-ins/"&gt;Pushing passkeys forward: Microsoft’s latest updates for simpler, safer sign-ins&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Think Twice Before Creating That ChatGPT Action Figure</title><link>https://www.wired.com/story/chatgpt-image-generator-action-figure-privacy/</link><description>People are using ChatGPT’s new image generator to take part in viral social media trends. But using it also puts your privacy at risk—unless you take a few simple steps to protect yourself.</description><guid isPermaLink="false">681251985a0662bff10b2ba2</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security Advice</category><category>Business / Artificial Intelligence</category><category>OpenAI</category><category>ChatGPT</category><category>artificial intelligence</category><category>privacy</category><category>machine learning</category><category>algorithms</category><category>Social Media</category><category>Give and Take</category></item><item><title>Meta Launches AI App That Rivals ChatGPT — With Familiar, ‘More Personal,’ Twist</title><link>https://www.techrepublic.com/article/news-meta-ai-app/</link><description>Meta is launching a standalone AI app powered by Llama 4, blending voice tech with social personalization from Facebook and Instagram for a smarter assistant.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304389</guid><category>Artificial Intelligence</category><category>Australia</category><category>Innovation</category><category>International</category><category>Mobility</category><category>News</category><category>ai</category><category>app</category><category>artificial intelligence</category><category>chatpgt</category><category>facebook</category><category>instagram</category><category>llama 4</category><category>meta</category><category>meta ai app</category><category>mobile apps</category><category>openai chatgpt</category><category>social media</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/05/01/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on May 1, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-121-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-121-01"&gt;KUNBUS GmbH Revolution Pi&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;li&gt;ICSMA-25-121-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-121-01"&gt;MicroDicom DICOM Viewer&lt;/a&gt;&lt;/li&gt;
@@ -5335,369 +5640,7 @@ walaa.20185492[@]buc.edu.eg
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>Cyber Signals Issue 9 | AI-powered deception: Emerging fraud threats and countermeasures</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/16/cyber-signals-issue-9-ai-powered-deception-emerging-fraud-threats-and-countermeasures/</link><description>&lt;p&gt;Microsoft maintains a continuous effort to protect its platforms and customers from fraud and abuse. This edition of Cyber Signals takes you inside the work underway and important milestones achieved that protect customers. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/16/cyber-signals-issue-9-ai-powered-deception-emerging-fraud-threats-and-countermeasures/"&gt;Cyber Signals Issue 9 | AI-powered deception: Emerging fraud threats and countermeasures&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="has-text-align-center"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#introduction"&gt;Introduction&lt;/a&gt; | &lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#security-snapshot"&gt;Security snapshot&lt;/a&gt; | &lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#threat-briefing"&gt;Threat briefing&lt;/a&gt;&lt;br /&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#defending-against-attacks"&gt;Defending against attacks&lt;/a&gt; | &lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#expert-profile"&gt;Expert profile&lt;/a&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p id="introduction"&gt;Microsoft maintains a continuous effort to protect its platforms and customers from fraud and abuse. From blocking imposters on Microsoft Azure and adding anti-scam features to Microsoft Edge, to fighting tech support fraud with new features in Windows Quick Assist, this edition of Cyber Signals takes you inside the work underway and important milestones achieved that protect customers.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;We are all defenders. &lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large" id="security-snapshot"&gt;&lt;img alt="A person standing in a dark room" class="wp-image-138410 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/MSFT_CyberSignals_9thEdition_Title1-1024x107.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Between April 2024 and April 2025, Microsoft:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Thwarted $4 billion in fraud attempts.&lt;/li&gt;
-
-
-
-&lt;li&gt;Rejected 49,000 fraudulent partnership enrollments.&lt;/li&gt;
-
-
-
-&lt;li&gt;Blocked about 1.6 million bot signup attempts per hour.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-large" id="threat-briefing"&gt;&lt;img alt="" class="wp-image-138411 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/MSFT_CyberSignals_9thEdition_Title2-1024x107.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-evolution-of-ai-enhanced-cyber-scams"&gt;The evolution of AI-enhanced cyber scams&lt;/h2&gt;
-
-
-
-&lt;p&gt;AI has started to lower the technical bar for fraud and cybercrime actors looking for their own productivity tools, making it easier and cheaper to generate believable content for cyberattacks at an increasingly rapid rate. AI software used in fraud attempts runs the gamut, from legitimate apps misused for malicious purposes to more fraud-oriented tools used by bad actors in the cybercrime underground.&lt;/p&gt;
-
-
-
-&lt;p&gt;AI tools can scan and scrape the web for company information, helping cyberattackers build detailed profiles of employees or other targets to create highly convincing social engineering lures. In some cases, bad actors are luring victims into increasingly complex fraud schemes using fake AI-enhanced product reviews and AI-generated storefronts, where scammers create entire websites and e-commerce brands, complete with fake business histories and customer testimonials. By using deepfakes, voice cloning, phishing emails, and authentic-looking fake websites, threat actors seek to appear legitimate at wider scale.&lt;/p&gt;
-
-
-
-&lt;p&gt;According to the Microsoft Anti-Fraud Team, AI-powered fraud attacks are happening globally, with much of the activity coming from China and Europe, specifically Germany due in part to Germany’s status as one of the largest e-commerce and online services markets in the European Union (EU). The larger a digital marketplace in any region, the more likely a proportional degree of attempted fraud will take place.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="e-commerce-fraud"&gt;E-commerce fraud&lt;/h3&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A shopping cart full of boxes" class="wp-image-138432 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/CYBER_Cart-Final-1024x576.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Fraudulent e-commerce websites can be set up in minutes using AI and other tools requiring minimal technical knowledge. Previously, it would take threat actors days or weeks to stand up convincing websites. These fraudulent websites often mimic legitimate sites, making it challenging for consumers to identify them as fake.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Using AI-generated product descriptions, images, and customer reviews, customers are duped into believing they are interacting with a genuine merchant, exploiting consumer trust in familiar brands.&lt;/p&gt;
-
-
-
-&lt;p&gt;AI-powered customer service chatbots add another layer of deception by convincingly interacting with customers. These bots can delay chargebacks by stalling customers with scripted excuses and manipulating complaints with AI-generated responses that make scam sites appear professional.&lt;/p&gt;
-
-
-
-&lt;p&gt;In a multipronged approach, Microsoft has implemented robust defenses across our products and services to protect customers from AI-powered fraud. &lt;a href="https://www.microsoft.com/security/business/cloud-security/microsoft-defender-cloud"&gt;Microsoft Defender for Cloud&lt;/a&gt; provides comprehensive threat protection for Azure resources, including vulnerability assessments and threat detection for virtual machines, container images, and endpoints.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.microsoft.com/edge"&gt;Microsoft Edge&lt;/a&gt; features website typo protection and domain impersonation protection using deep learning technology to help users avoid fraudulent websites. Edge has also implemented a machine learning-based &lt;a href="https://www.microsoft.com/edge/features/scareware-blocker?form=MA13FJ"&gt;Scareware Blocker&lt;/a&gt; to identify and block potential scam pages and deceptive pop-up screens with alarming warnings claiming a computer has been compromised. These attacks try to frighten users into calling fraudulent support numbers or downloading harmful software.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="job-and-employment-fraud"&gt;Job and employment fraud&lt;/h3&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A hand holding a piece of paper with numbers and a picture of a person" class="wp-image-138433 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/CYBER_Resume_Final-1024x576.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The rapid advancement of generative AI has made it easier for scammers to create fake listings on various job platforms. They generate fake profiles with stolen credentials, fake job postings with auto-generated descriptions, and AI-powered email campaigns to phish job seekers. AI-powered interviews and automated emails enhance the credibility of job scams, making it harder for job seekers to identify fraudulent offers.&lt;/p&gt;
-
-
-
-&lt;p&gt;To prevent this, job platforms should introduce multifactor authentication for employer accounts to make it harder for bad actors to take over legitimate hirers’ listings and use available fraud-detection technologies to catch suspicious content.&lt;/p&gt;
-
-
-
-&lt;p&gt;Fraudsters often ask for personal information, such as resumes or even bank account details, under the guise of verifying the applicant&amp;#8217;s information. Unsolicited text and email messages offering employment opportunities that promise high pay for minimal qualifications are typically an indicator of fraud.&lt;/p&gt;
-
-
-
-&lt;p&gt;Employment offers that include requests for payment, offers that seem too good to be true, unsolicited offers or interview requests over text message, and a lack of formal communication platforms can all be indicators of fraud.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="tech-support-scams"&gt;Tech support scams&lt;/h3&gt;
-
-
-
-&lt;p&gt;Tech support scams are a type of fraud where scammers trick victims into unnecessary technical support services to fix a device or software problems that don&amp;#8217;t exist. The scammers may then gain remote access to a computer—which lets them access all information stored on it, and on any network connected to it or install malware that gives them access to the computer and sensitive data.&lt;/p&gt;
-
-
-
-&lt;p&gt;Tech support scams are a case where elevated fraud risks exist, even if AI does not play a role. For example, in mid-April 2024, Microsoft Threat Intelligence observed the financially motivated and ransomware-focused cybercriminal group &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/05/15/threat-actors-misusing-quick-assist-in-social-engineering-attacks-leading-to-ransomware/?msockid=1231134988d36d8c265406c2893d6c90" rel="noreferrer noopener" target="_blank"&gt;Storm-1811&lt;/a&gt; abusing &lt;a href="https://support.microsoft.com/en-us/windows/solve-pc-problems-remotely-using-quick-assist-b077e31a-16f4-2529-1a47-21f6a9040bf3" rel="noreferrer noopener" target="_blank"&gt;Windows Quick Assist&lt;/a&gt; software by posing as IT support. Microsoft did not observe AI used in these attacks; Storm-1811 instead impersonated legitimate organizations through voice phishing (&lt;a href="https://www.microsoft.com/en-us/microsoft-365-life-hacks/privacy-and-safety/what-is-a-vishing-attack" rel="noreferrer noopener" target="_blank"&gt;vishing&lt;/a&gt;) as a form of social engineering, convincing victims to grant them device access through Quick Assist.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Quick Assist is a tool that enables users to share their Windows or macOS device with another person over a remote connection. Tech support scammers often pretend to be legitimate IT support from well-known companies and use social engineering tactics to gain the trust of their targets. They then attempt to employ tools like Quick Assist to connect to the target’s device.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Quick Assist and Microsoft are not compromised in these cyberattack scenarios; however, the abuse of legitimate software presents risk Microsoft is focused on mitigating. Informed by Microsoft’s understanding of evolving cyberattack techniques, the company’s anti-fraud and product teams work closely together to improve transparency for users and enhance fraud detection techniques.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;The Storm-1811 cyberattacks highlight the capability of social engineering to circumvent security defenses. Social engineering involves collecting relevant information about targeted victims and arranging it into credible lures delivered through phone, email, text, or other mediums. Various AI tools can quickly find, organize, and generate information, thus acting as productivity tools for cyberattackers. Although AI is a new development, enduring measures to counter social engineering attacks remain highly effective. These include increasing employee awareness of legitimate helpdesk contact and support procedures, and applying &lt;a href="https://www.microsoft.com/en-us/security/business/security-101/what-is-zero-trust-architecture" rel="noreferrer noopener" target="_blank"&gt;Zero Trust&lt;/a&gt; principles to enforce least privilege across employee accounts and devices, thereby limiting the impact of any compromised assets while they are being addressed.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft has taken action to mitigate attacks by Storm-1811 and other groups by suspending identified accounts and tenants associated with inauthentic behavior. If you receive an unsolicited tech support offer, it is likely a scam. Always reach out to trusted sources for tech support. If scammers claim to be from Microsoft, we encourage you to report it directly to us at &lt;a href="https://www.microsoft.com/reportascam" rel="noreferrer noopener" target="_blank"&gt;https://www.microsoft.com/reportascam&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Building on the &lt;a href="https://www.microsoft.com/en-us/trust-center/security/secure-future-initiative" rel="noreferrer noopener" target="_blank"&gt;Secure Future Initiative (SFI)&lt;/a&gt;, Microsoft is taking a proactive approach to ensuring our products and services are “Fraud-resistant by Design.” In January 2025, a new fraud prevention policy was introduced: Microsoft product teams must now perform fraud prevention assessments and implement fraud controls as part of their design process.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="recommendations"&gt;Recommendations&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Strengthen employer authentication&lt;/strong&gt;:&lt;strong&gt; &lt;/strong&gt;Fraudsters often hijack legitimate company profiles or create fake recruiters to deceive job seekers. To prevent this, job platforms should introduce multifactor authentication and Verified ID as part of Microsoft Entra ID for employer accounts, making it harder for unauthorized users to gain control.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Monitor for AI-based recruitment scams&lt;/strong&gt;: Companies should deploy deepfake detection algorithms to identify AI-generated interviews where facial expressions and speech patterns may not align naturally.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Be cautious of websites and job listings that seem too good to be true&lt;/strong&gt;:&lt;strong&gt; &lt;/strong&gt;Verify the legitimacy of websites by checking for secure connections (https) and using tools like Microsoft Edge’s typo protection.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Avoid providing personal information or payment details to unverified sources&lt;/strong&gt;: Look for red flags in job listings, such as requests for payment or communication through informal platforms like text messages, WhatsApp, nonbusiness Gmail accounts, or requests to contact someone on a personal device for more information.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-large" id="defending-against-attacks"&gt;&lt;img alt="A white text on a black background" class="wp-image-138412 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/MSFT_CyberSignals_9thEdition_Title4-1024x107.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="using-microsoft-s-security-signal-to-combat-fraud"&gt;Using Microsoft’s security signal to combat fraud&lt;/h2&gt;
-
-
-
-&lt;p&gt;Microsoft is actively working to stop fraud attempts using AI and other technologies by evolving large-scale detection models based on AI, such as machine learning, to play defense by learning from and mitigating fraud attempts. Machine learning is the process that helps a computer learn without direct instruction using algorithms to discover patterns in large datasets. Those patterns are then used to create a comprehensive AI model, allowing for predictions with high accuracy.&lt;/p&gt;
-
-
-
-&lt;p&gt;We have developed in-product safety controls that warn users about potential malicious activity and integrate rapid detection and prevention of new types of attacks.&lt;/p&gt;
-
-
-
-&lt;p&gt;Our fraud team has developed &lt;a href="https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-policies-about" rel="noreferrer noopener" target="_blank"&gt;domain impersonation protection&lt;/a&gt; using deep-learning technology at the domain creation stage, to help protect against fraudulent e-commerce websites and fake job listings. Microsoft Edge has incorporated website typo protection, and we have developed AI-powered fake job detection systems for LinkedIn.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.microsoft.com/edge/features/microsoft-defender-smartscreen"&gt;Microsoft Defender Smartscreen&lt;/a&gt; is a cloud-based security feature that aims to prevent unsafe browsing habits by analyzing websites, files, and applications based on their reputation and behavior. It is integrated into Windows and the Edge browser to help protect users from phishing attacks, malicious websites, and potentially harmful downloads.&lt;/p&gt;
-
-
-
-&lt;p&gt;Furthermore,&amp;nbsp;&lt;a href="https://news.microsoft.com/on-the-issues/2022/05/03/how-microsofts-digital-crimes-unit-fights-cybercrime/?msockid=356b7a12f0156be706e16f23f1386a52" rel="noreferrer noopener" target="_blank"&gt;Microsoft&amp;#8217;s Digital Crimes Unit&lt;/a&gt;&amp;nbsp;(DCU) partners with others in the&amp;nbsp;&lt;a href="https://blogs.microsoft.com/on-the-issues/2023/10/19/microsoft-amazon-tech-support-fraud-india/" rel="noreferrer noopener" target="_blank"&gt;private&amp;nbsp;and public sector&lt;/a&gt;&amp;nbsp;to disrupt the malicious infrastructure used by criminals perpetuating cyber-enabled fraud. The team’s longstanding collaboration with law enforcement around the world to respond to tech support fraud has resulted in hundreds of arrests and increasingly severe prison sentences worldwide. The DCU is applying key learnings from past actions to&amp;nbsp;&lt;a href="https://blogs.microsoft.com/on-the-issues/2025/02/27/disrupting-cybercrime-abusing-gen-ai/" rel="noreferrer noopener" target="_blank"&gt;disrupt those who seek to&amp;nbsp;abuse generative&amp;nbsp;AI&amp;nbsp;technology&lt;/a&gt;&amp;nbsp;for&amp;nbsp;malicious or&amp;nbsp;fraudulent purposes.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="quick-assist-features-and-remote-help-combat-tech-support-fraud"&gt;Quick Assist features and remote help combat tech support fraud&lt;/h3&gt;
-
-
-
-&lt;p&gt;To help combat tech support fraud, we have incorporated warning messages to alert users about possible tech support scams in Quick Assist before they grant access to someone approaching them purporting to be an authorized IT department or other support resource.&lt;/p&gt;
-
-
-
-&lt;p&gt;Windows users must read and click the box to acknowledge the security risk of granting remote access to the device.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A man talking on a phone and a laptop with a white bubble" class="wp-image-138423 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/CYBER_IT_Final-1024x576.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Microsoft has significantly enhanced Quick Assist protection for Windows users by leveraging its security signal. In response to tech support scams and other threats, Microsoft now blocks an average of 4,415 suspicious Quick Assist connection attempts daily, accounting for approximately 5.46% of global connection attempts. These blocks target connections exhibiting suspicious attributes, such as associations with malicious actors or unverified connections.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft&amp;#8217;s continual focus on advancing Quick Assist safeguards seeks to counter adaptive cybercriminals, who previously targeted individuals opportunistically with fraudulent connection attempts, but more recently have sought to target enterprises with more organized cybercrime campaigns that Microsoft&amp;#8217;s actions have helped disrupt.&lt;/p&gt;
-
-
-
-&lt;p&gt;Our &lt;strong&gt;Digital Fingerprinting &lt;/strong&gt;capability, which leverages AI and machine learning, drives these safeguards by providing fraud and risk signals to detect fraudulent activity. If our risk signals detect a possible scam, the Quick Assist session is automatically ended. Digital Fingerprinting works by collecting various signals to detect and prevent fraud.&lt;/p&gt;
-
-
-
-&lt;p&gt;For enterprises combating tech support fraud, &lt;a href="https://learn.microsoft.com/en-us/mem/intune-service/fundamentals/remote-help"&gt;Remote Help&lt;/a&gt; is another valuable resource for employees. Remote Help is designed for internal use within an organization and includes features that make it ideal for enterprises.&lt;/p&gt;
-
-
-
-&lt;p&gt;By reducing scams and fraud, Microsoft aims to enhance the overall security of its products and protect its users from malicious activities.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="consumer-protection-tips"&gt;Consumer protection tips&lt;/h3&gt;
-
-
-
-&lt;p&gt;Fraudsters exploit psychological triggers such as urgency, scarcity, and trust in social proof. Consumers should be cautious of:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Impulse buying&lt;/strong&gt;—Scammers create a sense of urgency with “limited-time” deals and countdown timers.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Trusting fake social proof&lt;/strong&gt;—AI generates fake reviews, influencer endorsements, and testimonials to appear legitimate.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Clicking on ads without verification&lt;/strong&gt;—Many scam sites spread through AI-optimized social media ads. Consumers should cross-check domain names and reviews before purchasing.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Ignoring payment security&lt;/strong&gt;—Avoid direct bank transfers or cryptocurrency payments, which lack fraud protections.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Job seekers should verify employer legitimacy, be on the lookout for common job scam red flags, and avoid sharing personal or financial information with unverified employers.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Verify employer legitimacy&lt;/strong&gt;—Cross-check company details on LinkedIn, Glassdoor, and official websites to verify legitimacy.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Notice common job scam red flags&lt;/strong&gt;—If a job requires upfront payments for training materials, certifications, or background checks, it is likely a scam. Unrealistic salaries or no-experience-required remote positions should be approached with skepticism. Emails from free domains (such as &lt;em&gt;johndoehr@gmail.com&lt;/em&gt; instead of &lt;em&gt;hr@company.com&lt;/em&gt;) are also typically indicators of fraudulent activity.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Be cautious of AI-generated interviews and communications&lt;/strong&gt;—If a video interview seems unnatural, with lip-syncing delays, robotic speech, or odd facial expressions, it could be deepfake technology at work. Job seekers should always verify recruiter credentials through the company’s official website before engaging in any further discussions.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Avoid sharing personal or financial information&lt;/strong&gt;—Under no circumstances should you provide a Social Security number, banking details, or passwords to an unverified employer.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Microsoft is also a member of the &lt;a href="https://www.gasa.org/membership" rel="noreferrer noopener" target="_blank"&gt;Global Anti-Scam Alliance&lt;/a&gt; (GASA), which aims to bring governments, law enforcement, consumer protection organizations, financial authorities and providers, brand protection agencies, social media, internet service providers, and cybersecurity companies together to share knowledge and protect consumers from getting scammed.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="recommendations-1"&gt;Recommendations&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Remote Help:&lt;/strong&gt; Microsoft recommends using Remote Help instead of Quick Assist for internal tech support. Remote Help is designed for internal use within an organization and&amp;nbsp;incorporates several features designed to enhance security and minimize the risk of tech support hacks. It is engineered to be used only within an organization&amp;#8217;s tenant, providing a safer alternative to Quick Assist.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Digital Fingerprinting:&lt;/strong&gt; This identifies malicious behaviors and ties them back to specific individuals. This helps in monitoring and preventing unauthorized access.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Blocking full control requests:&lt;/strong&gt; Quick Assist now includes warnings and requires users to check a box acknowledging the security implications of sharing their screen. This adds a layer of helpful “security friction” by prompting users who may be multitasking or preoccupied to pause to complete an authorization step.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-large" id="expert-profile"&gt;&lt;img alt="A black background with orange dots" class="wp-image-138413 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/MSFT_CyberSignals_9thEdition_Title3-1024x107.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="kelly-bissell-a-cybersecurity-pioneer-combating-fraud-in-the-new-era-of-ai"&gt;Kelly Bissell: A cybersecurity pioneer combating fraud in the new era of AI&lt;/h2&gt;
-
-
-
-&lt;p&gt;Kelly Bissell’s journey into cybersecurity began unexpectedly in 1990. Initially working in computer science, Kelly was involved in building software for healthcare patient accounting and operating systems at Medaphis and Bellsouth, now AT&amp;amp;T.&lt;/p&gt;
-
-
-
-&lt;p&gt;His interest in cybersecurity was sparked when he noticed someone logged into a phone switch attempting to get free long-distance calls and traced the intruder back to Romania. This incident marked the beginning of Kelly’s career in cybersecurity.&lt;/p&gt;
-
-
-
-&lt;p&gt;“I stayed in cybersecurity hunting for bad actors, integrating security controls for hundreds of companies, and helping shape the NIST security frameworks and regulations such as FFIEC, PCI, NERC-CIP,” he explains.&lt;/p&gt;
-
-
-
-&lt;p&gt;Currently, Kelly is Corporate Vice President of Anti-Fraud and Product Abuse within Microsoft Security. Microsoft’s fraud team employs machine learning and AI to build better detection code and understand fraud operations. They use AI-powered solutions to detect and prevent cyberthreats, leveraging advanced fraud detection frameworks that continuously learn and evolve.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote blockquote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&amp;#8220;Cybercrime is a trillion-dollar problem, and it’s been going up every year for the past 30 years. I think we have an opportunity today to adopt AI faster so we can detect and close the gap of exposure quickly. Now we have AI that can make a difference at scale and help us build security and fraud protections into our products much faster.&amp;#8221;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;Previously Kelly managed the Microsoft Detection and Response Team (DART) and created the Global Hunting, Oversight, and Strategic Triage (GHOST) team that detected and responded to attackers such as &lt;a href="https://www.microsoft.com/en-us/security/blog/2023/07/14/analysis-of-storm-0558-techniques-for-unauthorized-email-access/?msockid=1231134988d36d8c265406c2893d6c90"&gt;Storm-0558&lt;/a&gt; and &lt;a href="https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/?msockid=1231134988d36d8c265406c2893d6c90"&gt;Midnight Blizzard&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Prior to Microsoft, during his time at Accenture and Deloitte, Kelly collaborated with companies and worked extensively with government agencies like the Department of Homeland Security’s Cybersecurity and Infrastructure Security Agency (CISA) and the Federal Bureau of Investigation, where he helped build security systems inside their operations.&lt;/p&gt;
-
-
-
-&lt;p&gt;His time as Chief Information Security Officer (CISO) at a bank exposed him to addressing both cybersecurity and fraud, leading to his involvement in shaping regulatory guidelines to protect banks and eventually Microsoft.&lt;/p&gt;
-
-
-
-&lt;p&gt;Kelly has also played a significant role in shaping regulations around the National Institute of Standards and Technology (NIST) and Payment Card Industry (PCI) compliance, which helps ensure the security of businesses’ credit card transactions, among others.&lt;/p&gt;
-
-
-
-&lt;p&gt;Internationally, Kelly played a crucial role in helping establish agencies and improve cybersecurity measures. As a consultant in London, he helped stand up the United Kingdom’s National Cyber Security Centre (NCSC), which is part of the Government Communications Headquarters (GCHQ), the equivalent of CISA. Kelly’s efforts in content moderation with several social media companies, including YouTube, were instrumental in removing harmful content.&lt;/p&gt;
-
-
-
-&lt;p&gt;That’s why he’s excited about Microsoft’s partnership with &lt;a href="https://www.gasa.org/" rel="noreferrer noopener" target="_blank"&gt;GASA&lt;/a&gt;. GASA brings together governments, law enforcement, consumer protection organizations, financial authorities, internet service providers, cybersecurity companies, and others to share knowledge and define joint actions to protect consumers from getting scammed.&lt;/p&gt;
-
-
-
-&lt;p&gt;“If I protect Microsoft, that’s good, but it’s not sufficient. In the same way, if Apple does their thing, and Google does their thing, but if we’re not working together, we’ve all missed the bigger opportunity. We must share cybercrime information with each other and educate the public. If we can have a three-pronged approach of tech companies building security and fraud protection into their products, public awareness, and sharing cybercrime and fraudster information with law enforcement, I think we can make a big difference,” he says.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A quote from Kelly Bissell that says &amp;quot;I think we have an opportunity today to adopt AI faster so we can detect and close the gap of exposure quickly.&amp;quot;" class="wp-image-138435 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/04/CYBER_Profile_Export-1024x576.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="next-steps-with-microsoft-security"&gt;Next steps with Microsoft Security&lt;/h2&gt;
-
-
-
-&lt;p&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Methodology:&lt;/strong&gt; Microsoft platforms and services, including Azure, Microsoft Defender for Office, Microsoft Threat Intelligence, and Microsoft Digital Crimes Unit (DCU), provided anonymized data on threat actor activity and trends. Additionally, Microsoft Entra ID provided anonymized data on threat activity, such as malicious email accounts, phishing emails, and attacker movement within networks. Additional insights are from the daily security signals gained across Microsoft, including the cloud, endpoints, the intelligent edge, and telemetry from Microsoft platforms and services. The $4 billion figure represents an aggregated total of fraud and scam attempts against Microsoft and our customers in consumer and enterprise segments (in 12 months).&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/16/cyber-signals-issue-9-ai-powered-deception-emerging-fraud-threats-and-countermeasures/"&gt;Cyber Signals Issue 9 | AI-powered deception: Emerging fraud threats and countermeasures&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Ransomware</category><category>Windows</category></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Safeguarding Vulnerability Management Despite MITRE Funding Risks</title><link>https://blog.qualys.com/category/product-tech</link><description>Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities. The MITRE CVE program has been an essential part of cybersecurity for over 25 years. It provides a consistent and standardized way to identify and track vulnerabilities and [&amp;#8230;]</description><content:encoded>&lt;p&gt;Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Safeguarding Vulnerability Management Despite MITRE Funding Risks</title><link>https://blog.qualys.com/category/product-tech</link><description>Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities. The MITRE CVE program has been an essential part of cybersecurity for over 25 years. It provides a consistent and standardized way to identify and track vulnerabilities and [&amp;#8230;]</description><content:encoded>&lt;p&gt;Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities.&lt;/p&gt;
 
 
 
