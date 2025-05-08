@@ -1,5 +1,173 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 08 May 2025 21:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>No Internet Access&amp;#x3f; SSH to the Rescue&amp;#x21;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>FreeDrain Unmasked | Uncovering an Industrial-Scale Crypto Theft Network</title><link>https://www.sentinelone.com/labs/freedrain-unmasked-uncovering-an-industrial-scale-crypto-theft-network/</link><description>FreeDrain is a modern, scalable phishing operation exploiting weaknesses in free publishing platforms to steal cryptocurrency on a global scale.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 08 May 2025 22:59:27 +0000</lastBuildDate><item><title>Inside LockBit: Defense Lessons from the Leaked LockBit Negotiations</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The LockBit ransomware gang recently suffered a significant data breach. Their dark web affiliate panels were defaced with the message &amp;#8220;Don&amp;#8217;t do crime CRIME IS BAD xoxo from Prague,&amp;#8221; linking to a MySQL database dump. This archive contains a SQL file from LockBit&amp;#8217;s affiliate panel database that includes twenty tables, notably including a &amp;#8216;btc_addresses&amp;#8217; table [&amp;#8230;]</description><content:encoded>&lt;p&gt;The LockBit ransomware gang recently suffered a significant data breach. Their dark web affiliate panels were defaced with the message &amp;#8220;Don&amp;#8217;t do crime CRIME IS BAD xoxo from Prague,&amp;#8221; linking to a MySQL database dump. This archive contains a SQL file from LockBit&amp;#8217;s affiliate panel database that includes twenty tables, notably including a &amp;#8216;btc_addresses&amp;#8217; table with 59,975 unique bitcoin addresses and a &amp;#8216;chats&amp;#8217; table containing over 4,400 victim negotiation messages from December 2024 to the end of April 2025.&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog post will leverage insights from this recent breach and the Qualys Threat Research Unit’s existing knowledge of LockBit to detail the group&amp;#8217;s methods and lessons we can learn from the additional information gained from the exposed data. We aim to equip security teams with practical knowledge to enhance their defenses.&lt;/p&gt;
+
+
+
+&lt;span id="more-37848"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="who-is-lockbit-how-it-evolved-and-operates"&gt;&lt;strong&gt;Who is LockBit? How it Evolved and Operates&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a"&gt;LockBit&lt;/a&gt; is a prominent ransomware gang that has operated its ransomware-as-a-service (RaaS) family since 2019. The group has continuously developed its malicious software, releasing several iterations, including LockBit 2.0 in June 2021 and LockBit 3.0 (also known as LockBit Black) in June 2022. Each new version brought enhanced capabilities, targeting a wider range of operating systems like Windows, Linux, VMware ESXi, and macOS. LockBit operates on an affiliate model, where the core group develops and maintains the ransomware, and affiliates carry out the attacks, sharing a percentage of the ransom payments.&lt;/p&gt;
+
+
+
+&lt;p&gt;Their attacks typically follow a systematic pattern involving:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Initial access (phishing, exploits, weak RDP)&lt;/li&gt;
+
+
+
+&lt;li&gt;Lateral movement (tools like Mimikatz, Cobalt Strike)&lt;/li&gt;
+
+
+
+&lt;li&gt;Privilege escalation&lt;/li&gt;
+
+
+
+&lt;li&gt;Data exfiltration for double extortion&lt;/li&gt;
+
+
+
+&lt;li&gt;File encryption&lt;/li&gt;
+
+
+
+&lt;li&gt;Ransom note delivery&lt;/li&gt;
+
+
+
+&lt;li&gt;Eventual data publication if demands are unmet&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;LockBit 3.0 notably incorporated techniques from other ransomware and improved its ability to evade detection and hinder recovery efforts.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="monero-the-coin-of-the-realm"&gt;&lt;strong&gt;Monero: The Coin of the Realm&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Based on leaked chats from ransomware negotiations, the ransom amounts demanded by attackers vary widely, ranging from $4,000 in Bitcoin (BTC) for smaller incidents to a staggering $150,000 in Bitcoin for major attacks involving large-scale encryption and threats of data leaks. What makes this data particularly striking, however, is the payment options offered by the attackers: Bitcoin (BTC) remains a staple, but Monero (XMR) is gaining traction. In fact, the leaked chats reveal a fascinating twist—attackers offer up to 20% discounts to victims who choose to pay in Monero instead of Bitcoin. This isn’t just a random perk; it signals a deliberate preference for Monero, likely due to its privacy-centric design.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="patch-or-mitigate-now-critical-cves-exploited-by-lockbit"&gt;&lt;strong&gt;Patch or Mitigate Now: Critical CVEs Exploited by LockBit&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Analysis of leaked information and historical data points to a consistent playbook of weaponized vulnerabilities. For security teams, the following list represents critical exposures that demand immediate patching or mitigation to remove known entry points for LockBit:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;CVE ID&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Product Name&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Vendor&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;QDS (QVS)&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;QID&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2023-4966&lt;/td&gt;&lt;td&gt;NetScaler ADC/Gateway&lt;/td&gt;&lt;td&gt;Citrix&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;378935&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2023-27351&lt;/td&gt;&lt;td&gt;PaperCut MF/NG&lt;/td&gt;&lt;td&gt;PaperCut&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;730790, 378441&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2023-27350&lt;/td&gt;&lt;td&gt;PaperCut MF/NG&lt;/td&gt;&lt;td&gt;PaperCut&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;730790, 378441&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2023-0669&lt;/td&gt;&lt;td&gt;GoAnywhere MFT&lt;/td&gt;&lt;td&gt;Fortra&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;730720&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2022-36537&lt;/td&gt;&lt;td&gt;ZK Framework&lt;/td&gt;&lt;td&gt;Potix&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;378,061&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2022-22965&lt;/td&gt;&lt;td&gt;Spring Framework&lt;/td&gt;&lt;td&gt;VMware&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;Multiple QIDs&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2022-21999&lt;/td&gt;&lt;td&gt;Windows Print Spooler&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;91857&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-44228&lt;/td&gt;&lt;td&gt;Apache Log4j2&lt;/td&gt;&lt;td&gt;Apache&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;Multiple QIDs&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-36942&lt;/td&gt;&lt;td&gt;Windows LSA&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;91813, 91803&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-34523&lt;/td&gt;&lt;td&gt;Exchange Server&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;50114, 50112&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-34473&lt;/td&gt;&lt;td&gt;Exchange Server&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;50114, 50107&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-31207&lt;/td&gt;&lt;td&gt;Exchange Server&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;50114, 50111&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-22986&lt;/td&gt;&lt;td&gt;BIG-IP&lt;/td&gt;&lt;td&gt;F5 Networks&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;38833, 375344&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2021-20028&lt;/td&gt;&lt;td&gt;SMA Firmware&lt;/td&gt;&lt;td&gt;SonicWall&lt;/td&gt;&lt;td&gt;94&lt;/td&gt;&lt;td&gt;731853&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2020-1472&lt;/td&gt;&lt;td&gt;Netlogon&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;Multiple QIDs&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2019-7481&lt;/td&gt;&lt;td&gt;SMA100&lt;/td&gt;&lt;td&gt;SonicWall&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;730221&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2019-19781&lt;/td&gt;&lt;td&gt;Citrix ADC/Gateway&lt;/td&gt;&lt;td&gt;Citrix&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;372685, 372305&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2019-11510&lt;/td&gt;&lt;td&gt;Pulse Connect Secure&lt;/td&gt;&lt;td&gt;Ivanti&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;38771&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2019-0708&lt;/td&gt;&lt;td&gt;Remote Desktop Services&lt;/td&gt;&lt;td&gt;Microsoft&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;91893, 91541, 91534&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CVE-2018-13379&lt;/td&gt;&lt;td&gt;FortiOS SSL VPN&lt;/td&gt;&lt;td&gt;Fortinet&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;43702&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This is not an exhaustive list of all vulnerabilities ever exploited by LockBit, but these CVEs have been frequently observed in their attack chains. Prioritizing patches for these vulnerabilities is a &lt;strong&gt;crucial, immediate step to reduce your attack surface&lt;/strong&gt;. When patching is not immediately feasible, organizations should temporarily deploy proactive remediation techniques to mitigate the associated risks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="beyond-traditional-endpoints-other-compromised-systems"&gt;&lt;strong&gt;Beyond Traditional Endpoints: Other Compromised Systems&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The leaked negotiation chats also reveal a broader scope of targeted systems and tools beyond standard Windows and Linux servers, highlighting the need for a holistic defense strategy:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Veeam Backup Software:&lt;/strong&gt; Discussions around difficulties restoring from Veeam backups indicate attackers are targeting backup infrastructure. While a specific CVE wasn&amp;#8217;t explicitly named in the chat, known exploited vulnerabilities in Veeam (e.g., CVE-2023-27532, CVE-2024-40711, CVE-2022-26500, and CVE-2022-26501) are actively exploited to gain access to backup metadata and credentials. The above-mentioned CVEs are also part of the CISA KEV catalog.&lt;/p&gt;
+
+
+
+&lt;p&gt;Ensure your Veeam installations are fully patched, especially when addressing known critical CVEs, which is essential. Isolating backup networks and repositories from the production environment and enforcing strong authentication for access are also of vital importance to secure against the targeting of backup software.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;vCenter Server&lt;/strong&gt; and &lt;strong&gt;ESXi:&lt;/strong&gt; LockBit 2.0 introduced a Linux-based variant specifically designed to encrypt VMware ESXi virtual machines, multiplying the blast radius by hitting entire hypervisor hosts at once, and in the conversations, often they instruct victims to log into vCenter for decryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;Treat your VMware and vCenter instance as a critical asset. Ensure it is fully patched against known exploited vulnerabilities (e.g., CVE-2021-44228, CVE-2024-38813, CVE-2024-38812, CVE-2022-22948, CVE-2023-34048, CVE-2021-22017, CVE-2021-22005, CVE-2020-3952, CVE-2021-21972, CVE-2021-21985, CVE-2021-21973, CVE-2019-5544, CVE-2025-22225, CVE-2024-37085, CVE-2020-3992, CVE-2025-22224, CVE-2025-22226), all part of CISA KEV catalog. Also, enforcing multi-factor authentication (MFA) and the principle of least privilege for all vCenter access would be most helpful.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;NAS Devices:&lt;/strong&gt; Encryption of NAS systems alongside other network assets points to their vulnerability, likely through exposed SMB/NFS shares or weak network segmentation. It is essential to update NAS firmware regularly. Implement strict access controls (ACLs) and segment your network to limit access to NAS devices only to necessary systems and users, ideally via secure protocols or VPNs.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;File Transfer Tools (FileZilla, WinSCP):&lt;/strong&gt; The mention of using these tools to transfer decryptors to ESXi suggests attacker familiarity with standard IT tools and the potential for their abuse. While not directly exploited for initial access in this context, their presence highlights potential avenues for malicious file transfer post-compromise. FileZilla and WinSCP have been associated with vulnerabilities exploited by malware for credential harvesting in the past.&lt;/p&gt;
+
+
+
+&lt;p&gt;These examples highlight the need for comprehensive detection capabilities across network, host, and container environments. At Qualys, we proudly offer almost 100% coverage of CISA’s Known Exploited Vulnerabilities (KEVS), and the Qualys Threat Research Unit team is actively working to stay ahead of such threats.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="initial-access-and-deployment"&gt;&lt;strong&gt;Initial Access and Deployment&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The leak also offered glimpses into initial access methods, with one notable hint pointing towards using weak or default credentials (&amp;#8220;you know your pass P@ssw0rd&amp;#8221;). Additionally, mentions of removing administrators from the domain-controlling infrastructure suggest the exploitation of misconfigured or overly privileged domain controllers. While specific deployment scripts weren&amp;#8217;t detailed, the customization of payloads for different architectures (x32 and x64) and platforms (Windows .exe, ESXi via file transfer) underscores the need for defense across heterogeneous environments.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The LockBit leak reminds us of the persistent and evolving threat ransomware groups pose. By understanding their exploited vulnerabilities and targeted systems, as revealed in this data, vulnerability management professionals and practitioners can take immediate, actionable steps to harden their environments. &lt;/p&gt;
+
+
+
+&lt;p&gt;The following key tactics are essential to disrupt LockBit&amp;#8217;s common attack vectors and enhancing your organization&amp;#8217;s resilience against ransomware threats:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Prioritizing patches for known exploited CVEs&lt;/li&gt;
+
+
+
+&lt;li&gt;Securing often-overlooked systems like backup infrastructure and NAS devices&lt;/li&gt;
+
+
+
+&lt;li&gt;Reinforcing fundamental security hygiene like strong credentials and access controls&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Talk to a Qualys Expert to see how you can implement this guidance today.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/request-a-call/?utm_source=website&amp;#038;utm_medium=blog&amp;#038;leadsource=344576688" style="background-color: #ed2e26;"&gt;Schedule Today&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37848</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>LockBit</category><category>ransomware</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>No Internet Access&amp;#x3f; SSH to the Rescue&amp;#x21;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>US Customs and Border Protection Quietly Revokes Protections for Pregnant Women and Infants</title><link>https://www.wired.com/story/cbp-rescinds-policies-on-care-of-pregnant-women-infants/</link><description>CBP’s acting commissioner has rescinded four Biden-era policies that aimed to protect vulnerable people in the agency’s custody, including mothers, infants, and the elderly.</description><guid isPermaLink="false">681d1344b5d0aa056d907778</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Science / Health</category><category>health</category><category>politics</category><category>Policy</category><category>Donald Trump</category><category>immigration</category><category>national security</category><category>Inhumanity</category></item><item><title>FreeDrain Unmasked | Uncovering an Industrial-Scale Crypto Theft Network</title><link>https://www.sentinelone.com/labs/freedrain-unmasked-uncovering-an-industrial-scale-crypto-theft-network/</link><description>FreeDrain is a modern, scalable phishing operation exploiting weaknesses in free publishing platforms to steal cryptocurrency on a global scale.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;FreeDrain is an industrial-scale, global cryptocurrency phishing operation that has been stealing digital assets for years.&lt;/li&gt;
 &lt;li&gt;FreeDrain uses SEO manipulation, free-tier web services (like &lt;code&gt;gitbook.io&lt;/code&gt;, &lt;code&gt;webflow.io&lt;/code&gt;, and &lt;code&gt;github.io&lt;/code&gt;), and layered redirection techniques to target cryptocurrency wallets.&lt;/li&gt;
@@ -830,7 +998,7 @@ Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
 &lt;h2&gt;THE TEXAS NEXUS&lt;/h2&gt;
 &lt;p&gt;KrebsOnSecurity has learned that the people and entities at the center of the FIA investigations have built a significant presence in the United States, with a strong concentration in Texas. The Texas businesses promote websites that sell logo and web design, ghostwriting, and academic cheating services. Many of these entities have recently been sued for fraud and breach of contract by angry former customers, who claimed the companies relentlessly upsold them while failing to produce the work as promised.&lt;/p&gt;
 &lt;p&gt;For example, the FIA complaints named &lt;strong&gt;Retrocube LLC &lt;/strong&gt;and &lt;strong&gt;360 Digital Marketing LLC&lt;/strong&gt;, two entities that share a street address with eWorldTrade: 1910 Pacific Avenue, Suite 8025, Dallas, Texas. Also incorporated at that Pacific Avenue address is &lt;strong&gt;abtach[.]ae&lt;/strong&gt;, a web design and marketing firm based in Dubai; and &lt;strong&gt;intersyslimited[.]com&lt;/strong&gt;, the new name of Abtach after they were banned by the USPTO. Other businesses registered at this address market services for logo design, mobile app development, and ghostwriting.&lt;/p&gt;
-&lt;div class="wp-caption aligncenter" id="attachment_71217" style="width: 795px;"&gt;&lt;img alt="" class="size-full wp-image-71217" height="785" src="https://krebsonsecurity.com/wp-content/uploads/2025/05/fia-annexure.png" width="785" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71217"&gt;A list published in 2021 by Pakistan&amp;#8217;s FIA of different front companies allegedly involved in scamming people who are looking for help with trademarks, ghostwriting, logos and web design.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_71247" style="width: 727px;"&gt;&lt;a href="https://krebsonsecurity.com/wp-content/uploads/2025/05/annexure2.png" rel="noopener" target="_blank"&gt;&lt;img alt="" class="wp-image-71247 size-full" height="699" src="https://krebsonsecurity.com/wp-content/uploads/2025/05/annexure2.png" width="717" /&gt;&lt;/a&gt;&lt;p class="wp-caption-text" id="caption-attachment-71247"&gt;A list published in 2021 by Pakistan&amp;#8217;s FIA of different front companies allegedly involved in scamming people who are looking for help with trademarks, ghostwriting, logos and web design.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;360 Digital Marketing&amp;#8217;s website 360digimarketing[.]com is owned by an Abtach front company called &lt;strong&gt;Abtech LTD&lt;/strong&gt;. Meanwhile, &lt;a href="https://find-and-update.company-information.service.gov.uk/company/10311269/officers" rel="noopener" target="_blank"&gt;business records show&lt;/a&gt; &lt;strong&gt;360 Digi Marketing LTD&lt;/strong&gt; is a U.K. company whose officers include former Abtach director Bilwani; &lt;b&gt;Muhammad Saad Iqbal&lt;/b&gt;, formerly Abtach, now CEO of Intersys Ltd; &lt;b&gt;Niaz Ahmed&lt;/b&gt;, a former Abtach associate; and&lt;b&gt; Muhammad Salman Yousuf&lt;/b&gt;, formerly a vice president at Axact, Abtach, and Digitonics Labs.&lt;/p&gt;
 &lt;p&gt;Google&amp;#8217;s Ads Transparency Center finds 360 Digital Marketing LLC ran at least 500 ads promoting various websites selling ghostwriting services . Another entity tied to Junaid Mansoor &amp;#8212; a company called &lt;strong&gt;Octa Group Technologies AU&lt;/strong&gt; &amp;#8212; has run &lt;a href="https://adstransparency.google.com/advertiser/AR08603440443079786497?region=anywhere" rel="noopener" target="_blank"&gt;approximately 300 Google ads&lt;/a&gt; for book publishing services, promoting confusingly named websites like &lt;span style="font-weight: 400;"&gt;amazonlistinghub[.]com and barnesnoblepublishing[.]co.&lt;/span&gt;&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71198" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-71198" height="653" src="https://krebsonsecurity.com/wp-content/uploads/2025/05/360DigitalMarketingLLC-adstransparency.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71198"&gt;360 Digital Marketing LLC ran approximately 500 ads for scam ghostwriting sites.&lt;/p&gt;&lt;/div&gt;
@@ -7946,7 +8114,7 @@ CloudAuditEvents
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-april-threat-intelligence-report/"&gt;21st April – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31405</guid><category>Global Cyber Attack Reports</category></item><item><title>How to Protect Yourself From Phone Searches at the US Border</title><link>https://www.wired.com/story/how-to-protect-yourself-from-phone-searches-at-the-us-border/</link><description>Customs and Border Protection has broad authority to search travelers’ devices when they cross into the United States. Here’s what you can do to protect your digital life while at the US border.</description><guid isPermaLink="false">67fdc7eb18e7f273bf3b3df6</guid><category>Security</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Policy</category><category>privacy</category><category>Travel</category><category>smartphones</category><category>phones</category><category>how-to</category><category>national security</category><category>surveillance</category><category>border</category><category>immigration</category><category>Search Terms</category></item><item><title>Zero Day Quest 2025: $1.6 million awarded for vulnerability research</title><link>https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</link><description>This month, the Microsoft Security Response Center recently welcomed some of the world’s most talented security researchers at Microsoft’s Zero Day Quest, the largest live hacking competition of its kind. The inaugural event challenged the security community to focus on the highest-impact security scenarios for Copilot and Cloud with up to $4 million in potential awards.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</guid></item><item><title>Hiring Kit: Cryptographer</title><link>https://www.techrepublic.com/resource-library/hiring-kit/cryptographer/</link><description>Hire the best cryptographer to develop algorithms, ciphers, and other encryption systems to protect sensitive data. Boost Cybersecurity – Cryptographers uses their expertise in mathematics and computer science to defend your business from threats. Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. Expert-Crafted Framework – Written by ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-cryptographer/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Information Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/information-security/</link><description>Safeguard company information, reduce business and legal risks, and protect company investments and reputation with this IT policy. Fully Customizable — Good to use as-is or change as you see fit. Improve Your Information Security — This 10-page document offers everything you need to create a secure environment. Expert Authorship — Created by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/information-security-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>FOG Ransomware Spread by Cybercriminals Claiming Ties to DOGE</title><link>https://www.trendmicro.com/en_us/research/25/d/fog-ransomware-concealed-within-binary-loaders-linking-themselve.html</link><description>This blog details our investigation of malware samples that conceal within them a FOG ransomware payload.</description><guid isPermaLink="false">urn:uuid:6a1f8c52-507f-6692-6e46-0869e5fc34e6</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category></item><item><title>16-31 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/18/16-31-december-2024-cyber-attacks-timeline/</link><description>In the second timeline of December 2024, I collected 94 events with a threat landscape dominated by malware with...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44588</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>December</category><category>Hacktivism</category><category>Malware</category><category>Phishing</category><category>Ransomware</category><category>Timeline</category></item><item><title>Disaster Recovery and Business Continuity Plan</title><link>https://www.techrepublic.com/resource-library/guide/disaster-recovery-and-business-continuity-plan/</link><description>IT pros can use this plan to create policies that address critical elements and processes that should be considered and implemented before a crisis occurs. Customizable Document — Ready for use as-is or for edits. Enhance Your Processes — This 10-page document outlines critical systems, data selection, compliance, and more. Expertly-Curated — Written by Scott ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/disaster-recovery-and-business-continuity-plan/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Software</category><category>Tech &amp; Work</category></item><item><title>Friday Squid Blogging: Pyjama Squid</title><link>https://www.schneier.com/blog/archives/2025/05/friday-squid-blogging-pyjama-squid.html</link><description>&lt;p&gt;The small &lt;a href="https://www.discoverwildlife.com/animal-facts/marine-animals/theres-an-adorable-animal-in-australia-that-looks-like-its-wearing-striped-pyjamas-but-its-cuteness-conceals-a-toxic-weapon"&gt;pyjama squid&lt;/a&gt; (&lt;i&gt;Sepioloidea lineolata&lt;/i&gt;) produces toxic slime, &amp;#8220;a rare example of a poisonous predatory mollusc.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-april-threat-intelligence-report/"&gt;21st April – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31405</guid><category>Global Cyber Attack Reports</category></item><item><title>Zero Day Quest 2025: $1.6 million awarded for vulnerability research</title><link>https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</link><description>This month, the Microsoft Security Response Center recently welcomed some of the world’s most talented security researchers at Microsoft’s Zero Day Quest, the largest live hacking competition of its kind. The inaugural event challenged the security community to focus on the highest-impact security scenarios for Copilot and Cloud with up to $4 million in potential awards.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</guid></item><item><title>Hiring Kit: Cryptographer</title><link>https://www.techrepublic.com/resource-library/hiring-kit/cryptographer/</link><description>Hire the best cryptographer to develop algorithms, ciphers, and other encryption systems to protect sensitive data. Boost Cybersecurity – Cryptographers uses their expertise in mathematics and computer science to defend your business from threats. Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. Expert-Crafted Framework – Written by ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-cryptographer/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Information Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/information-security/</link><description>Safeguard company information, reduce business and legal risks, and protect company investments and reputation with this IT policy. Fully Customizable — Good to use as-is or change as you see fit. Improve Your Information Security — This 10-page document offers everything you need to create a secure environment. Expert Authorship — Created by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/information-security-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>FOG Ransomware Spread by Cybercriminals Claiming Ties to DOGE</title><link>https://www.trendmicro.com/en_us/research/25/d/fog-ransomware-concealed-within-binary-loaders-linking-themselve.html</link><description>This blog details our investigation of malware samples that conceal within them a FOG ransomware payload.</description><guid isPermaLink="false">urn:uuid:6a1f8c52-507f-6692-6e46-0869e5fc34e6</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category></item><item><title>16-31 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/18/16-31-december-2024-cyber-attacks-timeline/</link><description>In the second timeline of December 2024, I collected 94 events with a threat landscape dominated by malware with...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44588</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>December</category><category>Hacktivism</category><category>Malware</category><category>Phishing</category><category>Ransomware</category><category>Timeline</category></item><item><title>Disaster Recovery and Business Continuity Plan</title><link>https://www.techrepublic.com/resource-library/guide/disaster-recovery-and-business-continuity-plan/</link><description>IT pros can use this plan to create policies that address critical elements and processes that should be considered and implemented before a crisis occurs. Customizable Document — Ready for use as-is or for edits. Enhance Your Processes — This 10-page document outlines critical systems, data selection, compliance, and more. Expertly-Curated — Written by Scott ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/disaster-recovery-and-business-continuity-plan/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Software</category><category>Tech &amp; Work</category></item><item><title>Friday Squid Blogging: Pyjama Squid</title><link>https://www.schneier.com/blog/archives/2025/05/friday-squid-blogging-pyjama-squid.html</link><description>&lt;p&gt;The small &lt;a href="https://www.discoverwildlife.com/animal-facts/marine-animals/theres-an-adorable-animal-in-australia-that-looks-like-its-wearing-striped-pyjamas-but-its-cuteness-conceals-a-toxic-weapon"&gt;pyjama squid&lt;/a&gt; (&lt;i&gt;Sepioloidea lineolata&lt;/i&gt;) produces toxic slime, &amp;#8220;a rare example of a poisonous predatory mollusc.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;</description><content:encoded>&lt;p&gt;The small &lt;a href="https://www.discoverwildlife.com/animal-facts/marine-animals/theres-an-adorable-animal-in-australia-that-looks-like-its-wearing-striped-pyjamas-but-its-cuteness-conceals-a-toxic-weapon"&gt;pyjama squid&lt;/a&gt; (&lt;i&gt;Sepioloidea lineolata&lt;/i&gt;) produces toxic slime, &amp;#8220;a rare example of a poisonous predatory mollusc.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70147</guid><category>Uncategorized</category><category>squid</category></item><item><title>CISA Releases Six Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/04/17/cisa-releases-six-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released six Industrial Control Systems (ICS) advisories on April 17, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
@@ -8464,87 +8632,7 @@ walaa.20185492[@]buc.edu.eg
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Safeguarding Vulnerability Management Despite MITRE Funding Risks</title><link>https://blog.qualys.com/category/product-tech</link><description>Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities. The MITRE CVE program has been an essential part of cybersecurity for over 25 years. It provides a consistent and standardized way to identify and track vulnerabilities and [&amp;#8230;]</description><content:encoded>&lt;p&gt;Recently, there have been several developments from vulnerability databases that have led to some concerns around their continued effectiveness in categorizing and enriching the data about vulnerabilities.&lt;/p&gt;
-
-
-
-&lt;p&gt;The MITRE CVE program has been an essential part of cybersecurity for over 25 years. It provides a consistent and standardized way to identify and track vulnerabilities and exposures in software and systems. It serves as a central hub, providing a key database that countless organizations depend on for critical vulnerability information. However, with the possibility of its funding running out, there are growing concerns about the program&amp;#8217;s future and its ability to continue supporting the cybersecurity community.&lt;/p&gt;
-
-
-
-&lt;p&gt;In addition, the &lt;a href="https://www.nist.gov/itl/nvd"&gt;National Institute of Standards and Technology (NIST) announced&lt;/a&gt; they would categorize vulnerabilities with a publish date prior to January 1, 2018, as “Deferred.” That status means that they will not add enrichment data to them. However, simply because a vulnerability is older does not necessarily mean that it is low risk. For organizations that rely on NIST’s CVSS scores and the enrichment data from NIST to prioritize their remediation, this is a major concern.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Even with the NIST status change and if MITRE should face challenges,&lt;/strong&gt; &lt;strong&gt;Qualys, backed by 120+ white&lt;/strong&gt;&lt;strong&gt;‑hat researchers and more than 25 threat&lt;/strong&gt;&lt;strong&gt;‑intelligence feeds, builds detections directly from vendor advisories—not solely relying on MITRE. As a result, customers experience zero delay or degradation in signature quality.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;span id="more-37590"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="committed-to-helping-the-cybersecurity-community"&gt;&lt;strong&gt;Committed to Helping the Cybersecurity Community&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;These public databases offer the cybersecurity community a common language for risk and an unprecedented level of cohesiveness and clarity. As such, they have been invaluable in helping everyone maintain higher levels of security. We believe in the power of these entities and their great work. That is why Qualys is committed to supporting MITRE and the wider security community, and we are actively collaborating with industry partners to identify and pursue sustainable funding options that will help maintain MITRE’s vital work.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-does-qualys-vulnerability-coverage-and-risk-based-prioritization-keep-you-covered"&gt;&lt;strong&gt;How Does Qualys&amp;#8217; Vulnerability Coverage and Risk-Based Prioritization Keep You Covered?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;As noted above, even with the recent developments, Qualys customers will not experience any impact. Here’s why:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Multiple independent data sources: &lt;/strong&gt;We already base detections on vendor and CNA advisories, CERT bulletins, opensource security feeds, and our own research—not CVE.org.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Fallback identifiers:&lt;/strong&gt; Where a third-party CNA can’t publish a CVE, we ingest their advisory anyway and map it to a QID, then auto-reconcile the moment an official CVE appears.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;QIDs continue to flow&lt;/strong&gt;—new detections are added using an official CVE or a temporary placeholder. Once CVE.org or its alternative is back online, all IDs and metadata are automatically normalized, and no action from Qualys customers is required.&lt;/p&gt;
-
-
-
-&lt;p&gt;To illustrate, consider the recent vulnerability of CVE-2025-3619, a critical Heap buffer overflow vulnerability in Google Chrome&amp;#8217;s Codecs, identified on April 15, 2025. Despite not being listed on CVE.org or NVD yet, Qualys has already provided detection through QID 383098, enabling our customers to promptly assess and mitigate the risk. This demonstrates our commitment to maintaining comprehensive vulnerability coverage through diverse data sources and proactive research.&lt;/p&gt;
-
-
-
-&lt;p&gt;The Qualys Threat Research Unit (TRU) will continue to push clear patch recommendations based on vendor advisories and prioritization guidance using various threat intelligence feeds, ensuring customers always know which fixes to deploy—regardless of any CVE feed delays.&lt;/p&gt;
-
-
-
-&lt;p&gt;In addition, Qualys demonstrates its commitment to having customers&amp;#8217; backs through the launch of the &lt;a href="https://blog.qualys.com/product-tech/2023/02/08/introducing-qualys-ml-based-threat-intelligence"&gt;Qualys Cloud Threat Database&lt;/a&gt; over two years ago. This database presents a powerful tool that unifies over 25 threat intelligence feeds into a single, accessible source for all Qualys products. By leveraging machine learning and the expertise of the Qualys Threat Research Unit, this database provides rich, contextual insights into vulnerabilities, malware, and threat actors, empowering customers to prioritize and remediate risks effectively. With real-time threat intelligence and risk-based vulnerability management, Qualys ensures organizations have the clarity and tools to stay secure in an ever-evolving threat landscape.&lt;/p&gt;
-
-
-
-&lt;p&gt;Qualys leads in cybersecurity by providing end-to-end security solutions that ensure long-term resilience for organizations. Our Threat Research Unit and advanced capabilities help secure diverse IT environments—from AI systems to cloud applications—while mitigating critical threats like zero days. With decades of expertise, we deliver tailored, innovative strategies that keep organizations ahead of evolving risks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="if-a-cve-service-gap-occurs"&gt;&lt;strong&gt;If a CVE Service Gap Occurs&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;During such an interruption, a CVE&amp;nbsp;Services outage would halt the issuance of new CVE&amp;nbsp;IDs, leaving freshly disclosed vulnerabilities absent from CVE.org, the NVD, CISA KEV, and other mirrors. This could create temporary coverage gaps for security products that depend solely on those feeds.&lt;/p&gt;
-
-
-
-&lt;p&gt;Even in the unlikely event of a CVE publishing gap, your Qualys detections will keep pace with the latest threats—no blind spots, no extra work.&lt;/p&gt;
-
-
-
-&lt;p&gt;If you want game-changing risk scoring in uncertain times, &lt;a href="https://www.qualys.com/forms/schedule-demo/"&gt;reach out to find out more&lt;/a&gt; about Qualys and how our solutions offer unprecedented insight.&lt;/p&gt;
-
-
-
-&lt;p&gt;For our customers who may still have questions, please submit your inquiry through our support portal.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37590</guid><category>Product and Tech</category><category>CVE database</category><category>mitre</category><category>NIST</category></item><item><title>Funding Expires for Key Cyber Vulnerability Database</title><link>https://krebsonsecurity.com/2025/04/funding-expires-for-key-cyber-vulnerability-database/</link><description>A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization MITRE warned today that its contract to maintain the Common Vulnerabilities and Exposures (CVE) program -- which is traditionally funded each year by the Department of Homeland Security -- expires on April 16.</description><content:encoded>&lt;p&gt;A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization &lt;strong&gt;MITRE&lt;/strong&gt; warned today that its contract to maintain the &lt;strong&gt;Common Vulnerabilities and Exposures&lt;/strong&gt; (CVE) program &amp;#8212; which is traditionally funded each year by the Department of Homeland Security &amp;#8212; expires on April 16.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Funding Expires for Key Cyber Vulnerability Database</title><link>https://krebsonsecurity.com/2025/04/funding-expires-for-key-cyber-vulnerability-database/</link><description>A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization MITRE warned today that its contract to maintain the Common Vulnerabilities and Exposures (CVE) program -- which is traditionally funded each year by the Department of Homeland Security -- expires on April 16.</description><content:encoded>&lt;p&gt;A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization &lt;strong&gt;MITRE&lt;/strong&gt; warned today that its contract to maintain the &lt;strong&gt;Common Vulnerabilities and Exposures&lt;/strong&gt; (CVE) program &amp;#8212; which is traditionally funded each year by the Department of Homeland Security &amp;#8212; expires on April 16.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71016" style="width: 752px;"&gt;&lt;img alt="" class=" wp-image-71016" height="942" src="https://krebsonsecurity.com/wp-content/uploads/2025/04/mitreletter.png" width="742" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71016"&gt;A letter from MITRE vice president Yosry Barsoum, warning that the funding for the CVE program will expire on April 16, 2025.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Tens of thousands of security flaws in software are found and reported every year, and these vulnerabilities are eventually assigned their own unique CVE tracking number (e.g. &lt;a href="https://www.cve.org/CVERecord?id=CVE-2024-43573" rel="noopener" target="_blank"&gt;CVE-2024-43573&lt;/a&gt;, which is a &lt;strong&gt;Microsoft Windows&lt;/strong&gt; bug that Redmond patched last year).&lt;/p&gt;
 &lt;p&gt;There are hundreds of organizations &amp;#8212; known as &lt;strong&gt;CVE Numbering Authorities&lt;/strong&gt; (CNAs) &amp;#8212; that are authorized by MITRE to bestow these CVE numbers on newly reported flaws. Many of these CNAs are country and government-specific, or tied to individual software vendors or vulnerability disclosure platforms (a.k.a. bug bounty programs).&lt;/p&gt;
