@@ -1,5 +1,523 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 15 May 2025 15:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, May 15th, 2025 https://isc.sans.edu/podcastdetail/9452</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Sales Teams Struggle With Using AI – A CEO Tells Us Why</title><link>https://www.techrepublic.com/article/news-sales-industry-generative-ai-breakthrough/</link><description>Many sales personnel struggle with applying generative AI to specific tasks or have to prompt repeatedly to generate a useful answer, according to a report from Breakthrough.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4306742</guid><category>Artificial Intelligence</category><category>CXO</category><category>Innovation</category><category>International</category><category>News</category><category>ai investments</category><category>artificial intelligence</category><category>breakthrough</category><category>generative ai</category><category>privacy</category><category>sales</category><category>tech investments</category></item><item><title>ISC Stormcast For Thursday, May 15th, 2025 https://isc.sans.edu/podcastdetail/9452, (Thu, May 15th)</title><link>https://isc.sans.edu/diary/rss/31954</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31954</guid></item><item><title>AI-Generated Law</title><link>https://www.schneier.com/blog/archives/2025/05/ai-generated-law.html</link><description>&lt;p&gt;On April 14, Dubai&amp;#8217;s ruler, Sheikh Mohammed bin Rashid Al Maktoum, &lt;a href="https://x.com/HHShkMohd/status/1911795135039635659"&gt;announced&lt;/a&gt; that the United Arab Emirates would begin using &lt;a href="https://x.com/UAEmediaoffice/status/1911809411577684257"&gt;artificial intelligence&lt;/a&gt; to help write its laws. A new Regulatory Intelligence Office would use the technology to &amp;#8220;regularly suggest updates&amp;#8221; to the law and &amp;#8220;accelerate the issuance of legislation by up to 70%.&amp;#8221; AI would create a &amp;#8220;comprehensive legislative plan&amp;#8221; spanning local and federal law and would be connected to public administration, the courts, and global policy trends.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 15 May 2025 16:59:18 +0000</lastBuildDate><item><title>Fileless Execution: PowerShell Based Shellcode Loader Executes Remcos RAT</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Cybercriminals are progressively turning PowerShell to launch stealthy attacks that evade traditional antivirus and endpoint defenses. By running code directly in memory, these threats leave minimal evidence on disk, making them particularly challenging to detect. A recent example is Remcos RAT, a well-known remote access trojan recognized for its persistence and stealth. It provides attackers [&amp;#8230;]</description><content:encoded>&lt;p&gt;Cybercriminals are progressively turning PowerShell to launch stealthy attacks that evade traditional antivirus and endpoint defenses. By running code directly in memory, these threats leave minimal evidence on disk, making them particularly challenging to detect.&lt;/p&gt;
+
+
+
+&lt;p&gt;A recent example is Remcos RAT, a well-known remote access trojan recognized for its persistence and stealth. It provides attackers with full control over compromised systems, making it a preferred go-to tool for cyber espionage and data theft. In a recent campaign, threat actors delivered malicious LNK files embedded within ZIP archives, often disguised as Office documents. The attack chain leverages mshta.exe for proxy execution during the initial stage.&lt;/p&gt;
+
+
+
+&lt;p&gt;Unconfirmed reports suggest this new sample is named &amp;#8220;K-Loader,&amp;#8221; although no conclusive findings have been made.&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;span id="more-37888"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="execution-flow"&gt;&lt;a&gt;&lt;strong&gt;Execution Flow&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has discovered a new PowerShell-based shellcode loader, designed to load and execute a variant of Remcos RAT. In this blog, we will explore some of the most intriguing aspects of this stealthy malware sample.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1-Attack-Flow.png"&gt;&lt;img alt="" class="wp-image-37889" height="500" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1-Attack-Flow.png" width="921" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1: Attack Flow&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="technical-analysis"&gt;Technical Analysis&lt;/h2&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.1-New_tax311.png"&gt;&lt;img alt="" class="wp-image-37891" height="43" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.1-New_tax311.png" width="931" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;div class="wp-block-group"&gt;&lt;div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"&gt;
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;&lt;em&gt;SHA-256: 85dcc4bafccb5b9e255f75c2cd96fec1b4a5b30d09ae0d8eb571b312511d7df7&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Initial Execution via MSHTA&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;MSHTA.exe executes obfuscated hta file.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37892" height="23" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.2-mshta-command-1.png" width="936" /&gt;&lt;/figure&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The hta file contains obfuscated VBScript code. This script bypass Windows Defender and downloads PowerShell script into the “&lt;em&gt;C:/Users/Public/”&lt;/em&gt; directory, which is added under exclusion folder using “Add-MpPreference -ExclusionPath”.&lt;/li&gt;
+
+
+
+&lt;li&gt;The script sets PowerShell execution policy to bypass, runs in hidden mode, and creates a registry entry to maintain persistence. The malware modifies the Windows Registry using the following command:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.3-Registry-modification-ps-command.png"&gt;&lt;img alt="" class="wp-image-37893" height="37" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.3-Registry-modification-ps-command.png" width="936" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The hta downloads multiple payloads into “C:/Users/Public/” directory:&lt;ul&gt;&lt;li&gt;pp1.pdf (Decoy file)&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;311.hta&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;24.ps1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The 311.hta file is executed on system startup. Its code is almost similar to xlab22.hta.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-2-De-obfuscated-xlab22-and-311.hta_.png"&gt;&lt;img alt="" class="wp-image-37894" height="329" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-2-De-obfuscated-xlab22-and-311.hta_.png" width="887" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: De-obfuscated xlab22 and 311.hta&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="powershell-analysis"&gt;PowerShell Analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;The downloaded PowerShell payload 24.ps1 is heavily obfuscated and contains numerous functions and variables. It reconstructs two blobs of byte arrays from obfuscated base64 content using a custom string join/replace de-obfuscation technique. The script then leverages Win32 APIs to allocate memory and execute binary code directly in memory.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-3-First-chunk-of-Base64-data.png"&gt;&lt;img alt="" class="wp-image-37895" height="557" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-3-First-chunk-of-Base64-data-1070x557.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: First Chunk of Base64 Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-4-Second-chunk-of-Base64-data.png"&gt;&lt;img alt="" class="wp-image-37897" height="538" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-4-Second-chunk-of-Base64-data-1070x538.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: Second Chunk of Base64 Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first chunk we obtained is a shellcode Loader of 104 KB, padded with numerous null bytes. The second chunk revealed a 484 KB PE file. The following APIs are involved in executing both payloads:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-37898" height="145" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-5.-Shellcode-decrypted-by-Marshel-copy-method.png" width="936" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: Shellcode Copied for Execution by Marshal Copy Method&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;First, it allocates memory using “VirtuallAlloc()” as per the size of shellcode. The Marshal.Copy() method is then used to copy the shellcode into allocated memory. Finally, the code is executed using the function “CallWindowProcW()”, which acts as a callback function.&lt;/p&gt;
+
+
+
+&lt;p&gt;“CallWindowProc (hPrevWndFunc, hWnd, iMsg, wParam, lParam)”.&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;a&gt;&lt;strong&gt;Loader Analysis:&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;After decrypting the first chunk, we obtain a shellcode loader with a total size of 104 KB, though the actual executable code is only about 4 KB — the rest is padded with null bytes.&lt;/p&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;&lt;em&gt;SHA256: ce5ee4a1991fa0a9030dc9e2e0601dc0f14c7961e6550921d8fd2cc4ec53a042&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;p&gt;To execute a binary in memory, the loader walks the Process Environment Block (PEB) to dynamically resolve necessary API addresses. &lt;/p&gt;
+
+
+
+&lt;p&gt;The process follows these key steps:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Locate the PEB structure.&lt;/li&gt;
+
+
+
+&lt;li&gt;Access the PEB_LDR_DATA via PEB-&amp;gt;Ldr.&lt;/li&gt;
+
+
+
+&lt;li&gt;Traverse the module list to locate the ntdll.dll module.&lt;/li&gt;
+
+
+
+&lt;li&gt;Retrieve the export table of the module.&lt;/li&gt;
+
+
+
+&lt;li&gt;Parse the table to resolve the required function addresses.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This method allows the shellcode to dynamically find and invoke system APIs without importing them statically, which helps it evade detection.&lt;/p&gt;
+
+
+
+&lt;p&gt;Below we can see how it resolves the function addresses.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-37899" height="314" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-6.-Loader-Walk-the-PEB-and-Resolves-module-name-and-function-names-on-stack-1070x314.png" width="1070" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: Loader walks the PEB and resolves module names and function names on the stack.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next, it accesses and walks through the PEB (Process Environment Block) of ntdll.dll.&lt;/p&gt;
+
+
+
+&lt;p&gt;The shellcode gets a handle to the in-memory PE using GetModuleHandle(). It then parses the PE headers, section headers, and applies relocations, making the PE ready for execution entirely in memory, helping it evade file-based detections.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-7.-Stack-string-formation-for-module-names-and-Api-names.png"&gt;&lt;img alt="" class="wp-image-37900" height="465" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-7.-Stack-string-formation-for-module-names-and-Api-names.png" width="936" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: Stack String Formation for Module Names and API Names&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a&gt;&lt;strong&gt;PE File Analysis: (Remcos RAT)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The analyzed PE file is a 32-bit Remcos RAT, compiled using Visual Studio C++ 8. It’s designed for stealth and control, featuring:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Modular structure with multiple threads for execution and command handling.&lt;/li&gt;
+
+
+
+&lt;li&gt;Overlay section: An 800-byte region filled with null bytes—commonly used for obfuscation or extra data.&lt;/li&gt;
+
+
+
+&lt;li&gt;Subsystem: GUI-based with Terminal Server Aware flag enabled, allowing interaction even in remote sessions.&lt;/li&gt;
+
+
+
+&lt;li&gt;The resource section has encrypted data in “RCData-&amp;gt;setting” section.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;&lt;em&gt;SHA256: ab8caac901b477c08934ec63978400eb369efb655114805ccba28c48272e5dad&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-8.-Loading-Resource-to-decrypt.png"&gt;&lt;img alt="" class="wp-image-37901" height="337" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-8.-Loading-Resource-to-decrypt.png" width="611" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Loading Resource to Decrypt&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After loading resource data, it starts decrypting the resource with a custom function.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-9.-Remcos-Decrypted-RCData-contains-config-information.png"&gt;&lt;img alt="" class="wp-image-37902" height="536" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-9.-Remcos-Decrypted-RCData-contains-config-information-1070x536.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9: Remcos Decrypted RCData contains config information&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The resource settings are decrypted as needed and contain details like the remote server, version info, and more. It connects to &lt;strong&gt;&lt;em&gt;readysteaurants[.]com&lt;/em&gt;&lt;/strong&gt; over TLS (port 2025, TLS flag set to 1).&lt;/p&gt;
+
+
+
+&lt;p&gt;The config also holds the malware name “Remcos” and a mutex “&lt;strong&gt;&lt;em&gt;Rmc-7SY4AX&lt;/em&gt;&lt;/strong&gt;”.&lt;/p&gt;
+
+
+
+&lt;p&gt;Additionally, config contains a keylogger log file named &lt;strong&gt;&lt;em&gt;logs.dat&lt;/em&gt;&lt;/strong&gt;, certificates, and command-and-control strings like Screenshot, Micrecord, etc., are also present in it. Remcos operates through multiple modules, each started via separate threads. Before execution, it checks for the mutex—if found, it exits. If mutex is not present, it will create mutex “&lt;a&gt;Rmc-7SY4AX&lt;/a&gt;” in the registry.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-10.-Check-if-it-has-already-infected-this-machine.png"&gt;&lt;img alt="" class="wp-image-37903" height="334" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-10.-Check-if-it-has-already-infected-this-machine.png" width="583" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10: Check if it has already infected this machine&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To ensure persistence, the malware stores the executable path, license key, and timestamp in the registry Rmc-7SY4AX. Then it will start a thread where it will perform process injection of its own file into svchost.exe. While doing process injections, it uses the concept of &lt;strong&gt;Process Hollowing&lt;/strong&gt; to achieve evasion.&lt;/p&gt;
+
+
+
+&lt;p&gt;It gathers system details like OS version, files, and installed applications present on the machine. It attempts to bypass User Account Control (UAC) by leveraging “ICMLuaUtil Elevated” and COM object techniques. And check if it has bypass UAC by calling ShellExec twice.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-11.-UAC-Bypass-using-ICMLuaUtil.png"&gt;&lt;img alt="" class="wp-image-37904" height="343" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-11.-UAC-Bypass-using-ICMLuaUtil-1070x343.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11: UAC Bypass using ICMLuaUtil&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It verifies the UAC bypass by executing cmd.exe using CreateProcess both before and after the attempt. In the second thread, Remcos starts the &amp;#8220;Watchdog Module&amp;#8221; which ensures the malware stays active and restarts if needed. It also adds a &amp;#8220;wd&amp;#8221; entry in the same registry path used earlier to maintain persistence. After starting the &amp;#8220;Watchdog Module&amp;#8221;, Remcos sends a notification confirming successful initialization.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-12.-Remcos-Successfully-Initialized.png"&gt;&lt;img alt="" class="wp-image-37905" height="410" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-12.-Remcos-Successfully-Initialized.png" width="1033" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12: Remcos Successfully Initialized&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It attempts to connect to “&lt;em&gt;readystearants[.]com&lt;/em&gt;” over TLS, if enabled.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-13.-Establish-network-connection-with-server-through-TLS.png"&gt;&lt;img alt="" class="wp-image-37906" height="555" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-13.-Establish-network-connection-with-server-through-TLS-1070x555.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13: Establish a network connection with the server through TLS&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once the connection is established over TLS, the Remcos server continues sending packets with a “Keep-alive” connection. The C2 packet command and data have the same format as we saw above after decryption of “Resource àSetting data”, it also uses the same separator, i.e., “7C1E1E7C”, we can see below.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-14.-Wireshark-view-of-command-packets-and-data.png"&gt;&lt;img alt="" class="wp-image-37907" height="127" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-14.-Wireshark-view-of-command-packets-and-data.png" width="693" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14: Wireshark View of Command, Packets, and Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where “2404ff00” is packet magic, 0xff is size 4C command number, and the remaining is Command data split by separator.&lt;/p&gt;
+
+
+
+&lt;p&gt;The following are a few commands used by C&amp;amp;C:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;03h → Retrieve a list of all installed programs on the system&lt;/li&gt;
+
+
+
+&lt;li&gt;06h → Retrieve a list of all running processes&lt;/li&gt;
+
+
+
+&lt;li&gt;98h, 8Fh → Monitor files and perform various file operations&lt;/li&gt;
+
+
+
+&lt;li&gt;0Eh → Execute a specified command using cmd.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;2Fh → Modify registry keys or values&lt;/li&gt;
+
+
+
+&lt;li&gt;13h → Start or stop keylogging functionality&lt;/li&gt;
+
+
+
+&lt;li&gt;28h → Access or copy clipboard data&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;After initialization, Remcos starts the keylogger module in a new thread.&lt;/p&gt;
+
+
+
+&lt;p&gt;It logs keystrokes (online and offline), captures clipboard data, screenshots, and both active and background window details. It has the access to record window text, can track user idle time, access the webcam to capture frames, and use the microphone to record audio.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-15.-Access-user-camera.png"&gt;&lt;img alt="" class="wp-image-37908" height="221" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-15.-Access-user-camera-1070x221.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15: Access User Camera&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It logs keystrokes by setting a keyboard hook using &lt;em&gt;SetWindowsHookExA&lt;/em&gt;. Logged data is saved in a file and sent to the C&amp;amp;C server.&lt;/p&gt;
+
+
+
+&lt;p&gt;For anti-analysis, Remcos uses techniques like vectored exception handling, &lt;em&gt;GetProcessHeap&lt;/em&gt;(), &lt;em&gt;GetTickCount&lt;/em&gt;(), and &lt;em&gt;IsDebuggerPresent&lt;/em&gt;() to detect debugging or analysis environments.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-16.-Vectored-Exception-Handler-for-anti-analysis.png"&gt;&lt;img alt="" class="wp-image-37909" height="356" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-16.-Vectored-Exception-Handler-for-anti-analysis.png" width="704" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16: Vectored Exception Handler for Anti-analysis&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remcos scans browser directories using &lt;em&gt;FindFirstFile&lt;/em&gt;() and &lt;em&gt;FindNextFile&lt;/em&gt;(). It targets files like logins.json and key3.db to steal saved credentials and cookies from browsers such as Chrome, Firefox, and Internet Explorer.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-17.-Remcos-enumerate-browser-files-for-stealing-credentials.png"&gt;&lt;img alt="" class="wp-image-37910" height="444" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-17.-Remcos-enumerate-browser-files-for-stealing-credentials-1070x444.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17: Remcos enumerates browser files for stealing credentials&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remcos also includes a sound module that can trigger an alarm to alert or distract the user.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Operations and controls:&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-18.-Operations-and-controls.png"&gt;&lt;img alt="" class="wp-image-37911" height="597" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-18.-Operations-and-controls.png" width="537" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Fig-18. Operations and Controls&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The Final window visible looks like below which has Remcos version number V6.0.0 Pro.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-19.-Final-Window-of-Remcos.png"&gt;&lt;img alt="" class="wp-image-37912" height="513" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-19.-Final-Window-of-Remcos.png" width="978" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19: Final Window of Remcos&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;What’s Newly Added in Remcos V6.0.0 PRO:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Group View: Allows attackers to organize and manage victim machines in groups.&lt;/li&gt;
+
+
+
+&lt;li&gt;Unique UID: Each instance has a UID for easier agent tracking via C&amp;amp;C server.&lt;/li&gt;
+
+
+
+&lt;li&gt;Privilege Display: Shows whether the agent has admin or user rights.&lt;/li&gt;
+
+
+
+&lt;li&gt;Public IP Access: Displays the victim&amp;#8217;s public IP directly in the panel.&lt;/li&gt;
+
+
+
+&lt;li&gt;Accurate Idle Time: Improved tracking of user inactivity.&lt;/li&gt;
+
+
+
+&lt;li&gt;Bug Fixes: Enhanced geolocation accuracy and other minor fixes from earlier versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;We have referred to this site mentioned in the Remcos section above: https://breakingsecurity.net/&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-edr-detections-advanced-hunting"&gt;&lt;a&gt;&lt;strong&gt;Qualys EDR Detections &amp;amp; Advanced Hunting&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys EDR and EPP solutions offer strong protection against advanced threats.&lt;/p&gt;
+
+
+
+&lt;p&gt;The PowerShell-based Loader is instantly detected and quarantined/deleted upon arrival on the victim’s machine.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-20.-The-threat-was-detected-and-deleted-by-Qualys-EPP.png"&gt;&lt;img alt="" class="wp-image-37913" height="279" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-20.-The-threat-was-detected-and-deleted-by-Qualys-EPP-1070x279.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20: The threat was detected and deleted by Qualys EPP&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Qualys EPP effectively detects and disinfects malicious LNK files, preventing their execution (Fig.24). To enhance protection, ensure PowerShell logging, AMSI monitoring, and a robust EDR solution are in place. Early detection remains critical in stopping threats like Remcos.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-21.-Qualys-EDR-Process-Tree.png"&gt;&lt;img alt="" class="wp-image-37914" height="504" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-21.-Qualys-EDR-Process-Tree-1070x504.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 21: Qualys EDR Process Tree&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="advanced-hunting-queries"&gt;&lt;a&gt;&lt;strong&gt;Advanced Hunting Queries&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys EDR includes behavioral detections to identify threats like Loader and Remcos RAT. Customers can use the following Threat Hunting QQLs to search their environment for related TTPs.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Query (QQL)&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Highly malicious File Detection.&lt;/td&gt;&lt;td&gt;platform:Windows and event.isdetectedbyepp:true and type:`FILE` and indicator.severityscore &amp;gt;=4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Registry Run Key Modification in the last 2 days.&lt;/td&gt;&lt;td&gt;type:registry and platform:&amp;#8217;windows&amp;#8217; and action:&amp;#8217;write&amp;#8217; and registry.key:&amp;#8221;SOFTWARE\Microsoft\Windows\CurrentVersion\run&amp;#8221; and event.dateTime:[now-2d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Network connections by PowerShell in the last 3 days on Non-standard ports 2025.&lt;/td&gt;&lt;td&gt;platform:&amp;#8217;windows&amp;#8217; and type:`network` and action:`established` and parent.name:&amp;#8221;Powershell.exe&amp;#8221; and not (network.remote.address.port:443 or network.remote.address.port:80)&amp;nbsp; and event.dateTime:[now-3d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Highly suspicious HTML file detection in last 3 days.&lt;/td&gt;&lt;td&gt;platform:&amp;#8217;windows&amp;#8217; and parent.name:&amp;#8221;mshta.exe&amp;#8221; and type:`file` and file.type:&amp;#8221;html&amp;#8221; and indicator.severityscore &amp;gt;=4 and event.dateTime:[now-3d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The emergence of this PowerShell-based shellcode loader underscores a broader trend: threat actors are increasingly relying on fileless techniques to bypass traditional detection mechanisms. By executing malicious code in memory and leveraging trusted system binaries like &lt;code&gt;mshta.exe&lt;/code&gt;, adversaries minimize their on-disk footprint—leaving little forensic residue to trace.&lt;/p&gt;
+
+
+
+&lt;p&gt;Remcos RAT exemplifies this evolution. It’s a stealthy, PowerShell-based malware that uses advanced evasion techniques to operate entirely in memory, avoiding most conventional security tools. Delivered via weaponized LNK files in ZIP archives and triggered using proxy execution, it exploits native system behavior for persistence and remote control.&lt;/p&gt;
+
+
+
+&lt;p&gt;This reinforces the need to monitor key attack surfaces—LNK file execution, MSHTA abuse, suspicious registry changes, and anomalous PowerShell activity. Foundational controls like PowerShell logging, AMSI monitoring, and robust EDR are essential to detect malicious behavior before it escalates. Early detection is critical to stopping threats like Remcos.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;a&gt;&lt;strong&gt;MITRE TTPs:&lt;/strong&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Technique&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;ID&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Registry Run Keys / Startup Folder&lt;/td&gt;&lt;td&gt;T1547.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;System Binary Proxy Execution: Mshta&lt;/td&gt;&lt;td&gt;T1218.005&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ingress Tool Transfer&lt;/td&gt;&lt;td&gt;T1105&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Credentials from Password Stores: Credentials from Web Browsers&lt;/td&gt;&lt;td&gt;T1555.003&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Screen Capture&lt;/td&gt;&lt;td&gt;T1513&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Video Capture&lt;/td&gt;&lt;td&gt;T1512&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Archive Collected Data&lt;/td&gt;&lt;td&gt;T1560&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Scripting Interpreter: PowerShell&lt;/td&gt;&lt;td&gt;T1059.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Process Injection: Process Hollowing&lt;/td&gt;&lt;td&gt;T1055.012&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information&lt;/td&gt;&lt;td&gt;T1027&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Automated Exfiltration&lt;/td&gt;&lt;td&gt;T1020&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Keylogging&lt;/td&gt;&lt;td&gt;T1417.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Binary Padding&lt;/td&gt;&lt;td&gt;T1027.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Abuse Elevation Control Mechanism: Bypass User Account Control&lt;/td&gt;&lt;td&gt;T1548.002&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information: Dynamic API Resolution&lt;/td&gt;&lt;td&gt;T1027.007&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information: Encrypted/Encoded File&lt;/td&gt;&lt;td&gt;T1027.013&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;a&gt;&lt;strong&gt;Indicators of Compromise:&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Zip file&lt;/td&gt;&lt;td&gt;bf32ff64ac0cfee67f4b2df27733576a&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Remcos (PE)&lt;/td&gt;&lt;td&gt;b63178f562b948b850f4676d4b8db1c0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;24.ps1&lt;/td&gt;&lt;td&gt;dd7f049a4b573cc48e0412902a2c14b5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xlab22.hta&lt;/td&gt;&lt;td&gt;1b26f7e369e39312e4fcbc993d483b17&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;readysteaurants[.]com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;https://mytaxclientcopy[.]com/xlab22.hta&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;IP&lt;/td&gt;&lt;td&gt;193(.)142(.)146(.)101, 162(.)254(.)39(.)129&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Mutex&lt;/td&gt;&lt;td&gt;Rmc-7SY4AX&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;For defenders, this emphasizes the urgency of shifting from static indicators and legacy detection approaches to more dynamic behavioral analytics. Monitoring for abnormal parent-child process relationships, PowerShell activity outside of administrative tasks, and signs of proxy execution is critical to detecting these stealthy intrusions early.&lt;/p&gt;
+
+
+
+&lt;p&gt;Ultimately, the ability to detect and respond to fileless attacks isn’t just about having the right tools. It’s about understanding how attackers think, how they chain together seemingly benign components, and how they abuse trust to operate in plain sight. Staying ahead requires not just technology, but threat-informed vigilance and a proactive security mindset.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Contributors&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Prashant Pawar, Lead, Threat Research Engineer, Qualys.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37888</guid><category>Vulnerabilities and Threat Research</category><category>PowerShell</category><category>Qualys Threat Research</category><category>Remcos RAT</category><category>vulnerabilities</category></item><item><title>Innovations in AI Reasoning Models Will Slow Within 1 Year, Warns Analyst</title><link>https://www.techrepublic.com/article/news-ai-reasoning-models-scale/</link><description>As AI labs scale reasoning models in secret, an analyst warns of looming compute bottlenecks that could slow future breakthroughs across the industry.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4306904</guid><category>Artificial Intelligence</category><category>Google</category><category>Innovation</category><category>International</category><category>News</category><category>ai</category><category>ai reasoning models</category><category>ai training</category><category>artificial intelligence</category><category>deepseek r1</category><category>epoch</category><category>frontier ai models</category><category>google gemini 2.0</category><category>ibm granite 2.0</category><category>openai o3</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, May 15th, 2025 https://isc.sans.edu/podcastdetail/9452</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Microsoft Lays Off 3% of Workers, Focuses on a Leaner Management Tier</title><link>https://www.techrepublic.com/article/news-microsoft-layoffs-may-25/</link><description>Microsoft trims layers of management to boost team agility, with business units like Xbox and LinkedIn also affected by the organizational changes.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4306887</guid><category>Artificial Intelligence</category><category>CXO</category><category>International</category><category>Microsoft</category><category>News</category><category>Tech &amp; Work</category><category>generative ai</category><category>it careers</category><category>it industry</category><category>it jobs</category><category>layoffs</category><category>linkedin</category><category>software engineering</category><category>xbox</category></item><item><title>Sales Teams Struggle With Using AI – A CEO Tells Us Why</title><link>https://www.techrepublic.com/article/news-sales-industry-generative-ai-breakthrough/</link><description>Many sales personnel struggle with applying generative AI to specific tasks or have to prompt repeatedly to generate a useful answer, according to a report from Breakthrough.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4306742</guid><category>Artificial Intelligence</category><category>CXO</category><category>Innovation</category><category>International</category><category>News</category><category>ai investments</category><category>artificial intelligence</category><category>breakthrough</category><category>generative ai</category><category>privacy</category><category>sales</category><category>tech investments</category></item><item><title>CISA Releases Twenty-Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/05/15/cisa-releases-twenty-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released twenty-two Industrial Control Systems (ICS) advisories on May 15, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ICSA-25-135-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-01"&gt;Siemens RUGGEDCOM APE1808 Devices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-02"&gt;Siemens INTRALOG WMS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-03"&gt;Siemens BACnet ATEC Devices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-04"&gt;Siemens Desigo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-05 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-05"&gt;Siemens SIPROTEC and SICAM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-06 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-06"&gt;Siemens Teamcenter Visualization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-07 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-07"&gt;Siemens IPC RS-828A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-08 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-08"&gt;Siemens VersiCharge AC Series EV Chargers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-09 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-09"&gt;Siemens User Management Component (UMC)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-10 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-10"&gt;Siemens OZW Web Servers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-11 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-11"&gt;Siemens Polarion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-12 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-12"&gt;Siemens SIMATIC PCS neo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-13 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-13"&gt;Siemens SIRIUS 3SK2 Safety Relays and 3RK3 Modular Safety Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-14 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-14"&gt;Siemens APOGEE PXC and TALON TC Series&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-15 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-15"&gt;Siemens Mendix OIDC SSOICSA-25-135-16 Siemens MS/TP Point Pickup Module&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-16 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-16"&gt;Siemens MS/TP Point Pickup Module&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-17 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-17"&gt;Siemens RUGGEDCOM ROX II&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-18 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-18"&gt;Siemens SCALANCE LPE9403&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-19 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-19"&gt;ECOVACS DEEBOT Vacuum and Base Station&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-135-20 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-135-20"&gt;Schneider Electric EcoStruxure Power Build Rapsody&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;ICSA-24-135-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-135-04"&gt;Mitsubishi Electric Multiple FA Engineering Software Products (Update C)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-24-200-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-200-01"&gt;Mitsubishi Electric MELSOFT MaiLab and MELSOFT VIXIO (Update A)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23385</guid></item><item><title>ISC Stormcast For Thursday, May 15th, 2025 https://isc.sans.edu/podcastdetail/9452, (Thu, May 15th)</title><link>https://isc.sans.edu/diary/rss/31954</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31954</guid></item><item><title>AI-Generated Law</title><link>https://www.schneier.com/blog/archives/2025/05/ai-generated-law.html</link><description>&lt;p&gt;On April 14, Dubai&amp;#8217;s ruler, Sheikh Mohammed bin Rashid Al Maktoum, &lt;a href="https://x.com/HHShkMohd/status/1911795135039635659"&gt;announced&lt;/a&gt; that the United Arab Emirates would begin using &lt;a href="https://x.com/UAEmediaoffice/status/1911809411577684257"&gt;artificial intelligence&lt;/a&gt; to help write its laws. A new Regulatory Intelligence Office would use the technology to &amp;#8220;regularly suggest updates&amp;#8221; to the law and &amp;#8220;accelerate the issuance of legislation by up to 70%.&amp;#8221; AI would create a &amp;#8220;comprehensive legislative plan&amp;#8221; spanning local and federal law and would be connected to public administration, the courts, and global policy trends.&lt;/p&gt;
 &lt;p&gt;The plan was widely greeted with astonishment. This sort of AI legislating would be a global &amp;#8220;...&lt;/p&gt;</description><content:encoded>&lt;p&gt;On April 14, Dubai&amp;#8217;s ruler, Sheikh Mohammed bin Rashid Al Maktoum, &lt;a href="https://x.com/HHShkMohd/status/1911795135039635659"&gt;announced&lt;/a&gt; that the United Arab Emirates would begin using &lt;a href="https://x.com/UAEmediaoffice/status/1911809411577684257"&gt;artificial intelligence&lt;/a&gt; to help write its laws. A new Regulatory Intelligence Office would use the technology to &amp;#8220;regularly suggest updates&amp;#8221; to the law and &amp;#8220;accelerate the issuance of legislation by up to 70%.&amp;#8221; AI would create a &amp;#8220;comprehensive legislative plan&amp;#8221; spanning local and federal law and would be connected to public administration, the courts, and global policy trends.&lt;/p&gt;
 &lt;p&gt;The plan was widely greeted with astonishment. This sort of AI legislating would be a global &amp;#8220;&lt;a href="https://www.ft.com/content/9019cd51-2b55-4175-81a6-eafcf28609c3"&gt;first&lt;/a&gt;,&amp;#8221; with the potential to go &amp;#8220;&lt;a href="https://www.zmescience.com/future/uae-ai-lawmakers/"&gt;horribly wrong&lt;/a&gt;.&amp;#8221; Skeptics fear that the AI model will make up facts or fundamentally fail to understand societal tenets such as fair treatment and justice when influencing law.&lt;/p&gt;
 &lt;p&gt;The truth is, the UAE&amp;#8217;s idea of AI-generated law is not really a first and not necessarily terrible.&lt;/p&gt;
@@ -3637,7 +4155,7 @@ Senior handler&lt;br /&gt;
 
 
 &lt;p&gt;&lt;a href="https://www.webroot.com/blog/2025/02/21/is-your-whole-digital-life-protected-4-ways-to-address-common-vulnerabilities/"&gt;&lt;strong&gt;Protecting Your Digital Life&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/05/09/mobile-security-matters-protecting-your-phone-from-text-scams/" rel="nofollow"&gt;Mobile security matters: Protecting your phone from text scams&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33855</guid><category>Threat Lab</category><category>text scam</category><category>texting scam</category></item><item><title>Google’s Gemini 2.5 Pro Preview (I/O Edition) Outperforms OpenAI, DeepSeek Models</title><link>https://www.techrepublic.com/article/news-google-gemini-2-5-pro-preview/</link><description>The team behind Google’s Gemini 2.5 Pro has released their highly anticipated update of the Preview (I/O Edition) early in preparation for the company’s annual developer conference.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305726</guid><category>Artificial Intelligence</category><category>Developer</category><category>Google</category><category>News</category><category>ai development</category><category>anthropic</category><category>artificial intelligence</category><category>deepseek</category><category>developers</category><category>google gemini 2.5 pro preview</category><category>openai</category></item><item><title>IBM Study of AI ROI: Lackluster Results, Though CEOs Remain Committed</title><link>https://www.techrepublic.com/article/news-ibm-study-ai-roi/</link><description>IBM’s Gary Cohn said that “leaders who fail to use AI and their own data are effectively choosing not to compete.” Find out what is getting in the way of AI paying off.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4305703</guid><category>Artificial Intelligence</category></item><item><title>Congratulations to the Top MSRC 2025 Q1 Security Researchers!</title><link>https://msrc.microsoft.com/blog/2025/05/congratulations-to-the-top-msrc-2025-q1-security-researchers/</link><description>Congratulations to all the researchers recognized in this quarter’s Microsoft Researcher Recognition Program leaderboard! Thank you to everyone for your hard work and continued partnership to secure customers.
+&lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/05/09/mobile-security-matters-protecting-your-phone-from-text-scams/" rel="nofollow"&gt;Mobile security matters: Protecting your phone from text scams&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.webroot.com/blog/?p=33855</guid><category>Threat Lab</category><category>text scam</category><category>texting scam</category></item><item><title>Congratulations to the Top MSRC 2025 Q1 Security Researchers!</title><link>https://msrc.microsoft.com/blog/2025/05/congratulations-to-the-top-msrc-2025-q1-security-researchers/</link><description>Congratulations to all the researchers recognized in this quarter’s Microsoft Researcher Recognition Program leaderboard! Thank you to everyone for your hard work and continued partnership to secure customers.
 The top three researchers of the 2025 Q1 Security Researcher Leaderboard are 0x140ce, VictorV, Vaisha Bernard of Eye Security!
 Check out the full list of researchers recognized this quarter here.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/05/congratulations-to-the-top-msrc-2025-q1-security-researchers/</guid></item><item><title>Maritime Cybersecurity: Threats &amp; Regulations Loom</title><link>https://www.trendmicro.com/en_us/research/25/e/maritime-cybersecurity-threats-regulations.html</link><description>This review summarizes the key insights shared during the webinar held on April 9th, which featured maritime cybersecurity experts discussing the growing challenges facing ports, logistics operations, and global supply chains.</description><guid isPermaLink="false">urn:uuid:6c643e13-9004-7c7e-23f4-aeb1c160bef8</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>Inside LockBit: Defense Lessons from the Leaked LockBit Negotiations</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The LockBit ransomware gang recently suffered a significant data breach. Their dark web affiliate panels were defaced with the message &amp;#8220;Don&amp;#8217;t do crime CRIME IS BAD xoxo from Prague,&amp;#8221; linking to a MySQL database dump. This archive contains a SQL file from LockBit&amp;#8217;s affiliate panel database that includes twenty tables, notably including a &amp;#8216;btc_addresses&amp;#8217; table [&amp;#8230;]</description><content:encoded>&lt;p&gt;The LockBit ransomware gang recently suffered a significant data breach. Their dark web affiliate panels were defaced with the message &amp;#8220;Don&amp;#8217;t do crime CRIME IS BAD xoxo from Prague,&amp;#8221; linking to a MySQL database dump. This archive contains a SQL file from LockBit&amp;#8217;s affiliate panel database that includes twenty tables, notably including a &amp;#8216;btc_addresses&amp;#8217; table with 59,975 unique bitcoin addresses and a &amp;#8216;chats&amp;#8217; table containing over 4,400 victim negotiation messages from December 2024 to the end of April 2025.&lt;/p&gt;
 
@@ -9881,189 +10399,7 @@ Organizations should refine their threat modeling processes to explicitly accoun
 &lt;p&gt;On February 6, someone &lt;a href="https://web.archive.org/web/20250423135719/https://github.com/markoelez/async-ip-rotator/issues/1" rel="noopener" target="_blank"&gt;posted a lengthy and detailed critique&lt;/a&gt; of Elez&amp;#8217;s code on the GitHub &amp;#8220;issues&amp;#8221; page for async-ip-rotator, calling it &amp;#8220;insecure, unscalable and a fundamental engineering failure.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;&amp;#8220;If this were a side project, it would just be bad code,&amp;#8221; the reviewer wrote. &amp;#8220;But if this is representative of how you build production systems, then there are much larger concerns. This implementation is fundamentally broken, and if anything similar to this is deployed in an environment handling sensitive data, it should be audited immediately.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;Further reading: &lt;a href="https://whistlebloweraid.org/wp-content/uploads/2025/04/2025_0414_Berulis-Disclosure-with-Exhibits.s.pdf" rel="noopener" target="_blank"&gt;Berulis’s complaint&lt;/a&gt; (PDF).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update 7:06 p.m. ET&lt;/strong&gt;: Elez&amp;#8217;s code repo was deleted after this story was published. An archived version of it &lt;a href="https://github.com/ricci/async-ip-rotator" rel="noopener" target="_blank"&gt;is here&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71075</guid><category>A Little Sunshine</category><category>DOGE</category><category>The Coming Storm</category><category>async-ip-rotator</category><category>Browserless</category><category>Daniel J. Berulis</category><category>Department of Government Efficiency</category><category>Department of Health and Human Services</category><category>Ge0rg3</category><category>GitHub</category><category>Integuru</category><category>Labor Department</category><category>Marko Elez</category><category>National Labor Relations Board</category><category>Politico</category><category>The Wall Street Journal</category></item><item><title>Cybersecurity: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/cybersecurity-benefits-and-best-practices/</link><description>It’s vital that business leaders protect their organization from cybercriminal activity. Constantly Updated — The download contains the latest and most accurate details. Boost Your Cybersecurity — This nine-page PDF looks at incident response, sensitive information, benefits of investing, and more. Expert Guidance — Written by Ray Fernandez through 18 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/cybersecurity-benefits-and-best-practices/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>NordPass vs 1Password: Features, Security, and Pricing</title><link>https://www.techrepublic.com/article/nordpass-vs-1password/</link><description>NordPass and 1Password are two popular password managers. Find out the key differences between them to determine which one is right for you.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4206041</guid><category>Cloud Security</category><category>Software</category><category>1Password</category><category>nordpass</category><category>password manager</category></item><item><title>The Verizon 2025 Data Breach Investigations Report (DBIR): Six Trends You Can’t Ignore</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary The 2025 Data Breach Investigations Report reveals critical trends that security teams and leaders must address to protect their organizations against evolving cyber threats. Once again, Qualys contributed to this report to help unpack critical patterns and equip organizations with the knowledge to bolster security and stay ahead of future threats. Key findings [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="executive-summary"&gt;&lt;strong&gt;Executive Summary&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The &lt;a href="https://www.verizon.com/business/resources/reports/dbir/?cmp=smo:ivz:aw:vbg:btl_org:dbir-partner-launch&amp;amp;utm_medium=smo&amp;amp;utm_source=ivz&amp;amp;utm_campaign=btl_org&amp;amp;utm_content=aw:vbg:dbir-partner-launch"&gt;2025 Data Breach Investigations Report&lt;/a&gt; reveals critical trends that security teams and leaders must address to protect their organizations against evolving cyber threats. &lt;a href="https://blog.qualys.com/qualys-insights/2024/05/01/verizons-2024-dbir-unpacked-from-ransomware-evolution-to-supply-chain-vulnerabilities"&gt;Once again&lt;/a&gt;, Qualys contributed to this report to help unpack critical patterns and equip organizations with the knowledge to bolster security and stay ahead of future threats.&lt;/p&gt;
-
-
-
-&lt;p&gt;Key findings show that the exploitation of vulnerabilities as the initial access vector for breaches has seen another year of growth—reaching 20%. Edge device vulnerabilities grew nearly eight-fold, while ransomware presence increased by 37%. Third-party involvement in breaches doubled to 30%, and espionage-motivated breaches rose significantly to 17%. Additionally, 46% of compromised systems with corporate credentials were non-managed devices, highlighting BYOD risks and the importance of robust asset management. This blog explores the implications of these findings.&lt;/p&gt;
-
-
-
-&lt;span id="more-37679"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="vulnerability-management-the-growing-challenge"&gt;&lt;strong&gt;Vulnerability Management: The Growing Challenge&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Exploiting vulnerabilities as an initial access vector has grown significantly, reaching 20% of breaches analyzed in the 2025 DBIR across 12,195 confirmed data breaches. This represents a 34% increase from the previous year and approaches the frequency of credential abuse (22%).&lt;/p&gt;
-
-
-
-&lt;p&gt;This trend demands immediate attention from security teams, particularly as Edge devices and VPNs now represent 22% of vulnerability exploitation targets, an almost eight-fold increase from just 3% in 2024.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37682" height="639" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/Screenshot-2025-04-22-at-5.35.36 PM-1070x639.png" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Organizations must leverage a risk-based approach and prioritize vulnerability scanning and patching for internet-facing systems. The data clearly shows that attackers follow the path of least resistance, targeting vulnerable edge devices that provide direct access to internal networks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="patch-management-a-race-against-time"&gt;&lt;strong&gt;Patch Management: A Race Against Time&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;According to the report, the median time for organizations to fully remediate edge device vulnerabilities was 32 days, while the median time for these vulnerabilities to be mass exploited was zero days—meaning the analyzed vulnerabilities were added to the CISA KEV catalog on or before their CVE publication. This timing gap represents a critical window of exposure that organizations must work to close.&lt;/p&gt;
-
-
-
-&lt;p&gt;Security teams should:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Implement asset management for internal and external assets to gather a complete inventory of their hosts, including EOLs&lt;/li&gt;
-
-
-
-&lt;li&gt;Deploy broad vulnerability detection capabilities&lt;/li&gt;
-
-
-
-&lt;li&gt;Leverage risk-based prioritization for findings&lt;/li&gt;
-
-
-
-&lt;li&gt;Implement automated patch management workflows&lt;/li&gt;
-
-
-
-&lt;li&gt;Prioritize edge device vulnerabilities&lt;/li&gt;
-
-
-
-&lt;li&gt;Consider compensating controls and alternative mitigation strategies when immediate patching isn&amp;#8217;t possible&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="ransomware-evolving-tactics-and-economics"&gt;&lt;strong&gt;Ransomware: Evolving Tactics and Economics&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Ransomware presence in analyzed breaches grew by 37%, appearing in 44% of all breaches reviewed (up from 32%). However, the median ransom payment decreased to $115,000 from $150,000 the previous year, with 64% of victims refusing to pay (up from 50% two years ago).&lt;/p&gt;
-
-
-
-&lt;p&gt;Small organizations are disproportionately affected by ransomware. While larger organizations experience ransomware in 39% of breaches, SMBs face ransomware in a staggering 88% of breach incidents.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37681" height="791" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/Screenshot-2025-04-22-at-5.32.10 PM-1070x791.png" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Organizations should implement a comprehensive vulnerability management approach that:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Integrates threat intelligence feeds to identify emerging ransomware variants and tactics&lt;/li&gt;
-
-
-
-&lt;li&gt;Deploys advanced detection mechanisms that specifically flag the association of a vulnerability with known ransomware groups&lt;/li&gt;
-
-
-
-&lt;li&gt;Utilizes risk-based prioritization to remediate vulnerabilities that ransomware operators actively exploit&lt;/li&gt;
-
-
-
-&lt;li&gt;Deploys next-generation endpoint detection and response (EDR) solutions capable of detecting ransomware-specific behaviors&lt;/li&gt;
-
-
-
-&lt;li&gt;Develops incident response playbooks that address data exfiltration and extortion scenarios common in modern ransomware attacks&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="cloud-and-application-security-the-third-party-challenge"&gt;&lt;strong&gt;Cloud and Application Security: The Third-Party Challenge&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Third-party involvement in breaches doubled from 15% to 30%, with credential reuse in third-party environments becoming increasingly common. Research found the median time to remediate leaked secrets discovered in GitHub repositories was 94 days.&lt;/p&gt;
-
-
-
-&lt;p&gt;Espionage-motivated breaches grew significantly to 17%, with these attackers leveraging vulnerability exploitation as an initial access vector 70% of the time. Interestingly, approximately 28% of incidents involving state-sponsored actors had a financial motive.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-37683" height="535" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/04/Screenshot-2025-04-22-at-5.36.57 PM-1070x535.png" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Cloud and application security programs must evolve to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Implement automated secret scanning, 24-hour credential rotation processes, and multi-factor authentication to secure credentials in third-party environments&lt;/li&gt;
-
-
-
-&lt;li&gt;Establish comprehensive third-party security assessments and reduce critical vulnerability remediation timeframes&lt;/li&gt;
-
-
-
-&lt;li&gt;Implement continuous monitoring of third-party security postures&lt;/li&gt;
-
-
-
-&lt;li&gt;Utilize solutions for unified risk visibility across cloud infrastructure and implement continuous scanning with prioritized remediation based on business criticality&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="compliance-and-risk-management"&gt;&lt;strong&gt;Compliance and Risk Management&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Analysis of infostealer malware credential logs revealed that 30% of compromised systems can be identified as enterprise-licensed devices. However, 46% of compromised systems with corporate logins were non-managed devices hosting both personal and business credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;By correlating info stealer logs with ransomware victim data, the DBIR report found that 54% of ransomware victims had their domains appear in credential dumps, and 40% had corporate email addresses in compromised credentials.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="data-protection-and-emerging-threats"&gt;&lt;strong&gt;Data Protection and Emerging Threats&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;GenAI presents increasing risks, with 15% of employees routinely accessing GenAI systems on corporate devices. Among these, 72% used non-corporate emails, and 17% used corporate emails without integrated authentication systems. In addition, analysis indicates that &amp;#8220;synthetically generated text in malicious emails has doubled over the past two years,&amp;#8221; showing how threat actors are adopting AI technologies.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.verizon.com/business/resources/reports/dbir/?cmp=smo:ivz:aw:vbg:btl_org:dbir-partner-launch&amp;amp;utm_medium=smo&amp;amp;utm_source=ivz&amp;amp;utm_campaign=btl_org&amp;amp;utm_content=aw:vbg:dbir-partner-launch"&gt;The 2025 DBIR findings&lt;/a&gt;&lt;a&gt;&lt;/a&gt; emphasize the need for a holistic security approach that prioritizes vulnerability management while addressing third-party risks and evolving ransomware tactics. Security teams can build more resilient programs that protect their organizations against the most prevalent attack vectors by focusing on these key areas.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://blog.qualys.com/"&gt;Follow our blog&lt;/a&gt; to get the latest from the Qualys Threat Research Unit (TRU).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37679</guid><category>Qualys Insights</category><category>Verizon DBIR</category></item><item><title>The danger of data breaches — what you really need to know</title><link>https://www.webroot.com/blog/2025/04/22/the-danger-of-data-breaches-what-you-really-need-to-know/</link><description>&lt;p&gt;In today’s digital world, your personal data is like cold hard cash, and that’s why cyberthieves are always looking for ways to steal it. Whether it’s an email address, a credit card number, or even medical records, your personal information is incredibly valuable in the wrong hands. For hackers, breaking into a company database is [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update 7:06 p.m. ET&lt;/strong&gt;: Elez&amp;#8217;s code repo was deleted after this story was published. An archived version of it &lt;a href="https://github.com/ricci/async-ip-rotator" rel="noopener" target="_blank"&gt;is here&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71075</guid><category>A Little Sunshine</category><category>DOGE</category><category>The Coming Storm</category><category>async-ip-rotator</category><category>Browserless</category><category>Daniel J. Berulis</category><category>Department of Government Efficiency</category><category>Department of Health and Human Services</category><category>Ge0rg3</category><category>GitHub</category><category>Integuru</category><category>Labor Department</category><category>Marko Elez</category><category>National Labor Relations Board</category><category>Politico</category><category>The Wall Street Journal</category></item><item><title>Cybersecurity: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/cybersecurity-benefits-and-best-practices/</link><description>It’s vital that business leaders protect their organization from cybercriminal activity. Constantly Updated — The download contains the latest and most accurate details. Boost Your Cybersecurity — This nine-page PDF looks at incident response, sensitive information, benefits of investing, and more. Expert Guidance — Written by Ray Fernandez through 18 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/cybersecurity-benefits-and-best-practices/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>NordPass vs 1Password: Features, Security, and Pricing</title><link>https://www.techrepublic.com/article/nordpass-vs-1password/</link><description>NordPass and 1Password are two popular password managers. Find out the key differences between them to determine which one is right for you.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4206041</guid><category>Cloud Security</category><category>Software</category><category>1Password</category><category>nordpass</category><category>password manager</category></item><item><title>The danger of data breaches — what you really need to know</title><link>https://www.webroot.com/blog/2025/04/22/the-danger-of-data-breaches-what-you-really-need-to-know/</link><description>&lt;p&gt;In today’s digital world, your personal data is like cold hard cash, and that’s why cyberthieves are always looking for ways to steal it. Whether it’s an email address, a credit card number, or even medical records, your personal information is incredibly valuable in the wrong hands. For hackers, breaking into a company database is [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/04/22/the-danger-of-data-breaches-what-you-really-need-to-know/" rel="nofollow"&gt;The danger of data breaches — what you really need to know&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;In today’s digital world, your personal data is like cold hard cash, and that’s why cyberthieves are always looking for ways to steal it. Whether it’s an email address, a credit card number, or even medical records, your &lt;a href="https://www.webroot.com/in/en/resources/glossary/what-is-personally-identifiable-information"&gt;personal information&lt;/a&gt; is incredibly valuable in the wrong hands.&lt;/p&gt;
 
 
@@ -10664,13 +11000,7 @@ walaa.20185492[@]buc.edu.eg
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/"&gt;CVE-2025-24054, NTLM Exploit in the Wild&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31376</guid><category>Check Point Research Publications</category></item><item><title>LastPass Review: Is it Still Safe and Reliable in 2025?</title><link>https://www.techrepublic.com/article/lastpass-review/</link><description>LastPass’ recent data breaches make it hard to recommend as a viable password manager in 2025. Learn more in our full review below.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4199754</guid><category>Cloud Security</category><category>Security</category><category>password managers</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/04/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2021-20035" rel="noreferrer noopener" target="_blank" title="CVE-2021-20035"&gt;CVE-2021-20035&lt;/a&gt;&amp;nbsp;SonicWall SMA100 Appliances OS Command Injection Vulnerability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>CISA Releases Guidance on Credential Risks Associated with Potential Legacy Oracle Cloud Compromise</title><link>https://www.cisa.gov/news-events/alerts/2025/04/16/cisa-releases-guidance-credential-risks-associated-potential-legacy-oracle-cloud-compromise</link><description>&lt;p&gt;CISA is aware of public reporting regarding potential unauthorized access to a legacy Oracle cloud environment. While the scope and impact remains unconfirmed, the nature of the reported activity presents potential risk to organizations and individuals, particularly where credential material may be exposed, reused across separate, unaffiliated systems, or embedded (i.e., hardcoded into scripts, applications, infrastructure templates, or automation tools). When credential material is embedded, it is difficult to discover and can enable long-term unauthorized access if exposed.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/"&gt;CVE-2025-24054, NTLM Exploit in the Wild&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31376</guid><category>Check Point Research Publications</category></item><item><title>LastPass Review: Is it Still Safe and Reliable in 2025?</title><link>https://www.techrepublic.com/article/lastpass-review/</link><description>LastPass’ recent data breaches make it hard to recommend as a viable password manager in 2025. Learn more in our full review below.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4199754</guid><category>Cloud Security</category><category>Security</category><category>password managers</category></item><item><title>CISA Releases Guidance on Credential Risks Associated with Potential Legacy Oracle Cloud Compromise</title><link>https://www.cisa.gov/news-events/alerts/2025/04/16/cisa-releases-guidance-credential-risks-associated-potential-legacy-oracle-cloud-compromise</link><description>&lt;p&gt;CISA is aware of public reporting regarding potential unauthorized access to a legacy Oracle cloud environment. While the scope and impact remains unconfirmed, the nature of the reported activity presents potential risk to organizations and individuals, particularly where credential material may be exposed, reused across separate, unaffiliated systems, or embedded (i.e., hardcoded into scripts, applications, infrastructure templates, or automation tools). When credential material is embedded, it is difficult to discover and can enable long-term unauthorized access if exposed.&lt;/p&gt;
 &lt;p&gt;The compromise of credential material, including usernames, emails, passwords, authentication tokens, and encryption keys, can pose significant risk to enterprise environments. Threat actors routinely harvest and weaponize such credentials to:&amp;nbsp;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Escalate privileges and move laterally within networks.&lt;/li&gt;
@@ -10712,7 +11042,13 @@ walaa.20185492[@]buc.edu.eg
 &lt;p&gt;The information in this report is being provided “as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.&amp;nbsp;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid isPermaLink="false">/node/23259</guid></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Funding Expires for Key Cyber Vulnerability Database</title><link>https://krebsonsecurity.com/2025/04/funding-expires-for-key-cyber-vulnerability-database/</link><description>A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization MITRE warned today that its contract to maintain the Common Vulnerabilities and Exposures (CVE) program -- which is traditionally funded each year by the Department of Homeland Security -- expires on April 16.</description><content:encoded>&lt;p&gt;A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization &lt;strong&gt;MITRE&lt;/strong&gt; warned today that its contract to maintain the &lt;strong&gt;Common Vulnerabilities and Exposures&lt;/strong&gt; (CVE) program &amp;#8212; which is traditionally funded each year by the Department of Homeland Security &amp;#8212; expires on April 16.&lt;/p&gt;
+&lt;/div&gt;</description><guid isPermaLink="false">/node/23259</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/04/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2021-20035" rel="noreferrer noopener" target="_blank" title="CVE-2021-20035"&gt;CVE-2021-20035&lt;/a&gt;&amp;nbsp;SonicWall SMA100 Appliances OS Command Injection Vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23257</guid></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>IT Leader’s Guide to Malvertising</title><link>https://www.techrepublic.com/resource-library/guide/malvertising/</link><description>Protect your business and learn about the malicious world of malvertising. Constantly Updated — The download contains the latest and most accurate details. Improve Your Knowledge — This 11-page PDF explains how malvertisements work, the difference between pre-click and post-click ones, and more. Expert Guidance — Written by Kara Sherrer through 22 hours of research, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/malvertising-cybersecurity-threat/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Funding Expires for Key Cyber Vulnerability Database</title><link>https://krebsonsecurity.com/2025/04/funding-expires-for-key-cyber-vulnerability-database/</link><description>A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization MITRE warned today that its contract to maintain the Common Vulnerabilities and Exposures (CVE) program -- which is traditionally funded each year by the Department of Homeland Security -- expires on April 16.</description><content:encoded>&lt;p&gt;A critical resource that cybersecurity professionals worldwide rely on to identify, mitigate and fix security vulnerabilities in software and hardware is in danger of breaking down. The federally funded, non-profit research and development organization &lt;strong&gt;MITRE&lt;/strong&gt; warned today that its contract to maintain the &lt;strong&gt;Common Vulnerabilities and Exposures&lt;/strong&gt; (CVE) program &amp;#8212; which is traditionally funded each year by the Department of Homeland Security &amp;#8212; expires on April 16.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71016" style="width: 752px;"&gt;&lt;img alt="" class=" wp-image-71016" height="942" src="https://krebsonsecurity.com/wp-content/uploads/2025/04/mitreletter.png" width="742" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71016"&gt;A letter from MITRE vice president Yosry Barsoum, warning that the funding for the CVE program will expire on April 16, 2025.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Tens of thousands of security flaws in software are found and reported every year, and these vulnerabilities are eventually assigned their own unique CVE tracking number (e.g. &lt;a href="https://www.cve.org/CVERecord?id=CVE-2024-43573" rel="noopener" target="_blank"&gt;CVE-2024-43573&lt;/a&gt;, which is a &lt;strong&gt;Microsoft Windows&lt;/strong&gt; bug that Redmond patched last year).&lt;/p&gt;
 &lt;p&gt;There are hundreds of organizations &amp;#8212; known as &lt;strong&gt;CVE Numbering Authorities&lt;/strong&gt; (CNAs) &amp;#8212; that are authorized by MITRE to bestow these CVE numbers on newly reported flaws. Many of these CNAs are country and government-specific, or tied to individual software vendors or vulnerability disclosure platforms (a.k.a. bug bounty programs).&lt;/p&gt;
@@ -12795,15 +13131,7 @@ This integration allows organizations to gain deep visibility into cloud network
 &lt;/ul&gt;
 &lt;p&gt;Organizations should report incidents and anomalous activity to CISA’s 24/7 Operations Center at Report@cisa.gov or (888) 282-0870. When available, please include the following information regarding the incident: date, time, and location of the incident; type of activity; number of people affected; type of equipment used for the activity; the name of the submitting company or organization; and a designated point of contact.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23218</guid></item><item><title>1-15 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/04/1-15-december-2024-cyber-attacks-timeline/</link><description>In the first timeline of December 2024, I collected 115 events (7.67 events/day) with a threat landscape dominated...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44505</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>December</category><category>Hacktivism</category><category>Ransomware</category><category>Timeline</category></item><item><title>Capacity is Critical in Riskier Threat Landscape</title><link>https://www.trendmicro.com/en_us/research/25/d/threat-landscape-capacity.html</link><description>International cooperation, reporting, and capacity building are critical to enhance cybersecurity defenses. Effective governance in an increasingly risky landscape requires visibility as well as coordinated vulnerability disclosure.</description><guid isPermaLink="false">urn:uuid:8508da8d-687e-5dce-b6b7-88b4a8bbae82</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Payment Fraud Detection and Prevention: Everything to Know</title><link>https://www.techrepublic.com/article/payment-fraud-detection-prevention-guide/</link><description>Here are the most common and latest advancements in payment fraud strategies and payment fraud prevention tools for protecting your business.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300793</guid><category>Cloud Security</category><category>Payments</category><category>Security</category><category>bank fraud</category><category>credit card fraud</category><category>fraud detection</category><category>friendly fraud</category><category>payment fraud</category><category>payments</category><category>phishing</category><category>wire fraud</category></item><item><title>8 Best Enterprise Password Managers</title><link>https://www.techrepublic.com/article/enterprise-password-managers/</link><description>Explore the best enterprise password managers that provide security and centralized control for managing and protecting passwords across your organization.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3949835</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>Enterprise password managers</category></item><item><title>CISA Releases Five Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/04/03/cisa-releases-five-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released five Industrial Control Systems (ICS) advisories on April 3, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ICSA-25-093-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-093-01"&gt;Hitachi Energy RTU500 Series&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-093-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-093-02"&gt;Hitachi Energy TRMTracker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-093-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-093-03"&gt;ABB ACS880 Drives Containing CODESYS RTS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-093-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-093-04"&gt;ABB Low Voltage DC Drives and Power Controllers CODESYS RTS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-093-05 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-093-05"&gt;B&amp;amp;R APROL&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23214</guid></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Happy 21st Birthday, Gmail! Google’s Present to Enterprise Gmail Users: End-to-End Encryption</title><link>https://www.techrepublic.com/article/news-gmail-end-to-end-encryption/</link><description>The new feature is more accessible than S/MIME because it eliminates the need for certificate management.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300462</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category><category>cloud security</category><category>cybersecurity</category><category>encryption</category><category>Gmail</category></item><item><title>31st March – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/31st-march-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 31st March, please download our Threat Intelligence Bulletin.   TOP ATTACKS AND BREACHES New York University (NYU) suffered a cyber-attack which resulted in the exposure of over 3 million applicants&amp;#8217; data, including names, test scores, majors, and zip codes. The hacker redirected NYU&amp;#8217;s website [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23218</guid></item><item><title>1-15 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/04/1-15-december-2024-cyber-attacks-timeline/</link><description>In the first timeline of December 2024, I collected 115 events (7.67 events/day) with a threat landscape dominated...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44505</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>December</category><category>Hacktivism</category><category>Ransomware</category><category>Timeline</category></item><item><title>Capacity is Critical in Riskier Threat Landscape</title><link>https://www.trendmicro.com/en_us/research/25/d/threat-landscape-capacity.html</link><description>International cooperation, reporting, and capacity building are critical to enhance cybersecurity defenses. Effective governance in an increasingly risky landscape requires visibility as well as coordinated vulnerability disclosure.</description><guid isPermaLink="false">urn:uuid:8508da8d-687e-5dce-b6b7-88b4a8bbae82</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Payment Fraud Detection and Prevention: Everything to Know</title><link>https://www.techrepublic.com/article/payment-fraud-detection-prevention-guide/</link><description>Here are the most common and latest advancements in payment fraud strategies and payment fraud prevention tools for protecting your business.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300793</guid><category>Cloud Security</category><category>Payments</category><category>Security</category><category>bank fraud</category><category>credit card fraud</category><category>fraud detection</category><category>friendly fraud</category><category>payment fraud</category><category>payments</category><category>phishing</category><category>wire fraud</category></item><item><title>8 Best Enterprise Password Managers</title><link>https://www.techrepublic.com/article/enterprise-password-managers/</link><description>Explore the best enterprise password managers that provide security and centralized control for managing and protecting passwords across your organization.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3949835</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>Enterprise password managers</category></item><item><title>KeePass Review (2025): Features, Pricing, and Security</title><link>https://www.techrepublic.com/article/keepass-review/</link><description>While its downloadable plugins make it highly customizable, KeePass’ unintuitive interface holds it back from one of our top password manager picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4210498</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>KeePass</category><category>password manager</category></item><item><title>Happy 21st Birthday, Gmail! Google’s Present to Enterprise Gmail Users: End-to-End Encryption</title><link>https://www.techrepublic.com/article/news-gmail-end-to-end-encryption/</link><description>The new feature is more accessible than S/MIME because it eliminates the need for certificate management.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4300462</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category><category>cloud security</category><category>cybersecurity</category><category>encryption</category><category>Gmail</category></item><item><title>31st March – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/31st-march-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 31st March, please download our Threat Intelligence Bulletin.   TOP ATTACKS AND BREACHES New York University (NYU) suffered a cyber-attack which resulted in the exposure of over 3 million applicants&amp;#8217; data, including names, test scores, majors, and zip codes. The hacker redirected NYU&amp;#8217;s website [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/31st-march-threat-intelligence-report/"&gt;31st March – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 31st March, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/04/Threat_Intelligence_News_2025-03-31.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
