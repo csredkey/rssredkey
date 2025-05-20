@@ -1,5 +1,660 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 20 May 2025 12:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, May 20th, 2025 https://isc.sans.edu/podcastdetail/9458</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>What to Expect When You’re Convicted</title><link>https://www.wired.com/story/your-next-job-white-collar-prison-consultant/</link><description>When a formerly incarcerated “troubleshooter for the mafia” looked for a second career he chose the thing he knew best. He became a prison consultant for white-collar criminals.</description><guid isPermaLink="false">6822750e76733d181833712a</guid><category>Business</category><category>Security</category><category>Your Next Job</category><category>Rogues</category><category>Crime</category><category>laws</category><category>prison</category></item><item><title>DoorDash Hack</title><link>https://www.schneier.com/blog/archives/2025/05/doordash-hack.html</link><description>&lt;p&gt;A DoorDash driver &lt;a href="https://www.theverge.com/news/669140/doordash-driver-convicted-delivery-scam"&gt;stole&lt;/a&gt; over $2.5 million over several months:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 20 May 2025 13:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, May 20th, 2025 https://isc.sans.edu/podcastdetail/9458</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>The Sting of Fake Kling: Facebook Malvertising Lures Victims to Fake AI Generation Website</title><link>https://research.checkpoint.com/2025/impersonated-kling-ai-site-installs-malware/</link><description>&lt;p&gt;&lt;img alt="" class="alignnone size-medium wp-image-31463" height="200" src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image1-300x200.png" width="300" /&gt;​&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/impersonated-kling-ai-site-installs-malware/"&gt;The Sting of Fake Kling: Facebook Malvertising Lures Victims to Fake AI Generation Website&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;AI media generation is a significant trend in how we use the Internet in 2025.&amp;nbsp;&lt;a href="https://app.klingai.com/"&gt;Kling AI&lt;/a&gt;&amp;nbsp;is a widely used platform, with 6 million users since its launch in June 2024.&lt;/li&gt;
+
+
+
+&lt;li&gt;A threat actor mimicked Kling AI and drove traffic to a convincing fake website via counterfeit Facebook pages and paid ads.&lt;/li&gt;
+
+
+
+&lt;li&gt;User submissions of a text prompt or image on this fake site produce a seemingly innocent media file whose filename uses Hangul Filler characters to conceal an executable.&lt;/li&gt;
+
+
+
+&lt;li&gt;In some cases, the executable’s loader used .NET Native AOT compilation for stealth. Executing it installs an infostealer with monitoring capabilities.&lt;/li&gt;
+
+
+
+&lt;li&gt;This campaign has a global reach, with victims reported across multiple regions, most notably in Asia.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;In early 2025, Check Point Research (cp&amp;lt;r&amp;gt;) started tracking a threat campaign that abuses the growing popularity of AI content generation platforms by impersonating&amp;nbsp;&lt;strong&gt;Kling AI&lt;/strong&gt;, a legitimate AI-powered image and video synthesis tool. Promoted through Facebook advertisements, the campaign directs users to a convincing spoof of Kling AI’s website, where visitors are invited to create AI-generated images or videos directly in the browser.&lt;/p&gt;
+
+
+
+&lt;p&gt;Instead of delivering a media file, the site offers a malicious “image or video output” for download. These files carry extensions like&amp;nbsp;&lt;code&gt;.mp4&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;.jpg&lt;/code&gt;&amp;nbsp;but in reality are disguised Windows executables using&amp;nbsp;&lt;strong&gt;double extensions&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Hangul Filler characters&lt;/strong&gt;&amp;nbsp;to obscure their true nature in the filesystem and file dialogs.&lt;/p&gt;
+
+
+
+&lt;p&gt;Users expecting to preview their generated video instead unknowingly launched a loader. In several instances, this executable utilized&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=windows%2Cnet8"&gt;.NET Native AOT&lt;/a&gt;&amp;nbsp;&lt;strong&gt;(Ahead-Of-Time) Compilation&lt;/strong&gt;&amp;nbsp;to complicate analysis and evade many traditional detection techniques. Once executed, the loader staged and deployed follow-up payloads—primarily infostealers to exfiltrate browser-stored credentials, session tokens, and other sensitive data.&lt;/p&gt;
+
+
+
+&lt;p&gt;In our report, we detail the campaign’s end-to-end kill chain—from the initial lure to payload execution—and focus on the technical mechanisms used for file masquerading, obfuscation, and staged delivery. We analyze the loader’s internals and behavioral footprint and highlight the evolving techniques used to exploit trust in generative AI workflows.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="infection-chain"&gt;Infection Chain&lt;/h2&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 1 - Fake Kling AI’s Infection Chain." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image2.png" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;Figure 1 &amp;#8211; Fake Kling AI’s Infection Chain.&lt;/p&gt;
+
+
+
+&lt;p&gt;The campaign, which began in early 2025, uses an infection chain that starts with social media malvertising. To date, we identified approximately 70 promoted posts from fake social media pages impersonating Kling AI.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2 - Fake Facebook ads impersonating Kling AI." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image3.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Fake Facebook ads impersonating Kling AI.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 3 - Fake Facebook Page created by the threat actors." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image4.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Fake Facebook Page created by the threat actors.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The fake Facebook page contains posts with text and media, together with a link to promote the fake AI generation websites (e.g.,&amp;nbsp;&lt;code&gt;klingaimedia[.]com&lt;/code&gt;) which are designed to look like a realistic version of the “Kling AI” tool.&lt;/p&gt;
+
+
+
+&lt;p&gt;When users access the fake AI webpage, they are expected to perform an image-related action such as uploading an image to one of the sub-pages (images, effects, etc.), clicking the “Generate” button, and then waiting for the AI tool to generate results.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex"&gt;
+&lt;div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"&gt;&lt;/div&gt;
+
+
+
+&lt;div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter is-resized"&gt;&lt;img alt="Figure 4 - Original effects sub-page before uploading the user’s
+image." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image5.png" style="width: 476px; height: auto;" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; Original effects sub-page before uploading the user’s image.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter is-resized"&gt;&lt;img alt="Figure 5 - Original effects sub-page after uploading the user’s
+image." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image6.png" style="width: 475px; height: auto;" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; Original effects sub-page after uploading the user’s image.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter is-resized"&gt;&lt;img alt="Figure 6 – What is shown after the user clicks the “Generate”
+button." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image7.png" style="width: 463px; height: auto;" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 – What is shown after the user clicks the “Generate” button.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-31451" height="800" src="https://research.checkpoint.com/wp-content/uploads/2025/05/image8.gif" width="1100" /&gt;&lt;/figure&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 7 - Example of image generation in the fake website." src="https://research.checkpoint.com/s2_pandoc-html/media/image8.gif" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The generated result is a zip archive containing a single&amp;nbsp;&lt;code&gt;.exe&lt;/code&gt;&amp;nbsp;file. However, the unzipped filename length is 292 bytes. When viewed in a hex editor, each space character is represented by three bytes&amp;nbsp;&lt;code&gt;0xE3 0x85 0xA4&lt;/code&gt;, a UTF-8 hex encoding for&amp;nbsp;&lt;a href="https://www.fileformat.info/info/unicode/char/3164/index.htm"&gt;Hangul Filler&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 8 - Hex representation of the unzipped filename." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image9.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Hex representation of the unzipped filename.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the default Windows Explorer view, this file is presented as if it were an image due to its deceptive name (&lt;code&gt;Generated_Image_2025_97607092.jpg ...&lt;/code&gt;), with the ellipsis (&lt;code&gt;...&lt;/code&gt;) subtly hinting that the filename is longer than displayed. Despite appearing like a media file (even showing an image-like icon), the&amp;nbsp;&lt;code&gt;Type&lt;/code&gt;&amp;nbsp;column explicitly classifies this file as an&amp;nbsp;&lt;code&gt;Application&lt;/code&gt;, exposing its true nature as an executable. This is a classic case of filename masquerading, exploiting long filenames to obscure dangerous file types from users at first glance.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 9 - Generated media file in a standard Windows Explorer
+view" src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image10.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 &amp;#8211; Generated media file in a standard Windows Explorer view&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;While we observed different types of first-stage loaders, most of them were developed in .NET. The purpose of these loaders is to avoid running in a virtual environment, establishing persistence and performing remote injection of the second stage payload.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.virustotal.com/gui/file/f5b31bd394e0a3adb6bd175207b8c3ccc51850c8f2cee1149a8421736168e13e"&gt;One of the loaders&lt;/a&gt;&amp;nbsp;written in .NET is noteworthy as it was compiled using Native AOT format, resulting in a file containing no CIL (Common Intermediate Language) code, only machine code. The file should be a few MBs in size, but is inflated by appending some tens of MBs of useless data. A valid or invalid signature is also often appended to the binary.&lt;/p&gt;
+
+
+
+&lt;p&gt;The developers did not successfully cover all of their tracks and some interesting strings are visible in the loader:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;$antiprocesshacker
+$antivt
+$melt
+$persistence
+$startup&lt;/pre&gt;
+
+
+
+&lt;p&gt;This particular loader employs several anti-analysis tricks, notably by monitoring for analysis tools such as&amp;nbsp;&lt;code&gt;Wireshark&lt;/code&gt;,&amp;nbsp;&lt;code&gt;OllyDbg&lt;/code&gt;,&amp;nbsp;&lt;code&gt;Procmon&lt;/code&gt;,&amp;nbsp;&lt;code&gt;ProcExp&lt;/code&gt;,&amp;nbsp;&lt;code&gt;PeStudio&lt;/code&gt;,&amp;nbsp;&lt;code&gt;Fiddler&lt;/code&gt;, and others. For persistence, the loader sets up a run key in the registry and copies its loader file to a hardcoded path within the&amp;nbsp;&lt;code&gt;%APPDATA%\Local&lt;/code&gt;&amp;nbsp;directory. After establishing persistence, it injects the 2nd stage into hardcoded legitimate system processes like&amp;nbsp;&lt;code&gt;InstallUtil.exe&lt;/code&gt;,&amp;nbsp;&lt;code&gt;AddInProcess32.exe&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;CasPol.exe&lt;/code&gt;&amp;nbsp;to evade detection.&lt;/p&gt;
+
+
+
+&lt;p&gt;Reverse engineering the Native AOT binary can be challenging. However, with the help of tools like&amp;nbsp;&lt;a href="https://github.com/Washi1337/ghidra-nativeaot"&gt;Washi1337’s plugin&lt;/a&gt;&amp;nbsp;for&amp;nbsp;&lt;a href="https://ghidra-sre.org/"&gt;Ghidra&lt;/a&gt;, string annotations can be automatically added to the decompiled view.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 10 - Processing loader configuration 1" src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image11.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 &amp;#8211; Processing loader configuration 1&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see from Figure 10 above, the string “$antivt&amp;#8221;(anti &amp;#8211; virtual)issearchedintheloader’shardcodedconfiguration(&amp;#8220;$startup,&lt;em&gt;a&lt;/em&gt;&lt;em&gt;n&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;&lt;em&gt;i&lt;/em&gt;&lt;em&gt;v&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;,antiprocesshacker”), and if found, the loader tests whether it is running in a virtual environment.&lt;/p&gt;
+
+
+
+&lt;p&gt;Next, the loader checks for the presence of the relevant parameters “$startup” (copy to `%APPDATA%\\Local`, set Run registry persistence), “$melt” (a.k.a. self-delete), and “$persistence” (batch file with endless loop, which restarts the loader every minute, if not present). If present in the configuration, the corresponding method is executed. After successfully passing all the checks, the last function is injecting to the process.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 11 - Processing loader configuration 2." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image12.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 &amp;#8211; Processing loader configuration 2.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The loader defines an array of 19 names belonging to the analysis processes ($antiprocesshacker). If any of these programs are found running in the memory, the loader immediately exits and does not run the next stage.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 12 – Anti-analysis process detection." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image13.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 – Anti-analysis process detection.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="stage-2---purehvnc-rat-stealer"&gt;Stage 2 &amp;#8211; PureHVNC RAT + Stealer&lt;/h3&gt;
+
+
+
+&lt;p&gt;The second stage is also written in .NET and is usually obfuscated with .NET Reactor. After deobfuscation, PureHVNC Remote Access Trojan (RAT) is the main payload.&lt;/p&gt;
+
+
+
+&lt;p&gt;All the second-stage samples we analyzed were DLL files with only one&amp;nbsp;&lt;code&gt;public&lt;/code&gt;&amp;nbsp;class and exactly one&amp;nbsp;&lt;code&gt;public static&lt;/code&gt;&amp;nbsp;method &amp;#8211; the intended entry point. Running this method does not require any parameters. We found that the names of classes and methods changed from sample to sample. In some samples, the&amp;nbsp;&lt;code&gt;DeclaringType&lt;/code&gt;&amp;nbsp;of this method includes a reference to the PureHVNC Remote Access Trojan (RAT), e.g.,&amp;nbsp;&lt;code&gt;PureHVNC_Lib.Iterators.IteratorExecutor&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;The most important information is an encoded configuration shown below:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 13 - PureHVNC’s configuration blob." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image14.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 &amp;#8211; PureHVNC’s configuration blob.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After decoding and decompressing (gzip) the configuration blob, we can immediately see the&amp;nbsp;&lt;strong&gt;C2 (Command and Control) IP address&lt;/strong&gt;,&amp;nbsp;&lt;strong&gt;campaign ID&lt;/strong&gt;, and other information such as the encoded embedded certificate.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 14 - PureHVNC’s configuration.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;During our research, we observed several different campaign IDs:" src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image15.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 &amp;#8211; PureHVNC’s configuration.During our research, we observed several different campaign IDs:&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;King AI 20/1/2025&lt;/li&gt;
+
+
+
+&lt;li&gt;King AI 6/3&lt;/li&gt;
+
+
+
+&lt;li&gt;Kling AI 25/03/2025&lt;/li&gt;
+
+
+
+&lt;li&gt;KlingAI Home&lt;/li&gt;
+
+
+
+&lt;li&gt;Kling AI Test Startup&lt;/li&gt;
+
+
+
+&lt;li&gt;Kling AI&lt;/li&gt;
+
+
+
+&lt;li&gt;Kling AI New&lt;/li&gt;
+
+
+
+&lt;li&gt;GG Kling AI&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;As you can see from the campaign ID names, some contain a date which is likely when that particular sub-campaign started. Others may include the keyword ‘test’, suggesting the actors were testing new versions.&lt;/p&gt;
+
+
+
+&lt;p&gt;Base64-encoded string (part of the decoded configuration blob) starting with&amp;nbsp;&lt;code&gt;MIIE&lt;/code&gt;&amp;nbsp;represents an embedded certificate;&amp;nbsp;&lt;code&gt;CN = Byzdmq&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 15 - Embedded certificate." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image16.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 &amp;#8211; Embedded certificate.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The RAT also implements extensive stealing capabilities, which include monitoring many browser extensions:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;{ "ibnejdfjmmkpcnlpebklmnkoeoihofec", "TronLink" },
+{ "nkbihfbeogaeaoehlefnkodbefgpgknn", "MetaMask" },
+{ "fhbohimaelbohpjbbldcngcnapndodjp", "Binance Chain Wallet" },
+{ "ffnbelfdoeiohenkjibnmadjiehjhajb", "Yoroi" },
+{ "cjelfplplebdjjenllpjcblmjkfcffne", "Jaxx Liberty" },
+{ "fihkakfobkmkjojpchpfgcmhfjnmnfpi", "BitApp Wallet" },
+{ "kncchdigobghenbbaddojjnnaogfppfj", "iWallet" },
+{ "aiifbnbfobpmeekipheeijimdpnlpgpp", "Terra Station" },
+{ "ijmpgkjfkbfhoebgogflfebnmejmfbml", "BitClip" },
+{ "blnieiiffboillknjnepogjhkgnoapac", "EQUAL Wallet" },
+{ "amkmjjmmflddogmhpjloimipbofnfjih", "Wombat" },
+{ "jbdaocneiiinmjbjlgalhcelgbejmnid", "Nifty Wallet" },
+{ "afbcbjpbpfadlkmhmclhkeeodmamcflc", "Math Wallet" },
+{ "hpglfhgfnhbgpjdenjgmdgoeiappafln", "Guarda" },
+{ "aeachknmefphepccionboohckonoeemg", "Coin98 Wallet" },
+{ "imloifkgjagghnncjkhggdhalmcnfklk", "Trezor Password Manager" },
+{ "oeljdldpnmdbchonielidgobddffflal", "EOS Authenticator" },
+{ "gaedmjdfmmahhbjefcbgaolhhanlaolb", "Authy" },
+{ "ilgcnhelpchnceeipipijaljkblbcobl", "GAuth Authenticator" },
+{ "bhghoamapcdpbohphigoooaddinpkbai", "Authenticator" },
+{ "mnfifefkajgofkcjkemidiaecocnkjeh", "TezBox" },
+{ "dkdedlpgdmmkkfjabffeganieamfklkm", "Cyano Wallet" },
+{ "aholpfdialjgjfhomihkjbmgjidlcdno", "Exodus Web3" },
+{ "jiidiaalihmmhddjgbnbgdfflelocpak", "BitKeep" },
+{ "hnfanknocfeofbddgcijnmhnfnkdnaad", "Coinbase Wallet" },
+{ "egjidjbpglichdcondbcbdnbeeppgdph", "Trust Wallet" },
+{ "hmeobnfnfcmdkdcmlblgagmfpfboieaf", "XDEFI Wallet" },
+{ "bfnaelmomeimhlpmgjnjophhpkkoljpa", "Phantom" },
+{ "fcckkdbjnoikooededlapcalpionmalo", "MOBOX WALLET" },
+{ "bocpokimicclpaiekenaeelehdjllofo", "XDCPay" },
+{ "flpiciilemghbmfalicajoolhkkenfel", "ICONex" },
+{ "hfljlochmlccoobkbcgpmkpjagogcgpk", "Solana Wallet" },
+{ "cmndjbecilbocjfkibfbifhngkdmjgog", "Swash" },
+{ "cjmkndjhnagcfbpiemnkdpomccnjblmj", "Finnie" },
+{ "dmkamcknogkgcdfhhbddcghachkejeap", "Keplr" },
+{ "kpfopkelmapcoipemfendmdcghnegimn", "Liquality Wallet" },
+{ "hgmoaheomcjnaheggkfafnjilfcefbmo", "Rabet" },
+{ "fnjhmkhhmkbjkkabndcnnogagogbneec", "Ronin Wallet" },
+{ "klnaejjgbibmhlephnhpmaofohgkpgkd", "ZilPay" },
+{ "ejbalbakoplchlghecdalmeeeajnimhm", "MetaMask" },
+{ "ghocjofkdpicneaokfekohclmkfmepbp", "Exodus Web3" },
+{ "heaomjafhiehddpnmncmhhpjaloainkn", "Trust Wallet" },
+{ "hkkpjehhcnhgefhbdcgfkeegglpjchdc", "Braavos Smart Wallet" },
+{ "akoiaibnepcedcplijmiamnaigbepmcb", "Yoroi" },
+{ "djclckkglechooblngghdinmeemkbgci", "MetaMask" },
+{ "acdamagkdfmpkclpoglgnbddngblgibo", "Guarda Wallet" },
+{ "okejhknhopdbemmfefjglkdfdhpfmflg", "BitKeep" },
+{ "mijjdbgpgbflkaooedaemnlciddmamai", "Waves Keeper" }&lt;/pre&gt;
+
+
+
+&lt;p&gt;The browser extensions mentioned above may be installed in different directories, based on the installed Chromium-based browser. The list below shows the targeted browsers:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;dictionary.Add("Chromium\\User Data\\", "Chromium");
+dictionary.Add("Google\\Chrome\\User Data\\", "Chrome");
+dictionary.Add("Google(x86)\\Chrome\\User Data\\", "Chrome");
+dictionary.Add("BraveSoftware\\Brave-Browser\\User Data\\", "Brave");
+dictionary.Add("Microsoft\\Edge\\User Data\\", "Edge");
+dictionary.Add("Tencent\\QQBrowser\\User Data\\", "QQBrowser");
+dictionary.Add("MapleStudio\\ChromePlus\\User Data\\", "ChromePlus");
+dictionary.Add("Iridium\\User Data\\", "Iridium");
+dictionary.Add("7Star\\7Star\\User Data\\", "7Star");
+dictionary.Add("CentBrowser\\User Data\\", "CentBrowser");
+dictionary.Add("Chedot\\User Data\\", "Chedot");
+dictionary.Add("Vivaldi\\User Data\\", "Vivaldi");
+dictionary.Add("Kometa\\User Data\\", "Kometa");
+dictionary.Add("Elements Browser\\User Data\\", "Elements");
+dictionary.Add("Epic Privacy Browser\\User Data\\", "Epic Privacy");
+dictionary.Add("uCozMedia\\Uran\\User Data\\", "Uran");
+dictionary.Add("Fenrir Inc\\Sleipnir5\\setting\\modules\\ChromiumViewer\\", "Sleipnir5");
+dictionary.Add("CatalinaGroup\\Citrio\\User Data\\", "Citrio");
+dictionary.Add("Coowon\\Coowon\\User Data\\", "Coowon");
+dictionary.Add("liebao\\User Data\\", "liebao");
+dictionary.Add("QIP Surf\\User Data\\", "QIP Surf");
+dictionary.Add("Orbitum\\User Data\\", "Orbitum");
+dictionary.Add("Comodo\\Dragon\\User Data\\", "Dragon");
+dictionary.Add("Amigo\\User\\User Data\\", "Amigo");
+dictionary.Add("Torch\\User Data\\", "Torch");
+dictionary.Add("Comodo\\User Data\\", "Comodo");
+dictionary.Add("360Browser\\Browser\\User Data\\", "360Browser");
+dictionary.Add("Maxthon3\\User Data\\", "Maxthon3");
+dictionary.Add("K-Melon\\User Data\\", "K-Melon");
+dictionary.Add("Sputnik\\Sputnik\\User Data\\", "Sputnik");
+dictionary.Add("Nichrome\\User Data\\", "Nichrome");
+dictionary.Add("CocCoc\\Browser\\User Data\\", "CocCoc");
+dictionary.Add("Uran\\User Data\\", "Uran");
+dictionary.Add("Chromodo\\User Data\\", "Chromodo");
+dictionary.Add("Mail.Ru\\Atom\\User Data\\", "Atom");&lt;/pre&gt;
+
+
+
+&lt;p&gt;The RAT also monitors Paths / Registry Keys related to the following programs. These are standalone programs and NOT browser extensions.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Atomic Wallet
+Bitcoin-Qt
+Dash-Qt
+Electrum
+Ethereum
+Exodus
+Jaxx
+Litecoin-Qt
+Zcash
+Foxmail
+Telegram
+Ledger Live&lt;/pre&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="plugin---pluginwindownotify"&gt;Plugin &amp;#8211; PluginWindowNotify&lt;/h3&gt;
+
+
+
+&lt;p&gt;PureHVNC has several different plugins. During our research, we observed just one of them, a plugin named&amp;nbsp;&lt;code&gt;PluginWindowNotify&lt;/code&gt;, which monitors foreground windows and takes screenshots.&lt;/p&gt;
+
+
+
+&lt;p&gt;The analysis of its code reveals the plugin’s primary responsibilities: monitoring opened windows, getting their captions, and if an interesting keyword in the caption is found, taking a screenshot and notifying its operators.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter is-resized"&gt;&lt;img alt="Figure 16 - Code for reading the caption of the foreground
+window." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image17.png" style="width: 635px; height: auto;" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 &amp;#8211; Code for reading the caption of the foreground window.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 17 - Code for taking a screenshot of the foreground
+window." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image18.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17 &amp;#8211; Code for taking a screenshot of the foreground window.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Not surprisingly, this plugin does not notify the operators about all the windows. It contains a list of “interesting” keywords (crypto wallets, banks), and only those are reported back to the operators. A list of monitored window captions is shown below.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;coinbase
+metamask
+atomic wallet
+atomicwallet
+Prosperity Bank
+Montepio
+Novobanco
+Eurobic
+ABANCA
+Credito agricola
+Revolut
+Santander
+Bankinter
+Moey
+Banco ctt
+Caixa geral de depósitos
+Openbank
+wellsfargo
+banco bbva
+banco bac
+banco av villas
+banco GNB
+banistmo
+banco general
+bank of america
+chase bank
+caixabank
+gemini.com
+Gate.io
+trustwallet
+gemini.com/exchange
+Banco pan
+Brandesco
+Banco do Brasil
+Unibanco
+Banco do Nordeste
+Banco inter
+Bybit
+Poloniex
+Banco Santander
+Nubank
+Truist Bank
+JP Morgan Chase
+Citigroup
+Goldman Sachs
+usbank
+HSBC
+Lloyds Bank
+Santander UK
+Virgin Money UK
+Metro Bank
+Starling Bank
+bbva
+Banco de Bogotá
+Itaú Corpbanca Colômbia
+Bancolombia
+Citibank Colômbia
+GNB Sudameris
+BBVA Colômbia
+Colpatria
+Banco de Occidente
+Banco Caja Social
+Banca Agricola Popolare
+UniCredit
+Sanpaolo IMI
+Intesa Sanpaolo
+Banco di Napoli
+Banco da Itália
+Banco Ambrosiano
+Banca Sella Group
+Banca Monte dei Paschi di Siena
+FinecoBank
+Banco Ficohsa
+Banco BBP
+Banco Azteca
+Banco Aliado
+Banco BCT Bank International
+Banco Bi-Bank
+Banco General Panamá
+Caja de Ahorros
+Banco Davivienda
+binance
+exodus
+paypal
+facebook ads
+google ads
+westernunion
+Huntington
+dkb bank
+dkb.de&lt;/pre&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="evolution"&gt;Evolution&lt;/h2&gt;
+
+
+
+&lt;p&gt;When searching for previous malvertising campaigns impersonating Kling AI, we found several suspicious, similar-looking websites.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;klingxai[.]com
+kingaitext[.]com
+ai-kling[.]com
+klings-ai[.]com
+klingx[.]ai
+klingxai[.]com
+www[.]kling-ai[.]tech
+www[.]klingai[.]cloud   &lt;/pre&gt;
+
+
+
+&lt;p&gt;Most of the websites were already down at the time of our investigation. However, two websites that were still up required similar interactive behavior from the victims. In the case of&amp;nbsp;&lt;code&gt;aikling[.]ai&lt;/code&gt;, the loader also generated a payload with a similar naming convention. These two still active campaigns distribute ScreenConnect and were previously reported by&amp;nbsp;&lt;a href="https://x.com/silentpush/status/1894235374828052575"&gt;security researchers&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;aikling[.]ai            
+hxxps[://]aikling[.]ai/Create_standard_mode_photo[.]zip
+
+klingturbo[.]com
+hxxps[://]klingturbo[.]com/images/ai-images/Image_Generation_158666[.]jpg - klingturbo[.]com&lt;/pre&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attribution"&gt;Attribution&lt;/h2&gt;
+
+
+
+&lt;p&gt;Facebook malvertising and distributing information stealers have been a favorite technique of Vietnamese threat actors for some time. Researchers who analyzed other LLM/AI themed malvertising campaigns also reported the malware contained variable or field names in the Vietnamese language, as documented&amp;nbsp;&lt;a href="https://www.trendmicro.com/en_us/research/23/h/profile-stealers-spread-via-llm-themed-facebook-ads.html"&gt;here&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.trendmicro.com/en_us/research/23/i/analyzing-a-facebook-profile-stealer-written-in-node-js.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Not surprisingly, this current campaign included several references (like debug messages) in the Vietnamese language.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 18 - Code snippet from AI platform website’s webpage
+containing debug messages in Vietnamese." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image19.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18 &amp;#8211; Code snippet from AI platform website’s webpage containing debug messages in Vietnamese.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Some advertisers specify their location in Vietnam and include a Vietnamese mobile number. In some cases, the beneficiary and payer have Vietnamese names.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 19 - Fake advertisements disclaimer page." src="https://research.checkpoint.com/wp-content/uploads/2025/05/KEL1ZSOJJX-image20.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19 &amp;#8211; Fake advertisements disclaimer page.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="protections"&gt;Protections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point &lt;a href="https://www.checkpoint.com/harmony/advanced-endpoint-protection/"&gt;Harmony Endpoint&lt;/a&gt; and &lt;a href="https://www.checkpoint.com/infinity/zero-day-protection/"&gt;Threat Emulation&lt;/a&gt; provide comprehensive coverage of attack tactics, filetypes, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Harmony Endpoint&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;gen.win.processhollowing.g&lt;/li&gt;
+
+
+
+&lt;li&gt;rat.win.jesusisthelord.a&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Threat Emulation&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Injector.Win.RunPE.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Injector.Win.RunPE.C&lt;/li&gt;
+
+
+
+&lt;li&gt;Exploit.Win.UnDefender.A&lt;/li&gt;
+
+
+
+&lt;li&gt;Trojan.Win.MITREClassifier&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="iocs"&gt;IOCs&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Stage 1 &amp;#8211; Loaders (SHA-256):&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;F5B31BD394E0A3ADB6BD175207B8C3CCC51850C8F2CEE1149A8421736168E13E
+F89298933FED52511BB78F8F377979190E37367D72CCF4F3B81374A70362CC42
+BEEEA592251A0A205B3BDB34802BD2F4F5181EE38226A05EC468A86BE44E9508
+732AA8ED8CA9A12F4BFC29A693EC3EBA74ED1B2D00DE4296180D91B86D09747B
+7035B5BA24146DB537EEDB1F05E6CAD1775F9F5E81306F72422C03B288F75448
+30E26F4FD7CB0AC626950BB01E01A2C02E277727D1D3EC94286A44AF262F37CF
+2588FDFA7417D617DF2D31EDDEA710D0F964008ABC2F4860CDFF588AB9786D0A
+06D9D60DDBE835ABC5B16911A35732CC9B56EA9425DE210961A15D465823978F
+2D5E01CFACDF9F900B51B0539E0809F22CE1859EAC0886866AF35A2EB2DC2D42
+5200B27726C0BE8E6F34A3920FBD5D40AEAEC460169B1F3C7A174EBEEE6553D9
+699E348260AE5B60CD822325F1C4BF2C793F6F25001357856C58520A9AF10987
+D95B3EABFE9892371CB518FD6E733D2D33D2FABB2B1DF4DAB650A8F8E1EA8745
+D1B712B215612C8DF5FEF02B614C616A78B723BFFBEC6E10E32BFD0B758DF41B
+39D771C12BD5DA15D3FB63905DF1E2C4C7C12B8F77C630A35B247C418950EAFE
+4BBAF3ECECD53BC4028723E87B1669268A6FADC4D480590C2D59BB4322A17DE7&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Stage 2 &amp;#8211; PureHVNC (SHA-256):&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;B33E162A78B7B8E7DBBAB5D1572D63814077FA524067CE79C37F52441B8BD384
+0C9228983FBD928AC94C057A00D744D6BE4BD4C1B39D1465B7D955B7D35BF496
+839371CD5A5D66828AC9524182769371DEDE9606826AD7C22C3BB18FB2EE91CB
+9DAB2BADFDAE86963B2F13CE8942FE78DD66EC497F8D82DD40C0CB5BEC4FB2A7
+CEE3F98B5F175219D025A92EDDEC4FD8BCAAE31E6AD99321AE7C00B822063FC3
+A5BACEB97A2BE17FDD0C282292EBB0B5A56A555013A4C8FFFCC2335C504780FB
+3FBA4A0942244E9C3AD25A57A21F91B06F8732A2CA36DA948AE5F0AFA51DC72B
+557BECFCC7ECCAA5A7368A6D5583404AF26AADEDE2C345D6070E6E9FAB44A641&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Plugins (SHA-256):&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;1E66EBAEF295C2A32245162979D167CEBAD1FECE51B7CDB6A6C3A1D705BEFA6B&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Fake website + Fake Facebook pages:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;klingaimedia[.]com
+https://www.facebook[.]com/61574724896485/
+https://www.facebook[.]com/61574162357787/
+
+klingaistudio[.]com
+https://www.facebook[.]com/people/KLING-AI/61574316153107/
+
+klingaieditor[.]com
+kingaimediapro[.]com
+kingaivideotext[.]com
+kingaiplus[.]com&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;C2 IPs:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;185.149.232[.]197
+185.149.232[.]221
+147.135.244[.]43&lt;/pre&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/impersonated-kling-ai-site-installs-malware/"&gt;The Sting of Fake Kling: Facebook Malvertising Lures Victims to Fake AI Generation Website&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31438</guid><category>Check Point Research Publications</category></item><item><title>What to Expect When You’re Convicted</title><link>https://www.wired.com/story/your-next-job-white-collar-prison-consultant/</link><description>When a formerly incarcerated “troubleshooter for the mafia” looked for a second career he chose the thing he knew best. He became a prison consultant for white-collar criminals.</description><guid isPermaLink="false">6822750e76733d181833712a</guid><category>Business</category><category>Security</category><category>Your Next Job</category><category>Rogues</category><category>Crime</category><category>laws</category><category>prison</category></item><item><title>DoorDash Hack</title><link>https://www.schneier.com/blog/archives/2025/05/doordash-hack.html</link><description>&lt;p&gt;A DoorDash driver &lt;a href="https://www.theverge.com/news/669140/doordash-driver-convicted-delivery-scam"&gt;stole&lt;/a&gt; over $2.5 million over several months:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The driver, Sayee Chaitainya Reddy Devagiri, placed expensive orders from a fraudulent customer account in the DoorDash app. Then, using DoorDash employee credentials, he manually assigned the orders to driver accounts he and the others involved had created. Devagiri would then mark the undelivered orders as complete and prompt DoorDash&amp;#8217;s system to pay the driver accounts. Then he&amp;#8217;d switch those same orders back to &amp;#8220;in process&amp;#8221; and do it all over again. Doing this &amp;#8220;took less than five minutes, and was repeated hundreds of times for many of the orders,&amp;#8221; writes the US Attorney&amp;#8217;s Office...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;A DoorDash driver &lt;a href="https://www.theverge.com/news/669140/doordash-driver-convicted-delivery-scam"&gt;stole&lt;/a&gt; over $2.5 million over several months:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The driver, Sayee Chaitainya Reddy Devagiri, placed expensive orders from a fraudulent customer account in the DoorDash app. Then, using DoorDash employee credentials, he manually assigned the orders to driver accounts he and the others involved had created. Devagiri would then mark the undelivered orders as complete and prompt DoorDash&amp;#8217;s system to pay the driver accounts. Then he&amp;#8217;d switch those same orders back to &amp;#8220;in process&amp;#8221; and do it all over again. Doing this &amp;#8220;took less than five minutes, and was repeated hundreds of times for many of the orders,&amp;#8221; writes the US Attorney&amp;#8217;s Office.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Interesting flaw in the software design. He probably would have gotten away with it if he&amp;#8217;d kept the numbers small. It&amp;#8217;s only when the amount missing is too big to ignore that the investigations start.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70275</guid><category>Uncategorized</category><category>courts</category><category>scams</category><category>theft</category></item><item><title>‘We Acted Too Quickly’: Over Half of Companies Regret AI-Driven Layoffs, Report Finds</title><link>https://www.techrepublic.com/article/news-leaders-regret-ai-driven-layoffs/</link><description>Automating jobs isn’t the panacea for all companies, and 55% admit they have made a mistake, a new survey finds.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4307442</guid><category>APAC</category><category>Artificial Intelligence</category><category>Australia</category><category>CXO</category><category>International</category><category>News</category><category>United Kingdom</category><category>ai</category><category>artificial intelligence</category><category>reskilling</category></item><item><title>ISC Stormcast For Tuesday, May 20th, 2025 https://isc.sans.edu/podcastdetail/9458, (Tue, May 20th)</title><link>https://isc.sans.edu/diary/rss/31962</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/31962</guid></item><item><title>Jensen Huang’s Keynote: NVIDIA to Build Taiwan’s First AI Supercomputer, Open Taipei Office, More…</title><link>https://www.techrepublic.com/article/news-nvidia-supercomputer-taiwan/</link><description>Jensen Huang, NVIDIA’s CEO, made a number of announcements during his keynote speech for Computex on Monday.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4307422</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category><category>ai</category><category>artificial intelligence</category><category>fxconn</category><category>nvidia</category><category>supercomputer</category><category>taiwan</category><category>tsmc</category></item><item><title>Trump Signs Controversial Law Targeting Nonconsensual Sexual Content</title><link>https://www.wired.com/story/take-it-down-act-law-passes/</link><description>The Take It Down Act requires platforms to remove instances of “intimate visual depiction” within two days. Free speech advocates warn it could be weaponized to fuel censorship.</description><guid isPermaLink="false">68124c69c0cce4af1d084fe2</guid><category>Business</category><category>Security</category><category>Business / National Affairs</category><category>privacy</category><category>Social Media</category><category>laws</category><category>Deepfakes</category><category>censorship</category><category>Donald Trump</category><category>Digital Rights</category></item><item><title>A Silicon Valley VC Says He Got the IDF Starlink Access Within Days of October 7 Attack</title><link>https://www.wired.com/story/shaun-maguire-starlink-idf-israel-gaza/</link><description>Sequoia Capital partner Shaun Maguire said in a webinar hosted by Israel’s Defense Ministry that he connected the IDF with SpaceX’s Starlink satellite internet far sooner than believed.</description><guid isPermaLink="false">68277e5aa5678f67c4075180</guid><category>Security</category><category>Security / Security News</category><category>Security / National Security</category><category>Business / Startups</category><category>Elon Musk</category><category>SpaceX</category><category>Israel-Hamas War</category><category>Israel</category><category>military tech</category><category>Star Linked</category></item><item><title>Microsoft extends Zero Trust to secure the agentic workforce</title><link>https://www.microsoft.com/en-us/security/blog/2025/05/19/microsoft-extends-zero-trust-to-secure-the-agentic-workforce/</link><description>&lt;p&gt;At Microsoft Build 2025, we’re taking important steps to secure the agentic workforce. We are excited to introduce Microsoft Entra Agent ID which extends industry-leading identity management and access capabilities to AI agents. &lt;/p&gt;
@@ -12956,467 +13611,7 @@ This integration allows organizations to gain deep visibility into cloud network
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/24th-march-threat-intelligence-report/"&gt;24th March – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31279</guid><category>Global Cyber Attack Reports</category></item><item><title>VanHelsing, new RaaS in Town</title><link>https://research.checkpoint.com/2025/vanhelsing-new-raas-in-town/</link><description>&lt;p&gt;Key Points VanHelsing RaaS In recent weeks, a new and rapidly expanding ransomware-as-a-service (RaaS) program called VanHelsingRaaS has been making waves in the cybercrime world. Launched on March 7, 2025, this service has already demonstrated its rapid growth and deadly potential, having infected three victims within just two weeks of its introduction. Reputable affiliates can [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/vanhelsing-new-raas-in-town/"&gt;VanHelsing, new RaaS in Town&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h1 class="wp-block-heading" id="raas-vanhelsing"&gt;Key Points&lt;/h1&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;VanHelsingRaaS&lt;/strong&gt; is a new and rapidly growing ransomware-as-a-service (RaaS) affiliate program launched on March 7, 2025. The RaaS model allows a wide range of participants, from experienced hackers to newcomers, to get involved with a $5,000 deposit. Affiliates keep 80% of the ransom payments, while the core operators earn 20%. The only rule is &lt;em&gt;not to target the Commonwealth of Independent States (CIS)&lt;/em&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;Check Point Research discovered two VanHelsing ransomware variants targeting Windows, but as the RaaS mentions in its advertisement, it provides more offerings “targeting Linux, BSD, ARM, and ESXi systems”. The program provides an intuitive control panel that simplifies operating ransomware attacks. Check Point Research obtained two variants of the VanHelsing Ransomware, compiled just five days apart. The newest variant shows significant updates, highlighting the fast-paced evolution of this ransomware.&lt;/li&gt;
-
-
-
-&lt;li&gt;In less than two weeks since its introduction to the cybercrime community, this ransomware operation has already infected three known victims, demanding large ransom payments for decryption and the deletion of stolen data. During negotiations, they demanded &lt;strong&gt;$500,000&lt;/strong&gt; to be paid to a specified Bitcoin wallet.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="vanhelsing-raas"&gt;VanHelsing RaaS&lt;/h2&gt;
-
-
-
-&lt;p&gt;In recent weeks, a new and rapidly expanding ransomware-as-a-service (RaaS) program called &lt;strong&gt;VanHelsingRaaS&lt;/strong&gt; has been making waves in the cybercrime world. Launched on March 7, 2025, this service has already demonstrated its rapid growth and deadly potential, having infected three victims within just two weeks of its introduction. Reputable affiliates can join for free, while new affiliates must pay a $5,000 deposit to gain access to the program. After two blockchain confirmations of the victim&amp;#8217;s ransom payment, the affiliates receive 80% of the revenue, while the remaining 20% is paid to the RaaS operators. Affiliates are provided with an easy-to-use control panel to manage attacks and a cross-platform locker, VanHelsing, which targets a wide variety of systems, including “Windows, Linux, BSD, ARM, and ESXi systems”.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31243" height="590" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId22.png" width="687" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 — VanHelsing RaaS advertisement.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This multi-platform support significantly broadens the reach of the ransomware, enabling it to target a wide variety of systems. In addition to the locker, affiliates are provided with a dedicated control panel that facilitates the management and execution of ransomware campaigns. However, there is one crucial rule: encryption of systems in CIS (Commonwealth of Independent States) countries is strictly prohibited in typical behavior observed in Russian cybercrime.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31244" height="191" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId25.png" width="615" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 — Rules, CIS countries encryption not allowed.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31245" height="483" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId28-1024x483.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 — VanHelsing Control Panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In less than two weeks since its introduction to the cybercrime community, this RaaS has already infected three victims, demanding large ransom payments for decryption and the deletion of stolen data. During negotiations, they demanded &lt;strong&gt;$500,000&lt;/strong&gt; to be paid to a specified Bitcoin wallet.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31272" height="656" src="https://research.checkpoint.com/wp-content/uploads/2025/03/Screenshot-2025-03-17-120822-1-1-1024x656.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 — Ransom demand and Bitcoin wallet.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="vanhelsing-ransomware"&gt;VanHelsing Ransomware&lt;/h2&gt;
-
-
-
-&lt;p&gt;The ransomware associated with the VanHelsing RaaS was first discovered on March 16, 2025. It is written in C++, and based on the compilation timestamp, the sample appears to have been deployed on the same day against the first victim targeted by this affiliate group. The ransomware accepts multiple command-line arguments that control the encryption process, such as whether to encrypt network and local drives or specific directories and files. It seems that the ransomware is still in its early stages of development, as some functionality appears to be incomplete. While log messages for these features are present, the actual actions associated with them do not seem to be implemented at this stage.&lt;/p&gt;
-
-
-
-&lt;p&gt;The ransom note dropped as &lt;code&gt;README.txt&lt;/code&gt; on each enumerated folder, informs the victim that their network has been breached, and their personal data, financial reports, and important documents have been encrypted. The attacker demands Bitcoin for file restoration, warning that the use of third-party decryptors will result in permanent data loss. They warn that their encryption is unbreakable and that paying the ransom is the only way to recover the files. The note ends with an invitation to contact the attacker.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31247" height="426" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId35-1024x426.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 — Ransomware Note.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The ransomware contains two embedded images, which are dropped into the &lt;code&gt;C:\\Windows\\Web&lt;/code&gt; folder. The &lt;code&gt;vhlocker.png&lt;/code&gt; file is used to replace the victim&amp;#8217;s desktop background with the RaaS logo, while &lt;code&gt;vhlocker.ico&lt;/code&gt; is intended to associate the encrypted files, which have the &lt;code&gt;.vanlocker&lt;/code&gt; extension, with the &lt;code&gt;.ico&lt;/code&gt; file type. However, this is a flaw in the ransomware. The encrypted files are actually given the &lt;code&gt;.vanhelsing&lt;/code&gt; extension, not &lt;code&gt;.vanlocker&lt;/code&gt;, meaning the &lt;code&gt;.ico&lt;/code&gt; file is not properly associated with the encrypted files.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31248" height="388" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId38-1024x388.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 — Desktop Background Image.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The ransomware executable still contains the &lt;strong&gt;PDB file path&lt;/strong&gt;, which provides some information about its development environment. This &lt;strong&gt;PDB file&lt;/strong&gt; &lt;strong&gt;path &lt;/strong&gt;includes the development path and project name associated with the malicious program, revealing details that could potentially help trace other projects developed by the same author.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this particular case, the &lt;strong&gt;PDB file &lt;/strong&gt;is located at the following path:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;C:\Users\ADMINI~1\AppData\Local\Temp\2\cd9563b4cbc415b3920633b93c0d351b\1-locker\Release\1-locker.pdb&lt;/pre&gt;
-
-
-
-&lt;p&gt;Based on this search, Check Point Research discovered two additional files: a second variant of the VanHelsing ransomware, compiled on &lt;strong&gt;March 11, 2025&lt;/strong&gt;, which contains differences compared to the updated version from &lt;strong&gt;March 16&lt;/strong&gt;. The second file, identified based on its PDB path, is an executable that loads an embedded binary into memory. However, the buffer associated with this executable contains no valid data, rendering the loader ineffective.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="technical-analysis"&gt;Technical Analysis&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="command-line-arguments"&gt;Command-line Arguments&lt;/h3&gt;
-
-
-
-&lt;p&gt;The &lt;strong&gt;VanHelsing Ransomware&lt;/strong&gt; supports multiple &lt;strong&gt;command-line arguments&lt;/strong&gt;, enabling attackers to fine-tune the encryption process based on their objectives. These arguments dictate various aspects of the ransomware&amp;#8217;s behavior, including target selection, execution parameters, and stealth features. Below are the supported arguments:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;code&gt;-h&lt;/code&gt;, Displays the list of supported command-line arguments and usage instructions for &lt;strong&gt;VanHelsing Ransomware&lt;/strong&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;-v&lt;/code&gt;, Prints all logs during execution, providing detailed output for debugging or monitoring the ransomware&amp;#8217;s actions.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-logs&lt;/code&gt;, Suppresses the printing of logs during ransomware execution.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--Driver $DRIVER&lt;/code&gt;, Specifies a target drive for encryption, allowing the ransomware to encrypt all files and folders on the selected drive.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--Directory $DIRECTORY&lt;/code&gt;, Specifies a target folder for encryption, allowing the ransomware to encrypt all files and subfolders within the selected folder.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--File $FILE&lt;/code&gt;, Specifies the single file to be encrypted.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--Force&lt;/code&gt;, Allows multiple instances of the ransomware to run simultaneously. If the flag is not present, the ransomware attempts to create a mutex &lt;strong&gt;&amp;#8220;Global\VanHelsing&amp;#8221;&lt;/strong&gt;, aborting execution if it already exists, This ensures that only one instance without this flag can run at a time.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-priority&lt;/code&gt;, If the flag is not set, the malware increases the priority of its process, causing the system to prioritize the ransomware&amp;#8217;s execution over other processes.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-wallpaper&lt;/code&gt;, If this flag is set, the malware will not change the desktop background image.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-local&lt;/code&gt;, If this flag is set, the ransomware will not encrypt any local files present on the machine, potentially limiting its attack to network drives, remote systems, or specific directories.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-mounted&lt;/code&gt;, This flag ensures that the ransomware only encrypts &lt;strong&gt;fixed local drives&lt;/strong&gt; (the primary hard drive, (&lt;code&gt;DRIVE_FIXED&lt;/code&gt;) and excludes any remote or mounted drives, such as network shares or external storage devices.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-network&lt;/code&gt;, When this flag is set, the ransomware will avoid encrypting network drives, focusing only on local drives or other specified targets.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-admin&lt;/code&gt;, Allows the ransomware to execute even if the process is not running with administrative privileges.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--Silent&lt;/code&gt;, Silent ransomware process mode; later we elaborate on this feature in more detail. For instance, files on network shares encrypted in this mode won’t have their extension changed.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--skipshadow&lt;/code&gt;, When this command is specified, the ransomware skips the deletion of shadow copies, potentially leaving system backups intact.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--spread-smb&lt;/code&gt;, Enables the ransomware to spread to SMB servers by copying and executing the ransomware from the network shares.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--spread-vcenter&lt;/code&gt;, Not implemented yet, likely indicates that the malware would support a feature for spreading or propagating through a &lt;strong&gt;vCenter&lt;/strong&gt; server. &lt;strong&gt;vCenter&lt;/strong&gt; is a centralized management platform for VMware vSphere environments, often used to manage virtualized infrastructure. This functionality appears to be a placeholder for logic to be added later, potentially making use of exploits. However, currently, the malware simply terminates when this argument is set.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--no-autostart&lt;/code&gt;, Not implemented yet, possibly if this argument is not set, the ransomware would not configure itself to launch automatically when the system boots.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;--system&lt;/code&gt;, which has not been implemented yet. Currently, it simply prints &amp;#8220;&lt;em&gt;Running as a system&lt;/em&gt;&amp;#8221; when the verbose logging argument (&lt;strong&gt;&lt;code&gt;-v&lt;/code&gt;&lt;/strong&gt;) is set.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;We have analyzed two samples of VanHelsing Ransomware, compiled five days apart based on their timestamps. The latest version introduces new command-line arguments and features. This suggests that the malware is actively being updated, and new arguments are likely to be introduced in future versions of the ransomware.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="delete-shadow-copies"&gt;&lt;strong&gt;Delete Shadow Copies&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Shadow copies are backup copies of files or volumes created by Windows&amp;#8217; Volume Shadow Copy Service (VSS), often used for restoring files or recovering from system failures. Ransomware deletes shadow copies to prevent victims from restoring their encrypted files using Windows&amp;#8217; built-in backup mechanisms. By removing these backups, the attackers increase the likelihood that victims will have no choice but to pay the ransom for file recovery.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the malicious binary, the function responsible for deleting shadow copies begins by initializing the &lt;strong&gt;Component Object Model (COM)&lt;/strong&gt; through &lt;code&gt;CoInitializeEx&lt;/code&gt; and &lt;code&gt;CoInitializeSecurity&lt;/code&gt;, enabling interaction with system management services. It then determines the system architecture using &lt;code&gt;GetNativeSystemInfo&lt;/code&gt; before creating an instance of the appropriate COM object via &lt;code&gt;CoCreateInstance&lt;/code&gt;, ensuring compatibility with the target environment.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31249" height="390" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId43.png" width="852" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 — COM Initialization and System Architecture Setup.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The malware connects to the &lt;code&gt;ROOT\\CIMV2&lt;/code&gt; namespace and executes a WMI query to retrieve all shadow copies stored on the local system using the &lt;code&gt;Win32_ShadowCopy&lt;/code&gt; class. It allows the malware to access and manage the shadow copies. Then, enumerates through the retrieved shadow copies and creates child processes which delete them by shadow ID.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;"cmd.exe /c C:\\Windows\\System32\\wbem\\WMIC.exe shadowcopy where \"ID='%s'\" delete"&lt;/pre&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="local-encryption"&gt;Local Drive Enumeration&lt;/h3&gt;
-
-
-
-&lt;p&gt;The ransomware&amp;#8217;s local encryption routine requires obtaining the existing drives. Initially, it calls &lt;code&gt;GetLogicalDriveStringsW(0, 0)&lt;/code&gt;, which returns the buffer size for the logical drive strings. Then, it calls the function again with the correct buffer size, obtaining a buffer with strings that specify valid drives in the system.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31250" height="321" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId47.png" width="670" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 — Function retrieving machine drives.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Once all drives on the machine are identified, the ransomware enumerates them, selecting only fixed local drives and mounted drives unless executed with the &lt;code&gt;--no-mounted&lt;/code&gt; argument, in which case mounted drives are excluded from encryption.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31251" height="248" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId50.png" width="771" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 — Drive type checks.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The ransomware would later recursively enumerate and encrypt all files and folders on the selected drives, ensuring comprehensive data encryption across the targeted storage locations.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="blacklisted-files-folders"&gt;Blacklisted Files &amp;amp; Folders&lt;/h3&gt;
-
-
-
-&lt;p&gt;The ransomware begins the encryption process by enumerating folders and files using the Windows API functions &lt;code&gt;FindFirstFileW&lt;/code&gt;, &lt;code&gt;FindNextFileW&lt;/code&gt;, and &lt;code&gt;FindClose&lt;/code&gt;. To prevent rendering the system completely unusable, it selectively excludes certain folders, files, and file extensions from encryption, ensuring that critical system components remain intact.&lt;/p&gt;
-
-
-
-&lt;p&gt;The files contained in the below folders are excluded from encryption:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;"tmp", "winnt", "temp", "thumb", "$Recycle.Bin", "$RECYCLE.BIN", "System Volume Information", "Boot", "Windows", "Trend Micro", "program files", "program files(x86)", "tor browser", "windows", "intel", "all users", "msocache", "perflogs", "default", "microsoft"&lt;/pre&gt;
-
-
-
-&lt;p&gt;While the below file extensions and files are excluded from being encrypted for various reasons, mostly due to being critical for Windows functionality:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;".vanlocker", ".exe", ".dll", ".lnk", ".sys", ".msi", "boot.ini", "autorun.inf", "bootfont.bin", "bootsect.bak", "desktop.ini", "iconcache.db", "ntldr", "ntuser.dat", "ntuser.dat.log", "ntuser.ini", "thumbs.db", "GDIPFONTCACHEV1.DAT", "d3d9caps.dat", "LOGS.txt", "README.txt", ".bat", ".bin", ".com", ".cmd", ".386", ".adv", ".ani", ".cab", ".ico", ".mod", ".msstyles", ".msu", ".nomedia", ".ps1", ".rtp", ".syss", ".prf", ".deskthemepack", ".cur", ".cpl", ".diagcab", ".diagcfg", ".diagpkg", ".dll", ".drv", ".hlp", ".pdb", ".hta", ".key", ".lock", ".ldf", ".ocx", ".icl", ".icns", ".ics", ".idx", ".mod", ".mpa", ".msc", ".msp", ".nls", ".rom", ".scr", ".shs", ".spl", ".theme", ".themepack", ".wpx"&lt;/pre&gt;
-
-
-
-&lt;p&gt;A similar mistake to the one previously mentioned regarding the &lt;code&gt;.ico&lt;/code&gt; file association occurs in the blacklist of excluded file extensions. The ransomware mistakenly excludes &lt;code&gt;.vanlocker&lt;/code&gt; files from encryption, even though the actual encrypted files use the &lt;code&gt;.vanhelsing&lt;/code&gt; extension. This oversight means that if a second instance of the ransomware runs, it could encrypt already encrypted files again, leading to double encryption.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="network-encryption"&gt;Network Drive Enumeration&lt;/h3&gt;
-
-
-
-&lt;p&gt;By default, the ransomware will attempt to encrypt any connected network drives, unless the &lt;code&gt;--no-network&lt;/code&gt; command-line argument is specified. The function responsible for encrypting the network drives runs as a separate thread.&lt;/p&gt;
-
-
-
-&lt;p&gt;Initially, retrieves the local hostname and its corresponding IP address, then proceeds to scan a range of IP addresses [1-255). For each IP address in the local network, the thread will attempt to connect to port 445, identifying which machines on the local network are running SMB.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31255" height="249" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId55.png" width="842" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 — Scanning IP for open SMB port.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;For each running SMB server, the ransomware will call &lt;code&gt;NetShareEnum&lt;/code&gt; and proceed to construct a network path to access a shared resource on the remote machine. Then, the ransomware continues with folder and file enumeration, followed by encryption. It is worth mentioning that in &amp;#8220;Silent&amp;#8221; mode, network shares will have their files encrypted without the extension being changed to &lt;code&gt;.vanhelsing&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="smb-spreading-encryption"&gt;SMB Spreading &amp;amp; Encryption&lt;/h3&gt;
-
-
-
-&lt;p&gt;If the ransomware is executed with the &lt;code&gt;--spread-smb&lt;/code&gt; command-line argument, it still encrypts network shares, but the approach differs from the one mentioned above. The ransomware contains an embedded &lt;a href="https://www.virustotal.com/gui/file/078163d5c16f64caa5a14784323fd51451b8c831c73396b967b4e35e6879937b"&gt;&lt;code&gt;psexec.exe&lt;/code&gt;&lt;/a&gt; binary, which is dropped into the Temp folder. Similar to network encryption, the malware will scan for SMB shares and try to determine if the share has write permissions. Network shares containing &lt;code&gt;NETLOGON&lt;/code&gt; or &lt;code&gt;sysvol&lt;/code&gt; are excluded from encryption, as encrypting them could potentially interrupt user authentication.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31261" height="230" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId60.png" width="754" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 — Excluding NETLOGON and sysvol shares.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;VanHelsing locker will copy itself to the network share as &lt;code&gt;$SHARE\\\\vanlocker.exe&lt;/code&gt;. Executing &lt;code&gt;psexec.exe&lt;/code&gt; will trigger the ransomware process on the network share, which will then proceed to encrypt the files. The ransomware on the share will execute without encrypting mounted or other network shares. Below are the execution arguments:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;cmd.exe /c $TEMP/psexec.exe -accepteula \\\\$SHARE -c -f $SHARE\\vanlocker.exe -d --no-mounted --no-network &amp;lt; NUL&lt;/pre&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="silent-encryption-mode"&gt;Silent Encryption Mode&lt;/h3&gt;
-
-
-
-&lt;p&gt;To avoid triggering detection flags added in the latest version, the ransomware includes the &lt;code&gt;--Silent&lt;/code&gt; command-line argument. When this flag is specified, the ransomware splits its functionality into two parts. &lt;/p&gt;
-
-
-
-&lt;p&gt;During &amp;#8220;Normal&amp;#8221; execution, the ransomware:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Enumerates folders.&lt;/li&gt;
-
-
-
-&lt;li&gt;Enumerates files.&lt;/li&gt;
-
-
-
-&lt;li&gt;Encrypts files.&lt;/li&gt;
-
-
-
-&lt;li&gt;Renames files with the ransomware extension.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;In “Silent” mode, the ransomware temporarily skips the file renaming step (Step 4). Once all the files have been encrypted, it enumerates folders and files once again, this time solely for renaming the files with the ransomware extension.&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Enumerates folders.&lt;/li&gt;
-
-
-
-&lt;li&gt;Enumerates files.&lt;/li&gt;
-
-
-
-&lt;li&gt;Encrypts all files.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The machine is encrypted.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;Enumerates folders.&lt;/li&gt;
-
-
-
-&lt;li&gt;Enumerates files.&lt;/li&gt;
-
-
-
-&lt;li&gt;Renames files with the ransomware extension.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;Under the hood the malware implements this by having the encryption routine accept an argument specifying &lt;code&gt;Normal&lt;/code&gt; or &lt;code&gt;Silent&lt;/code&gt; operation. These don’t exactly correspond to whether the CLI flag is set: &lt;code&gt;Silent&lt;/code&gt; only renames files (adding the &lt;code&gt;.vanhelsing&lt;/code&gt; extension) without encrypting, whereas &lt;code&gt;Normal&lt;/code&gt; encrypts and renames files, but skips the renaming if &lt;code&gt;--silent&lt;/code&gt; is set. Execution without &lt;code&gt;--silent&lt;/code&gt; is implemented by just running &lt;code&gt;Normal&lt;/code&gt;, whereas execution with &lt;code&gt;--silent&lt;/code&gt; is implemented by first running &lt;code&gt;Normal&lt;/code&gt; (which now skips file renaming) and then running &lt;code&gt;Silent&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31263" height="122" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId64-2.png" width="710" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 — Double “Encryption”, Normal &amp;amp; Silent mode.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31264" height="240" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId67.png" width="702" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 — Normal encryption function, Silent flag skipping renaming.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;When the &lt;code&gt;Silent&lt;/code&gt; argument is passed to the function, it is solely responsible for adding the ransomware extension and nothing else. Before this, the same function was executed with the &lt;code&gt;Normal&lt;/code&gt; flag, which is responsible for the encryption.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31265" height="361" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId70-1.png" width="782" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 — Silent encryption function.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The ransomware follows this two-stage process in &lt;strong&gt;Silent mode&lt;/strong&gt; primarily to evade detection and bypass security measures, such as behavioral detection.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="file-encryption"&gt;File Encryption&lt;/h3&gt;
-
-
-
-&lt;p&gt;The ransomware contains a &lt;strong&gt;Curve25519&lt;/strong&gt; public key embedded in the code. Two random ephemeral values, sized 32 bytes and 12 bytes, are generated per each encrypted file to use as the key and nonce for file encryption using the &lt;strong&gt;ChaCha20&lt;/strong&gt; algorithm. These are in turn encrypted using the public key, and the result is formatted into a hexadecimal format to be stored in the file.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31266" height="109" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId74-1.png" width="825" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 — Random keys generation and encryption.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;If the file size is approximately 1GB (0x3E800000 bytes) or larger, the ransomware will encrypt only the first 30% of the file contents, starting from the beginning. If the file size is smaller, the entire file will be encrypted. The contents are encrypted in chunks of approximately 1MB (0x100000 bytes).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31267" height="331" src="https://research.checkpoint.com/wp-content/uploads/2025/03/3QGTLCJNXC-rId77.png" width="521" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 — File size check and encryption.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;VanHelsing Ransomware Encrypted File Structure:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;---key---$KEY_HEX---endkey------nonce---$NONCE_HEX---endnonce--$ENCRYPTED_CHUNKS&lt;/pre&gt;
-
-
-
-&lt;p&gt;If the &lt;code&gt;--Silent&lt;/code&gt; flag is not set, the file ransomware extension is added immediately. Otherwise, once all the files are encrypted, they are enumerated again, and the extension is changed.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;VanHelsingRaaS&lt;/strong&gt;, a rapidly expanding ransomware-as-a-service program launched in March 2025, has quickly made its mark on the cybercrime landscape. Offering an accessible entry point for affiliates with a low deposit has attracted a diverse range of participants. The program&amp;#8217;s growth is evident in the evolution of its ransomware variants, which have expanded beyond Windows with additional offerings targeting &amp;#8220;Linux, BSD, ARM, and ESXi systems&amp;#8221;. With a user-friendly control panel and frequent updates, VanHelsing is becoming a powerful tool for cybercriminals. Within just two weeks of its launch, it has already caused significant damage, infecting multiple victims and demanding hefty ransoms. This rapid escalation underscores the program&amp;#8217;s effectiveness and the evolving nature of ransomware threats, emphasizing the need for robust cybersecurity measures to combat such sophisticated attacks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="protections"&gt;Protections&lt;/h2&gt;
-
-
-
-&lt;p&gt;Check Point Threat Emulation and Harmony Endpoint provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Ransomware.Win.FilesMovedOrOverwrites.A&lt;/li&gt;
-
-
-
-&lt;li&gt;Ransomware.Win.TouchTrapFiles.A&lt;/li&gt;
-
-
-
-&lt;li&gt;TS_Ransomware.Win.FilesMovedOrOverwrites.A&lt;/li&gt;
-
-
-
-&lt;li&gt;Trojan.Win.Krap.gl.D&lt;/li&gt;
-
-
-
-&lt;li&gt;Trojan.Wins.Imphash.taim.XT&lt;/li&gt;
-
-
-
-&lt;li&gt;Trojan.Wins.PDB.tapd.ON&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of Compromise&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;VanHelsing Ransomware&lt;/td&gt;&lt;td&gt;79106dd259ba5343202c2f669a0a61b10adfadff&lt;br /&gt;e683bfaeb1a695ff9ef1759cf1944fa3bb3b6948&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Loader&lt;/td&gt;&lt;td&gt;4211cec2f905b9c94674a326581e4a5ae0599df9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Negotiation Onion Pages&lt;/td&gt;&lt;td&gt;vanhelcbxqt4tqie6fuevfng2bsdtxgc7xslo2yo7nitaacdfrlpxnqd.onion&lt;br /&gt;vanhelqmjstkvlhrjwzgjzpq422iku6wlggiz5y5r3rmfdeiaj3ljaid.onion vanhelsokskrlaacilyfmtuqqa5haikubsjaokw47f3pt3uoivh6cgad.onion vanheltarnbfjhuvggbncniap56dscnzz5yf6yjmxqivqmb5r2gmllad.onion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;RaaS Onion Pages&lt;/td&gt;&lt;td&gt;vanhelvuuo4k3xsiq626zkqvp6kobc2abry5wowxqysibmqs5yjh4uqd.onion&lt;br /&gt;vanhelwmbf2bwzw7gmseg36qqm4ekc5uuhqbsew4eihzcahyq7sukzad.onion&lt;br /&gt;vanhelxjo52qr2ixcmtjayqqrcodkuh36n7uq7q7xj23ggotyr3y72yd.onion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Bitcoin Wallet&lt;/td&gt;&lt;td&gt;bc1q0cuvj9eglxk43v9mqmyjzzh6m8qsvsanedwrru &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;TOX&lt;/td&gt;&lt;td&gt;FEE914521FB507AB978107ACE3B69B4CA41DA89859408BAE23E1512E8C2E614A26C5FFD482A3 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/vanhelsing-new-raas-in-town/"&gt;VanHelsing, new RaaS in Town&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31242</guid><category>Check Point Research Publications</category></item><item><title>Albabat Ransomware Group Potentially Expands Targets to Multiple OS, Uses GitHub to Streamline Operations</title><link>https://www.trendmicro.com/en_us/research/25/c/albabat-ransomware-group.html</link><description>Trend Research encounters new versions of the Albabat ransomware, which appears to target Windows, Linux, and macOS devices. We also reveal the group’s use of GitHub to streamline their ransomware operation.</description><guid isPermaLink="false">urn:uuid:1deccbab-21fa-5c36-5278-8cc5033cbc17</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Cloudflare for AI: supporting AI adoption at scale with a security-first approach</title><link>https://blog.cloudflare.com/cloudflare-for-ai-supporting-ai-adoption-at-scale-with-a-security-first-approach/</link><description>With Cloudflare for AI, developers, security teams and content creators can leverage Cloudflare’s network and portfolio of tools to secure, observe and make AI applications resilient and safe to use.</description><content:encoded>&lt;p&gt;AI is transforming businesses — from &lt;a href="https://developers.cloudflare.com/agents/"&gt;&lt;u&gt;automated agents performing background workflows&lt;/u&gt;&lt;/a&gt;, to improved search, to easier access and summarization of knowledge. &lt;/p&gt;&lt;p&gt;While we are still early in what is likely going to be a substantial shift in how the world operates, two things are clear: the Internet, and how we interact with it, will change, and the boundaries of security and data privacy have never been more difficult to trace, making security an important topic in this shift.&lt;/p&gt;&lt;p&gt;At Cloudflare, we have a mission to help build a better Internet. And while we can only speculate on what AI will bring in the future, its success will rely on it being reliable and safe to use.&lt;/p&gt;&lt;p&gt;Today, we are introducing &lt;a href="https://www.cloudflare.com/press-releases/2025/cloudflare-introduces-cloudflare-for-ai/"&gt;&lt;u&gt;Cloudflare for AI&lt;/u&gt;&lt;/a&gt;: a suite of tools aimed at helping businesses, developers, and content creators adopt, deploy, and secure AI technologies at scale safely.&lt;/p&gt;&lt;p&gt;Cloudflare for AI is not just a grouping of tools and features, some of which are new, but also a commitment to focus our future development work with AI in mind.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/24th-march-threat-intelligence-report/"&gt;24th March – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31279</guid><category>Global Cyber Attack Reports</category></item><item><title>Albabat Ransomware Group Potentially Expands Targets to Multiple OS, Uses GitHub to Streamline Operations</title><link>https://www.trendmicro.com/en_us/research/25/c/albabat-ransomware-group.html</link><description>Trend Research encounters new versions of the Albabat ransomware, which appears to target Windows, Linux, and macOS devices. We also reveal the group’s use of GitHub to streamline their ransomware operation.</description><guid isPermaLink="false">urn:uuid:1deccbab-21fa-5c36-5278-8cc5033cbc17</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Cloudflare for AI: supporting AI adoption at scale with a security-first approach</title><link>https://blog.cloudflare.com/cloudflare-for-ai-supporting-ai-adoption-at-scale-with-a-security-first-approach/</link><description>With Cloudflare for AI, developers, security teams and content creators can leverage Cloudflare’s network and portfolio of tools to secure, observe and make AI applications resilient and safe to use.</description><content:encoded>&lt;p&gt;AI is transforming businesses — from &lt;a href="https://developers.cloudflare.com/agents/"&gt;&lt;u&gt;automated agents performing background workflows&lt;/u&gt;&lt;/a&gt;, to improved search, to easier access and summarization of knowledge. &lt;/p&gt;&lt;p&gt;While we are still early in what is likely going to be a substantial shift in how the world operates, two things are clear: the Internet, and how we interact with it, will change, and the boundaries of security and data privacy have never been more difficult to trace, making security an important topic in this shift.&lt;/p&gt;&lt;p&gt;At Cloudflare, we have a mission to help build a better Internet. And while we can only speculate on what AI will bring in the future, its success will rely on it being reliable and safe to use.&lt;/p&gt;&lt;p&gt;Today, we are introducing &lt;a href="https://www.cloudflare.com/press-releases/2025/cloudflare-introduces-cloudflare-for-ai/"&gt;&lt;u&gt;Cloudflare for AI&lt;/u&gt;&lt;/a&gt;: a suite of tools aimed at helping businesses, developers, and content creators adopt, deploy, and secure AI technologies at scale safely.&lt;/p&gt;&lt;p&gt;Cloudflare for AI is not just a grouping of tools and features, some of which are new, but also a commitment to focus our future development work with AI in mind.&lt;/p&gt;
           &lt;figure&gt;
           &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/4s1CIOnpHnIdWPdFrzS6e1/a29e0ffa7123d69e855b3eac6d0a154f/1.png" /&gt;
           &lt;/figure&gt;&lt;p&gt;Let’s jump in to see what Cloudflare for AI can deliver for developers, security teams, and content creators…&lt;/p&gt;
