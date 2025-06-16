@@ -1,5 +1,661 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 16 Jun 2025 12:59:20 +0000</lastBuildDate><item><title>16th June – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/16th-june-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 16th June, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES One of South Korea’s largest ticketing platforms Yes24 has been a victim of a ransomware attack that resulted in a four-day service outage, disrupting online bookings for concerts, e-book access, and community [&amp;#8230;]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 16 Jun 2025 13:59:17 +0000</lastBuildDate><item><title>Building Resilient Software Supply Chains: Inside the Enhanced Qualys Software Composition Analysis</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>In today’s software-driven economy, every organization, regardless of industry, is a software company. And increasingly, every software company is an open-source company. With open-source components (OSS) now comprising up to 80% of modern codebase, the software supply chain has emerged as one of the most significant and most vulnerable frontiers in cybersecurity. Unfortunately, adversaries have [&amp;#8230;]</description><content:encoded>&lt;p&gt;In today’s software-driven economy, every organization, regardless of industry, is a software company. And increasingly, every software company is an open-source company. With open-source components (OSS) now comprising up to 80% of modern codebase, the software supply chain has emerged as one of the most significant and most vulnerable frontiers in cybersecurity.&lt;/p&gt;
+
+
+
+&lt;p&gt;Unfortunately, adversaries have taken note.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.gartner.com/en/newsroom/press-releases/2021-04-13-gartner-says-nearly-half-of-organizations-will-experience-a-software-supply-chain-attack-by-2025"&gt;Gartner&lt;/a&gt; predicts that by the end of 2025, 45% of global organizations will have experienced a software supply chain attack, a threefold increase since 2021. In just four years, these attacks &lt;a href="https://www.securityweek.com/cyber-insights-2025-open-source-and-the-software-supply-chain/"&gt;have surged by 431%&lt;/a&gt;, pointing towards an evolving challenge: while OSS is indispensable for the accelerated pace of innovation, it also exposes development and security teams to considerable risk.&lt;/p&gt;
+
+
+
+&lt;p&gt;These risks are playing out in real time, disrupting businesses and escalating security costs. A recent &lt;a href="https://cybersecurityventures.com/"&gt;Cybersecurity Ventures&lt;/a&gt; report estimates that the annual cost of software supply chain attacks will hit $60 billion by the end of 2025, up from $46 billion in 2023. With projections pointing to a steady 15% YoY increase through 2031, the financial stakes are mounting. &lt;a href="https://ntsc.org/wp-content/uploads/2025/03/The-2025-Software-Supply-Chain-Security-Report-RL-compressed.pdf"&gt;Attackers are zeroing in&lt;/a&gt; on build pipelines, open-source dependencies, and AI/ML software supply chains by leveraging phishing, social engineering, and increasingly complex malware to exploit critical gaps.&lt;/p&gt;
+
+
+
+&lt;span id="more-38072"&gt;&lt;/span&gt;
+
+
+
+&lt;p&gt;Amid this rise in attacks, security leaders and enterprise architects continue to grapple with foundational challenges:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Fragmented visibility&lt;/strong&gt; across hybrid development environments&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Insufficient awareness&lt;/strong&gt; of transitive dependencies between the application and components&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Lack of actionable insights&lt;/strong&gt; derived from software composition data&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Difficulty contextualizing OSS risk&lt;/strong&gt; in terms of real business impact&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Mounting compliance pressure &lt;/strong&gt;from SBOM mandates to executive order directives&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;That&amp;#8217;s reflected in the fact that &lt;a href="https://www.blackduck.com/content/dam/black-duck/en-us/reports/state-of-software-supply-chain-security-risks-ponemon.pdf"&gt;&lt;strong&gt;only one in three organizations&lt;/strong&gt;&lt;/a&gt; feels adequately prepared to defend against the threats posed by these foundational challenges. &lt;strong&gt;Nearly half&lt;/strong&gt; admit they haven’t even identified the most vulnerable components in their software supply chain.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-cisos-appsec-devsecops-need-and-arent-getting-from-traditional-scas"&gt;&lt;strong&gt;What CISOs, AppSec, DevSecOps Need and Aren’t Getting from Traditional SCAs&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Legacy Software Composition Analysis (SCA) tools weren’t designed for today’s large-scale hybrid production environments or CI/CD pace. They operate in silos, produce static lists, and leave AppSec and DevOps teams struggling to answer the most critical questions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Which OSS components are exploitable in production?&lt;/li&gt;
+
+
+
+&lt;li&gt;Which ones are actively used versus dormant?&lt;/li&gt;
+
+
+
+&lt;li&gt;How does a vulnerability in this library impact business services?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Most tools stop at compiling a static list of outdated or vulnerable libraries, offering little more than a snapshot in time with no business context. As a result, security teams are often left buried in unactionable alerts, drowning in false positives with no clear remediation path.&lt;/p&gt;
+
+
+
+&lt;p&gt;Traditionally, Software Composition Analysis has lived in the developer toolchain as a code-level hygiene check. But as open-source dependencies have become deeply embedded in production systems, SCA is evolving into a strategic control point, one that spans development, security, operations, and compliance.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-software-composition-analysis-swca-built-for-the-reality-of-modern-enterprises"&gt;&lt;strong&gt;Qualys Software Composition Analysis (SwCA): Built for the Reality of Modern Enterprises&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys Software Composition Analysis (SwCA) was designed with these challenges in mind.&lt;/p&gt;
+
+
+
+&lt;p&gt;Fully integrated into the &lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Qualys platform&lt;/a&gt;, SwCA transforms how organizations detect, prioritize, and respond to open-source risks. It correlates discovered vulnerabilities with real-time production data, CI/CD activity, and runtime behavior to determine &lt;strong&gt;what&amp;#8217;s truly exploitable, what&amp;#8217;s actively in use, and what needs immediate attention&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;It&amp;#8217;s a strategic capability that helps organizations to:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Transform OSS data&lt;/strong&gt; into business-aligned decisions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Empower developers&lt;/strong&gt; with precise, low-friction remediation workflows.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Support audit-readiness &lt;/strong&gt;with living documentation and runtime assurance.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Automate patching &lt;/strong&gt;or mitigation workflows.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;SwCA acts as a bridge between fragmented visibility and enterprise-wide confidence, equipping leaders to manage OSS risk without compromising velocity.&lt;/p&gt;
+
+
+
+&lt;p&gt;Since its initial release, SwCA has evolved significantly, expanding coverage and capabilities to help organizations better discover, assess, and remediate OSS risks. In the next section, we highlight key improvements made since the launch.&lt;/p&gt;
+
+
+
+
+
+
+&lt;p&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="whats-new-strategic-enhancements-for-2025-and-beyond"&gt;&lt;strong&gt;What’s New: Strategic Enhancements for 2025 and Beyond&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Enterprise needs have evolved, and so has SwCA. The series of enhancements is designed to deepen coverage, improve visibility, meet compliance requirements, improve usability, and scale across enterprise environments. Through its latest major updates, SwCA advances its role as a frontrunner in securing software supply chains.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;1. &lt;strong&gt;Software Atlas: Application-to-Component Mapping for Contextual Risk Assessment&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Qualys SwCA introduces &lt;strong&gt;Software Atlas&lt;/strong&gt;, the industry’s first native vulnerability management solution offering deeper insights into dependencies by mapping applications to their underlying components. Its robust software component-to-application mapping capabilities eliminate guesswork and manual tracking by giving you unprecedented insight to strengthen your software supply chain.&lt;/p&gt;
+
+
+
+&lt;p&gt;What this means in practice:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Goes beyond basic inventory&lt;/strong&gt; by mapping OSS components to the applications they impact&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Prioritizes issues based on real-world risk&lt;/strong&gt;, e.g., customer-facing apps take precedence over internal tools&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Offers detailed visibility&lt;/strong&gt; into component-to-application relationships for smarter decision-making&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Accelerates remediation by up to 60%&lt;/strong&gt; by pinpointing root component issues across multiple dependencies&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-1-scaled.png"&gt;&lt;img alt="" class="wp-image-38079" height="1277" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-1-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1: Software Atlas &amp;#8211; Mapping Software Components to Their Applications&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This contextual mapping transforms static inventory into operational insight. By surfacing these linkages, risk teams can now align OSS risk with business value, ensuring the most impactful issues are resolved first without drowning in false positives or low-priority alerts.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;2. &lt;strong&gt;C/C++ Detection: &lt;/strong&gt;E&lt;strong&gt;xposing Blind Spots in Legacy Code&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;While modern languages benefit from mature OSS visibility tooling, C and C++ have long remained opaque due to compilation, static linking, and lack of manifest metadata. This has left critical legacy systems—often central to telecom, embedded, aerospace, and finance—exposed to undetected supply chain risks.&lt;/p&gt;
+
+
+
+&lt;p&gt;The enhanced SwCA now brings first-class support for C/C++ binaries, enabling DevSecOps teams to:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Analyze ELF and PE binary formats&lt;/strong&gt; without requiring access to source code.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Surface vulnerabilities in statically linked libraries&lt;/strong&gt; that traditional Software Composition Analysis tools often miss.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Correlate discovered risks with TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt; scoring&lt;/strong&gt;, placing C/C++ issues in the same prioritization pipeline as modern tech stacks.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Gain unified visibility&lt;/strong&gt; across mixed-language environments from a single platform.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-2-scaled.png"&gt;&lt;img alt="" class="wp-image-38081" height="1319" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-2-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 2: QQL Token Highlighting C/C++ Vulnerabilities&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This expansion closes a critical visibility gap in software supply chain security, empowering teams to monitor and mitigate risk in foundational infrastructure previously out of reach. For sectors where C/C++ codebases persist, this capability is not just valuable but essential.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;3. &lt;strong&gt;Streamlined Remediation with Smarter Ticketing&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;One of the longstanding challenges in software supply chain security is translating raw scan data into developer-friendly, trackable tasks, especially in environments where applications share libraries or span multiple ownership domains.&lt;/p&gt;
+
+
+
+&lt;p&gt;With enhanced QID result parsing, SwCA now enables:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Granular ticket generation:&lt;/strong&gt; Each vulnerable component is individually parsed and mapped to the right owner or development team for targeted remediation.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Seamless workflow integration:&lt;/strong&gt; Native support for tools like Jira and ServiceNow turns vulnerability data into structured, trackable remediation tasks.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Clean separation of concerns:&lt;/strong&gt; Scan output is organized to align components with the teams responsible, streamlining ownership and accountability and misrouting of issues.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-3-scaled.png"&gt;&lt;img alt="" class="wp-image-38084" height="292" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-3-1070x292.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 3: ServiceNow VR View &amp;#8211; One QID, Three Tickets, Each Mapped to Its Designated Application Owner&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This upgrade transforms Qualys SwCA to help teams hand off issues directly to developers or app owners, operationalize vulnerability remediation at scale, eliminate manual processes, and ensure no risk signal gets lost in translation. By embedding SwCA into existing CI/CD workflows, organizations gain greater efficiency, precision, and accountability across the remediation lifecycle.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;4. &lt;strong&gt;SBOM Generation for Transparent and Trustworthy Software Supply Chains&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;SBOMs are no longer a ‘nice to have.’ Compliance standards, executive orders, and customer SLAs demand them. Qualys SwCA now supports Software Bill of Materials (SBOM) generation in CycloneDX 1.4 and 1.6 formats via both the UI and API, making it easy to embed transparency into DevSecOps pipelines.&lt;/p&gt;
+
+
+
+&lt;p&gt;How these living SBOMs enable full-stack transparency:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Comprehensive visibility:&lt;/strong&gt; Generates a detailed, structured list of all open-source components within each application.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Always up to date:&lt;/strong&gt; Produces living SBOMs that automatically update with every new scan.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Risk-aware inventory:&lt;/strong&gt; Ties each component to real-time vulnerability and risk insights for proactive decision-making.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-4.png"&gt;&lt;img alt="" class="wp-image-38085" height="1848" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-4.png" width="1790" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4: SBOM Generated in CycloneDx 1.6 Format for Component Inventory&amp;nbsp;&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This helps teams proactively manage exposure, streamline compliance, and respond faster to emerging vulnerabilities in the ecosystem.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;5. Runtime Software Composition Analysis: From Inventory to Exposure&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Traditional SwCAs often focus on what&amp;#8217;s built or deployed, but lack visibility into what is actually running in production. With runtime visibility via &lt;a href="https://www.qualys.com/cloud-agent/"&gt;Qualys Cloud Agent&lt;/a&gt;, Qualys SwCA now shows which components are actively running, not just installed.&lt;/p&gt;
+
+
+
+&lt;p&gt;See what’s running, not just what’s deployed:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Focus on real risk:&lt;/strong&gt; Distinguishes between dormant and active components to prioritize OSS libraries that actually impact runtime.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Smarter triage:&lt;/strong&gt; Helps teams deprioritize inactive components and zero in on those loaded and in use.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Continuous monitoring:&lt;/strong&gt; Automatically assesses and tracks new components as they’re introduced or activated in production.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Bridges key gaps:&lt;/strong&gt; Connects static build-time analysis with real-world, runtime exposure for a more accurate risk picture.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This approach aligns OSS risk with &lt;strong&gt;real-world execution contexts&lt;/strong&gt;, reducing wasted effort and improving resilience.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;6. &lt;strong&gt;Enterprise Scalability: Designed for Global Operations&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Enterprise software ecosystems can span thousands of components per asset. The enhanced Qualys SwCA now supports visibility into &lt;strong&gt;20,000+ OSS components per asset&lt;/strong&gt;, ensuring no risk goes unseen, no matter the scale. To complement this, it also introduces advanced query tokens like &lt;kbd&gt;Component.name&lt;/kbd&gt;, &lt;kbd&gt;Component.version&lt;/kbd&gt;, and C&lt;kbd&gt;omponent.technology&lt;/kbd&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;These allow DevSecOps teams to:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Drill into specific risk profiles&lt;/strong&gt; across vast environments.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Filter and sort with precision&lt;/strong&gt; in both UI and API workflows.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Integrate seamlessly&lt;/strong&gt; into analytics pipelines and automation tools.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-5-scaled.png"&gt;&lt;img alt="" class="wp-image-38087" height="1277" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/Figure-5-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5: Simple QQL Search through Component Inventory&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With these powerful enhancements, teams can operationalize OSS insights across the organization with confidence and clarity, and eventually help enterprises move from mere data collection to decisive, value-driven action.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="real-world-impact-what-security-leaders-actually-gain"&gt;&lt;strong&gt;Real-world Impact: What Security Leaders Actually Gain&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys SwCA’s enhancements are direct responses to the reality faced by today’s enterprise security and risk leaders.&lt;/p&gt;
+
+
+
+&lt;p&gt;Here’s what that looks like in action:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Strategic Advantage&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Operational Impact&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Business-Aligned, Contextual Risk Prioritization&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Precisely map application-to-component relationships to prioritize remediation efforts based on business impact, accelerating risk reduction and improving mean time to remediate (MTTR) for critical, customer-facing applications.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Expanded Visibility Across Legacy Systems&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Surface risks in C/C++ binaries, often blind spots, using TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt; scoring to bring parity in risk evaluation across modern and legacy stacks.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Accelerated Remediation Through Workflow Integration&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Automate creation of precise, component-level tickets tied to app ownership in JIRA and SNOW, enabling faster triage and resolution with fewer handoffs.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Software Supply Chain Transparency at Scale&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Deliver live SBOMs enriched with vulnerability data for real-time compliance readiness, risk audits, and Zero Trust enforcement.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Real-World Risk Exposure Insights&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Focus patching on actively executed OSS components in production, reducing false positives and aligning remediation with runtime behavior.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Scalable, Actionable Software Inventory Management&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Efficiently manage and analyze large OSS footprints using flexible queries and metadata tokens, enabling enterprise-grade DevSecOps performance.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="closing-the-risk-gap-in-software-supply-chains"&gt;&lt;strong&gt;Closing the Risk Gap in Software Supply Chains&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;In 2025, securing your software supply chain isn’t a checkbox exercise but a continuous, strategic discipline. With OSS usage only rising and attacker sophistication increasing in lockstep, modern enterprises must build &lt;strong&gt;resilience into their development and delivery pipelines.&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;What this requires is more than a scanning tool. It demands:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Context over quantity&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Risk alignment over CVE counts&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Streamlined remediation built for Dev speed&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Continuous assurance over one-time audits&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Qualys Software Composition Analysis (SwCA) meets these demands. With a deep commitment to continuous innovation, spanning runtime analysis, contextual mapping, SBOM generation, and extensive multi-language coverage, SwCA empowers security leaders to stay ahead of threats while aligning with operational realities. These enhancements bridge the gap between security and development, streamline remediation, and improve transparency, which are key pillars for building secure, trustworthy, and resilient software in the current threat landscape.&lt;/p&gt;
+
+
+
+&lt;p&gt;And more importantly, it reflects a shift in how leading organizations approach software risk &lt;strong&gt;as a business problem and not just a security one.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="see-what-proactive-oss-defense-looks-like"&gt;&lt;strong&gt;See What Proactive OSS Defense Looks Like&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Software supply chain threats are growing, but with the right tools, your organization can grow stronger by tackling them head-on.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Ready to experience how Qualys SwCA with contextual OSS insights can accelerate your risk response?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/vmdr-csam/" style="background-color: #ed2e26;"&gt;Begin Your Free Trial&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Contact your Technical Account Manager (TAM)&lt;/strong&gt; to explore how the Qualys SwCA solution can be customized to align with your existing DevSecOps pipelines and operationalize contextual risk scoring.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38072</guid><category>Product and Tech</category><category>VMDR</category><category>#QualysVMDR</category><category>sca</category><category>software composition analysis</category><category>supply chain software security</category></item><item><title>Qualys TotalCloud Wins “Best Cloud Security Product” at 2025 SC Awards Europe</title><link>https://blog.qualys.com/category/product-tech</link><description>We’re proud to announce that Qualys TotalCloud™ has been named “Best Cloud Security Product” at the 2025 SC Awards Europe—a recognition of our relentless drive to unify, simplify, and modernize cloud security for enterprises across the globe. In today’s complex multi-cloud world, securing cloud-native applications and infrastructure isn&amp;#8217;t just about visibility—it&amp;#8217;s about turning risk into [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re proud to announce that &lt;strong&gt;Qualys TotalCloud&lt;sup&gt;&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt;&lt;/sup&gt;&lt;/strong&gt; has been named &lt;strong&gt;“&lt;a href="https://insight.scmagazineuk.com/best-cloud-security-solution-qualys"&gt;Best Cloud Security Product&lt;/a&gt;”&lt;/strong&gt; at the &lt;strong&gt;2025 SC Awards Europe&lt;/strong&gt;—a recognition of our relentless drive to unify, simplify, and modernize cloud security for enterprises across the globe.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-38062" height="207" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/SC-Awards-2025-Winner-Badge-1070x207.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;In today’s complex multi-cloud world, securing cloud-native applications and infrastructure isn&amp;#8217;t just about visibility—it&amp;#8217;s about turning risk into resilience. TotalCloud does just that by combining the power of TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt;-driven prioritization, comprehensive workload protection, and automated remediation workflows—all in one integrated platform.&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;span id="more-38059"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="why-qualys-totalcloud-stood-out"&gt;&lt;strong&gt;Why Qualys TotalCloud Stood Out&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Cloud security is flooded with point solutions that operate in silos. &lt;a href="https://www.qualys.com/apps/totalcloud/"&gt;TotalCloud&lt;/a&gt; breaks that mold by offering:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Lowered TCO With Flexibility and Scalability:&lt;/strong&gt; TotalCloud comes with all modules enabled out of the box. Customers can purchase any number of QLUs and switch units at any time during their contract across all TotalCloud modules, including CSPM, Kubernetes &amp;amp; Containers Security, CDR, Application/API Security, and AI Security to meet the needs of their organization.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Focus With Multi-Dimensional Risk Prioritization:&amp;nbsp; &lt;/strong&gt;Building on core Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt; vulnerability scoring, multi-dimensional risk prioritization adds exploitability, asset criticality, runtime context, and threat intelligence—correlated through attack paths—to spotlight the few issues that truly matter and drive business risk, so teams stop chasing noise.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Efficiency With Workflow Automation and Remediation: &lt;/strong&gt;Customers get Qualys Flow out of the box to orchestrate workflows, including misconfiguration and vulnerability remediation, with over 300+ out-of-the-box playbooks at scale.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Full Audit with FlexScan Coverage: &lt;/strong&gt;Customers get complete risk and compliance coverage with a single license that covers both long-lived and ephemeral workloads. With one single license, customers can mix and match cloud agents, agentless, network perimeter, and API-based scans across any workload without any sacrifice in coverage.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="designed-for-the-real-world"&gt;&lt;strong&gt;Designed for the Real World&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;TotalCloud currently protects over 44 million cloud workloads and is trusted by industries where precision, compliance, and uptime are non-negotiable—including financial services, healthcare, and high-tech sectors.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our FlexScan technology supports multiple scanning options—agent, agentless snapshot, network, and API—to provide coverage that fits any environment, including FedRAMP and GovCloud.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="measurable-business-value"&gt;&lt;strong&gt;Measurable Business Value&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Enterprises aren’t just choosing TotalCloud for protection—they’re seeing real ROI:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;An insurance provider cut patching costs by 30%&lt;/li&gt;
+
+
+
+&lt;li&gt;A Global 50 conglomerate consolidated multiple tools, saving millions annually&lt;/li&gt;
+
+
+
+&lt;li&gt;CISOs use TruRisk Insights to drive board-level conversations with clear risk-to-business mappings&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;TotalCloud customers consistently report lower operational overhead, faster remediation, and smoother audits for standards like SOC 2, NIST, PCI-DSS, HIPAA, and more.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="powered-by-research-and-resilience"&gt;&lt;strong&gt;Powered by Research and Resilience&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Security is never static. With over 120 dedicated white hat researchers, Qualys delivers daily updates with the latest on zero-days, active exploits, and remediation guidance. Our monthly product releases ensure TotalCloud evolves with the threat landscape and our customers&amp;#8217; needs.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="thank-you"&gt;&lt;strong&gt;Thank You&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Winning the SC Award validates what our customers already know: Qualys TotalCloud is built for real-world scale, flexibility, and results.&lt;/p&gt;
+
+
+
+&lt;p&gt;We thank the SC Awards Europe panel and extend our gratitude to our customers and partners who continue to trust us to secure what matters most.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Join us on June 24th to find out how to secure the Kubernetes control plane from inside-out. &amp;nbsp;&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.brighttalk.com/webcast/11673/643899?utm_source=brighttalk-portal&amp;#038;utm_medium=web&amp;#038;utm_campaign=channel-page&amp;#038;utm_content=upcoming" style="background-color: #ed2e26;"&gt;Register Today&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38059</guid><category>Product and Tech</category><category>SC Awards Europe</category><category>totalcloud</category></item><item><title>Qualys VMDR Wins at 2025 SC Awards Europe for Best Vulnerability Management Solution</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>We’re excited to share that Qualys VMDR (Vulnerability Management, Detection, and Response) has won the Best Vulnerability Management Solution for 3 years in row at 2025 SC Awards Europe, recognizing its market-leading innovation and measurable impact in reducing cyber risk for businesses worldwide. As the attack surface continues to grow and threats become more sophisticated, [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re excited to share that &lt;strong&gt;&lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/"&gt;Qualys VMDR (Vulnerability Management, Detection, and Response)&lt;/a&gt;&lt;/strong&gt; has won the &lt;strong&gt;&lt;a href="https://insight.scmagazineuk.com/best-vulnerability-management-solution-qualys"&gt;Best Vulnerability Management Solution&lt;/a&gt;&lt;/strong&gt; for 3 years in row at &lt;strong&gt;2025 SC Awards Europe&lt;/strong&gt;, recognizing its market-leading innovation and measurable impact in reducing cyber risk for businesses worldwide.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-38062" height="207" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/06/SC-Awards-2025-Winner-Badge-1070x207.png" width="1070" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;As the attack surface continues to grow and threats become more sophisticated, organizations need more than just visibility—they need action. VMDR delivers exactly that: a complete, risk-based vulnerability management solution that empowers security teams to detect, prioritize, and remediate threats—all from a single platform.&lt;/p&gt;
+
+
+
+&lt;span id="more-38091"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="why-qualys-vmdr-won"&gt;&lt;strong&gt;Why Qualys VMDR Won&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;In 2024, the number of vulnerabilities surged by 39%, making it harder than ever to manage cyber risk. Many tools stop at vulnerability identification. VMDR goes further—prioritizing risk in business context, automating remediation, and helping teams fix what matters most, faster.&lt;/p&gt;
+
+
+
+&lt;p&gt;Here’s how we set the standard:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Unmatched Detection Coverage&lt;/strong&gt;: VMDR detects over 103,000 CVEs, leading the market in both breadth and speed. In fact, 96% of critical or zero-day vulnerabilities were detected by VMDR first—on average, 16 hours ahead of competition.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Business-Aligned Prioritization&lt;/strong&gt;: Our proprietary TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt; Scoring Engine uses over 25 threat intelligence feeds and layers in real-time exploitability, asset value, and risk factors like end-of-life software and exposed services.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Integrated Remediation&lt;/strong&gt;: From patching to compensating controls, customers can act on findings immediately. In 2024 alone, over 110 million patches were deployed directly from the platform.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="built-for-everyone-smes-to-global-enterprises"&gt;&lt;strong&gt;Built for Everyone: SMEs to Global Enterprises&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Whether you’re a growing a small to medium-sized business (SMB) or a complex global enterprise, VMDR scales with your needs:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;SMBs benefit from simple deployment, affordable pricing, and all-in-one protection with packages like VMDR TruRisk FixIT and ProtectIT.&lt;/li&gt;
+
+
+
+&lt;li&gt;Enterprises leverage VMDR to consolidate tool sprawl, improve board-level risk communication, and reduce operational overhead—while remaining audit-ready across frameworks like CISA KEV, PCI-DSS, and HIPAA.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="driving-roi-through-simplicity-and-scale"&gt;&lt;strong&gt;Driving ROI Through Simplicity and Scale&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Legacy vulnerability management tools often require heavy infrastructure and siloed add-ons. VMDR is different:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;No costly database scaling or manual patch tracking&lt;/li&gt;
+
+
+
+&lt;li&gt;Continuous cloud-based updates, typically every two weeks&lt;/li&gt;
+
+
+
+&lt;li&gt;Seamless integration with ITSM platforms like ServiceNow&lt;/li&gt;
+
+
+
+&lt;li&gt;Straightforward pricing&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;And with a 20.6% global market share and 10,000+ customers across 130+ countries, Qualys VMDR is a proven solution trusted by financial institutions, governments, healthcare leaders, and major enterprises worldwide.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-power-of-visibility-action"&gt;&lt;strong&gt;The Power of Visibility + Action&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;“You can’t fix what you can’t see.” VMDR not only gives organizations a unified view of every asset and risk—it gives them the power to fix it, fast.&lt;/p&gt;
+
+
+
+&lt;p&gt;As Andy Hubbard, Cyber Defense Lead at Aberdeen, puts it:&lt;/p&gt;
+
+
+
+&lt;p&gt;“We now have close to perfect visibility on our assets and the vulnerabilities on them. You’re able to present a picture to leadership—and technically deliver that remediation as well.”&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="thank-you"&gt;&lt;strong&gt;Thank You&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;We’re honored to receive this award and grateful to our customers, partners, and the SC Awards Europse judges. This recognition reinforces our mission: turning cyber risk into business resilience.&lt;/p&gt;
+
+
+
+&lt;p&gt;Want to see how VMDR can transform your vulnerability management? &lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/"&gt;Learn more here&lt;/a&gt; or &lt;a href="https://www.youtube.com/watch?v=BjSwRNgUG1c"&gt;watch the award video&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38091</guid><category>Product and Tech</category><category>VMDR</category><category>SC Media Europe</category><category>vmdr</category><category>vulnerability management</category></item><item><title>16th June – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/16th-june-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 16th June, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES One of South Korea’s largest ticketing platforms Yes24 has been a victim of a ransomware attack that resulted in a four-day service outage, disrupting online bookings for concerts, e-book access, and community [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/16th-june-threat-intelligence-report/"&gt;16th June – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 16th June, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/06/Threat_Intelligence_News_2025-06-16.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -11996,516 +12652,7 @@ kingaiplus[.]com&lt;/pre&gt;
 &lt;p&gt;The new site quickly attracted more than 300,000 users, and facilitated the sale of databases stolen from hundreds of hacking victims, including some of the largest consumer data breaches in recent history. In May 2024, a reincarnation of Breachforums was seized by the FBI and international partners. Still more relaunches of the forum occurred after that, with &lt;a href="https://socradar.io/breachforums-is-offline-a-new-twist-or-just-another-cyber-sheningan/" rel="noopener" target="_blank"&gt;the most recent disruption&lt;/a&gt; last month.&lt;/p&gt;
 &lt;p&gt;As KrebsOnSecurity reported last year in &lt;a href="https://krebsonsecurity.com/2024/09/the-dark-nexus-between-harm-groups-and-the-com/" rel="noopener" target="_blank"&gt;The Dark Nexus Between Harm Groups and The Com&lt;/a&gt;, it is increasingly common for federal investigators to find CSAM material when searching devices seized from cybercriminal suspects. While the mere possession of CSAM is a serious federal crime, not all of those caught with CSAM are necessarily creators or distributors of it. Fertel said some cybercriminal communities have been known to require new entrants to share CSAM material as a way of proving that they are not a federal investigator.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;If you&amp;#8217;re going to the darkest corners of Internet, that&amp;#8217;s how you prove you&amp;#8217;re not law enforcement,&amp;#8221; Fertel said. &amp;#8220;Law enforcement would never share that material. It would be criminal for me as a prosecutor, if I obtained and possessed those types of images.&amp;#8221;&lt;/p&gt;
-&lt;p&gt;Further reading: &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2025/05/19420931.pdf" rel="noopener" target="_blank"&gt;The settlement between Fitzpatrick and Nonstop&lt;/a&gt; (PDF).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71263</guid><category>A Little Sunshine</category><category>Data Breaches</category><category>Ne'er-Do-Well News</category><category>BreachForums</category><category>Cipriani &amp; Werner</category><category>Conor Brian Fitzpatrick</category><category>Jill Fertel</category><category>mark rasch</category><category>Nonstop Health</category><category>pompompurin</category><category>RaidForums</category><category>Unit 221B</category></item><item><title>Fileless Execution: PowerShell Based Shellcode Loader Executes Remcos RAT</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Cybercriminals are progressively turning PowerShell to launch stealthy attacks that evade traditional antivirus and endpoint defenses. By running code directly in memory, these threats leave minimal evidence on disk, making them particularly challenging to detect. A recent example is Remcos RAT, a well-known remote access trojan recognized for its persistence and stealth. It provides attackers [&amp;#8230;]</description><content:encoded>&lt;p&gt;Cybercriminals are progressively turning PowerShell to launch stealthy attacks that evade traditional antivirus and endpoint defenses. By running code directly in memory, these threats leave minimal evidence on disk, making them particularly challenging to detect.&lt;/p&gt;
-
-
-
-&lt;p&gt;A recent example is Remcos RAT, a well-known remote access trojan recognized for its persistence and stealth. It provides attackers with full control over compromised systems, making it a preferred go-to tool for cyber espionage and data theft. In a recent campaign, threat actors delivered malicious LNK files embedded within ZIP archives, often disguised as Office documents. The attack chain leverages mshta.exe for proxy execution during the initial stage.&lt;/p&gt;
-
-
-
-&lt;p&gt;Unconfirmed reports suggest this new sample is named &amp;#8220;K-Loader,&amp;#8221; although no conclusive findings have been made.&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;span id="more-37888"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="execution-flow"&gt;&lt;a&gt;&lt;strong&gt;Execution Flow&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has discovered a new PowerShell-based shellcode loader, designed to load and execute a variant of Remcos RAT. In this blog, we will explore some of the most intriguing aspects of this stealthy malware sample.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1-Attack-Flow.png"&gt;&lt;img alt="" class="wp-image-37889" height="500" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1-Attack-Flow.png" width="921" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1: Attack Flow&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="technical-analysis"&gt;Technical Analysis&lt;/h2&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.1-New_tax311.png"&gt;&lt;img alt="" class="wp-image-37891" height="43" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.1-New_tax311.png" width="931" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;div class="wp-block-group"&gt;&lt;div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"&gt;
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;SHA-256: 85dcc4bafccb5b9e255f75c2cd96fec1b4a5b30d09ae0d8eb571b312511d7df7&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Initial Execution via MSHTA&lt;/strong&gt;&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;MSHTA.exe executes obfuscated hta file.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37892" height="23" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.2-mshta-command-1.png" width="936" /&gt;&lt;/figure&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The hta file contains obfuscated VBScript code. This script bypass Windows Defender and downloads PowerShell script into the “&lt;em&gt;C:/Users/Public/”&lt;/em&gt; directory, which is added under exclusion folder using “Add-MpPreference -ExclusionPath”.&lt;/li&gt;
-
-
-
-&lt;li&gt;The script sets PowerShell execution policy to bypass, runs in hidden mode, and creates a registry entry to maintain persistence. The malware modifies the Windows Registry using the following command:&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.3-Registry-modification-ps-command.png"&gt;&lt;img alt="" class="wp-image-37893" height="37" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-1.3-Registry-modification-ps-command.png" width="936" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The hta downloads multiple payloads into “C:/Users/Public/” directory:&lt;ul&gt;&lt;li&gt;pp1.pdf (Decoy file)&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;311.hta&lt;/li&gt;&lt;/ul&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;24.ps1&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The 311.hta file is executed on system startup. Its code is almost similar to xlab22.hta.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-2-De-obfuscated-xlab22-and-311.hta_.png"&gt;&lt;img alt="" class="wp-image-37894" height="329" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-2-De-obfuscated-xlab22-and-311.hta_.png" width="887" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: De-obfuscated xlab22 and 311.hta&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="powershell-analysis"&gt;PowerShell Analysis&lt;/h2&gt;
-
-
-
-&lt;p&gt;The downloaded PowerShell payload 24.ps1 is heavily obfuscated and contains numerous functions and variables. It reconstructs two blobs of byte arrays from obfuscated base64 content using a custom string join/replace de-obfuscation technique. The script then leverages Win32 APIs to allocate memory and execute binary code directly in memory.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-3-First-chunk-of-Base64-data.png"&gt;&lt;img alt="" class="wp-image-37895" height="557" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-3-First-chunk-of-Base64-data-1070x557.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: First Chunk of Base64 Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-4-Second-chunk-of-Base64-data.png"&gt;&lt;img alt="" class="wp-image-37897" height="538" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-4-Second-chunk-of-Base64-data-1070x538.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: Second Chunk of Base64 Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The first chunk we obtained is a shellcode Loader of 104 KB, padded with numerous null bytes. The second chunk revealed a 484 KB PE file. The following APIs are involved in executing both payloads:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-37898" height="145" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-5.-Shellcode-decrypted-by-Marshel-copy-method.png" width="936" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: Shellcode Copied for Execution by Marshal Copy Method&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;First, it allocates memory using “VirtuallAlloc()” as per the size of shellcode. The Marshal.Copy() method is then used to copy the shellcode into allocated memory. Finally, the code is executed using the function “CallWindowProcW()”, which acts as a callback function.&lt;/p&gt;
-
-
-
-&lt;p&gt;“CallWindowProc (hPrevWndFunc, hWnd, iMsg, wParam, lParam)”.&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;a&gt;&lt;strong&gt;Loader Analysis:&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;After decrypting the first chunk, we obtain a shellcode loader with a total size of 104 KB, though the actual executable code is only about 4 KB — the rest is padded with null bytes.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;SHA256: ce5ee4a1991fa0a9030dc9e2e0601dc0f14c7961e6550921d8fd2cc4ec53a042&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;To execute a binary in memory, the loader walks the Process Environment Block (PEB) to dynamically resolve necessary API addresses. &lt;/p&gt;
-
-
-
-&lt;p&gt;The process follows these key steps:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Locate the PEB structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;Access the PEB_LDR_DATA via PEB-&amp;gt;Ldr.&lt;/li&gt;
-
-
-
-&lt;li&gt;Traverse the module list to locate the ntdll.dll module.&lt;/li&gt;
-
-
-
-&lt;li&gt;Retrieve the export table of the module.&lt;/li&gt;
-
-
-
-&lt;li&gt;Parse the table to resolve the required function addresses.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;This method allows the shellcode to dynamically find and invoke system APIs without importing them statically, which helps it evade detection.&lt;/p&gt;
-
-
-
-&lt;p&gt;Below we can see how it resolves the function addresses.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-37899" height="314" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-6.-Loader-Walk-the-PEB-and-Resolves-module-name-and-function-names-on-stack-1070x314.png" width="1070" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: Loader walks the PEB and resolves module names and function names on the stack.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Next, it accesses and walks through the PEB (Process Environment Block) of ntdll.dll.&lt;/p&gt;
-
-
-
-&lt;p&gt;The shellcode gets a handle to the in-memory PE using GetModuleHandle(). It then parses the PE headers, section headers, and applies relocations, making the PE ready for execution entirely in memory, helping it evade file-based detections.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-7.-Stack-string-formation-for-module-names-and-Api-names.png"&gt;&lt;img alt="" class="wp-image-37900" height="465" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-7.-Stack-string-formation-for-module-names-and-Api-names.png" width="936" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: Stack String Formation for Module Names and API Names&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a&gt;&lt;strong&gt;PE File Analysis: (Remcos RAT)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The analyzed PE file is a 32-bit Remcos RAT, compiled using Visual Studio C++ 8. It’s designed for stealth and control, featuring:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Modular structure with multiple threads for execution and command handling.&lt;/li&gt;
-
-
-
-&lt;li&gt;Overlay section: An 800-byte region filled with null bytes—commonly used for obfuscation or extra data.&lt;/li&gt;
-
-
-
-&lt;li&gt;Subsystem: GUI-based with Terminal Server Aware flag enabled, allowing interaction even in remote sessions.&lt;/li&gt;
-
-
-
-&lt;li&gt;The resource section has encrypted data in “RCData-&amp;gt;setting” section.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p&gt;&lt;em&gt;SHA256: ab8caac901b477c08934ec63978400eb369efb655114805ccba28c48272e5dad&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-8.-Loading-Resource-to-decrypt.png"&gt;&lt;img alt="" class="wp-image-37901" height="337" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-8.-Loading-Resource-to-decrypt.png" width="611" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Loading Resource to Decrypt&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;After loading resource data, it starts decrypting the resource with a custom function.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-9.-Remcos-Decrypted-RCData-contains-config-information.png"&gt;&lt;img alt="" class="wp-image-37902" height="536" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-9.-Remcos-Decrypted-RCData-contains-config-information-1070x536.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9: Remcos Decrypted RCData contains config information&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The resource settings are decrypted as needed and contain details like the remote server, version info, and more. It connects to &lt;strong&gt;&lt;em&gt;readysteaurants[.]com&lt;/em&gt;&lt;/strong&gt; over TLS (port 2025, TLS flag set to 1).&lt;/p&gt;
-
-
-
-&lt;p&gt;The config also holds the malware name “Remcos” and a mutex “&lt;strong&gt;&lt;em&gt;Rmc-7SY4AX&lt;/em&gt;&lt;/strong&gt;”.&lt;/p&gt;
-
-
-
-&lt;p&gt;Additionally, config contains a keylogger log file named &lt;strong&gt;&lt;em&gt;logs.dat&lt;/em&gt;&lt;/strong&gt;, certificates, and command-and-control strings like Screenshot, Micrecord, etc., are also present in it. Remcos operates through multiple modules, each started via separate threads. Before execution, it checks for the mutex—if found, it exits. If mutex is not present, it will create mutex “&lt;a&gt;Rmc-7SY4AX&lt;/a&gt;” in the registry.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-10.-Check-if-it-has-already-infected-this-machine.png"&gt;&lt;img alt="" class="wp-image-37903" height="334" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-10.-Check-if-it-has-already-infected-this-machine.png" width="583" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10: Check if it has already infected this machine&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;To ensure persistence, the malware stores the executable path, license key, and timestamp in the registry Rmc-7SY4AX. Then it will start a thread where it will perform process injection of its own file into svchost.exe. While doing process injections, it uses the concept of &lt;strong&gt;Process Hollowing&lt;/strong&gt; to achieve evasion.&lt;/p&gt;
-
-
-
-&lt;p&gt;It gathers system details like OS version, files, and installed applications present on the machine. It attempts to bypass User Account Control (UAC) by leveraging “ICMLuaUtil Elevated” and COM object techniques. And check if it has bypass UAC by calling ShellExec twice.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-11.-UAC-Bypass-using-ICMLuaUtil.png"&gt;&lt;img alt="" class="wp-image-37904" height="343" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-11.-UAC-Bypass-using-ICMLuaUtil-1070x343.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11: UAC Bypass using ICMLuaUtil&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;It verifies the UAC bypass by executing cmd.exe using CreateProcess both before and after the attempt. In the second thread, Remcos starts the &amp;#8220;Watchdog Module&amp;#8221; which ensures the malware stays active and restarts if needed. It also adds a &amp;#8220;wd&amp;#8221; entry in the same registry path used earlier to maintain persistence. After starting the &amp;#8220;Watchdog Module&amp;#8221;, Remcos sends a notification confirming successful initialization.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-12.-Remcos-Successfully-Initialized.png"&gt;&lt;img alt="" class="wp-image-37905" height="410" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-12.-Remcos-Successfully-Initialized.png" width="1033" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12: Remcos Successfully Initialized&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;It attempts to connect to “&lt;em&gt;readystearants[.]com&lt;/em&gt;” over TLS, if enabled.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-13.-Establish-network-connection-with-server-through-TLS.png"&gt;&lt;img alt="" class="wp-image-37906" height="555" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-13.-Establish-network-connection-with-server-through-TLS-1070x555.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13: Establish a network connection with the server through TLS&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Once the connection is established over TLS, the Remcos server continues sending packets with a “Keep-alive” connection. The C2 packet command and data have the same format as we saw above after decryption of “Resource àSetting data”, it also uses the same separator, i.e., “7C1E1E7C”, we can see below.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-14.-Wireshark-view-of-command-packets-and-data.png"&gt;&lt;img alt="" class="wp-image-37907" height="127" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-14.-Wireshark-view-of-command-packets-and-data.png" width="693" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14: Wireshark View of Command, Packets, and Data&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Where “2404ff00” is packet magic, 0xff is size 4C command number, and the remaining is Command data split by separator.&lt;/p&gt;
-
-
-
-&lt;p&gt;The following are a few commands used by C&amp;amp;C:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;03h → Retrieve a list of all installed programs on the system&lt;/li&gt;
-
-
-
-&lt;li&gt;06h → Retrieve a list of all running processes&lt;/li&gt;
-
-
-
-&lt;li&gt;98h, 8Fh → Monitor files and perform various file operations&lt;/li&gt;
-
-
-
-&lt;li&gt;0Eh → Execute a specified command using cmd.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;2Fh → Modify registry keys or values&lt;/li&gt;
-
-
-
-&lt;li&gt;13h → Start or stop keylogging functionality&lt;/li&gt;
-
-
-
-&lt;li&gt;28h → Access or copy clipboard data&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;After initialization, Remcos starts the keylogger module in a new thread.&lt;/p&gt;
-
-
-
-&lt;p&gt;It logs keystrokes (online and offline), captures clipboard data, screenshots, and both active and background window details. It has the access to record window text, can track user idle time, access the webcam to capture frames, and use the microphone to record audio.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-15.-Access-user-camera.png"&gt;&lt;img alt="" class="wp-image-37908" height="221" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-15.-Access-user-camera-1070x221.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15: Access User Camera&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;It logs keystrokes by setting a keyboard hook using &lt;em&gt;SetWindowsHookExA&lt;/em&gt;. Logged data is saved in a file and sent to the C&amp;amp;C server.&lt;/p&gt;
-
-
-
-&lt;p&gt;For anti-analysis, Remcos uses techniques like vectored exception handling, &lt;em&gt;GetProcessHeap&lt;/em&gt;(), &lt;em&gt;GetTickCount&lt;/em&gt;(), and &lt;em&gt;IsDebuggerPresent&lt;/em&gt;() to detect debugging or analysis environments.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-16.-Vectored-Exception-Handler-for-anti-analysis.png"&gt;&lt;img alt="" class="wp-image-37909" height="356" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-16.-Vectored-Exception-Handler-for-anti-analysis.png" width="704" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16: Vectored Exception Handler for Anti-analysis&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Remcos scans browser directories using &lt;em&gt;FindFirstFile&lt;/em&gt;() and &lt;em&gt;FindNextFile&lt;/em&gt;(). It targets files like logins.json and key3.db to steal saved credentials and cookies from browsers such as Chrome, Firefox, and Internet Explorer.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-17.-Remcos-enumerate-browser-files-for-stealing-credentials.png"&gt;&lt;img alt="" class="wp-image-37910" height="444" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-17.-Remcos-enumerate-browser-files-for-stealing-credentials-1070x444.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17: Remcos enumerates browser files for stealing credentials&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Remcos also includes a sound module that can trigger an alarm to alert or distract the user.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Operations and controls:&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-18.-Operations-and-controls.png"&gt;&lt;img alt="" class="wp-image-37911" height="597" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-18.-Operations-and-controls.png" width="537" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Fig-18. Operations and Controls&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The Final window visible looks like below which has Remcos version number V6.0.0 Pro.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-19.-Final-Window-of-Remcos.png"&gt;&lt;img alt="" class="wp-image-37912" height="513" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-19.-Final-Window-of-Remcos.png" width="978" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19: Final Window of Remcos&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;What’s Newly Added in Remcos V6.0.0 PRO:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Group View: Allows attackers to organize and manage victim machines in groups.&lt;/li&gt;
-
-
-
-&lt;li&gt;Unique UID: Each instance has a UID for easier agent tracking via C&amp;amp;C server.&lt;/li&gt;
-
-
-
-&lt;li&gt;Privilege Display: Shows whether the agent has admin or user rights.&lt;/li&gt;
-
-
-
-&lt;li&gt;Public IP Access: Displays the victim&amp;#8217;s public IP directly in the panel.&lt;/li&gt;
-
-
-
-&lt;li&gt;Accurate Idle Time: Improved tracking of user inactivity.&lt;/li&gt;
-
-
-
-&lt;li&gt;Bug Fixes: Enhanced geolocation accuracy and other minor fixes from earlier versions.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;We have referred to this site mentioned in the Remcos section above: https://breakingsecurity.net/&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="qualys-edr-detections-advanced-hunting"&gt;&lt;a&gt;&lt;strong&gt;Qualys EDR Detections &amp;amp; Advanced Hunting&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Qualys EDR and EPP solutions offer strong protection against advanced threats.&lt;/p&gt;
-
-
-
-&lt;p&gt;The PowerShell-based Loader is instantly detected and quarantined/deleted upon arrival on the victim’s machine.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-20.-The-threat-was-detected-and-deleted-by-Qualys-EPP.png"&gt;&lt;img alt="" class="wp-image-37913" height="279" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-20.-The-threat-was-detected-and-deleted-by-Qualys-EPP-1070x279.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20: The threat was detected and deleted by Qualys EPP&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Qualys EPP effectively detects and disinfects malicious LNK files, preventing their execution (Fig.24). To enhance protection, ensure PowerShell logging, AMSI monitoring, and a robust EDR solution are in place. Early detection remains critical in stopping threats like Remcos.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-21.-Qualys-EDR-Process-Tree.png"&gt;&lt;img alt="" class="wp-image-37914" height="504" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Fig-21.-Qualys-EDR-Process-Tree-1070x504.png" width="1070" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 21: Qualys EDR Process Tree&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="advanced-hunting-queries"&gt;&lt;a&gt;&lt;strong&gt;Advanced Hunting Queries&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Qualys EDR includes behavioral detections to identify threats like Loader and Remcos RAT. Customers can use the following Threat Hunting QQLs to search their environment for related TTPs.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Query (QQL)&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Highly malicious File Detection.&lt;/td&gt;&lt;td&gt;platform:Windows and event.isdetectedbyepp:true and type:`FILE` and indicator.severityscore &amp;gt;=4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Registry Run Key Modification in the last 2 days.&lt;/td&gt;&lt;td&gt;type:registry and platform:&amp;#8217;windows&amp;#8217; and action:&amp;#8217;write&amp;#8217; and registry.key:&amp;#8221;SOFTWARE\Microsoft\Windows\CurrentVersion\run&amp;#8221; and event.dateTime:[now-2d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Network connections by PowerShell in the last 3 days on Non-standard ports 2025.&lt;/td&gt;&lt;td&gt;platform:&amp;#8217;windows&amp;#8217; and type:`network` and action:`established` and parent.name:&amp;#8221;Powershell.exe&amp;#8221; and not (network.remote.address.port:443 or network.remote.address.port:80)&amp;nbsp; and event.dateTime:[now-3d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Highly suspicious HTML file detection in last 3 days.&lt;/td&gt;&lt;td&gt;platform:&amp;#8217;windows&amp;#8217; and parent.name:&amp;#8221;mshta.exe&amp;#8221; and type:`file` and file.type:&amp;#8221;html&amp;#8221; and indicator.severityscore &amp;gt;=4 and event.dateTime:[now-3d .. now-1s]&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The emergence of this PowerShell-based shellcode loader underscores a broader trend: threat actors are increasingly relying on fileless techniques to bypass traditional detection mechanisms. By executing malicious code in memory and leveraging trusted system binaries like &lt;code&gt;mshta.exe&lt;/code&gt;, adversaries minimize their on-disk footprint—leaving little forensic residue to trace.&lt;/p&gt;
-
-
-
-&lt;p&gt;Remcos RAT exemplifies this evolution. It’s a stealthy, PowerShell-based malware that uses advanced evasion techniques to operate entirely in memory, avoiding most conventional security tools. Delivered via weaponized LNK files in ZIP archives and triggered using proxy execution, it exploits native system behavior for persistence and remote control.&lt;/p&gt;
-
-
-
-&lt;p&gt;This reinforces the need to monitor key attack surfaces—LNK file execution, MSHTA abuse, suspicious registry changes, and anomalous PowerShell activity. Foundational controls like PowerShell logging, AMSI monitoring, and robust EDR are essential to detect malicious behavior before it escalates. Early detection is critical to stopping threats like Remcos.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a&gt;&lt;strong&gt;MITRE TTPs:&lt;/strong&gt;&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Technique&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;ID&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Registry Run Keys / Startup Folder&lt;/td&gt;&lt;td&gt;T1547.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;System Binary Proxy Execution: Mshta&lt;/td&gt;&lt;td&gt;T1218.005&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ingress Tool Transfer&lt;/td&gt;&lt;td&gt;T1105&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Credentials from Password Stores: Credentials from Web Browsers&lt;/td&gt;&lt;td&gt;T1555.003&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Screen Capture&lt;/td&gt;&lt;td&gt;T1513&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Video Capture&lt;/td&gt;&lt;td&gt;T1512&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Archive Collected Data&lt;/td&gt;&lt;td&gt;T1560&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Scripting Interpreter: PowerShell&lt;/td&gt;&lt;td&gt;T1059.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Process Injection: Process Hollowing&lt;/td&gt;&lt;td&gt;T1055.012&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information&lt;/td&gt;&lt;td&gt;T1027&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Automated Exfiltration&lt;/td&gt;&lt;td&gt;T1020&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Keylogging&lt;/td&gt;&lt;td&gt;T1417.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Binary Padding&lt;/td&gt;&lt;td&gt;T1027.001&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Abuse Elevation Control Mechanism: Bypass User Account Control&lt;/td&gt;&lt;td&gt;T1548.002&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information: Dynamic API Resolution&lt;/td&gt;&lt;td&gt;T1027.007&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Obfuscated Files or Information: Encrypted/Encoded File&lt;/td&gt;&lt;td&gt;T1027.013&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a&gt;&lt;strong&gt;Indicators of Compromise:&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Zip file&lt;/td&gt;&lt;td&gt;bf32ff64ac0cfee67f4b2df27733576a&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Remcos (PE)&lt;/td&gt;&lt;td&gt;b63178f562b948b850f4676d4b8db1c0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;24.ps1&lt;/td&gt;&lt;td&gt;dd7f049a4b573cc48e0412902a2c14b5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xlab22.hta&lt;/td&gt;&lt;td&gt;1b26f7e369e39312e4fcbc993d483b17&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;readysteaurants[.]com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;https://mytaxclientcopy[.]com/xlab22.hta&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;IP&lt;/td&gt;&lt;td&gt;193(.)142(.)146(.)101, 162(.)254(.)39(.)129&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Mutex&lt;/td&gt;&lt;td&gt;Rmc-7SY4AX&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;For defenders, this emphasizes the urgency of shifting from static indicators and legacy detection approaches to more dynamic behavioral analytics. Monitoring for abnormal parent-child process relationships, PowerShell activity outside of administrative tasks, and signs of proxy execution is critical to detecting these stealthy intrusions early.&lt;/p&gt;
-
-
-
-&lt;p&gt;Ultimately, the ability to detect and respond to fileless attacks isn’t just about having the right tools. It’s about understanding how attackers think, how they chain together seemingly benign components, and how they abuse trust to operate in plain sight. Staying ahead requires not just technology, but threat-informed vigilance and a proactive security mindset.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Curious for more? See the threat landscape from the frontlines through the eyes of Qualys Threat Research Unit!&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/tru/" style="background-color: #ed2e26;"&gt;Find More Insights&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Contributors&lt;/h3&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Prashant Pawar, Lead, Threat Research Engineer, Qualys.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37888</guid><category>Vulnerabilities and Threat Research</category><category>PowerShell</category><category>Qualys Threat Research</category><category>Remcos RAT</category><category>vulnerabilities</category></item><item><title>CISA Adds Three Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/05/15/cisa-adds-three-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;&lt;strong&gt;Updated June 5, 2025&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Further reading: &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2025/05/19420931.pdf" rel="noopener" target="_blank"&gt;The settlement between Fitzpatrick and Nonstop&lt;/a&gt; (PDF).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71263</guid><category>A Little Sunshine</category><category>Data Breaches</category><category>Ne'er-Do-Well News</category><category>BreachForums</category><category>Cipriani &amp; Werner</category><category>Conor Brian Fitzpatrick</category><category>Jill Fertel</category><category>mark rasch</category><category>Nonstop Health</category><category>pompompurin</category><category>RaidForums</category><category>Unit 221B</category></item><item><title>CISA Adds Three Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/05/15/cisa-adds-three-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;&lt;strong&gt;Updated June 5, 2025&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;CISA is continually collaborating with partners across government and the private sector. Through this collaboration, CISA learned that CVE-2025-4664 has not been exploited and there is insufficient evidence to keep this CVE on the KEV and that the best course of action is to remove it. CISA is committed to continued collaboration with partners.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;End of Update&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;CISA has added three new vulnerabilities to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
@@ -12564,347 +12711,7 @@ kingaiplus[.]com&lt;/pre&gt;
 &lt;p&gt;On Tuesday, the company &lt;a href="https://security.googleblog.com/2025/05/advanced-protection-mobile-devices.html"&gt;unveiled&lt;/a&gt; the Advanced Protection mode, most of which will be rolled out in the upcoming release of Android 16. The setting comes as mercenary malware sold by &lt;a href="https://arstechnica.com/security/2025/05/jury-orders-nso-to-pay-167-million-for-hacking-whatsapp-users/"&gt;NSO Group&lt;/a&gt; and a cottage industry of other exploit sellers continues to thrive. These players provide attacks-as-a-service through end-to-end platforms that exploit zero-day vulnerabilities on targeted devices, infect them with advanced spyware, and then capture contacts, message histories, locations, and other sensitive information. Over the past decade, phones running fully updated versions of Android and iOS have routinely been hacked through these services.&lt;/p&gt;
 &lt;h2&gt;A core suite of enhanced security features&lt;/h2&gt;
 &lt;p&gt;Advanced Protection is Google’s latest answer to this type of attack. By flipping a single button in device settings, users can enable a host of protections that can thwart some of the most common techniques used in sophisticated hacks. In some cases, the protections hamper performance and capabilities of the device, so Google is recommending the new mode mainly for journalists, elected officials, and other groups who are most often targeted or have the most to lose when infected.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/05/google-introduces-advanced-protection-mode-for-its-most-at-risk-android-users/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/05/google-introduces-advanced-protection-mode-for-its-most-at-risk-android-users/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/security/2025/05/google-introduces-advanced-protection-mode-for-its-most-at-risk-android-users/</guid><category>Biz &amp; IT</category><category>Google</category><category>Security</category><category>advanced protection mode</category><category>android</category><category>hacking</category><category>security</category></item><item><title>Microsoft and Adobe Patch Tuesday, May 2025 Security Update Review</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Microsoft&amp;#8217;s May 2025 Patch Tuesday rolls out critical security updates, addressing multiple vulnerabilities across Windows, Office, and other key products. Here&amp;#8217;s a quick breakdown of what you need to know. Microsoft Patch Tuesday for May 2025 In this month&amp;#8217;s Patch Tuesday, May 2025 edition, Microsoft addressed 76 vulnerabilities. The updates include five critical and 66 [&amp;#8230;]</description><content:encoded>&lt;p&gt;Microsoft&amp;#8217;s May 2025 Patch Tuesday rolls out critical security updates, addressing multiple vulnerabilities across Windows, Office, and other key products. Here&amp;#8217;s a quick breakdown of what you need to know.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-patch-tuesday-for-may-2025"&gt;Microsoft Patch Tuesday for May 2025&lt;/h2&gt;
-
-
-
-&lt;p&gt;In this month&amp;#8217;s Patch Tuesday, May 2025 edition, Microsoft addressed &lt;strong&gt;76&lt;/strong&gt; vulnerabilities. The updates include &lt;strong&gt;five&lt;/strong&gt; critical and &lt;strong&gt;66&lt;/strong&gt; important severity vulnerabilities. In this month&amp;#8217;s updates, Microsoft has addressed &lt;strong&gt;five&lt;/strong&gt; zero-day vulnerabilities being exploited in the wild. Microsoft also addressed one publicly disclosed vulnerability. &lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft has addressed &lt;strong&gt;six&lt;/strong&gt; vulnerabilities in Microsoft Edge (Chromium-based) in this month&amp;#8217;s updates.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft Patch Tuesday, May edition includes updates for vulnerabilities in Windows Routing and Remote Access Service (RRAS), Windows Virtual Machine Bus, Windows Installer, Windows Drivers, Windows File Server, Azure, Windows Win32K &amp;#8211; GRFX, Microsoft Scripting Engine, and more.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft has fixed several flaws in multiple software, including Spoofing, Denial of Service (DoS), Elevation of Privilege (EoP), Information Disclosure, and Remote Code Execution (RCE).&lt;/p&gt;
-
-
-
-&lt;span id="more-37921"&gt;&lt;/span&gt;
-
-
-
-&lt;p&gt;The May 2025 Microsoft vulnerabilities are classified as follows:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Vulnerability Category&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Quantity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Severities&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Spoofing Vulnerability&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Important: 2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Denial of Service Vulnerability&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;Important: 7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Elevation of Privilege Vulnerability&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Important: 18&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Information Disclosure Vulnerability&lt;/td&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;Important: 14&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Remote Code Execution Vulnerability&lt;/td&gt;&lt;td&gt;28&lt;/td&gt;&lt;td&gt;Critical: 5&lt;br /&gt;Important: 23&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Security Feature Bypass Vulnerability&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Important: 2&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="adobe-patches-for-may-2025"&gt;Adobe Patches for May 2025&lt;/h2&gt;
-
-
-
-&lt;p&gt;Adobe has released &lt;strong&gt;13&lt;/strong&gt; security advisories to address &lt;strong&gt;40 &lt;/strong&gt;vulnerabilities in Adobe Lightroom, Adobe Dreamweaver, Adobe Connect , Adobe InDesign, Substance 3D Painter, Adobe Photoshop, Adobe Animate, Adobe Illustrator, Adobe Bridge, Adobe Dimension, Substance 3D Stager, Substance 3D Modeler, and Adobe ColdFusion. &lt;strong&gt;32&lt;/strong&gt;&amp;nbsp;of these vulnerabilities are given critical severity ratings. Successful exploitation of these vulnerabilities may lead to&amp;nbsp;privilege escalation and&amp;nbsp;arbitrary code execution.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="zero-day-vulnerabilities-patched-in-may-patch-tuesday-edition"&gt;Zero-day Vulnerabilities Patched in May Patch Tuesday Edition&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-26685" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-26685: Microsoft Defender for Identity Spoofing Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Microsoft Defender for Identity is a cloud-based security solution that helps organizations monitor and secure their identities across hybrid environments. It enhances security by providing an identity-centric approach to threat detection, leveraging data from on-premises Active Directory and cloud-based identities.&lt;/p&gt;
-
-
-
-&lt;p&gt;The improper authentication vulnerability could allow an unauthenticated attacker with LAN access&amp;nbsp;to perform spoofing over an adjacent network.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30400" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-30400: Microsoft DWM Core Library Elevation of Privilege Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The Microsoft Desktop Window Manager (DWM) Core Library is a crucial system component in Windows that manages the display of all visual elements on a computer screen.&lt;/p&gt;
-
-
-
-&lt;p&gt;The use-after-free vulnerability may allow an authenticated attacker to gain SYSTEM privileges.&lt;/p&gt;
-
-
-
-&lt;p&gt;CISA added the&amp;nbsp;CVE-2025-30400&amp;nbsp;to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; and requested users to patch it before June 3, 2025.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32701" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-32701: Windows Common Log File System Driver Elevation of Privilege Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The Windows Common Log File System (CLFS) is a high-performance, general-purpose logging subsystem used by kernel and user-mode applications. It&amp;#8217;s designed for building transactional logs and is frequently employed in applications like database systems, messaging systems, and online transactional processing (OLTP).&lt;/p&gt;
-
-
-
-&lt;p&gt;The use-after-free vulnerability may allow an authenticated attacker to gain SYSTEM privileges.&lt;/p&gt;
-
-
-
-&lt;p&gt;CISA added the&amp;nbsp;CVE-2025-32701&amp;nbsp;to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; and requested users to patch it before June 3, 2025.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32706" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-32706: Windows Common Log File System Driver Elevation of Privilege Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The improper input validation vulnerability may allow an authenticated attacker to gain SYSTEM privileges.&lt;/p&gt;
-
-
-
-&lt;p&gt;CISA added the&amp;nbsp;CVE-2025-32706&amp;nbsp;to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; and requested users to patch it before June 3, 2025.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30397" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-30397: Scripting Engine Memory Corruption Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;A scripting engine is a software component that interprets and executes instructions written in a scripting language. It&amp;#8217;s essentially a runtime environment that processes scripts, allowing them to interact with an application or system.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;An attacker must convince an authenticated user to click a link to initiate remote code execution. Successful exploitation of the vulnerability may allow an unauthenticated attacker to execute code over a network.&lt;/p&gt;
-
-
-
-&lt;p&gt;CISA added the&amp;nbsp;CVE-2025-30397&amp;nbsp;to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; and requested users to patch it before June 3, 2025.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32709" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-32709: Windows Ancillary Function Driver for WinSock Elevation of Privilege Vulnerability&lt;/a&gt;&amp;nbsp;&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The Windows Ancillary Function Driver (AFD) is a kernel-mode driver that serves as the entry point for the Windows Sockets (Winsock) API. It handles the low-level details of network communication, acting as a bridge between applications using the Winsock API and the network stack.&lt;/p&gt;
-
-
-
-&lt;p&gt;The use-after-free vulnerability may allow an authenticated attacker to gain SYSTEM privileges.&lt;/p&gt;
-
-
-
-&lt;p&gt;CISA added the&amp;nbsp;CVE-2025-32709&amp;nbsp;to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt; and requested users to patch it before June 3, 2025.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="critical-severity-vulnerabilities-patched-in-may-patch-tuesday-edition"&gt;Critical Severity Vulnerabilities Patched in May Patch Tuesday Edition&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-29966" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-29966&lt;/a&gt; &amp;amp; &lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-29967" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-29967&lt;/a&gt;: Remote Desktop Client Remote Code Execution Vulnerability&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;A Remote Desktop Protocol client is a software application that allows users to connect to and control a remote computer or server, using a secure network connection. It essentially enables users to operate a remote machine as if they were physically sitting in front of it.&lt;/p&gt;
-
-
-
-&lt;p&gt;The heap-based buffer overflow vulnerability may allow an unauthenticated attacker to execute code remotely.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30377" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-30377&lt;/a&gt; &amp;amp; &lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30386" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-30386&lt;/a&gt;: Microsoft Office Remote Code Execution Vulnerability&lt;/h3&gt;
-
-
-
-&lt;p&gt;The use-after-free vulnerability could allow an unauthenticated attacker to achieve remote code execution.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-29833" rel="noreferrer noopener" target="_blank"&gt;CVE-2025-29833: Microsoft Virtual Machine Bus (VMBus) Remote Code Execution Vulnerability&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;The Microsoft Virtual Machine Bus (VMBus) is a virtual communication channel used within the Microsoft Hyper-V virtualization environment. It facilitates communication and data transfer between the parent (host) and child (guest) partitions, enabling virtual machines (VMs) to access and interact with resources on the host system.&lt;/p&gt;
-
-
-
-&lt;p&gt;Time-of-check time-of-use (toctou) race condition in Windows Virtual Machine Bus could allow an authenticated attacker to achieve remote code execution.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="other-microsoft-vulnerability-highlights"&gt;Other Microsoft Vulnerability Highlights&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;CVE-2025-24063&lt;/strong&gt; is an elevation privilege vulnerability in the Kernel Streaming Service Driver. The heap-based buffer overflow vulnerability could allow an authenticated attacker to gain SYSTEM privileges.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-30388&lt;/strong&gt; is a remote code execution vulnerability in Windows Graphics Component. The heap-based buffer overflow vulnerability could allow an unauthenticated attacker to achieve remote code execution.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-30385&lt;/strong&gt; is an elevation privilege vulnerability in the Windows Common Log File System Driver. Upon successful exploitation, an authenticated attacker could potentially gain the ability to crash the system.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-29841&lt;/strong&gt; is an elevation privilege vulnerability in the Universal Print Management Service. Successful exploitation of the vulnerability requires an attacker to win a race condition. Upon successful exploitation of the vulnerability, an authenticated attacker could elevate privileges locally.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-29971&lt;/strong&gt; is a denial of service vulnerability in Web Threat Defense (WTD.sys). Successful exploitation of the vulnerability could allow an unauthenticated attacker to deny service over a network.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-29976&lt;/strong&gt; is an elevation of privilege vulnerability in Microsoft SharePoint Server. An improper privilege management flaw could allow an authenticated attacker to elevate privileges locally.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;CVE-2025-30382&lt;/strong&gt; is a remote code execution vulnerability in Microsoft SharePoint Server. The deserialization of untrusted data could allow an unauthenticated attacker to achieve remote code execution.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-release-summary"&gt;Microsoft Release Summary&lt;/h2&gt;
-
-
-
-&lt;p&gt;This month&amp;#8217;s release notes cover multiple Microsoft product families and products/versions affected, including, but not limited to, Visual Studio Code, Windows Kernel, .NET, Visual Studio, and Build Tools for Visual Studio, Remote Desktop Gateway Service, Microsoft Defender for Endpoint, Microsoft Defender for Identity, Windows Secure Kernel Mode, Windows Hardware Lab Kit, Azure DevOps, Microsoft Edge (Chromium-based), Microsoft Dataverse, Azure Automation, Windows Trusted Runtime Interface Driver, Windows Media, Universal Print Management Service, UrlMon, Windows LDAP &amp;#8211; Lightweight Directory Access Protocol, Windows Hyper-V, Windows SMB, Windows Deployment Services, Windows Remote Desktop, Active Directory Certificate Services (AD CS), Windows Fundamentals, Microsoft Brokering File System, Web Threat Defense (WTD.sys), Azure Storage Resource Provider, Azure File Sync, Microsoft PC Manager, Microsoft Office SharePoint, Microsoft Office Excel, Microsoft Office PowerPoint, Microsoft Office, Windows Common Log File System Driver, Windows DWM, Visual Studio, Microsoft Office Outlook, Windows NTFS, Windows Ancillary Function Driver for WinSock, and Microsoft Power Apps.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="discover-and-prioritize-vulnerabilities-in-vulnerability-management-detection-response-vmdr"&gt;Discover and Prioritize Vulnerabilities in&amp;nbsp;&lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/" rel="noreferrer noopener" target="_blank"&gt;Vulnerability Management, Detection &amp;amp; Response (VMDR)&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Qualys VMDR automatically detects new Patch Tuesday vulnerabilities using continuous updates to its Knowledgebase (KB).&lt;/p&gt;
-
-
-
-&lt;p&gt;You can see all your impacted hosts by these vulnerabilities using the following QQL query:&lt;/p&gt;
-
-
-
-&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background"&gt;&lt;i&gt;&lt;span&gt;vulnerabilities.vulnerability: ( qid: 100424 or qid: 110493 or qid: 110494 or qid: 92255 or qid: 92256 or qid: 92258 or qid: 92259 or qid: 92260 or qid: 92261 or qid: 92262 or qid: 92263 or qid: 92264 or qid: 92265 )&lt;/span&gt;&lt;/i&gt;&lt;/pre&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37936" height="977" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/MSPT-VMDR-May-2025-1.png" width="1918" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="rapid-response-with-patch-management-pm"&gt;Rapid Response with&amp;nbsp;&lt;a href="https://www.qualys.com/apps/patch-management/" rel="noreferrer noopener" target="_blank"&gt;Patch Management (PM)&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;VMDR rapidly remediates Windows hosts by deploying the most relevant and applicable per-technology version patches. You can simply select the respective QIDs in the Patch Catalog and filter on the “Missing” patches to identify and deploy the applicable, available patches with one click.&lt;/p&gt;
-
-
-
-&lt;p&gt;The following QQL will return the missing patches for this Patch Tuesday:&lt;/p&gt;
-
-
-
-&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background"&gt;&lt;i&gt;&lt;span&gt;( qid: 100424 or qid: 110493 or qid: 110494 or qid: 92255 or qid: 92256 or qid: 92258 or qid: 92259 or qid: 92260 or qid: 92261 or qid: 92262 or qid: 92263 or qid: 92264 or qid: 92265 )&lt;/span&gt;&lt;/i&gt;&lt;/pre&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37937" height="987" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/MSPT-PM-May-2025.png" width="1918" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="evaluate-vendor-suggested-mitigation-with-policy-audit"&gt;EVALUATE Vendor-Suggested Mitigation with &lt;a href="https://www.qualys.com/forms/policy-audit/"&gt;Policy Audit&lt;/a&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;With Qualys Policy Audit’s Out-of-the-Box Mitigation or Compensatory Controls, reduce the risk of a vulnerability being exploited because the remediation (fix/patch) cannot be done now; these security controls are not recommended by any industry standards, such as CIS, DISA-STIG.&lt;/p&gt;
-
-
-
-&lt;p&gt;Qualys Policy Audit team releases these exclusive controls based on Vendor-suggested Mitigation/Workaround.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Mitigation&lt;/em&gt;&lt;/strong&gt; refers to a setting, common configuration, or general best practice that exists in a default state and could reduce the severity of a vulnerability&amp;#8217;s exploitation.&lt;/p&gt;
-
-
-
-&lt;p&gt;A &lt;strong&gt;&lt;em&gt;workaround&lt;/em&gt;&lt;/strong&gt; is a method, sometimes used temporarily, for achieving a task or goal when the usual or planned method isn’t working. Information technology often uses a workaround to overcome hardware, programming, or communication problems. Once a problem is fixed, a workaround is usually abandoned.&lt;/p&gt;
-
-
-
-&lt;p&gt;The following &lt;a href="https://docs.qualys.com/en/vm/latest/welcome.htm" rel="noreferrer noopener" target="_blank"&gt;Qualys Policy Audit Control IDs (CIDs) and System Defined Controls (SDC) &lt;/a&gt;have been updated to support Microsoft recommended mitigation(s) for this Patch Tuesday:&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;CVE-2025-26685: Microsoft Defender for Identity Spoofing Vulnerability&lt;/h3&gt;
-
-
-
-&lt;p&gt;This vulnerability has a CVSS:&amp;nbsp; 3.1&amp;nbsp;6.5 / 5.7&lt;/p&gt;
-
-
-
-&lt;p&gt;Policy Audit Control IDs (CIDs):&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;10968 Network access: Restrict clients allowed to make remote calls to SAM&lt;/li&gt;
-
-
-
-&lt;li&gt;2181&amp;nbsp; Current list of Groups and User Accounts granted the &amp;#8216;Access this computer from the network&amp;#8217; right&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The following QQL will return a posture assessment for the CIDs for this Patch Tuesday:&lt;/p&gt;
-
-
-
-&lt;p&gt;control.id: [10968, 2181]&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-37924" height="912" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Screenshot-2025-05-13-233559.png" width="1876" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;The next Patch Tuesday is June 10, and we will be back with details and patch analysis then. Until then, stay safe and secure. Be sure to subscribe to the &amp;#8216;This Month in Vulnerabilities and Patches&amp;#8217; webinar.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="qualys-monthly-webinar-series"&gt;Qualys Monthly Webinar Series&lt;/h2&gt;
-
-
-
-&lt;p&gt;The Qualys Research team hosts a monthly webinar series to help our existing customers leverage the seamless integration between &lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/" rel="noreferrer noopener" target="_blank"&gt;Qualys Vulnerability Management Detection Response (VMDR)&lt;/a&gt; and &lt;a href="https://www.qualys.com/apps/patch-management/" rel="noreferrer noopener" target="_blank"&gt;Qualys Patch Management&lt;/a&gt;. Combining these two solutions can reduce the median time to remediate critical vulnerabilities.&lt;/p&gt;
-
-
-
-&lt;p&gt;During the webcast, we will discuss this month&amp;#8217;s high-impact vulnerabilities, including those that are a part of this month&amp;#8217;s Patch Tuesday alert. We will walk you through the necessary steps to address the key vulnerabilities using Qualys VMDR and Qualys Patch Management.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" id="block-2ce95afe-7812-4417-8d80-2cca5cc29d08" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Join the webinar&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;This Month in Vulnerabilities &amp;amp; Patches&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.brighttalk.com/webcast/11673/634301?utm_source=blogpromotion&amp;amp;utm_medium=blogs&amp;amp;utm_campaign=634301" style="background-color: #ed2e26;"&gt;Register Now&lt;/a&gt;&lt;/div&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37921</guid><category>Patch Tuesday</category><category>Vulnerabilities and Threat Research</category><category>Microsoft</category></item><item><title>Enter the Fediverse</title><link>http://privacyinternational.org/long-read/5578/enter-fediverse</link><guid isPermaLink="false">5578 at http://privacyinternational.org</guid></item><item><title>Five Years Later: Evolving IoT Cybersecurity Guidelines</title><link>https://www.nist.gov/blogs/cybersecurity-insights/five-years-later-evolving-iot-cybersecurity-guidelines</link><description>The Background…and NIST’s Plan for Improving IoT Cybersecurity The passage of the Internet of Things (IoT) Cybersecurity Improvement Act in 2020 marked a pivotal step in enhancing the cybersecurity of IoT products. Recognizing the increasing internet connectivity of physical devices, this legislation tasked NIST with developing cybersecurity guidelines to manage and secure IoT effectively. As an early building block, we developed NIST IR 8259, Foundational Cybersecurity Activities for IoT Device Manufacturers, which describes recommended activities related to cybersecurity for manufacturers</description><guid isPermaLink="false">https://www.nist.gov/node/1881156</guid></item><item><title>CISA Adds Five Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/05/13/cisa-adds-five-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added five new vulnerabilities to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/05/google-introduces-advanced-protection-mode-for-its-most-at-risk-android-users/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/security/2025/05/google-introduces-advanced-protection-mode-for-its-most-at-risk-android-users/</guid><category>Biz &amp; IT</category><category>Google</category><category>Security</category><category>advanced protection mode</category><category>android</category><category>hacking</category><category>security</category></item><item><title>Enter the Fediverse</title><link>http://privacyinternational.org/long-read/5578/enter-fediverse</link><guid isPermaLink="false">5578 at http://privacyinternational.org</guid></item><item><title>Five Years Later: Evolving IoT Cybersecurity Guidelines</title><link>https://www.nist.gov/blogs/cybersecurity-insights/five-years-later-evolving-iot-cybersecurity-guidelines</link><description>The Background…and NIST’s Plan for Improving IoT Cybersecurity The passage of the Internet of Things (IoT) Cybersecurity Improvement Act in 2020 marked a pivotal step in enhancing the cybersecurity of IoT products. Recognizing the increasing internet connectivity of physical devices, this legislation tasked NIST with developing cybersecurity guidelines to manage and secure IoT effectively. As an early building block, we developed NIST IR 8259, Foundational Cybersecurity Activities for IoT Device Manufacturers, which describes recommended activities related to cybersecurity for manufacturers</description><guid isPermaLink="false">https://www.nist.gov/node/1881156</guid></item><item><title>CISA Adds Five Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/05/13/cisa-adds-five-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added five new vulnerabilities to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2025-30400" rel="noopener" target="_blank" title="CVE-2025-30400"&gt;CVE-2025-30400&lt;/a&gt; Microsoft Windows DWM Core Library Use-After-Free Vulnerability&lt;/li&gt;
 &lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2025-32701" rel="noopener" target="_blank" title="CVE-2025-32701"&gt;CVE-2025-32701&lt;/a&gt; Microsoft Windows Common Log File System (CLFS) Driver Use-After-Free Vulnerability&lt;/li&gt;
@@ -12914,481 +12721,7 @@ kingaiplus[.]com&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the Known Exploited Vulnerabilities Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23359</guid></item><item><title>Quick Glossary: Cybersecurity Countermeasures</title><link>https://www.techrepublic.com/resource-library/glossary/cybersecurity-countermeasures/</link><description>Keep up with the latest lingo and learn the terminology behind the most common cybersecurity countermeasures. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 11-page PDF explains checksum, DMZ, hashing, and more. Vital For Success — This glossary is essential for organizations wishing to understand cybersecurity ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-cybersecurity-countermeasures/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Earth Ammit Disrupts Drone Supply Chains Through Coordinated Multi-Wave Attacks in Taiwan</title><link>https://www.trendmicro.com/en_us/research/25/e/earth-ammit.html</link><description>Trend™ Research discusses the evolving tradecraft of threat actor Earth Ammit, proven by the advanced toolset used in its TIDRONE and VENOM campaigns that targeted the drone supply chain.</description><guid isPermaLink="false">urn:uuid:540bf713-4289-254d-161f-22e9f02a9612</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Research</category></item><item><title>Trend Micro Puts a Spotlight on AI at Pwn2Own Berlin</title><link>https://www.trendmicro.com/en_us/research/25/e/pwn2own-berlin-2025.html</link><description>Get a sneak peak into how Trend Micro's Pwn2Own Berlin 2025 is breaking new ground, focusing on AI infrastructure and finding the bugs to proactively safeguard the future of computing.</description><guid isPermaLink="false">urn:uuid:7be4b064-6a93-f95d-9bdc-bd8c7905bc72</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Security, Uninterrupted: Inside Qualys’ Zero-Touch Security Vision with Qualys Cloud Agent</title><link>https://blog.qualys.com/category/product-tech</link><description>New Feature: Remote Log Collection for Seamless Troubleshooting and Analysis In the modern enterprise, where resilience and scale are non-negotiable, the margin for error in cybersecurity has all but disappeared. Yet the tools available to security teams remain tethered to legacy workflows—dependent on IT tickets, cross-functional handoffs, and manual steps for even routine tasks like [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;&lt;a href="https://blog.qualys.com/?p=37855&amp;amp;preview=true#new-feature-remote-log-collection-for-seamless-troubleshooting-and-analysis"&gt;New Feature: Remote Log Collection for Seamless Troubleshooting and Analysis&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;In the modern enterprise, where resilience and scale are non-negotiable, the margin for error in cybersecurity has all but disappeared. Yet the tools available to security teams remain tethered to legacy workflows—dependent on IT tickets, cross-functional handoffs, and manual steps for even routine tasks like scanning for attack landscape, agent deployment, diagnostic log collection, manual scans, or vulnerability patching. This operational drag not only strains resources but introduces systemic risk: every delay introduces uncertainty, and every handoff becomes a potential vector for exposure.&lt;/p&gt;
-
-
-
-&lt;p&gt;At Qualys, we believe the path forward demands a re-architecture of operational security itself. Our answer is &lt;strong&gt;Zero-Touch Security&lt;/strong&gt;—an initiative that eliminates the traditional friction points between intent and execution. Zero-touch does not mean absence of oversight; it means the removal of unnecessary intervention. It enables security teams to operate independently, precisely, and continuously across the asset lifecycle, from discovery and deployment to remediation and diagnostics, without requiring tickets, remote access, or IT intervention.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s see what it means for Qualys to enable such a frictionless, autonomous security initiative.&lt;/p&gt;
-
-
-
-&lt;span id="more-37855"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="zero-touch-security-autonomous-protection-across-the-asset-lifecycle"&gt;&lt;strong&gt;Zero-Touch Security: &lt;/strong&gt;Autonomous Protection Across the Asset Lifecycle&lt;/h2&gt;
-
-
-
-&lt;p&gt;With the Zero-Touch Security Initiative with Qualys Cloud Agents, Qualys provides a streamlined approach to security that ensures continuous protection and operational efficiency. By rethinking how core security processes are orchestrated and automated, we are establishing a new standard—one where security posture is not constrained by organizational structure or continuous manual efforts or operational bandwidth but propelled by intelligent automation and platform-level integration. By enabling Zero-touch approach, we are aiming not to just deliver tools but rather redefine what it means to operate securely at enterprise scale. All you need to do is to deploy Qualys Cloud Agent once!&lt;/p&gt;
-
-
-
-&lt;p&gt;Below are the key features that make zero-touch security management possible:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list" start="1"&gt;
-&lt;li&gt;&lt;strong&gt;Discover and Secure Unknown Assets:&lt;/strong&gt; Automatically detect and monitor all devices on your network, even those you didn&amp;#8217;t know existed, with zero manual intervention.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Effortless Agent Deployment Using Qualys Scanner&lt;/strong&gt;: Deploy agents across your network without relying on IT teams or third-party tools, ensuring full coverage and consistency.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Optimize Vulnerability Remediation with &lt;/strong&gt;&lt;a href="https://blog.qualys.com/qualys-insights/2021/09/14/optimize-vulnerability-remediation-with-zero-touch-patch"&gt;&lt;strong&gt;Zero-Touch Patch&lt;/strong&gt;&lt;/a&gt; Automate the patching process to quickly address vulnerabilities without disruption or delays.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Remote Troubleshooting Without IT Tickets&lt;/strong&gt;: Troubleshoot agent issues remotely without needing IT involvement, speeding up resolution and minimizing downtime.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Efficient Cloud Agent Lifecycle Management&lt;/strong&gt; Automatically clean up and manage agent data, ensuring a streamlined and secure asset management process over time.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/1200x560_Diagram-Zero-Touch-Security-image-1-1.png"&gt;&lt;img alt="" class="wp-image-37865" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/1200x560_Diagram-Zero-Touch-Security-image-1-1.png" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;These features enable a fully automated, secure, and streamlined process that frees up IT resources while ensuring continuous, real-time protection.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s dive into each piece of the zero-touch journey.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="discover-and-secure-unknown-assets"&gt;&lt;strong&gt;Discover and Secure Unknown Assets&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Challenge: Blind Spots in Asset Visibility&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Many organizations struggle to maintain a complete and accurate inventory of all assets within their environment. Devices may join the network without proper tracking, unauthorized endpoints can go undetected, and assets in shadow IT environments may operate outside security policies. Traditional asset discovery methods, such as scheduled scans, often leave gaps due to network segmentation, firewall restrictions, and remote work environments.&lt;/p&gt;
-
-
-
-&lt;p&gt;These blind spots create security risks by allowing unmanaged or rogue devices to exist undetected. Attackers exploit these gaps, using unknown assets as entry points to infiltrate networks. Without continuous monitoring, organizations remain vulnerable to breaches stemming from devices they didn&amp;#8217;t even know existed.&lt;/p&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Solution: Continuous, Unobtrusive Asset Discovery&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Qualys Cloud Agent Passive Sensor (CAPS)&lt;/strong&gt; continuously monitors network traffic to identify all devices communicating within an environment. Unlike traditional scanning methods, CAPS operates passively, meaning it detects assets without requiring credentials, firewall exceptions, or intrusive scans that could disrupt operations.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/caps.png"&gt;&lt;img alt="" class="wp-image-37864" height="513" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/caps-1070x513.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;br /&gt;&lt;strong&gt;Key Benefits:&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Real-time asset discovery&lt;/strong&gt; – Detects new devices as soon as they appear on the network.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Zero disruption&lt;/strong&gt; – No impact on network performance or business operations.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Extended visibility&lt;/strong&gt; – Covers both IT and OT environments, including unmanaged and IoT devices.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://blog.qualys.com/product-tech/2023/11/26/closing-the-visibility-gap-how-qualys-cloud-agent-passive-sensor-caps-eliminates-blind-spots-without-the-hassle"&gt;&lt;strong&gt;Learn more about CAPS&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;From Discovery to Protection: Streamlined Asset Activation at Scale&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Once unknown assets are detected, Qualys makes it easy to bring them under security management through an automated &lt;a href="https://docs.qualys.com/en/csam/latest/configure/bulk_asset_activation_by_rule.htm" rel="noreferrer noopener" target="_blank"&gt;Asset Activation Workflow&lt;/a&gt;. With rule-based activation, organizations can instantly operationalize discovered assets using flexible criteria—such as QQL queries or dynamic tags. The platform supports automatic activation across key modules, including &lt;strong&gt;Vulnerability Management&lt;/strong&gt;, &lt;strong&gt;Certificate View&lt;/strong&gt;, and &lt;strong&gt;Policy Audit&lt;/strong&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/CyberSecurity_Asset_Management__Create_Workflow.png"&gt;&lt;img alt="" class="wp-image-37879" height="834" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/CyberSecurity_Asset_Management__Create_Workflow.png" width="1904" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This intelligent workflow accelerates time-to-value by eliminating manual processes and enabling dynamic, policy-driven asset onboarding. By automating activation based on real-time discovery, organizations can ensure that every asset—regardless of how or where it appears—is promptly brought under protection. With integrated reporting, fine-grained control, and support for key security modules, teams gain the visibility, agility, and scale needed to reduce risk and enforce consistent security coverage across the entire environment.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="effortless-agent-deployment-using-qualys-scanner"&gt;&lt;strong&gt;Effortless Agent Deployment Using Qualys Scanner&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Challenge: Complex and Inconsistent Agent Deployment&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Rolling out security agents across a large, distributed environment can be a logistical nightmare. Many organizations rely on endpoint management tools or manual installations, which introduce inconsistencies and delays.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Scalability Issues:&lt;/strong&gt; Deploying agents across thousands of systems requires coordination between security and IT teams, often leading to delays and incomplete coverage.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Configuration Complexity:&lt;/strong&gt; Ensuring agents are properly installed and configured on every device requires significant effort, especially across diverse OS environments.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Network and Access Limitations:&lt;/strong&gt; Remote or isolated devices may not be reachable via traditional deployment methods, creating security gaps.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Solution: Automated Deployment Using Qualys Scanner&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Qualys streamlines deployment with &lt;strong&gt;Cloud Agent Deployment using Qualys Scanner&lt;/strong&gt;, enabling organizations to install Cloud Agents directly through an existing Qualys Scanner Appliance.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Cursor_and_Scan_History.png"&gt;&lt;img alt="" class="wp-image-37866" height="599" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/Cursor_and_Scan_History.png" width="572" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Key Benefits:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Automated installation&lt;/strong&gt; – Deploy agents without manual intervention.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Centralized control&lt;/strong&gt; – Manage deployments across Windows and Linux systems from a single platform.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;No third-party dependencies&lt;/strong&gt; – Eliminates reliance on additional deployment tools or IT support.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://blog.qualys.com/product-tech/2024/09/03/secure-your-business-with-qualys-new-cloud-agent-deployment-using-qualys-scanner"&gt;&lt;strong&gt;Read more about Qualys Scanner Deployment&lt;/strong&gt;&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="optimize-vulnerability-remediation-with-zero-touch-patch"&gt;&lt;strong&gt;Optimize Vulnerability Remediation with Zero-Touch Patch&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Challenge: Inconsistent and Delayed Patch Deployment&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Vulnerability remediation is a critical component of any organization&amp;#8217;s security posture. However, patching systems can be a slow and error-prone process, requiring manual intervention, coordination between teams, and often, disruption to business operations.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Patch deployment delays&lt;/strong&gt; – Waiting for scheduled maintenance windows or coordination with IT teams can lead to significant delays in applying critical patches.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Risk of human error&lt;/strong&gt; – Manual patch management processes are vulnerable to mistakes that may leave systems unprotected.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Disruptions to productivity&lt;/strong&gt; – Reboots and system downtime during patching can impact business operations, leading to decreased productivity and user frustration.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Solution: Qualys Zero-Touch Patch Management&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;With &lt;strong&gt;Qualys Zero-Touch Patch&lt;/strong&gt;, you can streamline vulnerability remediation by automating the patching process across your environment. This solution enables:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Automated patch deployment&lt;/strong&gt; – Once vulnerabilities are detected, patches are automatically deployed to affected systems without any manual intervention.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Non-intrusive updates&lt;/strong&gt; – Patches are applied with minimal disruption to business operations, reducing downtime and user impact.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Comprehensive coverage&lt;/strong&gt; – Zero-Touch Patch works across both on-premises and cloud environments, ensuring all systems are patched in real-time.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/patch.png"&gt;&lt;img alt="" class="wp-image-37867" height="410" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/patch-1070x410.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Key Benefits:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Faster remediation&lt;/strong&gt; – Reduce the time between vulnerability detection and patch deployment.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Reduced risk&lt;/strong&gt; – Apply critical patches automatically to protect against the latest threats.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Minimal disruption&lt;/strong&gt; – Keep systems secure without interrupting business continuity.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://blog.qualys.com/qualys-insights/2021/09/14/optimize-vulnerability-remediation-with-zero-touch-patch"&gt;Learn more about Zero-Touch Patch&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="new-feature-remote-log-collection-for-seamless-troubleshooting-and-analysis"&gt;&lt;strong&gt;New Feature:&lt;/strong&gt;&lt;strong&gt; Remote Log Collection for Seamless Troubleshooting and Analysis&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Challenge: Log Collection and Troubleshooting Complexity&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Collecting and analyzing logs from security agents across large environments can be cumbersome. Traditional methods often require manual access to each device, leading to delays, incomplete data collection, and an inefficient troubleshooting process. This challenge is compounded by the need to open IT tickets, schedule remote sessions, and manually diagnose problems, which can introduce delays and end-user disruptions.&lt;/p&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Solution: Streamlined Remote Log Collection and Troubleshooting&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Qualys introduces the &lt;strong&gt;Remote Log Collection&lt;/strong&gt; feature, which enhances troubleshooting and log analysis by eliminating the need for manual intervention or local access. This feature enables seamless remote log collection and a fully remote troubleshooting process, streamlining diagnostics and resolution while reducing IT workload.&lt;/p&gt;
-
-
-
-&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Key Features and Benefits:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Customizable Log Collection:&lt;/strong&gt; Choose to capture all logs or focus on specific capabilities, such as Vulnerability Management, Patch Management, FIM (File Integrity Monitoring), and more. This customization ensures you collect only the relevant data for analysis.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Agent Logs or Agent Logs Plus Directory Files:&lt;/strong&gt; Select between receiving agent logs alone or a more detailed collection that includes agent logs and associated directory files for deeper analysis.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Track Log Collection Status:&lt;/strong&gt; Once log collection is requested, a new interface allows you to track the status in real-time. You can monitor whether logs are still processing or ready for download, ensuring transparency throughout the process.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Download Logs for Seven Days:&lt;/strong&gt; Logs are available for download within a seven-day window, providing ample time for analysis and troubleshooting.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Remote Troubleshooting Without IT Tickets:&lt;/strong&gt;&lt;br /&gt;The Remote Log Collection feature works in tandem with &lt;strong&gt;remote troubleshooting capabilities&lt;/strong&gt;, reducing the need for IT tickets, remote sessions, or user intervention. Key remote actions include:
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Enable debug logging remotely&lt;/strong&gt; for in-depth diagnostics.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Restart agents&lt;/strong&gt; without requiring local access.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Disable self-protection&lt;/strong&gt; for advanced troubleshooting when necessary.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Capture agent logs remotely&lt;/strong&gt; for faster issue resolution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;To enable the new Remote Log Collection feature, please open a support ticket or contact your Qualys Technical Account Manager.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/rlc.png"&gt;&lt;img alt="" class="wp-image-37868" height="643" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/rlc.png" width="990" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Pro Tip:&lt;/strong&gt; To further enhance your troubleshooting experience, log into the support portal and use the &lt;a href="https://success.qualys.com/support/s/article/000007209"&gt;Agent Log Analyzer Tool&lt;/a&gt;, which offers a graphical interface to interact with logs, allowing quicker identification and resolution of issues.&lt;/p&gt;
-
-
-
-&lt;p&gt;By centralizing these capabilities, organizations can quickly identify and resolve security agent issues, reduce exposure to security risks, and maintain continuous security operations, all without interrupting workflows or requiring IT support.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://docs.qualys.com/en/ca/portal/latest/agents/remote_log_collection.htm"&gt;View full remote troubleshooting options&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;To enable the new Remote Log Collection feature, please open a support ticket or contact your Qualys Technical Account Manager.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="efficient-cloud-agent-lifecycle-management"&gt;&lt;strong&gt;Efficient Cloud Agent Lifecycle Management&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Challenge: Managing Agents Over Time Without Creating Gaps&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Security agents must be properly maintained throughout their lifecycle—from deployment to retirement—to ensure an effective security posture. However, improper agent decommissioning can lead to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Lingering data clutter:&lt;/strong&gt; Old, unused agent records accumulate, making it harder to manage active devices.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Reinstallation confusion:&lt;/strong&gt; If an agent is mistakenly removed, reinstalling and reconfiguring it can be cumbersome.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Security risks:&lt;/strong&gt; Unmonitored, outdated agents may continue running with old policies, creating potential vulnerabilities.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;The Solution: Automated Agent Lifecycle Management&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Qualys’ &lt;strong&gt;enhanced Cloud Agent purge rules&lt;/strong&gt; provide a structured way to clean up agent data while maintaining control over asset visibility.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/purge.png"&gt;&lt;img alt="" class="wp-image-37869" height="477" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/purge-1070x477.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Key Benefits:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Automated purging&lt;/strong&gt; – Removes outdated agent data while retaining necessary historical records.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Self-reinstatement&lt;/strong&gt; – If a removed agent checks in again, it will re-provision itself without requiring a full reinstall.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Optimized security&lt;/strong&gt; – Ensures only active, managed agents are maintained, reducing clutter and potential risks.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;a href="https://notifications.qualys.com/product/2023/10/23/enhancing-qualys-cloud-agent-purge-rules-unleash-greater-control-without-sacrificing-visibility"&gt;Discover how to enhance agent lifecycle management&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion-secure-your-assets-with-zero-touch-operations"&gt;&lt;strong&gt;Conclusion: Secure Your Assets With Zero-Touch Operations&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;By leveraging these modern security features, organizations can:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Eliminate the need for IT tickets and remote sessions&lt;/strong&gt; – Free up IT resources and reduce response times.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Ensure complete visibility and security of all assets&lt;/strong&gt; – Detect and monitor every device in real-time.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Streamline agent deployment and management&lt;/strong&gt; – Automate processes without requiring manual installations.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Troubleshoot and manage security issues remotely&lt;/strong&gt; – Reduce disruptions while maintaining compliance.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;A &lt;strong&gt;zero-touch security lifecycle&lt;/strong&gt; reduces operational overhead and strengthens your overall security posture—without requiring constant team coordination. Secure your assets effortlessly and focus on what truly matters: growing your business.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/1080x1080_Diagram-Zero-Touch-Security-image-1.png"&gt;&lt;img alt="" class="wp-image-37871" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/05/1080x1080_Diagram-Zero-Touch-Security-image-1.png" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="get-started-today"&gt;&lt;strong&gt;Get Started Today!&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Threat actors move fast, and your defenses must move faster. Instead of the traditional, reactive options, Zero-touch automation offers a smarter way forward: eliminating blind spots, streamlining response, and freeing your teams to focus on strategic priorities. With continuous protection and remote remediation baked into your operations, security becomes proactive by design, not reactive by necessity.&lt;/p&gt;
-
-
-
-&lt;p&gt;Now is the time to simplify, scale, and strengthen your security with Qualys&amp;#8217; zero-touch automation. Experience seamless vulnerability management without the need for IT intervention and empower your security teams to stay ahead of threats—before the next breach demands it.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Start your free trial of Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/15.1.0/72x72/2122.png" style="height: 1em;" /&gt; Platform and transform your cybersecurity strategy!&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/free-trial/" style="background-color: #ed2e26;"&gt;Sign Up Today&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=37855</guid><category>Product and Tech</category><category>Qualys Cloud Agent</category><category>remote log collection</category><category>zero-touch security</category></item><item><title>12th May – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/12th-may-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 12th May, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The UK’s Legal Aid Agency has suffered a cyberattack. The agency, which operates under the Ministry of Justice to provide billions in legal aid funding, has stated that financial information relating to [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23359</guid></item><item><title>Quick Glossary: Cybersecurity Countermeasures</title><link>https://www.techrepublic.com/resource-library/glossary/cybersecurity-countermeasures/</link><description>Keep up with the latest lingo and learn the terminology behind the most common cybersecurity countermeasures. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This 11-page PDF explains checksum, DMZ, hashing, and more. Vital For Success — This glossary is essential for organizations wishing to understand cybersecurity ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/quick-glossary-cybersecurity-countermeasures/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Earth Ammit Disrupts Drone Supply Chains Through Coordinated Multi-Wave Attacks in Taiwan</title><link>https://www.trendmicro.com/en_us/research/25/e/earth-ammit.html</link><description>Trend™ Research discusses the evolving tradecraft of threat actor Earth Ammit, proven by the advanced toolset used in its TIDRONE and VENOM campaigns that targeted the drone supply chain.</description><guid isPermaLink="false">urn:uuid:540bf713-4289-254d-161f-22e9f02a9612</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Research</category></item><item><title>Trend Micro Puts a Spotlight on AI at Pwn2Own Berlin</title><link>https://www.trendmicro.com/en_us/research/25/e/pwn2own-berlin-2025.html</link><description>Get a sneak peak into how Trend Micro's Pwn2Own Berlin 2025 is breaking new ground, focusing on AI infrastructure and finding the bugs to proactively safeguard the future of computing.</description><guid isPermaLink="false">urn:uuid:7be4b064-6a93-f95d-9bdc-bd8c7905bc72</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>12th May – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/12th-may-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 12th May, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The UK’s Legal Aid Agency has suffered a cyberattack. The agency, which operates under the Ministry of Justice to provide billions in legal aid funding, has stated that financial information relating to [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/12th-may-threat-intelligence-report/"&gt;12th May – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 12th May, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/05/Threat_Intelligence_News_2025-05-12.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
