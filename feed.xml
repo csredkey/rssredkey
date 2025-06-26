@@ -1,5 +1,609 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 26 Jun 2025 17:00:01 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, June 26th, 2025 https://isc.sans.edu/podcastdetail/9506</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/06/26/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on June 26, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 26 Jun 2025 18:00:02 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, June 26th, 2025 https://isc.sans.edu/podcastdetail/9506</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Building security that lasts: Microsoft’s journey towards durability at scale ​​</title><link>https://www.microsoft.com/en-us/security/blog/2025/06/26/building-security-that-lasts-microsofts-journey-towards-durability-at-scale/</link><description>&lt;p&gt;In late 2023, Microsoft launched its most ambitious security transformation to date, the Microsoft Secure Future Initiative (SFI).  An initiative with the equivalent of 34,000 engineers working across 14 product divisions, supporting more than 20,000 cloud services on 1.2 million Azure subscriptions, the scope is massive. These services operate on 21 million compute nodes, protected by 46.7 million certificates, and developed across 134,000 code repositories. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/06/26/building-security-that-lasts-microsofts-journey-towards-durability-at-scale/"&gt;Building security that lasts: Microsoft’s journey towards durability at scale ​​ &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;In this blog you will hear directly from Microsoft’s Deputy Chief Information Security Officer (CISO) for Azure and operating systems, Mark Russinovich, about how Microsoft operationalized security durability at scale. This blog is part of an ongoing series where our Deputy CISOs share their thoughts on what is most important in their respective domains. In this series you will get practical advice and forward-looking commentary on where the industry is going, as well as tactics you should start (and stop) deploying, and more.&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In late 2023, Microsoft launched its most ambitious security transformation to date, the &lt;a href="https://www.microsoft.com/trust-center/security/secure-future-initiative" rel="noreferrer noopener" target="_blank"&gt;Microsoft Secure Future Initiative&lt;/a&gt; (SFI).  An initiative with the equivalent of 34,000 engineers working across 14 product divisions, supporting more than 20,000 cloud services on 1.2 million Azure subscriptions, the scope is massive. These services operate on 21 million compute nodes, protected by 46.7 million certificates, and developed across 134,000 code repositories. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;At Microsoft’s scale, the real challenge isn’t just shipping security fixes—it’s ensuring they’re automatically enforced by the platform, with no extra lift from engineers. This work aligns directly to our &lt;a href="https://www.microsoft.com/trust-center/security/secure-future-initiative#SFI-principles" rel="noreferrer noopener" target="_blank"&gt;Secure by Default principle&lt;/a&gt;. Durable security is about building systems that apply fixes proactively, uphold standards over time, and engineering teams can focus on innovation rather than rework. This is the next frontier in security resilience.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/trust-center/security/secure-future-initiative"&gt;Learn more about the Secure Future Initiative&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="why-staying-secure-is-harder-than-getting-there"&gt;Why “staying secure” is harder than getting there&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;div class="alignleft wp-block-bloginabox-theme-kicker"&gt;
+	&lt;div class="kicker"&gt;
+		&lt;h2 class="kicker__title"&gt;
+			SFI April 2025 report blog		&lt;/h2&gt;
+		&lt;p class="kicker__content"&gt;
+							&lt;a class="kicker__link" href="https://www.microsoft.com/en-us/security/blog/2025/04/21/securing-our-future-april-2025-progress-report-on-microsofts-secure-future-initiative/" rel="noopener noreferrer" target="_blank"&gt;
+						Read the blog							›&lt;/a&gt;
+					&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When SFI began, Microsoft made rapid progress: teams addressed vulnerabilities, met key performance indicators (KPIs), and turned dashboards green. Over time, sustaining these gains proved challenging, as some fixes required reinforcement and recurring patterns like misconfigurations and legacy issues began to re-emerge in new projects—highlighting the need for durable, long-term security practices. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The pattern was clear: &lt;strong&gt;security improvements weren’t durable&lt;/strong&gt;.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;While key milestones were successfully achieved, there were instances where we did not have a clearly defined ownership or built-in features to automatically sustain security baselines. Enforcement mechanisms varied, leading to inconsistencies in how security standards were upheld. As resources shifted post-delivery, this created a risk of baseline drift over time.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Moving forward, we realized that our teams need to establish explicit ownership, standardize enforcement design, and embed automation at the platform level because it is essential to ensure long-term resilience, reduce operational burden, and prevent regression.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button has-custom-width wp-block-button__width-50"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/sfi-april-2025-progress-report.pdf" rel="noreferrer noopener" target="_blank"&gt;Read the latest SFI report&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="engineering-for-endurance-the-making-of-microsoft-s-durability-strategy"&gt;Engineering for endurance: The making of Microsoft’s durability strategy&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To transform security from a reactive effort into an enduring capability, Microsoft launched a company-wide initiative to operationalize security durability at scale. The result was the creation of the &lt;strong&gt;Security Durability Model&lt;/strong&gt;, anchored in the principle to “Start Green, Get Green, Stay Green, and Validate Green.” This framework is not a slogan—it is a foundational shift in how Microsoft engineers build, enforce, and sustain secure systems across the enterprise. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;At the core of this effort are Durability Architects—dedicated Architects embedded within each division who act as stewards of persistent security. These individuals champion a “fix-once, fix-forever” mindset by enforcing ownership and driving accountability across teams. One example that catalyzed this effort involved cross-tenant access risks through Passthrough Authentication. In this case, users without presence in a target tenant could authenticate through passthrough mechanisms, unintentionally breaching tenant boundaries. The mitigation initially lacked durability and resurfaced until ownership and enforcement were systemically addressed. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft also applies a lifecycle framework they call “Start Green, Get Green, Stay Green, Validated Green.” New features are developed in a secure-by-default posture using hardened templates, ensuring they “Start Green.” Legacy systems or existing features are brought into compliance through targeted remediation efforts—this is “Get Green.” To “Stay Green,” ongoing monitoring and guardrails prevent regression. Finally, security is verified through automated reviews, and executive reporting—ensuring enduring resilience.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="automating-for-scale-and-embedding-security-into-engineering-culture"&gt;Automating for scale and embedding security into engineering culture&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;div class="alignright wp-block-bloginabox-theme-kicker"&gt;
+	&lt;div class="kicker"&gt;
+		&lt;h2 class="kicker__title"&gt;
+			What is Azure Policy?		&lt;/h2&gt;
+		&lt;p class="kicker__content"&gt;
+							&lt;a class="kicker__link" href="https://learn.microsoft.com/azure/governance/policy/overview" rel="noopener noreferrer" target="_blank"&gt;
+						Learn more							↗&lt;/a&gt;
+					&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Recognizing that manual security checks cannot scale across an enterprise of this size, Microsoft has heavily invested in automation to prevent regressions. Tools such as Azure Policy automatically enforce best practices like encryption-at-rest or multifactor authentication across cloud resources. Continuous scanners detect expired certificates or known vulnerable packages. Self-healing scripts autocorrect deviations, closing the loop between detection and remediation. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To embed durability into the operational fabric, review cadences and executive oversight play a critical role. Security KPIs are reviewed at weekly or biweekly engineering operations meetings, with Microsoft’s top leadership, including the Chief Executive Officer (CEO), Executive Vice Presidents (EVPs), and engineering leaders receiving regular updates. Notably, executive compensation is now directly tied to security performance metrics—an accountability mechanism that has driven measurable improvements in areas such as secret hygiene across code repositories. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Rather than building fragmented solutions, Microsoft focuses on shared, scalable security capabilities. For example, to maintain a clean build environment, all new build queues will now default to a virtualized setup. Customers will not have the option to revert to the classic Artifact Processor (AP) on their own. Once a build is executed in the virtualized CloudBuild environment, any previously allocated resources in the classic CloudBuild will be either decommissioned or reassigned.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Finally, durability is now a built-in requirement at development gates. Security fixes must not only remediate current issues but be designed to endure. Teams must assign owners, undergo gated reviews or durability, and build enforcement mechanisms. This philosophy has shifted the mindset from one-time patching to long-term resilience.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-path-to-durable-security-a-maturity-framework"&gt;The path to durable security: A maturity framework&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Durable security isn’t just about fixing vulnerabilities—it’s about ensuring security holds over time. As Microsoft learned during the early days of its Secure Future Initiative, lasting protection requires organizations to mature operationally, culturally, and technically. The following framework outlines how to evolve toward security durability at scale: &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;1. Stages of security durability maturity: &lt;/strong&gt;Security durability evolves through distinct operational phases that reflect an organization’s ability to sustain and scale secure outcomes, not just achieve them temporarily. &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Reactive: Durable outcomes are rare. Fixes are implemented manually and inconsistently. Drift and regressions are common due to a lack of enforcement or oversight. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Define: Security fixes are codified in basic processes. Teams may implement fixes, but durability is still dependent on individual vigilance rather than systemic support. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Managed: Security controls are embedded in standardized workflows. Durable design patterns are introduced. Baseline drift is measured, and early automation begins to prevent regression.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Optimized: Durability becomes part of engineering culture. Secure-by-default templates, guardrails, and metrics reduce variance. Real-time enforcement prevents security drift.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Autonomous and predictive: Systems proactively enforce durability. AI-assisted controls detect and self-remediate regressions. Durable security becomes self-sustaining and adaptive to change. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-large wp-lightbox-container"&gt;&lt;img alt="A 5 stage framework for how Microsoft evolved toward security durability at scale.&amp;nbsp;" class="wp-image-139805 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/06/Picture1-2-1024x882.webp" /&gt;&lt;button class="lightbox-trigger" type="button"&gt;
+			&lt;svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"&gt;
+				&lt;path d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" fill="#fff"&gt;
+			&lt;/svg&gt;
+		&lt;/button&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;2. Dimensions of security durability: &lt;/strong&gt;To embed durability across the enterprise, organizations must mature along five integrated dimensions: &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Resilience to change: Security controls must remain stable even as infrastructure, tools, and organizational structures evolve. This requires decoupling controls from fragile, manual systems. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Scalability: Durable security must scale effortlessly across expanding environments, including new regions, services, and team structures—without introducing regressions.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Automation and AI readiness: Durability depends on machine-powered enforcement. Manual reviews alone cannot guarantee persistence. AI and automation provide speed, consistency, and fail-safes. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Governance integration: Durability must be wired into governance platforms to provide traceability, accountability, and risk closure across the control lifecycle. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Sustainability: Durable security solutions must be lightweight and operationally viable. If controls are too burdensome, teams will circumvent them, undermining long-term resilience.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;3. Key milestones in security durability evolution: &lt;/strong&gt;Microsoft&amp;#8217;s implementation of durable security revealed critical transformation points that signal organizational maturity: &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Establish durable security baselines (identity hygiene, patching, config hardening).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Enforce controls through automated policy and self-healing. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Build durability-aware platforms like Govern Risk Intelligent Platform (GRIP) to track regressions and closure loops. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Embed durability reviews into engineering checkpoints and risk ownership cycles.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Drive a durability mindset across teams—from development to operations. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Create feedback loops to evaluate what holds and what regresses over time. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Deploy AI-powered agents to detect drift and initiate remediation. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-large wp-lightbox-container"&gt;&lt;img alt="Key milestones in the security durability evolution at Microsoft" class="wp-image-139806 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/06/Picture2-1-1024x665.webp" /&gt;&lt;button class="lightbox-trigger" type="button"&gt;
+			&lt;svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"&gt;
+				&lt;path d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" fill="#fff"&gt;
+			&lt;/svg&gt;
+		&lt;/button&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Each milestone builds a stronger foundation for durability and aligns incentives with sustained security excellence. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;4. Measuring security durability: &lt;/strong&gt;Tracking the stickiness of security work requires a shift from traditional risk metrics to durability-focused indicators. Microsoft uses the following to monitor progress: &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Percentage of controls enforced automatically versus manually &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Baseline drift rate (how often known-good states erode)&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Mean time to regress (how quickly fixes unravel)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Volume of self-healing actions triggered and resolved&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Percentage of fixes that meet “never regress” criteria &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Durability metadata coverage in systems like GRIP (ownership, status, and closure) &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Percentage of engineering teams integrated into durability reporting cadences &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="results-from-short-term-wins-to-sustained-gains"&gt;Results: From short-term wins to sustained gains&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By February 2025, the durability push resulted in:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;100% multi-factor authentication (MFA) enforcement or legacy protocol removal remained stable for months. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Teams use real-time dashboards to catch any KPI dips—addressing them before they spiral.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Where previous improvements faded, new ones held firm—validating the durability model. &lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/trust-center/security/secure-future-initiative"&gt;Get the latest Secure Future Initiative updates&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="lessons-for-any-enterprise"&gt;Lessons for any enterprise&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft’s journey offers valuable takeaways for organizations of all sizes. &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="durability-requires-programmatic-support"&gt;Durability requires programmatic support &lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security doesn’t persist by accident. It needs:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Roles for durability and accountability.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Durable design patterns.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Empowering technologies (automation and policy enforcement). &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Regular leadership and architect reviews.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Standardized workflows.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Teams across security, development, and operations must be aligned and coordinated—using the same metrics, tools, and gates.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="culture-and-leadership-matter"&gt;Culture and leadership matter&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security must be everyone’s job—and leadership must reinforce that relentlessly. At Microsoft, security became part of performance reviews, executive dashboards, and everyday conversation.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;As EVP Charlie Bell put it: &lt;em&gt;“Security is not just a feature, it’s the foundation.”&lt;/em&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That mindset—combined with consistent leadership pressure—is what transforms short-lived security into long-term resilience.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="security-that-endures"&gt;Security that endures &lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The Secure Future Initiative proves that &lt;strong&gt;durable security&lt;/strong&gt; is achievable—even at hyperscale.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft is showing that lasting security can be achieved by investing in:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;People&lt;/strong&gt; (clear ownership and champions).&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Processes&lt;/strong&gt; (repeatable metrics and reviews).&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Platforms&lt;/strong&gt; (shared tooling and automation).&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The playbook isn’t just for tech giants. Any organization—whether you&amp;#8217;re securing 20 cloud services or 20,000—can adopt the principles of security durability&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Because in today’s cyberthreat landscape, fixing isn’t enough.  &lt;/p&gt;
+
+
+
+&lt;div class="is-style-inline wp-block-bloginabox-theme-promotional"&gt;
+	
+&lt;div class="promotional promotional--has-media promotional--media-right"&gt;
+	&lt;div class="promotional__wrapper"&gt;
+		&lt;div class="promotional__content-wrapper"&gt;
+			&lt;div class="promotional__content"&gt;
+				
+
+&lt;h2 class="wp-block-heading" id="secure-future-initiative"&gt;Secure Future Initiative&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A new world of security.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/trust-center/security/secure-future-initiative"&gt;Follow along&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+					&lt;div class="promotional__media-wrapper"&gt;
+				&lt;div class="promotional__media"&gt;
+											&lt;img alt="A person sitting on a couch using a laptop" class="attachment-full size-full" height="840" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/06/Security-ScannedImagery-Red-04-Getty.jpg" width="1260" /&gt;									&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more-with-microsoft-security"&gt;Learn more with Microsoft Security&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To see an example of the Microsoft Durability Strategy in action, read this case study in the appendix below. Learn more about the Microsoft Security Future Initiative and our &lt;a href="https://aka.ms/SecureFutureInitiative"&gt;Secure by Default principle&lt;/a&gt;.  &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;​​To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="appendix"&gt;&lt;strong&gt;Appendix: &lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Security Durability Case Study&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Eliminating pinned certificates: A durable fix for secret hygiene in MSA apps&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;SFI Reference:&lt;/strong&gt; [SFI-ID4.1.3]&amp;nbsp;&lt;br /&gt;&lt;strong&gt;Initiative Owner:&lt;/strong&gt; Microsoft Account (MSA) Engineering Team&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Overview&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;As part of the &lt;strong&gt;Secure Future Initiative (SFI)&lt;/strong&gt;, the Microsoft Account (MSA) team addressed a critical weakness identified through &lt;strong&gt;Software Security Incident Response Plans (SSIRPs)&lt;/strong&gt;: the unsafe use of pinned certificates. By eliminating this legacy pattern and embedding preventive guardrails, the MSA team set a new bar for &lt;strong&gt;durable secrets management&lt;/strong&gt; and &lt;strong&gt;secure partner onboarding&lt;/strong&gt;.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;The challenge: Pinned certificates and hidden fragility&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Pinned certificates were once seen as a strong trust enforcement mechanism, ensuring that only specific certificates could be used to establish connections. However, they became a &lt;strong&gt;security and operational liability&lt;/strong&gt;:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Difficult to rotate&lt;/strong&gt;: If a pinned certificate expired or was compromised, coordinating a fast and seamless replacement across services was challenging. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Onboarding risk&lt;/strong&gt;: New services had no safe, scalable path to onboard without replicating this fragile pattern. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Lack of durability&lt;/strong&gt;: Without controls, the risk of regression and repeated misuse remained high. &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;The durable fix: Secure by default and enforced by design&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The MSA team implemented a &lt;strong&gt;durability-first solution&lt;/strong&gt; grounded in engineering enforcement and operational pragmatism:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Strategy&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Action&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Code-Level Blocking&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;All code paths accepting pinned certificates were hardened to prevent adoption.&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Temporary Allow Lists&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;Existing apps using pinned certificates were allow-listed to prevent immediate outages.&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Default Deny Posture&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;New apps are automatically blocked from using pinned certificates, enforcing secure defaults.&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This “fix-once, fix-forever” approach ensures the issue doesn’t resurface—even as new partners onboard or systems evolve.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Sustained impact and lifecycle integration&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To maintain progress and ensure &lt;strong&gt;no regression&lt;/strong&gt;, the MSA team aligned remediation with each partner’s &lt;strong&gt;SFI KPI milestones&lt;/strong&gt;. Services were removed from the allow list only after completing their transition, closing the loop with &lt;strong&gt;full compliance&lt;/strong&gt; and &lt;strong&gt;operational readiness&lt;/strong&gt;.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This work reinforced several Security Durability pillars:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Preventive guardrails&lt;/strong&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Owner-enforced controls&lt;/strong&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Security built into the engineering lifecycle&lt;/strong&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Lessons and model for the future&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This case is a model for how Microsoft is shifting from reactive security work to &lt;strong&gt;systemic, enforceable, and scalable durability models&lt;/strong&gt;. Rather than patching the same issue repeatedly, the MSA team &lt;strong&gt;eliminated the root cause&lt;/strong&gt;, protected the ecosystem, and created a repeatable blueprint for other risky cryptographic practices.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Key takeaways&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Eliminating pinned certificates reduced fragility and boosted long-term resilience.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Durable controls were enforced via code, not just process.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Gradual deprecation through partner alignment ensured no disruption.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;This sets a precedent for eliminating insecure patterns across Microsoft platforms. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/06/26/building-security-that-lasts-microsofts-journey-towards-durability-at-scale/"&gt;Building security that lasts: Microsoft’s journey towards durability at scale ​​ &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=139796</guid></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/06/26/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on June 26, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-177-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-177-01"&gt;Mitsubishi Electric Air Conditioning Systems&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-177-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-177-02"&gt;TrendMakers Sight Bulb Pro&lt;/a&gt;&lt;/li&gt;
@@ -924,7 +1528,7 @@ document.getElementById("desktop").onclick=()=&gt;{ window.open("https" + ":" + 
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&lt;a&gt;&amp;nbsp;&lt;/a&gt;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23550</guid></item><item><title>Remote Access Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/remote-access/</link><description>Use these guidelines for requesting, obtaining, using, and terminating remote access to an organization&amp;#8217;s networks, systems, and data. Customizable Document — Ready for use as-is or edit as you see fit. Boost Your Processes — The nine-page document outlines eligible users, software, equipment, and more. Expert Guidance — Written by Scott Matteson via 18 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/remote-access-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>RedirectionGuard: Mitigating unsafe junction traversal in Windows</title><link>https://msrc.microsoft.com/blog/2025/06/redirectionguard-mitigating-unsafe-junction-traversal-in-windows/</link><description>As attackers continue to evolve, Microsoft is committed to staying ahead by not only responding to vulnerabilities, but also by anticipating and mitigating entire classes of threats. One such threat, filesystem redirection attacks, has been a persistent vector for privilege escalation. In response, we’ve developed and deployed a new mitigation in Windows 11 called RedirectionGuard.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/06/redirectionguard-mitigating-unsafe-junction-traversal-in-windows/</guid></item><item><title>ISC Stormcast For Wednesday, June 25th, 2025 https://isc.sans.edu/podcastdetail/9504, (Wed, Jun 25th)</title><link>https://isc.sans.edu/diary/rss/32070</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32070</guid></item><item><title>North Korean Hackers Try to Steal Crypto Via Deepfake Zoom Call</title><link>https://www.techrepublic.com/article/news-north-korea-deepfake-zoom-crypto-attack/</link><description>A fake Zoom call featuring AI-generated executives tricked a crypto employee into downloading macOS malware linked to North Korea’s BlueNoroff group.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313212</guid><category>APAC</category><category>Apple</category><category>Artificial Intelligence</category><category>International</category><category>News</category><category>Security</category></item><item><title>Post-Quantum Cryptography Implementation Enterprise-Readiness Analysis</title><link>https://www.darknet.org.uk/2025/06/post-quantum-cryptography-implementation-enterprise-readiness-analysis/</link><description>Explore how enterprises are adopting post-quantum cryptography (PQC) using OpenSSL 3.5, hybrid TLS, and NIST-approved algorithms like Kyber and Dilithium. Learn about PQC implementation strategies, compliance timelines, tooling, and real-world deployments by Microsoft, Meta, Red Hat, and others preparing for quantum-safe encryption.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136786</guid><category>Cryptography</category><category>post quantum cryptography</category><category>pqc</category></item><item><title>AI Security Turning Point: Echo Chamber Jailbreak Exposes Dangerous Blind Spot</title><link>https://www.techrepublic.com/article/news-echo-chamber-jailbreak-manipulates-llms/</link><description>A new AI jailbreak method called Echo Chamber manipulates LLMs into generating harmful content using subtle, multi-turn prompts that evade safety filters.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313198</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>Security</category></item><item><title>Vendor-Neutral AI Agent Interoperability Project’s Participants Include Microsoft, Google, AWS, Salesforce</title><link>https://www.techrepublic.com/article/news-linux-foundation-agent2agent-protocol/</link><description>Google Cloud started the Agent2Agent project to enable AI agents to work across enterprise environments regardless of brand. Google donated the project to The Linux Foundation.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313195</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Cloud</category><category>Developer</category><category>Google</category><category>Microsoft</category><category>News</category><category>Software</category></item><item><title>OpenAI’s Upcoming AI Device: Here’s What We Know</title><link>https://www.techrepublic.com/article/news-openai-io-ai-device/</link><description>In-ear? Wearable? Screenless? TechRepublic rounds up what we know about OpenAI and io’s mysterious creation.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313187</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Quick Password Brute Forcing Evolution Statistics, (Tue, Jun 24th)</title><link>https://isc.sans.edu/diary/rss/32068</link><description>&lt;p&gt;We have collected SSH and telnet honeypot data in various forms for about 10 years. Yesterday&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s diaries, and looking at some new usernames attempted earlier today, made me wonder if botnets just add new usernames or remove old ones from their lists. So I pulled some data from our database to test this hypothesis. I didn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t spend a lot of time on this, and this could use a more detailed analysis. But here is a preliminary result:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;We have collected SSH and telnet honeypot data in various forms for about 10 years. Yesterday's diaries, and looking at some new usernames attempted earlier today, made me wonder if botnets just add new usernames or remove old ones from their lists. So I pulled some data from our database to test this hypothesis. I didn't spend a lot of time on this, and this could use a more detailed analysis. But here is a preliminary result:&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Catalog vulnerabilities"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="specified criteria"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/23550</guid></item><item><title>Remote Access Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/remote-access/</link><description>Use these guidelines for requesting, obtaining, using, and terminating remote access to an organization&amp;#8217;s networks, systems, and data. Customizable Document — Ready for use as-is or edit as you see fit. Boost Your Processes — The nine-page document outlines eligible users, software, equipment, and more. Expert Guidance — Written by Scott Matteson via 18 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/remote-access-policy/</guid><category>Cybersecurity</category><category>IT Resources</category><category>Networking</category></item><item><title>RedirectionGuard: Mitigating unsafe junction traversal in Windows</title><link>https://msrc.microsoft.com/blog/2025/06/redirectionguard-mitigating-unsafe-junction-traversal-in-windows/</link><description>As attackers continue to evolve, Microsoft is committed to staying ahead by not only responding to vulnerabilities, but also by anticipating and mitigating entire classes of threats. One such threat, filesystem redirection attacks, has been a persistent vector for privilege escalation. In response, we’ve developed and deployed a new mitigation in Windows 11 called RedirectionGuard.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/06/redirectionguard-mitigating-unsafe-junction-traversal-in-windows/</guid></item><item><title>ISC Stormcast For Wednesday, June 25th, 2025 https://isc.sans.edu/podcastdetail/9504, (Wed, Jun 25th)</title><link>https://isc.sans.edu/diary/rss/32070</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32070</guid></item><item><title>North Korean Hackers Try to Steal Crypto Via Deepfake Zoom Call</title><link>https://www.techrepublic.com/article/news-north-korea-deepfake-zoom-crypto-attack/</link><description>A fake Zoom call featuring AI-generated executives tricked a crypto employee into downloading macOS malware linked to North Korea’s BlueNoroff group.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313212</guid><category>APAC</category><category>Apple</category><category>Artificial Intelligence</category><category>International</category><category>News</category><category>Security</category></item><item><title>AI Security Turning Point: Echo Chamber Jailbreak Exposes Dangerous Blind Spot</title><link>https://www.techrepublic.com/article/news-echo-chamber-jailbreak-manipulates-llms/</link><description>A new AI jailbreak method called Echo Chamber manipulates LLMs into generating harmful content using subtle, multi-turn prompts that evade safety filters.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313198</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>Security</category></item><item><title>Vendor-Neutral AI Agent Interoperability Project’s Participants Include Microsoft, Google, AWS, Salesforce</title><link>https://www.techrepublic.com/article/news-linux-foundation-agent2agent-protocol/</link><description>Google Cloud started the Agent2Agent project to enable AI agents to work across enterprise environments regardless of brand. Google donated the project to The Linux Foundation.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313195</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Cloud</category><category>Developer</category><category>Google</category><category>Microsoft</category><category>News</category><category>Software</category></item><item><title>OpenAI’s Upcoming AI Device: Here’s What We Know</title><link>https://www.techrepublic.com/article/news-openai-io-ai-device/</link><description>In-ear? Wearable? Screenless? TechRepublic rounds up what we know about OpenAI and io’s mysterious creation.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4313187</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Quick Password Brute Forcing Evolution Statistics, (Tue, Jun 24th)</title><link>https://isc.sans.edu/diary/rss/32068</link><description>&lt;p&gt;We have collected SSH and telnet honeypot data in various forms for about 10 years. Yesterday&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s diaries, and looking at some new usernames attempted earlier today, made me wonder if botnets just add new usernames or remove old ones from their lists. So I pulled some data from our database to test this hypothesis. I didn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t spend a lot of time on this, and this could use a more detailed analysis. But here is a preliminary result:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;We have collected SSH and telnet honeypot data in various forms for about 10 years. Yesterday's diaries, and looking at some new usernames attempted earlier today, made me wonder if botnets just add new usernames or remove old ones from their lists. So I pulled some data from our database to test this hypothesis. I didn't spend a lot of time on this, and this could use a more detailed analysis. But here is a preliminary result:&lt;/p&gt;
 
 &lt;p&gt;The average username/password combinations has increased, but not steadily. I only went back to 2018 as we have more consistent data starting in 2018. Scans began with about 10-20 username/password combinations attempted from each source IP, and more recently, bots attempted around 50 username/password combinations.&amp;nbsp;&lt;/p&gt;
 
@@ -974,7 +1578,7 @@ Johannes B. Ullrich, Ph.D. Dean of Research, &lt;a href="https://sans.edu"&gt;SA
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-100"&gt;&lt;a class="wp-block-button__link has-text-align-center wp-element-button" href="https://aka.ms/ForresterWave_SecurityAnalyticsPlatform_2025" rel="noreferrer noopener" target="_blank"&gt;Read the Forrester Wave™: Security Analytics Platforms, 2025 report&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;b style="font-family: inherit; letter-spacing: 0.30016px; font-style: italic;"&gt;&lt;/b&gt;&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -992,7 +1596,7 @@ Johannes B. Ullrich, Ph.D. Dean of Research, &lt;a href="https://sans.edu"&gt;SA
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/siem-and-xdr/microsoft-sentinel?msockid=3793858bb492626d36189079b50d634e" rel="noreferrer noopener" target="_blank"&gt;Learn more about Microsoft Sentinel&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1015,7 +1619,7 @@ Johannes B. Ullrich, Ph.D. Dean of Research, &lt;a href="https://sans.edu"&gt;SA
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/siem-and-xdr/microsoft-defender-xdr" rel="noreferrer noopener" target="_blank"&gt;Learn more about Microsoft Defender&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1159,7 +1763,7 @@ Johannes B. Ullrich, Ph.D. Dean of Research, &lt;a href="https://sans.edu"&gt;SA
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-9 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/MSEM-cyber-risks-ebook-MSEM-eBook-Final.pdf"&gt;Discover more with the latest Microsoft Security Exposure Management eBook&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1225,7 +1829,7 @@ Johannes B. Ullrich, Ph.D. Dean of Research, &lt;a href="https://sans.edu"&gt;SA
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-10 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/MSEM-cyber-risks-ebook-MSEM-eBook-Final.pdf"&gt;Read the Navigating cyber risks with Microsoft Security Exposure Management eBook to learn more&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1378,7 +1982,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;blockquote&gt;&lt;p&gt;The vast majority of the attack was delivered in the form of User Datagram Protocol packets. Legitimate UDP-based transmissions are used in especially time-sensitive communications, such as those for video playback, gaming applications, and DNS lookups. It speeds up communications by not formally establishing a connection before data is transferred. Unlike the more common Transmission Control Protocol, UDP doesn&amp;#8217;t wait for a connection between two computers to be established through a handshake and doesn&amp;#8217;t check whether data is properly received by the other party. Instead, it immediately sends data from one machine to another...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;It was a recently unimaginable &lt;a href="https://arstechnica.com/security/2025/06/record-ddos-pummels-site-with-once-unimaginable-7-3tbps-of-junk-traffic/"&gt;7.3 Tbps&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The vast majority of the attack was delivered in the form of User Datagram Protocol packets. Legitimate UDP-based transmissions are used in especially time-sensitive communications, such as those for video playback, gaming applications, and DNS lookups. It speeds up communications by not formally establishing a connection before data is transferred. Unlike the more common Transmission Control Protocol, UDP doesn&amp;#8217;t wait for a connection between two computers to be established through a handshake and doesn&amp;#8217;t check whether data is properly received by the other party. Instead, it immediately sends data from one machine to another.&lt;/p&gt;
 &lt;p&gt;UDP flood attacks send extremely high volumes of packets to random or specific ports on the target IP. Such floods can saturate the target&amp;#8217;s Internet link or overwhelm internal resources with more packets than they can handle.&lt;/p&gt;
-&lt;p&gt;Since UDP doesn&amp;#8217;t require a handshake, attackers can use it to flood a targeted server with torrents of traffic without first obtaining the server&amp;#8217;s permission to begin the transmission. UDP floods typically send large numbers of datagrams to multiple ports on the target system. The target system, in turn, must send an equal number of data packets back to indicate the ports aren&amp;#8217;t reachable. Eventually, the target system buckles under the strain, resulting in legitimate traffic being denied.&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70378</guid><category>Uncategorized</category><category>cyberattack</category><category>denial of service</category></item><item><title>ISC Stormcast For Monday, June 23rd, 2025 https://isc.sans.edu/podcastdetail/9500, (Mon, Jun 23rd)</title><link>https://isc.sans.edu/diary/rss/32060</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32060</guid></item><item><title>AutoPwnKey – AV Evasion via Simulated User Interaction</title><link>https://www.darknet.org.uk/2025/06/autopwnkey-av-evasion-via-simulated-user-interaction/</link><description>AutoPwnKey is an open-source AV evasion tool that uses AutoHotKey to simulate user interaction and execute payloads without triggering antivirus or EDR detection. Learn how it works and how to use it safely.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136747</guid><category>Malware</category><category>autohotkey</category></item><item><title>What Satellite Images Reveal About the US Bombing of Iran's Nuclear Sites</title><link>https://www.wired.com/story/iran-fordow-nuclear-site-satellite-images-damage/</link><description>The US concentrated its attack on Fordow, an enrichment plant built hundreds of feet underground. Aerial photos give important clues about what damage the “bunker-buster” bombs may have caused.</description><guid isPermaLink="false">685854b4ad25f261b23770e4</guid><category>Security</category><category>Security / National Security</category><category>Iran</category><category>nuclear</category><category>war</category><category>Military</category><category>Donald Trump</category><category>satellite images</category><category>military tech</category><category>nukes</category><category>Eye in the Sky</category></item><item><title>Truth Social Crashes as Trump Live-Posts Iran Bombing</title><link>https://www.wired.com/story/truth-social-crashes-as-trump-live-posts-bombing-iran/</link><description>The social network started experiencing global outages within minutes of Donald Trump posting details of a US military strike on Iran.</description><guid isPermaLink="false">68574defb79efff56e3983be</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Donald Trump</category><category>Iran</category><category>Israel</category><category>war</category><category>Truth Social</category><category>Social Media</category><category>Internet</category><category>nuclear war</category><category>Down Time</category></item><item><title>&amp;#x26;#xa;ADS &amp;#x26; Python Tools, (Sat, Jun 21st)</title><link>https://isc.sans.edu/diary/rss/32058</link><description>&lt;p&gt;Ehsaan Mavani talks about Alternate Data Streams (ADS) in diary entry "&lt;a href="https://isc.sans.edu/diary/Alternate&amp;#x2b;Data&amp;#x2b;Streams&amp;#x2b;Adversary&amp;#x2b;Defense&amp;#x2b;Evasion&amp;#x2b;and&amp;#x2b;Detection&amp;#x2b;Guest&amp;#x2b;Diary/31990/"&gt;Alternate Data Streams &amp;#x3f; Adversary Defense Evasion and Detection &amp;#x5b;Guest Diary&amp;#x5d;&lt;/a&gt;".&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Ehsaan Mavani talks about Alternate Data Streams (ADS) in diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/Alternate+Data+Streams+Adversary+Defense+Evasion+and+Detection+Guest+Diary/31990/"&gt;Alternate Data Streams ? Adversary Defense Evasion and Detection [Guest Diary]&lt;/a&gt;&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Since UDP doesn&amp;#8217;t require a handshake, attackers can use it to flood a targeted server with torrents of traffic without first obtaining the server&amp;#8217;s permission to begin the transmission. UDP floods typically send large numbers of datagrams to multiple ports on the target system. The target system, in turn, must send an equal number of data packets back to indicate the ports aren&amp;#8217;t reachable. Eventually, the target system buckles under the strain, resulting in legitimate traffic being denied.&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70378</guid><category>Uncategorized</category><category>cyberattack</category><category>denial of service</category></item><item><title>ISC Stormcast For Monday, June 23rd, 2025 https://isc.sans.edu/podcastdetail/9500, (Mon, Jun 23rd)</title><link>https://isc.sans.edu/diary/rss/32060</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32060</guid></item><item><title>What Satellite Images Reveal About the US Bombing of Iran's Nuclear Sites</title><link>https://www.wired.com/story/iran-fordow-nuclear-site-satellite-images-damage/</link><description>The US concentrated its attack on Fordow, an enrichment plant built hundreds of feet underground. Aerial photos give important clues about what damage the “bunker-buster” bombs may have caused.</description><guid isPermaLink="false">685854b4ad25f261b23770e4</guid><category>Security</category><category>Security / National Security</category><category>Iran</category><category>nuclear</category><category>war</category><category>Military</category><category>Donald Trump</category><category>satellite images</category><category>military tech</category><category>nukes</category><category>Eye in the Sky</category></item><item><title>Truth Social Crashes as Trump Live-Posts Iran Bombing</title><link>https://www.wired.com/story/truth-social-crashes-as-trump-live-posts-bombing-iran/</link><description>The social network started experiencing global outages within minutes of Donald Trump posting details of a US military strike on Iran.</description><guid isPermaLink="false">68574defb79efff56e3983be</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Donald Trump</category><category>Iran</category><category>Israel</category><category>war</category><category>Truth Social</category><category>Social Media</category><category>Internet</category><category>nuclear war</category><category>Down Time</category></item><item><title>&amp;#x26;#xa;ADS &amp;#x26; Python Tools, (Sat, Jun 21st)</title><link>https://isc.sans.edu/diary/rss/32058</link><description>&lt;p&gt;Ehsaan Mavani talks about Alternate Data Streams (ADS) in diary entry "&lt;a href="https://isc.sans.edu/diary/Alternate&amp;#x2b;Data&amp;#x2b;Streams&amp;#x2b;Adversary&amp;#x2b;Defense&amp;#x2b;Evasion&amp;#x2b;and&amp;#x2b;Detection&amp;#x2b;Guest&amp;#x2b;Diary/31990/"&gt;Alternate Data Streams &amp;#x3f; Adversary Defense Evasion and Detection &amp;#x5b;Guest Diary&amp;#x5d;&lt;/a&gt;".&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Ehsaan Mavani talks about Alternate Data Streams (ADS) in diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/Alternate+Data+Streams+Adversary+Defense+Evasion+and+Detection+Guest+Diary/31990/"&gt;Alternate Data Streams ? Adversary Defense Evasion and Detection [Guest Diary]&lt;/a&gt;&amp;quot;.&lt;/p&gt;
 
 &lt;p&gt;I'm taking this as an opportunity to remind you that Python tools on Windows and an NTFS disk, can access alternate data streams.&lt;/p&gt;
 
@@ -1407,7 +2011,7 @@ Senior handler&lt;br /&gt;
 &lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32058</guid></item><item><title>Israel Says Iran Is Hacking Security Cameras for Spying</title><link>https://www.wired.com/story/israel-says-iran-is-hack-security-cameras-for-spying/</link><description>Plus: Ukrainian hackers reportedly knock out a key Russian internet provider, China’s Salt Typhoon hackers claim another victim, and the UK hits 23andMe with a hefty fine over its 2023 data breach.</description><guid isPermaLink="false">68559d81b36c5dcc93f53457</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>Russia</category><category>security</category><category>encryption</category><category>23andMe</category><category>China</category><category>Ukraine</category><category>privacy</category><category>Security Roundup</category></item><item><title>Three Major AI Implementation Challenges, According to AI Architect at Pure Storage</title><link>https://www.techrepublic.com/article/news-ai-implementation-challenges-robert-alvarez-pure-storage/</link><description>Robert Alvarez, senior AI solutions architect at Pure Storage, says that storage has "...become the lynchpin of AI and analytics performance."</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312690</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Cloud</category><category>News</category><category>Storage</category></item><item><title>AI Now Creates 51% of Spam: Two Key Reasons Attackers Use This Approach</title><link>https://www.techrepublic.com/article/news-ai-generated-spam-email-barracuda-report/</link><description>AI’s presence in targeted business email compromise attacks is rising, according to a new Barracuda study.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312658</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>News</category></item><item><title>AI Now Creates 51% of Spam: Two Key Reasons Attackers Use This Approach</title><link>https://www.techrepublic.com/article/news-ai-generated-spam-email-barracuda-report/</link><description>AI’s presence in targeted business email compromise attacks is rising, according to a new Barracuda study.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312658</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>News</category></item><item><title>Gartner: Businesses With AI-Literate Execs Will Perform 20% Better Financially</title><link>https://www.techrepublic.com/article/news-gartner-ai-decision-intelligence/</link><description>Gartner predicts AI for decision-making will be used in many aspects of business, including for boards to push back on executive decisions.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312652</guid><category>Artificial Intelligence</category><category>Big Data</category><category>CXO</category><category>News</category><category>Tech &amp; Work</category></item><item><title>Polish MSP Seeks AI Data Center Services Domination in Central and Eastern Europe</title><link>https://www.techrepublic.com/article/news-polish-msp-beyondpl-ai-data-center-services/</link><description>Polish MSP Beyond.pl believes it can win against hyperscalers in the region due to its ability to address thorny issues like EU data privacy and data sovereignty regulations.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312685</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Data Centers</category><category>International</category><category>Networking</category><category>News</category></item><item><title>Adobe’s LLM Optimizer Helps Brands ‘Stand Out and Win’ In New AI Frontier</title><link>https://www.techrepublic.com/article/news-adobe-llm-optimizer/</link><description>Adobe LLM Optimizer helps brands adapt to the shift in how consumers discover products via AI-generated queries via chatbots or search.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312639</guid><category>Artificial Intelligence</category></item><item><title>Top AI Advances for Enterprise and Deployment Challenges, According to Storage Exec</title><link>https://www.techrepublic.com/article/news-pure-storage-event-ai-innovations-deployment-challenges/</link><description>AI services have slashed inference costs up to 100x in two years, fueling a surge in enterprise adoption and $30B in investment.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312682</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>ISC Stormcast For Friday, June 20th, 2025 https://isc.sans.edu/podcastdetail/9498, (Fri, Jun 20th)</title><link>https://isc.sans.edu/diary/rss/32056</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32056</guid></item><item><title>GitPhish – OAuth Device Code Phishing for GitHub Repos, Secrets, and CI/CD</title><link>https://www.darknet.org.uk/2025/06/gitphish-oauth-device-code-phishing-for-github-repos-secrets-and-ci-cd/</link><description>GitPhish is an automated tool that exploits GitHub's OAuth device code flow to gain unauthorized access to repositories, secrets, and CI/CD systems. Learn how it works, how to use it, and how to mitigate this emerging phishing technique.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136709</guid><category>Secure Coding</category><category>github</category><category>github phishing</category><category>github security</category></item><item><title>From Patching to Eliminating Risk: What’s new in TruRisk™ Eliminate and Patch Management</title><link>https://blog.qualys.com/category/product-tech</link><description>As IT and security priorities converge under rising pressure, patch management is no longer just a hygiene activity but a strategic tool to eliminate the risk from exposed vulnerabilities. Since the last major release cycle, we’ve been expanding the Qualys Patch Management solution into a broader capability. These enhancements span the architecture, automation, and risk-based [&amp;#8230;]</description><content:encoded>&lt;p&gt;As IT and security priorities converge under rising pressure, patch management is no longer just a hygiene activity but a strategic tool to eliminate the risk from exposed vulnerabilities. Since the last major release cycle, we’ve been expanding the &lt;a href="https://www.qualys.com/apps/patch-management/"&gt;Qualys Patch Management&lt;/a&gt; solution into a broader capability. These enhancements span the architecture, automation, and risk-based prioritization, reflecting a deliberate shift from reactive patching to intelligent, outcome-driven remediation.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32058</guid></item><item><title>Israel Says Iran Is Hacking Security Cameras for Spying</title><link>https://www.wired.com/story/israel-says-iran-is-hack-security-cameras-for-spying/</link><description>Plus: Ukrainian hackers reportedly knock out a key Russian internet provider, China’s Salt Typhoon hackers claim another victim, and the UK hits 23andMe with a hefty fine over its 2023 data breach.</description><guid isPermaLink="false">68559d81b36c5dcc93f53457</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>Russia</category><category>security</category><category>encryption</category><category>23andMe</category><category>China</category><category>Ukraine</category><category>privacy</category><category>Security Roundup</category></item><item><title>Three Major AI Implementation Challenges, According to AI Architect at Pure Storage</title><link>https://www.techrepublic.com/article/news-ai-implementation-challenges-robert-alvarez-pure-storage/</link><description>Robert Alvarez, senior AI solutions architect at Pure Storage, says that storage has "...become the lynchpin of AI and analytics performance."</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312690</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Cloud</category><category>News</category><category>Storage</category></item><item><title>AI Now Creates 51% of Spam: Two Key Reasons Attackers Use This Approach</title><link>https://www.techrepublic.com/article/news-ai-generated-spam-email-barracuda-report/</link><description>AI’s presence in targeted business email compromise attacks is rising, according to a new Barracuda study.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312658</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>News</category></item><item><title>AI Now Creates 51% of Spam: Two Key Reasons Attackers Use This Approach</title><link>https://www.techrepublic.com/article/news-ai-generated-spam-email-barracuda-report/</link><description>AI’s presence in targeted business email compromise attacks is rising, according to a new Barracuda study.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312658</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>News</category></item><item><title>Gartner: Businesses With AI-Literate Execs Will Perform 20% Better Financially</title><link>https://www.techrepublic.com/article/news-gartner-ai-decision-intelligence/</link><description>Gartner predicts AI for decision-making will be used in many aspects of business, including for boards to push back on executive decisions.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312652</guid><category>Artificial Intelligence</category><category>Big Data</category><category>CXO</category><category>News</category><category>Tech &amp; Work</category></item><item><title>Polish MSP Seeks AI Data Center Services Domination in Central and Eastern Europe</title><link>https://www.techrepublic.com/article/news-polish-msp-beyondpl-ai-data-center-services/</link><description>Polish MSP Beyond.pl believes it can win against hyperscalers in the region due to its ability to address thorny issues like EU data privacy and data sovereignty regulations.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312685</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Data Centers</category><category>International</category><category>Networking</category><category>News</category></item><item><title>Adobe’s LLM Optimizer Helps Brands ‘Stand Out and Win’ In New AI Frontier</title><link>https://www.techrepublic.com/article/news-adobe-llm-optimizer/</link><description>Adobe LLM Optimizer helps brands adapt to the shift in how consumers discover products via AI-generated queries via chatbots or search.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312639</guid><category>Artificial Intelligence</category></item><item><title>Top AI Advances for Enterprise and Deployment Challenges, According to Storage Exec</title><link>https://www.techrepublic.com/article/news-pure-storage-event-ai-innovations-deployment-challenges/</link><description>AI services have slashed inference costs up to 100x in two years, fueling a surge in enterprise adoption and $30B in investment.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4312682</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>ISC Stormcast For Friday, June 20th, 2025 https://isc.sans.edu/podcastdetail/9498, (Fri, Jun 20th)</title><link>https://isc.sans.edu/diary/rss/32056</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32056</guid></item><item><title>From Patching to Eliminating Risk: What’s new in TruRisk™ Eliminate and Patch Management</title><link>https://blog.qualys.com/category/product-tech</link><description>As IT and security priorities converge under rising pressure, patch management is no longer just a hygiene activity but a strategic tool to eliminate the risk from exposed vulnerabilities. Since the last major release cycle, we’ve been expanding the Qualys Patch Management solution into a broader capability. These enhancements span the architecture, automation, and risk-based [&amp;#8230;]</description><content:encoded>&lt;p&gt;As IT and security priorities converge under rising pressure, patch management is no longer just a hygiene activity but a strategic tool to eliminate the risk from exposed vulnerabilities. Since the last major release cycle, we’ve been expanding the &lt;a href="https://www.qualys.com/apps/patch-management/"&gt;Qualys Patch Management&lt;/a&gt; solution into a broader capability. These enhancements span the architecture, automation, and risk-based prioritization, reflecting a deliberate shift from reactive patching to intelligent, outcome-driven remediation.&lt;/p&gt;
 
 
 
@@ -2810,7 +3414,7 @@ But how does Log Explorer find those Parquet files when you query your logs? Log
               
             &lt;/a&gt;
           &lt;/div&gt;
-        &lt;p&gt;To get access to Log Explorer, reach out for a &lt;a href="https://www.cloudflare.com/application-services/products/log-explorer/"&gt;&lt;u&gt;consultation&lt;/u&gt;&lt;/a&gt; or contact your account manager. Additionally, you can read more in our &lt;a href="https://developers.cloudflare.com/logs/log-explorer/"&gt;&lt;u&gt;Developer Documentation&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">kg7dxMzYcRnJdVFrxQmCw</guid><category>R2 Storage</category><category>SIEM</category><category>Product News</category><category>Connectivity Cloud</category><category>Analytics</category><category>Developer Platform</category><category>Developers</category><category>Security</category></item><item><title>Exploring Netstalking – Mapping the Hidden Corners of the Internet</title><link>https://www.darknet.org.uk/2025/06/exploring-netstalking-mapping-the-hidden-corners-of-the-internet/</link><description>Explore netstalking, a digital anthropology practice uncovering forgotten web spaces, surveillance cameras, and esoteric protocols. Learn its history, methods, folklore, and cybersecurity relevance.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136688</guid><category>Hacker Culture</category></item><item><title>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/32054</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
+        &lt;p&gt;To get access to Log Explorer, reach out for a &lt;a href="https://www.cloudflare.com/application-services/products/log-explorer/"&gt;&lt;u&gt;consultation&lt;/u&gt;&lt;/a&gt; or contact your account manager. Additionally, you can read more in our &lt;a href="https://developers.cloudflare.com/logs/log-explorer/"&gt;&lt;u&gt;Developer Documentation&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">kg7dxMzYcRnJdVFrxQmCw</guid><category>R2 Storage</category><category>SIEM</category><category>Product News</category><category>Connectivity Cloud</category><category>Analytics</category><category>Developer Platform</category><category>Developers</category><category>Security</category></item><item><title>Don&amp;#x3f;t Make it Easier than it Already is&amp;#x3f;..Default Passwords &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/32054</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Matthew Paul, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
 
 &lt;p&gt;Over the past few months, I&amp;rsquo;ve been working under a SANS Internet Storm Center (ISC) Sr. Handler as part of the SANS Degree Program ISC Internship.&amp;nbsp; The first objective of the internship is setting up a forward-facing honeypot on your network to review and report on log activity.&amp;nbsp;&lt;/p&gt;
 
@@ -3956,7 +4560,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 &lt;/div&gt;
 &lt;div class="OutlineElement Ltr SCXW215314346 BCX8"&gt;
 &lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of &lt;a class="Hyperlink SCXW215314346 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" title="KEV Catalog vulnerabilities"&gt;&lt;u&gt;KEV Catalog vulnerabilities&lt;/u&gt;&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the &lt;a class="Hyperlink SCXW215314346 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities" rel="noreferrer noopener" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;&lt;u&gt;specified criteria&lt;/u&gt;&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;
-&lt;/div&gt;</description><guid isPermaLink="false">/node/23517</guid></item><item><title>How to Protect Yourself From Phone Searches at the US Border</title><link>https://www.wired.com/story/how-to-protect-yourself-from-phone-searches-at-the-us-border/</link><description>Customs and Border Protection has broad authority to search travelers’ devices when they cross into the United States. Here’s what you can do to protect your digital life while at the US border.</description><guid isPermaLink="false">67fdc7eb18e7f273bf3b3df6</guid><category>Security</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Policy</category><category>privacy</category><category>Travel</category><category>smartphones</category><category>phones</category><category>how-to</category><category>national security</category><category>surveillance</category><category>border</category><category>immigration</category><category>How to Win a Fight</category><category>Search Terms</category></item><item><title>The WIRED Guide to Protecting Yourself From Government Surveillance</title><link>https://www.wired.com/story/the-wired-guide-to-protecting-yourself-from-government-surveillance/</link><description>Donald Trump has vowed to deport millions and jail his enemies. To carry out that agenda, his administration will exploit America’s digital surveillance machine. Here are some steps you can take to evade it.</description><guid isPermaLink="false">672bce4b27df670836336308</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security Advice</category><category>privacy</category><category>encryption</category><category>surveillance</category><category>security</category><category>Donald Trump</category><category>FBI</category><category>Police</category><category>protests</category><category>ios</category><category>Android</category><category>apple</category><category>Google</category><category>Microsoft</category><category>Windows</category><category>How to Win a Fight</category><category>New Era</category></item><item><title>6 Tools for Tracking the Trump Administration’s Attacks on Civil Liberties</title><link>https://www.wired.com/story/toll-trump-administration-policies-civil-rights/</link><description>The White House has undertaken initiatives to crack down on immigration, suppress speech, and curtail US public health efforts. These online tools are tracking the rapidly changing US landscape.</description><guid isPermaLink="false">683a0e60ee6b4cb90354065b</guid><category>Security</category><category>How to Win a Fight</category><category>security</category><category>Donald Trump</category><category>privacy</category><category>immigration</category><category>Regulation</category><category>Trump Tracker</category></item><item><title>Why We Made a Guide to Winning a Fight</title><link>https://www.wired.com/story/editor-letter-guide-to-winning-a-fight/</link><description>Right now, everyone seems ready to throw down. More than ever, it’s important to fight smart—and not give up until you land a decisive blow.</description><guid isPermaLink="false">6839f23967f3629cdce627b4</guid><category>Politics</category><category>Security</category><category>How to Win a Fight</category><category>LGBTQ+</category><category>Donald Trump</category><category>Digital culture</category><category>TK-Oh</category></item><item><title>10 Must-Read Books on Business Ideas (Free Download)</title><link>https://www.techrepublic.com/resource-library/feature/10-must-read-books-on-business-ideas/</link><description>These books on business ideas serve as a guide for entrepreneurs, business leaders, and enthusiasts exploring the ever-evolving world of commerce. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This six-page PDF looks at four-hour work weeks, e-myths, and more. Expert Guidance — Created by Maria Carrisa ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/10-must-read-books-on-business-ideas/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>claws – GitHub Actions Workflow Linter for Secure CI/CD Pipelines</title><link>https://www.darknet.org.uk/2025/06/claws-github-actions-workflow-linter-for-secure-ci-cd-pipelines/</link><description>claws is a GitHub Actions workflow linter that helps secure your CI/CD pipeline by identifying misconfigurations, risky triggers, and unsafe action usage before deployment.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136644</guid><category>Countermeasures</category><category>github</category><category>github actions</category><category>github security</category></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/06/upcoming-speaking-engagements-47.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+&lt;/div&gt;</description><guid isPermaLink="false">/node/23517</guid></item><item><title>How to Protect Yourself From Phone Searches at the US Border</title><link>https://www.wired.com/story/how-to-protect-yourself-from-phone-searches-at-the-us-border/</link><description>Customs and Border Protection has broad authority to search travelers’ devices when they cross into the United States. Here’s what you can do to protect your digital life while at the US border.</description><guid isPermaLink="false">67fdc7eb18e7f273bf3b3df6</guid><category>Security</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Policy</category><category>privacy</category><category>Travel</category><category>smartphones</category><category>phones</category><category>how-to</category><category>national security</category><category>surveillance</category><category>border</category><category>immigration</category><category>How to Win a Fight</category><category>Search Terms</category></item><item><title>The WIRED Guide to Protecting Yourself From Government Surveillance</title><link>https://www.wired.com/story/the-wired-guide-to-protecting-yourself-from-government-surveillance/</link><description>Donald Trump has vowed to deport millions and jail his enemies. To carry out that agenda, his administration will exploit America’s digital surveillance machine. Here are some steps you can take to evade it.</description><guid isPermaLink="false">672bce4b27df670836336308</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security Advice</category><category>privacy</category><category>encryption</category><category>surveillance</category><category>security</category><category>Donald Trump</category><category>FBI</category><category>Police</category><category>protests</category><category>ios</category><category>Android</category><category>apple</category><category>Google</category><category>Microsoft</category><category>Windows</category><category>How to Win a Fight</category><category>New Era</category></item><item><title>6 Tools for Tracking the Trump Administration’s Attacks on Civil Liberties</title><link>https://www.wired.com/story/toll-trump-administration-policies-civil-rights/</link><description>The White House has undertaken initiatives to crack down on immigration, suppress speech, and curtail US public health efforts. These online tools are tracking the rapidly changing US landscape.</description><guid isPermaLink="false">683a0e60ee6b4cb90354065b</guid><category>Security</category><category>How to Win a Fight</category><category>security</category><category>Donald Trump</category><category>privacy</category><category>immigration</category><category>Regulation</category><category>Trump Tracker</category></item><item><title>Why We Made a Guide to Winning a Fight</title><link>https://www.wired.com/story/editor-letter-guide-to-winning-a-fight/</link><description>Right now, everyone seems ready to throw down. More than ever, it’s important to fight smart—and not give up until you land a decisive blow.</description><guid isPermaLink="false">6839f23967f3629cdce627b4</guid><category>Politics</category><category>Security</category><category>How to Win a Fight</category><category>LGBTQ+</category><category>Donald Trump</category><category>Digital culture</category><category>TK-Oh</category></item><item><title>10 Must-Read Books on Business Ideas (Free Download)</title><link>https://www.techrepublic.com/resource-library/feature/10-must-read-books-on-business-ideas/</link><description>These books on business ideas serve as a guide for entrepreneurs, business leaders, and enthusiasts exploring the ever-evolving world of commerce. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — This six-page PDF looks at four-hour work weeks, e-myths, and more. Expert Guidance — Created by Maria Carrisa ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/10-must-read-books-on-business-ideas/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/06/upcoming-speaking-engagements-47.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I&amp;#8217;m speaking at the &lt;a href="https://lu.ma/cyj0gcpu"&gt;International Conference on Digital Trust, AI and the Future&lt;/a&gt; in Edinburgh, Scotland on Tuesday, June 24 at 4:00 PM.&lt;/li&gt;
 &lt;/ul&gt;
@@ -3964,7 +4568,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 &lt;ul&gt;
 &lt;li&gt;I&amp;#8217;m speaking at the &lt;a href="https://lu.ma/cyj0gcpu"&gt;International Conference on Digital Trust, AI and the Future&lt;/a&gt; in Edinburgh, Scotland on Tuesday, June 24 at 4:00 PM.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70357</guid><category>Uncategorized</category><category>Schneier news</category></item><item><title>RFK Jr. Orders HHS to Give Undocumented Migrants’ Medicaid Data to DHS</title><link>https://www.wired.com/story/rfk-jr-orders-hhs-to-give-undocumented-migrants-medicaid-data-to-dhs/</link><description>Plus: Spyware is found on two Italian journalists’ phones, Ukraine claims to have hacked a Russian aircraft maker, police take down major infostealer infrastructure, and more.</description><guid isPermaLink="false">684c679df10f95b5d749f38e</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>security</category><category>cybersecurity</category><category>hacking</category><category>privacy</category><category>national security</category><category>immigration</category><category>politics</category><category>Security Roundup</category></item><item><title>'No Kings’ Protests, Citizen-Run ICE Trackers Trigger Intelligence Warnings</title><link>https://www.wired.com/story/no-kings-protests-citizen-run-ice-trackers-trigger-intelligence-warnings/</link><description>Army intelligence analysts are monitoring civilian-made ICE tracking tools, treating them as potential threats, as immigration protests spread nationwide.</description><guid isPermaLink="false">684c5985770837f92c19499c</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>immigration</category><category>protests</category><category>surveillance</category><category>Military</category><category>politics</category><category>privacy</category><category>Homeland Security</category><category>Freedom of Information Act</category><category>Put a Pin in It</category></item><item><title>CBP's Predator Drone Flights Over LA Are a Dangerous Escalation</title><link>https://www.wired.com/story/cbp-predator-drone-flights-la-protests/</link><description>Customs and Border Protection flying powerful Predator B drones over Los Angeles further breaks the seal on federal involvement in civilian matters typically handled by state or local authorities.</description><guid isPermaLink="false">6849e59b45588ab61b58c382</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>immigration</category><category>protests</category><category>military tech</category><category>politics</category><category>free speech</category><category>Police</category><category>national security</category><category>Eye in the Sky</category></item><item><title>Here’s What Marines and the National Guard Can (and Can’t) Do at LA Protests</title><link>https://www.wired.com/story/what-marines-national-guard-can-cant-do-la-protests/</link><description>Pentagon rules sharply limit US Marines and National Guard activity in Los Angeles, prohibiting arrests, surveillance, and other customary police work.</description><guid isPermaLink="false">6849ea4c4573b2293b822aa2</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Military</category><category>National Affairs</category><category>Donald Trump</category><category>surveillance</category><category>Police</category><category>protests</category><category>Rules of Engagement</category></item><item><title>January 2025 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2025/06/13/january-2025-cyber-attacks-statistics/</link><description>After the cyber attacks timelines, it’s time to publish the statistics for January 2025 where I collected and analyzed 216 events.In January 2025, Cyber Crime  continued to lead the Motivations chart.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44767</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>January</category><category>Malware</category><category>Ransomware</category><category>Timeline</category></item><item><title>Envilder – Secure AWS SSM CLI for Environment Variable Management</title><link>https://www.darknet.org.uk/2025/06/envilder-secure-aws-ssm-cli-for-environment-variable-management/</link><description>Envilder is a fast, secure CLI tool that syncs environment variables from AWS SSM Parameter Store to your local shell or .env files, ideal for secrets and config hygiene.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136520</guid><category>Cloud Security</category></item><item><title>Inside a Dark Adtech Empire Fed by Fake CAPTCHAs</title><link>https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/</link><description>Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.</description><content:encoded>&lt;p&gt;Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.&lt;/p&gt;
+&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70357</guid><category>Uncategorized</category><category>Schneier news</category></item><item><title>RFK Jr. Orders HHS to Give Undocumented Migrants’ Medicaid Data to DHS</title><link>https://www.wired.com/story/rfk-jr-orders-hhs-to-give-undocumented-migrants-medicaid-data-to-dhs/</link><description>Plus: Spyware is found on two Italian journalists’ phones, Ukraine claims to have hacked a Russian aircraft maker, police take down major infostealer infrastructure, and more.</description><guid isPermaLink="false">684c679df10f95b5d749f38e</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>security roundup</category><category>security</category><category>cybersecurity</category><category>hacking</category><category>privacy</category><category>national security</category><category>immigration</category><category>politics</category><category>Security Roundup</category></item><item><title>'No Kings’ Protests, Citizen-Run ICE Trackers Trigger Intelligence Warnings</title><link>https://www.wired.com/story/no-kings-protests-citizen-run-ice-trackers-trigger-intelligence-warnings/</link><description>Army intelligence analysts are monitoring civilian-made ICE tracking tools, treating them as potential threats, as immigration protests spread nationwide.</description><guid isPermaLink="false">684c5985770837f92c19499c</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>immigration</category><category>protests</category><category>surveillance</category><category>Military</category><category>politics</category><category>privacy</category><category>Homeland Security</category><category>Freedom of Information Act</category><category>Put a Pin in It</category></item><item><title>CBP's Predator Drone Flights Over LA Are a Dangerous Escalation</title><link>https://www.wired.com/story/cbp-predator-drone-flights-la-protests/</link><description>Customs and Border Protection flying powerful Predator B drones over Los Angeles further breaks the seal on federal involvement in civilian matters typically handled by state or local authorities.</description><guid isPermaLink="false">6849e59b45588ab61b58c382</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>immigration</category><category>protests</category><category>military tech</category><category>politics</category><category>free speech</category><category>Police</category><category>national security</category><category>Eye in the Sky</category></item><item><title>Here’s What Marines and the National Guard Can (and Can’t) Do at LA Protests</title><link>https://www.wired.com/story/what-marines-national-guard-can-cant-do-la-protests/</link><description>Pentagon rules sharply limit US Marines and National Guard activity in Los Angeles, prohibiting arrests, surveillance, and other customary police work.</description><guid isPermaLink="false">6849ea4c4573b2293b822aa2</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Military</category><category>National Affairs</category><category>Donald Trump</category><category>surveillance</category><category>Police</category><category>protests</category><category>Rules of Engagement</category></item><item><title>January 2025 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2025/06/13/january-2025-cyber-attacks-statistics/</link><description>After the cyber attacks timelines, it’s time to publish the statistics for January 2025 where I collected and analyzed 216 events.In January 2025, Cyber Crime  continued to lead the Motivations chart.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44767</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>January</category><category>Malware</category><category>Ransomware</category><category>Timeline</category></item><item><title>Inside a Dark Adtech Empire Fed by Fake CAPTCHAs</title><link>https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/</link><description>Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.</description><content:encoded>&lt;p&gt;Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71492" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-71492" height="422" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/maladtech.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71492"&gt;Image: Infoblox.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;In November 2024, researchers at the security firm &lt;strong&gt;Qurium&lt;/strong&gt; published an investigation into &amp;#8220;&lt;a href="https://www.cybercom.mil/Media/News/Article/3895345/russian-disinformation-campaign-doppelgnger-unmasked-a-web-of-deception/" rel="noopener" target="_blank"&gt;Doppelganger&lt;/a&gt;,&amp;#8221; a disinformation network that promotes pro-Russian narratives and infiltrates Europe&amp;#8217;s media landscape by pushing fake news through a network of cloned websites.&lt;/p&gt;
 &lt;p&gt;Doppelganger campaigns use specialized links that bounce the visitor&amp;#8217;s browser through a long series of domains before the fake news content is served. Qurium &lt;a href="https://www.qurium.org/forensics/when-kehr-meets-vextrio/" rel="noopener" target="_blank"&gt;found&lt;/a&gt; Doppelganger relies on a sophisticated &amp;#8220;domain cloaking&amp;#8221; service, a technology that allows websites to present different content to search engines compared to what regular visitors see. The use of cloaking services helps the disinformation sites remain online longer than they otherwise would, while ensuring that only the targeted audience gets to view the intended content.&lt;/p&gt;
@@ -4019,7 +4623,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-8 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-12 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://servicetrust.microsoft.com/viewpage/BCPDR" rel="noreferrer noopener" target="_blank"&gt;Learn about Microsoft Business Continuity and Disaster Recovery&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -4104,7 +4708,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-9 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-13 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-100"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://servicetrust.microsoft.com/viewpage/BCPDR" rel="noreferrer noopener" target="_blank"&gt;Learn about Microsoft Business Continuity and Disaster Recovery (BCDR) capabilities&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -4166,7 +4770,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-10 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-14 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/ai-machine-learning/microsoft-security-copilot"&gt;Protect at the speed and scale of AI with Microsoft Security Copilot&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -4200,7 +4804,7 @@ Author, Consultant, Instructor&lt;br /&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-11 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-15 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-100"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://servicetrust.microsoft.com/viewpage/BCPDR" rel="noreferrer noopener" target="_blank"&gt;Read a summary of Microsoft’s Enterprise Resilience and Crisis Management Program&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -5779,7 +6383,7 @@ func mainGowrap1(webhook2 string) {
               
             &lt;/a&gt;
           &lt;/div&gt;
-          &lt;p&gt;In 2025, many of our Project Galileo partners have faced significant funding cuts, affecting their operations and their ability to support communities, defend human rights, and champion democratic values. Ensuring continued support for those services, despite financial and logistical challenges, is more important than ever. We’re thankful to our civil society partners who continue to assist us in identifying groups that need our support. Together, we're working toward a more secure, resilient, and open Internet for all. To learn more about Project Galileo and how it supports at-risk organizations worldwide, visit &lt;a href="https://cloudflare.com/galileo"&gt;&lt;u&gt;cloudflare.com/galileo&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">7mDMJrIALhItjbx62fNSv4</guid><category>Project Galileo</category><category>Impact</category><category>Security</category></item><item><title>How Waymo Handles Footage From Events Like the LA Immigration Protests</title><link>https://www.wired.com/story/waymo-data-privacy-protests-los-angeles/</link><description>Waymo driverless taxis capture troves of video footage in order to operate, but the company reveals very little about how much data is stored—and for how long.</description><guid isPermaLink="false">6848768df4926666a86a63ce</guid><category>Business</category><category>Security / Privacy</category><category>Business / Big Tech</category><category>Waymo</category><category>cameras</category><category>privacy</category><category>los angeles</category><category>protests</category><category>Waymo Woes</category></item><item><title>Argusee and Agentic AI in Cybersecurity</title><link>https://www.darknet.org.uk/2025/06/argusee-and-agentic-ai-in-cybersecurity/</link><description>Explore Argusee, a multi‑agent AI tool that found CVE‑2025‑37891 in Linux USB. Understand how agentic AI is transforming vulnerability discovery and SOC automation.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136500</guid><category>GenAI</category><category>agentic ai</category><category>ai-cybersecurity</category><category>genai</category></item><item><title>Patch Tuesday, June 2025 Edition</title><link>https://krebsonsecurity.com/2025/06/patch-tuesday-june-2025-edition/</link><description>Microsoft today released security updates to fix at least 67 vulnerabilities in its Windows operating systems and software. Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released security updates to fix at least 67 vulnerabilities in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software. Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.&lt;/p&gt;
+          &lt;p&gt;In 2025, many of our Project Galileo partners have faced significant funding cuts, affecting their operations and their ability to support communities, defend human rights, and champion democratic values. Ensuring continued support for those services, despite financial and logistical challenges, is more important than ever. We’re thankful to our civil society partners who continue to assist us in identifying groups that need our support. Together, we're working toward a more secure, resilient, and open Internet for all. To learn more about Project Galileo and how it supports at-risk organizations worldwide, visit &lt;a href="https://cloudflare.com/galileo"&gt;&lt;u&gt;cloudflare.com/galileo&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">7mDMJrIALhItjbx62fNSv4</guid><category>Project Galileo</category><category>Impact</category><category>Security</category></item><item><title>How Waymo Handles Footage From Events Like the LA Immigration Protests</title><link>https://www.wired.com/story/waymo-data-privacy-protests-los-angeles/</link><description>Waymo driverless taxis capture troves of video footage in order to operate, but the company reveals very little about how much data is stored—and for how long.</description><guid isPermaLink="false">6848768df4926666a86a63ce</guid><category>Business</category><category>Security / Privacy</category><category>Business / Big Tech</category><category>Waymo</category><category>cameras</category><category>privacy</category><category>los angeles</category><category>protests</category><category>Waymo Woes</category></item><item><title>Patch Tuesday, June 2025 Edition</title><link>https://krebsonsecurity.com/2025/06/patch-tuesday-june-2025-edition/</link><description>Microsoft today released security updates to fix at least 67 vulnerabilities in its Windows operating systems and software. Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released security updates to fix at least 67 vulnerabilities in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software. Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class="aligncenter  wp-image-56287" height="527" src="https://krebsonsecurity.com/wp-content/uploads/2021/07/windupate.png" width="749" /&gt;&lt;/p&gt;
 &lt;p&gt;The sole zero-day flaw this month is &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-33053" rel="noopener" target="_blank"&gt;CVE-2025-33053&lt;/a&gt;, a remote code execution flaw in the Windows implementation of &lt;strong&gt;WebDAV&lt;/strong&gt; &amp;#8212; an HTTP extension that lets users remotely manage files and directories on a server. While WebDAV isn&amp;#8217;t enabled by default in Windows, its presence in legacy or specialized systems still makes it a relevant target, said &lt;strong&gt;Seth Hoyt&lt;/strong&gt;, senior security engineer at &lt;strong&gt;Automox&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Adam Barnett&lt;/strong&gt;, lead software engineer at &lt;strong&gt;Rapid7&lt;/strong&gt;, said Microsoft&amp;#8217;s advisory for CVE-2025-33053 does not mention that the Windows implementation of WebDAV is listed as deprecated since November 2023, which in practical terms means that the WebClient service no longer starts by default.&lt;/p&gt;
@@ -7478,7 +8082,7 @@ MC4CAQAwBQYDK2VwBCIEINArpOAwJO2+lv9Da+PzmkbKxGhMcapQ+/NhUq4nifvh
 &lt;li&gt;Google &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/voice-phishing-data-extortion"&gt;uncovered&lt;/a&gt; a financially motivated campaign by UNC6040 targeting Salesforce via voice phishing, tricking employees into approving fake apps like altered Data Loaders to steal data. The group also uses stolen credentials to access cloud tools like Okta and Microsoft 365, relying on phishing panels and Mullvad VPN.&lt;/li&gt;
 &lt;li&gt;Researchers &lt;a href="https://blog.talosintelligence.com/pathwiper-targets-ukraine/"&gt;discovered&lt;/a&gt; &amp;#8220;PathWiper&amp;#8221;, a new wiper malware used in an attack on Ukrainian critical infrastructure. Deployed via a legitimate admin framework, it used VBScript to run an executable that overwrites MBR and NTFS data on connected drives. PathWiper resembles HermeticWiper but uses more advanced methods to target storage volumes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/9th-june-threat-intelligence-report/"&gt;9th June – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31524</guid><category>Global Cyber Attack Reports</category></item><item><title>Monkey365 – PowerShell Security Scanner for Microsoft 365, Azure, and Entra ID</title><link>https://www.darknet.org.uk/2025/06/monkey365-powershell-security-scanner-for-microsoft-365-azure-and-entra-id/</link><description>Monkey365 is an open-source PowerShell scanner that automates security and compliance reviews across Microsoft 365, Azure subscriptions, and Entra ID. No dashboards or cloud APIs required.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136508</guid><category>Cloud Security</category></item><item><title>Keeping Pace and Embracing Emerging Technologies</title><link>https://www.trendmicro.com/en_us/research/25/f/emerging-technologies-motorsport.html</link><description>Trend Micro and the NEOM McLaren Formula E Team stay ahead of the curve by embracing new technologies, fostering a no-blame culture, and making split-second decisions in high-stakes environments.</description><guid isPermaLink="false">urn:uuid:dceb14d3-ecac-1ba9-9028-19d1f3f54f40</guid><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Producing real change: key highlights of our 2025 results by season</title><link>http://privacyinternational.org/long-read/5597/producing-real-change-key-highlights-our-2025-results-season</link><guid isPermaLink="false">5597 at http://privacyinternational.org</guid></item><item><title>Hiring Kit: Security Architect</title><link>https://www.techrepublic.com/resource-library/hiring-kit/security-architect/</link><description>Recruit the best security architect to develop and implement preventive security protocols and effective response plans. Enhance Your Security – Hire someone with a clear vision of what is and what could be possible regarding cybersecurity and system vulnerabilities.&amp;#160; Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-security-architect/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Data Center Access Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/data-center-access/</link><description>Use these guidelines for the appropriate entry, presence, and operations conducted within your company’s data center. Customizable Document — A download ready for use as-is or for minor alterations. Strengthen Your Processes — The five-page document outlines badge and camera access, alarms, and more. Expertise and Effort — Written by Scott Matteson via 10 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/data-center-access-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>ProxyBlob – SOCKS5 Over Azure Blob Storage for Covert Network Tunneling</title><link>https://www.darknet.org.uk/2025/06/proxyblob-socks5-over-azure-blob-storage-for-covert-network-tunneling/</link><description>ProxyBlob enables covert, reliable SOCKS5 proxy tunnels via Azure Blob Storage, useful for operations in locked-down environments or restricted networks.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136493</guid><category>Networking Hacking Tools</category></item><item><title>NEOM McLaren Formula E Team &amp; Trend Micro Innovation History</title><link>https://www.trendmicro.com/en_us/research/25/f/neom-mclaren-innovation-history.html</link><description>Explore how innovation becomes a team sport when Trend Micro and the NEOM McLaren Formula E Team leaders come together to talk culture, risk, and forward thinking.</description><guid isPermaLink="false">urn:uuid:d9b6b425-9b29-d41d-c14d-c4f4ab927b18</guid><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Privacy &amp; Risks</category></item><item><title>Stay Ahead of Cyber Threats Sweeping Container Telemetry data</title><link>https://www.trendmicro.com/en_us/research/25/f/vision-one-threat-intelligence-stops-threats.html</link><description>Threat Intelligence Sweeping starts to support sweep container security telemetry data. It helps identify possible attacks happened based on TI intelligence in container environment. The trigger events are visible in workbench alert.</description><guid isPermaLink="false">urn:uuid:a3d80da1-0c3f-d178-4a56-fe3fcbeebb65</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : How To</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>How Google’s Wiz Acquisition Impacts CNAPP</title><link>https://www.trendmicro.com/en_us/research/25/f/google-wiz-acquisition-cnapp.html</link><description>Google aims to stake out a share of the CNAPP market and compete head-on against AWS and Microsoft Azure with its planned Wiz acquisition. What are the implications for companies invested in AWS and Azure cloud infrastructure?</description><guid isPermaLink="false">urn:uuid:eb1a91db-d1ee-68cc-e902-008050acdf68</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>Proxy Services Feast on Ukraine’s IP Address Exodus</title><link>https://krebsonsecurity.com/2025/06/proxy-services-feast-on-ukraines-ip-address-exodus/</link><description>Ukraine has seen nearly one-fifth of its Internet space come under Russian control or sold to Internet address brokers since February 2022, a new study finds. The analysis indicates large chunks of Ukrainian Internet address space are now in the hands of proxy and anonymity services nested at some of America's largest Internet service providers (ISPs).</description><content:encoded>&lt;div class="wp-caption aligncenter" id="attachment_71441" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-71441" height="611" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/ukraine-networks.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71441"&gt;Image: Mark Rademaker, via Shutterstock.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/9th-june-threat-intelligence-report/"&gt;9th June – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31524</guid><category>Global Cyber Attack Reports</category></item><item><title>Keeping Pace and Embracing Emerging Technologies</title><link>https://www.trendmicro.com/en_us/research/25/f/emerging-technologies-motorsport.html</link><description>Trend Micro and the NEOM McLaren Formula E Team stay ahead of the curve by embracing new technologies, fostering a no-blame culture, and making split-second decisions in high-stakes environments.</description><guid isPermaLink="false">urn:uuid:dceb14d3-ecac-1ba9-9028-19d1f3f54f40</guid><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Producing real change: key highlights of our 2025 results by season</title><link>http://privacyinternational.org/long-read/5597/producing-real-change-key-highlights-our-2025-results-season</link><guid isPermaLink="false">5597 at http://privacyinternational.org</guid></item><item><title>Hiring Kit: Security Architect</title><link>https://www.techrepublic.com/resource-library/hiring-kit/security-architect/</link><description>Recruit the best security architect to develop and implement preventive security protocols and effective response plans. Enhance Your Security – Hire someone with a clear vision of what is and what could be possible regarding cybersecurity and system vulnerabilities.&amp;#160; Streamline Hiring – Get an optimized job description, interview questions, and job advert to simplify recruitment. ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hiring-kit-security-architect/</guid><category>Cybersecurity</category><category>Hiring Kits</category><category>HR Resources</category><category>IT Resources</category></item><item><title>Data Center Access Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/data-center-access/</link><description>Use these guidelines for the appropriate entry, presence, and operations conducted within your company’s data center. Customizable Document — A download ready for use as-is or for minor alterations. Strengthen Your Processes — The five-page document outlines badge and camera access, alarms, and more. Expertise and Effort — Written by Scott Matteson via 10 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/data-center-access-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>NEOM McLaren Formula E Team &amp; Trend Micro Innovation History</title><link>https://www.trendmicro.com/en_us/research/25/f/neom-mclaren-innovation-history.html</link><description>Explore how innovation becomes a team sport when Trend Micro and the NEOM McLaren Formula E Team leaders come together to talk culture, risk, and forward thinking.</description><guid isPermaLink="false">urn:uuid:d9b6b425-9b29-d41d-c14d-c4f4ab927b18</guid><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Privacy &amp; Risks</category></item><item><title>Stay Ahead of Cyber Threats Sweeping Container Telemetry data</title><link>https://www.trendmicro.com/en_us/research/25/f/vision-one-threat-intelligence-stops-threats.html</link><description>Threat Intelligence Sweeping starts to support sweep container security telemetry data. It helps identify possible attacks happened based on TI intelligence in container environment. The trigger events are visible in workbench alert.</description><guid isPermaLink="false">urn:uuid:a3d80da1-0c3f-d178-4a56-fe3fcbeebb65</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : How To</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>How Google’s Wiz Acquisition Impacts CNAPP</title><link>https://www.trendmicro.com/en_us/research/25/f/google-wiz-acquisition-cnapp.html</link><description>Google aims to stake out a share of the CNAPP market and compete head-on against AWS and Microsoft Azure with its planned Wiz acquisition. What are the implications for companies invested in AWS and Azure cloud infrastructure?</description><guid isPermaLink="false">urn:uuid:eb1a91db-d1ee-68cc-e902-008050acdf68</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>Proxy Services Feast on Ukraine’s IP Address Exodus</title><link>https://krebsonsecurity.com/2025/06/proxy-services-feast-on-ukraines-ip-address-exodus/</link><description>Ukraine has seen nearly one-fifth of its Internet space come under Russian control or sold to Internet address brokers since February 2022, a new study finds. The analysis indicates large chunks of Ukrainian Internet address space are now in the hands of proxy and anonymity services nested at some of America's largest Internet service providers (ISPs).</description><content:encoded>&lt;div class="wp-caption aligncenter" id="attachment_71441" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-71441" height="611" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/ukraine-networks.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71441"&gt;Image: Mark Rademaker, via Shutterstock.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Ukraine has seen nearly one-fifth of its Internet space come under Russian control or sold to Internet address brokers since February 2022, a new study finds. The analysis indicates large chunks of Ukrainian Internet address space are now in the hands of shadowy proxy and anonymity services that are nested at some of America&amp;#8217;s largest Internet service providers (ISPs).&lt;/p&gt;
 &lt;p&gt;The findings come in &lt;a href="https://www.kentik.com/blog/exodus-of-ipv4-from-war-torn-ukraine/" rel="noopener" target="_blank"&gt;a report&lt;/a&gt; examining how the Russian invasion has affected Ukraine&amp;#8217;s domestic supply of &lt;strong&gt;Internet Protocol Version 4&lt;/strong&gt; (IPv4) addresses. Researchers at &lt;strong&gt;Kentik&lt;/strong&gt;, a company that measures the performance of Internet networks, found that while a majority of ISPs in Ukraine haven&amp;#8217;t changed their infrastructure much since the war began in 2022, others have resorted to selling swathes of their valuable IPv4 address space just to keep the lights on.&lt;/p&gt;
 &lt;p&gt;For example, Ukraine&amp;#8217;s incumbent ISP &lt;strong&gt;Ukrtelecom&lt;/strong&gt; is now routing just 29 percent of the IPv4 address ranges that the company controlled at the start of the war, Kentik found. Although much of that former IP space remains dormant, Ukrtelecom told Kentik&amp;#8217;s &lt;strong&gt;Doug Madory&lt;/strong&gt; they were forced to sell many of their address blocks &amp;#8220;to secure financial stability and continue delivering essential services.&amp;#8221;&lt;/p&gt;
@@ -8277,7 +8881,7 @@ MC4CAQAwBQYDK2VwBCIEINArpOAwJO2+lv9Da+PzmkbKxGhMcapQ+/NhUq4nifvh
 &lt;li&gt;Developing and testing a recovery plan; and&lt;/li&gt;
 &lt;li&gt;Keeping all operating systems, software, and firmware updated.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Stay vigilant and take proactive measures to protect your organization.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/23474</guid></item><item><title>Summary of an Experts Consultation on Human Rights, Digital Technologies, and Elections</title><link>http://privacyinternational.org/advocacy/5596/summary-experts-consultation-human-rights-digital-technologies-and-elections</link><guid isPermaLink="false">5596 at http://privacyinternational.org</guid></item><item><title>Password Management Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/password-management/</link><description>Use these guidelines for the consistent and secure management of passwords for employees and system and service accounts. Fully Customizable — Good to use as-is or alter as you see fit. Enhance Your Processes — This eight-page document outlines device management strategies, password changes, and more. Expert Authorship — Created by Scott Matteson through 16 ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/password-management-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Weaponizing Dependabot – Exploiting GitHub Automation for Supply Chain Attacks</title><link>https://www.darknet.org.uk/2025/06/weaponizing-dependabot-exploiting-github-automation-for-supply-chain-attacks/</link><description>Attackers are now exploiting GitHub's Dependabot to inject malicious code through pull request workflows. Learn how this happens and what real-world impact it can cause.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=136476</guid><category>Exploits/Vulnerabilities</category><category>confused deputy</category><category>dependabot</category><category>github</category><category>xz-utils</category></item><item><title>Driving Success on the Track or in the Boardroom</title><link>https://www.trendmicro.com/en_us/research/25/f/driving-success-neom-mclaren.html</link><description>Discover how the Trend Micro and the NEOM McLaren Formula E Team partnership is powered by a common vision for winning, on the track and in the boardroom.</description><guid isPermaLink="false">urn:uuid:cb774f4b-b70f-7701-779c-cdddff6c0e2c</guid><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Privacy &amp; Risks</category></item><item><title>How Microsoft Defender for Endpoint is redefining endpoint security</title><link>https://www.microsoft.com/en-us/security/blog/2025/06/03/how-microsoft-defender-for-endpoint-is-redefining-endpoint-security/</link><description>&lt;p&gt;Learn why many CISOs prefer Microsoft Defender for Endpoint for comprehensive cyberthreat protection across devices and platforms.&lt;/p&gt;
+&lt;p&gt;Stay vigilant and take proactive measures to protect your organization.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/23474</guid></item><item><title>Summary of an Experts Consultation on Human Rights, Digital Technologies, and Elections</title><link>http://privacyinternational.org/advocacy/5596/summary-experts-consultation-human-rights-digital-technologies-and-elections</link><guid isPermaLink="false">5596 at http://privacyinternational.org</guid></item><item><title>Password Management Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/password-management/</link><description>Use these guidelines for the consistent and secure management of passwords for employees and system and service accounts. Fully Customizable — Good to use as-is or alter as you see fit. Enhance Your Processes — This eight-page document outlines device management strategies, password changes, and more. Expert Authorship — Created by Scott Matteson through 16 ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/password-management-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Driving Success on the Track or in the Boardroom</title><link>https://www.trendmicro.com/en_us/research/25/f/driving-success-neom-mclaren.html</link><description>Discover how the Trend Micro and the NEOM McLaren Formula E Team partnership is powered by a common vision for winning, on the track and in the boardroom.</description><guid isPermaLink="false">urn:uuid:cb774f4b-b70f-7701-779c-cdddff6c0e2c</guid><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : Video</category><category>Trend Micro Research : Privacy &amp; Risks</category></item><item><title>How Microsoft Defender for Endpoint is redefining endpoint security</title><link>https://www.microsoft.com/en-us/security/blog/2025/06/03/how-microsoft-defender-for-endpoint-is-redefining-endpoint-security/</link><description>&lt;p&gt;Learn why many CISOs prefer Microsoft Defender for Endpoint for comprehensive cyberthreat protection across devices and platforms.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/06/03/how-microsoft-defender-for-endpoint-is-redefining-endpoint-security/"&gt;How Microsoft Defender for Endpoint is redefining endpoint security&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Securing your digital estate with endpoint detection and response (EDR) across all platforms, devices, and Internet of Things (IoT) has never been more challenging. A rapidly evolving cyberthreat landscape has seen cyberattacks grow in sophistication, evolving from randomized single domain cyberattacks to targeted and methodical multidomain cyberattacks tailored to the specific vulnerabilities and unique attack surfaces within each organization.&lt;/p&gt;
 
 
@@ -8402,7 +9006,7 @@ MC4CAQAwBQYDK2VwBCIEINArpOAwJO2+lv9Da+PzmkbKxGhMcapQ+/NhUq4nifvh
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-12 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-16 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75 btn-primary"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Get started with Microsoft Defender for Endpoint&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -8533,93 +9137,7 @@ MC4CAQAwBQYDK2VwBCIEINArpOAwJO2+lv9Da+PzmkbKxGhMcapQ+/NhUq4nifvh
 
 
 &lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our website. Bookmark the Security blog to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (Microsoft Security) and X (@MSFTSecurity) for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoftdefenderatpblog/discover-how-automatic-attack-disruption-protects-critical-assets-while-ensuring/4416597"&gt;Discover how automatic attack disruption protects critical assets while ensuring business continuity&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=139107</guid></item><item><title>Announcing a new strategic collaboration to bring clarity to threat actor naming</title><link>https://www.microsoft.com/en-us/security/blog/2025/06/02/announcing-a-new-strategic-collaboration-to-bring-clarity-to-threat-actor-naming/</link><description>&lt;p&gt;Microsoft and CrowdStrike are teaming up to create alignment across our individual threat actor taxonomies to help security professionals connect insights faster.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/06/02/announcing-a-new-strategic-collaboration-to-bring-clarity-to-threat-actor-naming/"&gt;Announcing a new strategic collaboration to bring clarity to threat actor naming&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;In today’s cyberthreat landscape, even seconds of delay can mean the difference between stopping a cyberattack or falling victim to ransomware. One major cause of delayed response is understanding threat actor attribution, which is often slowed by inaccurate or incomplete data as well as inconsistencies in naming across platforms. This, in turn, can reduce confidence, complicate analysis, and delay response. As outlined in the National Institute of Standards and Technology’s (NIST) guidance on threat sharing (SP 800-150&lt;sup&gt;1&lt;/sup&gt;), aligning how we describe and categorize cyberthreats can improve understanding, coordination, and overall security posture. &lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That’s why we are excited to announce that &lt;a href="https://learn.microsoft.com/en-us/unified-secops-platform/microsoft-threat-actor-naming" rel="noreferrer noopener" target="_blank"&gt;Microsoft and CrowdStrike are teaming up&lt;/a&gt; to create alignment across our individual threat actor taxonomies. By mapping where our knowledge of these actors align, we will provide security professionals with the ability to connect insights faster and make decisions with greater confidence.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-13 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://learn.microsoft.com/en-us/unified-secops-platform/microsoft-threat-actor-naming" rel="noreferrer noopener" target="_blank"&gt;Read about Microsoft and Crowdstrike&amp;#8217;s joint threat actor taxonomy&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Names are how we make sense of the threat landscape and organize insights into known or likely cyberattacker behaviors. At Microsoft, we’ve published our own threat actor naming taxonomy to help researchers and defenders identify, share, and act on our threat intelligence, which is informed by the 84 trillion threat signals that we process daily. But the same actor that Microsoft refers to as Midnight Blizzard might be referred to as Cozy Bear, APT29, or UNC2452 by another vendor. Our mutual customers are always looking for clarity. Aligning the known commonalities among these actor names directly with peers helps to provide greater clarity and gives defenders a clearer path to action.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-a-collaborative-reference-guide-to-threat-actors"&gt;Introducing a collaborative reference guide to threat actors&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft and CrowdStrike are &lt;a href="https://learn.microsoft.com/en-us/unified-secops-platform/microsoft-threat-actor-naming" rel="noreferrer noopener" target="_blank"&gt;publishing the first version&lt;/a&gt; of our joint threat actor mapping. It includes:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;A list of common actors tracked by Microsoft and CrowdStrike mapped by their respective taxonomies.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Corresponding aliases from each group’s taxonomy.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This reference guide serves as a starting point, a way to translate across naming systems so defenders can work faster and more efficiently, especially in environments where insights from multiple vendors are in play. This reference guide helps to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Improve confidence&lt;/strong&gt; in threat actor identification.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Streamline correlation&lt;/strong&gt; across platforms and reports.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Accelerate defender action&lt;/strong&gt; in the face of active cyberthreats.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This effort is not about creating a single naming standard. Rather, it’s meant to help our customers and the broader security community align intelligence more easily, respond faster, and stay ahead of threat actors.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="looking-ahead"&gt;Looking ahead&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This initial taxonomy mapping is a collaboration between Microsoft and CrowdStrike. Google/Mandiant and Palo Alto Networks Unit 42 will also be contributing to this effort. We look forward to sharing updates from those collaborations in the near future. Security is a shared responsibility, requiring community-wide efforts to improve defensive measures. We are excited to be teaming up with CrowdStrike and we look forward to others joining us on this journey.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-14 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://learn.microsoft.com/en-us/unified-secops-platform/microsoft-threat-actor-naming" rel="noreferrer noopener" target="_blank"&gt;Read the taxonomy mapping from Microsoft and Crowdstrike&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity is-style-thick" /&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;a href="https://csrc.nist.gov/pubs/sp/800/150/final"&gt;SP 800-150, Guide to Cyber Threat Information Sharing&lt;/a&gt;, NIST Computer Security Research Center. October 2016.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/06/02/announcing-a-new-strategic-collaboration-to-bring-clarity-to-threat-actor-naming/"&gt;Announcing a new strategic collaboration to bring clarity to threat actor naming&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=139237</guid></item><item><title>2nd June – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/2nd-june-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 2nd June, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES IT management software company ConnectWise confirmed that a sophisticated nation-state cyberattack had compromised its environment, affecting a limited number of customers using its ScreenConnect remote access tool. The company launched a forensic [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoftdefenderatpblog/discover-how-automatic-attack-disruption-protects-critical-assets-while-ensuring/4416597"&gt;Discover how automatic attack disruption protects critical assets while ensuring business continuity&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=139107</guid></item><item><title>2nd June – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/2nd-june-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 2nd June, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES IT management software company ConnectWise confirmed that a sophisticated nation-state cyberattack had compromised its environment, affecting a limited number of customers using its ScreenConnect remote access tool. The company launched a forensic [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/2nd-june-threat-intelligence-report/"&gt;2nd June – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 2nd June, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/06/Threat_Intelligence_News_2025-06-02.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -23712,4 +24230,9 @@ Hobbies (Present &amp;amp; Past): Motorcycling &amp;amp; Australian Football
 Bucket List: Continuing to discover new software
 Fun Fact: He currently has 2,000 tabs open</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/11/a-ride-on-the-wild-side-with-hacking-heavyweight-sick-codes/</guid></item><item><title>Announcing the Microsoft Machine Learning Membership Inference Competition (MICO)</title><link>https://msrc.microsoft.com/blog/2022/11/mico/</link><description>We’re excited to announce the launch of a new competition focusing on the security and privacy of machine learning (ML) systems. Machine learning has already become a key enabler in many products and services, and this trend is likely to continue. It is therefore critical to understand the security and privacy guarantees provided by state-of-the-art ML algorithms – indeed this is one of Microsoft’s Responsible AI Principles.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/11/mico/</guid></item><item><title>Awareness and guidance related to OpenSSL 3.0 - 3.0.6 risk (CVE-2022-3786 and CVE-2202-3602)</title><link>https://msrc.microsoft.com/blog/2022/11/microsoft-guidance-related-to-openssl-risk-cve-2022-3786-and-cve-2202-3602/</link><description>Summary Microsoft is aware and actively addressing the impact associated with the recent OpenSSL vulnerabilities announced on October 25th 2022, fixed in version 3.0.7. As part of our standard processes, we are rolling out fixes for impacted services. Any customer action that is required will be highlighted in this blog and our associated Security Update Guides (CVE-2022-3786 Security Update Guide and CVE-2022-3602 Security Update Guide).</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/11/microsoft-guidance-related-to-openssl-risk-cve-2022-3786-and-cve-2202-3602/</guid></item><item><title>Microsoft Mitigates Vulnerability in Jupyter Notebooks for Azure Cosmos DB</title><link>https://msrc.microsoft.com/blog/2022/11/microsoft-mitigates-vulnerability-in-jupyter-notebooks-for-azure-cosmos-db/</link><description>Summary Microsoft recently fixed an authentication bypass vulnerability in Jupyter Notebooks for Azure Cosmos DB (currently in preview) reported by Orca Security. Customers not using Jupyter Notebooks (99.8% of Azure Cosmos DB customers do NOT use Jupyter notebooks) were not susceptible to this vulnerability.
 The bug was introduced on August 12th and fully patched worldwide on Oct 6th, two days after it was reported.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/11/microsoft-mitigates-vulnerability-in-jupyter-notebooks-for-azure-cosmos-db/</guid></item><item><title>Reflecting on Cybersecurity Awareness Month: At its Core, Cybersecurity is all about People</title><link>https://msrc.microsoft.com/blog/2022/10/reflecting-on-cybersecurity-awareness-month-at-its-core-cybersecurity-is-all-about-people/</link><description>As Cybersecurity Awareness Month 2022 comes to a close, I’m grateful for the impact it has had in bringing cybersecurity to the forefront since it began in 2004. Though the month may be over, our work in cybersecurity is never done. Often, we think about cybersecurity as a complex technology problem, but at its core, it’s really about people: the customers and communities we work to protect and defend, the current and future cybersecurity professionals on the front lines of the fight, and the larger security community coming together to strengthen cybersecurity for all.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/reflecting-on-cybersecurity-awareness-month-at-its-core-cybersecurity-is-all-about-people/</guid></item><item><title>Congratulations to the Top MSRC 2022 Q3 Security Researchers!</title><link>https://msrc.microsoft.com/blog/2022/10/congratulations-to-the-top-msrc-2022-q3-security-researchers/</link><description>Congratulations to all the researchers recognized in this quarter’s Microsoft Researcher Recognition Program leaderboard! Thank you to everyone for your hard work and continued partnership to secure customers.
-The top three researchers of the 2022 Q3 Security Researcher Leaderboard are: Zhiyi Zhang , Yuki Chen , and Dang The Tuyen! Check out the full list of researchers recognized this quarter here.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/congratulations-to-the-top-msrc-2022-q3-security-researchers/</guid></item></channel></rss>
+The top three researchers of the 2022 Q3 Security Researcher Leaderboard are: Zhiyi Zhang , Yuki Chen , and Dang The Tuyen! Check out the full list of researchers recognized this quarter here.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/congratulations-to-the-top-msrc-2022-q3-security-researchers/</guid></item><item><title>Awareness and guidance related to potential Service Fabric Explorer (SFX) v1 web client risk</title><link>https://msrc.microsoft.com/blog/2022/10/awareness-and-guidance-related-to-potential-service-fabric-explorer-sfx-v1-web-client-risk/</link><description>Summary Microsoft was recently made aware of a Cross-Site Scripting (XSS) vulnerability (CVE-2022-35829), that under limited circumstances, affects older versions of Service Fabric Explorer (SFX). The current default SFX web client (SFXv2) is not vulnerable to this attack. However, customers can manually switch from the default web client (SFXv2) to an older vulnerable SFX web client version (SFXv1).</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/awareness-and-guidance-related-to-potential-service-fabric-explorer-sfx-v1-web-client-risk/</guid></item><item><title>Investigation Regarding Misconfigured Microsoft Storage Location</title><link>https://msrc.microsoft.com/blog/2022/10/investigation-regarding-misconfigured-microsoft-storage-location-2/</link><description>October 28, 2022 update: Added a Customer FAQ section.
+Summary Security researchers at SOCRadar informed Microsoft on September 24, 2022, of a misconfigured Microsoft endpoint. This misconfiguration resulted in the potential for unauthenticated access to some business transaction data corresponding to interactions between Microsoft and prospective customers, such as the planning or potential implementation and provisioning of Microsoft services.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/investigation-regarding-misconfigured-microsoft-storage-location-2/</guid></item><item><title>BlueHat 2023 Call for Papers is Now Open!</title><link>https://msrc.microsoft.com/blog/2022/10/bluehat-2023-call-for-papers-is-now-open/</link><description>For nearly 20 years, BlueHat has been where the security research community, and Microsoft security professionals come together as peers, to share, debate, challenge, learn, and exchange ideas in the interest of creating a safer and more secure world for all.
+We are extremely excited to announce that BlueHat is back in-person and the 2023 Call for Papers (CFP) is now open through December 8!</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/bluehat-2023-call-for-papers-is-now-open/</guid></item><item><title>Hunting for Cobalt Strike: Mining and plotting for fun and profit</title><link>https://msrc.microsoft.com/blog/2022/10/hunting-for-cobalt-strike-mining-and-plotting-for-fun-and-profit/</link><description>Introduction Cobalt Strike is a commercial Command and Control framework built by Helpsystems. You can find out more about Cobalt Strike on the MITRE ATT&amp;amp;CK page. But it can also be used by real adversaries. In this post we describe how to use RiskIQ and other Microsoft technologies to see if you have Cobalt Strike payloads (also called &amp;ldquo;beacons&amp;rdquo;) in your network.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/hunting-for-cobalt-strike-mining-and-plotting-for-fun-and-profit/</guid></item><item><title>Improvements in Security Update Notifications Delivery - And a New Delivery Method</title><link>https://msrc.microsoft.com/blog/2022/10/14921/</link><description>At MSRC, we are passionate about ensuring our customers have a positive experience when they use the Microsoft Security Update Guide (SUG). A big part of improving that experience is ensuring that customers have timely and easily accessible notifications. As such we have two important announcements to share about changes to the way we provide notifications.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/10/14921/</guid></item><item><title>Customer Guidance for Reported Zero-day Vulnerabilities in Microsoft Exchange Server</title><link>https://msrc.microsoft.com/blog/2022/09/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server/</link><description>November 8, 2022 update - Microsoft released security updates for CVE-2022-41040 and CVE-2022-41082. We recommend that customers protect their organizations by applying the updates immediately to affected systems. The options described in the Mitigations section are no longer recommended. For more information, review the Exchange Team blog.
+Summary On November 8 Microsoft released security updates for two zero-day vulnerabilities affecting Microsoft Exchange Server 2013, Exchange Server 2016, and Exchange Server 2019.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/09/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server/</guid></item><item><title>Defense-in-Depth Updates for Azure Identity libraries and Azure Key Vault libraries within Azure SDK plus Best Practice Implementation Guidance</title><link>https://msrc.microsoft.com/blog/2022/09/defense-in-depth-updates-for-azure-identity-sdk-and-azure-key-vault-sdk-plus-best-practice-implementation-guidance/</link><description>Summary Today, Microsoft released new versions of the Azure Key Vault libraries and Azure Identity libraries as part of the Azure Software Development Kit (SDK) that includes defense-in-depth feature improvements. We also published best practice guidance to help protect applications and services that allow externally controlled input into the Azure Key Vault client URI for processing.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/09/defense-in-depth-updates-for-azure-identity-sdk-and-azure-key-vault-sdk-plus-best-practice-implementation-guidance/</guid></item><item><title>Curious, Innovative, Creative, Community Driven: Meet Cyb3rWard0g, Roberto Rodriquez</title><link>https://msrc.microsoft.com/blog/2022/09/curious-innovative-creative-community-driven-meet-cyb3rward0g-roberto-rodriquez/</link><description>When I grow up I want to be? Dancer or a veterinarian
+Happiest memories: Tearing up the dance floor at weddings and playing soccer in the streets of Lima, Peru
+Previous Job roles : Mopped floors for McDonalds, packed boxes at an Avon warehouse, Manager at Olive Garden, Beer taster/server and then dove into tech and security</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/09/curious-innovative-creative-community-driven-meet-cyb3rward0g-roberto-rodriquez/</guid></item><item><title>What’s the smallest variety of CHERI?</title><link>https://msrc.microsoft.com/blog/2022/09/whats-the-smallest-variety-of-cheri/</link><description>The Portmeirion project is a collaboration between Microsoft Research Cambridge, Microsoft Security Response Center, and Azure Silicon Engineering &amp;amp; Solutions. Over the past year, we have been exploring how to scale the key ideas from CHERI down to tiny cores on the scale of the cheapest microcontrollers. These cores are very different from the desktop and server-class processors that have been the focus of the Morello project.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/09/whats-the-smallest-variety-of-cheri/</guid></item><item><title>Vulnerability Fixed in Azure Synapse Spark</title><link>https://msrc.microsoft.com/blog/2022/09/vulnerability-fixed-in-azure-synapse-spark/</link><description>Summary Microsoft takes a proactive approach to continually probe our defenses, hunt for vulnerabilities, and seek new, innovative ways to protect our customers. Security researchers are an important part of this effort, and our collaborative partnership is critical in a world where cybersecurity attacks continue to grow in number and sophistication.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2022/09/vulnerability-fixed-in-azure-synapse-spark/</guid></item></channel></rss>
