@@ -1,5 +1,154 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 25 Jul 2025 04:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, July 25th, 2025 https://isc.sans.edu/podcastdetail/9542</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Friday, July 25th, 2025 https://isc.sans.edu/podcastdetail/9542, (Fri, Jul 25th)</title><link>https://isc.sans.edu/diary/rss/32142</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32142</guid></item><item><title>Trump Exec Order Mandates No ‘Woke’ AI in Government</title><link>https://www.techrepublic.com/article/news-trump-executive-orders-ai/</link><description>The set of executive orders promoting the US AI industry were announced shortly after Trump’s AI Action Plan was revealed on Wednesday.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4318273</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>Hardware</category><category>International</category><category>News</category><category>Software</category></item><item><title>Fortifying Your Cloud Against Cross-Service Confused Deputy Attacks</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Gartner predicts that worldwide end-user spending on public cloud services will exceed $720 billion in 2025, up from $595.7 billion in 2024. As cloud investments grow, so does reliance on cloud-native architectures, introducing new layers of complexity and risk. One often-overlooked but serious threat in these environments is the Cross-Service Confused Deputy Attack, which can [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;a href="https://www.gartner.com/en/newsroom/press-releases/2024-11-19-gartner-forecasts-worldwide-public-cloud-end-user-spending-to-total-723-billion-dollars-in-2025" rel="noreferrer noopener" target="_blank"&gt;Gartner predicts&lt;/a&gt; that worldwide end-user spending on public cloud services will exceed $720 billion in 2025, up from $595.7 billion in 2024. As cloud investments grow, so does reliance on cloud-native architectures, introducing new layers of complexity and risk. One often-overlooked but serious threat in these environments is the Cross-Service Confused Deputy Attack, which can expose critical services through unintended trust relationships among cloud components.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 25 Jul 2025 05:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Sinkholing Suspicious Scripts or Executables on Linux</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Sinkholing Suspicious Scripts or Executables on Linux, (Fri, Jul 25th)</title><link>https://isc.sans.edu/diary/rss/32144</link><description>&lt;p&gt;When you need to analyze some suspicious pieces of code, it&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s interesting to detonate them in a sandbox. If you don&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t have a complete sandbox environment available or you just want to avoid generatin noise on your network, why not route the traffic to a sinkhole or NULL-route (read: packets won&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t be sent across the normal network and default gateway).&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;When you need to analyze some suspicious pieces of code, it's&amp;nbsp;interesting to detonate them in a sandbox. If you don't have a complete sandbox environment available or you just want to avoid generatin noise on your network, why not route the traffic to a sinkhole or NULL-route (read: packets won't be sent across the normal network and default gateway).&lt;/p&gt;
+
+&lt;p&gt;When you inspect a process using the /proc[&lt;a href="https://docs.kernel.org/filesystems/proc.html"&gt;1&lt;/a&gt;] virtual filesystem, there is a &amp;quot;route&amp;quot; file:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~$ cat /proc/1180/net/route
+Iface    Destination    Gateway     Flags    RefCnt    Use    Metric    Mask        MTU    Window    IRTT                                                       
+ens19    00000000    &lt;span style="color: #e74c3c;"&gt;01FEA8C0&lt;/span&gt;    0003    0    0    100    00000000    0    0    0                                                                            
+ens18    004A10AC    00000000    0001    0    0    0    00FFFFFF    0    0    0                                                                              
+ens19    00FEA8C0    00000000    0001    0    0    0    00FFFFFF    0    0    0                                                                              
+ens19    01FEA8C0    00000000    0005    0    0    100    FFFFFFFF    0    0    0&lt;/pre&gt;
+
+&lt;p&gt;It displays the IP routing table assigned to this process. Typically, IP addresses are encoded in little-endian hexadecimal values. They can be easily decoded using a few lines of Python:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+gw = &amp;quot;01FEA8C0&amp;quot;
+octets = [gw[i:i+2] for i in range(0, len(gw), 2)]
+ip = '.'.join(str(int(o, 16)) for o in octets)
+print(ip)  # Will return: 1.254.168.192&lt;/pre&gt;
+
+&lt;p&gt;Does it mean that we could apply a specific routing table to a process? Yes and no... In /proc, the &amp;quot;route&amp;quot; file is read-only.&lt;/p&gt;
+
+&lt;p&gt;But, Linux is full of features that many people aren't aware of. One of them are namespaces[&lt;a href="https://en.wikipedia.org/wiki/Linux_namespaces"&gt;2&lt;/a&gt;]. It's a kernel feature (introduced around 2016 if I remember well) that provides isolation of system resources between processes (a bit like containers). Each namespace type&amp;mdash;such as PID, mount, UTS, network, IPC, and user&amp;mdash;isolates a specific aspect of the operating system environment. For example, the network namespace gives processes their own network stack, including interfaces and routing tables. Very interesting!&lt;/p&gt;
+
+&lt;p&gt;Let's try this and run our suscipious script in a dedicated namespace. My suspicious script will be super simple:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~$ cat sample.sh 
+#!/bin/bash
+echo &amp;quot;Am I bad?&amp;quot;
+curl https://isc.sans.edu&lt;/pre&gt;
+
+&lt;p&gt;First example, no network connectivity at all!&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~$ sudo unshare --net bash
+root@remnux:/home/remnux# ./sample.sh 
+Am I bad?
+curl: (6) Could not resolve host: isc.sans.edu
+root@remnux:/home/remnux# ip a
+1: lo: &amp;lt;LOOPBACK&amp;gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+root@remnux:/home/remnux# ip r
+Error: ipv4: FIB table does not exist.
+Dump terminated
+root@remnux:/home/remnux# exit
+remnux@remnux:~$ &lt;/pre&gt;
+
+&lt;p&gt;The unshare command (executed as root) will create a new shell in a new namespace with dropped network settings. When curl is executed, it can't resolve isc.sans.edu nor connect to it. We have a complete network isolation.&lt;/p&gt;
+
+&lt;p&gt;Second example, let's build a dedicated IP stack that will route packets to another IP address, our synchole. A pair of virtial Ethernet interfaces must be added. In this case, 10.0.0.1 will be the new namespace and 10.0.0.2 the main one.&lt;/p&gt;
+
+&lt;p&gt;(Note: I'll change the bash prompt to make it clearer)&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+remnux@remnux:~$ sudo unshare --net bash
+root@remnux:/home/remnux# export PS1=&amp;quot;namespace&amp;gt; &amp;quot;
+namespace&amp;gt; ip link set lo up
+namespace&amp;gt; ip link add veth0 type veth peer name veth1
+namespace&amp;gt; ip link set veth0 up
+namespace&amp;gt; ip addr add 10.0.0.1/24 dev veth0
+namespace&amp;gt; ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: veth1@veth0: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether b6:5c:6e:ed:c3:62 brd ff:ff:ff:ff:ff:ff
+3: veth0@veth1: &amp;lt;NO-CARRIER,BROADCAST,MULTICAST,UP,M-DOWN&amp;gt; mtu 1500 qdisc noqueue state LOWERLAYERDOWN group default qlen 1000
+    link/ether 66:72:35:1f:9f:9e brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.1/24 scope global veth0
+       valid_lft forever preferred_lft forever
+namespace&amp;gt; ip link set veth1 netns 1&lt;/pre&gt;
+
+&lt;p&gt;On the main namespace (your original shell), create the virtual NIC:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+root@remnux:/home/remnux# ip addr add 10.0.0.2/24 dev veth1
+root@remnux:/home/remnux# ip link set veth1 up&lt;/pre&gt;
+
+&lt;p&gt;Back in the new namespace:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+namespace&amp;gt; ping 10.0.0.2
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.020 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=0.034 ms
+^C
+--- 10.0.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1023ms
+rtt min/avg/max/mdev = 0.020/0.027/0.034/0.007 ms&lt;/pre&gt;
+
+&lt;p&gt;Let's add a default route to the IP in the main namespace:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+namespace&amp;gt; ip route add default via 10.0.0.2
+namespace&amp;gt; ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+^C
+--- 8.8.8.8 ping statistics ---
+13 packets transmitted, 0 received, 100% packet loss, time 12293ms&lt;/pre&gt;
+
+&lt;p&gt;If we run a tcpdump on veth1, we can now capture all the network connection attempts from the namespace:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+root@remnux:/home/remnux# tcpdump -i veth1 -n
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on veth1, link-type EN10MB (Ethernet), capture size 262144 bytes
+11:02:32.122380 ARP, Request who-has 10.0.0.2 tell 10.0.0.1, length 28
+11:02:32.122408 ARP, Reply 10.0.0.2 is-at b6:5c:6e:ed:c3:62, length 28
+11:02:32.154271 IP 10.0.0.1 &amp;gt; 8.8.8.8: ICMP echo request, id 18547, seq 6, length 64
+11:02:33.178401 IP 10.0.0.1 &amp;gt; 8.8.8.8: ICMP echo request, id 18547, seq 7, length 64
+11:02:34.202411 IP 10.0.0.1 &amp;gt; 8.8.8.8: ICMP echo request, id 18547, seq 8, length 64
+^C
+5 packets captured
+5 packets received by filter
+0 packets dropped by kernel&lt;/pre&gt;
+
+&lt;p&gt;Finally, let's verify the routing table of the shell running in the new namespace:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+namespace&amp;gt; echo $$
+149522&lt;/pre&gt;
+
+&lt;p&gt;On the main namespace:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+root@remnux:/home/remnux# cat /proc/149522/net/route 
+Iface    Destination    Gateway     Flags    RefCnt    Use    Metric    Mask        MTU    Window    IRTT                                                       
+veth0    00000000    &lt;span style="color: #e74c3c;"&gt;0200000A    &lt;/span&gt;0003    0    0    0    00000000    0    0    0                                                                              
+veth0    0000000A    00000000    0001    0    0    0    00FFFFFF    0    0    0  &lt;/pre&gt;
+
+&lt;p&gt;(0x0200000A = 10.0.0.2)&lt;/p&gt;
+
+&lt;p&gt;Done! The current configuration is very basic and does not provide, amongst others, a DNS. Your sinkholed sample won't be able to resolve FQDN. Also, you could really route the packets by enabling ip_forward and NAT the traffic.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;WARNING: This is not a bullet-proof solution to perform malware analysis: Only the network traffic was isolated!&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://docs.kernel.org/filesystems/proc.html"&gt;https://docs.kernel.org/filesystems/proc.html&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://en.wikipedia.org/wiki/Linux_namespaces"&gt;https://en.wikipedia.org/wiki/Linux_namespaces&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32144</guid></item><item><title>ISC Stormcast For Friday, July 25th, 2025 https://isc.sans.edu/podcastdetail/9542, (Fri, Jul 25th)</title><link>https://isc.sans.edu/diary/rss/32142</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32142</guid></item><item><title>Trump Exec Order Mandates No ‘Woke’ AI in Government</title><link>https://www.techrepublic.com/article/news-trump-executive-orders-ai/</link><description>The set of executive orders promoting the US AI industry were announced shortly after Trump’s AI Action Plan was revealed on Wednesday.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4318273</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>Hardware</category><category>International</category><category>News</category><category>Software</category></item><item><title>Fortifying Your Cloud Against Cross-Service Confused Deputy Attacks</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Gartner predicts that worldwide end-user spending on public cloud services will exceed $720 billion in 2025, up from $595.7 billion in 2024. As cloud investments grow, so does reliance on cloud-native architectures, introducing new layers of complexity and risk. One often-overlooked but serious threat in these environments is the Cross-Service Confused Deputy Attack, which can [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;a href="https://www.gartner.com/en/newsroom/press-releases/2024-11-19-gartner-forecasts-worldwide-public-cloud-end-user-spending-to-total-723-billion-dollars-in-2025" rel="noreferrer noopener" target="_blank"&gt;Gartner predicts&lt;/a&gt; that worldwide end-user spending on public cloud services will exceed $720 billion in 2025, up from $595.7 billion in 2024. As cloud investments grow, so does reliance on cloud-native architectures, introducing new layers of complexity and risk. One often-overlooked but serious threat in these environments is the Cross-Service Confused Deputy Attack, which can expose critical services through unintended trust relationships among cloud components.&lt;/p&gt;
 
 
 
@@ -1469,7 +1618,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6882dcee4d9db"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6882f4613b8f9"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -1479,7 +1628,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6882dcee4da84"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6882f4613b98e"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -2734,33 +2883,7 @@ Jan Kopriva&lt;br /&gt;
 &lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32126</guid></item><item><title>Critical Sharepoint 0-Day Vulnerablity Exploited CVE-2025-53770 (ToolShell), (Sun, Jul 20th)</title><link>https://isc.sans.edu/diary/rss/32122</link><description>&lt;p&gt;Microsoft announced yesterday that a newly discovered critical remote code execution vulnerability in SharePoint is being exploited. There is no patch available. As a workaround, Microsoft suggests using Microsoft Defender to detect any attacks. To use Defender, you must first configure the AMSI integration to give Defender visibility into SharePoint. Recent versions of SharePoint have the AMSI integration enabled by default.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Microsoft announced yesterday that a newly discovered critical remote code execution vulnerability in SharePoint is being exploited. There is no patch available. As a workaround, Microsoft suggests using Microsoft Defender to detect any attacks. To use Defender, you must first configure the AMSI integration to give Defender visibility into SharePoint. Recent versions of SharePoint have the AMSI integration enabled by default.&lt;/p&gt;
-
-&lt;p&gt;Microsoft also states: &amp;quot;If you cannot enable AMSI, we recommend you consider disconnecting your server from the internet until a security update is available.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;Defender will just detect the post-exploit activity. Currently, webshells are observed as a payload being deployed, taking advantage of the vulnerability.&lt;/p&gt;
-
-&lt;p&gt;The best write-up and details I found so far come from the Eye Security research team. They initially used CVE-2025-49704 and CVE-2025-49706 to identify the vulnerability. Later, Microsoft confirmed that this is a new issue and started using CVE-2025-53770. This latest issue appears to be a variation of the older vulnerabilities patched in this month's Patch Tuesday.&lt;/p&gt;
-
-&lt;p&gt;The vulnerability exploits an authentication bypass issue triggered by setting the &amp;quot;Referer&amp;quot; header to &amp;quot;/_layouts/SignOut.aspx&amp;quot;. This vulnerability is then exploited to trigger remote code execution via &amp;quot;/_layouts/15/ToolPane.aspx&amp;quot;.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;In our honeypot data, we observed two instances of the &amp;quot;ToolPane.aspx&amp;quot; URL, first on July 16th (on individual hit, I am waiting to hear from the submitter to see if there are details available). Today, we received additional reports, but they originated from&amp;nbsp;p55001.probes.atlas.ripe.net:9000 and are likely related to scanning for research purposes. These hits did not include the Referer header to trigger the vulnerabiliy.&lt;/p&gt;
-
-&lt;p&gt;The hit on July 16th originated from %%ip:172.174.82.132%%. This IP address appears to be owned by Microsoft.&lt;/p&gt;
-
-&lt;p&gt;Microsoft Advisory:&lt;br /&gt;
-&lt;a href="https://research.eye.security/sharepoint-under-siege/" target="_blank"&gt;https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/&lt;/a&gt;&lt;br /&gt;
-Eye Security Blog:&lt;br /&gt;
-&lt;a href="https://research.eye.security/sharepoint-under-siege/" target="_blank"&gt;https://research.eye.security/sharepoint-under-siege/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;---&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32122</guid></item><item><title>Grant Writing Guide</title><link>https://www.techrepublic.com/resource-library/guide/grant-writing/</link><description>This guide will help you identify a grant that fits your idea, build a team to help you compile a proposal, and set a timeline to meet the application deadline. Constantly Updated — The download contains the latest and most accurate details. Boost Your Chances — The 10-page PDF includes a list of resources to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/grant-writing-guide/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>Security Response Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/security-response/</link><description>Good cyber and physical security can make or break companies. This IT policy outlines the best security incident response processes. Customizable Document — Ready to use as-is or suitable for editing. Enhance Your Security — This 13-page document covers roles, responsibilities, information handling, and more. Expertly-Curated — Written by Scott Matteson through 26 hours of ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/security-response-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>CISA Adds One Known Exploited Vulnerability, CVE-2025-53770 “ToolShell,” to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/07/20/cisa-adds-one-known-exploited-vulnerability-cve-2025-53770-toolshell-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation. See CISA’s Alert &lt;a href="https://www.cisa.gov/news-events/alerts/2025/07/20/microsoft-releases-guidance-exploitation-sharepoint-vulnerability-cve-2025-53770"&gt;Microsoft Releases Guidance on Exploitation of SharePoint Vulnerability (CVE-2025-53770)&lt;/a&gt; for more information and to apply the recommended mitigations.&amp;nbsp;&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32126</guid></item><item><title>Grant Writing Guide</title><link>https://www.techrepublic.com/resource-library/guide/grant-writing/</link><description>This guide will help you identify a grant that fits your idea, build a team to help you compile a proposal, and set a timeline to meet the application deadline. Constantly Updated — The download contains the latest and most accurate details. Boost Your Chances — The 10-page PDF includes a list of resources to ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/grant-writing-guide/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>Security Response Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/security-response/</link><description>Good cyber and physical security can make or break companies. This IT policy outlines the best security incident response processes. Customizable Document — Ready to use as-is or suitable for editing. Enhance Your Security — This 13-page document covers roles, responsibilities, information handling, and more. Expertly-Curated — Written by Scott Matteson through 26 hours of ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/security-response-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>CISA Adds One Known Exploited Vulnerability, CVE-2025-53770 “ToolShell,” to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/07/20/cisa-adds-one-known-exploited-vulnerability-cve-2025-53770-toolshell-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities Catalog&lt;/a&gt;, based on evidence of active exploitation. See CISA’s Alert &lt;a href="https://www.cisa.gov/news-events/alerts/2025/07/20/microsoft-releases-guidance-exploitation-sharepoint-vulnerability-cve-2025-53770"&gt;Microsoft Releases Guidance on Exploitation of SharePoint Vulnerability (CVE-2025-53770)&lt;/a&gt; for more information and to apply the recommended mitigations.&amp;nbsp;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-53770"&gt;CVE-2025-53770&lt;/a&gt;: Microsoft SharePoint Server Remote Code Execution Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
