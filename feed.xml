@@ -1,5 +1,343 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 12 Aug 2025 15:59:22 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, August 12th, 2025 https://isc.sans.edu/podcastdetail/9566</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Trump Says Intel CEO’s Success an ‘Amazing Story’ After Calling for His Resignation</title><link>https://www.techrepublic.com/article/news-trump-meeting-intel-ceo-lip-bu-tan/</link><description>US President Donald Trump says his Cabinet will meet with Lip-Bu Tan over the next week.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4321393</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>Two Pwnie Awards, One Crucial Lesson: What Our OpenSSH Research Reveals About Cyber Defense in 2025</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>We’re honored that the Pwnie Awards recognized the Qualys Threat Research Unit (TRU) with two wins at Black Hat/DEF CON this year—Best RCE for regreSSHion (CVE-2024-6387) and Epic Achievement for our multi-year work uncovering issues in OpenSSH, including CVE-2025-26465. Awards are nice; what matters is what the research means for defenders. The Pwnie Awards, held [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re honored that the Pwnie Awards recognized the &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; with two wins at Black Hat/DEF CON this year—Best RCE for regreSSHion (CVE-2024-6387) and Epic Achievement for our multi-year work uncovering issues in OpenSSH, including CVE-2025-26465. Awards are nice; what matters is what the research means for defenders.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 12 Aug 2025 16:59:21 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, August 12th, 2025 https://isc.sans.edu/podcastdetail/9566</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Elon Musk Threatens to Sue Apple Over AI Chatbots’ App Store Rankings</title><link>https://www.techrepublic.com/article/news-musk-sues-apple-app-store-ranking/</link><description>Musk is accusing Apple of favoring OpenAI’s ChatGPT over Grok, which his AI company xAI developed.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4321411</guid><category>Apple</category><category>Artificial Intelligence</category><category>Australia</category><category>Developer</category><category>Google</category><category>International</category><category>Mobility</category><category>United Kingdom</category></item><item><title>Eliminate Risk from Older and Unmanaged Java Installations</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>Older Java installations pose a significant security risk, particularly when developers install them in non-standard locations without any version control. These unmanaged installations often go undetected, silently expanding the organization’s attack surface and leaving critical vulnerabilities unpatched. To reduce this risk, users should be able to identify all Java installations on a host and remove [&amp;#8230;]</description><content:encoded>&lt;p&gt;Older Java installations pose a significant security risk, particularly when developers install them in non-standard locations without any version control. These unmanaged installations often go undetected, silently expanding the organization’s attack surface and leaving critical vulnerabilities unpatched.&lt;/p&gt;
+
+
+
+&lt;p&gt;To reduce this risk, users should be able to &lt;strong&gt;identify all Java installations&lt;/strong&gt; on a host and &lt;strong&gt;remove unapproved or outdated versions&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;span id="more-38407"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="challenges"&gt;Challenges&lt;/h2&gt;
+
+
+
+&lt;p&gt;Users commonly face the following key challenges when trying to reduce the risk associated with Java vulnerabilities:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Inventory Gaps&amp;nbsp;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;It’s extremely difficult to locate all installed Java instances &amp;#8211; for a specific version of jdk/jre across distributed environments.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Vulnerability Detection Accuracy&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Most tools lack accuracy in identifying the exact vulnerable Java installations on the host, especially when they reside in custom paths or are not properly registered.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Limited Response Capabilities&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;There is often no straightforward way to remove the vulnerable Java instances or flexibility to write custom mitigation or remediation signatures to remove a jdk/jre prior to the minimum safe version. Most vulnerability management tools do not offer out-of-the-box remediation capabilities for Java.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-qualys-can-help"&gt;How Qualys Can Help&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys provides a complete solution from discovery to remediation to eliminate Java-related risk across your environment.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Inventory Java Instances Using Qualys CSAM&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;With Qualys &lt;a href="https://www.qualys.com/apps/cybersecurity-asset-management/" rel="noreferrer noopener" target="_blank"&gt;Cyber Security Asset Management (CSAM)&lt;/a&gt;, you can easily gain a comprehensive view of all installed Java instances, including granular, version-specific details.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Use a simple query like the one below to get a detailed inventory, along with End-of-Life (EOL) and End-of-Support (EOS) timelines.&amp;nbsp; &lt;em&gt;software:(name:&amp;#8221;jdk&amp;#8221; and publisher: `Oracle` and product: `Java SE Development Kit (JDK)` and marketVersion &amp;lt;= `21`)&lt;/em&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/CSAM_Java_Inventory_1-scaled.png"&gt;&lt;img alt="" class="wp-image-38408" height="1414" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/CSAM_Java_Inventory_1-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This visibility empowers you to identify older, unapproved versions before they become a security threat.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Discover Vulnerable Java Instances Using Qualys VMDR &amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;To list down all the vulnerabilities caused by Oracle Java JDK/JRE, run the following VMDR query:&amp;nbsp;&lt;br /&gt;(vulnerabilities.vulnerability.description: &amp;#8216;oracle java&amp;#8217;)&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;You don’t need to immediately start remediation efforts for all such vulnerable detections. Prioritize and address the vulnerabilities that pose maximum risk to your organization. Start with CISA Known Exploited Vulnerabilities (KEV).&lt;/p&gt;
+
+
+
+&lt;p&gt;(vulnerabilities.vulnerability.description: &amp;#8216;oracle java&amp;#8217;) and (vulnerabilities.vulnerability.threatIntel.cisaKnownExploitedVulns:TRUE)&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This will list all the critical vulnerabilities linked to older or unsupported Java versions.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Java-Related-Vulnerabilities--scaled.png"&gt;&lt;img alt="" class="wp-image-38409" height="1406" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Java-Related-Vulnerabilities--scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Each detection provides comprehensive details as follows:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Vuln-details-scaled.png"&gt;&lt;img alt="" class="wp-image-38411" height="1468" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Vuln-details-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="remediate-using-trurisk-eliminate"&gt;Remediate Using TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;With &lt;strong&gt;Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/strong&gt;, you can take direct action on outdated or non-compliant Java versions and reduce the risk. It provides you complete flexibility to remove outdated Java versions based on your environment’s approved baseline.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s consider a use case for your environment where:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Approved versions are:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;JDK 21 and above&lt;/li&gt;
+
+
+
+&lt;li&gt;JRE 8 and above&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="has-vivid-red-color has-text-color has-link-color wp-elements-f6cbd178ebabf21a50d8097a5073fe81"&gt;&lt;strong&gt;Recommended action is to remove all other versions below this baseline.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Rationale: &lt;/strong&gt;This helps eliminate risk from unsupported or unknown Java installations.&lt;/p&gt;
+
+
+
+&lt;p&gt;Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate enables you to perform this action with ease and accuracy, ensuring risk reduction.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Remove Outdated Java Versions Using Qualys CAR&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;a href="https://www.qualys.com/apps/custom-assessment-remediation/"&gt;Qualys Custom Assessment and Remediation (CAR)&lt;/a&gt; is a core capability within TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate that lets you execute custom remediation actions across your assets.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;CAR offers a prebuilt script library, which comprises not just generic script templates, but also actual scripts based on real-world security use cases.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;To tackle risk reduction use cases, we have introduced a NEW category in the CAR Library:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Elimination Actions&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/CAR-Library-scaled.png"&gt;&lt;img alt="" class="wp-image-38412" height="1406" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/CAR-Library-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step by Step Workflow&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Go to: &lt;strong&gt;Qualys CAR Library &amp;gt; Elimination Actions &amp;gt; Remove Old Java Installations&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-38413" height="1421" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Elimination-Actions-scaled.png" width="2560" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;2. Click &lt;strong&gt;Import&lt;/strong&gt;, then &lt;strong&gt;Define Parameters&lt;/strong&gt; (e.g., minimum approved version)&lt;/p&gt;
+
+
+
+&lt;p&gt;You don’t need to write the script. Everything is predefined, just provide the minimum safe version as a parameter, and any instance below that version will be removed once the script is executed.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Step2_Import_i-scaled.png"&gt;&lt;img alt="" class="wp-image-38414" height="1469" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Step2_Import_i-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Step2_import_ii-scaled.png"&gt;&lt;img alt="" class="wp-image-38415" height="1468" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Step2_import_ii-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3. Execute the script across your assets&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Run-across-asset-tags-scaled.png"&gt;&lt;img alt="" class="wp-image-38416" height="1475" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Run-across-asset-tags-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4. Review the output to confirm removal&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Removed-output-scaled.png"&gt;&lt;img alt="" class="wp-image-38417" height="1465" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/Removed-output-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;5. Vulnerabilities related to removed Java versions will be automatically cleared&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys continues to evolve to meet the complex security needs of our customers. With the capabilities within TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate, we provide comprehensive solutions that go beyond traditional patch management, ensuring that all vulnerabilities can be effectively addressed.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Save time and reduce your attack surface with Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/trurisk-eliminate/" style="background-color: #ed2e26;"&gt;Sign Up for Free Trial&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38407</guid><category>Product and Tech</category><category>VMDR</category><category>JAVA</category><category>outdated java installations</category><category>TruRisk Eliminate</category></item><item><title>Dow’s 125-year legacy: Innovating with AI to secure a long future</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/12/dows-125-year-legacy-innovating-with-ai-to-secure-a-long-future/</link><description>&lt;p&gt;Microsoft recently spoke with Mario Ferket, Chief Information Security Officer for Dow, about the company’s approach to AI in security.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/12/dows-125-year-legacy-innovating-with-ai-to-secure-a-long-future/"&gt;Dow&amp;#8217;s 125-year legacy: Innovating with AI to secure a long future&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Founded more than 125 years ago, Dow has demonstrated a commitment to leveraging science to make the world a better place. Today, Dow’s ambition to be the most innovative, inclusive, and sustainable materials science company is supported by a global security team dedicated to keeping employees, customers, and vast volumes of data safe and secure.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Dow’s security team, led by Chief Information Security Officer Mario Ferket, proactively covers everything from governance, risk, compliance, identity and access management, and information protection to data privacy while their team continues to mature and grow. With this comes a partnership with Microsoft Security using tools including &lt;a href="https://www.microsoft.com/security/business/ai-machine-learning/microsoft-security-copilot?msockid=3793858bb492626d36189079b50d634e"&gt;Microsoft Security Copilot&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recently spoke with Ferket on Dow’s approach to AI in security, establishing a responsible AI team, and how Security Copilot is acting as a mentor within their apprentice program.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;MICROSOFT: How has your security team evolved in the past few years to incorporate AI into your business?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;FERKET: AI at Dow is being viewed as a significant business enabler to better serve our customers with innovative and sustainable products. To use AI in a responsible way, we partnered with our Enterprise Data and Analytics team, Legal, and other departments to establish a responsible AI team.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This team was tasked with defining a set of principles as well as creating an acceptable use policy for generative AI as we rolled out Microsoft Copilot in the company. Beyond that, the new cross-functional team has been looking at the new risks associated with the use of AI and how to protect ourselves, our data, and our customers. The team is also exploring how AI can be leveraged to enhance our security operations and use &amp;#8220;AI to fight AI&amp;#8221; in instances in which AI is potentially used with malicious intentions.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="A man in a suit with gray background" class="wp-image-141723" height="768" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/MFerket-Headshot-1024x768.jpg" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Pictured: Mario Ferket, Chief Information Security Officer, Dow&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;MICROSOFT&lt;/strong&gt;: &lt;strong&gt;How is AI being integrated into Dow&amp;#8217;s security efforts, and what specific capabilities are you leveraging?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;FERKET: Our team is leveraging several AI- and machine learning-enabled capabilities to better detect and remove phishing emails, potential business email compromise (BEC) instances, and other malicious content sent to Dow through email.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For well over a year, we have been working with Microsoft in a design partnership to leverage Security Copilot as a key tool in the Dow Cyber Security Operations Center (CSOC). Given the sophistication and speed of cyberattacks, our original need was to eliminate repetitive manual tasks through automation and move to more automated interventions. This allows the team to spend more time on proactive activities. We are also using Security Copilot for threat hunting augmentation, automated incident summarization, and ticket enrichment by pulling indicators from intelligence services to provide context to the tickets being investigated, and generating queries to support threat hunting activities. We&amp;#8217;ve found that this helps eliminate labor-intensive activities.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;MICROSOFT: What impact has AI had on your team, and do you have any lessons learned from integrating AI into your security operations?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;FERKET: Once the initial learning curve of Security Copilot was passed, the Dow CSOC quickly identified quick wins for leveraging the tool. It is now common in any investigation to hear the phrase “Have you asked Copilot?” for a wide variety of situations.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In the past, our Dow CSOC relied on extensive institutional knowledge within the team to know what “good” and “bad” looked like. Being able to query Security Copilot in natural language helps the team to quickly identify relevant information and act on it. The ability to leverage Security Copilot helps analysts to focus more on investigations and less on sifting through data. Before this level of automation, a member of my security team would have to manually source data from several sources to draw correlations and conclusions during an investigation. Now, when an alert trips, Security Copilot enriches alerts with contextualized data to support investigations. By using Security Copilot for incident summarization and enrichment, natural language search, and automation, the CSOC can decrease the time between when an alert fires and when action is taken.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Both Microsoft 365 Copilot and Security Copilot have become integral to the day-to-day operations of the CSOC, with analysts querying the tool several times a day for many reasons, ranging from data interpretation to ticket enrichment. Security Copilot enriches tickets with relevant data, cutting down the amount of time spent collating data. It has helped the Dow CSOC to automate the menial tasks of security investigations, allowing our more senior analysts to focus on proactive defensive measures. Our team has been surprised by how quickly we adopted the new capabilities and integrated them into our standard processes.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Within Dow, we also have an apprentice program with individuals from diverse backgrounds who are very often non-IT trained. Traditionally, it would take upwards of up a year of on-the-job training and job-shadowing of senior analysts for one of these apprentices to become “full” members of the team. Now, these apprentices can use Security Copilot as a “virtual mentor” for topics such as query building or learning the cyberthreat landscape, drastically decreasing the ramp time required for the apprentice to be productive and ensuring that senior analysts are able to focus on proactive defense.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;MICROSOFT: What are the future directions and innovations you are considering in the field of AI and security, and how do you plan to implement them?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;FERKET: Looking ahead, we’re exploring the use of advanced AI-powered capabilities to enhance detection of anomalies and patterns across large-scale telemetry. We&amp;#8217;re also evaluating ways to streamline rule management through intelligent automation, aiming to reduce the manual overhead for our analysts. Another area of interest is dynamic prioritization of alerts, where contextual signals and threat intelligence can help refine response urgency. As always, we remain vigilant about the evolving use of AI by malicious actors and continue to assess its broader implications on the threat landscape.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;MICROSOFT: What advice would you give to other security teams starting their AI journey?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;FERKET: Be agile, but focused. AI is undoubtedly changing the cyber defense landscape, with many emergent tools being released regularly. It is easy to get lost in the “art of the possible” when it comes to AI tooling. Organizations starting their AI journey should be mindful of their core business objectives, the limitations of current AI capabilities, and be ready to pivot as things change rapidly. For the Dow CSOC, AI is seen as a great augmentation to help analysts be more effective and spend time on what really matters.&lt;/p&gt;
+
+
+
+&lt;div class="is-style-inline wp-block-bloginabox-theme-promotional"&gt;
+	
+&lt;div class="promotional promotional--has-media promotional--media-right"&gt;
+	&lt;div class="promotional__wrapper"&gt;
+		&lt;div class="promotional__content-wrapper"&gt;
+			&lt;div class="promotional__content"&gt;
+				
+
+&lt;h2 class="wp-block-heading" id="microsoft-ignite-2025"&gt;Microsoft Ignite 2025&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Join us at Microsoft Ignite 2025 to explore our AI-first, end-to-end security platform, attend hands-on labs, get certified, connect with peers, and chat with industry experts&lt;br /&gt;&lt;a href="https://aka.ms/MSIgnite_Blog_Security_Generic" rel="noreferrer noopener" target="_blank"&gt;Register now&lt;/a&gt;.&lt;/p&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+					&lt;div class="promotional__media-wrapper"&gt;
+				&lt;div class="promotional__media"&gt;
+											&lt;img alt="A group of people in a building" class="attachment-full size-full" height="1334" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Ignite_2024_11_18-39-1.jpg" width="2000" /&gt;									&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/12/dows-125-year-legacy-innovating-with-ai-to-secure-a-long-future/"&gt;Dow&amp;#8217;s 125-year legacy: Innovating with AI to secure a long future&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=141646</guid></item><item><title>Trump Says Intel CEO’s Success an ‘Amazing Story’ After Calling for His Resignation</title><link>https://www.techrepublic.com/article/news-trump-meeting-intel-ceo-lip-bu-tan/</link><description>US President Donald Trump says his Cabinet will meet with Lip-Bu Tan over the next week.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4321393</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>Two Pwnie Awards, One Crucial Lesson: What Our OpenSSH Research Reveals About Cyber Defense in 2025</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>We’re honored that the Pwnie Awards recognized the Qualys Threat Research Unit (TRU) with two wins at Black Hat/DEF CON this year—Best RCE for regreSSHion (CVE-2024-6387) and Epic Achievement for our multi-year work uncovering issues in OpenSSH, including CVE-2025-26465. Awards are nice; what matters is what the research means for defenders. The Pwnie Awards, held [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re honored that the Pwnie Awards recognized the &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; with two wins at Black Hat/DEF CON this year—Best RCE for regreSSHion (CVE-2024-6387) and Epic Achievement for our multi-year work uncovering issues in OpenSSH, including CVE-2025-26465. Awards are nice; what matters is what the research means for defenders.&lt;/p&gt;
 
 
 
@@ -87,7 +425,17 @@
 
 
 
-&lt;p&gt;To stay informed of the latest TRU posts, &lt;a href="https://blog.qualys.com/"&gt;subscribe to our blog&lt;/a&gt;. &amp;nbsp;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38446</guid><category>Qualys Insights</category><category>Vulnerabilities and Threat Research</category><category>Pwnie Awards</category><category>TRU</category></item><item><title>Data Brokers Are Hiding Their Opt-Out Pages From Google Search</title><link>https://www.wired.com/story/data-brokers-hiding-opt-out-pages-google-search/</link><description>Dozens of companies are hiding how you can delete your personal data, The Markup and CalMatters found.</description><guid isPermaLink="false">689a1ccdb4b84802fdb0be23</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>Google</category><category>surveillance</category><category>data</category><category>security</category><category>California</category><category>Delete Thee</category></item><item><title>8 Best Identity and Access Management (IAM) Solutions</title><link>https://www.techrepublic.com/article/iam-tools/</link><description>Microsoft, JumpCloud and CyberArk are among the best identity and access management solutions available. Find out how these and other IAM solutions compare and explore their best use cases.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3965504</guid><category>Cloud Security</category><category>Top Products</category><category>IAM</category></item><item><title>Artificial Intelligence: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/artificial-intelligence-benefits-best-practices/</link><description>Discover the advantages and master the best practices of AI with this in-depth feature. Enhance Knowledge — Whatever your industry, it’s prudent to understand AI. Comprehensive Analysis — This 10-page PDF looks at advanced visualization and decision-making, automation, and more. Expertise and Authority — Written by Ray Fernandez through 20 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/artificial-intelligence-benefits-and-best-practices/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>ISC Stormcast For Tuesday, August 12th, 2025 https://isc.sans.edu/podcastdetail/9566, (Tue, Aug 12th)</title><link>https://isc.sans.edu/diary/rss/32190</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32190</guid></item><item><title>New Ransomware Charon Uses Earth Baxia APT Techniques To Target Enterprises</title><link>https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html</link><description>We uncovered Charon, a new ransomware strainfamily that uses advanced APT-style techniques, including DLL sideloading, process injection, and anti-EDR capabilities, to target organizations with customized ransom demands.</description><guid isPermaLink="false">urn:uuid:fef997ec-1074-266b-fa91-2f54a1ec43a2</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>New Ransomware Charon Uses Earth Baxia APT Techniques to Target Enterprises</title><link>https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html</link><description>We uncovered Charon, a new ransomware strainfamily that uses advanced APT-style techniques, including DLL sideloading, process injection, and anti-EDR capabilities, to target organizations with customized ransom demands.</description><guid isPermaLink="false">urn:uuid:f35223df-ffe3-4520-d2e5-70252997d48f</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Aligning our prices and packaging with the problems we help customers solve</title><link>https://blog.cloudflare.com/aligning-our-prices-and-packaging-with-the-problems-we-help-customers-solve/</link><description>You asked for simplicity. We listened. Introducing Externa and Interna, two new use-case-driven packages to simplify how you connect and protect your entire infrastructure.</description><content:encoded>&lt;p&gt;At Cloudflare, we have a simple but audacious goal: to help build a better Internet. That mission has driven us to build one of the &lt;a href="https://www.cloudflare.com/network/"&gt;&lt;u&gt;world’s largest networks&lt;/u&gt;&lt;/a&gt;, to &lt;a href="https://blog.cloudflare.com/content-independence-day-no-ai-crawl-without-compensation/"&gt;&lt;u&gt;stand up for content providers&lt;/u&gt;&lt;/a&gt;, and to innovate relentlessly to make the Internet safer, faster, and more reliable for everyone, everywhere.&lt;/p&gt;&lt;p&gt;Building world-class products is only part of the battle, however. Fulfilling our mission means making these products accessible, including a pricing model that is fair, predictable, and aligned with the value we provide. If our packaging is confusing, or if our pricing penalizes you for using the service, then we’re not living up to our &lt;a href="https://www.cloudflare.com/about-overview/"&gt;&lt;u&gt;mission&lt;/u&gt;&lt;/a&gt;. And the best way to ensure that alignment?&lt;/p&gt;&lt;p&gt;Listen to our customers.&lt;/p&gt;&lt;p&gt;Over the years, your feedback has shaped our product roadmap, helping us evolve to offer &lt;a href="https://developers.cloudflare.com/products/"&gt;&lt;u&gt;nearly 100 products&lt;/u&gt;&lt;/a&gt; across four solution areas — &lt;a href="https://www.cloudflare.com/application-services/#application-services-case-products"&gt;&lt;u&gt;Application Services&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/network-services/#network-services-products"&gt;&lt;u&gt;Network Services&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/zero-trust/#platform-capabilities"&gt;&lt;u&gt;Zero Trust Services&lt;/u&gt;&lt;/a&gt;, and our &lt;a href="https://www.cloudflare.com/plans/developer-platform/"&gt;&lt;u&gt;Developer Platform&lt;/u&gt;&lt;/a&gt; — on a single, unified platform and network infrastructure. Recently, we’ve heard a new theme emerge: the need for simplicity. You’ve asked us, “A hundred products is a lot. Can you please be more prescriptive?” and “Can you make your pricing more straightforward?”&lt;/p&gt;&lt;p&gt;We heard that feedback loud and clear. That's why we are incredibly excited to introduce &lt;b&gt;Externa&lt;/b&gt; and &lt;b&gt;Interna&lt;/b&gt;,&lt;b&gt; &lt;/b&gt;two new families of &lt;a href="https://www.cloudflare.com/enterprise/solution-packages/"&gt;&lt;u&gt;use-case bundles&lt;/u&gt;&lt;/a&gt; designed to simplify your journey with Cloudflare.&lt;/p&gt;
+&lt;p&gt;To stay informed of the latest TRU posts, &lt;a href="https://blog.qualys.com/"&gt;subscribe to our blog&lt;/a&gt;. &amp;nbsp;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38446</guid><category>Qualys Insights</category><category>Vulnerabilities and Threat Research</category><category>Pwnie Awards</category><category>TRU</category></item><item><title>Data Brokers Are Hiding Their Opt-Out Pages From Google Search</title><link>https://www.wired.com/story/data-brokers-hiding-opt-out-pages-google-search/</link><description>Dozens of companies are hiding how you can delete your personal data, The Markup and CalMatters found.</description><guid isPermaLink="false">689a1ccdb4b84802fdb0be23</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>Google</category><category>surveillance</category><category>data</category><category>security</category><category>California</category><category>Delete Thee</category></item><item><title>CISA Releases Seven Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/08/12/cisa-releases-seven-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released seven Industrial Control Systems (ICS) advisories on August 12, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ICSA-25-224-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-224-01"&gt;Ashlar-Vellum Cobalt, Xenon, Argon, Lithium, Cobalt Share&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-224-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-224-02"&gt;Johnson Controls iSTAR Ultra, iSTAR Ultra SE, iSTAR Ultra G2, iSTAR Ultra G2 SE, iSTAR Edge G2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-224-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-224-03"&gt;Schneider Electric EcoStruxure Power Monitoring Expert&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-224-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-224-04"&gt;AVEVA PI Integrator&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;ICSA-24-263-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-263-04"&gt;MegaSys Computer Technologies Telenium Online Web Application (Update A)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ICSA-25-191-10 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-191-10"&gt;End-of-Train and Head-of-Train Remote Linking Protocol (Update A)&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;ICSMA-25-224-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-224-01"&gt;Santesoft Sante PACS Server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23757</guid></item><item><title>8 Best Identity and Access Management (IAM) Solutions</title><link>https://www.techrepublic.com/article/iam-tools/</link><description>Microsoft, JumpCloud and CyberArk are among the best identity and access management solutions available. Find out how these and other IAM solutions compare and explore their best use cases.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3965504</guid><category>Cloud Security</category><category>Top Products</category><category>IAM</category></item><item><title>Artificial Intelligence: Benefits and Best Practices</title><link>https://www.techrepublic.com/resource-library/feature/artificial-intelligence-benefits-best-practices/</link><description>Discover the advantages and master the best practices of AI with this in-depth feature. Enhance Knowledge — Whatever your industry, it’s prudent to understand AI. Comprehensive Analysis — This 10-page PDF looks at advanced visualization and decision-making, automation, and more. Expertise and Authority — Written by Ray Fernandez through 20 hours of research, writing, editing, ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/artificial-intelligence-benefits-and-best-practices/</guid><category>Artificial Intelligence</category><category>IT Resources</category></item><item><title>ISC Stormcast For Tuesday, August 12th, 2025 https://isc.sans.edu/podcastdetail/9566, (Tue, Aug 12th)</title><link>https://isc.sans.edu/diary/rss/32190</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32190</guid></item><item><title>New Ransomware Charon Uses Earth Baxia APT Techniques To Target Enterprises</title><link>https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html</link><description>We uncovered Charon, a new ransomware strainfamily that uses advanced APT-style techniques, including DLL sideloading, process injection, and anti-EDR capabilities, to target organizations with customized ransom demands.</description><guid isPermaLink="false">urn:uuid:fef997ec-1074-266b-fa91-2f54a1ec43a2</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>New Ransomware Charon Uses Earth Baxia APT Techniques to Target Enterprises</title><link>https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html</link><description>We uncovered Charon, a new ransomware strainfamily that uses advanced APT-style techniques, including DLL sideloading, process injection, and anti-EDR capabilities, to target organizations with customized ransom demands.</description><guid isPermaLink="false">urn:uuid:f35223df-ffe3-4520-d2e5-70252997d48f</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Aligning our prices and packaging with the problems we help customers solve</title><link>https://blog.cloudflare.com/aligning-our-prices-and-packaging-with-the-problems-we-help-customers-solve/</link><description>You asked for simplicity. We listened. Introducing Externa and Interna, two new use-case-driven packages to simplify how you connect and protect your entire infrastructure.</description><content:encoded>&lt;p&gt;At Cloudflare, we have a simple but audacious goal: to help build a better Internet. That mission has driven us to build one of the &lt;a href="https://www.cloudflare.com/network/"&gt;&lt;u&gt;world’s largest networks&lt;/u&gt;&lt;/a&gt;, to &lt;a href="https://blog.cloudflare.com/content-independence-day-no-ai-crawl-without-compensation/"&gt;&lt;u&gt;stand up for content providers&lt;/u&gt;&lt;/a&gt;, and to innovate relentlessly to make the Internet safer, faster, and more reliable for everyone, everywhere.&lt;/p&gt;&lt;p&gt;Building world-class products is only part of the battle, however. Fulfilling our mission means making these products accessible, including a pricing model that is fair, predictable, and aligned with the value we provide. If our packaging is confusing, or if our pricing penalizes you for using the service, then we’re not living up to our &lt;a href="https://www.cloudflare.com/about-overview/"&gt;&lt;u&gt;mission&lt;/u&gt;&lt;/a&gt;. And the best way to ensure that alignment?&lt;/p&gt;&lt;p&gt;Listen to our customers.&lt;/p&gt;&lt;p&gt;Over the years, your feedback has shaped our product roadmap, helping us evolve to offer &lt;a href="https://developers.cloudflare.com/products/"&gt;&lt;u&gt;nearly 100 products&lt;/u&gt;&lt;/a&gt; across four solution areas — &lt;a href="https://www.cloudflare.com/application-services/#application-services-case-products"&gt;&lt;u&gt;Application Services&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/network-services/#network-services-products"&gt;&lt;u&gt;Network Services&lt;/u&gt;&lt;/a&gt;, &lt;a href="https://www.cloudflare.com/zero-trust/#platform-capabilities"&gt;&lt;u&gt;Zero Trust Services&lt;/u&gt;&lt;/a&gt;, and our &lt;a href="https://www.cloudflare.com/plans/developer-platform/"&gt;&lt;u&gt;Developer Platform&lt;/u&gt;&lt;/a&gt; — on a single, unified platform and network infrastructure. Recently, we’ve heard a new theme emerge: the need for simplicity. You’ve asked us, “A hundred products is a lot. Can you please be more prescriptive?” and “Can you make your pricing more straightforward?”&lt;/p&gt;&lt;p&gt;We heard that feedback loud and clear. That's why we are incredibly excited to introduce &lt;b&gt;Externa&lt;/b&gt; and &lt;b&gt;Interna&lt;/b&gt;,&lt;b&gt; &lt;/b&gt;two new families of &lt;a href="https://www.cloudflare.com/enterprise/solution-packages/"&gt;&lt;u&gt;use-case bundles&lt;/u&gt;&lt;/a&gt; designed to simplify your journey with Cloudflare.&lt;/p&gt;
           &lt;figure&gt;
           &lt;img src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6YAEafOTtpzusmVvdqDVXY/876ca11211dadf6bbe6750719a3df476/image6.png" /&gt;
           &lt;/figure&gt;
@@ -456,7 +804,7 @@ Social Media Links: &lt;a href="https://jbu.me"&gt;https://jbu.me&lt;/a&gt;&lt;/
 
 
 
-&lt;p&gt;Just click the triangle next to each question to show the answers.&lt;/p&gt;
+&lt;p&gt;Just click on each question to show the answers.&lt;/p&gt;
 
 
 
@@ -527,7 +875,7 @@ Social Media Links: &lt;a href="https://jbu.me"&gt;https://jbu.me&lt;/a&gt;&lt;/
 
 
 &lt;details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow"&gt;&lt;strong&gt;For a business operating internationally – including within the EEA, UK and other jurisdictions – would you recommend adopting differentiated approaches to cookie compliance in light of varying regulatory frameworks, such as the GDPR versus the DUAA (Data (Use and Access) Act)? While my personal approach is to maintain alignment with the GDPR as the ‘gold standard’ of compliance to ensure robust data protection and minimise regulatory risk, I do appreciate that there may be commercial or marketing benefits to tailoring strategies regionally – particularly in jurisdictions that offer more flexibility. I’d be interested in your perspective on how best to balance these considerations.&lt;/strong&gt;
-&lt;p&gt;Great question! It is worth noting that the EU confirmed earlier this year, via the &lt;a href="https://commission.europa.eu/strategy-and-policy/strategy-documents/commission-work-programme/commission-work-programme-2025_en" rel="noreferrer noopener" target="_blank"&gt;Commission’s work programme for 2025&lt;/a&gt;, that it will not be pursuing amendments to the ePrivacy regulation at the present time. The DUAA aside, we therefore probably have a period of stability to come in respect of UK/EU ePrivacy regulations.&lt;/p&gt;
+&lt;p&gt;Great question! It is worth noting that the EU confirmed earlier this year, via the&amp;nbsp;&lt;a href="https://commission.europa.eu/strategy-and-policy/strategy-documents/commission-work-programme/commission-work-programme-2025_en" rel="noreferrer noopener" target="_blank"&gt;Commission’s work programme for 2025&lt;/a&gt;, that it will not be pursuing amendments to the ePrivacy regulation at the present time. The DUAA aside, we therefore probably have a period of stability to come in respect of UK/EU ePrivacy regulations.&lt;/p&gt;
 
 
 
@@ -577,7 +925,7 @@ Social Media Links: &lt;a href="https://jbu.me"&gt;https://jbu.me&lt;/a&gt;&lt;/
 
 
 &lt;details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow"&gt;&lt;strong&gt;I have noticed that newspaper websites in particular are only allowing you to reject cookies if you pay for a subscription – to access the full article you have to allow all cookies. Is this really allowed?&lt;/strong&gt;
-&lt;p&gt;This sounds like a consent or pay option whereby you consent to the use of cookies for online tracking and personalised advertising to access the website or your reject the use of these cookies and pay a fee. The EU and UK are broadly aligned that “consent or pay” is possible but individuals should be properly informed and they must be presented with a genuine choice. There are other requirements to consider too, such as the amount charged. We think that, generally speaking, the current models in use for consent or pay are unlikely to be compliant but we don’t see them going away anytime soon unless there is robust regulatory action. This is quite a complex topic so if you want to know more, we recommend reading the &lt;a href="https://www.edpb.europa.eu/news/news/2024/edpb-consent-or-pay-models-should-offer-real-choice_en" rel="noreferrer noopener" target="_blank"&gt;EU&lt;/a&gt; and the &lt;a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/online-tracking/consent-or-pay/" rel="noreferrer noopener" target="_blank"&gt;UK&lt;/a&gt; guidance.&lt;/p&gt;
+&lt;p&gt;This sounds like a consent or pay option whereby you consent to the use of cookies for online tracking and personalised advertising to access the website or your reject the use of these cookies and pay a fee. The EU and UK are broadly aligned that “consent or pay” is possible but individuals should be properly informed and they must be presented with a genuine choice. There are other requirements to consider too, such as the amount charged. We think that, generally speaking, the current models in use for consent or pay are unlikely to be compliant but we don’t see them going away anytime soon unless there is robust regulatory action. This is quite a complex topic so if you want to know more, we recommend reading the&amp;nbsp;&lt;a href="https://www.edpb.europa.eu/news/news/2024/edpb-consent-or-pay-models-should-offer-real-choice_en" rel="noreferrer noopener" target="_blank"&gt;EU&lt;/a&gt;&amp;nbsp;and the&amp;nbsp;&lt;a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/online-tracking/consent-or-pay/" rel="noreferrer noopener" target="_blank"&gt;UK&lt;/a&gt;&amp;nbsp;guidance.&lt;/p&gt;
 &lt;/details&gt;
 
 
@@ -587,7 +935,7 @@ Social Media Links: &lt;a href="https://jbu.me"&gt;https://jbu.me&lt;/a&gt;&lt;/
 
 
 &lt;details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow"&gt;&lt;strong&gt;When is the UK DUAA (Data (Use and Access) Act) coming into effect?&lt;/strong&gt;
-&lt;p&gt;There will be a phased approach, as some of the requirements require secondary legislation. The &lt;a href="https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/" rel="noreferrer noopener" target="_blank"&gt;ICO confirmed&lt;/a&gt; the changes will be phased in between June 2025 and June 2026. We suggest you keep an eye on the ICO’s website for future updates. We also recommend you follow &lt;a href="https://ico.org.uk/about-the-ico/what-we-do/our-plans-for-new-and-updated-guidance/general-data-protection/" rel="noreferrer noopener" target="_blank"&gt;this page&lt;/a&gt;: it confirms when revised ICO guidance will be available.&lt;/p&gt;
+&lt;p&gt;There will be a phased approach, as some of the requirements require secondary legislation. The&amp;nbsp;&lt;a href="https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/" rel="noreferrer noopener" target="_blank"&gt;ICO confirmed&lt;/a&gt;&amp;nbsp;the changes will be phased in between June 2025 and June 2026. We suggest you keep an eye on the ICO’s website for future updates. We also recommend you follow&amp;nbsp;&lt;a href="https://ico.org.uk/about-the-ico/what-we-do/our-plans-for-new-and-updated-guidance/general-data-protection/" rel="noreferrer noopener" target="_blank"&gt;this page&lt;/a&gt;: it confirms when revised ICO guidance will be available.&lt;/p&gt;
 &lt;/details&gt;
 
 
@@ -651,7 +999,7 @@ Social Media Links: &lt;a href="https://jbu.me"&gt;https://jbu.me&lt;/a&gt;&lt;/
 
 
 &lt;details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow"&gt;&lt;strong&gt;Isn&amp;#8217;t pre-ticked consent now allowed for certain analytic and informational cookies as a result of the DUAA (Data (Use and Access) Act) 2025?&lt;/strong&gt;
-&lt;p&gt;Statistical cookies – including analytics and performance cookies – will no longer require consent under the DUAA. Users will still need to be informed about the use of such cookies and provided with an option to opt out. The &lt;a href="https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/" rel="noreferrer noopener" target="_blank"&gt;ICO has confirmed&lt;/a&gt; the changes brought in by the Act will be phased in between June 2025 and June 2026.&lt;/p&gt;
+&lt;p&gt;Statistical cookies – including analytics and performance cookies – will no longer require consent under the DUAA. Users will still need to be informed about the use of such cookies and provided with an option to opt out. The&amp;nbsp;&lt;a href="https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/" rel="noreferrer noopener" target="_blank"&gt;ICO has confirmed&lt;/a&gt;&amp;nbsp;the changes brought in by the Act will be phased in between June 2025 and June 2026.&lt;/p&gt;
 &lt;/details&gt;
 
 
@@ -892,7 +1240,7 @@ gbruneau at isc dot sans dot edu&lt;/p&gt;
  
  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32180</guid></item><item><title>A Single Poisoned Document Could Leak ‘Secret’ Data Via ChatGPT</title><link>https://www.wired.com/story/poisoned-document-could-leak-secret-data-chatgpt/</link><description>Security researchers found a weakness in OpenAI’s Connectors, which let you hook up ChatGPT to other services, that allowed them to extract data from a Google Drive without any user interaction.</description><guid isPermaLink="false">688b4993fbae564b74bfc17e</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>Business / Artificial Intelligence</category><category>artificial intelligence</category><category>cybersecurity</category><category>hacking</category><category>security</category><category>vulnerabilities</category><category>Google</category><category>OpenAI</category><category>ChatGPT</category><category>black hat</category><category>DefCon</category><category>Zero Click</category></item><item><title>Project Ire: Microsoft Tests AI That Autonomously Detects Malware</title><link>https://www.techrepublic.com/article/news-microsoft-project-ire-ai-reverse-engineers-malware/</link><description>Project Ire is Microsoft's autonomous AI that reverse engineers software to detect malware without prior knowledge or human intervention.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320524</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>Security</category></item><item><title>Simple Prompting Hack for OpenAI’s New Open-Weight Models</title><link>https://www.techrepublic.com/article/news-openai-gpt-oss-prompting-hack/</link><description>TechnologyAdvice's Grant Harvey shares a "dead-simple prompting hack" for OpenAI's gpt-oss models, as well as several related developer guides.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320353</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category></item><item><title>Black Hat 2025: Security Researcher Unpacks Cybercrime’s Evolution… and How AI Is Changing the Game</title><link>https://www.techrepublic.com/article/news-black-hat-2025-cybercrime-evolution-ai-mikko-hypponen/</link><description>From prank viruses to profit-driven cybercrime, Mikko Hypponen explains how today’s malware is targeted, professional, and all about money.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320479</guid><category>Artificial Intelligence</category><category>News</category><category>Security</category></item><item><title>China Accuses Nvidia of Putting Backdoors into Their Chips</title><link>https://www.schneier.com/blog/archives/2025/08/china-accuses-nvidia-of-putting-backdoors-into-their-chips.html</link><description>&lt;p&gt;The government of China has accused Nvidia of inserting a &lt;a href="https://arstechnica.com/gadgets/2025/07/china-claims-nvidia-built-backdoor-into-h20-chip-designed-for-chinese-market/"&gt;backdoor&lt;/a&gt; into their H20 chips:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;China&amp;#8217;s cyber regulator on Thursday said it had held a meeting with Nvidia over what it called &amp;#8220;serious security issues&amp;#8221; with the company&amp;#8217;s artificial intelligence chips. It said US AI experts had &amp;#8220;revealed that Nvidia&amp;#8217;s computing chips have location tracking and can remotely shut down the technology.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;The government of China has accused Nvidia of inserting a &lt;a href="https://arstechnica.com/gadgets/2025/07/china-claims-nvidia-built-backdoor-into-h20-chip-designed-for-chinese-market/"&gt;backdoor&lt;/a&gt; into their H20 chips:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;China&amp;#8217;s cyber regulator on Thursday said it had held a meeting with Nvidia over what it called &amp;#8220;serious security issues&amp;#8221; with the company&amp;#8217;s artificial intelligence chips. It said US AI experts had &amp;#8220;revealed that Nvidia&amp;#8217;s computing chips have location tracking and can remotely shut down the technology.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70556</guid><category>Uncategorized</category><category>AI</category><category>backdoors</category><category>China</category><category>hardware</category></item><item><title>NVIDIA Takes Firm Stance Against Kill Switches &amp; Backdoors in AI Chips</title><link>https://www.techrepublic.com/article/news-nvidia-ai-chips-backdoors-kill-switches/</link><description>The statement comes as both US and Chinese authorities probe the lucrative global AI chip business, which NVIDIA dominates.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320475</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category><category>Security</category></item><item><title>Claude Opus 4.1: Anthropic Delivers Better Coding, Debugging, Analytics Abilities</title><link>https://www.techrepublic.com/article/news-anthropic-claude-opus-4-1/</link><description>Claude Opus 4.1 scores 74.5% on the SWE-bench Verified benchmark, indicating major improvements in real-world programming, bug detection, and agent-like problem solving.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320472</guid><category>Artificial Intelligence</category><category>Developer</category><category>Innovation</category><category>News</category><category>Security</category></item><item><title>Sharing practical guidance: Launching Microsoft Secure Future Initiative (SFI) patterns and practices</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/06/sharing-practical-guidance-launching-microsoft-secure-future-initiative-sfi-patterns-and-practices/</link><description>&lt;p&gt;We’re excited to launch SFI patterns and practices: a new library of actionable guidance designed to help organizations implement security measures at scale. This launch marks a next step in our journey to make our SFI learnings practical for our customers, partners, and broader security ecosystem. These patterns are not just theory—they’re based on what we’ve done internally to protect Microsoft’s infrastructure, and we are now sharing them to help you do the same. &lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;China&amp;#8217;s cyber regulator on Thursday said it had held a meeting with Nvidia over what it called &amp;#8220;serious security issues&amp;#8221; with the company&amp;#8217;s artificial intelligence chips. It said US AI experts had &amp;#8220;revealed that Nvidia&amp;#8217;s computing chips have location tracking and can remotely shut down the technology.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70556</guid><category>Uncategorized</category><category>AI</category><category>backdoors</category><category>China</category><category>hardware</category></item><item><title>NVIDIA Takes Firm Stance Against Kill Switches &amp; Backdoors in AI Chips</title><link>https://www.techrepublic.com/article/news-nvidia-ai-chips-backdoors-kill-switches/</link><description>The statement comes as both US and Chinese authorities probe the lucrative global AI chip business, which NVIDIA dominates.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4320475</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category><category>Security</category></item><item><title>Sharing practical guidance: Launching Microsoft Secure Future Initiative (SFI) patterns and practices</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/06/sharing-practical-guidance-launching-microsoft-secure-future-initiative-sfi-patterns-and-practices/</link><description>&lt;p&gt;We’re excited to launch SFI patterns and practices: a new library of actionable guidance designed to help organizations implement security measures at scale. This launch marks a next step in our journey to make our SFI learnings practical for our customers, partners, and broader security ecosystem. These patterns are not just theory—they’re based on what we’ve done internally to protect Microsoft’s infrastructure, and we are now sharing them to help you do the same. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/06/sharing-practical-guidance-launching-microsoft-secure-future-initiative-sfi-patterns-and-practices/"&gt;Sharing practical guidance: Launching Microsoft Secure Future Initiative (SFI) patterns and practices&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;We’re excited to launch &lt;strong&gt;Microsoft Secure Future Initiative (SFI) patterns and practices&lt;/strong&gt;: a new library of actionable guidance designed to help organizations implement security measures at scale.&lt;/p&gt;
 
 
@@ -5339,7 +5687,7 @@ You can contact us in email or qtox.&lt;/pre&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b5960c8318"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b6fac49e61"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -10521,7 +10869,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b59616112c"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b6facba47a"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -10531,7 +10879,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b5961611fd"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-689b6facba537"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -11733,69 +12081,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 &lt;p&gt;Organizations should report incidents and anomalous activity to CISA’s 24/7 Operations Center at&amp;nbsp;SOC@mail.cisa.dhs.gov&amp;nbsp;or 1-844-Say-CISA (1-844-729-2472).&amp;nbsp;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;The information in this report is being provided&amp;nbsp;“as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/23640</guid></item><item><title>Customer guidance for SharePoint vulnerability CVE-2025-53770</title><link>https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/</link><description>Revision Change Date 1.0 Information published 07/19/25 2.0 Clarified affected SharePoint product in summary 07/20/25 Added fix availability guidance Provided additional protections guidance regarding: Upgrade SharePoint products to supported versions (if required) Install July 2025 Security Updates Rotate machine keys Updated Microsoft Defender detections and protections section: Documented additional MDE alerts Mapping exposure via Microsoft Defender Vulnerability Management Documented CVE-2025-53771 3.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/</guid></item><item><title>Microsoft at Black Hat USA 2025: A unified approach to modern cyber defense</title><link>https://techcommunity.microsoft.com/blog/microsoft-security-blog/%E2%80%8B%E2%80%8Bmicrosoft-at-black-hat-usa-2025-a-unified-approach-to-modern-cyber-defense%E2%80%8B%E2%80%8B/4434292</link><description>&lt;p&gt;Microsoft will spotlight its AI-first, end-to-end security platform at Black Hat USA 2025. Read our blog post for details on how to connect with us there and what to expect from our participation.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/%E2%80%8B%E2%80%8Bmicrosoft-at-black-hat-usa-2025-a-unified-approach-to-modern-cyber-defense%E2%80%8B%E2%80%8B/4434292"&gt;Microsoft at Black Hat USA 2025: A unified approach to modern cyber defense&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Microsoft will be at Black Hat USA 2025, August 5–7 in Las Vegas, and we’re bringing you a unified, practitioner-driven experience built around real-world insights, threat intelligence, incident response, and hands-on AI expertise.&lt;br /&gt;We believe security teams are strongest when intelligence, tools, and deep expertise come together. At Microsoft, we’ve eliminated internal silos between threat intelligence, red teaming, incident response, and product engineering. That closed-loop system lets us move faster, translating threat signals into global protection every day.&lt;br /&gt;This integration isn’t theoretical. It means when researchers detect a threat through our global network, that information flows directly to the red team stress-testing our defenses, the incident responders investigating real intrusions, and the engineering teams building new mitigations; all at once. It&amp;#8217;s a system designed to learn, adapt, and protect at scale. At Black Hat, we’re opening that loop so you can see how it works and inviting you to see how it can help you defend at AI speed. Want to meet the people behind our operations? Request an invite to our Black Hat VIP mixer.&lt;br /&gt;Start your Black Hat journey early with the Microsoft Threat Intelligence Podcast&lt;br /&gt;Before Black Hat kicks off, hear from Black Hat NOC lead Grifter and Lintile in our latest episode of the Microsoft Threat Intelligence Podcast. They explore what it takes to secure one of the world’s most high-profile cybersecurity conferences, what the Black Hat Network Operations Center (NOC) sees in real time, and how defenders can apply those lessons to their own environments. Whether you&amp;#8217;re attending in person or following along remotely, this episode offers a rare look into threat activity and security insights from inside the NOC.&lt;br /&gt;Meet us at Booth 2246: Conversations, not presentations&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Skip the crowded theater sessions and pull up a chair. Throughout the day, we’re hosting informal conversations at our mobile podcast studio and then shifting to expert meetups where your questions will be answered. At booth 2246, you’ll hear directly from Microsoft security experts on what they’re seeing, and how you can apply it. Topics include:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;• Addressing the ransomware threat landscape&lt;br /&gt;• Defending against BEC attacks&lt;br /&gt;• Shifts in social engineering and phishing&lt;br /&gt;• Securing non-human identities (agents)&lt;br /&gt;• And a few surprises&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;We’ll also be inviting our friends from the Microsoft Threat Intelligence Podcast, Microsoft BlueHat podcast (MSRC), GitHub, and a few special guests.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Each session is a chance to hear what our teams are seeing in the wild, how we’re responding, and how you can apply those insights in your own environment. Whether it&amp;#8217;s a live threat briefing, a deep dive into red teaming, or a behind-the-scenes look at real incident response, these are unscripted, interactive discussions designed for defenders and researchers.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Demos of Microsoft Defender, Microsoft Entra, Microsoft Purview, and Microsoft Security Copilot will run throughout the week. Stop by to talk shop, ask questions, or just get a clearer view of why our AI-first, end-to-end platform is designed to help you move faster, respond with precision, and adapt to new threats with confidence.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Connect with the experts at our VIP Mixer&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;You’re invited to connect with the people behind the defense at our VIP Mixer on Wednesday, Aug. 6. Join Microsoft Security for an evening of conversations, insights, and connections with our threat intelligence, incident response, and Security Copilot teams, alongside your peers from across the security community.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Whether you&amp;#8217;re exploring how to put AI agents to work, navigating advanced threats, or evolving your detection and response strategy, this is your chance to meet the experts and teams helping defenders stay ahead.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security is a team sport, and we would like to thank Armor, Cyberproof, Forescout, Ontinue and Security Risk Advisors members of the Microsoft Intelligent Security Association (MISA) for sponsoring this event.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Drinks and appetizers will be provided. Request to attend today!&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Session Spotlight: Gain practical strategies for unmasking cyber threats&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Thursday, August 7 | 12:15–12:40 PM&lt;br /&gt;In a threat landscape shaped by AI and threat actors, cybersecurity teams need more than tools; they need the right mindset, collaboration models, and playbooks to stay ahead. During our main stage session, we will bring together frontline experts from Microsoft Security—Sherrod DeGrippo, Director, Threat Intelligence Strategy, Aarti Borkar, Corporate Vice President, Customer Success and Incident Response, Andrew Rapp, Leader, Incident Response and Simeon Kakpovi, —to share how they approach high-impact intrusions and what defenders everywhere can take away from it.&lt;br /&gt;This session will offer practical strategies grounded in real-world operations, including:&lt;br /&gt;• How to build tighter alignment across threat intel, IR, and detection teams&lt;br /&gt;• Approaches to reduce friction and accelerate signal-to-action response time&lt;br /&gt;• Lessons from tracking threat actors focused on social engineering and ransomware&lt;br /&gt;• Ways to adapt red teaming and detection in a rapidly evolving AI landscape&lt;br /&gt;Whether you&amp;#8217;re refining your team’s structure or looking for sharper ways to think about advanced threats, this conversation will deliver actionable insight you can bring back to your own environment.&lt;br /&gt;Inside Look: How Microsoft Red Teams Stay in Sync&lt;br /&gt;Wednesday, August 6 | 11:25–11:45 AM&lt;br /&gt;What happens when red teams operate not in isolation, but as a connected part of a broader defense ecosystem?&lt;br /&gt;Microsoft security experts Ram Shankar Siva Kumar (founder of the AI Red Team) and Craig Nelson (Microsoft Red Team) will explore how traditional and AI red teams work side by side to proactively test Microsoft’s products, platforms, and AI systems.&lt;br /&gt;You’ll hear how these teams:&lt;br /&gt;• Identify systemic risks across cloud and enterprise services&lt;br /&gt;• Probe generative AI systems for jailbreaks and indirect misuse&lt;br /&gt;• Collaborate with MSRC and threat researchers to close the loop from discovery to defense&lt;br /&gt;• Embed red teaming into engineering cycles, not just as a check, but as a design influence&lt;br /&gt;Whether you’re red-teaming your own products or rethinking how to operationalize adversarial testing, this session will offer lessons in collaboration, tooling, and mindset from two of the most advanced offensive security teams in the industry.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Exchange ideas with other MISA members&lt;br /&gt;The Microsoft booth will include a featured partner demo station where 7 partners from the Microsoft Intelligent Security Association (MISA) will showcase how their solutions together with Microsoft Security technology help defend our mutual customers from cybersecurity threats.&lt;br /&gt;Connect with us at the Microsoft booth to find out more.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Connect with us at Black Hat US&lt;br /&gt;Cybersecurity is a team sport and defending against threats takes a cohesive approach that brings multiple disciplines and experts across specialties together. We’re committed to eliminating internal silos to focus on threat hunting that supports a comprehensive defense.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;You’ll hear more of this approach and how it can benefit your organization at Black Hat US.&lt;br /&gt;• Check out Microsoft Security executives at the AI Summit at Black Hat (separate pass required)&lt;br /&gt;• Request to attend our VIP Mixer to meet the experts behind Microsoft threat intelligence, incident response, and the Microsoft Security Response Center.&lt;br /&gt;• Discover how our end-to-end platform can help you strengthen resilience and elevate your security posture.&lt;br /&gt;• Get an exclusive $200 briefings and $100 business hall pass discount to share with your customers and prospects.&lt;br /&gt;• Sign up for a one-on-one meeting with Microsoft Security experts.&lt;br /&gt;• Listen to our Threat Intelligence Podcast.&lt;br /&gt;Visit us in Booth #2246 for a live demo and learn how our AI-powered cybersecurity can protect your organization.&lt;br /&gt;Hope to see you at Black Hat!&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/%E2%80%8B%E2%80%8Bmicrosoft-at-black-hat-usa-2025-a-unified-approach-to-modern-cyber-defense%E2%80%8B%E2%80%8B/4434292"&gt;Microsoft at Black Hat USA 2025: A unified approach to modern cyber defense&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=141276</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/07/18/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a class="Hyperlink SCXW215314346 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;&lt;u&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/u&gt;&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The information in this report is being provided&amp;nbsp;“as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/23640</guid></item><item><title>Customer guidance for SharePoint vulnerability CVE-2025-53770</title><link>https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/</link><description>Revision Change Date 1.0 Information published 07/19/25 2.0 Clarified affected SharePoint product in summary 07/20/25 Added fix availability guidance Provided additional protections guidance regarding: Upgrade SharePoint products to supported versions (if required) Install July 2025 Security Updates Rotate machine keys Updated Microsoft Defender detections and protections section: Documented additional MDE alerts Mapping exposure via Microsoft Defender Vulnerability Management Documented CVE-2025-53771 3.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/07/18/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a class="Hyperlink SCXW215314346 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;&lt;u&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/u&gt;&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
 &lt;div class="ListContainerWrapper SCXW215314346 BCX8"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://www.cve.org/CVERecord?id=CVE-2025-25257" rel="noreferrer noopener" target="_blank" title="CVE-2025-25257"&gt;CVE-2025-25257&lt;/a&gt; Fortinet FortiWeb SQL Injection Vulnerability&lt;/li&gt;
@@ -11832,133 +12118,7 @@ _Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
 &lt;li&gt;ICSMA-25-198-01 &lt;a href="https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-198-01"&gt;Panoramic Corporation Digital Imaging Software&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/li&gt;
 &lt;li&gt;ICSA-24-191-05 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-24-191-05"&gt;Johnson Controls Inc. Software House C●CURE 9000 (Update B)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23635</guid></item><item><title>Securing Tomorrow: An Interview with Trend Micro VP of Product Management Michael Habibi</title><link>https://www.trendmicro.com/en_us/research/25/g/endpoint-protection-epp-gartner-magic-quadrant-july-2025.html</link><description>Proactive security in a rapidly evolving threat landscape</description><guid isPermaLink="false">urn:uuid:9809ee2b-6ddd-9c6b-f2e4-d87a02cb4797</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Reports</category></item><item><title>Microsoft’s July Patch Might Be to Blame If Azure VM Isn’t Loading</title><link>https://www.techrepublic.com/article/news-microsoft-security-update-azure-virtual-machine-bug/</link><description>The security bug was introduced during Microsoft’s July 2025 Patch Tuesday rollout last week.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4317031</guid><category>Cloud</category><category>Cloud Security</category><category>Microsoft</category><category>News</category><category>Security</category><category>Virtualization</category></item><item><title>Oracle Critical Patch Update, July 2025 Security Update Review</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Oracle released its second quarterly edition of this year’s Critical Patch Update. The update received patches for 309 security vulnerabilities. Some of the vulnerabilities addressed in this update impact more than one product. These patches address vulnerabilities in various product families, including third-party components in Oracle products. In this quarterly Oracle Critical Patch Update, Oracle [&amp;#8230;]</description><content:encoded>&lt;p&gt;Oracle released its second quarterly edition of this year’s Critical Patch Update. The update received patches for &lt;strong&gt;309 &lt;/strong&gt;security vulnerabilities. Some of the vulnerabilities addressed in this update impact more than one product. These patches address vulnerabilities in various product families, including third-party components in Oracle products.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this quarterly Oracle Critical Patch Update, Oracle Communications received the highest number of patches, 84, constituting about 27% of the total patches released. Oracle MySQL and Oracle Fusion Middleware followed, with 40 and 36 security patches.&lt;/p&gt;
-
-
-
-&lt;p&gt;228 of the 309 security patches provided by the July Critical Patch Update (about 74%) are for non-Oracle CVEs, such as open-source components included and exploitable in the context of their Oracle product distributions.&lt;/p&gt;
-
-
-
-&lt;p&gt;This batch of security patches received 15 updates for Oracle Database products. The following is the product-wise distribution:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Six new security updates for Oracle Database Server with a maximum reported CVSS Base Score of 8.8.
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;One of these updates applies to client-only deployments of the Oracle Database.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;One new security update for Oracle Application Express with a maximum reported CVSS Base Score of 9.0.&lt;/li&gt;
-
-
-
-&lt;li&gt;One new security update for Oracle Blockchain Platform with a maximum reported CVSS Base Score of 6.5.&lt;/li&gt;
-
-
-
-&lt;li&gt;Five new security updates for Oracle GoldenGate with a maximum reported CVSS Base Score of 7.5.&lt;/li&gt;
-
-
-
-&lt;li&gt;One new security update for Oracle NoSQL Database with a maximum reported CVSS Base Score of 3.7.&lt;/li&gt;
-
-
-
-&lt;li&gt;One new security update for Oracle REST Data Services with a maximum reported CVSS Base Score of 6.1.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;In these security updates, Oracle has covered product families, including Oracle Database Server, Oracle Application Express, Oracle Blockchain Platform, Oracle GoldenGate, Oracle NoSQL Database, Oracle REST Data Services, Oracle Commerce, Oracle Communications Applications, Oracle Communications, Oracle Construction and Engineering, Oracle E-Business Suite, Oracle Enterprise Manager, Oracle Financial Services Applications, Oracle Fusion Middleware, Oracle Analytics, Oracle HealthCare Applications, Oracle Hospitality Applications, Oracle Hyperion, Oracle Insurance Applications, Oracle Java SE, Oracle JD Edwards, Oracle MySQL, Oracle PeopleSoft, Oracle Retail Applications, Oracle Siebel CRM, Oracle Supply Chain, Oracle Utilities Applications, Oracle Virtualization.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="qualys-qid-coverage"&gt;Qualys QID Coverage&lt;/h2&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;Qualys has released the following QIDS mentioned in the table:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;QIDs&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Title&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;20487&lt;/td&gt;&lt;td&gt;Oracle Database 21c Critical Patch Update &amp;#8211; July 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;20488&lt;/td&gt;&lt;td&gt;Oracle Database 19c Critical Patch Update &amp;#8211; July 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;20489&lt;/td&gt;&lt;td&gt;Oracle Database 19c OJVM Critical Patch Update &amp;#8211; July2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;20490&lt;/td&gt;&lt;td&gt;Oracle MySQL Server July 2025 Critical Patch Update (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;383578&lt;/td&gt;&lt;td&gt;Oracle Java Standard Edition (SE) Critical Patch Update &amp;#8211; July 2025 (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;383580&lt;/td&gt;&lt;td&gt;Oracle Coherence July 2025 Security Patch Update (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;383586&lt;/td&gt;&lt;td&gt;Oracle Managed Virtualization (VM) VirtualBox Multiple Security Vulnerabilities (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;296127&lt;/td&gt;&lt;td&gt;Oracle Solaris 11.4 Support Repository Update (SRU) 83.195.1 Missing (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;87583&lt;/td&gt;&lt;td&gt;Oracle WebLogic Server Multiple Vulnerabilities (CPUJUL2025)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The table will be updated with additional QIDs once released.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="notable-oracle-vulnerabilities-patched"&gt;Notable Oracle Vulnerabilities Patched&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Oracle Communications&lt;/h3&gt;
-
-
-
-&lt;p&gt;This Critical Patch Update for Oracle Communications received 84 security patches. Out of these, 50 vulnerabilities can be exploited over a network without user credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;CVE-2024-25638, CVE-2025-48734, CVE-2024-47606, CVE-2024-1135, CVE-2025-23016, CVE-2025-27363, and CVE-2023-27349 in different Oracle Communications products have high severity ratings.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Oracle MySQL&lt;/h3&gt;
-
-
-
-&lt;p&gt;This Critical Patch Update for Oracle MySQL received 40 security patches. Out of these, three vulnerabilities can be exploited over a network without user credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;CVE-2024-9287 and CVE-2025-32415 in MySQL Workbench have high severity ratings. An attacker may exploit these vulnerabilities without privileges in a low-complexity network attack.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Oracle Fusion Middleware&lt;/h3&gt;
-
-
-
-&lt;p&gt;This Critical Patch Update for Oracle Fusion Middleware received 36 security patches. Out of these, 22 vulnerabilities can be exploited over a network without user credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;CVE-2025-31651 and CVE-2024-52046 in different Oracle Fusion Middleware products have critical severity ratings with a CVSS score of 9.8. A remote attacker may exploit these vulnerabilities without privileges in a low-complexity network attack.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Oracle Communications Applications&lt;/h3&gt;
-
-
-
-&lt;p&gt;This Critical Patch Update for Oracle Communications Applications received 29 security patches. One of the vulnerabilities can be exploited over a network without user credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;CVE-2025-48734 and CVE-2024-56406 in different Oracle Communications Applications products have high severity ratings with a CVSS score of 8.8 and 8.6. A remote attacker may exploit these vulnerabilities without privileges in a low-complexity network attack.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Oracle Financial Services Applications&lt;/h3&gt;
-
-
-
-&lt;p&gt;This Critical Patch Update for Oracle Financial Services Applications received 18 security patches. Out of these, 13 vulnerabilities can be exploited over a network without user credentials.&lt;/p&gt;
-
-
-
-&lt;p&gt;CVE-2025-48734 impacting different Oracle Financial Services Applications products has high severity ratings with a CVSS score of 8.8. A remote attacker may exploit these vulnerabilities without privileges in a low-complexity network attack.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38273</guid><category>Patch Tuesday</category><category>Vulnerabilities and Threat Research</category><category>oracle</category></item><item><title>Meta and Yandex break security to save their business model</title><link>http://privacyinternational.org/long-read/5621/meta-and-yandex-break-security-save-their-business-model</link><guid isPermaLink="false">5621 at http://privacyinternational.org</guid></item><item><title>CISA's NIMBUS 2000 Initiative: Understanding Key Findings and Strengthening Cloud Identity Security</title><link>https://www.trendmicro.com/en_us/research/25/g/nimbus-2000-initiative-findings.html</link><description>This blog explores key findings from CISA’s NIMBUS 2000 Cloud Identity Security Technical Exchange and how Trend Vision One™ Cloud Security aligns with these priorities. It highlights critical challenges in token validation, secrets management, and logging visibility—offering insights into how integrated security solutions can help organizations strengthen their cloud identity defenses and meet evolving federal standards.</description><guid isPermaLink="false">urn:uuid:28e1d626-bfbf-777c-41cc-688fdf3081c0</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>CISA Releases Six Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/07/15/cisa-releases-six-industrial-control-systems-advisories</link><description>&lt;div class="l-full__main"&gt;
+&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23635</guid></item><item><title>Securing Tomorrow: An Interview with Trend Micro VP of Product Management Michael Habibi</title><link>https://www.trendmicro.com/en_us/research/25/g/endpoint-protection-epp-gartner-magic-quadrant-july-2025.html</link><description>Proactive security in a rapidly evolving threat landscape</description><guid isPermaLink="false">urn:uuid:9809ee2b-6ddd-9c6b-f2e4-d87a02cb4797</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Reports</category></item><item><title>Microsoft’s July Patch Might Be to Blame If Azure VM Isn’t Loading</title><link>https://www.techrepublic.com/article/news-microsoft-security-update-azure-virtual-machine-bug/</link><description>The security bug was introduced during Microsoft’s July 2025 Patch Tuesday rollout last week.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4317031</guid><category>Cloud</category><category>Cloud Security</category><category>Microsoft</category><category>News</category><category>Security</category><category>Virtualization</category></item><item><title>Meta and Yandex break security to save their business model</title><link>http://privacyinternational.org/long-read/5621/meta-and-yandex-break-security-save-their-business-model</link><guid isPermaLink="false">5621 at http://privacyinternational.org</guid></item><item><title>CISA's NIMBUS 2000 Initiative: Understanding Key Findings and Strengthening Cloud Identity Security</title><link>https://www.trendmicro.com/en_us/research/25/g/nimbus-2000-initiative-findings.html</link><description>This blog explores key findings from CISA’s NIMBUS 2000 Cloud Identity Security Technical Exchange and how Trend Vision One™ Cloud Security aligns with these priorities. It highlights critical challenges in token validation, secrets management, and logging visibility—offering insights into how integrated security solutions can help organizations strengthen their cloud identity defenses and meet evolving federal standards.</description><guid isPermaLink="false">urn:uuid:28e1d626-bfbf-777c-41cc-688fdf3081c0</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>CISA Releases Six Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/07/15/cisa-releases-six-industrial-control-systems-advisories</link><description>&lt;div class="l-full__main"&gt;
 &lt;div class="l-page-section l-page-section--rich-text"&gt;
 &lt;div class="l-constrain"&gt;
 &lt;div class="l-page-section__content"&gt;
@@ -12181,14 +12341,7 @@ Check out the full list of researchers recognized this quarter here.</descriptio
 &lt;p&gt;&amp;#8220;Whereas before they might have used 60 DGA domains to hide and bounce their traffic, we&amp;#8217;re seeing far more now,&amp;#8221; he said. &amp;#8220;They&amp;#8217;re trying to make their infrastructure harder to track and more complicated, so for now they&amp;#8217;re not going away but more just changing what they&amp;#8217;re doing. And a lot more organizations should be holding their feet to the fire.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update, 2:48 PM ET: &lt;/strong&gt;Added response from Meta, which confirmed it has closed the accounts and groups connected to Mr. Lizhi.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update, July 7, 6:56 p.m. ET:&lt;/strong&gt; In a written statement, PayPal said it continually works to combat and prevent the illicit use of its services.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;We devote significant resources globally to financial crime compliance, and we proactively refer cases to and assist law enforcement officials around the world in their efforts to identify, investigate and stop illegal activity,&amp;#8221; the statement reads.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71564</guid><category>A Little Sunshine</category><category>Latest Warnings</category><category>Ne'er-Do-Well News</category><category>Web Fraud 2.0</category><category>@nicelizhi</category><category>Facebook</category><category>Funnull Technology Inc.</category><category>GitHub</category><category>gmail</category><category>hotmail</category><category>LinkedIn</category><category>Liu "Steve" Lizhi</category><category>mark rasch</category><category>NexaMerchant</category><category>Nice Lizhi</category><category>Paypal</category><category>twitter</category><category>Unit 221B</category><category>XXL4</category><category>Youtube</category><category>Zach Edwards</category></item><item><title>CISA Releases Four Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/07/03/cisa-releases-four-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released four Industrial Control Systems (ICS) advisories on July 3, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ICSA-25-184-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-184-01"&gt;Hitachi Energy Relion 670/650 and SAM600-IO Series&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-184-02 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-184-02"&gt;Hitachi Energy MicroSCADA X SYS600&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-184-03 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-184-03"&gt;Mitsubishi Electric MELSOFT Update Manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ICSA-25-184-04 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-184-04"&gt;Mitsubishi Electric MELSEC iQ-F Series&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23595</guid></item><item><title>AI Dilemma: Emerging Tech as Cyber Risk Escalates</title><link>https://www.trendmicro.com/en_us/research/25/g/ai-cyber-risks.html</link><description>As AI adoption accelerates, businesses face mounting cyber threats—and urgent choices about secure implementation</description><guid isPermaLink="false">urn:uuid:1f4ebc12-0b5d-9ba8-5712-5d56039d2e20</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>macOS NimDoor | DPRK Threat Actors Target Web3 and Crypto Platforms with Nim-Based Malware</title><link>https://www.sentinelone.com/labs/macos-nimdoor-dprk-threat-actors-target-web3-and-crypto-platforms-with-nim-based-malware/</link><description>NimDoor shows how threat actors are continuing to explore cross-platform languages that introduce new levels of complexity for analysts.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+&lt;p&gt;&amp;#8220;We devote significant resources globally to financial crime compliance, and we proactively refer cases to and assist law enforcement officials around the world in their efforts to identify, investigate and stop illegal activity,&amp;#8221; the statement reads.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=71564</guid><category>A Little Sunshine</category><category>Latest Warnings</category><category>Ne'er-Do-Well News</category><category>Web Fraud 2.0</category><category>@nicelizhi</category><category>Facebook</category><category>Funnull Technology Inc.</category><category>GitHub</category><category>gmail</category><category>hotmail</category><category>LinkedIn</category><category>Liu "Steve" Lizhi</category><category>mark rasch</category><category>NexaMerchant</category><category>Nice Lizhi</category><category>Paypal</category><category>twitter</category><category>Unit 221B</category><category>XXL4</category><category>Youtube</category><category>Zach Edwards</category></item><item><title>AI Dilemma: Emerging Tech as Cyber Risk Escalates</title><link>https://www.trendmicro.com/en_us/research/25/g/ai-cyber-risks.html</link><description>As AI adoption accelerates, businesses face mounting cyber threats—and urgent choices about secure implementation</description><guid isPermaLink="false">urn:uuid:1f4ebc12-0b5d-9ba8-5712-5d56039d2e20</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>macOS NimDoor | DPRK Threat Actors Target Web3 and Crypto Platforms with Nim-Based Malware</title><link>https://www.sentinelone.com/labs/macos-nimdoor-dprk-threat-actors-target-web3-and-crypto-platforms-with-nim-based-malware/</link><description>NimDoor shows how threat actors are continuing to explore cross-platform languages that introduce new levels of complexity for analysts.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;DPRK threat actors are utilizing Nim-compiled binaries and multiple attack chains in a campaign targeting Web3 and Crypto-related businesses.&lt;/li&gt;
 &lt;li&gt;Unusually for macOS malware, the threat actors employ a process injection technique and remote communications via &lt;code&gt;wss&lt;/code&gt;, the TLS-encrypted version of the WebSocket protocol.&lt;/li&gt;
