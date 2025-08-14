@@ -1,5 +1,217 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 14 Aug 2025 04:59:16 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, August 14th, 2025 https://isc.sans.edu/podcastdetail/9570</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Thursday, August 14th, 2025 https://isc.sans.edu/podcastdetail/9570, (Thu, Aug 14th)</title><link>https://isc.sans.edu/diary/rss/32200</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32200</guid></item><item><title>AI and Faster Attack Analysis &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Aug 13th)</title><link>https://isc.sans.edu/diary/rss/32198</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Joseph Noa, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Joseph Noa, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 14 Aug 2025 05:59:16 +0000</lastBuildDate><item><title>Remediate WMI Class Corruption Errors with Qualys TruRisk™ Eliminate</title><link>https://blog.qualys.com/category/product-tech</link><description>When WMI classes fail, it can disrupt critical security operations by causing vulnerability scans to miss important data and compliance reports to lack accuracy. These issues may lead to gaps in visibility, making it harder for security teams to maintain a comprehensive understanding of their environment. By addressing WMI class failures proactively, organizations can ensure [&amp;#8230;]</description><content:encoded>&lt;p&gt;When WMI classes fail, it can disrupt critical security operations by causing vulnerability scans to miss important data and compliance reports to lack accuracy. These issues may lead to gaps in visibility, making it harder for security teams to maintain a comprehensive understanding of their environment. By addressing WMI class failures proactively, organizations can ensure their systems remain resilient, their data accurate, and their risk posture strong.&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog explores the &amp;#8220;Invalid class&amp;#8221; WMI issue, its operational and security implications, and how &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt; empowers teams to automate remediation at scale. Let&amp;#8217;s dive into how to regain control, eliminate hidden risks, and ensure your systems are secure, compliant, and resilient.&lt;/p&gt;
+
+
+
+&lt;span id="more-38423"&gt;&lt;/span&gt;
+
+
+
+&lt;h1 class="wp-block-heading"&gt;&lt;strong&gt;What is Windows Management Instrumentation&lt;/strong&gt; (&lt;strong&gt;WMI)?&lt;/strong&gt;&lt;/h1&gt;
+
+
+
+&lt;p&gt;Windows Management Instrumentation (WMI) is a built-in Windows feature that provides a standardized interface for querying and interacting with system-level data and operations. It acts as a bridge between the Windows operating system and management tools, scripts, or applications.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="understanding-the-wmi-invalid-class-issue"&gt;&lt;strong&gt;Understanding the WMI &amp;#8220;Invalid Class&amp;#8221; Issue&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The “Invalid class” error in WMI indicates that the system cannot locate or access a specific WMI class being queried.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-does-this-mean"&gt;&lt;strong&gt;What Does This Mean?&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;This error occurs when the WMI repository fails to recognize or contain the class being queried. Common causes include:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The class file (.MOF) was never loaded or compiled.&lt;/li&gt;
+
+
+
+&lt;li&gt;The WMI repository is corrupted or partially rebuilt.&lt;/li&gt;
+
+
+
+&lt;li&gt;A Windows update, driver installation, or application setup disrupted WMI consistency.&lt;/li&gt;
+
+
+
+&lt;li&gt;Mismanagement or unregistration of WMI namespaces.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;WMI Invalid Class but &amp;#8220;WMI repository is consistent&amp;#8221;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The repository verification check (winmgmt /verifyrepository) can report a “consistent” status even when critical WMI classes are broken. However, reviewing WMI Control Properties (wmimgmt.msc) can uncover deeper issues.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/image_new_1-1-scaled.png"&gt;&lt;img alt="" class="wp-image-38460" height="666" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/image_new_1-1-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;In one affected environment, the WMI Control Properties window showed:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Failed to initialize all required WMI classes&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Win32_Processor — Invalid class&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Win32_WMISetting — Invalid class&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Security Information — Successful&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Win32_OperatingSystem — Invalid class&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;A “consistent” repository status doesn’t guarantee that all WMI classes are functional; broken classes can still disrupt detection and reporting without obvious signs.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/wmi-1.png"&gt;&lt;img alt="" class="wp-image-38426" height="698" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/wmi-1.png" width="904" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;&lt;strong&gt;Example from an impacted asset:&lt;/strong&gt; Classes such as Win32_OperatingSystem, Win32_Processor, and Win32_WMISetting may return as invalid.&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="real-world-impact-vulnerability-detection-failure"&gt;&lt;strong&gt;Real-World Impact: Vulnerability Detection Failure&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;In anonymized data from the Qualys platform, we identified the &amp;#8220;Invalid class&amp;#8221; WMI issue, which was leading to significant operational impact.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Case Study:&lt;/strong&gt;&lt;br /&gt;A customer experienced detection failures for a critical QID across 10,000+ Windows assets:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;QID:&lt;/strong&gt; 48032 — Microsoft Active Directory Organizational Unit (OU) Information&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Issue:&lt;/strong&gt; This QID relies on WMI queries to fetch Active Directory OU data using specific WMI classes. Corruption or absence of these classes on endpoints led to silent detection failures, resulting in incomplete vulnerability data.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Risks posed by this issue:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Security teams lacked OU context for impacted assets.&lt;/li&gt;
+
+
+
+&lt;li&gt;Compliance reports were incomplete, creating potential audit risks.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="automate-fix-with-trurisk-eliminate"&gt;&lt;strong&gt;Automate Fix with TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;To resolve the WMI “Invalid class” issue across thousands of assets, users can leverage the out-of-the-box script, &lt;strong&gt;WMI Invalid Class Rebuild&lt;/strong&gt;, available in the &lt;strong&gt;CAR Library&lt;/strong&gt; under the &lt;strong&gt;Eliminate Pre-checks&lt;/strong&gt; category.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/2-scaled.png"&gt;&lt;img alt="" class="wp-image-38442" height="1405" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/2-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;What the Script Does:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Once deployed, the script:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Recompiles all invalid or missing WMI classes by processing .MOF files.&lt;/li&gt;
+
+
+
+&lt;li&gt;Re-registers core WMI DLLs.&lt;/li&gt;
+
+
+
+&lt;li&gt;Restarts the WMI service to ensure proper functionality.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Script Output:&lt;/strong&gt;&lt;br /&gt;The script provides detailed logs, confirming the successful remediation of WMI class corruption.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/3.png"&gt;&lt;img alt="" class="wp-image-38444" height="1942" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/08/3.png" width="2042" /&gt;&lt;/a&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate, with its extensive script library, transforms complex, manual tasks into automated, scalable solutions. This use case demonstrates the value of Eliminate beyond patching, enabling deep system health and configuration remediation.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Ready to experience the power of TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate?&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/trurisk-eliminate/" style="background-color: #ed2e26;"&gt;Start Free Trial&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38423</guid><category>Product and Tech</category><category>TruRisk Eliminate</category><category>windows</category><category>windows management instrumentation</category><category>WMI</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, August 14th, 2025 https://isc.sans.edu/podcastdetail/9570</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Thursday, August 14th, 2025 https://isc.sans.edu/podcastdetail/9570, (Thu, Aug 14th)</title><link>https://isc.sans.edu/diary/rss/32200</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32200</guid></item><item><title>AI and Faster Attack Analysis &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Aug 13th)</title><link>https://isc.sans.edu/diary/rss/32198</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Joseph Noa, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Joseph Noa, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;Introduction&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -10522,283 +10734,7 @@ $RuntimeLastExecutionTime = Measure-Command {
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-july-threat-intelligence-report/"&gt;21st July – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31633</guid><category>Global Cyber Attack Reports</category></item><item><title>Smarter ITSM Automation with ServiceNow Integration</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>Effective Information Technology and Service Management (ITSM) today requires intelligent automation, proactive security, and seamless integration between platforms. To keep security operations efficient, vulnerability management workflows need to be streamlined and connected with broader IT processes. The latest releases of Qualys Core 3.0.0 and Qualys VMDR 3.0.1 introduce enhancements designed to reduce manual effort, improve [&amp;#8230;]</description><content:encoded>&lt;p&gt;Effective Information Technology and Service Management (ITSM) today requires intelligent automation, proactive security, and seamless integration between platforms. To keep security operations efficient, vulnerability management workflows need to be streamlined and connected with broader IT processes.&lt;/p&gt;
-
-
-
-&lt;p&gt;The latest releases of &lt;a href="https://store.servicenow.com/store/app/31aaef661b246a50a85b16db234bcb8d"&gt;Qualys Core 3.0.0&lt;/a&gt; and Qualys &lt;a href="https://store.servicenow.com/store/app/ee7a63661b246a50a85b16db234bcbf0"&gt;VMDR 3.0.1&lt;/a&gt; introduce enhancements designed to reduce manual effort, improve incident accuracy, and empower teams with smarter tools and deeper insights. By strengthening integration with ServiceNow, these updates help automate compliance workflows, improve asset visibility, and maintain clean, actionable incident queues.&lt;/p&gt;
-
-
-
-&lt;p&gt;This blog outlines the key updates, including &lt;strong&gt;compatibility with ServiceNow Yokohama&lt;/strong&gt;, automated closure rules for stale vulnerability tickets, improved CI matching for precise asset management, and enhanced cloud asset visibility, all of which aim to make your ITSM and security operations more effective and efficient.&lt;/p&gt;
-
-
-
-&lt;span id="more-38274"&gt;&lt;/span&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/CORE-APP.png"&gt;&lt;img alt="" class="wp-image-38279" height="219" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/CORE-APP.png" width="783" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/VMDR-APP.png"&gt;&lt;img alt="" class="wp-image-38280" height="234" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/VMDR-APP.png" width="795" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="servicenow-yokohama-compatibility-seamless-integration-for-continuous-security"&gt;&lt;strong&gt;ServiceNow Yokohama Compatibility: Seamless Integration for Continuous Security&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;We are committed to ensuring our integrations stay in sync with the latest ServiceNow platform releases. The &lt;strong&gt;Qualys Core and VMDR apps &lt;/strong&gt;are fully compatible with ServiceNow Yokohama, allowing users to maintain operational continuity and security alignment. Customers upgrading to the ServiceNow Yokohama can benefit from:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Qualys Policy Audit App Integration&lt;/strong&gt;—Now available on the ServiceNow store, the &lt;em&gt;Qualys Policy Audit&lt;/em&gt; app imports configuration assessment data to help automate compliance remediation workflows.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Automated Incident Auto-Closure Rules&lt;/strong&gt; – Automatically close stale or non-actionable vulnerability tickets based on detection and asset lifecycle data.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Improved CI Matching Accuracy&lt;/strong&gt; – Strengthen asset-to-CI associations using additional identifiers like serial number.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Enhanced Cloud Asset Mapping&lt;/strong&gt;: Utilize Cloud Account IDs for better visibility and classification of assets in hybrid cloud environments through enhanced metadata tagging.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-qualys-policy-audit-integration-with-servicenow"&gt;&lt;strong&gt;Introducing Qualys Policy Audit Integration with ServiceNow&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;We’re launching the Qualys Policy Audit app on the &lt;a href="https://store.servicenow.com/store/app/9746bc931b91ea10e0fa6575604bcbbf"&gt;ServiceNow Store&lt;/a&gt;, expanding integration beyond vulnerability management.&lt;/p&gt;
-
-
-
-&lt;p&gt;This integration empowers enterprises to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Manage configuration compliance with the same intelligence and automation that drives modern vulnerability management.&lt;/li&gt;
-
-
-
-&lt;li&gt;Ensure that misconfigurations are identified, assigned, remediated, and tracked, all within a unified platform.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/PC.png"&gt;&lt;img alt="" class="wp-image-38281" height="229" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/PC.png" width="1292" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This powerful enhancement ensures that compliance management becomes as intelligent and automated as vulnerability management, all from within ServiceNow.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;To learn more, refer to our documentation: &lt;a href="https://docs.qualys.com/en/integration/pc-itsm/get_started/get_started.htm#:~:text=Here%20are%20the%20key%20features%20of%20Qualys%20PC%2FPA,Host%2C%20ID%2C%20Priority%2C%20and%20Policy.%20...%20More%20items"&gt;Get Started with Qualys Policy Audit for ServiceNow&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Streamline Incident Management with Auto-Closure Rules&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Security teams often face backlogs of unresolved or outdated incidents. With environment changes, configuration items are decommissioned, cloud assets are purged, and endpoints go offline, creating one of the most common challenges: keeping ServiceNow incidents aligned with the current state of Qualys-reported purged or retired assets.&lt;/p&gt;
-
-
-
-&lt;p&gt;To address this, we’re introducing &lt;strong&gt;Auto-Closure Rules&lt;/strong&gt; as part of the latest version of the apps. This feature is designed to &lt;strong&gt;automatically close stale or non-actionable incidents&lt;/strong&gt;, giving your teams a more accurate, manageable, and actionable incident queue, without the need for manual intervention. With Auto-Closure Rules in place, your vulnerability incident management process becomes &lt;strong&gt;cleaner, faster, and more reliable&lt;/strong&gt;, helping you focus only on what matters most.&lt;/p&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;Why Auto-Closure Rules&lt;/strong&gt; Matter&lt;/h4&gt;
-
-
-
-&lt;p&gt;In today’s dynamic environment, Assets are ephemeral. When an asset is removed from your Qualys subscription, its information is lost. However, the corresponding vulnerability tickets often remain open in ServiceNow, leading to stale records in the environment.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Similarly, under the Qualys &lt;a href="https://docs.qualys.com/en/csam/latest/rules/asset_purge_rule.htm"&gt;&lt;strong&gt;Auto-Purge Rules&lt;/strong&gt;&lt;/a&gt;, assets are purged while their synced vulnerability data and generated tickets remain in ServiceNow. Once the asset is purged, these tickets no longer serve any purpose.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Auto-closure rules address these use cases by automatically cleaning up obsolete tickets, reducing the number of stale vulnerability incidents for remediation owners. This is a one-configuration that ensures your incident list remains clean and actionable.&lt;/p&gt;
-
-
-
-&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;How Auto-Closure Works&lt;/strong&gt;&lt;/h4&gt;
-
-
-
-&lt;p&gt;Auto-Closure evaluates incident relevance based on configured data criteria. If respective dates exceed the defined thresholds, the stale incidents are automatically closed, &amp;nbsp;leaving only current and actionable items.&lt;/p&gt;
-
-
-
-&lt;p&gt;Configure rules based on any one of the following three parameters:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Detection Last Found&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;During the synchronization of data from ServiceNow to Qualys, if the last detection date for an incident is older than the configured number of days, the vulnerability incident ticket is automatically closed.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/Detection-last-found.png"&gt;&lt;img alt="" class="wp-image-38283" height="954" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/Detection-last-found.png" width="1912" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Asset Last Scanned Date&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;When the last scan date from Qualys is beyond the defined threshold, it signals inactivity, prompting auto-closure.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-large"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/Asset-last-scanned-date.png"&gt;&lt;img alt="" class="wp-image-38284" height="534" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/Asset-last-scanned-date-1070x534.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In the upcoming release, we will introduce the &amp;#8216;Asset Last Updated Date&amp;#8217; parameter. This will help ensure data accuracy by automatically closing related incidents when a host asset hasn&amp;#8217;t been updated in Qualys within the expected timeframe.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;&lt;strong&gt;Reduce Noise in Vulnerability Management&lt;/strong&gt;&lt;/strong&gt;: &lt;strong&gt;A&lt;strong&gt;uto-Closure for Retired &lt;strong&gt;Configuration Items (CIs)&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;We’ve also introduced the ability to &lt;strong&gt;automatically close vulnerability incident tickets linked to retired Configuration Items (CIs)&lt;/strong&gt;. In scenarios where a CI is marked as &lt;strong&gt;Retired&lt;/strong&gt; in ServiceNow’s CMDB, the associated infrastructure asset is considered decommissioned.&lt;/p&gt;
-
-
-
-&lt;p&gt;However, vulnerability incidents related to these assets often remain open, leading to unnecessary stale incidents. This enhancement ensures that such stale tickets are automatically closed, maintaining a clean and relevant incident queue.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;This capability helps teams focus on active risk while improving the hygiene and efficiency of ITSM processes. Just check the &lt;strong&gt;“Auto Close Incident for Retired CI”&lt;/strong&gt; option, and the platform will do the rest. Also, note that this rule applies &lt;strong&gt;only to Qualys assets that are successfully matched to Configuration Items (CIs)&lt;/strong&gt; in ServiceNow.&amp;nbsp;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/CI-lifecycle.png"&gt;&lt;img alt="" class="wp-image-38285" height="954" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/07/CI-lifecycle.png" width="1912" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;By enabling Auto-Closure Rules, you’ll experience: &lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Cleaner Incident Queues&lt;/strong&gt; – Remove noise and focus only on active issues&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Improved Operational Efficiency&lt;/strong&gt; – Minimize manual cleanup and boost response speed&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Accurate Reporting &amp;amp; Metrics&lt;/strong&gt; – Trust that your dashboards and SLAs reflect real-time status&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Improve Asset-to-CI Mapping with Serial Number and Future Cloud Resource ID Integration&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Maintaining reliable asset-to-CI mapping is critical for effective IT operations and coordinated security response. With the latest Qualys VMDR ITSM integration, CI matching is enhanced by enriching &lt;strong&gt;Identification and Reconciliation Engine (IRE) rules.&lt;/strong&gt;&lt;br /&gt; &lt;br /&gt;We have added Serial Number as a supported identifier, joining existing attributes to increase the precision of CI identification during data synchronization. This is especially valuable in large-scale, dynamic, or cloud-native environments where accurate mapping supports incident correlation and remediation tracking. For customers using ServiceNow discovery to maintain their CMBD, the Serial Number addition to the IRE rule will ensure all Qualys Hosts are matched to your CIs.&lt;/p&gt;
-
-
-
-&lt;p&gt;Looking ahead, we plan to extend support for Cloud Resource ID, further reinforcing CI alignment across hybrid cloud environments and improving end-to-end visibility.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Boost Asset Visibility Using Cloud Account ID in Host View&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;As organizations expand their cloud infrastructure across multiple accounts and hybrid environments, maintaining clear visibility and control over assets becomes more complex. To address this complexity, we’ve introduced the &lt;strong&gt;Cloud Account ID&lt;/strong&gt; column in the Qualys Host Asset table. &lt;/p&gt;
-
-
-
-&lt;p&gt;This update helps security and IT teams &lt;strong&gt;map assets more accurately to their corresponding cloud accounts or subscriptions&lt;/strong&gt;, leading to visibility and tracking of cloud-based assets. It enhances metadata accuracy and improves the effectiveness of vulnerability tracking and remediation in hybrid and multi-cloud environments.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="powering-the-future-of-itsm-with-automation-and-insight"&gt;&lt;strong&gt;Powering the Future of ITSM with Automation and Insight&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;These updates represent a significant step toward delivering a smarter, more automated ITSM experience. By leveraging these integrations, you can streamline workflows, reduce manual effort, and improve operational efficiency. Whether you&amp;#8217;re focused on maintaining clean incident workflows, tracking cloud assets, or driving compliance, the &lt;strong&gt;Qualys and ServiceNow&lt;/strong&gt; integration equips you for what’s next.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-to-get-the-qualys-vmdr-and-policy-audit-apps"&gt;&lt;strong&gt;How to Get the Qualys VMDR and Policy Audit Apps&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;If you have any questions or need support during the setup or migration process, please feel free to reach out to your Qualys Technical Account Manager (TAM) for assistance.&lt;/p&gt;
-
-
-
-&lt;p&gt;Your VMDR subscription includes the Qualys Core and VMDR applications. If you also have a Policy Audit subscription, it includes access to the Qualys Core and Policy Audit applications. To get started, simply request the apps directly from the ServiceNow Store. A Qualys representative will review your subscription and approve access. The requester will be notified once the app is available for installation.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="reference-links"&gt;&lt;strong&gt;Reference Links&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.servicenow.com/docs/bundle/yokohama-release-notes/page/release-notes/family-release-notes.html"&gt;Yokohama Release Notes – ServiceNow&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://docs.qualys.com/en/integration/vmdr-itsm/get_started/get_started.htm"&gt;Qualys VMDR for ITSM User Guide&lt;/a&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://docs.qualys.com/en/integration/pc-itsm/get_started/get_started.htm#:~:text=Here%20are%20the%20key%20features%20of%20Qualys%20PC%2FPA,Host%2C%20ID%2C%20Priority%2C%20and%20Policy.%20...%20More%20items"&gt;Get Started with Qualys Policy Audit for ServiceNow&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.qualys.com/apps/policy-audit/"&gt;Qualys Policy Audit | Qualys&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Streamline vulnerability management with Qualys VMDR powered by TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/vmdr/?utm_source=google&amp;#038;utm_medium=search-paid&amp;#038;utm_campaign=APAC-SearchPaid-Non-Brand-Vulnerability_IND&amp;#038;utm_content=APAC&amp;#038;leadsource=344574503&amp;#038;utm_source=google&amp;#038;utm_medium=search-paid&amp;#038;utm_campaign=APAC-SearchPaid-Non-Brand-Vulnerability_IND&amp;#038;utm_content=APAC&amp;#038;leadsource=344574503&amp;#038;gad_source=1&amp;#038;gad_campaignid=22533264880&amp;#038;gbraid=0AAAAADyVHiuXY_3lPNM4bD9Ny7FKWe8Va&amp;#038;gclid=CjwKCAjwvuLDBhAOEiwAPtF0VicANOs1nZ9Ba-J4JWx-YNyMwY8j74PzF_6_FP8IHNi7Un0bTEthmhoCR8gQAvD_BwE" style="background-color: #ed2e26;"&gt;Start Your Free Trial&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38274</guid><category>Product and Tech</category><category>VMDR</category><category>auto-closure</category><category>itsm</category><category>Policy Audit</category><category>vmdr</category></item><item><title>Microsoft Fix Targets Attacks on SharePoint Zero-Day</title><link>https://krebsonsecurity.com/2025/07/microsoft-fix-targets-attacks-on-sharepoint-zero-day/</link><description>On Sunday, July 20, Microsoft Corp. issued an emergency security update for a vulnerability in SharePoint Server that is actively being exploited to compromise vulnerable organizations. The patch comes amid reports that malicious hackers have used the Sharepoint flaw to breach U.S. federal and state agencies, universities, and energy companies.</description><content:encoded>&lt;p&gt;On Sunday, July 20, &lt;strong&gt;Microsoft Corp.&lt;/strong&gt; issued an emergency security update for a vulnerability in &lt;strong&gt;SharePoint Server&lt;/strong&gt; that is actively being exploited to compromise vulnerable organizations. The patch comes amid reports that malicious hackers have used the SharePoint flaw to breach U.S. federal and state agencies, universities, and energy companies.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/21st-july-threat-intelligence-report/"&gt;21st July – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31633</guid><category>Global Cyber Attack Reports</category></item><item><title>Microsoft Fix Targets Attacks on SharePoint Zero-Day</title><link>https://krebsonsecurity.com/2025/07/microsoft-fix-targets-attacks-on-sharepoint-zero-day/</link><description>On Sunday, July 20, Microsoft Corp. issued an emergency security update for a vulnerability in SharePoint Server that is actively being exploited to compromise vulnerable organizations. The patch comes amid reports that malicious hackers have used the Sharepoint flaw to breach U.S. federal and state agencies, universities, and energy companies.</description><content:encoded>&lt;p&gt;On Sunday, July 20, &lt;strong&gt;Microsoft Corp.&lt;/strong&gt; issued an emergency security update for a vulnerability in &lt;strong&gt;SharePoint Server&lt;/strong&gt; that is actively being exploited to compromise vulnerable organizations. The patch comes amid reports that malicious hackers have used the SharePoint flaw to breach U.S. federal and state agencies, universities, and energy companies.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71741" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-71741" height="491" src="https://krebsonsecurity.com/wp-content/uploads/2025/07/ms-sharepoint-ss.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71741"&gt;Image: Shutterstock, by Ascannio.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;In &lt;a href="https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/" rel="noopener" target="_blank"&gt;an advisory&lt;/a&gt; about the SharePoint security hole, a.k.a. &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-53770" rel="noopener" target="_blank"&gt;CVE-2025-53770&lt;/a&gt;, Microsoft said it is aware of active attacks targeting on-premises SharePoint Server customers and exploiting vulnerabilities that were only partially addressed by &lt;a href="https://krebsonsecurity.com/2025/07/microsoft-patch-tuesday-july-2025-edition/" rel="noopener" target="_blank"&gt;the July 8, 2025 security update&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;Cybersecurity &amp;amp; Infrastructure Security Agency&lt;/strong&gt; (CISA) &lt;a href="https://www.cisa.gov/news-events/alerts/2025/07/20/microsoft-releases-guidance-exploitation-sharepoint-vulnerability-cve-2025-53770" rel="noopener" target="_blank"&gt;concurred&lt;/a&gt;, saying CVE-2025-53770 is a variant on a flaw Microsoft patched earlier this month (&lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-49706" rel="noopener" target="_blank"&gt;CVE-2025-49706)&lt;/a&gt;. Microsoft notes the weakness applies only to SharePoint Servers that organizations use in-house, and that SharePoint Online and Microsoft 365 are not affected.&lt;/p&gt;
