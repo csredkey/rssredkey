@@ -1,5 +1,198 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 25 Aug 2025 00:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>The end of an era: Properly formated IP addresses in all of our data.</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>The end of an era: Properly formated IP addresses in all of our data., (Sun, Aug 24th)</title><link>https://isc.sans.edu/diary/rss/32228</link><description>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a "15 character 0-padded" format for IP addresses. This format padded each byte in the IP address with leading 0&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s, ensuring that they were all 15 characters long (including the &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;). &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a &amp;quot;15 character 0-padded&amp;quot; format for IP addresses. This format padded each byte in the IP address with leading 0's, ensuring that they were all 15 characters long (including the '.').&amp;nbsp;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 25 Aug 2025 01:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Reading Location Position Value in Microsoft Word Documents</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Reading Location Position Value in Microsoft Word Documents, (Mon, Aug 25th)</title><link>https://isc.sans.edu/diary/rss/32224</link><description>&lt;p&gt;While studying for the GX-FE &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;1&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;, I started exploring the "&lt;strong&gt;Position&lt;/strong&gt;" value in the registry that helps to tell Microsoft Word where you "left off". It&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s a feature many people that use Word have seen on numerous occasions and is explored in FOR500: Windows Forensic Analysis &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;2&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;. &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;While studying for the GX-FE [1], I started exploring the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value in the registry that helps to tell Microsoft Word where you &amp;quot;left off&amp;quot;. It's a feature many people that use Word have seen on numerous occasions and is explored in FOR500: Windows Forensic Analysis [2].&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure1.PNG" style="width: 198px; height: 131px;" /&gt;&lt;br /&gt;
+Figure 1: Word pop-up offering to continue at last location, which is assited by &amp;quot;Position&amp;quot; registry value.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;For example, my registry has the following registry information for a test document I created:&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Word\Reading Locations\Document 20]
+"File Path"="C:\\Users\\sans_isc\\Documents\\Testing Word Reading Locations.docx"
+"Datetime"="2025-08-23T14:39"
+"Position"="493796625 5462"
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are two numbers associated with the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value. Experimentation suggests that the second number in this value is the character count position from the start of the document. I wasn't sure about the first value until I ran along a different article exploring this topic [3].&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure2_v2.PNG" style="border-width: 1px; border-style: solid; width: 883px; height: 306px;" /&gt;&lt;br /&gt;
+Figure 2: Example value of &amp;quot;Position&amp;quot;.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Phill Moore noticed that the first portion of this value was the &amp;quot;&lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;&amp;quot;, which can be seen in the raw XML of the Word document. Their article helped me understand something I didn't understand from my data during testing. I didn't know why this first number value changed when I was testing. The value seemed static until at some arbitrary point it changed, but then it didn't change anymore after that. It turns out that the document I randomly copied text into had a paragraph break. To create the test document, I copied and pasted text multiple times and at some point had created a new paragraph by hiting enter around page 4. Phill had also suggested that the second value in the &amp;quot;Position&amp;quot; could be character count, which is supported experimentally.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Experimentation&lt;/h2&gt;
+
+&lt;p&gt;First, a document was created by copying and pasting text into a Word document. After this, I experimented by opening and closing the document in a variety of ways to understand how the values changed within the registry. After each opening of the document, the &amp;quot;Pick up where you left off&amp;quot; option was used.&amp;nbsp;&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 0&lt;/td&gt;
+			&lt;td&gt;Scroll wheel down 2 clicks&lt;/td&gt;
+			&lt;td&gt;493796625 0&lt;/td&gt;
+			&lt;td&gt;First line of text still visible&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 0&lt;/td&gt;
+			&lt;td&gt;Scroll wheel down 3 clicks&lt;/td&gt;
+			&lt;td&gt;493796625 181&lt;/td&gt;
+			&lt;td&gt;Second line now the pop-most line visible&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 181&lt;/td&gt;
+			&lt;td&gt;Scrolled down to page 3, left-clicked on line 9 column 55&lt;/td&gt;
+			&lt;td&gt;493796625 6698&lt;/td&gt;
+			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 6698&lt;/td&gt;
+			&lt;td&gt;Left-clicked at end of line 1 on page 3&lt;/td&gt;
+			&lt;td&gt;493796625 6698&lt;/td&gt;
+			&lt;td&gt;Document opened on first line of page 3, cursor at start&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 6698&lt;/td&gt;
+			&lt;td&gt;Scroll wheel down 4 clicks, left clicked at end of line 14&lt;/td&gt;
+			&lt;td&gt;493796625 7228&lt;/td&gt;
+			&lt;td&gt;Document opened on first line of page 3, cursor at start&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 7228&lt;/td&gt;
+			&lt;td&gt;No action taken&lt;/td&gt;
+			&lt;td&gt;493796625 7228&lt;/td&gt;
+			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;493796625 7228&lt;/td&gt;
+			&lt;td&gt;Scroll wheel down 2 clicks&lt;/td&gt;
+			&lt;td&gt;493796625 7406&lt;/td&gt;
+			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 3: Results from experimenting with different cursor and viewable area placement&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The data demonstrates the second value increasing when scrolling down, although it only increments when the top-most viewable line changes. But what is the value incease? When looking at the differences in the two values, it appears that it's the number of characters that were no longer viewable.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure3.PNG" style="width: 1000px; height: 467px;" /&gt;&lt;br /&gt;
+Figure 4: Text highlighted that's missing after clicking a scroll wheel down once in Word.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure5_v2.PNG" style="width: 666px; height: 294px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
+Figure 5: Character count [4] of text matches difference between the second portions of two &amp;quot;Position&amp;quot; values from the registry.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+This helps give a bit more confidence that the second value in for &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; may be the character count. What if we change the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value to something that only sets a character count?&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;0 16542&lt;/td&gt;
+			&lt;td&gt;No action taken&lt;/td&gt;
+			&lt;td&gt;55341811 16525&lt;/td&gt;
+			&lt;td&gt;Was given option to continue from last location&lt;br /&gt;
+			Opened at page 5, line 36, column 18&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 6: Experimentation with only setting a non-zero value for second portion of &amp;quot;Position&amp;quot; value.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure5.PNG" style="width: 1000px; height: 371px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
+Figure 7: Starting cursor location upon opening Word document with randomly specified &amp;quot;Position&amp;quot; value in second number position.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure6.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 336px;" /&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 8: Starting cursor location after closing and reopening Word document with randomly specified &amp;quot;Position&amp;quot; value in second number position.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The value of the second number in the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; field &lt;em&gt;&lt;strong&gt;is&lt;/strong&gt;&lt;/em&gt; the cusor location, but Word appears to set this value to the beginning of the first visible line within Word. This is one reason that the values many not change, even if the cusor is relocated. The value only changes once the top most visible line within Word changes.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;You may have noticed that the first value is also different now. This is the new&lt;strong&gt; &lt;code&gt;w14:paraId&lt;/code&gt; &lt;/strong&gt;value that can be seen within the&lt;code&gt; &lt;strong&gt;document.xml&lt;/strong&gt;&lt;/code&gt; file when the document is extracted using a look like 7-zip (within &lt;code&gt;&lt;strong&gt;word/document.xml&lt;/strong&gt;&lt;/code&gt;). Unfortunately, this value format is different in the document (hex) than it is in the registry (decimal).&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure7.PNG" style="width: 1000px; height: 516px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
+Figure 9: w14:paraId value in document.xml compared with the registry &amp;quot;Position&amp;quot; value data when the value from document.xml is converted from hex to decimal.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;What if only the first number value is set (&lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;)?&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;55341811 0&lt;/td&gt;
+			&lt;td&gt;No action taken&lt;/td&gt;
+			&lt;td&gt;55341811 0&lt;/td&gt;
+			&lt;td&gt;Was &lt;em&gt;&lt;strong&gt;not&lt;/strong&gt;&lt;/em&gt; given option to continue from last location&lt;br /&gt;
+			Opened at the beginning of page 1&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 10: Setting the first number within &amp;quot;Position&amp;quot;&amp;nbsp;to a valid w14:paraId value does not skip to that paragraph.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This character value is needed to properly position the last viewed location for a document in Word. If an invalid &lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;&amp;nbsp;is specified with a valid number of characters from start of the document, the continuation feature still functions within Word. From this experiment, the first value may not be used for this continuation feature, but is recorded based on the viewable location in Word at the time Word was closed.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;To use this &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value in forensics, a test system can be set up with the appropriate registry information and the corresponding file can be opened to determine where in the file someone was reading when Word was closed. Programatically, this new information could be used to start extracting data from the Word document at the point of last viewing, which may save some time.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Can you think of any other use for this information? Did someone else figure this out and I just couldn't find it? Share it with us!&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://www.giac.org/certifications/experienced-forensics-examiner-gxfe/" target="_blank"&gt;https://www.giac.org/certifications/experienced-forensics-examiner-gxfe/&lt;/a&gt;&lt;br /&gt;
+[2]&amp;nbsp;&lt;a href="https://www.sans.org/cyber-security-courses/windows-forensic-analysis" target="_blank"&gt;https://www.sans.org/cyber-security-courses/windows-forensic-analysis&lt;/a&gt;&lt;br /&gt;
+[3]&amp;nbsp;&lt;a href="https://thinkdfir.com/2019/02/11/microsoft-office-reading-locations-part-1/" target="_blank"&gt;https://thinkdfir.com/2019/02/11/microsoft-office-reading-locations-part-1/&lt;/a&gt;&lt;br /&gt;
+[4]&amp;nbsp;&lt;a href="https://wordcounter.net/character-count" target="_blank"&gt;https://wordcounter.net/character-count&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Jesse La Grew&lt;br /&gt;
+Handler&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32224</guid></item><item><title>The end of an era: Properly formated IP addresses in all of our data., (Sun, Aug 24th)</title><link>https://isc.sans.edu/diary/rss/32228</link><description>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a "15 character 0-padded" format for IP addresses. This format padded each byte in the IP address with leading 0&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s, ensuring that they were all 15 characters long (including the &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;). &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a &amp;quot;15 character 0-padded&amp;quot; format for IP addresses. This format padded each byte in the IP address with leading 0's, ensuring that they were all 15 characters long (including the '.').&amp;nbsp;&lt;/p&gt;
 
 &lt;p&gt;At the time, this was a quick and efficient solution to make sure that IP addresses could be easily sorted. At the time, I don't think MySQL had an &amp;quot;inet_aton()&amp;quot; function to easily convert IP addresses into unsigned long integers, and initially, the MySQL implementation of inet_aton() returned a signed integer, not an unsigned integer.&lt;/p&gt;
 
@@ -2493,7 +2686,7 @@ rob@coherentsecurity.com&lt;/p&gt;
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/18th-august-threat-intelligence-report/"&gt;18th August – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31777</guid><category>Global Cyber Attack Reports</category></item><item><title>ISC Stormcast For Monday, August 18th, 2025 https://isc.sans.edu/podcastdetail/9574, (Mon, Aug 18th)</title><link>https://isc.sans.edu/diary/rss/32206</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32206</guid></item><item><title>Russia Is Cracking Down on End-to-End Encrypted Calls</title><link>https://www.wired.com/story/russia-crack-down-end-to-end-encrypted-calling/</link><description>Plus: ICE agents accidentally add a random person to a sensitive group chat, Norwegian intelligence blames the Kremlin for hacking a dam, and new facial recognition vans roam the UK.</description><guid isPermaLink="false">689f1738c41af131b7341d48</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>Russia</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>encryption</category><category>privacy</category><category>Security Roundup</category></item><item><title>Future of Windows: Microsoft Execs Spotlight Multimodal Interactions, Copilot+ PCs, Secure Cloud Devices</title><link>https://www.techrepublic.com/article/news-microsoft-execs-future-of-windows/</link><description>In a recent podcast interview, two Microsoft executives gave a preview of what's next for Windows.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4322047</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Hardware</category><category>Microsoft</category><category>Mobility</category><category>News</category><category>Security</category></item><item><title>Future of Windows: Microsoft Execs Spotlight Multimodal Interactions, Copilot+ PCs, Secure Cloud Devices</title><link>https://www.techrepublic.com/article/news-microsoft-execs-future-of-windows/</link><description>In a recent podcast interview, two Microsoft executives gave a preview of what's next for Windows.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4322047</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Hardware</category><category>Microsoft</category><category>Mobility</category><category>News</category><category>Security</category></item><item><title>Anthropic’s Recent Claude Updates Favor Practical Reliability Over Novelty</title><link>https://www.techrepublic.com/article/news-anthropic-claude-upgrades-rival-chatpgt/</link><description>Anthropic's recently released features mark a strategic push to differentiate Claude from rivals like ChatGPT.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4321940</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>Security</category></item><item><title>Mobile Phishers Target Brokerage Accounts in ‘Ramp and Dump’ Cashout Scheme</title><link>https://krebsonsecurity.com/2025/08/mobile-phishers-target-brokerage-accounts-in-ramp-and-dump-cashout-scheme/</link><description>Cybercriminal groups peddling sophisticated phishing kits that convert stolen card data into mobile wallets have recently shifted their focus to targeting customers of brokerage services, new research shows. Undeterred by security controls at these trading platforms that block users from wiring funds directly out of accounts, the phishers have pivoted to using multiple compromised brokerage accounts in unison to manipulate the prices of foreign stocks.</description><content:encoded>&lt;p&gt;Cybercriminal groups peddling sophisticated phishing kits that convert stolen card data into mobile wallets have recently shifted their focus to targeting customers of brokerage services, new research shows. Undeterred by security controls at these trading platforms that block users from wiring funds directly out of accounts, the phishers have pivoted to using multiple compromised brokerage accounts in unison to manipulate the prices of foreign stocks.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/18th-august-threat-intelligence-report/"&gt;18th August – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31777</guid><category>Global Cyber Attack Reports</category></item><item><title>Russia Is Cracking Down on End-to-End Encrypted Calls</title><link>https://www.wired.com/story/russia-crack-down-end-to-end-encrypted-calling/</link><description>Plus: ICE agents accidentally add a random person to a sensitive group chat, Norwegian intelligence blames the Kremlin for hacking a dam, and new facial recognition vans roam the UK.</description><guid isPermaLink="false">689f1738c41af131b7341d48</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>Russia</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>encryption</category><category>privacy</category><category>Security Roundup</category></item><item><title>Future of Windows: Microsoft Execs Spotlight Multimodal Interactions, Copilot+ PCs, Secure Cloud Devices</title><link>https://www.techrepublic.com/article/news-microsoft-execs-future-of-windows/</link><description>In a recent podcast interview, two Microsoft executives gave a preview of what's next for Windows.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4322047</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Hardware</category><category>Microsoft</category><category>Mobility</category><category>News</category><category>Security</category></item><item><title>Future of Windows: Microsoft Execs Spotlight Multimodal Interactions, Copilot+ PCs, Secure Cloud Devices</title><link>https://www.techrepublic.com/article/news-microsoft-execs-future-of-windows/</link><description>In a recent podcast interview, two Microsoft executives gave a preview of what's next for Windows.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4322047</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>Developer</category><category>Hardware</category><category>Microsoft</category><category>Mobility</category><category>News</category><category>Security</category></item><item><title>Anthropic’s Recent Claude Updates Favor Practical Reliability Over Novelty</title><link>https://www.techrepublic.com/article/news-anthropic-claude-upgrades-rival-chatpgt/</link><description>Anthropic's recently released features mark a strategic push to differentiate Claude from rivals like ChatGPT.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4321940</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>Security</category></item><item><title>Mobile Phishers Target Brokerage Accounts in ‘Ramp and Dump’ Cashout Scheme</title><link>https://krebsonsecurity.com/2025/08/mobile-phishers-target-brokerage-accounts-in-ramp-and-dump-cashout-scheme/</link><description>Cybercriminal groups peddling sophisticated phishing kits that convert stolen card data into mobile wallets have recently shifted their focus to targeting customers of brokerage services, new research shows. Undeterred by security controls at these trading platforms that block users from wiring funds directly out of accounts, the phishers have pivoted to using multiple compromised brokerage accounts in unison to manipulate the prices of foreign stocks.</description><content:encoded>&lt;p&gt;Cybercriminal groups peddling sophisticated phishing kits that convert stolen card data into mobile wallets have recently shifted their focus to targeting customers of brokerage services, new research shows. Undeterred by security controls at these trading platforms that block users from wiring funds directly out of accounts, the phishers have pivoted to using multiple compromised brokerage accounts in unison to manipulate the prices of foreign stocks.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_71919" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-71919" height="315" src="https://krebsonsecurity.com/wp-content/uploads/2025/08/stockfall.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-71919"&gt;Image: Shutterstock, WhataWin.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;This so-called &amp;#8216;&lt;strong&gt;ramp and dump&lt;/strong&gt;&amp;#8216; scheme borrows its name from age-old &amp;#8220;pump and dump&amp;#8221; scams, wherein fraudsters purchase a large number of shares in some penny stock, and then promote the company in a frenzied social media blitz to build up interest from other investors. The fraudsters dump their shares after the price of the penny stock increases to some degree, which usually then causes a sharp drop in the value of the shares for legitimate investors.&lt;/p&gt;
 &lt;p&gt;With ramp and dump, the scammers do not need to rely on ginning up interest in the targeted stock on social media. Rather, they will preposition themselves in the stock that they wish to inflate, using compromised accounts to purchase large volumes of it and then dumping the shares after the stock price reaches a certain value. In February 2025, the &lt;strong&gt;FBI&lt;/strong&gt; said it was &lt;a href="https://www.fbi.gov/how-we-can-help-you/victim-services/seeking-victim-information/seeking-victim-information-in-ramp-and-dump-investment-fraud-investigation" rel="noopener" target="_blank"&gt;seeking information from victims of this scheme&lt;/a&gt;.&lt;/p&gt;
@@ -8723,7 +8916,7 @@ You can contact us in email or qtox.&lt;/pre&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ab42598ac99"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ab7b929bdf3"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
