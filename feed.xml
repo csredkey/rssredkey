@@ -1,5 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 31 Aug 2025 17:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, August 29th, 2025 https://isc.sans.edu/podcastdetail/9592</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>DOGE Put Everyone’s Social Security Data at Risk, Whistleblower Claims</title><link>https://www.wired.com/story/doge-social-security-data-at-risk-whistleblower/</link><description>Plus: China’s Salt Typhoon hackers target 600 companies in 80 countries, Tulsi Gabbard purges CIA agents, hackers knock out Iranian ship communications, and more.</description><guid isPermaLink="false">68b1cad570eb50b52bc0ed44</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>hacking</category><category>security</category><category>Donald Trump</category><category>DOGE</category><category>national security</category><category>China</category><category>Google</category><category>Security Roundup</category></item><item><title>SSA Whistleblower’s Resignation Email Mysteriously Disappeared From Inboxes</title><link>https://www.wired.com/story/charles-borges-resignation-email-disappearance/</link><description>Less than 30 minutes after the Social Security Administration’s chief data officer resigned following a whistleblower complaint, recipients could no longer access the resignation email.</description><guid isPermaLink="false">68b212713790309d9ffc1714</guid><category>Politics</category><category>Politics / Politics News</category><category>Security / Privacy</category><category>politics</category><category>laws</category><category>privacy</category><category>Donald Trump</category><category>Freedom of Information Act</category><category>Poof</category></item><item><title>Automating threat analysis and response with Cloudy</title><link>https://blog.cloudflare.com/automating-threat-analysis-and-response-with-cloudy/</link><description>Cloudy now supercharges analytics investigations and Cloudforce One threat intelligence! Get instant insights from threat events and APIs on APTs, DDoS, cybercrime &amp; more - powered by Workers AI.</description><content:encoded>&lt;p&gt;Security professionals everywhere face a paradox: while more data provides the visibility needed to catch threats, it also makes it harder for humans to process it all and find what's important. When there’s a sudden spike in suspicious traffic, every second counts. But for many security teams — especially lean ones — it’s hard to quickly figure out what’s going on. Finding a root cause means diving into dashboards, filtering logs, and cross-referencing threat feeds. All the data tracking that has happened can be the very thing that slows you down — or worse yet, what buries the threat that you’re looking for. &lt;/p&gt;&lt;p&gt;Today, we’re excited to announce that we’ve solved that problem. We’ve integrated &lt;a href="https://blog.cloudflare.com/introducing-ai-agent/"&gt;&lt;u&gt;Cloudy&lt;/u&gt;&lt;/a&gt; — Cloudflare’s first &lt;a href="https://www.cloudflare.com/learning/ai/what-is-agentic-ai/"&gt;&lt;u&gt;AI agent&lt;/u&gt;&lt;/a&gt; — with our security analytics functionality, and we’ve also built a new, conversational interface that Cloudflare users can use to ask questions, refine investigations, and get answers.  With these changes, Cloudy can now help Cloudflare users find the needle in the digital haystack, making security analysis faster and more accessible than ever before.  &lt;/p&gt;&lt;p&gt;Since Cloudly’s launch in March of this year, its adoption has been exciting to watch. Over &lt;b&gt;54,000&lt;/b&gt; users have tried Cloudy for &lt;a href="https://developers.cloudflare.com/waf/custom-rules/"&gt;&lt;u&gt;custom rule&lt;/u&gt;&lt;/a&gt; creation, and &lt;b&gt;31%&lt;/b&gt; of them have deployed a rule suggested by the agent. For our log explainers in &lt;a href="https://www.cloudflare.com/zero-trust/products/gateway/"&gt;&lt;u&gt;Cloudflare Gateway&lt;/u&gt;&lt;/a&gt;, Cloudy has been loaded over &lt;b&gt;30,000 &lt;/b&gt; times in just the last month, with &lt;b&gt;80%&lt;/b&gt; of the feedback we received confirming the summaries were insightful. We are excited to empower our users to do even more.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 31 Aug 2025 18:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>pdf-parser: All Streams</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>pdf-parser: All Streams, (Sun, Aug 31st)</title><link>https://isc.sans.edu/diary/rss/32248</link><description>&lt;p&gt;A user reported a bug in pdf-parser: when dumping all filtered streams, an error would occur:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;A user reported a bug in pdf-parser: when dumping all filtered streams, an error would occur:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250831-194158.png" style="width: 886px; height: 470px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The reason for the error, is that not all streams have filters applied to them, and thus dumping a filtered stream that has no filter caused a bug.&lt;/p&gt;
+
+&lt;p&gt;I have &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/pdf-parser.py"&gt;fixed&lt;/a&gt; this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250831-194231.png" style="width: 885px; height: 469px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;But I would like to point out that I think that a better way to look at the content of all the filtered streams, is to have pdf-parser produce JSON output and then display this with &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/myjson-filter.py"&gt;myjson-filter.py&lt;/a&gt;, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20250831-194327.png" style="width: 885px; height: 221px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you see the content of the streams, and to which object they belong. And if there are no filters, you also see this: 'No filters'.&lt;/p&gt;
+
+&lt;p&gt;Finally, the PDF comments that you saw in screenshot 2, are also gone: you only get streams.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Didier Stevens&lt;br /&gt;
+Senior handler&lt;br /&gt;
+&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32248</guid></item><item><title>Wireshark 4.4.9 Released, (Sun, Aug 31st)</title><link>https://isc.sans.edu/diary/rss/32246</link><description>&lt;p&gt;Wireshark release &lt;a href="https://www.wireshark.org/docs/relnotes/wireshark-4.4.9.html"&gt;4.4.9&lt;/a&gt; fixes 5 bugs.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Wireshark release &lt;a href="https://www.wireshark.org/docs/relnotes/wireshark-4.4.9.html"&gt;4.4.9&lt;/a&gt; fixes 5 bugs.&lt;/p&gt;
+
+&lt;p&gt;Didier Stevens&lt;br /&gt;
+Senior handler&lt;br /&gt;
+&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32246</guid></item><item><title>DOGE Put Everyone’s Social Security Data at Risk, Whistleblower Claims</title><link>https://www.wired.com/story/doge-social-security-data-at-risk-whistleblower/</link><description>Plus: China’s Salt Typhoon hackers target 600 companies in 80 countries, Tulsi Gabbard purges CIA agents, hackers knock out Iranian ship communications, and more.</description><guid isPermaLink="false">68b1cad570eb50b52bc0ed44</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>hacking</category><category>security</category><category>Donald Trump</category><category>DOGE</category><category>national security</category><category>China</category><category>Google</category><category>Security Roundup</category></item><item><title>SSA Whistleblower’s Resignation Email Mysteriously Disappeared From Inboxes</title><link>https://www.wired.com/story/charles-borges-resignation-email-disappearance/</link><description>Less than 30 minutes after the Social Security Administration’s chief data officer resigned following a whistleblower complaint, recipients could no longer access the resignation email.</description><guid isPermaLink="false">68b212713790309d9ffc1714</guid><category>Politics</category><category>Politics / Politics News</category><category>Security / Privacy</category><category>politics</category><category>laws</category><category>privacy</category><category>Donald Trump</category><category>Freedom of Information Act</category><category>Poof</category></item><item><title>Automating threat analysis and response with Cloudy</title><link>https://blog.cloudflare.com/automating-threat-analysis-and-response-with-cloudy/</link><description>Cloudy now supercharges analytics investigations and Cloudforce One threat intelligence! Get instant insights from threat events and APIs on APTs, DDoS, cybercrime &amp; more - powered by Workers AI.</description><content:encoded>&lt;p&gt;Security professionals everywhere face a paradox: while more data provides the visibility needed to catch threats, it also makes it harder for humans to process it all and find what's important. When there’s a sudden spike in suspicious traffic, every second counts. But for many security teams — especially lean ones — it’s hard to quickly figure out what’s going on. Finding a root cause means diving into dashboards, filtering logs, and cross-referencing threat feeds. All the data tracking that has happened can be the very thing that slows you down — or worse yet, what buries the threat that you’re looking for. &lt;/p&gt;&lt;p&gt;Today, we’re excited to announce that we’ve solved that problem. We’ve integrated &lt;a href="https://blog.cloudflare.com/introducing-ai-agent/"&gt;&lt;u&gt;Cloudy&lt;/u&gt;&lt;/a&gt; — Cloudflare’s first &lt;a href="https://www.cloudflare.com/learning/ai/what-is-agentic-ai/"&gt;&lt;u&gt;AI agent&lt;/u&gt;&lt;/a&gt; — with our security analytics functionality, and we’ve also built a new, conversational interface that Cloudflare users can use to ask questions, refine investigations, and get answers.  With these changes, Cloudy can now help Cloudflare users find the needle in the digital haystack, making security analysis faster and more accessible than ever before.  &lt;/p&gt;&lt;p&gt;Since Cloudly’s launch in March of this year, its adoption has been exciting to watch. Over &lt;b&gt;54,000&lt;/b&gt; users have tried Cloudy for &lt;a href="https://developers.cloudflare.com/waf/custom-rules/"&gt;&lt;u&gt;custom rule&lt;/u&gt;&lt;/a&gt; creation, and &lt;b&gt;31%&lt;/b&gt; of them have deployed a rule suggested by the agent. For our log explainers in &lt;a href="https://www.cloudflare.com/zero-trust/products/gateway/"&gt;&lt;u&gt;Cloudflare Gateway&lt;/u&gt;&lt;/a&gt;, Cloudy has been loaded over &lt;b&gt;30,000 &lt;/b&gt; times in just the last month, with &lt;b&gt;80%&lt;/b&gt; of the feedback we received confirming the summaries were insightful. We are excited to empower our users to do even more.&lt;/p&gt;
     &lt;div&gt;
       &lt;h2&gt;Talk to your traffic: a new conversational interface for faster RCA and mitigation&lt;/h2&gt;
       &lt;a href="https://blog.cloudflare.com/tag/security/rss#talk-to-your-traffic-a-new-conversational-interface-for-faster-rca-and-mitigation"&gt;
@@ -4672,213 +4706,7 @@ attributed to UAC-0057 (aka GhostWriter). These campaigns delivered a weaponized
 &lt;p&gt;[&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The end-to-end encryption the researchers examined recently is designed to run on top of TETRA encryption algorithms.&lt;/p&gt;
 &lt;p&gt;The researchers found the issue with the end-to-end encryption (E2EE) only after extracting and reverse-engineering the E2EE algorithm used in a radio made by Sepura.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;These seem to be deliberately implemented backdoors.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70592</guid><category>Uncategorized</category><category>backdoors</category><category>encryption</category><category>military</category><category>police</category><category>radio</category></item><item><title>Poor Password Choices</title><link>https://www.schneier.com/blog/archives/2025/08/poor-password-choices.html</link><description>&lt;p&gt;Look at &lt;a href="https://www.wired.com/story/mcdonalds-ai-hiring-chat-bot-paradoxai/"&gt;this&lt;/a&gt;: McDonald&amp;#8217;s chose the password &amp;#8220;123456&amp;#8221; for a major corporate system.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Look at &lt;a href="https://www.wired.com/story/mcdonalds-ai-hiring-chat-bot-paradoxai/"&gt;this&lt;/a&gt;: McDonald&amp;#8217;s chose the password &amp;#8220;123456&amp;#8221; for a major corporate system.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70629</guid><category>Uncategorized</category><category>network security</category><category>passwords</category></item><item><title>ISC Stormcast For Monday, August 25th, 2025 https://isc.sans.edu/podcastdetail/9584, (Mon, Aug 25th)</title><link>https://isc.sans.edu/diary/rss/32230</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32230</guid></item><item><title>AzureStrike – Offensive Toolkit for Attacking Azure Active Directory Environments</title><link>https://www.darknet.org.uk/2025/08/azurestrike-offensive-toolkit-for-attacking-azure-active-directory-environments/</link><description>AzureStrike is a red team toolkit for attacking Azure Active Directory, enabling reconnaissance, credential abuse, and persistence in cloud environments.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=173909</guid><category>Cloud Security</category><category>Hacking Tools</category><category>active directory</category><category>azure</category><category>azure security</category><category>red team</category></item><item><title>Reading Location Position Value in Microsoft Word Documents, (Mon, Aug 25th)</title><link>https://isc.sans.edu/diary/rss/32224</link><description>&lt;p&gt;While studying for the GX-FE &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;1&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;, I started exploring the "&lt;strong&gt;Position&lt;/strong&gt;" value in the registry that helps to tell Microsoft Word where you "left off". It&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s a feature many people that use Word have seen on numerous occasions and is explored in FOR500: Windows Forensic Analysis &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;2&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;. &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;While studying for the GX-FE [1], I started exploring the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value in the registry that helps to tell Microsoft Word where you &amp;quot;left off&amp;quot;. It's a feature many people that use Word have seen on numerous occasions and is explored in FOR500: Windows Forensic Analysis [2].&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure1.PNG" style="width: 198px; height: 131px;" /&gt;&lt;br /&gt;
-Figure 1: Word pop-up offering to continue at last location, which is assited by &amp;quot;Position&amp;quot; registry value.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;For example, my registry has the following registry information for a test document I created:&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;pre&gt;
-&lt;code&gt;Windows Registry Editor Version 5.00
-
-[HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Word\Reading Locations\Document 20]
-"File Path"="C:\\Users\\sans_isc\\Documents\\Testing Word Reading Locations.docx"
-"Datetime"="2025-08-23T14:39"
-"Position"="493796625 5462"
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There are two numbers associated with the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value. Experimentation suggests that the second number in this value is the character count position from the start of the document. I wasn't sure about the first value until I ran along a different article exploring this topic [3].&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure2_v2.PNG" style="border-width: 1px; border-style: solid; width: 883px; height: 306px;" /&gt;&lt;br /&gt;
-Figure 2: Example value of &amp;quot;Position&amp;quot;.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Phill Moore noticed that the first portion of this value was the &amp;quot;&lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;&amp;quot;, which can be seen in the raw XML of the Word document. Their article helped me understand something I didn't understand from my data during testing. I didn't know why this first number value changed when I was testing. The value seemed static until at some arbitrary point it changed, but then it didn't change anymore after that. It turns out that the document I randomly copied text into had a paragraph break. To create the test document, I copied and pasted text multiple times and at some point had created a new paragraph by hiting enter around page 4. Phill had also suggested that the second value in the &amp;quot;Position&amp;quot; could be character count, which is supported experimentally.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h2&gt;Experimentation&lt;/h2&gt;
-
-&lt;p&gt;First, a document was created by copying and pasting text into a Word document. After this, I experimented by opening and closing the document in a variety of ways to understand how the values changed within the registry. After each opening of the document, the &amp;quot;Pick up where you left off&amp;quot; option was used.&amp;nbsp;&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 0&lt;/td&gt;
-			&lt;td&gt;Scroll wheel down 2 clicks&lt;/td&gt;
-			&lt;td&gt;493796625 0&lt;/td&gt;
-			&lt;td&gt;First line of text still visible&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 0&lt;/td&gt;
-			&lt;td&gt;Scroll wheel down 3 clicks&lt;/td&gt;
-			&lt;td&gt;493796625 181&lt;/td&gt;
-			&lt;td&gt;Second line now the pop-most line visible&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 181&lt;/td&gt;
-			&lt;td&gt;Scrolled down to page 3, left-clicked on line 9 column 55&lt;/td&gt;
-			&lt;td&gt;493796625 6698&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 6698&lt;/td&gt;
-			&lt;td&gt;Left-clicked at end of line 1 on page 3&lt;/td&gt;
-			&lt;td&gt;493796625 6698&lt;/td&gt;
-			&lt;td&gt;Document opened on first line of page 3, cursor at start&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 6698&lt;/td&gt;
-			&lt;td&gt;Scroll wheel down 4 clicks, left clicked at end of line 14&lt;/td&gt;
-			&lt;td&gt;493796625 7228&lt;/td&gt;
-			&lt;td&gt;Document opened on first line of page 3, cursor at start&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 7228&lt;/td&gt;
-			&lt;td&gt;No action taken&lt;/td&gt;
-			&lt;td&gt;493796625 7228&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;493796625 7228&lt;/td&gt;
-			&lt;td&gt;Scroll wheel down 2 clicks&lt;/td&gt;
-			&lt;td&gt;493796625 7406&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 3: Results from experimenting with different cursor and viewable area placement&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The data demonstrates the second value increasing when scrolling down, although it only increments when the top-most viewable line changes. But what is the value incease? When looking at the differences in the two values, it appears that it's the number of characters that were no longer viewable.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure3.PNG" style="width: 1000px; height: 467px;" /&gt;&lt;br /&gt;
-Figure 4: Text highlighted that's missing after clicking a scroll wheel down once in Word.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure5_v2.PNG" style="width: 666px; height: 294px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
-Figure 5: Character count [4] of text matches difference between the second portions of two &amp;quot;Position&amp;quot; values from the registry.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-This helps give a bit more confidence that the second value in for &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; may be the character count. What if we change the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value to something that only sets a character count?&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;0 16542&lt;/td&gt;
-			&lt;td&gt;No action taken&lt;/td&gt;
-			&lt;td&gt;55341811 16525&lt;/td&gt;
-			&lt;td&gt;Was given option to continue from last location&lt;br /&gt;
-			Opened at page 5, line 36, column 18&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 6: Experimentation with only setting a non-zero value for second portion of &amp;quot;Position&amp;quot; value.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure5.PNG" style="width: 1000px; height: 371px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
-Figure 7: Starting cursor location upon opening Word document with randomly specified &amp;quot;Position&amp;quot; value in second number position.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure6.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 336px;" /&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 8: Starting cursor location after closing and reopening Word document with randomly specified &amp;quot;Position&amp;quot; value in second number position.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The value of the second number in the &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; field &lt;em&gt;&lt;strong&gt;is&lt;/strong&gt;&lt;/em&gt; the cusor location, but Word appears to set this value to the beginning of the first visible line within Word. This is one reason that the values many not change, even if the cusor is relocated. The value only changes once the top most visible line within Word changes.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;You may have noticed that the first value is also different now. This is the new&lt;strong&gt; &lt;code&gt;w14:paraId&lt;/code&gt; &lt;/strong&gt;value that can be seen within the&lt;code&gt; &lt;strong&gt;document.xml&lt;/strong&gt;&lt;/code&gt; file when the document is extracted using a look like 7-zip (within &lt;code&gt;&lt;strong&gt;word/document.xml&lt;/strong&gt;&lt;/code&gt;). Unfortunately, this value format is different in the document (hex) than it is in the registry (decimal).&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-08-25_figure7.PNG" style="width: 1000px; height: 516px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
-Figure 9: w14:paraId value in document.xml compared with the registry &amp;quot;Position&amp;quot; value data when the value from document.xml is converted from hex to decimal.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;What if only the first number value is set (&lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;)?&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 1000px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Starting &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Action Taken After Opening Document&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Ending &amp;quot;Position&amp;quot; Value&lt;/strong&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;55341811 0&lt;/td&gt;
-			&lt;td&gt;No action taken&lt;/td&gt;
-			&lt;td&gt;55341811 0&lt;/td&gt;
-			&lt;td&gt;Was &lt;em&gt;&lt;strong&gt;not&lt;/strong&gt;&lt;/em&gt; given option to continue from last location&lt;br /&gt;
-			Opened at the beginning of page 1&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 10: Setting the first number within &amp;quot;Position&amp;quot;&amp;nbsp;to a valid w14:paraId value does not skip to that paragraph.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;This character value is needed to properly position the last viewed location for a document in Word. If an invalid &lt;code&gt;&lt;strong&gt;w14:paraId&lt;/strong&gt;&lt;/code&gt;&amp;nbsp;is specified with a valid number of characters from start of the document, the continuation feature still functions within Word. From this experiment, the first value may not be used for this continuation feature, but is recorded based on the viewable location in Word at the time Word was closed.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;To use this &amp;quot;&lt;strong&gt;Position&lt;/strong&gt;&amp;quot; value in forensics, a test system can be set up with the appropriate registry information and the corresponding file can be opened to determine where in the file someone was reading when Word was closed. Programatically, this new information could be used to start extracting data from the Word document at the point of last viewing, which may save some time.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Can you think of any other use for this information? Did someone else figure this out and I just couldn't find it? Share it with us!&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://www.giac.org/certifications/experienced-forensics-examiner-gxfe/" target="_blank"&gt;https://www.giac.org/certifications/experienced-forensics-examiner-gxfe/&lt;/a&gt;&lt;br /&gt;
-[2]&amp;nbsp;&lt;a href="https://www.sans.org/cyber-security-courses/windows-forensic-analysis" target="_blank"&gt;https://www.sans.org/cyber-security-courses/windows-forensic-analysis&lt;/a&gt;&lt;br /&gt;
-[3]&amp;nbsp;&lt;a href="https://thinkdfir.com/2019/02/11/microsoft-office-reading-locations-part-1/" target="_blank"&gt;https://thinkdfir.com/2019/02/11/microsoft-office-reading-locations-part-1/&lt;/a&gt;&lt;br /&gt;
-[4]&amp;nbsp;&lt;a href="https://wordcounter.net/character-count" target="_blank"&gt;https://wordcounter.net/character-count&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Jesse La Grew&lt;br /&gt;
-Handler&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32224</guid></item><item><title>The end of an era: Properly formated IP addresses in all of our data., (Sun, Aug 24th)</title><link>https://isc.sans.edu/diary/rss/32228</link><description>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a "15 character 0-padded" format for IP addresses. This format padded each byte in the IP address with leading 0&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s, ensuring that they were all 15 characters long (including the &amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;). &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The Internet Storm Center and DShield websites are about 25 years old. Back in the day, I made some questionable decisions that I have never quite cleaned up later. One of these decisions was to use a &amp;quot;15 character 0-padded&amp;quot; format for IP addresses. This format padded each byte in the IP address with leading 0's, ensuring that they were all 15 characters long (including the '.').&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;At the time, this was a quick and efficient solution to make sure that IP addresses could be easily sorted. At the time, I don't think MySQL had an &amp;quot;inet_aton()&amp;quot; function to easily convert IP addresses into unsigned long integers, and initially, the MySQL implementation of inet_aton() returned a signed integer, not an unsigned integer.&lt;/p&gt;
-
-&lt;p&gt;But this format is also just wrong, and leads to ambiguities, as leading zeros usually indicate an octal format. So over the last couple of weeks, I started the process to finally switch IP addresses to the normal &amp;quot;dotted decimal&amp;quot; format. The first RFC defining this format is, as far as I know, RFC 2851 from June 2000, around the same time the original DShield database schema was conceived. The current version of this standard is RFC 4001.&lt;/p&gt;
-
-&lt;p&gt;Please let me know if you see the &amp;quot;old-fashioned&amp;quot; format on various pages. Historic data may take a while to convert. Luckily, the MySQL inet_aton() function is still not quite right, and ignores leading zeros instead of treating the respective bytes as octal.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32228</guid></item><item><title>Meta Strikes $10 Billion Cloud Deal With Google to Boost AI Capacity</title><link>https://www.techrepublic.com/article/news-google-meta-cloud-deal/</link><description>Data centre capacity is essential for all of the tech giants offering artificial intelligence products.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323629</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Data Centers</category><category>Google</category><category>News</category></item><item><title>US Government Seeks Medical Records of Trans Youth</title><link>https://www.wired.com/story/us-government-seeks-medical-records-of-trans-youth/</link><description>Plus: Google wants billions of Chrome users to install an emergency fix, Kristi Noem is on the move, and North Korean IT workers are everywhere.</description><guid isPermaLink="false">68a8a8733d3340e9212647ff</guid><category>Security</category><category>Security / Security News</category><category>security roundup</category><category>privacy</category><category>security</category><category>cybersecurity</category><category>department of justice</category><category>Chrome</category><category>Security Roundup</category></item><item><title>NVIDIA CEO Dismisses Chip Security Allegations as China Orders Firms to Halt Purchases</title><link>https://www.techrepublic.com/article/news-nvidia-dismisses-h20-security-concerns/</link><description>NVIDIA is also reportedly working on a new AI chip for customers in China that outperforms the company’s H20.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323544</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category><category>Security</category></item><item><title>ChromeAlone – Chromium Browser C2 Implant for Red Team Operations</title><link>https://www.darknet.org.uk/2025/08/chromealone-chromium-browser-c2-implant-for-red-team-operations/</link><description>ChromeAlone turns Chromium into a stealthy C2 implant with credential capture, file access, and persistence. A browser-based alternative to Cobalt Strike.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=173562</guid><category>Hacking Tools</category><category>c2</category><category>command and control</category><category>post exploitation</category><category>red team</category></item><item><title>Sam Altman Is Already Talking About GPT-6</title><link>https://www.techrepublic.com/article/news-sam-altman-gpt-6/</link><description>GPT-6 is set to bring smarter memory, adaptability, and chatbots customized to user needs — arriving sooner than the wait between GPT-4 and GPT-5.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323644</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Google Offers AI Suite to US Government for Less Than 50 Cents</title><link>https://www.techrepublic.com/article/news-google-gemini-for-government/</link><description>Google offers US agencies a year of its AI suite for just $0.47, undercutting rivals and driving affordable AI adoption in the public sector.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323641</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category></item><item><title>CISA Requests Public Comment for Updated Guidance on Software Bill of Materials</title><link>https://www.cisa.gov/news-events/alerts/2025/08/22/cisa-requests-public-comment-updated-guidance-software-bill-materials</link><description>&lt;div class="OutlineElement Ltr SCXW251838431 BCX8"&gt;
+&lt;p&gt;These seem to be deliberately implemented backdoors.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70592</guid><category>Uncategorized</category><category>backdoors</category><category>encryption</category><category>military</category><category>police</category><category>radio</category></item><item><title>Poor Password Choices</title><link>https://www.schneier.com/blog/archives/2025/08/poor-password-choices.html</link><description>&lt;p&gt;Look at &lt;a href="https://www.wired.com/story/mcdonalds-ai-hiring-chat-bot-paradoxai/"&gt;this&lt;/a&gt;: McDonald&amp;#8217;s chose the password &amp;#8220;123456&amp;#8221; for a major corporate system.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Look at &lt;a href="https://www.wired.com/story/mcdonalds-ai-hiring-chat-bot-paradoxai/"&gt;this&lt;/a&gt;: McDonald&amp;#8217;s chose the password &amp;#8220;123456&amp;#8221; for a major corporate system.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70629</guid><category>Uncategorized</category><category>network security</category><category>passwords</category></item><item><title>ISC Stormcast For Monday, August 25th, 2025 https://isc.sans.edu/podcastdetail/9584, (Mon, Aug 25th)</title><link>https://isc.sans.edu/diary/rss/32230</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32230</guid></item><item><title>AzureStrike – Offensive Toolkit for Attacking Azure Active Directory Environments</title><link>https://www.darknet.org.uk/2025/08/azurestrike-offensive-toolkit-for-attacking-azure-active-directory-environments/</link><description>AzureStrike is a red team toolkit for attacking Azure Active Directory, enabling reconnaissance, credential abuse, and persistence in cloud environments.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=173909</guid><category>Cloud Security</category><category>Hacking Tools</category><category>active directory</category><category>azure</category><category>azure security</category><category>red team</category></item><item><title>Meta Strikes $10 Billion Cloud Deal With Google to Boost AI Capacity</title><link>https://www.techrepublic.com/article/news-google-meta-cloud-deal/</link><description>Data centre capacity is essential for all of the tech giants offering artificial intelligence products.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323629</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Data Centers</category><category>Google</category><category>News</category></item><item><title>US Government Seeks Medical Records of Trans Youth</title><link>https://www.wired.com/story/us-government-seeks-medical-records-of-trans-youth/</link><description>Plus: Google wants billions of Chrome users to install an emergency fix, Kristi Noem is on the move, and North Korean IT workers are everywhere.</description><guid isPermaLink="false">68a8a8733d3340e9212647ff</guid><category>Security</category><category>Security / Security News</category><category>security roundup</category><category>privacy</category><category>security</category><category>cybersecurity</category><category>department of justice</category><category>Chrome</category><category>Security Roundup</category></item><item><title>NVIDIA CEO Dismisses Chip Security Allegations as China Orders Firms to Halt Purchases</title><link>https://www.techrepublic.com/article/news-nvidia-dismisses-h20-security-concerns/</link><description>NVIDIA is also reportedly working on a new AI chip for customers in China that outperforms the company’s H20.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323544</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category><category>Security</category></item><item><title>ChromeAlone – Chromium Browser C2 Implant for Red Team Operations</title><link>https://www.darknet.org.uk/2025/08/chromealone-chromium-browser-c2-implant-for-red-team-operations/</link><description>ChromeAlone turns Chromium into a stealthy C2 implant with credential capture, file access, and persistence. A browser-based alternative to Cobalt Strike.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=173562</guid><category>Hacking Tools</category><category>c2</category><category>command and control</category><category>post exploitation</category><category>red team</category></item><item><title>Sam Altman Is Already Talking About GPT-6</title><link>https://www.techrepublic.com/article/news-sam-altman-gpt-6/</link><description>GPT-6 is set to bring smarter memory, adaptability, and chatbots customized to user needs — arriving sooner than the wait between GPT-4 and GPT-5.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323644</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Google Offers AI Suite to US Government for Less Than 50 Cents</title><link>https://www.techrepublic.com/article/news-google-gemini-for-government/</link><description>Google offers US agencies a year of its AI suite for just $0.47, undercutting rivals and driving affordable AI adoption in the public sector.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4323641</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category></item><item><title>CISA Requests Public Comment for Updated Guidance on Software Bill of Materials</title><link>https://www.cisa.gov/news-events/alerts/2025/08/22/cisa-requests-public-comment-updated-guidance-software-bill-materials</link><description>&lt;div class="OutlineElement Ltr SCXW251838431 BCX8"&gt;
 &lt;p&gt;CISA released updated guidance for the &lt;a href="https://www.cisa.gov/resources-tools/resources/2025-minimum-elements-software-bill-materials-sbom"&gt;Minimum Elements for a Software Bill of Materials (SBOM)&lt;/a&gt; for public comment—comment period begins today and concludes on October 3, 2025. These updates build on the 2021 version of the National Telecommunications and Information Administration SBOM Minimum Elements to reflect advancements in tooling and implementation.&amp;nbsp;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="OutlineElement Ltr SCXW251838431 BCX8"&gt;
