@@ -1,5 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 21 Sep 2025 17:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Friday, September 19th, 2025 https://isc.sans.edu/podcastdetail/9620</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>A Dangerous Worm Is Eating Its Way Through Software Packages</title><link>https://www.wired.com/story/a-dangerous-worm-is-eating-its-way-through-software-packages/</link><description>Plus: An investigation reveals how US tech companies reportedly helped build China’s sweeping surveillance state, and two more alleged members of the Scattered Spider hacking group were arrested.</description><guid isPermaLink="false">68cd8b1b87a8099f4b431267</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>security</category><category>malware</category><category>privacy</category><category>surveillance</category><category>Security Roundup</category></item><item><title>Friday Squid Blogging: Giant Squid vs. Blue Whale</title><link>https://www.schneier.com/blog/archives/2025/09/friday-squid-blogging-giant-squid-vs-blue-whale.html</link><description>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</description><content:encoded>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70848</guid><category>Uncategorized</category><category>squid</category></item><item><title>Prompts as Code &amp; Embedded Keys | The Hunt for LLM-Enabled Malware</title><link>https://www.sentinelone.com/labs/prompts-as-code-embedded-keys-the-hunt-for-llm-enabled-malware/</link><description>LLM-enabled malware poses new challenges for detection. SentinelLABS presents groundbreaking research on how to hunt for this new class of threats.</description><content:encoded>&lt;p&gt;&lt;i&gt;This is an abridged version of the &lt;/i&gt;&lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;i&gt;LABScon 2025&lt;/i&gt;&lt;/a&gt;&lt;i&gt; presentation &amp;#8220;LLM-Enabled Malware In the Wild&amp;#8221; by the authors. A LABScon Replay video of the full talk will be released in due course.&lt;/i&gt;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 21 Sep 2025 18:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Help Wanted: What are these odd reuqests about&amp;#x3f;</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Help Wanted: What are these odd reuqests about&amp;#x3f;, (Sun, Sep 21st)</title><link>https://isc.sans.edu/diary/rss/32302</link><description>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t seen before: "X-Forwarded-App". My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular "App" is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn't seen before: &amp;quot;X-Forwarded-App&amp;quot;. My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular &amp;quot;App&amp;quot; is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;GET&amp;nbsp;/business/appVersion/get/qr/download HTTP/1.1&lt;br /&gt;
+Host: [honeypot IP address]&lt;br /&gt;
+User-Agent:&amp;nbsp;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Trailer/93.3.3570.29&lt;br /&gt;
+Accept:&amp;nbsp;application/json&lt;br /&gt;
+Accept-Language:&amp;nbsp;zh-CN,zh;q=0.9,zh-HK;q=0.8,zh-TW;q=0.7,en;q=0.6&lt;br /&gt;
+Content-Type:&amp;nbsp;application/json;charset=UTF-8&lt;br /&gt;
+Deviceid:&amp;nbsp;4c2e063f3def4582&lt;br /&gt;
+Deviceinfo:&amp;nbsp;android&lt;br /&gt;
+License: doJn7HAfIo9xMsLbcEKD7ku40F2zWJjJOjgxwqFs_Hec3FdkKcgKRQFCOrf-5xxI&lt;br /&gt;
+Phonemodel: samsung&lt;br /&gt;
+V: 48650&lt;br /&gt;
+X-Forwarded-App: app.F6syl6mB&lt;br /&gt;
+Accept-Encoding: gzip&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This looks like a request a mobile app would send. Some of the details, like the string following &amp;quot;app.&amp;quot;, change from request to request. The &amp;quot;License&amp;quot; header could be used as an API key (I modified it a bit in case this is a valid license).&lt;/p&gt;
+
+&lt;p&gt;Google'ing showed some APIs using an X-Forwarded-App header, but nothing specific that would match this request. Please let me know if you have any ideas what this request may be about.&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32302</guid></item><item><title>A Dangerous Worm Is Eating Its Way Through Software Packages</title><link>https://www.wired.com/story/a-dangerous-worm-is-eating-its-way-through-software-packages/</link><description>Plus: An investigation reveals how US tech companies reportedly helped build China’s sweeping surveillance state, and two more alleged members of the Scattered Spider hacking group were arrested.</description><guid isPermaLink="false">68cd8b1b87a8099f4b431267</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>security</category><category>malware</category><category>privacy</category><category>surveillance</category><category>Security Roundup</category></item><item><title>Friday Squid Blogging: Giant Squid vs. Blue Whale</title><link>https://www.schneier.com/blog/archives/2025/09/friday-squid-blogging-giant-squid-vs-blue-whale.html</link><description>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</description><content:encoded>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70848</guid><category>Uncategorized</category><category>squid</category></item><item><title>Prompts as Code &amp; Embedded Keys | The Hunt for LLM-Enabled Malware</title><link>https://www.sentinelone.com/labs/prompts-as-code-embedded-keys-the-hunt-for-llm-enabled-malware/</link><description>LLM-enabled malware poses new challenges for detection. SentinelLABS presents groundbreaking research on how to hunt for this new class of threats.</description><content:encoded>&lt;p&gt;&lt;i&gt;This is an abridged version of the &lt;/i&gt;&lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;i&gt;LABScon 2025&lt;/i&gt;&lt;/a&gt;&lt;i&gt; presentation &amp;#8220;LLM-Enabled Malware In the Wild&amp;#8221; by the authors. A LABScon Replay video of the full talk will be released in due course.&lt;/i&gt;&lt;/p&gt;
 &lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;LLM-enabled malware poses new challenges for detection and threat hunting as malicious logic can be generated at runtime rather than embedded in code.&lt;/li&gt;
@@ -4987,73 +5014,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;blockquote&gt;&lt;p&gt;The lawsuit, alleging violations of the whistleblower protection provision of the Sarbanes-Oxley Act passed in 2002, said that in 2022, roughly 100,000 WhatsApp users had their accounts hacked every day. By last year, the complaint alleged, as many as 400,000 WhatsApp users were getting locked out of their accounts each day as a result of such account takeovers...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;Attaullah Baig, WhatsApp&amp;#8217;s former head of security, has filed a &lt;a href="https://arstechnica.com/security/2025/09/former-whatsapp-security-boss-sues-meta-for-systemic-cybersecurity-failures/"&gt;whistleblower&lt;/a&gt; lawsuit alleging that Facebook deliberately failed to fix a bunch of security flaws, in violation of its 2019 settlement agreement with the Federal Trade Commission.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The lawsuit, alleging violations of the whistleblower protection provision of the Sarbanes-Oxley Act passed in 2002, said that in 2022, roughly 100,000 WhatsApp users had their accounts hacked every day. By last year, the complaint alleged, as many as 400,000 WhatsApp users were getting locked out of their accounts each day as a result of such account takeovers.&lt;/p&gt;
 &lt;p&gt;Baig also allegedly notified superiors that data scraping on the platform was a problem because WhatsApp failed to implement protections that are standard on other messaging platforms, such as Signal and Apple Messages. As a result, the former WhatsApp head estimated that pictures and names of some 400 million user profiles were improperly copied every day, often for use in account impersonation scams.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href="https://www.nytimes.com/2025/09/08/technology/whatsapp-whistleblower-lawsuit.html"&gt;More&lt;/a&gt; &lt;a href="https://www.theguardian.com/technology/2025/sep/08/meta-user-data-lawsuit-whatsapp"&gt;news&lt;/a&gt; &lt;a href="https://www.techpolicy.press/breaking-down-the-whatsapp-whistleblower-lawsuit/"&gt;coverage&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70758</guid><category>Uncategorized</category><category>Facebook</category><category>vulnerabilities</category><category>WhatsApp</category><category>whistleblowers</category></item><item><title>Web Searches For Archives, (Sun, Sep 14th)</title><link>https://isc.sans.edu/diary/rss/32282</link><description>&lt;p&gt;Johannes wrote a diary entry "&lt;a href="https://isc.sans.edu/diary/Increasing&amp;#x2b;Searches&amp;#x2b;for&amp;#x2b;ZIP&amp;#x2b;Files/32242/"&gt;Increasing Searches for ZIP Files&lt;/a&gt;" where he analyzed the increase of requests for ZIP files (like backup.zip, web.zip, ...) for our web honeypots.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Johannes wrote a diary entry &amp;quot;&lt;a href="https://isc.sans.edu/diary/Increasing+Searches+for+ZIP+Files/32242/"&gt;Increasing Searches for ZIP Files&lt;/a&gt;&amp;quot; where he analyzed the increase of requests for ZIP files (like backup.zip, web.zip, ...) for our web honeypots.&lt;/p&gt;
-
-&lt;p&gt;I took a look at my logs, and noticed that too. But it's not only ZIP files, but other archives too:&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 100px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;zip&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;rar&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;7z&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;gz&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;tar&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;I even had requests for .tar.zip files.&lt;/p&gt;
-
-&lt;p&gt;And when it comes to backup files, the following non-archive types are also popular requests:&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 100px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Filename&lt;/strong&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;backup.sql&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;backup.json&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;backup.bak&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;backup.sh&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Looking at the User Agent Strings for these requests, none indicated that these scans were performed by researchers.&lt;/p&gt;
-
-&lt;p&gt;And comparing the source IPs of these requests with our &lt;a href="https://isc.sans.edu/diary/31964"&gt;researchers list&lt;/a&gt;: not a single match.&lt;/p&gt;
-
-&lt;p&gt;So it's safe to say that these scans are done with malicious intent, and that you should take Johannes' advice and don't have these types of files on your web servers, and even better, have some policy to avoid this.&lt;/p&gt;
-
-&lt;p&gt;Update: I also had request for a file with the IPv4 address of my server (like 12.34.56.78.zip).&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Didier Stevens&lt;br /&gt;
-Senior handler&lt;br /&gt;
-&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32282</guid></item><item><title>Jeffrey Epstein’s Yahoo Inbox Revealed</title><link>https://www.wired.com/story/jeffrey-epsteins-yahoo-inbox-revealed/</link><description>Plus: ICE deploys secretive phone surveillance tech, officials warn of Chinese surveillance tools in US highway infrastructure, and more.</description><guid isPermaLink="false">68c4406483df8e0f61b13c34</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>privacy</category><category>Department of Homeland Security</category><category>China</category><category>vulnerabilities</category><category>JavaScript</category><category>Security Roundup</category></item><item><title>TechRepublic Exclusive: AWS Says Entry-Level Workers Need ‘Curiosity’ In the Age of AI</title><link>https://www.techrepublic.com/article/news-aws-ai-skills-gap/</link><description>&lt;p&gt;AWS’ Michelle Vaz discusses upskilling and how aspiring software development engineers can position themselves for success.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.nytimes.com/2025/09/08/technology/whatsapp-whistleblower-lawsuit.html"&gt;More&lt;/a&gt; &lt;a href="https://www.theguardian.com/technology/2025/sep/08/meta-user-data-lawsuit-whatsapp"&gt;news&lt;/a&gt; &lt;a href="https://www.techpolicy.press/breaking-down-the-whatsapp-whistleblower-lawsuit/"&gt;coverage&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70758</guid><category>Uncategorized</category><category>Facebook</category><category>vulnerabilities</category><category>WhatsApp</category><category>whistleblowers</category></item><item><title>Jeffrey Epstein’s Yahoo Inbox Revealed</title><link>https://www.wired.com/story/jeffrey-epsteins-yahoo-inbox-revealed/</link><description>Plus: ICE deploys secretive phone surveillance tech, officials warn of Chinese surveillance tools in US highway infrastructure, and more.</description><guid isPermaLink="false">68c4406483df8e0f61b13c34</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>privacy</category><category>Department of Homeland Security</category><category>China</category><category>vulnerabilities</category><category>JavaScript</category><category>Security Roundup</category></item><item><title>TechRepublic Exclusive: AWS Says Entry-Level Workers Need ‘Curiosity’ In the Age of AI</title><link>https://www.techrepublic.com/article/news-aws-ai-skills-gap/</link><description>&lt;p&gt;AWS’ Michelle Vaz discusses upskilling and how aspiring software development engineers can position themselves for success.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-aws-ai-skills-gap/"&gt;TechRepublic Exclusive: AWS Says Entry-Level Workers Need ‘Curiosity’ In the Age of AI&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4327017</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category></item><item><title>Charlie Kirk Shooting Suspect Identified as 22-Year-Old Utah Man</title><link>https://www.wired.com/story/charlie-kirk-shooting-suspect-identified-as-22-year-old-utah-man-tyler-robinson/</link><description>Authorities have named Tyler Robinson as a suspect in the murder of right-wing influencer Charlie Kirk, citing Discord messages as evidence of his alleged role.</description><guid isPermaLink="false">68c1fb18a5259a4d7cc9e248</guid><category>Politics</category><category>Politics / Politics News</category><category>Security</category><category>Crime</category><category>politics</category><category>FBI</category><category>Guns</category><category>Donald Trump</category><category>Charlie Kirk</category><category>Investigative Files</category></item><item><title>Key Concerns Regarding Governance in the Era of Militarisation of Tech</title><link>http://privacyinternational.org/long-read/5671/key-concerns-regarding-governance-era-militarisation-tech</link><guid isPermaLink="false">5671 at http://privacyinternational.org</guid></item><item><title>On the Applicable Legal Frameworks and Regulatory Gaps: International Humanitarian Law and International Human Rights Law</title><link>http://privacyinternational.org/long-read/5670/applicable-legal-frameworks-and-regulatory-gaps-international-humanitarian-law-and</link><guid isPermaLink="false">5670 at http://privacyinternational.org</guid></item><item><title>Blurring the Line: How Militarisation of Tech is Reshaping our Town Squares</title><link>http://privacyinternational.org/long-read/5669/blurring-line-how-militarisation-tech-reshaping-our-town-squares</link><guid isPermaLink="false">5669 at http://privacyinternational.org</guid></item><item><title>What is Militarisation of Tech?</title><link>http://privacyinternational.org/long-read/5668/what-militarisation-tech</link><guid isPermaLink="false">5668 at http://privacyinternational.org</guid></item><item><title>How Data Drives the Militarisation of Tech</title><link>http://privacyinternational.org/long-read/5667/how-data-drives-militarisation-tech</link><guid isPermaLink="false">5667 at http://privacyinternational.org</guid></item><item><title>Yurei &amp; The Ghost of Open Source Ransomware</title><link>https://research.checkpoint.com/2025/yurei-the-ghost-of-open-source-ransomware/</link><description>&lt;p&gt;Key Points Yurei Ransomware Check Point Research discovered a new ransomware group on September 5. The group calls themselves Yurei (a sort of spirit in Japanese folklore), and initially listed one victim, a Sri Lankan food manufacturing company, on their darknet blog. These blogs are used by ransomware groups to list their victims, show proofs [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/yurei-the-ghost-of-open-source-ransomware/"&gt;Yurei &amp;amp; The Ghost of Open Source Ransomware&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
 
