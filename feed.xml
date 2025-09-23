@@ -1,5 +1,336 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 23 Sep 2025 12:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, September 23rd, 2025 https://isc.sans.edu/podcastdetail/9624</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>How to Use 1Password's Travel Mode at the Border (2025)</title><link>https://www.wired.com/story/1password-travel-mode/</link><description>Travel Mode not only hides your most sensitive data—it acts as if that data never existed in the first place.</description><guid isPermaLink="false">68b99676029118a508f2a775</guid><category>Gear</category><category>Gear / How To and Advice</category><category>Gear / Products / Online Services</category><category>Security / Privacy</category><category>Shopping</category><category>privacy</category><category>Travel</category><category>phones</category><category>encryption</category><category>security</category><category>how-to</category><category>smartphones</category><category>Passwords</category><category>Clean Wipe</category></item><item><title>ISC Stormcast For Tuesday, September 23rd, 2025 https://isc.sans.edu/podcastdetail/9624, (Tue, Sep 23rd)</title><link>https://isc.sans.edu/diary/rss/32306</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32306</guid></item><item><title>Anthropic CEO Dario Amodei Distances Company From Trump Administration</title><link>https://www.techrepublic.com/article/news-anthropic-amodei-regulations/</link><description>&lt;p&gt;A Wall Street Journal profile charts Anthropic CEO Dario Amodei’s warnings about risks of unregulated generative AI.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 23 Sep 2025 13:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>&amp;#x5b;Guest Diary&amp;#x5d; Distracting the Analyst for Fun and Profit</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>&amp;#x5b;Guest Diary&amp;#x5d; Distracting the Analyst for Fun and Profit, (Tue, Sep 23rd)</title><link>https://isc.sans.edu/diary/rss/32308</link><description>&lt;p&gt;&lt;span&gt;&lt;span&gt;&amp;#x26;#x5b;This is a Guest Diary by Taylor House, an ISC intern as part of the SANS.edu Bachelor&amp;#x26;&amp;#x26;#x23&amp;#x26;#x3b;39&amp;#x26;#x3b;s Degree in Applied Cybersecurity (BACS) program &amp;#x26;#x5b;1&amp;#x5d;.&amp;#x5d;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;span style="color: #ffffff;"&gt;&lt;span style="background-color: #c0392b;"&gt;[This is a Guest Diary by Taylor House, an ISC intern as part of the SANS.edu Bachelor's Degree in Applied Cybersecurity (BACS) program [1].]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Distributed denial of service (DDoS) attacks are a type of cyber-attack where the threat actor attempts to disrupt a service by flooding the target with a ton of requests to overload system resources and prevent legitimate traffic from reaching it. From March 31st until April 20th of this year, my honeypot went under a constant barrage of TCP SYN packets over port 443. This post seeks to go over this attack and share observations proving how looks can be deceiving.&lt;/p&gt;
+
+&lt;p&gt;In total, this attack sent &lt;strong&gt;2389339&lt;/strong&gt; packets from &lt;strong&gt;6039&lt;/strong&gt; hosts. The attack came over a series of three waves, with no relation other than the destination port and the flag that was set. A sample was taken from the first of these waves, and each packet was found to have these properties:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;A total length of 60 bytes.&lt;/li&gt;
+	&lt;li&gt;Targeted port 443 using the TCP protocol.&lt;/li&gt;
+	&lt;li&gt;Had the SYN flag and no other flags set.&lt;/li&gt;
+	&lt;li&gt;Had a window size of 32768.&lt;/li&gt;
+	&lt;li&gt;Had a maximum segment size of 1460 bytes.&lt;/li&gt;
+	&lt;li&gt;A trailer in the Ethernet header containing 2 bytes of padding.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure1.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 330px;" /&gt;&lt;br /&gt;
+Figure 1. Wireshark output displaying a sample of packets from wave 1.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;The First Wave&lt;/h2&gt;
+
+&lt;p&gt;The first wave occurred from March 31st until April 4th, sending &lt;strong&gt;647069&lt;/strong&gt; packets from &lt;strong&gt;743&lt;/strong&gt; hosts. The top 10 hosts from this wave were:&lt;/p&gt;
+
+&lt;table align="center" border="1" cellpadding="1" cellspacing="1" height="313" width="487"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;Host&lt;/th&gt;
+			&lt;th scope="col"&gt;Number of Packets&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.246.198%%&lt;/td&gt;
+			&lt;td&gt;1030&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.247.87%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.247.17%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.247.111%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.245.80%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.245.249%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.245.239%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.245.169%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.245.0%%&lt;/td&gt;
+			&lt;td&gt;1028&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:103.15.247.93%%&lt;/td&gt;
+			&lt;td&gt;1027&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;10281&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 2. Top 10 hosts from wave 1 by number of packets sent.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;An overwhelming majority of the hosts (86%) were within the IP address range 103.15.245.0-103.15.247.99. Of those hosts, 36 of them had domain name entries. All these hosts are assigned to Summit Communications, an ISP located in Bangladesh. Of those 36 hosts, Shodan intelligence [2] shows multiple possible vulnerabilities due to outdated software such as:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;&lt;strong&gt;dropband[.]summitiig[.]net&lt;/strong&gt;&lt;/code&gt; is running a web server on Apache version 2.4.18 and may be vulnerable to critical vulnerabilities such as buffer overflow attacks and remote code execution attacks that enable attackers to exert direct control over the system through the web server. [3,4]&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;&lt;strong&gt;mrtg[.]summitiig[.]net &lt;/strong&gt;&lt;/code&gt;is running an even older version of Apache, version 2.2.15, and may be vulnerable to vulnerabilities such as buffer overflow and reading process memory. [5,6]&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Crafted Packets?&lt;/h2&gt;
+
+&lt;p&gt;It is possible that this could be the result of a botnet. However, with only a minority of hosts having domain names or clearly exposed services, another possible explanation is the connections were spoofed. The consistent size and attributes of the packets, including window size and maximum segment size, is a sign this might be happening because of packet crafting using a tool like Scapy. Packet crafting is a process for sending fake packets to a target with custom fields. Suppose I craft a packet to send to my loopback address using the following commands. Padding can be any value, since there are two random bytes that can be found at the end of each packet:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-python"&gt;packet = IP(src=RandIP(), dst='127.0.0.0')/TCP(sport=RandShort(), dport=443, window=32768, options=[('MSS',1460)])/Padding('\x00\x00')
+send(packet, iface=?lo?) #Repeat many times?&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What we find on the other side is the following:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure2.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 324px;" /&gt;&lt;br /&gt;
+Figure 3. Screenshot of the crafted packets captured in Wireshark.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Shockingly similar to the observed activity! This proves that packet crafting may have a role to play in this attack.&lt;/p&gt;
+
+&lt;h2&gt;The Second Wave&lt;/h2&gt;
+
+&lt;p&gt;The second wave occurred from April 7th until April 14th, sending 885209 packets from 1054 hosts. The top 10 hosts from this wave were:&lt;/p&gt;
+
+&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;Host&lt;/th&gt;
+			&lt;th scope="col"&gt;Number of&amp;nbsp;&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.100%%&lt;/td&gt;
+			&lt;td&gt;8375&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.144.104%%&lt;/td&gt;
+			&lt;td&gt;8373&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.254%%&lt;/td&gt;
+			&lt;td&gt;8372&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.205%%&lt;/td&gt;
+			&lt;td&gt;8371&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.135%%&lt;/td&gt;
+			&lt;td&gt;8371&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.37%%&lt;/td&gt;
+			&lt;td&gt;8370&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.145.16%%&lt;/td&gt;
+			&lt;td&gt;8370&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.144.83%%&lt;/td&gt;
+			&lt;td&gt;8370&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.144.167%%&lt;/td&gt;
+			&lt;td&gt;8370&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:86.105.144.132%%&lt;/td&gt;
+			&lt;td&gt;8370&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;83712&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 4. Top 10 hosts from wave 2 by number of packets sent.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This wave had both more hosts and each host sent more packets, demonstrating a slight increase in the rate of packets sent. The majority of hosts (60%) were from the IP range 85.194.196.1-85.194.198.99. All these hosts are assigned to ScopeSky, an ISP located in Iraq. CloudFlare reports a spike in Layer 7 attacks sourcing from ScopeSky&amp;rsquo;s autonomous systems number for the period of this attack, suggesting that many attacks involving the application layer, like web application firewall bypasses and DdoS attacks are coming from this autonomous systems number over the period relative to previous periods [7].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure3.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 376px;" /&gt;&lt;br /&gt;
+Figure 5. Application layer attack volume change relative to the previous period from AS50597: ScopeSky [7].&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Is this a new botnet?&lt;/h2&gt;
+
+&lt;p&gt;The chance these are the legitimate sources is low. Given that it makes up a third of the address space assigned to ScopeSky, this would be a major incident for the company and would make the news. This proves that threat actors can spoof their traffic to make it look like it is coming from another source, but an 1800% increase is very unrealistic for it to appear like a legitimate threat.&lt;/p&gt;
+
+&lt;h2&gt;The Third Wave&lt;/h2&gt;
+
+&lt;p&gt;The third wave occurred from April 16th until April 20th, sending 857061 packets from 4242 hosts. The top 10 hosts from this wave were:&lt;/p&gt;
+
+&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;Host&lt;/th&gt;
+			&lt;th scope="col"&gt;Number of Packets&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.82.245%%&lt;/td&gt;
+			&lt;td&gt;262&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.89.194%%&lt;/td&gt;
+			&lt;td&gt;261&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.82.87%%&lt;/td&gt;
+			&lt;td&gt;261&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.87.173%%&lt;/td&gt;
+			&lt;td&gt;259&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.85.61%%&lt;/td&gt;
+			&lt;td&gt;257&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.85.40%%&lt;/td&gt;
+			&lt;td&gt;256&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.84.153%%&lt;/td&gt;
+			&lt;td&gt;256&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.88.35%%&lt;/td&gt;
+			&lt;td&gt;254&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.82.90%%&lt;/td&gt;
+			&lt;td&gt;254&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;%%ip:176.241.91.8%%9&lt;/td&gt;
+			&lt;td&gt;253&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Total&lt;/td&gt;
+			&lt;td&gt;2573&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 6. Top 10 hosts from wave 3 by number of packets sent.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+An overwhelming majority of hosts (96%) came from the ip range 176.241.80.0-176.241.95.99. These ranges are covered by two autonomous systems numbers: AS57588, managed by Hayat for Internet &amp;amp; communication LLC, another ISP in Iraq, and AS57000 LinkiWay DMCC, an Emirati ISP [8,9]. This wave had a lot more hosts, but the number of packets per host were a lot fewer, which may increase the rate of packets being sent, but impacts the overall volume. GreyNoise reports 44 known malicious hosts from this wave [10]. The hosts have been observed doing a variety of suspicious actions such as Telnet/SSH brute forcing attempts, web crawling, default password guessing, and the deployment of various worms such as variants of WannaCry and TrickBot. Looking at Shodan data relevant to the identified ASNs [11,12], There are about 150 systems that have SSH exposed externally, a very poor security practice. The known malicious systems may have been brute forced by the threat actor to gain more systems under their control. Combined with spoofing, this may explain why the total host count is so high relative to the other waves.&lt;/p&gt;
+
+&lt;h2&gt;Is this really a DDoS?&lt;/h2&gt;
+
+&lt;p&gt;While the honeypot received a total of &lt;strong&gt;2389339&lt;/strong&gt; packets, this is likely not enough to interrupt a modern service. For DDoS attacks, they are usually represented by the number of packets (or requests when speaking in terms of HTTP) per second. CloudFlare reported that they mitigated a DDoS attack operating at over 71 million requests per second [13]. In this attack, the packet volume was not nearly that high, and the sample we collected from the first wave only achieved 12.1 packets per second.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;br /&gt;
+&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure7.PNG" style="width: 649px; height: 247px;" /&gt;&lt;br /&gt;
+Figure 7. Average packets per second from the packet capture.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Even if the rate picked up significantly in the third wave since the number of hosts were higher, it would not ever reach a high enough speed to have a good chance at taking down a service. So, what was the point of this attack if it was not to shut down services? While SYN flags can be used to scan a network for open ports (listening ports would respond with a SYN-ACK), this was a spike relative to my usual traffic, it is unlikely that so many hosts decided to scan the honeypot at the same time.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure8.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 190px;" /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 8. Number of packets received by the honeypot from April 14th to July 14th.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;There are also tools like nmap that can perform SYN scans with the -sS option, but the packets do not have the same properties as our sample data:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-09-23_figure9.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 303px;" /&gt;&lt;br /&gt;
+Figure 9. Wireshark capture of a nmap SYN scan. Note the window size and length.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;In summary, if this was a DDoS, it is very unlikely to be effective on any modern system. A scan using TCP SYN flags is also very unlikely, leaving few explanations for this attack.&lt;/p&gt;
+
+&lt;h2&gt;Lessons Learned&lt;/h2&gt;
+
+&lt;p&gt;We can draw a few conclusions from analyzing each wave of this attack. First, packet crafting may have been in use to mask the attacker&amp;rsquo;s real IP address, Secondly, a legitimate SYN flood attack seems very unlikely here, since the packet volume and rate were both far too low. Finally, traffic came from unlikely sources without making the news or showing up on threat intelligence aside from a very small minority of traffic, strongly indicating that the traffic is not legitimate.&lt;/p&gt;
+
+&lt;p&gt;Another possibility is that all of this traffic was a smokescreen for another attack. An analyst can waste a lot of time looking at network logs that seem related while the real attack may be taking place using another method that seems unrelated. The demonstration of Scapy shows that it is quite easy to spoof network traffic and send it to a target host to create very noisy network logs. You could even create a list of IP addresses like the hosts found in the waves to create the light correlations described in my findings. In short, this makes an excellent distraction. As for what the plan for attack was, the honeypot did not log any attacks of significance, other than what is typical of the daily traffic. On April 1st, there were some hosts that were also logged in the first wave attempting to access the following URLs from the web honeypot:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;/&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;/.git/config&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;/.git/index&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;/.env&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To wrap up, the packet volume was not enough for this attack to be considered an effective DDoS attack, it also does not seem to be an access attack on web services, but the small SYN flood made an excellent distraction if the threat actor wished to perform a more complex attack. Understanding what volume a SYN flood becomes a threat is important to avoid getting caught in a distraction as an analyst.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/" target="_blank"&gt;https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://hunter.how/list?searchValue=domain%3D%22summitiig.net%22" target="_blank"&gt;https://hunter.how/list?searchValue=domain%3D%22summitiig.net%22&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44790" target="_blank"&gt;https://nvd.nist.gov/vuln/detail/CVE-2021-44790&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2019-0211" target="_blank"&gt;https://nvd.nist.gov/vuln/detail/CVE-2019-0211&lt;/a&gt;&lt;br /&gt;
+[5] &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2011-3607" target="_blank"&gt;https://nvd.nist.gov/vuln/detail/CVE-2011-3607&lt;/a&gt;&lt;br /&gt;
+[6] &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9798" target="_blank"&gt;https://nvd.nist.gov/vuln/detail/CVE-2017-9798&lt;/a&gt;&lt;br /&gt;
+[7] &lt;a href="https://radar.cloudflare.com/security/application-layer/as50597?dateRange=24w" target="_blank"&gt;https://radar.cloudflare.com/security/application-layer/as50597?dateRange=24w&lt;/a&gt;&lt;br /&gt;
+[8] &lt;a href="https://ipinfo.io/AS57588" target="_blank"&gt;https://ipinfo.io/AS57588&lt;/a&gt;&lt;br /&gt;
+[9] &lt;a href="https://ipinfo.io/AS57000" target="_blank"&gt;https://ipinfo.io/AS57000&lt;/a&gt;&lt;br /&gt;
+[10] &lt;a href="https://viz.greynoise.io/analysis/5f16d7a0-5fd5-4491-a618-b52c1ee16266" target="_blank"&gt;https://viz.greynoise.io/analysis/5f16d7a0-5fd5-4491-a618-b52c1ee16266&lt;/a&gt;&lt;br /&gt;
+[11] &lt;a href="https://hunter.how/list?searchValue=%20as.number%3D%3D%2257588%22" target="_blank"&gt;https://hunter.how/list?searchValue=%20as.number%3D%3D%2257588%22&lt;/a&gt;&lt;br /&gt;
+[12] &lt;a href="https://hunter.how/list?searchValue=as.number%253D%253D%2257000%22" target="_blank"&gt;https://hunter.how/list?searchValue=as.number%253D%253D%2257000%22&lt;/a&gt;&lt;br /&gt;
+[13] &lt;a href="https://blog.cloudflare.com/cloudflare-mitigates-record-breaking-71-million-request-per-second-ddos-attack/" target="_blank"&gt;https://blog.cloudflare.com/cloudflare-mitigates-record-breaking-71-million-request-per-second-ddos-attack/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;---&lt;br /&gt;
+Taylor House&lt;br /&gt;
+Apprentice Handler, Internet Storm Center&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32308</guid></item><item><title>Help Wanted: What are these odd requests about&amp;#x3f;, (Sun, Sep 21st)</title><link>https://isc.sans.edu/diary/rss/32302</link><description>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t seen before: "X-Forwarded-App". My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular "App" is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn't seen before: &amp;quot;X-Forwarded-App&amp;quot;. My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular &amp;quot;App&amp;quot; is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;GET&amp;nbsp;/business/appVersion/get/qr/download HTTP/1.1&lt;br /&gt;
+Host: [honeypot IP address]&lt;br /&gt;
+User-Agent:&amp;nbsp;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Trailer/93.3.3570.29&lt;br /&gt;
+Accept:&amp;nbsp;application/json&lt;br /&gt;
+Accept-Language:&amp;nbsp;zh-CN,zh;q=0.9,zh-HK;q=0.8,zh-TW;q=0.7,en;q=0.6&lt;br /&gt;
+Content-Type:&amp;nbsp;application/json;charset=UTF-8&lt;br /&gt;
+Deviceid:&amp;nbsp;4c2e063f3def4582&lt;br /&gt;
+Deviceinfo:&amp;nbsp;android&lt;br /&gt;
+License: doJn7HAfIo9xMsLbcEKD7ku40F2zWJjJOjgxwqFs_Hec3FdkKcgKRQFCOrf-5xxI&lt;br /&gt;
+Phonemodel: samsung&lt;br /&gt;
+V: 48650&lt;br /&gt;
+X-Forwarded-App: app.F6syl6mB&lt;br /&gt;
+Accept-Encoding: gzip&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This looks like a request a mobile app would send. Some of the details, like the string following &amp;quot;app.&amp;quot;, change from request to request. The &amp;quot;License&amp;quot; header could be used as an API key (I modified it a bit in case this is a valid license).&lt;/p&gt;
+
+&lt;p&gt;Google'ing showed some APIs using an X-Forwarded-App header, but nothing specific that would match this request. Please let me know if you have any ideas what this request may be about.&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32302</guid></item><item><title>How to Use 1Password's Travel Mode at the Border (2025)</title><link>https://www.wired.com/story/1password-travel-mode/</link><description>Travel Mode not only hides your most sensitive data—it acts as if that data never existed in the first place.</description><guid isPermaLink="false">68b99676029118a508f2a775</guid><category>Gear</category><category>Gear / How To and Advice</category><category>Gear / Products / Online Services</category><category>Security / Privacy</category><category>Shopping</category><category>privacy</category><category>Travel</category><category>phones</category><category>encryption</category><category>security</category><category>how-to</category><category>smartphones</category><category>Passwords</category><category>Clean Wipe</category></item><item><title>ISC Stormcast For Tuesday, September 23rd, 2025 https://isc.sans.edu/podcastdetail/9624, (Tue, Sep 23rd)</title><link>https://isc.sans.edu/diary/rss/32306</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32306</guid></item><item><title>Anthropic CEO Dario Amodei Distances Company From Trump Administration</title><link>https://www.techrepublic.com/article/news-anthropic-amodei-regulations/</link><description>&lt;p&gt;A Wall Street Journal profile charts Anthropic CEO Dario Amodei’s warnings about risks of unregulated generative AI.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-anthropic-amodei-regulations/"&gt;Anthropic CEO Dario Amodei Distances Company From Trump Administration&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328396</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Nvidia Secures $100B OpenAI Partnership to Power the Next Era of AI</title><link>https://www.techrepublic.com/article/news-openai-nvidia-data-center-deal/</link><description>&lt;p&gt;The tech giants intend to bring at least 10 gigawatts of AI capacity online, starting in H2 2026 with Vera Rubin chips.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-openai-nvidia-data-center-deal/"&gt;Nvidia Secures $100B OpenAI Partnership to Power the Next Era of AI&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328368</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>News</category></item><item><title>Nimbus Manticore Deploys New Malware Targeting Europe</title><link>https://research.checkpoint.com/2025/nimbus-manticore-deploys-new-malware-targeting-europe/</link><description>&lt;p&gt;Nimbus Manticore Deploys New Malware Targeting Europe Key Findings Introduction Since early 2025, Check Point Research (CPR) has tracked waves of Nimbus Manticore activity. Known as&amp;#160;UNC1549 or Smoke&amp;#160;Sandstorm,&amp;#160;Nimbus Manticore is a mature Iran-nexus APT group that primarily targets aerospace and defense organizations in the Middle East and Europe. Some of its operations were also previously [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/nimbus-manticore-deploys-new-malware-targeting-europe/"&gt;Nimbus Manticore Deploys New Malware Targeting Europe&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="nimbus-manticore-deploys-new-malware-targeting-europe"&gt;&lt;strong&gt;Nimbus Manticore Deploys New Malware Targeting Europe&lt;/strong&gt;&lt;/h2&gt;
@@ -596,34 +927,7 @@ check-backup-service-736.azurewebsites[.]net&lt;/pre&gt;
 &lt;li&gt;Researchers &lt;a href="https://www.proofpoint.com/us/blog/threat-insight/going-underground-china-aligned-ta415-conducts-us-china-economic-relations"&gt;detail&lt;/a&gt; a recent TA415 campaign against US government and academic targets tied to US–China economic issues. The group impersonated key orgs and figures, using obfuscated Python loaders to set up VS Code Remote Tunnels for remote access and data theft.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/22nd-september-threat-intelligence-report/"&gt;22nd September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31944</guid><category>Global Cyber Attack Reports</category></item><item><title>A Cyberattack on Jaguar Land Rover Is Causing a Supply Chain Disaster</title><link>https://www.wired.com/story/jlr-jaguar-land-rover-cyberattack-supply-chain-disaster/</link><description>The UK-based automaker has been forced to stop vehicle production as a result of the attack—costing JLR tens of millions of dollars and forcing its parts suppliers to lay off workers.</description><guid isPermaLink="false">68cc27920520ad0a56270bab</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>automobiles</category><category>cyberattacks</category><category>ransomware</category><category>malware</category><category>hackers</category><category>security</category><category>cybersecurity</category><category>UK</category><category>Car Troubles</category></item><item><title>ISC Stormcast For Monday, September 22nd, 2025 https://isc.sans.edu/podcastdetail/9622, (Mon, Sep 22nd)</title><link>https://isc.sans.edu/diary/rss/32304</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32304</guid></item><item><title>Huawei Unveils ‘Safe’ DeepSeek Model to Meet China’s AI Content Rules</title><link>https://www.techrepublic.com/article/news-huawei-remakes-deepseek/</link><description>&lt;p&gt;DeepSeek's new model will not generate “toxic and harmful speech, politically sensitive content, and incitement to illegal behavior.”&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-huawei-remakes-deepseek/"&gt;Huawei Unveils &amp;#8216;Safe&amp;#8217; DeepSeek Model to Meet China’s AI Content Rules&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328399</guid><category>APAC</category><category>Artificial Intelligence</category><category>International</category><category>News</category></item><item><title>Help Wanted: What are these odd reuqests about&amp;#x3f;, (Sun, Sep 21st)</title><link>https://isc.sans.edu/diary/rss/32302</link><description>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t seen before: "X-Forwarded-App". My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular "App" is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Looking at our web honeypot data, I came across an odd new request header I hadn't seen before: &amp;quot;X-Forwarded-App&amp;quot;. My first guess was that this is yet another issue with a proxy-server bucket brigade spilling secrets when a particular &amp;quot;App&amp;quot; is connecting to it. So I dove in a bit deeper, and found requests like this:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;GET&amp;nbsp;/business/appVersion/get/qr/download HTTP/1.1&lt;br /&gt;
-Host: [honeypot IP address]&lt;br /&gt;
-User-Agent:&amp;nbsp;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Trailer/93.3.3570.29&lt;br /&gt;
-Accept:&amp;nbsp;application/json&lt;br /&gt;
-Accept-Language:&amp;nbsp;zh-CN,zh;q=0.9,zh-HK;q=0.8,zh-TW;q=0.7,en;q=0.6&lt;br /&gt;
-Content-Type:&amp;nbsp;application/json;charset=UTF-8&lt;br /&gt;
-Deviceid:&amp;nbsp;4c2e063f3def4582&lt;br /&gt;
-Deviceinfo:&amp;nbsp;android&lt;br /&gt;
-License: doJn7HAfIo9xMsLbcEKD7ku40F2zWJjJOjgxwqFs_Hec3FdkKcgKRQFCOrf-5xxI&lt;br /&gt;
-Phonemodel: samsung&lt;br /&gt;
-V: 48650&lt;br /&gt;
-X-Forwarded-App: app.F6syl6mB&lt;br /&gt;
-Accept-Encoding: gzip&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This looks like a request a mobile app would send. Some of the details, like the string following &amp;quot;app.&amp;quot;, change from request to request. The &amp;quot;License&amp;quot; header could be used as an API key (I modified it a bit in case this is a valid license).&lt;/p&gt;
-
-&lt;p&gt;Google'ing showed some APIs using an X-Forwarded-App header, but nothing specific that would match this request. Please let me know if you have any ideas what this request may be about.&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32302</guid></item><item><title>A Dangerous Worm Is Eating Its Way Through Software Packages</title><link>https://www.wired.com/story/a-dangerous-worm-is-eating-its-way-through-software-packages/</link><description>Plus: An investigation reveals how US tech companies reportedly helped build China’s sweeping surveillance state, and two more alleged members of the Scattered Spider hacking group were arrested.</description><guid isPermaLink="false">68cd8b1b87a8099f4b431267</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>security</category><category>malware</category><category>privacy</category><category>surveillance</category><category>Security Roundup</category></item><item><title>Friday Squid Blogging: Giant Squid vs. Blue Whale</title><link>https://www.schneier.com/blog/archives/2025/09/friday-squid-blogging-giant-squid-vs-blue-whale.html</link><description>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</description><content:encoded>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70848</guid><category>Uncategorized</category><category>squid</category></item><item><title>Prompts as Code &amp; Embedded Keys | The Hunt for LLM-Enabled Malware</title><link>https://www.sentinelone.com/labs/prompts-as-code-embedded-keys-the-hunt-for-llm-enabled-malware/</link><description>LLM-enabled malware poses new challenges for detection. SentinelLABS presents groundbreaking research on how to hunt for this new class of threats.</description><content:encoded>&lt;p&gt;&lt;i&gt;This is an abridged version of the &lt;/i&gt;&lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;i&gt;LABScon 2025&lt;/i&gt;&lt;/a&gt;&lt;i&gt; presentation &amp;#8220;LLM-Enabled Malware In the Wild&amp;#8221; by the authors. A LABScon Replay video of the full talk will be released in due course.&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-huawei-remakes-deepseek/"&gt;Huawei Unveils &amp;#8216;Safe&amp;#8217; DeepSeek Model to Meet China’s AI Content Rules&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328399</guid><category>APAC</category><category>Artificial Intelligence</category><category>International</category><category>News</category></item><item><title>A Dangerous Worm Is Eating Its Way Through Software Packages</title><link>https://www.wired.com/story/a-dangerous-worm-is-eating-its-way-through-software-packages/</link><description>Plus: An investigation reveals how US tech companies reportedly helped build China’s sweeping surveillance state, and two more alleged members of the Scattered Spider hacking group were arrested.</description><guid isPermaLink="false">68cd8b1b87a8099f4b431267</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>security</category><category>malware</category><category>privacy</category><category>surveillance</category><category>Security Roundup</category></item><item><title>Friday Squid Blogging: Giant Squid vs. Blue Whale</title><link>https://www.schneier.com/blog/archives/2025/09/friday-squid-blogging-giant-squid-vs-blue-whale.html</link><description>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</description><content:encoded>&lt;p&gt;A &lt;a href="https://a-z-animals.com/animals/comparison/giant-squid-vs-blue-whale-compared/"&gt;comparison&lt;/a&gt; aimed at kids.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70848</guid><category>Uncategorized</category><category>squid</category></item><item><title>Prompts as Code &amp; Embedded Keys | The Hunt for LLM-Enabled Malware</title><link>https://www.sentinelone.com/labs/prompts-as-code-embedded-keys-the-hunt-for-llm-enabled-malware/</link><description>LLM-enabled malware poses new challenges for detection. SentinelLABS presents groundbreaking research on how to hunt for this new class of threats.</description><content:encoded>&lt;p&gt;&lt;i&gt;This is an abridged version of the &lt;/i&gt;&lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;i&gt;LABScon 2025&lt;/i&gt;&lt;/a&gt;&lt;i&gt; presentation &amp;#8220;LLM-Enabled Malware In the Wild&amp;#8221; by the authors. A LABScon Replay video of the full talk will be released in due course.&lt;/i&gt;&lt;/p&gt;
 &lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;LLM-enabled malware poses new challenges for detection and threat hunting as malicious logic can be generated at runtime rather than embedded in code.&lt;/li&gt;
@@ -4308,7 +4612,7 @@ Ledger Live&lt;/pre&gt;
 &lt;li&gt;I’m speaking with Crystal Lee at the MIT Museum in Cambridge, Massachusetts, USA, on December 1, 2025. Details to come.&lt;/li&gt;
 &lt;li&gt;I’m speaking and signing books at the Chicago Public Library in Chicago, Illinois, USA, on February 5, 2026. Details to come.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70755</guid><category>Uncategorized</category><category>Schneier news</category></item><item><title>ISC Stormcast For Tuesday, September 16th, 2025 https://isc.sans.edu/podcastdetail/9614, (Tue, Sep 16th)</title><link>https://isc.sans.edu/diary/rss/32288</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32288</guid></item><item><title>Russia Tests Hypersonic Missile at NATO’s Doorstep—and Shares the Video</title><link>https://www.wired.com/story/russia-hypersonic-missile-test-nato-borders/</link><description>Russian military exercises near NATO borders follow the recent incursion of Russian drones into the airspace of Poland and Romania, further stoking tensions with the West.</description><guid isPermaLink="false">68c819887df85988d447dd32</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Russia</category><category>Military</category><category>Ukraine</category><category>NATO</category><category>weapons</category><category>war</category><category>Show-offs</category></item><item><title>Microsoft Still Uses RC4</title><link>https://www.schneier.com/blog/archives/2025/09/microsoft-still-uses-rc4.html</link><description>&lt;p&gt;Senator Ron Wyden has &lt;a href="https://www.wyden.senate.gov/imo/media/doc/wyden_letter_to_ftc_on_microsoft_kerberoasting_ransomwarepdf.pdf"&gt;asked&lt;/a&gt; the Federal Trade Commission to &lt;a href="https://cybersecuritynews.com/microsofts-use-of-outdated-rc4-encryption/"&gt;investigate&lt;/a&gt; Microsoft over its continued use of the RC4 encryption algorithm. The letter talks about a hacker technique called &lt;a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/kerberoasting/"&gt;Kerberoasting&lt;/a&gt;, that exploits the Kerberos authentication system.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Senator Ron Wyden has &lt;a href="https://www.wyden.senate.gov/imo/media/doc/wyden_letter_to_ftc_on_microsoft_kerberoasting_ransomwarepdf.pdf"&gt;asked&lt;/a&gt; the Federal Trade Commission to &lt;a href="https://cybersecuritynews.com/microsofts-use-of-outdated-rc4-encryption/"&gt;investigate&lt;/a&gt; Microsoft over its continued use of the RC4 encryption algorithm. The letter talks about a hacker technique called &lt;a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/kerberoasting/"&gt;Kerberoasting&lt;/a&gt;, that exploits the Kerberos authentication system.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70791</guid><category>Uncategorized</category><category>algorithms</category><category>Microsoft</category><category>ransomware</category><category>RC4</category></item><item><title>15th September – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/15th-september-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 15th September, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES Panama’s Ministry of Economy and Finance (MEF) was hit by a ransomware attack that resulted in the theft of more than 1.5TB of data, including emails, financial documents, and budgeting details. The [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70755</guid><category>Uncategorized</category><category>Schneier news</category></item><item><title>Russia Tests Hypersonic Missile at NATO’s Doorstep—and Shares the Video</title><link>https://www.wired.com/story/russia-hypersonic-missile-test-nato-borders/</link><description>Russian military exercises near NATO borders follow the recent incursion of Russian drones into the airspace of Poland and Romania, further stoking tensions with the West.</description><guid isPermaLink="false">68c819887df85988d447dd32</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Russia</category><category>Military</category><category>Ukraine</category><category>NATO</category><category>weapons</category><category>war</category><category>Show-offs</category></item><item><title>Microsoft Still Uses RC4</title><link>https://www.schneier.com/blog/archives/2025/09/microsoft-still-uses-rc4.html</link><description>&lt;p&gt;Senator Ron Wyden has &lt;a href="https://www.wyden.senate.gov/imo/media/doc/wyden_letter_to_ftc_on_microsoft_kerberoasting_ransomwarepdf.pdf"&gt;asked&lt;/a&gt; the Federal Trade Commission to &lt;a href="https://cybersecuritynews.com/microsofts-use-of-outdated-rc4-encryption/"&gt;investigate&lt;/a&gt; Microsoft over its continued use of the RC4 encryption algorithm. The letter talks about a hacker technique called &lt;a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/kerberoasting/"&gt;Kerberoasting&lt;/a&gt;, that exploits the Kerberos authentication system.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Senator Ron Wyden has &lt;a href="https://www.wyden.senate.gov/imo/media/doc/wyden_letter_to_ftc_on_microsoft_kerberoasting_ransomwarepdf.pdf"&gt;asked&lt;/a&gt; the Federal Trade Commission to &lt;a href="https://cybersecuritynews.com/microsofts-use-of-outdated-rc4-encryption/"&gt;investigate&lt;/a&gt; Microsoft over its continued use of the RC4 encryption algorithm. The letter talks about a hacker technique called &lt;a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/kerberoasting/"&gt;Kerberoasting&lt;/a&gt;, that exploits the Kerberos authentication system.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70791</guid><category>Uncategorized</category><category>algorithms</category><category>Microsoft</category><category>ransomware</category><category>RC4</category></item><item><title>15th September – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/15th-september-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 15th September, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES Panama’s Ministry of Economy and Finance (MEF) was hit by a ransomware attack that resulted in the theft of more than 1.5TB of data, including emails, financial documents, and budgeting details. The [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/15th-september-threat-intelligence-report/"&gt;15th September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 15th September, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/09/Threat_Intelligence_News_2025-09-15.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
