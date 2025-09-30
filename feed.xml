@@ -1,5 +1,190 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 30 Sep 2025 22:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>"user=admin". Sometimes you don't even need to log in.</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Within Copilot AI’s Chat Window, Create Word Documents and Excel Sheets Now</title><link>https://www.techrepublic.com/article/news-microsoft-copilot-word-excel/</link><description>&lt;p&gt;Copilot AI's Agent Mode in Word and for Excel is available to subscribers who sign up for Microsoft's Frontier program.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 30 Sep 2025 23:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>&amp;#x5b;Guest Diary&amp;#x5d; Comparing Honeypot Passwords with HIBP</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Meta Inks $14.2B AI Infrastructure Deal With CoreWeave</title><link>https://www.techrepublic.com/article/news-coreweave-meta-deal/</link><description>&lt;p&gt;CoreWeave is diversifying away from Microsoft, which was responsible for 71% of its revenue in Q2. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-coreweave-meta-deal/"&gt;Meta Inks $14.2B AI Infrastructure Deal With CoreWeave&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4329463</guid><category>Artificial Intelligence</category><category>Cloud</category><category>Microsoft</category><category>News</category><category>Software</category></item><item><title>&amp;#x5b;Guest Diary&amp;#x5d; Comparing Honeypot Passwords with HIBP, (Wed, Oct 1st)</title><link>https://isc.sans.edu/diary/rss/32310</link><description>&lt;p&gt;&lt;span&gt;&lt;span&gt;&amp;#x26;#x5b;This is a Guest Diary by Draden Barwick, an ISC intern as part of the SANS.edu Bachelor&amp;#x26;&amp;#x26;#x23&amp;#x26;#x3b;39&amp;#x26;#x3b;s Degree in Applied Cybersecurity (BACS) program &amp;#x26;#x5b;1&amp;#x5d;.&amp;#x5d;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;span style="color: #ffffff;"&gt;&lt;span style="background-color: #c0392b;"&gt;[This is a Guest Diary by Draden Barwick, an ISC intern as part of the SANS.edu Bachelor's Degree in Applied Cybersecurity (BACS) program [1].]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;DShield Honeypots are constantly exposed to the internet and inundated with exploit traffic, login attempts, and other malicious activity.&amp;nbsp;Analyzing the logged password attempts can help identify what attackers are targeting. To go through these passwords, I have created a tool that leverages HaveIBeenPwned&amp;rsquo;s (HIBP&amp;rsquo;s) API to flag passwords that haven&amp;rsquo;t appeared in any breaches.&lt;/p&gt;
+
+&lt;h2&gt;Purpose&lt;/h2&gt;
+
+&lt;p&gt;Identifying passwords that haven&amp;rsquo;t been seen in known breaches is useful because it can indicate additional planning and help identify patterns in these less common passwords. Anyone that operates a honeypot (and receives a lot of data on attempted use of passwords in plaintext) could benefit from this project as an additional starting point for investigations.&lt;/p&gt;
+
+&lt;h2&gt;Development&lt;/h2&gt;
+
+&lt;p&gt;HaveIBeenPwned maintains a large database of breached passwords and offers an API to tell if a given password has been compromised. This is done by making a request to &amp;ldquo;&lt;code&gt;&lt;strong&gt;https://api.pwnedpasswords.com/range/#####&lt;/strong&gt;&lt;/code&gt;&amp;rdquo;. Where the &amp;ldquo;&lt;code&gt;&lt;strong&gt;#####&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; part in a request is the first 5 characters (prefix) of the SHA1 hash of the tested password. The site will return a list of the last 35 characters (suffix) for any password hash in the database that starts with the provided prefix. Each entry includes a count of how many times the corresponding password has been seen in breaches. This prevents anyone from knowing the full hash of the password we are looking for based on the request alone. While this consideration is not important for our use with the DShield honeypots (as all passwords seen are publicly uploaded), it is important to understand because HIBP does not allow for searching with the full hash directly [2].&lt;/p&gt;
+
+&lt;p&gt;To gather a list of all passwords my honeypot has gathered, I used JQ to parse the cowrie.json files located in the &lt;code&gt;&lt;strong&gt;/srv/cowrie/var/log/cowrie&lt;/strong&gt;&lt;/code&gt; directory. This command matches on any login failures or successes, and returns the password field from matching entries:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;jq -r 'select(.eventid=="cowrie.login.failed" or .eventid=="cowrie.login.success") | [.password] | @tsv' /srv/cowrie/var/log/cowrie/cowrie.json* &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To extend this, we can remove duplicates using sort and uniq and save the unique passwords to a file:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;jq -r 'select(.eventid=="cowrie.login.failed" or .eventid=="cowrie.login.success") | [.password] | @tsv' /srv/cowrie/var/log/cowrie/cowrie.json* | sort | uniq &amp;gt; ~/uniquepass.txt&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As of writing, this took the number of passwords from 51,601 to 16,210 unique passwords.&lt;/p&gt;
+
+&lt;p&gt;Now that we have a list of unique passwords, the next steps are to: read the created password file, take the SHA1 hash of each line, query the API for the hash prefix, and check for the hash suffix in the results.&lt;/p&gt;
+
+&lt;p&gt;To accomplish this, I created a Python script that utilizes one input file and two output files. The input file has a list of passwords to check with one entry per line. One output file stores all passwords that have been checked, the SHA1 hash, and how many times HIBP has seen the password (this file is a CSV used to avoid checking a password in the input file if it has been checked before). The other output file stores the plaintext of any password never seen by HIBP. The command line usage looks like this:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;python3 queryHIBP.py uniquepass.txt passwordResults.csv unseenPasswords.txt&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This resulted in the identification of 1,196 passwords that HIBP has not seen.&lt;/p&gt;
+
+&lt;h2&gt;Code Breakdown&lt;/h2&gt;
+
+&lt;p&gt;The code, available on GitHub [3], has thorough commenting but we will examine some parts here to gain a deeper understanding of how it functions.&lt;/p&gt;
+
+&lt;p&gt;In &lt;strong&gt;Figure 1&lt;/strong&gt;, we can see the section of code that handles reading the results file that includes all passwords we have searched for. This is expected to be formatted as a CSV file with a header of &amp;ldquo;&lt;code&gt;&lt;strong&gt;password,sha1,count&lt;/strong&gt;&lt;/code&gt;&amp;rdquo;. As explained above, this helps avoid checking passwords unnecessarily.&lt;/p&gt;
+
+&lt;p&gt;The code opens the file with &lt;code&gt;&lt;strong&gt;csv.DictReader&lt;/strong&gt;&lt;/code&gt;, checks for &amp;ldquo;&lt;code&gt;&lt;strong&gt;password&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; in the header, then uses a for loop to go through all of the rows to pull non-empty passwords and add them to a set. The set is returned at the end of the function.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&amp;nbsp;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-10-01_figure1.PNG" style="width: 1000px; height: 263px;" /&gt;&lt;br /&gt;
+Figure 1: Code used to read all previously checked passwords.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;In &lt;strong&gt;Figure 2&lt;/strong&gt;, we can see the code used to make API requests and handle a common error. First, a loop is established and the API request is made. Second, we check for a 429 response code which means there were too many requests. If there was a 429 error, HIBP will add a &amp;ldquo;&lt;code&gt;&lt;strong&gt;Retry-After&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; header which lets us know how long to wait before trying again. The user agent is specified elsewhere as &amp;ldquo;&lt;code&gt;&lt;strong&gt;PasswordCheckingProject&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; because HIBP states that &amp;ldquo;A missing user agent will result in an HTTP 403 response&amp;rdquo; [4].&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-10-01_figure2.PNG" style="width: 1000px; height: 453px;" /&gt;&lt;br /&gt;
+Figure 2: Code used to make API requests and handle expected 429 errors.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Figure 3&lt;/strong&gt; shows the behavior for handling additional errors and normal function. Firstly, &amp;ldquo;&lt;code&gt;&lt;strong&gt;resp.raise_for_status&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; is called which would raise an exception if there were an error with the HTTP request. If there&amp;rsquo;s no error, we simply iterate through all lines of the response to save the hash suffix and count in a dictionary, then return it. If an exception is raised, we increment an &amp;ldquo;&lt;code&gt;&lt;strong&gt;attempt&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; variable which lets us cap the number of retries which is set to three by default. If the max is hit here, the code will print an error message indicating what prefix was being checked and exit. If there are more retries remaining, the script will wait 5 seconds before continuing. &lt;strong&gt;Figure 2&lt;/strong&gt; has a similar check for max retries to avoid a potential infinite loop of 429 errors.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-10-01_figure3.PNG" style="width: 1000px; height: 430px;" /&gt;&lt;br /&gt;
+Figure 3: Code used to store &amp;amp; return request results or deal with continued/unexpected errors.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;To download the project and try it out with some test data, one can run the following:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;git clone https://github.com/MeepStryker/queryHIBP.git
+cd queryHIBP
+python3 queryHIBP.py ./sampleInput.txt ./passwordResults.csv ./unseenPasswords.txt&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the script runs, it will print out each unseen password identified and a short summary at the end as seen in &lt;strong&gt;Figure 4&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-10-01_figure4.PNG" style="width: 600px; height: 272px;" /&gt;&lt;br /&gt;
+Figure 4: Script output using real data.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Automation&lt;/h2&gt;
+
+&lt;p&gt;To automate the use of this tool, I created a cron job to run the JQ command &amp;amp; output results to a file and made another job to run the script with the needed arguments. These are set to run daily with the script running 5 minutes after the JQ command. This uses the following crontab entries:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;0 17 * * * jq -r 'select(.eventid=="cowrie.login.failed" or .eventid=="cowrie.login.success") | [.password] | @tsv' /srv/cowrie/var/log/cowrie/cowrie.json* | sort | uniq &amp;gt; ~/uniquepass.txt
+
+5 17 * * * python3 ~/queryHIBP.py ~/uniquepass.txt ~/passwordResults.csv ~/unseenPasswords.txt&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script runs 5 minutes after the JQ command to ensure there is more than enough time to create the input file. Since there is a limit on how long logs are retained, there are no concerns about this ever starting to take longer.&lt;/p&gt;
+
+&lt;p&gt;I chose this method over adding parsing functionality into the script out of convenience. Using the script would require additional logic and either hardcoding locations to check for logs or dealing with more arguments. As it is designed, anyone can easily plugin a list of passwords without having to worry about many command line options or editing the script.&lt;/p&gt;
+
+&lt;h2&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;The script accurately provides information on passwords that HaveIBeenPwned has not seen in prior breaches. While there were more unseen passwords than one may expect (1,196 or ~7.4% of all unique passwords as of writing), it provides interesting insight into what some actors may be targeting. The results also reveal patterns for password mutations that are being leveraged for access attempts:&lt;/p&gt;
+
+&lt;table border="0" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;deploy12345&lt;br /&gt;
+			deploy123456&lt;br /&gt;
+			deploy1234567&lt;br /&gt;
+			deploy12345678&lt;br /&gt;
+			deploy@2022&lt;br /&gt;
+			deploy@2023&lt;br /&gt;
+			deploy@2025&lt;br /&gt;
+			deploy2025&lt;br /&gt;
+			deploy@321&lt;br /&gt;
+			deploypass&lt;br /&gt;
+			P@$$vords123&lt;br /&gt;
+			P@$sw0rd#&lt;br /&gt;
+			P4$$word!@#&lt;br /&gt;
+			P455wORd&lt;/td&gt;
+			&lt;td&gt;P@55W0RD2004&lt;br /&gt;
+			Pa$$word2016!&lt;br /&gt;
+			pa33w0rd!@&lt;br /&gt;
+			Pa55w0rd@2021&lt;br /&gt;
+			passw0rd!@#$&lt;br /&gt;
+			pass@w0rd.12345&lt;br /&gt;
+			passwd@123!&lt;br /&gt;
+			PaSswORD@123&lt;br /&gt;
+			password@2!@&lt;br /&gt;
+			PaSswORd2021&lt;br /&gt;
+			password!2024&lt;br /&gt;
+			password!2025&lt;br /&gt;
+			Password43213&lt;br /&gt;
+			password!@#456&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2&gt;&lt;br /&gt;
+Password Patterns &amp;amp; Analysis&lt;/h2&gt;
+
+&lt;p&gt;Analyzing the passwords seen in the above Results section can provide some insight into what techniques are being used to generate passwords.&lt;/p&gt;
+
+&lt;p&gt;Consider the above sample of results. Broadly speaking, this &amp;lsquo;deploy family&amp;rsquo; of passwords was likely generated by starting with a base password of &amp;ldquo;&lt;code&gt;&lt;strong&gt;deploy&lt;/strong&gt;&lt;/code&gt;&amp;rdquo; and adding common modifiers to increase complexity. Seen here are good examples of the most simple ones: adding the year (with an @ sign in this case) and adding sequential numbers.&lt;/p&gt;
+
+&lt;p&gt;The rest of the entries above are all based on the word &amp;lsquo;&lt;code&gt;&lt;strong&gt;password&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;. These are more complex than what we saw with &amp;lsquo;&lt;code&gt;&lt;strong&gt;deploy&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;. Below are three entries, a plain explanation of a Hashcat rule that could be used to come up with it, and a sample implementation of the rule:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;&lt;strong&gt;P4$$word!@#&lt;/strong&gt;&lt;/code&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;Capitalize the first letter, replace &lt;strong&gt;&lt;code&gt;a&lt;/code&gt;&lt;/strong&gt;&amp;rsquo;s with &lt;code&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s, replace &lt;code&gt;&lt;strong&gt;s&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s with &lt;code&gt;&lt;strong&gt;$&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s, add &lt;code&gt;&lt;strong&gt;!@# &lt;/strong&gt;&lt;/code&gt;to end - &lt;code&gt;&lt;strong&gt;c sa4 ss$ $! $@ $#&lt;/strong&gt;&lt;/code&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;&lt;strong&gt;P@55W0RD2004&lt;/strong&gt;&lt;/code&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Capitalize all letters, replace &lt;code&gt;&lt;strong&gt;a&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s with &lt;code&gt;&lt;strong&gt;@&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s, replace &lt;code&gt;&lt;strong&gt;s&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s with &lt;code&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s, replace &lt;code&gt;&lt;strong&gt;o&lt;/strong&gt;&lt;/code&gt;&amp;rsquo;s with &lt;strong&gt;0&lt;/strong&gt;&amp;rsquo;s, and add a year to the end -&lt;strong&gt; &lt;code&gt;u sa@ ss5 so0 $2 $0 $0 $4&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;&lt;strong&gt;Password!2024&lt;/strong&gt;&lt;/code&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Capitalize the first letter, add &lt;code&gt;&lt;strong&gt;!&lt;/strong&gt;&lt;/code&gt; and a year to the end - &lt;strong&gt;&lt;code&gt;t0 $! $2 $0 $2 $4&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Both Hashcat and John the Ripper can make these modifications by using rules to augment password lists. The rules allow various changes to input such as replacing or swapping certain characters with others. Note that while much of the rules syntax between these tools is similar, there are some differences [5].&lt;/p&gt;
+
+&lt;p&gt;Looking through the unseen passwords, we can also see more specific targets such as Elasticsearch, Oracle, PostgresSQL, and Ubuntu. &lt;strong&gt;Figure 5&lt;/strong&gt; shows some of these passwords, which use the same kind of modifications mentioned earlier, and illustrate the relative difference in frequency.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2025-10-01_figure5.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 791px;" /&gt;&lt;br /&gt;
+Figure 5: Passwords related to specific services/platforms.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Overall Takeaway&lt;/h2&gt;
+
+&lt;p&gt;While a good amount of manual analysis will still be required, these results can provide a lot of value and the script helps cut down on time. We can learn more about common password modifications to avoid and even get an idea of the relative interest of different targets. In &lt;strong&gt;Figure 5&lt;/strong&gt; alone, we can see that PostgresSQL may be roughly two times more likely to be targeted than Elasticsearch with newer installations being targeted in particular.&lt;/p&gt;
+
+&lt;p&gt;For future work, I would add a feature to recheck the known unseen passwords to identify if they happen to be newly breached.&lt;/p&gt;
+
+&lt;p&gt;Additionally, I may consider adding two features for convenience. The first would be re-sorting the unseen file since it is append only. The second would be parsing features to simplify automation and allow the script to provide more functionality for end users.&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/" target="_blank"&gt;https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://haveibeenpwned.com/API/v3#PwnedPasswords" target="_blank"&gt;https://haveibeenpwned.com/API/v3#PwnedPasswords&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://github.com/MeepStryker/queryHIBP" target="_blank"&gt;https://github.com/MeepStryker/queryHIBP&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://haveibeenpwned.com/API/v3#UserAgent" target="_blank"&gt;https://haveibeenpwned.com/API/v3#UserAgent&lt;/a&gt;&lt;br /&gt;
+[5]&amp;nbsp;&lt;a href="https://hashcat.net/wiki/doku.php?id=rule_based_attack#compatibility_with_other_rule_engines" target="_blank"&gt;https://hashcat.net/wiki/doku.php?id=rule_based_attack#compatibility_with_other_rule_engines&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Jesse La Grew&lt;br /&gt;
+Handler&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32310</guid></item><item><title>Within Copilot AI’s Chat Window, Create Word Documents and Excel Sheets Now</title><link>https://www.techrepublic.com/article/news-microsoft-copilot-word-excel/</link><description>&lt;p&gt;Copilot AI's Agent Mode in Word and for Excel is available to subscribers who sign up for Microsoft's Frontier program.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-copilot-word-excel/"&gt;Within Copilot AI’s Chat Window, Create Word Documents and Excel Sheets Now&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4329451</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>Software</category></item><item><title>Qualys Named a Leader in the 2025 IDC MarketScape: Worldwide Exposure Management Vendor Assessment</title><link>https://blog.qualys.com/category/product-tech</link><description>We’re proud to announce that Qualys has been recognized as a Leader in the IDC MarketScape: Worldwide Exposure Management 2025 Vendor Assessment (doc #US52994525, August 2025). We believe this recognition underscores Qualys’ commitment to helping organizations proactively manage cyber risk with comprehensive visibility, contextualized prioritization, and integrated remediation. IDC MarketScape Recognition IDC MarketScape’s report notes, [&amp;#8230;]</description><content:encoded>&lt;p&gt;We’re proud to announce that &lt;strong&gt;Qualys has been recognized as a Leader in the &lt;a href="https://www.qualys.com/forms/whitepapers/2025-idc-market-scape/"&gt;IDC MarketScape: Worldwide Exposure Management 2025 Vendor Assessment (doc #US52994525, August 2025)&lt;/a&gt;&lt;/strong&gt;. We believe this recognition underscores Qualys’ commitment to helping organizations proactively manage cyber risk with comprehensive visibility, contextualized prioritization, and integrated remediation.&lt;/p&gt;
 
 
@@ -303,7 +488,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68dc5352c4ecd"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68dc42a6466ee"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -334,7 +519,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68dc5352c5ff8"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68dc42a647eec"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -2054,103 +2239,7 @@ uint32_t Compress(void* pointer) { return (intptr_t)pointer &amp;amp; 0xffffffff
 
 
 &lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/24/retail-at-risk-how-one-alert-uncovered-a-persistent-cyberthreat/"&gt;Retail at risk: How one alert uncovered a persistent cyberthreat​​&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142367</guid></item><item><title>Exploit Attempts Against Older Hikvision Camera Vulnerability, (Wed, Sep 24th)</title><link>https://isc.sans.edu/diary/rss/32316</link><description>&lt;p&gt;I notice a new URL showing up in our web honeypot logs, which looked a bit interesting:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I notice a new URL showing up in our web honeypot logs, which looked a bit interesting:&lt;/p&gt;
-
-&lt;p&gt;/System/deviceInfo?auth=YWRtaW46MTEK&lt;/p&gt;
-
-&lt;p&gt;The full request:&lt;img alt="image of the http request explained on the site." src="https://isc.sans.edu/diaryimages/images/Screenshot%202025-09-24%20at%207_51_28%E2%80%AFAM.png" style="width: 1px;" /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;pre&gt;
-GET /System/deviceInfo?auth=YWRtaW46MTEK
-Host: 3.87.70.24
-User-Agent: python-requests/2.32.4
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive&lt;/pre&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The &amp;quot;auth&amp;quot; string caught my attention, in particular as it was followed by a base64 encoded string. The string decodes to admin:11.&lt;/p&gt;
-
-&lt;p&gt;This &amp;quot;auth&amp;quot; string has been around for a while for a number of Hikvision-related URLs. Until this week, the particular URL never hit our threshold to be included in our reports. So far, the &amp;quot;configurationFile&amp;quot; URL has been the most popular. It may give access to additional sensitive information.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table class="datatable"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th scope="col"&gt;Earliest Report&lt;/th&gt;
-			&lt;th scope="col"&gt;Most Recent Report&lt;/th&gt;
-			&lt;th scope="col"&gt;Total Number of Reports&lt;/th&gt;
-			&lt;th scope="col"&gt;URL&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2018-08-18&lt;/td&gt;
-			&lt;td&gt;2025-09-23&lt;/td&gt;
-			&lt;td&gt;6720&lt;/td&gt;
-			&lt;td&gt;/System/configurationFile?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2017-12-14&lt;/td&gt;
-			&lt;td&gt;2025-09-23&lt;/td&gt;
-			&lt;td&gt;2293&lt;/td&gt;
-			&lt;td&gt;/Security/users?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2021-03-09&lt;/td&gt;
-			&lt;td&gt;2025-09-23&lt;/td&gt;
-			&lt;td&gt;2002&lt;/td&gt;
-			&lt;td&gt;/system/deviceInfo?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2020-09-25&lt;/td&gt;
-			&lt;td&gt;2023-02-04&lt;/td&gt;
-			&lt;td&gt;727&lt;/td&gt;
-			&lt;td&gt;/security/users/1?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2018-09-09&lt;/td&gt;
-			&lt;td&gt;2025-09-23&lt;/td&gt;
-			&lt;td&gt;445&lt;/td&gt;
-			&lt;td&gt;/onvif-http/snapshot?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2017-10-06&lt;/td&gt;
-			&lt;td&gt;2017-10-06&lt;/td&gt;
-			&lt;td&gt;6&lt;/td&gt;
-			&lt;td&gt;/Streaming/channels/1/picture/?auth=YWRtaW46MTEKYOBA&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;2025-04-09&lt;/td&gt;
-			&lt;td&gt;2025-04-29&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-			&lt;td&gt;/ISAPI/Security/users?auth=YWRtaW46MTEK&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Some Googleing leads to CVE-2017-7921 [1]. Hikvision's advisory is sparse and does not identify a particular vulnerable URL [2]. But this looks to me more like some brute forcing. The CVE-2017-7921 vulnerability is supposed to be some kind of backdoor (Hikvision's description of it as &amp;quot;privilege escalation&amp;quot; was considered euphemistic at the time). But I doubt the password is &amp;quot;11&amp;quot;, and a typical Hikvision default password is much more complex (&amp;quot;123456&amp;quot; in the past).&lt;/p&gt;
-
-&lt;p&gt;We have written about Hikvision many times before; its cameras, as well as cameras from competitors like Dahua, are well known for their numerous security vulnerabilities, hard-coded &amp;quot;support passwords&amp;quot;, and other issues. One issue with many of these cameras has been a limited user interface. The DVR used to collect footage from these cameras often only includes a mouse and an onscreen keyboard, making it difficult to select reasonable passwords. This attack may count on users setting a simple password like &amp;quot;11&amp;quot; as by default, only a numeric onscreen keyboard is displayed on some models.&lt;/p&gt;
-
-&lt;p&gt;Another issue is the use of credentials on the URL, which is discouraged as they tend to leak easily in logs. But it may be yet again a convenience decision as you are able to create hyperlinks that will log you in automatically.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;https://nvd.nist.gov/vuln/detail/cve-2017-7921&lt;br /&gt;
-[2]&amp;nbsp;https://www.hikvision.com/us-en/support/document-center/special-notices/privilege-escalating-vulnerability-in-certain-hikvision-ip-cameras/&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32316</guid></item><item><title>Patch Automation for Browsers with TruRisk™ Eliminate</title><link>https://blog.qualys.com/category/product-tech</link><description>Recently, CISA added a Chrome zero-day vulnerability, CVE-2025-10585, to its Known Exploited Vulnerabilities (KEV) Catalog, confirming that threat actors are actively exploiting this high-severity flaw in real-world attacks. This vulnerability affects multiple web browsers that utilize the Chromium engine, including Google Chrome, Microsoft Edge, Opera, and Brave. CISA strongly urges all organizations and individual users to prioritize [&amp;#8230;]</description><content:encoded>&lt;p&gt;Recently, CISA added a Chrome zero-day vulnerability, &lt;a href="https://threatprotect.qualys.com/2025/09/18/another-zero-day-vulnerability-impacting-google-chrome-cve-2025-10585/"&gt;CVE-2025-10585&lt;/a&gt;, to its &lt;a href="https://www.cisa.gov/news-events/alerts/2025/09/23/cisa-adds-one-known-exploited-vulnerability-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, confirming that threat actors are actively exploiting this high-severity flaw in real-world attacks.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/24/retail-at-risk-how-one-alert-uncovered-a-persistent-cyberthreat/"&gt;Retail at risk: How one alert uncovered a persistent cyberthreat​​&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142367</guid></item><item><title>Patch Automation for Browsers with TruRisk™ Eliminate</title><link>https://blog.qualys.com/category/product-tech</link><description>Recently, CISA added a Chrome zero-day vulnerability, CVE-2025-10585, to its Known Exploited Vulnerabilities (KEV) Catalog, confirming that threat actors are actively exploiting this high-severity flaw in real-world attacks. This vulnerability affects multiple web browsers that utilize the Chromium engine, including Google Chrome, Microsoft Edge, Opera, and Brave. CISA strongly urges all organizations and individual users to prioritize [&amp;#8230;]</description><content:encoded>&lt;p&gt;Recently, CISA added a Chrome zero-day vulnerability, &lt;a href="https://threatprotect.qualys.com/2025/09/18/another-zero-day-vulnerability-impacting-google-chrome-cve-2025-10585/"&gt;CVE-2025-10585&lt;/a&gt;, to its &lt;a href="https://www.cisa.gov/news-events/alerts/2025/09/23/cisa-adds-one-known-exploited-vulnerability-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, confirming that threat actors are actively exploiting this high-severity flaw in real-world attacks.&lt;/p&gt;
 
 
 
@@ -2916,8 +3005,7 @@ Development Experience of several years and in multiple APT Groups.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The phenomenon of SIM farms, even at the scale found in this instance around New York, is far from new. Cybercriminals have long used the massive collections of centrally operated SIM cards for everything from spam to swatting to fake account creation and fraudulent engagement with social media or advertising campaigns.&lt;/p&gt;
 &lt;p&gt;[&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;SIM farms allow &amp;#8220;bulk messaging at a speed and volume that would be impossible for an individual user,&amp;#8221; one telecoms industry source, who asked not to be named due to the sensitivity of the Secret Service’s investigation, told WIRED. &amp;#8220;The technology behind these farms makes them highly flexible&amp;#8212;SIMs can be rotated to bypass detection systems, traffic can be geographically masked, and accounts can be made to look like they’re coming from genuine users.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70863</guid><category>Uncategorized</category><category>cell phones</category><category>cyberattack</category><category>denial of service</category><category>infrastructure</category><category>telecom</category></item><item><title>Meta’s New Super PAC Aims to Curb States’ AI Regulation Efforts</title><link>https://www.techrepublic.com/article/news-meta-super-pac-states-ai-regulation/</link><description>&lt;p&gt;The American Technology Excellence Project, Meta’s super PAC, will have tens of millions to spend on candidates from the Democratic and Republican parties.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-meta-super-pac-states-ai-regulation/"&gt;Meta&amp;#8217;s New Super PAC Aims to Curb States’ AI Regulation Efforts&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328582</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category></item><item><title>This Is How Your LLM Gets Compromised</title><link>https://www.trendmicro.com/en_us/research/25/i/prevent-llm-compromise.html</link><description>Poisoned data. Malicious LoRAs. Trojan model files. AI attacks are stealthier than ever—often invisible until it’s too late. Here’s how to catch them before they catch you.</description><guid isPermaLink="false">urn:uuid:3f728b04-2d9e-c92f-b977-9d4712174c35</guid><category>Trend Micro Research : Research</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Domino Effect: How One Vendor's AI App Breach Toppled Giants</title><link>https://www.trendmicro.com/en_us/research/25/i/ai-app-breach.html</link><description>A single AI chatbot breach at Salesloft-Drift exposed data from 700+ companies, including security leaders. The attack shows how AI integrations expand risk, and why controls like IP allow-listing, token security, and monitoring are critical.</description><guid isPermaLink="false">urn:uuid:daadf400-5e1a-16f6-a97d-238fe90a9efb</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category></item><item><title>Huawei Touts ’62 Times Quicker’ AI Chips to Overwhelm Nvidia</title><link>https://www.techrepublic.com/article/news-huawei-three-year-ai-chip-plan/</link><description>&lt;p&gt;Huawei unveiled a three-year plan to rival Nvidia in AI chips, touting SuperPods that link thousands of Ascend processors with 62x faster data speeds.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-huawei-three-year-ai-chip-plan/"&gt;Huawei Touts &amp;#8217;62 Times Quicker&amp;#8217; AI Chips to Overwhelm Nvidia&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328551</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>Malicious-Looking URL Creation Service</title><link>https://www.schneier.com/blog/archives/2025/09/malicious-looking-url-creation-service.html</link><description>&lt;p&gt;&lt;a href="https://phishyurl.com/"&gt;This site&lt;/a&gt; turns your URL into something sketchy-looking.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-meta-super-pac-states-ai-regulation/"&gt;Meta&amp;#8217;s New Super PAC Aims to Curb States’ AI Regulation Efforts&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328582</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category></item><item><title>This Is How Your LLM Gets Compromised</title><link>https://www.trendmicro.com/en_us/research/25/i/prevent-llm-compromise.html</link><description>Poisoned data. Malicious LoRAs. Trojan model files. AI attacks are stealthier than ever—often invisible until it’s too late. Here’s how to catch them before they catch you.</description><guid isPermaLink="false">urn:uuid:3f728b04-2d9e-c92f-b977-9d4712174c35</guid><category>Trend Micro Research : Research</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Domino Effect: How One Vendor's AI App Breach Toppled Giants</title><link>https://www.trendmicro.com/en_us/research/25/i/ai-app-breach.html</link><description>A single AI chatbot breach at Salesloft-Drift exposed data from 700+ companies, including security leaders. The attack shows how AI integrations expand risk, and why controls like IP allow-listing, token security, and monitoring are critical.</description><guid isPermaLink="false">urn:uuid:daadf400-5e1a-16f6-a97d-238fe90a9efb</guid><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category></item><item><title>Malicious-Looking URL Creation Service</title><link>https://www.schneier.com/blog/archives/2025/09/malicious-looking-url-creation-service.html</link><description>&lt;p&gt;&lt;a href="https://phishyurl.com/"&gt;This site&lt;/a&gt; turns your URL into something sketchy-looking.&lt;/p&gt;
 &lt;p&gt;For example, &lt;tt&gt;www.schneier.com&lt;/tt&gt; becomes&lt;br /&gt;
 &lt;tt&gt;https://cheap-bitcoin.online/firewall-snatcher/cipher-injector/phishing_sniffer_tool.html?form=inject&amp;#38;host=spoof&amp;#38;id=bb1bc121&amp;#38;parameter=inject&amp;#38;payload=%28function%28%29%7B+return+%27+hi+%27.trim%28%29%3B+%7D%29%28%29%3B&amp;#38;port=spoof&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;Found on &lt;a href="https://boingboing.net/2025/09/19/a-url-shortener-that-creates-suspicious-looking-urls.html"&gt;Boing Boing&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;a href="https://phishyurl.com/"&gt;This site&lt;/a&gt; turns your URL into something sketchy-looking.&lt;/p&gt;
