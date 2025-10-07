@@ -1,5 +1,198 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 07 Oct 2025 17:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Exploit Against FreePBX (CVE-2025-57819) with code execution.</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Disrupting threats targeting Microsoft Teams</title><link>https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/</link><description>&lt;p&gt;Threat actors seek to abuse Microsoft Teams features and capabilities across the attack chain, underscoring the importance for defenders to proactively monitor, detect, and respond effectively. In this blog, we recommend countermeasures and optimal controls across identity, endpoints, data apps, and network layers to help strengthen protection for enterprise Teams users.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 07 Oct 2025 18:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Exploit Against FreePBX (CVE-2025-57819) with code execution.</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Subscription Health Dashboard 2025 Update</title><link>https://blog.qualys.com/category/product-tech</link><description>Deployment health is mission-critical in today’s digital environment. Duplicate records, ghost hosts, and stale data obscure insights, slow decisions, and erode confidence. Building on last year’s Subscription Health Dashboard blog and best practices, the 2025 update delivers cleaner visibility, stronger ownership, and sharper awareness across the Qualys Enterprise TruRisk™ Platform. It equips teams to act [&amp;#8230;]</description><content:encoded>&lt;p&gt;Deployment health is mission-critical in today’s digital environment. Duplicate records, ghost hosts, and stale data obscure insights, slow decisions, and erode confidence. Building on &lt;a href="https://blog.qualys.com/product-tech/2024/08/09/subscription-health-dashboard-update-optimize-deployments-and-identify-issues"&gt;last year’s Subscription Health Dashboard blog&lt;/a&gt; and best practices, the 2025 update delivers cleaner visibility, stronger ownership, and sharper awareness across the &lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Qualys Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform&lt;/a&gt;. It equips teams to act decisively and keep deployments efficient and compliant while ensuring confidence in global subscription health.&lt;/p&gt;
+
+
+
+&lt;p&gt;The 2025 Subscription Health Dashboard retains the same clean design with refreshed content and a host of improvements under the hood. Last year’s release helped global teams automate, scale success, and align on best practices faster than ever. This year’s update takes the next step, adding three new widgets, surfacing hidden issues, and delivering prescriptive guidance for faster resolution. Think of it as the new model year for deployment health, built to run smoother, faster, and more reliably.&lt;/p&gt;
+
+
+
+&lt;span id="more-38884"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="6-key-improvements-in-this-release"&gt;6 Key Improvements in This Release&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;1. Documentation Additions, Updates, and Streamlined Steps&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Refreshed documentation links in every widget for easier navigation and reference. (Open the widget, then copy and paste from the Description section; links are &lt;strong&gt;not clickable&lt;/strong&gt; from the UI hover action).&lt;/li&gt;
+
+
+
+&lt;li&gt;Cleanup of QQL, &lt;a href="https://docs.qualys.com/en/ud/latest/qql_topics/list_of_all_tokens.htm"&gt;Qualys Query Language&lt;/a&gt;, search queries for consistency and accuracy.&lt;/li&gt;
+
+
+
+&lt;li&gt;Deeper dive links into the &lt;a href="https://docs.qualys.com/en/vm/latest/authentication/authentication_lp.htm"&gt;authentication&lt;/a&gt; documentation and next steps.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;2. Sharper Ghost Host Detection (Now with Prescriptive Fixes)&lt;/strong&gt;&lt;br /&gt;Ghost hosts bloat counts, complicate reporting, and add little value. This release sharpens detection with two refined widgets updated with IP, NetBIOS, &lt;em&gt;and&lt;/em&gt; DNS tracking methods, as well as tuned queries, while simultaneously zeroing in on TCP and UDP services where polling or scanning access is blocked.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Updated Potential Ghost Host Detection &amp;#8211; &lt;/strong&gt;Spot where &lt;strong&gt;scanners are blocked from TCP and UDP ports&lt;/strong&gt; or associated services.&lt;ul&gt;&lt;li&gt;&lt;a href="https://docs.qualys.com/en/vm/latest/scanner_appliances/scanner_vlan.htm"&gt;Configure for Next Generation Firewalls, Host-Based Firewalls, and Load Balancers&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Review &lt;a href="https://docs.qualys.com/en/vm/latest/option_profiles/option_profiles_lp.htm"&gt;option profiles&lt;/a&gt; to quickly auto-clean subscriptions (see related &lt;a href="https://notifications.qualys.com/product/2024/07/22/qualys-recommended-option-profile-upcoming-important-changes"&gt;“Recommended Option Profile” blog update&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;New Widget #1&lt;/strong&gt;: See where the&lt;strong&gt; scanner is unable to poll TCP/UDP services (&lt;/strong&gt;targeting key QIDs 82023 and 82004).&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Step-by-Step Guidance highlight:&lt;/strong&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Verify allow lists, trunk ports, and VLAN access.&lt;/li&gt;
+
+
+
+&lt;li&gt;Confirm QIDs 82023 and 82004 are included in the Option Profile.&lt;/li&gt;
+
+
+
+&lt;li&gt;Configure Option Profiles to ignore TCP SYN and SYN-ACK responses from firewalls (Additional tab).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image q-image-no-shadow"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-38886" height="610" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Sub-Health-dashboard-2025-packet-option.png" style="width: 546px; height: auto;" width="826" /&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;3. New Widget #2: Agent Merge Default Ports Check&lt;/strong&gt;&lt;br /&gt;&lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_correlation_identifier.htm"&gt;Correlating Qualys Cloud Agent records&lt;/a&gt; with IP-based scans is critical for accurate subscription reporting. This widget helps flag cases where default ports are not enabled, blocking merging, and helps teams to:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Catch duplicate issues before they inflate asset counts.&lt;/li&gt;
+
+
+
+&lt;li&gt;Pinpoint root causes behind merging failures.&lt;/li&gt;
+
+
+
+&lt;li&gt;Resolve port-related gaps that block Qualys from unifying unauthenticated scans and agent data.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;4. New Widget #3: Discovered but Unmanaged Assets&lt;/strong&gt;&lt;br /&gt;Catch unknowns and Shadow IT activity with &lt;a href="https://blog.qualys.com/product-tech/2023/11/26/closing-the-visibility-gap-how-qualys-cloud-agent-passive-sensor-caps-eliminates-blind-spots-without-the-hassle"&gt;Qualys Cloud Agent passive discovery, &lt;/a&gt;&amp;nbsp;&lt;a href="https://www.qualys.com/passive-scanning-sensor/"&gt;network sensors&lt;/a&gt;, or the &lt;a href="https://www.qualys.com/apps/external-attack-surface-management/"&gt;External Attack Surface&lt;/a&gt;. This widget highlights unmanaged assets and web applications creeping into the subscription:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Gain insight into discoveries that are not yet covered&lt;a href="https://docs.qualys.com/en/vm/latest/scans/scanning_basics.htm"&gt; by Qualys VMDR&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/csam/latest/inventory/sensors/viewing_inventory_easm_assets_easm_tab.htm"&gt;External Attack Surface&lt;/a&gt;, or &lt;a href="https://docs.qualys.com/en/was/latest/get_started/get_started.htm"&gt;Web Application TotalAppSec scans.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;5. Stale Assets Section Improvements&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://docs.qualys.com/en/ud/latest/widgets/trending.htm?rhhlterm=legend%20legends&amp;amp;rhsearch=legend"&gt;Trending&lt;/a&gt; is automatically enabled when imported.&lt;/li&gt;
+
+
+
+&lt;li&gt;Expanded &lt;a href="https://docs.qualys.com/en/ud/latest/widgets/trending.htm?rhhlterm=legend%20legends&amp;amp;rhsearch=legend"&gt;legend&lt;/a&gt; and links for faster awareness and next steps.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;6. &lt;strong&gt;Branding Alignment&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Updated widgets with &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt; and &lt;a href="https://www.qualys.com/apps/policy-audit/"&gt;Policy Audit&lt;/a&gt; references, reflecting the latest Qualys terminology and capabilities.&lt;/p&gt;
+
+
+
+&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="sharper-insights-clear-action"&gt;Sharper Insights, Clear Action&lt;/h2&gt;
+
+
+
+&lt;p&gt;This release deepens the best practices established last year (&lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_merge_data.htm"&gt;unification&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_correlation_identifier.htm"&gt;merging&lt;/a&gt;, &lt;a href="https://blog.qualys.com/product-tech/2022/10/05/qualys-performance-tuning-series-remove-stale-assets-for-best-performance"&gt;purging&lt;/a&gt;, and &lt;a href="https://success.qualys.com/support/s/article/000006761"&gt;depth&lt;/a&gt;) by adding prescriptive guidance. With unmanaged and discovered asset tracking, potential ghost host resolution, and agent merging visibility, teams can &lt;a&gt;maintain&lt;/a&gt; a clean &lt;em&gt;and&lt;/em&gt; automated experience. This year’s updates empower teams to resolve issues, cutting inflated counts faster and helping to keep the platform accurate, reliable, and reporting-ready.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="next-steps"&gt;Next Steps&lt;/h2&gt;
+
+
+
+&lt;p&gt;Log in today to put the latest release to work:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Review hidden, unmanaged, and discovered assets, and then bring them into scope.&lt;/li&gt;
+
+
+
+&lt;li&gt;Enable &lt;a href="https://docs.qualys.com/en/conn/latest/get_started/get_started.htm"&gt;cloud connectors&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/ps/latest/get_started/get_started.htm"&gt;passive&lt;/a&gt; sensors, &lt;a href="https://docs.qualys.com/en/vm/latest/scanner_appliances/choosing_scanner_appliance.htm"&gt;scanners&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/csam/latest/inventory/sensors/cloud_agent.htm"&gt;agents&lt;/a&gt;, and close coverage gaps.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://docs.qualys.com/en/csam/latest/rules/asset_purge_rule.htm"&gt;Purge stale records automatically&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Check for potential ghost hosts, keep data clean, and unlock assets outside of view.&lt;/li&gt;
+
+
+
+&lt;li&gt;Validate agent merging to avoid duplicates.&lt;/li&gt;
+
+
+
+&lt;li&gt;Bookmark the &lt;a href="https://www.qualys.com/documentation/"&gt;Qualys documentation site&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;No matter which Qualys products the team uses to de-risk the business, with the 2025 Subscription Health Dashboard updates, they will get sharper insights and prescriptive guidance. These tactics combined with the updated dashboard ensure that the Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform subscription stays clean, compliant, and ready for whatever comes next!&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Download the 2025 Subscription Health Dashboard today.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://blog.qualys.com/wp-content/uploads/2025/10/SubHealth_10-7-25-FINAL__UDdashboard-1.json.zip" style="background-color: #ed2e26;"&gt;Download Now&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="contributors"&gt;&lt;strong&gt;C&lt;/strong&gt;ontributors&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Marcus Burrows – Lead Technical Trainer&lt;/li&gt;
+&lt;/ul&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38884</guid><category>Product and Tech</category><category>Subscription Health Dashboard</category></item><item><title>Disrupting threats targeting Microsoft Teams</title><link>https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/</link><description>&lt;p&gt;Threat actors seek to abuse Microsoft Teams features and capabilities across the attack chain, underscoring the importance for defenders to proactively monitor, detect, and respond effectively. In this blog, we recommend countermeasures and optimal controls across identity, endpoints, data apps, and network layers to help strengthen protection for enterprise Teams users.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/"&gt;Disrupting threats targeting Microsoft Teams&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;The extensive collaboration features and global adoption of Microsoft Teams make it a high-value target for both cybercriminals and state-sponsored actors. Threat actors abuse its core capabilities – messaging (chat), calls and meetings, and video-based screen-sharing – at different points along the attack chain. This raises the stakes for defenders to proactively monitor, detect, and respond.&lt;/p&gt;
 
 
@@ -11183,219 +11376,7 @@ Thank you for your attention.
 
 
 
-&lt;p&gt;Sign up to &lt;a href="https://www.qualys.com/forms/totalcloud/"&gt;try Qualys TotalCloud&lt;/a&gt; or get a &lt;a href="https://www.qualys.com/forms/cloud-security-insights-report/"&gt;complimentary custom review&lt;/a&gt; of your multi-cloud and container risk.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38713</guid><category>Vulnerabilities and Threat Research</category><category>NPM</category><category>Supply Chain</category><category>totalcloud</category></item><item><title>Outdated Tech, Rising Risk: How Federal Agencies Can Eliminate Tech Debt and Reduce Cyber Risk</title><link>https://blog.qualys.com/category/product-tech</link><description>Amid shrinking budgets and workforce pressures, your agency, like many across the federal government, is likely grappling with the growing challenge of technical debt (tech debt). Tech debt, the accumulation of outdated or under-maintained technology, can slow progress and put your agency’s mission at risk if not addressed proactively. A Case Study: Learning from the [&amp;#8230;]</description><content:encoded>&lt;p&gt;Amid shrinking budgets and workforce pressures, your agency, like many across the federal government, is likely grappling with the growing challenge of technical debt (tech debt). Tech debt, the accumulation of outdated or under-maintained technology, can slow progress and put your agency’s mission at risk if not addressed proactively.&lt;/p&gt;
-
-
-
-&lt;span id="more-38707"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="a-case-study-learning-from-the-national-nuclear-security-administration-nnsa"&gt;A Case Study: Learning from the National Nuclear Security Administration (NNSA)&lt;/h2&gt;
-
-
-
-&lt;p&gt;The National Nuclear Security Administration (NNSA), part of the United States Department of Energy, provides a clear example of how agencies can confront this issue. Years of underinvestment have left the agency with aging IT systems—many of them more than two decades old—despite being essential for daily operations. To close this technology gap, the NNSA is now modernizing its enterprise resource planning systems across nationwide sites.&lt;/p&gt;
-
-
-
-&lt;p&gt;As Jamie Wolff, the NNSA&amp;#8217;s Chief Information Officer, has &lt;a href="https://federalnewsnetwork.com/ask-the-cio/2025/03/nnsa-starts-to-chip-away-at-its-technical-debt/"&gt;publicly highlighted&lt;/a&gt;, many federal agencies face a significant backlog of technology upgrades and must also find ways to move data efficiently across cloud-based networks.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-cyber-risks-of-legacy-systems"&gt;The Cyber Risks of Legacy Systems&lt;/h2&gt;
-
-
-
-&lt;p&gt;Federal agencies with legacy infrastructures are increasingly vulnerable to cyber risks, particularly from end-of-life (EoL) and end-of-support (EoS) systems. While many are steadily chipping away at inefficiencies, the scale of the problem requires more than incremental fixes. Agencies need a unified toolset strategy—one that streamlines collaboration, enhances security, and maximizes limited resources.&lt;/p&gt;
-
-
-
-&lt;p&gt;This need is especially urgent as recent downsizing across the federal government has further reduced the personnel available to manually track and maintain EoL/EoS systems.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-agencies-need-a-unified-toolset-for-cyber-risk-management-and-it-modernization"&gt;Why Agencies Need a Unified Toolset for Cyber Risk Management and IT Modernization&lt;/h2&gt;
-
-
-
-&lt;p&gt;A unified toolset strategy helps agencies:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Standardize tools and processes across departments&lt;/li&gt;
-
-
-
-&lt;li&gt;Gain visibility into system health and vulnerabilities&lt;/li&gt;
-
-
-
-&lt;li&gt;Automate routine maintenance and patch management&lt;/li&gt;
-
-
-
-&lt;li&gt;Move data securely across cloud environments&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Such a strategy ensures agencies manage technology and risk effectively, even with fewer hands on deck.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="tactics-to-combat-tech-debt-reduce-cyber-risk-and-advance-your-agencys-mission"&gt;Tactics to Combat Tech Debt, Reduce Cyber Risk, and Advance Your Agency’s Mission&lt;/h2&gt;
-
-
-
-&lt;p&gt;Tech debt, combined with security gaps and shrinking budgets, jeopardizes federal agencies’ ability to fulfill their missions effectively. Legacy systems at the EoL/EoS stage compound the problem, while incomplete asset visibility makes it nearly impossible to detect unauthorized or unmanaged software—opening the door to cyberattacks.&lt;/p&gt;
-
-
-
-&lt;p&gt;Federal compliance programs and mandates such as the Federal Information Security Management Act (FISMA) and FedRAMP depend on accurate, up-to-date asset data and strong security controls. Yet manual data collection is time-consuming and error-prone.&lt;/p&gt;
-
-
-
-&lt;p&gt;The federal IT workforce shortage further magnifies challenges around software procurement and license auditing. With fewer experienced professionals to manage these tasks, agencies face higher risks of non-compliance and operational disruption.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="building-a-software-asset-management-strategy"&gt;Building a Software Asset Management Strategy&lt;/h2&gt;
-
-
-
-&lt;p&gt;To address these vulnerabilities and inefficiencies, federal agency leaders must adopt a centralized, agency-wide Software Asset Management (SAM) strategy.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href="https://www.qualys.com/forms/cybersecurity-asset-management/"&gt;Qualys Cybersecurity Asset Management with External Attack Surface Management (EASM)&lt;/a&gt; supports this approach by identifying unknown assets, optimizing software investments, and strengthening cybersecurity posture across every attack surface.&lt;/p&gt;
-
-
-
-&lt;p&gt;With Qualys Cybersecurity Asset Management, your agency can:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Maintain continuous asset visibility across cloud, on-premises, and IoT/OT systems&lt;/li&gt;
-
-
-
-&lt;li&gt;Gain actionable insights into vulnerabilities and risks&lt;/li&gt;
-
-
-
-&lt;li&gt;Standardize tools and processes for tracking and compliance&lt;/li&gt;
-
-
-
-&lt;li&gt;Better understand usage patterns and contractual obligations&lt;/li&gt;
-
-
-
-&lt;li&gt;Eliminate waste and align technology with mission goals&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="optimize-software-spending-in-federal-agencies"&gt;Optimize Software Spending in Federal Agencies&lt;/h2&gt;
-
-
-
-&lt;p&gt;Unused licenses are wasted funds—resources that could otherwise advance your mission or improve taxpayer services. With Qualys Cybersecurity Asset Management, your agency gains the insights needed to eliminate overspending and ensure every taxpayer dollar is used effectively.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Simplify Federal Compliance Efforts&lt;/h3&gt;
-
-
-
-&lt;p&gt;Meeting federal regulations doesn’t have to be a burden. Qualys automates key processes such as patch management and risk assessments while providing a unified view of your network environment. This saves time, reduces errors, and makes compliance audits far less disruptive.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Proactively Manage Federal IT Tech Debt&lt;/h3&gt;
-
-
-
-&lt;p&gt;Outdated systems are more than an inconvenience—they’re a liability. Qualys enables agencies to identify upcoming EoL/EoS software, hardware, and operating systems up to 12 months in advance. This proactive approach gives IT leadership time to plan mitigation steps effectively before vulnerabilities arise.&lt;/p&gt;
-
-
-
-&lt;p&gt;By addressing tech debt early, your agency can reduce the risk of unpatchable vulnerabilities while staying compliant and secure.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Uncover Blind Spots with Third-Party Asset Intelligence&lt;/h3&gt;
-
-
-
-&lt;p&gt;Blind spots in your IT environment expand the attack surface and increase the likelihood of breaches. Qualys eliminates these gaps by uncovering unmanaged or unauthorized assets and enriching them with third-party intelligence such as device properties and business group assignments—strengthening external attack surface management.&lt;/p&gt;
-
-
-
-&lt;p&gt;This added context enables more accurate risk assessments and ensures no asset is overlooked, whether in the cloud, on-premises, or within IoT/OT systems.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Expand Coverage with Passive Network Discovery&lt;/h3&gt;
-
-
-
-&lt;p&gt;Traditional discovery methods often miss assets that aren’t actively scanned or monitored. Qualys solves this by using its lightweight agent as a passive sensor to expand internal attack surface coverage. This ensures risks from previously hidden assets are detected—so nothing slips through the cracks.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Seamlessly Sync with ServiceNow and BMC ITSM Tools&lt;/h3&gt;
-
-
-
-&lt;p&gt;Keeping your agency’s Configuration Management Database (CMDB) accurate is critical but often time-consuming. Qualys streamlines this by integrating seamlessly with leading ITSM platforms such as ServiceNow and BMC.&lt;/p&gt;
-
-
-
-&lt;p&gt;With bi-directional synchronization, Qualys keeps the CMDB current by adding missing assets and enriching them with lifecycle status, expired certificates, and missing agent data. This integration also accelerates ticket resolution—by up to 50%—ensuring IT and security teams work from a single source of truth.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Assess Risk on Your Agency’s External Attack Surface&lt;/h3&gt;
-
-
-
-&lt;p&gt;Your agency’s external attack surface is where vulnerabilities are often most visible—and where blind spots are most frequent. With Qualys, your agency can continuously identify internet-facing systems and assess related risks in real time.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="eliminate-tech-debt-and-manage-cyber-risk"&gt;Eliminate Tech Debt and Manage Cyber Risk&lt;/h2&gt;
-
-
-
-&lt;p&gt;Don’t wait for the next audit—or worse, the next cyberattack—to make changes that will benefit your agency long term.&lt;/p&gt;
-
-
-
-&lt;p&gt;Take full control of your software assets with Qualys Cybersecurity Asset Management. Empower your agency to eliminate inefficiencies, strengthen cybersecurity, and focus on what truly matters: advancing your mission with precision and confidence.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Take the first step toward eliminating tech debt and securing your mission&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/cybersecurity-asset-management/" style="background-color: #ed2e26;"&gt;Start Free Trial&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38707</guid><category>Product and Tech</category><category>CSAM 3.0</category><category>external attack surface management</category><category>federal</category><category>tech debt</category></item><item><title>Dark Web Search Engines in 2025 – Rankings, Risks &amp; Ethical Trade-offs</title><link>https://www.darknet.org.uk/2025/09/dark-web-search-engines-in-2025-rankings-risks-ethical-trade-offs/</link><description>Explore which dark web search engines in 2025 are reliable, what risks they pose, and how security professionals navigate ethics and uptime trade-offs.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=174496</guid><category>Dark Web</category><category>dark web search</category></item><item><title>What’s Your Cybersecurity Maturity?</title><link>https://www.trendmicro.com/en_us/research/25/i/cybersecurity-maturity.html</link><description>This blog post looks at four key milestones along the cybersecurity maturity journey and poses some questions you can ask to determine the stage of your organization’s progress.</description><guid isPermaLink="false">urn:uuid:616e1510-69db-3ab3-6a9e-b6703df12f3e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Data center</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Microsoft Patch Tuesday, September 2025 Edition</title><link>https://krebsonsecurity.com/2025/09/microsoft-patch-tuesday-september-2025-edition/</link><description>Microsoft Corp. today issued security updates to fix more than 80 vulnerabilities in its Windows operating systems and software. There are no known "zero-day" or actively exploited vulnerabilities in this month's bundle from Redmond, which nevertheless includes patches for 13 flaws that earned Microsoft's most-dire "critical" label. Meanwhile, both Apple and Google recently released updates to fix zero-day bugs in their devices.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft Corp.&lt;/strong&gt; today issued security updates to fix more than 80 vulnerabilities in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software. There are no known &amp;#8220;zero-day&amp;#8221; or actively exploited vulnerabilities in this month&amp;#8217;s bundle from Redmond, which nevertheless includes patches for 13 flaws that earned Microsoft&amp;#8217;s most-dire &amp;#8220;critical&amp;#8221; label. Meanwhile, both &lt;strong&gt;Apple&lt;/strong&gt; and &lt;strong&gt;Google&lt;/strong&gt; recently released updates to fix zero-day bugs in their devices.&lt;/p&gt;
+&lt;p&gt;Sign up to &lt;a href="https://www.qualys.com/forms/totalcloud/"&gt;try Qualys TotalCloud&lt;/a&gt; or get a &lt;a href="https://www.qualys.com/forms/cloud-security-insights-report/"&gt;complimentary custom review&lt;/a&gt; of your multi-cloud and container risk.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38713</guid><category>Vulnerabilities and Threat Research</category><category>NPM</category><category>Supply Chain</category><category>totalcloud</category></item><item><title>Dark Web Search Engines in 2025 – Rankings, Risks &amp; Ethical Trade-offs</title><link>https://www.darknet.org.uk/2025/09/dark-web-search-engines-in-2025-rankings-risks-ethical-trade-offs/</link><description>Explore which dark web search engines in 2025 are reliable, what risks they pose, and how security professionals navigate ethics and uptime trade-offs.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=174496</guid><category>Dark Web</category><category>dark web search</category></item><item><title>What’s Your Cybersecurity Maturity?</title><link>https://www.trendmicro.com/en_us/research/25/i/cybersecurity-maturity.html</link><description>This blog post looks at four key milestones along the cybersecurity maturity journey and poses some questions you can ask to determine the stage of your organization’s progress.</description><guid isPermaLink="false">urn:uuid:616e1510-69db-3ab3-6a9e-b6703df12f3e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Cyber Crime</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Data center</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Microsoft Patch Tuesday, September 2025 Edition</title><link>https://krebsonsecurity.com/2025/09/microsoft-patch-tuesday-september-2025-edition/</link><description>Microsoft Corp. today issued security updates to fix more than 80 vulnerabilities in its Windows operating systems and software. There are no known "zero-day" or actively exploited vulnerabilities in this month's bundle from Redmond, which nevertheless includes patches for 13 flaws that earned Microsoft's most-dire "critical" label. Meanwhile, both Apple and Google recently released updates to fix zero-day bugs in their devices.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft Corp.&lt;/strong&gt; today issued security updates to fix more than 80 vulnerabilities in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and software. There are no known &amp;#8220;zero-day&amp;#8221; or actively exploited vulnerabilities in this month&amp;#8217;s bundle from Redmond, which nevertheless includes patches for 13 flaws that earned Microsoft&amp;#8217;s most-dire &amp;#8220;critical&amp;#8221; label. Meanwhile, both &lt;strong&gt;Apple&lt;/strong&gt; and &lt;strong&gt;Google&lt;/strong&gt; recently released updates to fix zero-day bugs in their devices.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class="aligncenter  wp-image-60331" height="496" src="https://krebsonsecurity.com/wp-content/uploads/2022/07/winupdatedate.png" width="750" /&gt;&lt;/p&gt;
 &lt;p&gt;Microsoft assigns security flaws a &amp;#8220;critical&amp;#8221; rating when malware or miscreants can exploit them to gain remote access to a Windows system with little or no help from users. Among the more concerning critical bugs quashed this month is &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-54918" rel="noopener" target="_blank"&gt;CVE-2025-54918&lt;/a&gt;. The problem here resides with &lt;strong&gt;Windows NTLM&lt;/strong&gt;, or NT LAN Manager, a suite of code for managing authentication in a Windows network environment.&lt;/p&gt;
 &lt;p&gt;Redmond rates this flaw as &amp;#8220;Exploitation More Likely,&amp;#8221; and although it is listed as a privilege escalation vulnerability, &lt;strong&gt;Kev Breen&lt;/strong&gt; at &lt;strong&gt;Immersive&lt;/strong&gt; says this one is actually exploitable over the network or the Internet.&lt;/p&gt;
