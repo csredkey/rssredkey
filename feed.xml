@@ -1,5 +1,760 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 20 Oct 2025 16:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Many Online Services and Websites Affected by an AWS Outage</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>What the Huge AWS Outage Reveals About the Internet</title><link>https://www.wired.com/story/what-that-huge-aws-outage-reveals-about-the-internet/</link><description>Amazon Web Services experienced DNS resolution issues on Monday morning, taking down wide swaths of the web—and highlighting a long-standing weakness in the internet's infrastructure.</description><guid isPermaLink="false">68f626ea91fa39647b82c1b9</guid><category>Security</category><category>Security / Security News</category><category>AWS</category><category>Amazon</category><category>Cloud Computing</category><category>DNS</category><category>security</category><category>Internet</category><category>Downtime</category></item><item><title>20th October – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/20th-october-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 20th October, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES F5 has disclosed a cyber attack, reportedly carried out by a nation-state actor with long-term, persistent access to critical product development environments. The attacker exfiltrated files that included portions of BIG-IP source [&amp;#8230;]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 20 Oct 2025 17:59:18 +0000</lastBuildDate><item><title>Infocon: green</title><link>https://isc.sans.edu/diary.html?rss</link><description>Many Online Services and Websites Affected by an AWS Outage</description><guid isPermaLink="false">https://isc.sans.edu/diary.html?rss</guid></item><item><title>Inside the attack chain: Threat activity targeting Azure Blob Storage</title><link>https://www.microsoft.com/en-us/security/blog/2025/10/20/inside-the-attack-chain-threat-activity-targeting-azure-blob-storage/</link><description>&lt;p&gt;Azure Blob Storage is a high-value target for threat actors due to its critical role in storing and managing massive amounts of unstructured data at scale across diverse workloads and is increasingly targeted through sophisticated attack chains that exploit misconfigurations, exposed credentials, and evolving cloud tactics.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/20/inside-the-attack-chain-threat-activity-targeting-azure-blob-storage/"&gt;Inside the attack chain: Threat activity targeting Azure Blob Storage&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction"&gt;Azure Blob Storage&lt;/a&gt;, like any object data service, is a high-value target for threat actors due to its critical role in storing and managing massive amounts of unstructured data at scale across diverse workloads. Organizations of all sizes use Blob Storage to support key workloads—such as AI, high performance computing (HPC), analytics, media, enterprise backup, and IoT data ingestion—making it a potential vector for attacks that can impact everything from data integrity to business continuity. Threat actors are actively seeking opportunities to compromise environments that host downloadable media or maintain large-scale data repositories, leveraging the flexibility and scale of Blob Storage to target a broad spectrum of organizations.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Recognizing these risks, Microsoft&amp;#8217;s &lt;a href="https://www.microsoft.com/trust-center/security/secure-future-initiative"&gt;Secure Future Initiative (SFI)&lt;/a&gt; has strengthened default security by design, but defenders must continue to follow security baseline recommendations and leverage customer-facing security capabilities to stay ahead of evolving threats. In alignment with the MITRE ATT&amp;amp;CK framework, Microsoft Threat Intelligence continually &lt;a href="https://www.microsoft.com/security/blog/2023/09/07/cloud-storage-security-whats-new-in-the-threat-matrix/"&gt;updates&lt;/a&gt; threat matrices to map the evolving tactics and techniques targeting cloud environments. While some of our previous work has focused on &lt;a href="https://www.microsoft.com/security/blog/2025/04/23/understanding-the-threat-landscape-for-kubernetes-and-containerized-assets/"&gt;Kubernetes&lt;/a&gt; and containerized workloads at the compute layer of the cloud stack, this blog shifts the lens to the data storage layer—specifically, Azure Blob Storage.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Therefore, in this blog, we outline some of the unique threats associated with the data storage layer, including relevant stages of the attack chain for Blob Storage to connect these risks to actionable &lt;a href="https://learn.microsoft.com/security/benchmark/azure/overview-v3?source=recommendations"&gt;Azure Security controls&lt;/a&gt; and applicable &lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations?source=recommendations"&gt;security recommendations&lt;/a&gt;. We also provide threat detections to help contain and prevent Blob Storage threat activity with Microsoft Defender for Cloud’s &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-storage-introduction"&gt;Defender for Storage plan&lt;/a&gt;. By understanding the unique threats facing Azure Blob Storage and implementing targeted security controls, organizations can better safeguard their most critical workloads and data repositories against evolving attacker tactics.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-azure-blob-storage-works"&gt;How Azure Blob Storage works&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Azure Storage supports a wide range of options for handling exabytes of blob data from many sources at scale. Blobs store everything from checkpoint and model files for AI to parquet datasets for analytics. These blobs are organized into containers, which function like folders grouping sets of blobs. A single storage account can contain an unlimited number of containers, and each container can store an unlimited number of blobs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Blob Storage also supports HPC, backup, and disaster recovery scenarios for more resiliency and business continuity, like backing up on-premises resources or Infrastructure as a Service (IaaS) virtual machine-hosted SQL Server data. Azure Data Lake Storage offers specific optimizations well suited for file system and analytics workloads such as hierarchical namespace and fast atomic operations. Blob storage also supports public access scenarios such as download for static files—not all files are accessible for download over internet.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Azure Storage fulfils the cloud shared responsibility model through best practices across identity and access management, secure networking, data protection, and continuous monitoring. It supports best practices that help defend across the attack chain when implemented as part of both a cloud-native identity and access management solution such as Microsoft Entra ID, and a cloud-native application protection platform such as Defender for Cloud. Azure Storage integrates with both, allowing least-privilege access through Entra role-based access control (RBAC) and fine-grained Entra Azure attribute-based access control (ABAC).&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Azure Storage safeguards data in transit with network protections such as network security perimeter, private endpoint/Private Link and virtual networks, and encryption for data in transit via TLS. It uses service-side encryption (SSE) to automatically encrypt all Azure Storage resources persisted to the cloud, including blobs and object metadata, and cannot be disabled. While Storage automatically encrypts all data in a storage account at the service level using 256-bit AES encryption (one of the strongest block ciphers available), it is also possible to enable 256-bit AES encryption at the infrastructure level for double encryption to protect against a scenario where one of the encryption algorithms or keys might be compromised.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Azure Storage integrates with Azure Backup and Microsoft Defender for ransomware and malware protection. Azure Storage also supports a wide range of data protection scenarios, such as preventing deletion or modification of accounts and blobs through immutability settings and enabling recovery from data deletion or overwrites through soft delete and versioning. &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="a-look-at-the-attack-chain"&gt;A look at the attack chain&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To help defenders apply appropriate controls and our recommendations against various threat scenarios across the attack chain, we take a closer look at the progression.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image alignleft size-full"&gt;&lt;img alt="Attack techniques abusing Blob Storage spanning reconnaissance, resource development, initial access, persistence, execution, credential access, discovery, lateral movement, collection, command and control, exfiltration, and impact." class="wp-image-143195 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/10/Figure-1.-Attack-techniques-that-abuse-Blob-Storage-along-the-attack-chain.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1. Attack techniques that abuse Blob Storage along the attack chain&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="reconnaissance"&gt;Reconnaissance&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors &lt;a href="https://techcommunity.microsoft.com/blog/microsoftdefendercloudblog/protect-your-storage-resources-against-blob-hunting/3735238"&gt;enumerate&lt;/a&gt; Blob Storage to identify publicly exposed data and credentials that they can leverage later in the attack chain. Common tactics include &lt;a href="https://github.com/appsecco/breaking-and-pwning-apps-and-servers-aws-azure-training/blob/master/documentation/bapazure/cloud-storage/attacking-azure-storage-blobs.md" rel="noreferrer noopener" target="_blank"&gt;DNS and HTTP header probing&lt;/a&gt; to scan for valid *.&lt;em&gt;blob.core.windows.net&lt;/em&gt; subdomains. Threat actors can now also use language models to generate plausible storage account or container names to make brute-forcing more effective.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Enumeration tools like Goblob have long been made available on GitHub, and threat actors can extend this type of capability misusing other tools on GitHub like QuickAZ, which combines storage enumeration with other Azure reconnaissance capabilities. Threat actors may also try to leverage PowerShell-based scanners easily accessible to brute-force prefix and suffix combinations for hours using permutation dictionary scripts. They can also turn to &lt;a href="https://grayhatwarfare.medium.com/how-to-search-for-open-amazon-s3-buckets-and-their-contents-https-buckets-grayhatwarfare-com-577b7b437e01" rel="noreferrer noopener" target="_blank"&gt;dedicated indexers&lt;/a&gt; cataloging tens of thousands of publicly exposed containers.  &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When sensitive credentials, such as storage account keys, shared access signatures (&lt;strong&gt;SAS&lt;/strong&gt;), or Microsoft Entra ID principal credentials are discovered in source code repositories or configuration files (including version histories), threat actors can more easily gain an initial foothold. Storage account keys are particularly high risk if they grant full read, write, and delete access to storage resources. With these credentials, threat actors can escalate privileges, move laterally, or proceed directly to exfiltrate data.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="resource-development"&gt;Resource development&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors try to exploit misconfigured or missing identity controls to create malicious resources in Blob Storage in furtherance of their operations and targeting. They may attempt to leverage Azure Blob Storage to host spoofed versions of legitimate Microsoft sign-in pages to make it more challenging for potential victims to discern based on an inspection of the SSL certificates alone.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors may attempt to place malicious executables or macro-enabled documents in containers left open to anonymous access or secured by weak or compromised SAS. This could lead to victims downloading harmful content directly from those blob URLs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Since Blob Storage often stores machine learning training datasets, threat actors may exploit it for data poisoning by injecting mislabeled or malicious samples to skew model behavior and produce incorrect predictions.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="initial-access"&gt;Initial access&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A single misconfigured endpoint could&amp;nbsp;expose&amp;nbsp;sensitive information. Theoretically, a threat actor could attempt to exploit &lt;a href="https://learn.microsoft.com/azure/azure-functions/functions-scenarios"&gt;blob-triggered Azure Functions&lt;/a&gt; using &lt;a href="https://learn.microsoft.com/azure/event-grid/overview"&gt;Event Grid&lt;/a&gt; that process files in storage containers, or &lt;a href="https://learn.microsoft.com/azure/logic-apps/logic-apps-overview"&gt;Azure Logic Apps&lt;/a&gt; that automate file transfers from external sources like FTP servers, to gain entry to downstream workflows linked to Azure Storage—if those workflows rely on misconfigured or insufficiently secured authentication mechanisms. This could allow an attacker to maliciously trigger trusted automation or hijack event routing to escalate privileges or move laterally within the environment.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="persistence"&gt;Persistence&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;If a threat actor gains access to an environment through Blob Storage, they may attempt to establish a long-term foothold by manipulating identity and access configurations that are resilient to standard remediation efforts such as key rotations or password resets. These techniques may include assigning built-in roles or custom roles with elevated privileges to identities under their control, generating SAS with broad permissions and extended expiration periods, modifying container-level access policies to permit anonymous read access, enabling Secure File Transfer Protocol (SFTP) on storage accounts, or leveraging soft-delete capabilities to conceal malicious payloads by uploading, deleting, and later restoring blobs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors frequently abuse legitimate tools such as AADInternals to establish backdoors and persist, enabling access to both cloud and hybrid resources. Additionally, frameworks like AzureHound are extensively leveraged to identify privileged escalation paths from enumerated Azure resources.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="defense-evasion"&gt;Defense evasion&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors may attempt to evade detection by tampering with Blob Storage networking and logging configurations—loosening or deleting firewall rules, adding overly permissive IP address ranges or virtual network (VNet) rules, creating unauthorized private endpoints, distributing requests across regions, or disabling diagnostic logging.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="credential-access"&gt;Credential access&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors may attempt to obtain Blob Storage credentials through several vectors, including token and key extraction, cloud shell persistence abuse, and exposure through misconfigurations. For token and key extraction, threat actors with access to Entra ID tokens may reuse refresh tokens to obtain new access tokens, or invoke privileged management APIs (for example, &lt;em&gt;listKeys&lt;/em&gt;) to extract primary and secondary storage account keys. These keys may grant full data-plane access and bypass identity-based controls. For cloud shell persistence abuse, because Azure Cloud Shell stores session data within a hidden blob container within the user’s storage account, threat actors with access may retrieve cached credentials, command history, or configuration files containing sensitive information. Finally, for exposure through misconfiguration, if secure transfer is not enforced or network access controls are overly permissive, shared keys or SAS tokens may be exposed in transit or through public endpoints. This includes keys and tokens found in exposed or compromised endpoints or code-repositories. These credentials can then possibly be reused by threat actors to access or exfiltrate data.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="discovery"&gt;Discovery&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After gaining a foothold in Azure, threat actors might map Blob Storage to locate valuable data and understand defensive settings. To uncover blob containers unintentionally exposed publicly, they could enumerate the broader cloud estate—querying subscriptions, resource groups, and storage account inventories. After identifying accounts, threat actors could probe deeper: listing containers and blobs, inspecting metadata, and retrieving configuration details such as firewall rules, logging targets, immutability policies, and backup schedules. This would enable them to identify where sensitive data resides and assess which controls can be bypassed or disabled to facilitate collection, exfiltration, or destruction.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="lateral-movement"&gt;Lateral movement&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When a new blob is added to a container, Azure can trigger &lt;a href="https://learn.microsoft.com/azure/azure-functions/functions-overview"&gt;Azure Functions&lt;/a&gt;, &lt;a href="https://learn.microsoft.com/azure/logic-apps/logic-apps-overview"&gt;Logic Apps&lt;/a&gt;, or other&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/architecture/web-apps/serverless/architectures/code"&gt;workflows&lt;/a&gt;. If a threat actor controls the source container and an Event Grid subscription is configured, they may upload specially crafted files that trigger downstream compute resources running under managed identities, which may have elevated permissions to move laterally into other services.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;If Azure Functions store their code in Azure Storage and threat actors gain write access, they may attempt to replace the code with malicious files. When the function is triggered by a blob event, HTTP request or timer, it could run malicious code under the function’s identity, potentially granting access to other resources.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors may also target automated data pipelines or third-party integrations that trust blob-based inputs. Enterprises often use &lt;a href="https://learn.microsoft.com/azure/data-factory/connector-azure-blob-storage?tabs=data-factory#create-an-azure-blob-storage-linked-service-using-ui"&gt;Azure Data Factory and Azure Synapse Analytics&lt;/a&gt; to copy and transform data from Azure Blob Storage. These pipelines typically authenticate to Blob using managed identities, service principals, SAS tokens, or account keys, and may connect over managed private endpoints. If an attacker can modify data in a source container, they may influence downstream processing or gain access to services that trust the pipeline’s identity, enabling further lateral movement.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="collection"&gt;Collection&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;If blob containers are misconfigured, threat actors may be able to list and download large volumes of data directly from storage. If access is obtained, they may copy or export sensitive files into a staging container they control, using Storage operations like&amp;nbsp;&lt;em&gt;StartCopy&lt;/em&gt;,&amp;nbsp;&lt;em&gt;SyncCopy,&lt;/em&gt;&amp;nbsp;or&amp;nbsp;&lt;em&gt;CopyBlob&lt;/em&gt; through AzCopy or the Azure Storage REST API to stay within Azure and evade detection. They may compress or encrypt the data cache internally as well before attempting to&amp;nbsp;exfiltrate it.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="command-and-control"&gt;Command and control&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Blob Storage can be abused to distribute malware if the account or credentials are compromised. Threat actors may try to use Blob Storage as a covert beacon channel, where malware running on compromised hosts periodically polls for new blobs or&amp;nbsp;&lt;a href="https://learn.microsoft.com/rest/api/storageservices/setting-and-retrieving-properties-and-metadata-for-blob-resources"&gt;metadata updates&lt;/a&gt;&amp;nbsp;containing command payloads. After infecting a target, malware might send &lt;em&gt;HEAD&lt;/em&gt; or &lt;em&gt;GET&lt;/em&gt; requests to the Azure blob’s REST API,&amp;nbsp;&lt;a href="https://learn.microsoft.com/rest/api/storageservices/setting-and-retrieving-properties-and-metadata-for-blob-resources"&gt;retrieving metadata&lt;/a&gt;&amp;nbsp;without downloading the file content. If malware parses these headers as communication channels, it may send exfiltrated data back by writing separate metadata updates. Threat actors could embed new commands within metadata fields, meaning the blob’s content remains unchanged while the metadata plane acts as a persistent, stealthy command-and-control (C2) server.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Additionally, threat actors may attempt to exploit &lt;a href="https://learn.microsoft.com/azure/storage/blobs/object-replication-overview"&gt;object replication&lt;/a&gt; to propagate payloads across environments. If a replication policy is successfully configured, any new blobs added to a compromised source container are automatically copied to a trusted destination container—turning it into a distribution hub and enabling supply chain–style attacks.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="exfiltration"&gt;Exfiltration&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;If threat actors gain access to the environment, they might &lt;a href="https://www.bleepingcomputer.com/news/security/ransomware-gangs-now-abuse-microsoft-azure-tool-for-data-theft/" rel="noreferrer noopener" target="_blank"&gt;leverage&lt;/a&gt; Azure-native tools like Azure Storage Explorer or AzCopy to exfiltrate data at scale—exploiting Azure’s high bandwidth and trusted domains to evade detection. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For instance, they could enable&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/storage-blob-static-website"&gt;static website hosting&lt;/a&gt;&amp;nbsp;and copy sensitive blobs into the publicly accessible&amp;nbsp;&lt;em&gt;$web&lt;/em&gt;&amp;nbsp;container. Disabling anonymous access on the storage account-level offers no protection here, because the&amp;nbsp;&lt;em&gt;$web&lt;/em&gt;&amp;nbsp;container&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/anonymous-read-access-prevent?tabs=portal"&gt;always remains publicly accessible&lt;/a&gt;.&amp;nbsp;In another scenario, threat actors could exfiltrate data into a separate Azure subscription they control, using Microsoft’s internal network as a covert transport layer to bypass controls.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors could also embed exfiltration logic within Azure Functions, Logic Apps, or&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/automation/automation-services"&gt;Automation&lt;/a&gt;&amp;nbsp;runbooks, disguising them as legitimate&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/logic-apps/create-automation-tasks-azure-resources"&gt;maintenance tasks&lt;/a&gt;&amp;nbsp;and throttling transfers to stay below volume or rate thresholds.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Third-party integrations can also lead to indirect exposure if the integrated products are compromised. For example, in 2023, defenders whose environments had &lt;a href="https://www.progress.com/moveit" rel="noreferrer noopener" target="_blank"&gt;MOVEit Transfer&lt;/a&gt; application connected to Blob Storage for file transfers or archiving partially contained a zero-day vulnerability, which was later attributed in a &lt;a href="https://x.com/MsftSecIntel/status/1665537730946670595" rel="noreferrer noopener" target="_blank"&gt;tweet&lt;/a&gt; by Microsoft to Lace Tempest (known for ransomware operations and running the Clop extortion site).&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="impact"&gt;Impact&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;If threat actors obtain high privilege roles, storage account keys, or broadly scoped SAS tokens, they can cause extensive damage—for example, issuing mass&amp;nbsp;&lt;em&gt;DeleteBlob&lt;/em&gt;&amp;nbsp;or&amp;nbsp;&lt;em&gt;DeleteContainer&lt;/em&gt;&amp;nbsp;operations, overwriting objects including with empty content, or re-encrypting data by reuploading modified content or writing new content to blobs. With the necessary privileges, threat actors can also modify file contents or metadata, change access tiers, and remove legal holds. In many scenarios, simply reading or exfiltrating data can result in long-term impact, even without immediate disruption—such as in cases of espionage.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="recommendations"&gt;Recommendations&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://learn.microsoft.com/security/zero-trust/azure-infrastructure-storage"&gt;&lt;strong&gt;Apply zero trust principles to Azure Storage&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Business asset security depends on the integrity of the privileged accounts that administer your IT systems. Refer to our &lt;a href="https://learn.microsoft.com/entra/identity/role-based-access-control/security-planning#faq-answers-for-securing-privileged-access"&gt;FAQ for answers on securing privileged access&lt;/a&gt;. Learn to enable the &lt;a href="https://learn.microsoft.com/azure/security/fundamentals/identity-management-best-practices"&gt;Azure identity management and access control security best practices&lt;/a&gt;, such as ensuring separate user accounts and mail forwarding for Global Administrator accounts. Follow &lt;a href="https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"&gt;best practices for using Microsoft Entra role-based access control&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Implement our &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations"&gt;&lt;strong&gt;security recommendations for Blob Storage&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations#data-protection"&gt;Data protection&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations#identity-and-access-management"&gt;Identity and access management&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations#networking"&gt;Networking&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations#networking"&gt;Logging and monitoring&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Monitor the &lt;a href="https://learn.microsoft.com/azure/storage/blobs/security-recommendations#loggingmonitoring"&gt;Azure security baseline for Storage and its recommendations using Defender for Cloud&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender for Cloud periodically analyzes the security state of your Azure resources to identify potential security vulnerabilities and then provides security recommendations on how to address them. For more information, see&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"&gt;Review your security recommendations&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Enable &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/tutorial-enable-storage-plan"&gt;&lt;strong&gt;Microsoft Defender for Storage&lt;/strong&gt;&lt;/a&gt;.&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-storage-introduction"&gt;Defender for Storage&lt;/a&gt;&lt;strong&gt; &lt;/strong&gt;provides an additional layer of security intelligence that detects unusual and potentially harmful attempts to access or exploit storage accounts. Its alerts detect and prevent top cloud storage threats, including sensitive data exfiltration, data corruption, and malicious file uploads. For more information, see &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-storage-threats-alerts"&gt;Understand security threats and alerts in Microsoft Defender for Storage&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;You don&amp;#8217;t need to enable diagnostic logs for analysis.&lt;strong&gt; &lt;/strong&gt;Defender for Storage also detects suspicious activities from entities without identities that access your data using misconfigured and overly permissive SAS. These SAS might be leaked or compromised.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Sensitive data threat detection considers the sensitivity of the data at risk, quickly identifying and addressing the most significant risks. It also detects exposure events and suspicious activities on resources containing sensitive data. Learn more about&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-storage-data-sensitivity"&gt;sensitive data threat detection&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Enable Defender for Storage via &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-storage-policy-enablement"&gt;built-in policy&lt;/a&gt;. Monitor &lt;a href="https://learn.microsoft.com/azure/governance/policy/concepts/compliance-states"&gt;compliance states&lt;/a&gt; to detect if an attacker attempts to tamper with Defender for Storage to evade defenses, and &lt;a href="https://learn.microsoft.com/azure/governance/policy/concepts/event-overview?tabs=event-grid-event-schema"&gt;automatically respond&lt;/a&gt; with alerts and recovery tasks.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Enable &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning"&gt;malware scanning&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Malware scanning in Defender for Storage detects in near real-time and mitigates a wide variety of malware threats either by scanning blobs &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/on-upload-malware-scanning"&gt;automatically&lt;/a&gt; when blobs are being frequently uploaded or modified, or &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/on-demand-malware-scanning"&gt;on-demand&lt;/a&gt; for proactive security, incident response, integrating partner data, and securing data pipelines and machine learning datasets.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;You can store scan results using &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning#scan-results"&gt;index tags&lt;/a&gt;, which can be used by applications to automate workflows. Microsoft Defender for Cloud also generates relevant &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning#defender-for-cloud-security-alerts"&gt;security alerts in the portal&lt;/a&gt;, so you can configure automations or export them to Microsoft Sentinel or another SIEM. You can also send results to an &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning#event-grid-event"&gt;Event Grid&lt;/a&gt; for automating response and create an audit trail with &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning#logs-analytics"&gt;Log Analytics&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Scanning supports &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/introduction-malware-scanning#malware-remediation-automation"&gt;automated remediation&lt;/a&gt; through built-in soft deletion of malicious blobs discovered during scanning, blocking access, quarantining and forwarding clean files. &lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Enable &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/tutorial-enable-cspm-plan"&gt;&lt;strong&gt;Defender Cloud Security Posture Management (CSPM)&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Enabling the CSPM plan extends CSPM capabilities that are automatically enabled as part of Defender for Cloud to offer extra protections for your environment such as cloud security explorer, attack path analysis, and agentless scanning for machines. &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Use &lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/tutorial-enable-cspm-plan#enable-the-components-of-the-defender-cspm-plan"&gt;sensitive data discovery&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The Sensitive data discovery component of CSPM identifies sensitive resources and their related risks, then helps prioritize and remediate those risks using the Microsoft Purview classification engine.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Use the &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/cloud-adoption-framework/secure/overview#step-1-establish-essential-security-practices"&gt;&lt;strong&gt;cloud security checklist&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt; as a structured approach for securing your Azure cloud estate.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This checklist provides security guidance for those managing the technology infrastructure that supports all the workload development and operations hosted on Azure. To help ensure your workloads are secure and aligned with the Zero Trust model, use the &lt;a href="https://learn.microsoft.com/azure/well-architected/security/checklist"&gt;design review checklist for security&lt;/a&gt;. We also provide complementary guidance on applying&amp;nbsp;&lt;a href="https://www.microsoft.com/securityengineering/sdl/practices"&gt;security practices&lt;/a&gt;&amp;nbsp;and DevSecOps controls in a security development lifecycle.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Enable &lt;/strong&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/ai-onboarding"&gt;&lt;strong&gt;threat protection for AI services&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Blob Storage is&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/machine-learning/tutorial-explore-data?view=azureml-api-2"&gt;often used&lt;/a&gt;&amp;nbsp;to store training datasets for&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2"&gt;Azure Machine Learning&lt;/a&gt;. Because&amp;nbsp;&lt;a href="https://learn.microsoft.com/security/engineering/threat-modeling-aiml"&gt;data poisoning&lt;/a&gt;&amp;nbsp;is among the&amp;nbsp;&lt;a href="https://learn.microsoft.com/security/engineering/failure-modes-in-machine-learning"&gt;most severe machine learning threats&lt;/a&gt;, it is critical to&amp;nbsp;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/on-upload-malware-scanning"&gt;scan uploads&lt;/a&gt;&amp;nbsp;before they ever enter your pipeline to prevent targeted poisoning attacks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-for-cloud"&gt;Microsoft Defender for Cloud&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When Defender for Storage is enabled, the following alerts in Defender for Cloud may indicate Azure Blob Storage threat activity. Note that other alerts apply to Azure Files.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Some of these alerts will not work if sensitive data threat detection is disabled. Some alerts may be relevant to secondary stages of the attack chain or only be an indication of a penetration test in your organization.&lt;/p&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="reconnaissance"&gt;Reconnaissance&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#publicly-accessible-storage-containers-successfully-discovered"&gt;Publicly accessible storage containers successfully discovered&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#publicly-accessible-storage-containers-unsuccessfully-scanned"&gt;Publicly accessible storage containers unsuccessfully scanned&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-a-known-suspicious-ip-address-to-a-sensitive-blob-container"&gt;Access from a known suspicious IP address to a sensitive blob container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-a-tor-exit-node-to-a-sensitive-blob-container"&gt;Access from a Tor exit node to a sensitive blob container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-a-suspicious-ip-address"&gt;Access from a suspicious IP address&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-data-exploration-in-a-storage-account"&gt;Unusual data exploration in a storage account&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="resource-development"&gt;Resource Development&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#phishing-content-hosted-on-a-storage-account"&gt;Phishing content hosted on a storage account&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#suspicious-external-access-to-an-azure-storage-account-with-overly-permissive-sas-token"&gt;Suspicious external access to an Azure storage account with overly permissive SAS token&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#suspicious-external-operation-to-an-azure-storage-account-with-overly-permissive-sas-token"&gt;Suspicious external operation to an Azure storage account with overly permissive SAS token&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-sas-token-was-used-to-access-an-azure-storage-account-from-a-public-ip-address"&gt;Unusual SAS token was used to access an Azure storage account from a public IP address&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="initial-access"&gt;Initial Access&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-a-known-suspicious-application-to-a-sensitive-blob-container"&gt;Access from a known suspicious application to a sensitive blob container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-a-suspicious-application"&gt;Access from a suspicious application&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-an-unusual-location-to-a-sensitive-blob-container"&gt;Access from an unusual location to a sensitive blob container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#access-from-an-unusual-location-to-a-storage-account"&gt;Access from an unusual location to a storage account&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#authenticated-access-from-a-tor-exit-node"&gt;Authenticated access from a Tor exit node&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-unauthenticated-access-to-a-storage-container"&gt;Unusual unauthenticated access to a storage container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-unauthenticated-public-access-to-a-sensitive-blob-container"&gt;Unusual unauthenticated public access to a sensitive blob container&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="discovery"&gt;Discovery&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-access-inspection-in-a-storage-account"&gt;Unusual access inspection in a storage account&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="lateral-movement"&gt;Lateral Movement&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-application-accessed-a-storage-account"&gt;Unusual application accessed a storage account&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#malicious-blob-was-downloaded-from-a-storage-account"&gt;Malicious blob was downloaded from a storage account&lt;/a&gt; (with malware scanning add-on enabled)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="collection"&gt;Collection&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#the-access-level-of-a-potentially-sensitive-storage-blob-container-was-changed-to-allow-unauthenticated-public-access"&gt;The access level of a potentially sensitive storage blob container was changed to allow unauthenticated public access&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#the-access-level-of-a-sensitive-storage-blob-container-was-changed-to-allow-unauthenticated-public-access"&gt;The access level of a sensitive storage blob container was changed to allow unauthenticated public access&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="command-and-control"&gt;Command and control&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#potential-malware-uploaded-to-a-storage-account"&gt;Potential malware uploaded to a storage account&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#malicious-file-uploaded-to-storage-account"&gt;Malicious file uploaded to storage account&lt;/a&gt; (with malware scanning add-on enabled; this alert may be an indication that a threat actor intentionally uploaded malware or that a legitimate user unintentionally uploaded a malicious file)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="exfiltration"&gt;Exfiltration&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-amount-of-data-extracted-from-a-sensitive-blob-container"&gt;Unusual amount of data extracted from a sensitive blob container&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-amount-of-data-extracted-from-a-storage-account"&gt;Unusual amount of data extracted from a storage account&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-number-of-blobs-extracted-from-a-sensitive-blob-container"&gt;Unusual number of blobs extracted from a sensitive blob container&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="impact"&gt;Impact&lt;/h5&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/azure/defender-for-cloud/alerts-azure-storage#unusual-deletion-in-a-storage-account"&gt;Unusual deletion in a storage account&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use the following reports in Microsoft products to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-threat-intelligence"&gt;Microsoft Defender Threat Intelligence&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/8d8a9fa0-4408-47be-8a07-7ce3d21eb827/analystreport"&gt;Threats targeting or leveraging Azure Blob Storage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to&amp;nbsp;&lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts"&gt;create their own prompts&lt;/a&gt;&amp;nbsp;or run the following&amp;nbsp;&lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks"&gt;pre-built promptbooks&lt;/a&gt;&amp;nbsp;to automate incident response or investigation tasks related to this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Incident investigation&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Microsoft User analysis&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat actor profile&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat Intelligence 360 report based on MDTI article&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Vulnerability impact assessment&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Note that some promptbooks require access to Microsoft plugins such as for either Microsoft Defender XDR or Microsoft Sentinel.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitre-att-ck-techniques-observed"&gt;MITRE ATT&amp;amp;CK Techniques observed&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This threat exhibits the use of the following attack techniques. For standard industry documentation about these techniques, refer to the &lt;a href="https://attack.mitre.org/" rel="noreferrer noopener" target="_blank"&gt;MITRE ATT&amp;amp;CK framework&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="reconnaissance"&gt;Reconnaissance&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1593/002/" rel="noreferrer noopener" target="_blank"&gt;T1593.002 Search Open Websites/Domains: Search Engines&lt;/a&gt; | Threat actors may use search engines and advanced querying (for example, &lt;em&gt;site:*.blob.core.windows.net&lt;/em&gt;) to discover exposed Blob Storage accounts.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1594/" rel="noreferrer noopener" target="_blank"&gt;T1594 Search Victim-Owned Websites&lt;/a&gt; | Threat actors might look for storage accounts of a victim enterprise by searching its websites. Victim-owned website pages might be stored on a storage account or contain links to retrieve data stored in a storage account. The links contain the URL of the storage and provide an entry point into the account.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1595/003/" rel="noreferrer noopener" target="_blank"&gt;T1595.003 Active Scanning: Wordlist Scanning&lt;/a&gt; | Threat actors might attempt to locate publicly accessible cloud storage accounts or containers by iteratively trying different permutations or using target-specific wordlists to discover storage endpoints that can be probed for vulnerabilities or misconfigurations.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1596/" rel="noreferrer noopener" target="_blank"&gt;T1596 Search Open Technical Databases&lt;/a&gt; | Threat actors might search public databases for publicly available storage accounts that can be used during targeting.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1596/001/" rel="noreferrer noopener" target="_blank"&gt;T1596.001 Search Open Technical Databases: DNS/Passive DNS&lt;/a&gt; | Threat actors might search for DNS data for valid storage account names that could become potential targets by querying nameservers using brute-force techniques to enumerate existing storage accounts in the wild or searching through centralized repositories of DNS query responses.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="resource-development"&gt;Resource Development&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1583/004/" rel="noreferrer noopener" target="_blank"&gt;T1583.004 Acquire Infrastructure: Server&lt;/a&gt; | If threat actors exploit weak or misconfigured identity controls, Blob Storage could be misused as attacker-controlled infrastructure for hosting malicious payloads, phishing, or C2 scripts.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="initial-access"&gt;Initial Access&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1566/001/" rel="noreferrer noopener" target="_blank"&gt;T1566.001 Phishing: Spearphishing Attachment&lt;/a&gt; | Blob Storage could host malicious attachments for spear phishing if threat actors leverage compromised SAS tokens or misconfigured anonymous access.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1566/002/" rel="noreferrer noopener" target="_blank"&gt;T1566.002 Phishing: Spearphishing Link&lt;/a&gt; | Blob Storage could be misused as a publicly accessible host for spear-phishing links if anonymous or misconfigured containers exist.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1078/004/" rel="noreferrer noopener" target="_blank"&gt;T1078.004 Valid Accounts: Cloud Accounts&lt;/a&gt; | Threat actors could gain an account-like foothold in Blob Storage if they compromise SAS or storage account keys or successfully take control of a Microsoft Entra ID principal account that holds roles or permissions over Blob Storage. &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="persistence"&gt;Persistence&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1098/001/" rel="noreferrer noopener" target="_blank"&gt;T1098.001 Account Manipulation: Additional Cloud Credentials&lt;/a&gt; | To maintain access even if compromised credentials are revoked, threat actors may try to exploit Blob Storage’s Role-Based Access Control (RBAC) by modifying permissions on identity objects, like Microsoft Entra ID security principals. They may also create high-privilege SAS tokens with long expiry, modify container access levels to allow anonymous reads, or provision SFTP accounts that bypass key rotation.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="defense-evasion"&gt;Defense Evasion&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1562/001/" rel="noreferrer noopener" target="_blank"&gt;T1562.011 Impair Defenses: Disable or Modify Tools&lt;/a&gt; | Threat actors can try to disable, suppress, or modify Defender for Storage scanning features.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1562/007/" rel="noreferrer noopener" target="_blank"&gt;T1562.007 Impair Defenses: Disable or Modify Cloud Firewall&lt;/a&gt; | Threat actors may try to disable, modify, or reconfigure Blob Storage’s firewall and virtual network rules—such as by granting exceptions for trusted services through managed identities, establishing private endpoints, or leveraging geo-replication—to mask access channels and maintain persistent, covert access even if primary credentials are revoked. &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="credential-access"&gt;Credential Access&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1528/" rel="noreferrer noopener" target="_blank"&gt;T1528 Steal Application Access Token&lt;/a&gt; | Threat actors may compromise Blob Storage by stealing OAuth-based application access tokens (including refresh tokens) or by leveraging subscription-level privileges to query management APIs and extract primary and secondary storage account keys. While compromised tokens enable impersonation of legitimate users with constrained, renewable privileges, keys grant unrestricted data-plane access that bypasses identity-based controls. Possession of either credential type can lead to full access to blob containers, facilitating data compromise and lateral movement across the cloud environment.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1003/" rel="noreferrer noopener" target="_blank"&gt;T1003 OS Credential Dumping&lt;/a&gt; | Threat actors might dump Cloud Shell profiles and session history—stored in blob containers of an Azure Storage account—to extract sensitive credentials such as OAuth tokens, API keys, or other authentication secrets. While these credentials differ from traditional OS password hashes, their extraction is analogous to conventional credential dumping because threat actors can use them to impersonate legitimate users and gain unauthorized, persistent access to Blob Storage, facilitating lateral movement and data compromise.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1040/" rel="noreferrer noopener" target="_blank"&gt;T1040 Network Sniffing&lt;/a&gt; | Threat actors might passively intercept network traffic destined for Blob Storage when unencrypted protocols are allowed, exposing shared keys, SAS tokens, or API tokens that could then be used to gain unauthorized access to the blob data plane. By exploiting cloud-native traffic mirroring tools, a threat actor could intercept and analyze the network data flowing to and from the virtual machines interacting with Blob Storage.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="discovery"&gt;Discovery&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1580/" rel="noreferrer noopener" target="_blank"&gt;T1580 Cloud Infrastructure Discovery&lt;/a&gt; | Blob Storage could be enumerated post-compromise to list subscriptions, resource groups, or container names that are not externally visible.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1619/" rel="noreferrer noopener" target="_blank"&gt;T1619 Cloud Storage Object Discovery&lt;/a&gt; | Blob Storage could be enumerated post-compromise to find specific blob data and configuration details, such as by call listing APIs to inventory objects or use control-plane access to retrieve firewall rules, logging, and backup policies.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="lateral-movement"&gt;Lateral Movement&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1021/007/" rel="noreferrer noopener" target="_blank"&gt;T1021.007 Remote Services: Cloud Services&lt;/a&gt; | Threat actors might manipulate Blob Storage to trigger a compute service, such as Azure Functions, after placing a malicious blob in a monitored container. This automatic execution chain lets attackers pivot from the compromised container to the compute resource, potentially infiltrating additional components.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="collection"&gt;Collection&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1074/002/" rel="noreferrer noopener" target="_blank"&gt;T1074.002 Data Staged: Remote Data Staging&lt;/a&gt; | Blob Storage could be used as a “staging area” if permissions are overly broad.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1530/" rel="noreferrer noopener" target="_blank"&gt;T1530 Data from Cloud Storage Object&lt;/a&gt; | Blob Storage could be abused to retrieve or copy data directly from containers if they are misconfigured, publicly accessible, or if keys or SAS tokens are obtained. This might include selectively downloading stored files.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="command-and-control"&gt;Command and Control&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1105/" rel="noreferrer noopener" target="_blank"&gt;T1105 Ingress Tool Transfer&lt;/a&gt; | Threat actors might upload and store malicious programs or scripts in Blob Storage after compromising the storage account or its credentials, leverage automatic synchronization to “fan out” malicious payloads across hosts that regularly pull from blob containers, and facilitate ongoing C2 to enable additional compromise and lateral movement. By merging malicious uploads with normal blob usage, threat actors could stealthily distribute harmful tools to multiple hosts simultaneously, reinforcing both C2 and lateral movement.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="exfiltration"&gt;Exfiltration&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1567/002/" rel="noreferrer noopener" target="_blank"&gt;T1567.002 Exfiltration Over Web Service: Exfiltration to Cloud Storage&lt;/a&gt; | Blob Storage may facilitate data exfiltration if permissions are overly permissive or credentials (for example, account keys, SAS tokens) are compromised. Threat actors may abuse the “static website” feature to expose blob containers through public web endpoints or use tools like AzCopy to transfer stolen data.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1030/" rel="noreferrer noopener" target="_blank"&gt;T1030 Data Transfer Size Limits&lt;/a&gt; | A threat actor might deliberately constrain the packet sizes of Blob Storage data to remain below established thresholds by transferring it in fixed-size chunks rather than as entire blobs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1020/" rel="noreferrer noopener" target="_blank"&gt;T1020 Automated Exfiltration&lt;/a&gt; | Threat actors might embed exfiltration routines in predefined automation processes in Blob Storage to evade detection.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1537/" rel="noreferrer noopener" target="_blank"&gt;T1537 Transfer Data to Cloud Account&lt;/a&gt; | Threat actors might transfer Blob Storage data to another cloud account that is under their control by using internal APIs and network paths that evade detection mechanisms focused on external data transfers.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="impact"&gt;Impact&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1485/" rel="noreferrer noopener" target="_blank"&gt;T1485 Data Destruction&lt;/a&gt; | Blob Storage could be compromised or misused for data destruction, where a threat actor deletes or overwrites blob data for impact.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1486/" rel="noreferrer noopener" target="_blank"&gt;T1486 Data Encrypted for Impact&lt;/a&gt; | Blob Storage could be targeted by ransomware if threat actors obtain privileged access or compromise keys.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://attack.mitre.org/techniques/T1565/" rel="noreferrer noopener" target="_blank"&gt;T1565 Data Manipulation&lt;/a&gt; | Threat actors might insert, delete, or modify Blob Storage data to compromise data integrity and influence outcomes by altering blob contents or metadata, disrupting business processes, distorting organizational insights, or concealing malicious activities.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://attack.mitre.org/" rel="noreferrer noopener" target="_blank"&gt;https://attack.mitre.org/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://cyberdom.blog/azure-blob-storage-powershell-scanning-script/" rel="noreferrer noopener" target="_blank"&gt;https://cyberdom.blog/azure-blob-storage-powershell-scanning-script/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://grayhatwarfare.medium.com/how-to-search-for-open-amazon-s3-buckets-and-their-contents-https-buckets-grayhatwarfare-com-577b7b437e01" rel="noreferrer noopener" target="_blank"&gt;https://grayhatwarfare.medium.com/how-to-search-for-open-amazon-s3-buckets-and-their-contents-https-buckets-grayhatwarfare-com-577b7b437e01&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.bleepingcomputer.com/news/security/ransomware-gangs-now-abuse-microsoft-azure-tool-for-data-theft/" rel="noreferrer noopener" target="_blank"&gt;https://www.bleepingcomputer.com/news/security/ransomware-gangs-now-abuse-microsoft-azure-tool-for-data-theft/&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.progress.com/moveit" rel="noreferrer noopener" target="_blank"&gt;https://www.progress.com/moveit&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://x.com/MsftSecIntel/status/1665537730946670595"&gt;https://x.com/MsftSecIntel/status/1665537730946670595&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/20/inside-the-attack-chain-threat-activity-targeting-azure-blob-storage/"&gt;Inside the attack chain: Threat activity targeting Azure Blob Storage&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=143186</guid></item><item><title>What the Huge AWS Outage Reveals About the Internet</title><link>https://www.wired.com/story/what-that-huge-aws-outage-reveals-about-the-internet/</link><description>Amazon Web Services experienced DNS resolution issues on Monday morning, taking down wide swaths of the web—and highlighting a long-standing weakness in the internet's infrastructure.</description><guid isPermaLink="false">68f626ea91fa39647b82c1b9</guid><category>Security</category><category>Security / Security News</category><category>AWS</category><category>Amazon</category><category>Cloud Computing</category><category>DNS</category><category>security</category><category>Internet</category><category>Downtime</category></item><item><title>20th October – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/20th-october-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 20th October, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES F5 has disclosed a cyber attack, reportedly carried out by a nation-state actor with long-term, persistent access to critical product development environments. The attacker exfiltrated files that included portions of BIG-IP source [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/20th-october-threat-intelligence-report/"&gt;20th October – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 20th October, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/10/Threat_Intelligence_News_2025-10-20.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -7888,77 +8643,7 @@ OfficeActivity
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24066</guid></item><item><title>CVEs Targeting Remote Access Technologies in 2025</title><link>https://www.hackmageddon.com/2025/10/07/cves-targeting-remote-access-technologies-in-2025/</link><description>The exploitation of vulnerabilities targeting remote access technologies to gain initial access is continuing relentlessly also during 2025, with initial access brokers, and in general opportunistic and targeted threat actors, quite active in leveraging software flaws to break into organizations.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44881</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Check Point</category><category>Cisco</category><category>Citrix</category><category>CVE</category><category>Cyber Attacks</category><category>Firewall</category><category>Fortinet</category><category>Ivanti</category><category>Juniper</category><category>Palo Alto Networks</category><category>Sonicwall</category><category>Sophos</category><category>Timeline</category><category>VPN</category><category>Vulnerabilities</category></item><item><title>Inside Microsoft Threat Intelligence: Calm in the chaos</title><link>https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-microsoft-threat-intelligence-calm-in-chaos#overview-video</link><description>&lt;p&gt;Incident response is never orderly. Threat actors don’t wait. Environments are compromised. Data is missing. Confidence is shaken. But for Microsoft’s Incident Response (IR) team, that chaos is exactly where the work begins.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-microsoft-threat-intelligence-calm-in-chaos#overview-video"&gt;Inside Microsoft Threat Intelligence: Calm in the chaos&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="leading-through-the-worst-day"&gt;Leading Through the Worst Day&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Incident response is never orderly. Threat actors don’t wait. Environments are compromised. Data is missing. Confidence is shaken. But for Microsoft’s Incident Response (IR) team, that chaos is exactly where the work begins.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-Microsoft-threat-intelligence-disruption"&gt;Episode 1&lt;/a&gt;, we showed how Microsoft Threat Intelligence and the Digital Crime Unit (DCU) disrupted Storm-1152’s massive fake account operation, turning threat intelligence into global action. In this second chapter of&amp;nbsp;&lt;em&gt;Inside Microsoft Threat Intelligence&lt;/em&gt;, we move from disruption to response, showing what happens when defenders face the worst day in security, and how calm leadership transforms outcomes.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Adrian Hill, lead investigator for Microsoft IR, explains it simply: “Our job is to bring clarity, calm, and momentum—fast. We set the tone in the first 30 seconds. Because if the customer doesn’t trust us immediately, we can’t help them recover.”&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Whether dropped into an active breach or brought in for proactive support, Microsoft’s IR team works to stabilize, guide, and rebuild. Every engagement starts with empathy and ends with action.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="putting-the-customer-first"&gt;Putting the customer first&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In high-stakes incidents, Microsoft Incident Response isn’t always the only team on site. Adrian often finds himself shoulder to shoulder with other vendors and internal stakeholders. But rather than compete, he leads with clarity and collaboration, and ensure all parties are marching toward the same goal.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In one recent case, Microsoft joined mid-incident while a threat actor still had active control of the environment. The customer wasn’t even aware Microsoft’s IR team was on deck. Within 30 minutes, Adrian’s team had surfaced threat intelligence from Defender and other telemetry sources that no one else had uncovered. It wasn’t just a faster response. It changed the customer’s perception of what Microsoft Incident Response could deliver.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="turning-chaos-into-ecosystem-protection"&gt;Turning chaos into ecosystem protection&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft’s IR team doesn’t just clean up attacks; they feed intelligence back into the ecosystem. Every novel tactic, unusual behavior, or new artifact discovered during a customer engagement gets routed back to Microsoft Threat Intelligence. That insight becomes new detections, improved playbooks, and protections that safeguard millions of users and organizations worldwide.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This loop, from the field to Microsoft Threat Intelligence to product integration, is what makes our end-to-end security story unique. Incident response isn’t the last line of defense. It’s the front line of innovation.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="from-recovery-to-partnership"&gt;From recovery to partnership&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;IR is rarely one-and-done. In the same engagement, Adrian’s team helped recover cloud backups, secure infrastructure, and walk the customer through containment and long-term strategy. Months later, the organization came back for further briefings, roadmap work, and proactive guidance.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That follow-through is what builds trust and transforms perception.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;“We don’t show up to pitch Microsoft,” Adrian says. “We show up to help people. And that’s what makes them want to keep working with us.”&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft’s incident response isn’t just about stopping attacks. It’s about restoring confidence and helping customers take control of their security future and building resilience.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Missed episode one of Inside Microsoft Threat Intelligence?&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-Microsoft-threat-intelligence-disruption"&gt;Catch it here&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-microsoft-threat-intelligence-calm-in-chaos#overview-video"&gt;Watch the video&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/security-insider/threat-landscape/inside-microsoft-threat-intelligence-calm-in-chaos#overview-video"&gt;Inside Microsoft Threat Intelligence: Calm in the chaos&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=142920</guid></item><item><title>How to Prevent NPM Supply Chain Attacks in CI/CD Pipelines with Container Security</title><link>https://blog.qualys.com/category/product-tech</link><description>Introduction Containerized applications power the backbone of modern software delivery. But with speed comes risk. Vulnerabilities and embedded secrets can slip through the cracks long before they hit production. The result? Alert fatigue, noisy false positives, and critical exposures that disrupt sprints and delay releases. That’s why Qualys is introducing a new Pipeline Integration capability [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24066</guid></item><item><title>CVEs Targeting Remote Access Technologies in 2025</title><link>https://www.hackmageddon.com/2025/10/07/cves-targeting-remote-access-technologies-in-2025/</link><description>The exploitation of vulnerabilities targeting remote access technologies to gain initial access is continuing relentlessly also during 2025, with initial access brokers, and in general opportunistic and targeted threat actors, quite active in leveraging software flaws to break into organizations.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=44881</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>Check Point</category><category>Cisco</category><category>Citrix</category><category>CVE</category><category>Cyber Attacks</category><category>Firewall</category><category>Fortinet</category><category>Ivanti</category><category>Juniper</category><category>Palo Alto Networks</category><category>Sonicwall</category><category>Sophos</category><category>Timeline</category><category>VPN</category><category>Vulnerabilities</category></item><item><title>How to Prevent NPM Supply Chain Attacks in CI/CD Pipelines with Container Security</title><link>https://blog.qualys.com/category/product-tech</link><description>Introduction Containerized applications power the backbone of modern software delivery. But with speed comes risk. Vulnerabilities and embedded secrets can slip through the cracks long before they hit production. The result? Alert fatigue, noisy false positives, and critical exposures that disrupt sprints and delay releases. That’s why Qualys is introducing a new Pipeline Integration capability [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
 
 
 
@@ -21082,9 +21767,9 @@ Organizations should refine their threat modeling processes to explicitly accoun
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/template/smb-best-practices-creating-estimates-invoices-and-billing-statements/"&gt;SMB Best Practices: Templates for Creating Estimates, Invoices, and Billing Statements&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/smb-best-practices-creating-estimates-invoices-and-billing-statements/</guid><category>Additional Resources</category><category>Fintech</category><category>Startups</category></item><item><title>Kicking-Off with a December 4th Workshop, NIST is Revisiting and Revising Foundational Cybersecurity Activities for IoT Device Manufacturers, NIST IR 8259!</title><link>https://www.nist.gov/blogs/cybersecurity-insights/kicking-december-4th-workshop-nist-revisiting-and-revising-foundational</link><description>In May 2020, NIST published Foundational Cybersecurity Activities for IoT Device Manufacturers (NIST IR 8259), which describes recommended cybersecurity activities that manufacturers should consider performing before their IoT devices are sold to customers. These foundational cybersecurity activities can help manufacturers lessen the cybersecurity-related efforts needed by customers, which in turn can reduce the prevalence and severity of IoT device compromises and the attacks performed using compromised devices. In the nearly five years since this document was released, it has been published</description><guid isPermaLink="false">https://www.nist.gov/node/1867436</guid></item><item><title>Unlocking Cybersecurity Talent: The Power of Apprenticeships</title><link>https://www.nist.gov/blogs/cybersecurity-insights/unlocking-cybersecurity-talent-power-apprenticeships</link><description>Cybersecurity is a fast-growing field, with a constant need for skilled professionals. But unlike other professions — like medicine or aviation — there’s no clear-cut pathway to qualifying for cybersecurity positions. For employers and job seekers alike, this can make the journey to building a team (or entering a successful cybersecurity career) feel uncertain. Enter the registered apprenticeship program — a proven method for developing skilled talent in cybersecurity that benefits both the employer and the new professional. Let’s commit to supporting this important talent development approach</description><guid isPermaLink="false">https://www.nist.gov/node/1867286</guid></item><item><title>How to Find a Profitable Niche for Your Business</title><link>https://www.techrepublic.com/resource-library/guide/how-to-find-profitable-niche-for-your-business/</link><description>&lt;p&gt;In today’s marketplace, identifying a profitable niche can significantly increase your chances of success. Our article guides small business owners and aspiring entrepreneurs on how to pick a business niche with actionable strategies and practical tips for pinpointing your focus, conducting market research, and building your brand. Whether you&amp;#8217;re just starting out or looking to ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/guide/how-to-find-profitable-niche-for-your-business/"&gt;How to Find a Profitable Niche for Your Business&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/how-to-find-profitable-niche-for-your-business/</guid><category>Additional Resources</category><category>Innovation</category><category>Startups</category></item><item><title>3 Ways Startup Founders Can Get Reinspired to Change the World</title><link>https://www.techrepublic.com/resource-library/feature/3-ways-startup-founders-can-get-reinspired-to-change-the-world/</link><description>&lt;p&gt;Mental stimulation is the propellant that helps founders gain traction in the early days, but it’s easy to lose over time. The amount of work combined with the erratic lifestyle can often leave you feeling uninspired. At some point in your entrepreneurial journey, you will undoubtedly face a crossroads where you will have to decide ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/feature/3-ways-startup-founders-can-get-reinspired-to-change-the-world/"&gt;3 Ways Startup Founders Can Get Reinspired to Change the World&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/3-ways-startup-founders-can-get-reinspired-to-change-the-world/</guid><category>Additional Resources</category><category>Startups</category></item><item><title>Digital Identities: Getting to Know the Verifiable Digital Credential Ecosystem</title><link>https://www.nist.gov/blogs/cybersecurity-insights/digital-identities-getting-know-verifiable-digital-credential-ecosystem</link><description>If you are interested in the world of digital identities, you have probably heard some of the buzzwords that have been floating around for a few years now… “verifiable credential,” “digital wallet,” “mobile driver’s license” or “mDL.” These terms, among others, all reference a growing ecosystem around what we are calling “verifiable digital credentials.” But what exactly is a verifiable digital credential? Take any physical credential you use in everyday life – your driver’s license, your medical insurance card, a certification or diploma – and turn it into a digital format stored on your</description><guid isPermaLink="false">https://www.nist.gov/node/1866976</guid></item><item><title>How Do You Know When it’s Time to IPO?</title><link>https://www.techrepublic.com/resource-library/feature/how-do-you-know-when-time-to-ipo/</link><description>&lt;p&gt;Startups are often glorified as a dream job where anyone with an idea can set out to save the world. Once a startup has achieved success, it comes to an end as an IPO — one final moment where the heavens open up and cash rains down on founders. In reality, an IPO is intensely ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/feature/how-do-you-know-when-time-to-ipo/"&gt;How Do You Know When it’s Time to IPO?&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/how-do-you-know-when-time-to-ipo/</guid><category>Additional Resources</category><category>Startups</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? This theme resonates strongly with me. I am very fortunate to have the role of leading and</description><guid isPermaLink="false">https://www.nist.gov/node/1859366</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-0</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? The theme 'Secure our World' resonates deeply with me, as it emphasizes our collective</description><guid isPermaLink="false">https://www.nist.gov/node/1860586</guid></item><item><title>IoT Assignment Completed! Report on Barriers to U.S. IoT Adoption</title><link>https://www.nist.gov/blogs/cybersecurity-insights/iot-assignment-completed-report-barriers-us-iot-adoption</link><description>The 16 members of the NIST-managed Internet of Things (IoT) Advisory Board have completed their report on barriers to the U.S. receiving the benefits of IoT adoption, along with their recommendations for overcoming those barriers. As Benson Chan (Chair) and Dan Caprio (Vice Chair) of the IoT Advisory Board state in the report: “The United States is in the early stages of a profound transformation, one that is driven by economic, societal, and cultural innovations brought about by the IoT. These innovations intertwine connectivity and digital innovation with the opportunity to drive a</description><guid isPermaLink="false">https://www.nist.gov/node/1864841</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-4</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Everyone has the power to protect information. Like safety – where everyone’s responsibility is to</description><guid isPermaLink="false">https://www.nist.gov/node/1861666</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-1</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Now more than ever, the use of technology is central to our lives. It is the means by which we are</description><guid isPermaLink="false">https://www.nist.gov/node/1861391</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-2</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? The theme ‘Secure our World’ resonates with me because I enjoy researching about cybersecurity</description><guid isPermaLink="false">https://www.nist.gov/node/1861571</guid></item><item><title>Scalability Challenges in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/scalability-challenges-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Introduction In this post, we talk with Dr. Xiaowei Huang and Dr. Yi Dong (University of Liverpool), Dr. Mat Weldon (UK Office of National Statistics (ONS)), and Sikha Pentyala (University of Washington Tacoma), who were winners in the</description><guid isPermaLink="false">https://www.nist.gov/node/1863706</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-3</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? For me, this year’s theme is a reminder of the global nature of NIST’s cybersecurity and privacy</description><guid isPermaLink="false">https://www.nist.gov/node/1861576</guid></item><item><title>Managing Cybersecurity and Privacy Risks in the Age of Artificial Intelligence: Launching a New Program at NIST</title><link>https://www.nist.gov/blogs/cybersecurity-insights/managing-cybersecurity-and-privacy-risks-age-artificial-intelligence</link><description>The rapid proliferation of Artificial Intelligence (AI) promises significant value for industry, consumers, and broader society, but as with many technologies, new risks from these advancements in AI must be managed to realize it’s full potential. The NIST AI Risk Management Framework (AI RMF) was developed to manage the benefits and risks to individuals, organizations, and society associated with AI and covers a wide range of risk ranging from safety to lack of transparency and accountability. For those of us at NIST working in cybersecurity, privacy and AI, a key concern is how advancements</description><guid isPermaLink="false">https://www.nist.gov/node/1861681</guid></item><item><title>Learning, Sharing, and Exploring with NIST’s New Human-Centered Cybersecurity Community of Interest</title><link>https://www.nist.gov/blogs/cybersecurity-insights/learning-sharing-and-exploring-nists-new-human-centered-cybersecurity</link><description>Human-centered cybersecurity (also known as ‘usable security’) involves the social, organizational, and technological influences on people’s understanding of and interactions with cybersecurity. By taking a human-centered cybersecurity (HCC) approach, we can both improve people's cybersecurity experiences and achieve better cybersecurity outcomes, which is so important in today’s digitally interconnected world. At NIST, we understand the value of making connections, listening, and interactivity. We also understand that researchers and practitioners want to hear directly from each other—and</description><guid isPermaLink="false">https://www.nist.gov/node/1858931</guid></item><item><title>Implementation Challenges in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/implementation-challenges-privacy-preserving-federated-learning</link><description>In this post, we talk with Dr. Xiaowei Huang and Dr. Yi Dong (University of Liverpool), Dr. Mat Weldon ( United Kingdom (UK) Office of National Statistics (ONS)), and Dr. Michael Fenton (Trūata) who were winners in the UK-US Privacy-Enhancing Technologies ( PETs) Prize Challenges. We discuss implementation challenges of privacy-preserving federated learning (PPFL) - specifically, the areas of threat modeling and real world deployments. Threat Modeling In research on privacy-preserving federated learning (PPFL), the protections of a PPFL system are usually encoded in a threat model that defines</description><guid isPermaLink="false">https://www.nist.gov/node/1857156</guid></item><item><title>Protecting Trained Models in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-trained-models-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . The last two posts in our series covered techniques for input privacy in privacy-preserving federated learning in the context of horizontally and vertically partitioned data. To build a complete privacy-preserving federated learning</description><guid isPermaLink="false">https://www.nist.gov/node/1853796</guid></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – Mexico City, RSA Conference, and More</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update-mexico</link><description>The last few months have brought even more opportunities for NIST to engage with our international partners to enhance cybersecurity. Here are some updates on our recent international engagement: Conversations have continued with our partners throughout the world on the recent release of the Cybersecurity Framework Version 2.0 . NIST international engagement continues through our support to the Department of State and the International Trade Administration (ITA) during numerous international dialogues. Most recently, NIST participated in interagency dialogues to share information on NIST</description><guid isPermaLink="false">https://www.nist.gov/node/1851196</guid></item><item><title>Check Your Wallet? How Mobile Driver’s Licenses are Changing Online Transactions</title><link>https://www.nist.gov/blogs/cybersecurity-insights/check-your-wallet-how-mobile-drivers-licenses-are-changing-online</link><description>Can you recall the last time you opened a bank account? It’s likely you walked into a local bank branch and spoke to a representative who asked for your driver’s license and social security card to verify your identity. Now imagine you want to create a bank account online. The process is likely similar—type in your social security number, take a picture of your driver’s license, and submit both to the bank via their webpage. Seems straightforward, right? Identity verification is important—it protects us from identity theft and reduces the risk of fraud and unauthorized access for organizations</description><guid isPermaLink="false">https://www.nist.gov/node/1848396</guid></item><item><title>Latest NICE Framework Update Offers Improvements for the Cybersecurity Workforce</title><link>https://www.nist.gov/blogs/cybersecurity-insights/latest-nice-framework-update-offers-improvements-cybersecurity</link><description>I joined NIST as the first full-time manager of the NICE Framework in October 2020, just one short month before NICE published the first revision NIST Special Publication 800-181, the NICE Workforce Framework for Cybersecurity (NICE Framework). That revision – far from finalizing work – was the starting point that led us to a complete refresh of the NICE Framework components, which includes: Revised Work Role Categories and Work Roles – including one new Work Role. Eleven new Competency Areas that extend the Framework’s cybersecurity knowledge and skills. Updated Task, Knowledge, and Skill</description><guid isPermaLink="false">https://www.nist.gov/node/1847931</guid></item><item><title>Protecting Model Updates in Privacy-Preserving Federated Learning: Part Two</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-model-updates-privacy-preserving-federated-learning-part-two</link><description>The problem The previous post in our series discussed techniques for providing input privacy in PPFL systems where data is horizontally partitioned. This blog will focus on techniques for providing input privacy when data is vertically partitioned . As described in our third post , vertical partitioning is where the training data is divided across parties such that each party holds different columns of the data. In contrast to horizontally partitioned data, training a model on vertically partitioned data is more challenging as it is generally not possible to train separate models on different</description><guid isPermaLink="false">https://www.nist.gov/node/1847391</guid></item><item><title>Take A Tour! NIST Cybersecurity Framework 2.0: Small Business Quick Start Guide</title><link>https://www.nist.gov/blogs/cybersecurity-insights/take-tour-nist-cybersecurity-framework-20-small-business-quick-start</link><description>The U.S. Small Business Administration is celebrating National Small Business Week from April 28 - May 4, 2024. This week recognizes and celebrates the small business community’s significant contributions to the nation. Organizations across the country participate by hosting in-person and virtual events, recognizing small business leaders and change-makers, and highlighting resources that help the small business community more easily and efficiently start and scale their businesses. To add to the festivities, this NIST Cybersecurity Insights blog showcases the NIST Cybersecurity Framework 2.0</description><guid isPermaLink="false">https://www.nist.gov/node/1845051</guid></item><item><title>Giving NIST Digital Identity Guidelines a Boost: Supplement for Incorporating Syncable Authenticators</title><link>https://www.nist.gov/blogs/cybersecurity-insights/giving-nist-digital-identity-guidelines-boost-supplement-incorporating</link><description>We all need supplements sometimes. Whether it’s a little extra vitamin C during flu season or some vitamin D during the dark days of Winter. When used correctly, supplements help our body adjust to the changing conditions around us. Similarly, we are applying this same concept for the first time to our NIST SP 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management. Today, we published a supplement that provides interim guidance for agencies seeking to make use of ‘syncable authenticators’ ( for example, passkeys) in both enterprise-facing and public-facing use cases</description><guid isPermaLink="false">https://www.nist.gov/node/1845691</guid></item><item><title>Protecting Model Updates in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-model-updates-privacy-preserving-federated-learning</link><description>In our second post we described attacks on models and the concepts of input privacy and output privacy. ln our last post, we described horizontal and vertical partitioning of data in privacy-preserving federated learning (PPFL) systems. In this post, we explore the problem of providing input privacy in PPFL systems for the horizontally-partitioned setting. Models, training, and aggregation To explore techniques for input privacy in PPFL, we first have to be more precise about the training process. In horizontally-partitioned federated learning, a common approach is to ask each participant to</description><guid isPermaLink="false">https://www.nist.gov/node/1843006</guid></item><item><title>The AI Philosophy Powering Digital Resilience</title><link>https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/</link><description>&lt;p&gt;3 AI Strategies for Cybersecurity and Observability As organizations embrace dispersed architecture, grapple with an evolving threat landscape and heavily rely on digital systems, AI steps in as a promising solution to control IT chaos. But without clear guardrails that address data privacy and security concerns, we must determine how to build AI models that ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/"&gt;The AI Philosophy Powering Digital Resilience&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/</guid><category>Artificial Intelligence</category><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Predictions 2024: Executive Edition</title><link>https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/</link><description>&lt;p&gt;Ready or not, here comes 2024. From resilience to board priorities, Splunk executives across security, IT and engineering weigh in on what to expect in the era of AI. AI: The hype will pay off, but business impact will take another 12-24 months. C-suite transformation: CISOs, CTOs and CIOs will have expanded roles in the ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/"&gt;Predictions 2024: Executive Edition&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Updates on NIST’s Interagency International Cybersecurity Standardization Working Group</title><link>https://www.nist.gov/blogs/cybersecurity-insights/updates-nists-interagency-international-cybersecurity-standardization</link><description>Last November, I was pleased to chair the most recent meeting of the Interagency International Cybersecurity Standardization Working Group (IICSWG) – a group NIST created in 2016. Our charge, from the Cybersecurity Enhancement Act of 2014, was to build a coordination mechanism for government agencies to discuss international cybersecurity standardization issues, consistent with agencies’ responsibilities under OMB Circular A-119. Since then, IICSWG has grown as a forum to discuss cybersecurity and privacy standardization topics, examine the overall cybersecurity standardization landscape (</description><guid isPermaLink="false">https://www.nist.gov/node/1841096</guid></item><item><title>Data Distribution in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/data-distribution-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Our first post in the series introduced the concept of federated learning and described how it’s different from traditional centralized learning - in federated learning, the data is distributed among participating organizations, and</description><guid isPermaLink="false">https://www.nist.gov/node/1840526</guid></item><item><title>Travel Update! The NIST CSF 2.0 is HERE…Along with Many Helpful Resources…</title><link>https://www.nist.gov/blogs/cybersecurity-insights/travel-update-nist-csf-20-herealong-many-helpful-resources</link><description>NIST CSF 2.0 QUICK LINKS | Explore our Full Suite of Resources: CSF 2.0 Quick Start Guides CSF 2.0 Profiles CSF 2.0 Informative References Cybersecurity &amp;amp; Privacy Reference Tool (CPRT) CSF 2.0 Reference Tool CSF 2.0 Website ( Homepage ) Official NIST News Announcement The NIST Cybersecurity Framework (CSF) development process all started with Executive Order (EO)13636 over a decade ago, which called for building a set of approaches ( a framework ) for reducing risks to critical infrastructure. Through this EO, NIST was tasked with developing a "Cybersecurity Framework." We knew that, to do</description><guid isPermaLink="false">https://www.nist.gov/node/1839926</guid></item><item><title>NIST Celebrates National Entrepreneurship Week</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nist-celebrates-national-entrepreneurship-week</link><description>What is National Entrepreneurship (NatlEshipWeek) Week? Celebrated February 10-17, 2024, “NatlEshipWeek is a congressionally chartered week dedicated to empowering entrepreneurship across the United States. The annual initiative was relaunched in 2017 as NatlEshipWeek to bring together a network of partners from Maui to Miami to educate, engage, and build equitable access to America's Entrepreneurship Ecosystem.” Follow along online with #NatlEshipWeek. You can learn more about the initiative here: &lt;a href="https://www.natleshipweek.org/about"&gt;https://www.natleshipweek.org/about&lt;/a&gt; . Supporting Entrepreneurship is at the Heart of NIST’s</description><guid isPermaLink="false">https://www.nist.gov/node/1839366</guid></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – International Dialogues, Workshops, and Translations</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update</link><description>With the new year under way, NIST is continuing to engage with our international partners to enhance cybersecurity. Here are some updates on our international work from the end of 2023 into the beginning of 2024: Conversations have continued with our partners throughout the world on the update to the NIST Cybersecurity Framework (CSF) 2.0 . The current Draft CSF 2.0 has been shared in a public comment period that ended in November 2023. Stay tuned for the final version to be published soon! NIST international engagement continues through our support to the Department of State and the</description><guid isPermaLink="false">https://www.nist.gov/node/1839061</guid></item><item><title>MAR-10448362-1.v1 Volt Typhoon</title><link>https://www.cisa.gov/news-events/analysis-reports/ar24-038a</link><description>&lt;h3&gt;Notification&lt;/h3&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/feature/how-do-you-know-when-time-to-ipo/"&gt;How Do You Know When it’s Time to IPO?&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/how-do-you-know-when-time-to-ipo/</guid><category>Additional Resources</category><category>Startups</category></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? This theme resonates strongly with me. I am very fortunate to have the role of leading and</description><guid isPermaLink="false">https://www.nist.gov/node/1859366</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-0</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? The theme 'Secure our World' resonates deeply with me, as it emphasizes our collective</description><guid isPermaLink="false">https://www.nist.gov/node/1860586</guid></item><item><title>IoT Assignment Completed! Report on Barriers to U.S. IoT Adoption</title><link>https://www.nist.gov/blogs/cybersecurity-insights/iot-assignment-completed-report-barriers-us-iot-adoption</link><description>The 16 members of the NIST-managed Internet of Things (IoT) Advisory Board have completed their report on barriers to the U.S. receiving the benefits of IoT adoption, along with their recommendations for overcoming those barriers. As Benson Chan (Chair) and Dan Caprio (Vice Chair) of the IoT Advisory Board state in the report: “The United States is in the early stages of a profound transformation, one that is driven by economic, societal, and cultural innovations brought about by the IoT. These innovations intertwine connectivity and digital innovation with the opportunity to drive a</description><guid isPermaLink="false">https://www.nist.gov/node/1864841</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-4</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Everyone has the power to protect information. Like safety – where everyone’s responsibility is to</description><guid isPermaLink="false">https://www.nist.gov/node/1861666</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-1</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? Now more than ever, the use of technology is central to our lives. It is the means by which we are</description><guid isPermaLink="false">https://www.nist.gov/node/1861391</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-2</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? The theme ‘Secure our World’ resonates with me because I enjoy researching about cybersecurity</description><guid isPermaLink="false">https://www.nist.gov/node/1861571</guid></item><item><title>Scalability Challenges in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/scalability-challenges-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Introduction In this post, we talk with Dr. Xiaowei Huang and Dr. Yi Dong (University of Liverpool), Dr. Mat Weldon (UK Office of National Statistics (ONS)), and Sikha Pentyala (University of Washington Tacoma), who were winners in the</description><guid isPermaLink="false">https://www.nist.gov/node/1863706</guid></item><item><title>Staff Stories Spotlight Series: Cybersecurity Awareness Month 2024</title><link>https://www.nist.gov/blogs/cybersecurity-insights/staff-stories-spotlight-series-cybersecurity-awareness-month-2024-3</link><description>This blog is part of a larger NIST series during the month of October for Cybersecurity Awareness Month , called 'Staff Stories Spotlight.' Throughout the month of October this year, Q&amp;amp;A style blogs will be published featuring some of our unique staff members who have interesting backgrounds, stories to tell, and projects in the world of cybersecurity. This year’s Cybersecurity Awareness Month theme is ‘Secure our World.’ How does this theme resonate with you, as someone working in cybersecurity? For me, this year’s theme is a reminder of the global nature of NIST’s cybersecurity and privacy</description><guid isPermaLink="false">https://www.nist.gov/node/1861576</guid></item><item><title>Managing Cybersecurity and Privacy Risks in the Age of Artificial Intelligence: Launching a New Program at NIST</title><link>https://www.nist.gov/blogs/cybersecurity-insights/managing-cybersecurity-and-privacy-risks-age-artificial-intelligence</link><description>The rapid proliferation of Artificial Intelligence (AI) promises significant value for industry, consumers, and broader society, but as with many technologies, new risks from these advancements in AI must be managed to realize it’s full potential. The NIST AI Risk Management Framework (AI RMF) was developed to manage the benefits and risks to individuals, organizations, and society associated with AI and covers a wide range of risk ranging from safety to lack of transparency and accountability. For those of us at NIST working in cybersecurity, privacy and AI, a key concern is how advancements</description><guid isPermaLink="false">https://www.nist.gov/node/1861681</guid></item><item><title>Learning, Sharing, and Exploring with NIST’s New Human-Centered Cybersecurity Community of Interest</title><link>https://www.nist.gov/blogs/cybersecurity-insights/learning-sharing-and-exploring-nists-new-human-centered-cybersecurity</link><description>Human-centered cybersecurity (also known as ‘usable security’) involves the social, organizational, and technological influences on people’s understanding of and interactions with cybersecurity. By taking a human-centered cybersecurity (HCC) approach, we can both improve people's cybersecurity experiences and achieve better cybersecurity outcomes, which is so important in today’s digitally interconnected world. At NIST, we understand the value of making connections, listening, and interactivity. We also understand that researchers and practitioners want to hear directly from each other—and</description><guid isPermaLink="false">https://www.nist.gov/node/1858931</guid></item><item><title>Implementation Challenges in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/implementation-challenges-privacy-preserving-federated-learning</link><description>In this post, we talk with Dr. Xiaowei Huang and Dr. Yi Dong (University of Liverpool), Dr. Mat Weldon ( United Kingdom (UK) Office of National Statistics (ONS)), and Dr. Michael Fenton (Trūata) who were winners in the UK-US Privacy-Enhancing Technologies ( PETs) Prize Challenges. We discuss implementation challenges of privacy-preserving federated learning (PPFL) - specifically, the areas of threat modeling and real world deployments. Threat Modeling In research on privacy-preserving federated learning (PPFL), the protections of a PPFL system are usually encoded in a threat model that defines</description><guid isPermaLink="false">https://www.nist.gov/node/1857156</guid></item><item><title>Protecting Trained Models in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-trained-models-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . The last two posts in our series covered techniques for input privacy in privacy-preserving federated learning in the context of horizontally and vertically partitioned data. To build a complete privacy-preserving federated learning</description><guid isPermaLink="false">https://www.nist.gov/node/1853796</guid></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – Mexico City, RSA Conference, and More</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update-mexico</link><description>The last few months have brought even more opportunities for NIST to engage with our international partners to enhance cybersecurity. Here are some updates on our recent international engagement: Conversations have continued with our partners throughout the world on the recent release of the Cybersecurity Framework Version 2.0 . NIST international engagement continues through our support to the Department of State and the International Trade Administration (ITA) during numerous international dialogues. Most recently, NIST participated in interagency dialogues to share information on NIST</description><guid isPermaLink="false">https://www.nist.gov/node/1851196</guid></item><item><title>Check Your Wallet? How Mobile Driver’s Licenses are Changing Online Transactions</title><link>https://www.nist.gov/blogs/cybersecurity-insights/check-your-wallet-how-mobile-drivers-licenses-are-changing-online</link><description>Can you recall the last time you opened a bank account? It’s likely you walked into a local bank branch and spoke to a representative who asked for your driver’s license and social security card to verify your identity. Now imagine you want to create a bank account online. The process is likely similar—type in your social security number, take a picture of your driver’s license, and submit both to the bank via their webpage. Seems straightforward, right? Identity verification is important—it protects us from identity theft and reduces the risk of fraud and unauthorized access for organizations</description><guid isPermaLink="false">https://www.nist.gov/node/1848396</guid></item><item><title>Latest NICE Framework Update Offers Improvements for the Cybersecurity Workforce</title><link>https://www.nist.gov/blogs/cybersecurity-insights/latest-nice-framework-update-offers-improvements-cybersecurity</link><description>I joined NIST as the first full-time manager of the NICE Framework in October 2020, just one short month before NICE published the first revision NIST Special Publication 800-181, the NICE Workforce Framework for Cybersecurity (NICE Framework). That revision – far from finalizing work – was the starting point that led us to a complete refresh of the NICE Framework components, which includes: Revised Work Role Categories and Work Roles – including one new Work Role. Eleven new Competency Areas that extend the Framework’s cybersecurity knowledge and skills. Updated Task, Knowledge, and Skill</description><guid isPermaLink="false">https://www.nist.gov/node/1847931</guid></item><item><title>Protecting Model Updates in Privacy-Preserving Federated Learning: Part Two</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-model-updates-privacy-preserving-federated-learning-part-two</link><description>The problem The previous post in our series discussed techniques for providing input privacy in PPFL systems where data is horizontally partitioned. This blog will focus on techniques for providing input privacy when data is vertically partitioned . As described in our third post , vertical partitioning is where the training data is divided across parties such that each party holds different columns of the data. In contrast to horizontally partitioned data, training a model on vertically partitioned data is more challenging as it is generally not possible to train separate models on different</description><guid isPermaLink="false">https://www.nist.gov/node/1847391</guid></item><item><title>Take A Tour! NIST Cybersecurity Framework 2.0: Small Business Quick Start Guide</title><link>https://www.nist.gov/blogs/cybersecurity-insights/take-tour-nist-cybersecurity-framework-20-small-business-quick-start</link><description>The U.S. Small Business Administration is celebrating National Small Business Week from April 28 - May 4, 2024. This week recognizes and celebrates the small business community’s significant contributions to the nation. Organizations across the country participate by hosting in-person and virtual events, recognizing small business leaders and change-makers, and highlighting resources that help the small business community more easily and efficiently start and scale their businesses. To add to the festivities, this NIST Cybersecurity Insights blog showcases the NIST Cybersecurity Framework 2.0</description><guid isPermaLink="false">https://www.nist.gov/node/1845051</guid></item><item><title>Giving NIST Digital Identity Guidelines a Boost: Supplement for Incorporating Syncable Authenticators</title><link>https://www.nist.gov/blogs/cybersecurity-insights/giving-nist-digital-identity-guidelines-boost-supplement-incorporating</link><description>We all need supplements sometimes. Whether it’s a little extra vitamin C during flu season or some vitamin D during the dark days of Winter. When used correctly, supplements help our body adjust to the changing conditions around us. Similarly, we are applying this same concept for the first time to our NIST SP 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management. Today, we published a supplement that provides interim guidance for agencies seeking to make use of ‘syncable authenticators’ ( for example, passkeys) in both enterprise-facing and public-facing use cases</description><guid isPermaLink="false">https://www.nist.gov/node/1845691</guid></item><item><title>Protecting Model Updates in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/protecting-model-updates-privacy-preserving-federated-learning</link><description>In our second post we described attacks on models and the concepts of input privacy and output privacy. ln our last post, we described horizontal and vertical partitioning of data in privacy-preserving federated learning (PPFL) systems. In this post, we explore the problem of providing input privacy in PPFL systems for the horizontally-partitioned setting. Models, training, and aggregation To explore techniques for input privacy in PPFL, we first have to be more precise about the training process. In horizontally-partitioned federated learning, a common approach is to ask each participant to</description><guid isPermaLink="false">https://www.nist.gov/node/1843006</guid></item><item><title>Predictions 2024: Executive Edition</title><link>https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/</link><description>&lt;p&gt;Ready or not, here comes 2024. From resilience to board priorities, Splunk executives across security, IT and engineering weigh in on what to expect in the era of AI. AI: The hype will pay off, but business impact will take another 12-24 months. C-suite transformation: CISOs, CTOs and CIOs will have expanded roles in the ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/"&gt;Predictions 2024: Executive Edition&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/predictions-2024-executive-edition/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>The AI Philosophy Powering Digital Resilience</title><link>https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/</link><description>&lt;p&gt;3 AI Strategies for Cybersecurity and Observability As organizations embrace dispersed architecture, grapple with an evolving threat landscape and heavily rely on digital systems, AI steps in as a promising solution to control IT chaos. But without clear guardrails that address data privacy and security concerns, we must determine how to build AI models that ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/"&gt;The AI Philosophy Powering Digital Resilience&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/the-ai-philosophy-powering-digital-resilience/</guid><category>Artificial Intelligence</category><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Updates on NIST’s Interagency International Cybersecurity Standardization Working Group</title><link>https://www.nist.gov/blogs/cybersecurity-insights/updates-nists-interagency-international-cybersecurity-standardization</link><description>Last November, I was pleased to chair the most recent meeting of the Interagency International Cybersecurity Standardization Working Group (IICSWG) – a group NIST created in 2016. Our charge, from the Cybersecurity Enhancement Act of 2014, was to build a coordination mechanism for government agencies to discuss international cybersecurity standardization issues, consistent with agencies’ responsibilities under OMB Circular A-119. Since then, IICSWG has grown as a forum to discuss cybersecurity and privacy standardization topics, examine the overall cybersecurity standardization landscape (</description><guid isPermaLink="false">https://www.nist.gov/node/1841096</guid></item><item><title>Data Distribution in Privacy-Preserving Federated Learning</title><link>https://www.nist.gov/blogs/cybersecurity-insights/data-distribution-privacy-preserving-federated-learning</link><description>This post is part of a series on privacy-preserving federated learning. The series is a collaboration between NIST and the UK government’s Responsible Technology Adoption Unit (RTA), previously known as the Centre for Data Ethics and Innovation. Learn more and read all the posts published to date at NIST’s Privacy Engineering Collaboration Space or RTA’s blog . Our first post in the series introduced the concept of federated learning and described how it’s different from traditional centralized learning - in federated learning, the data is distributed among participating organizations, and</description><guid isPermaLink="false">https://www.nist.gov/node/1840526</guid></item><item><title>Travel Update! The NIST CSF 2.0 is HERE…Along with Many Helpful Resources…</title><link>https://www.nist.gov/blogs/cybersecurity-insights/travel-update-nist-csf-20-herealong-many-helpful-resources</link><description>NIST CSF 2.0 QUICK LINKS | Explore our Full Suite of Resources: CSF 2.0 Quick Start Guides CSF 2.0 Profiles CSF 2.0 Informative References Cybersecurity &amp;amp; Privacy Reference Tool (CPRT) CSF 2.0 Reference Tool CSF 2.0 Website ( Homepage ) Official NIST News Announcement The NIST Cybersecurity Framework (CSF) development process all started with Executive Order (EO)13636 over a decade ago, which called for building a set of approaches ( a framework ) for reducing risks to critical infrastructure. Through this EO, NIST was tasked with developing a "Cybersecurity Framework." We knew that, to do</description><guid isPermaLink="false">https://www.nist.gov/node/1839926</guid></item><item><title>NIST Celebrates National Entrepreneurship Week</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nist-celebrates-national-entrepreneurship-week</link><description>What is National Entrepreneurship (NatlEshipWeek) Week? Celebrated February 10-17, 2024, “NatlEshipWeek is a congressionally chartered week dedicated to empowering entrepreneurship across the United States. The annual initiative was relaunched in 2017 as NatlEshipWeek to bring together a network of partners from Maui to Miami to educate, engage, and build equitable access to America's Entrepreneurship Ecosystem.” Follow along online with #NatlEshipWeek. You can learn more about the initiative here: &lt;a href="https://www.natleshipweek.org/about"&gt;https://www.natleshipweek.org/about&lt;/a&gt; . Supporting Entrepreneurship is at the Heart of NIST’s</description><guid isPermaLink="false">https://www.nist.gov/node/1839366</guid></item><item><title>NIST’s International Cybersecurity and Privacy Engagement Update – International Dialogues, Workshops, and Translations</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nists-international-cybersecurity-and-privacy-engagement-update</link><description>With the new year under way, NIST is continuing to engage with our international partners to enhance cybersecurity. Here are some updates on our international work from the end of 2023 into the beginning of 2024: Conversations have continued with our partners throughout the world on the update to the NIST Cybersecurity Framework (CSF) 2.0 . The current Draft CSF 2.0 has been shared in a public comment period that ended in November 2023. Stay tuned for the final version to be published soon! NIST international engagement continues through our support to the Department of State and the</description><guid isPermaLink="false">https://www.nist.gov/node/1839061</guid></item><item><title>MAR-10448362-1.v1 Volt Typhoon</title><link>https://www.cisa.gov/news-events/analysis-reports/ar24-038a</link><description>&lt;h3&gt;Notification&lt;/h3&gt;
 &lt;div class="cma-section"&gt;
 &lt;p&gt;This report is provided "as is" for informational purposes only. The Department of Homeland Security (DHS) does not provide any warranties of any kind regarding any information contained herein. The DHS does not endorse any commercial product or service referenced in this bulletin or otherwise.&lt;/p&gt;
 &lt;p&gt;This document is marked TLP:CLEAR--Recipients may share this information without restriction. Sources may use TLP:CLEAR when information carries minimal or no foreseeable risk of misuse, in accordance with applicable rules and procedures for public release. Subject to standard copyright rules, TLP:CLEAR information may be shared without restriction. For more information on the Traffic Light Protocol (TLP), see http://www.cisa.gov/tlp.&lt;/p&gt;
@@ -21534,14 +22219,14 @@ Organizations should refine their threat modeling processes to explicitly accoun
 &lt;li&gt;E-Mail: &lt;a href="mailto:submit@malware.us-cert.gov"&gt;submit@malware.us-cert.gov&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;CISA encourages you to report any suspicious activity, including cybersecurity incidents, possible malicious code, software vulnerabilities, and phishing-related scams. Reporting forms can be found on CISA's homepage at &lt;a href="http://www.cisa.gov"&gt;www.cisa.gov&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;</description><guid isPermaLink="false">/node/20877</guid></item><item><title>New Year, New Initiatives for the NIST Privacy Framework!</title><link>https://www.nist.gov/blogs/cybersecurity-insights/new-year-new-initiatives-nist-privacy-framework</link><description>It’s been four years since the release of The NIST Privacy Framework: A Tool for Improving Privacy Through Enterprise Risk Management, Version 1.0. Since then, many organizations have found it highly valuable for building or improving their privacy programs. We’ve also been able to add a variety of resources to support its implementation. We’re proud of how much has been accomplished in just a few short years, but we’re not resting on our laurels. As another, more famous, Dylan once said, “the times they are a-changin’.” For example, the past year has seen the release of the NIST AI Risk</description><guid isPermaLink="false">https://www.nist.gov/node/1837676</guid></item><item><title>State of Observability in Retail</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/</link><description>&lt;p&gt;Today, the retail industry faces new macroeconomic challenges, with the rapid increase in energy costs, high inflation, and supply chain disruptions. As the threat of shrinking margins looms, retailers are focusing on cost reduction and strategic investments to ensure the best possible business value without sacrificing the customer experience. While omnichannel is essential, retailers don’t ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/"&gt;State of Observability in Retail&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>State of Observability in Financial Services</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/</link><description>&lt;p&gt;Financial institutions are experiencing an incredible transformation, stemming from consumers expecting a higher level of digital interaction and access to services and a lower dependency on physical services. Increasing disintermediation and local and global financial services industry (FSI) players such a Apple Pay, Revolut, and neo-banks are feeding consumers’ desires to complete transactions online, including ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/"&gt;State of Observability in Financial Services&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>State of Ecommerce in India</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/</link><description>&lt;p&gt;The ecommerce industry is hugely important to India, and opportunities abound for existing and new players alike. But amid such a competitive landscape, it’s crucial for ecommerce organisations to deliver the best possible digital experiences to those making purchases online. The State of Ecommerce in India report provides insights into the current state of the ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/"&gt;State of Ecommerce in India&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>2023 Gartner® Market Guide for Security, Orchestration, Automation and Response Solutions</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-gartner-market-guide-for-security-orchestration-automation-and-response-solutions/</link><description>&lt;p&gt;“The security technology market is in a state of general overload with pressure on budgets, staff hiring/retention, and having too many point solutions are pervasive issues for organizations today.” Security and risk management leaders should evaluate how security orchestration, automation and response (SOAR) can support and optimize their broader security operations by automating repetitive tasks; ...&lt;/p&gt;
+&lt;/div&gt;</description><guid isPermaLink="false">/node/20877</guid></item><item><title>New Year, New Initiatives for the NIST Privacy Framework!</title><link>https://www.nist.gov/blogs/cybersecurity-insights/new-year-new-initiatives-nist-privacy-framework</link><description>It’s been four years since the release of The NIST Privacy Framework: A Tool for Improving Privacy Through Enterprise Risk Management, Version 1.0. Since then, many organizations have found it highly valuable for building or improving their privacy programs. We’ve also been able to add a variety of resources to support its implementation. We’re proud of how much has been accomplished in just a few short years, but we’re not resting on our laurels. As another, more famous, Dylan once said, “the times they are a-changin’.” For example, the past year has seen the release of the NIST AI Risk</description><guid isPermaLink="false">https://www.nist.gov/node/1837676</guid></item><item><title>State of Ecommerce in India</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/</link><description>&lt;p&gt;The ecommerce industry is hugely important to India, and opportunities abound for existing and new players alike. But amid such a competitive landscape, it’s crucial for ecommerce organisations to deliver the best possible digital experiences to those making purchases online. The State of Ecommerce in India report provides insights into the current state of the ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/"&gt;State of Ecommerce in India&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-ecommerce-in-india/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>State of Observability in Financial Services</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/</link><description>&lt;p&gt;Financial institutions are experiencing an incredible transformation, stemming from consumers expecting a higher level of digital interaction and access to services and a lower dependency on physical services. Increasing disintermediation and local and global financial services industry (FSI) players such a Apple Pay, Revolut, and neo-banks are feeding consumers’ desires to complete transactions online, including ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/"&gt;State of Observability in Financial Services&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-financial-services/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>State of Observability in Retail</title><link>https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/</link><description>&lt;p&gt;Today, the retail industry faces new macroeconomic challenges, with the rapid increase in energy costs, high inflation, and supply chain disruptions. As the threat of shrinking margins looms, retailers are focusing on cost reduction and strategic investments to ensure the best possible business value without sacrificing the customer experience. While omnichannel is essential, retailers don’t ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/"&gt;State of Observability in Retail&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/state-of-observability-in-retail/</guid><category>Software</category><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>2023 Gartner® Market Guide for Security, Orchestration, Automation and Response Solutions</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-gartner-market-guide-for-security-orchestration-automation-and-response-solutions/</link><description>&lt;p&gt;“The security technology market is in a state of general overload with pressure on budgets, staff hiring/retention, and having too many point solutions are pervasive issues for organizations today.” Security and risk management leaders should evaluate how security orchestration, automation and response (SOAR) can support and optimize their broader security operations by automating repetitive tasks; ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-gartner-market-guide-for-security-orchestration-automation-and-response-solutions/"&gt;2023 Gartner® Market Guide for Security, Orchestration, Automation and Response Solutions&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-gartner-market-guide-for-security-orchestration-automation-and-response-solutions/</guid><category>Security</category><category>Tech &amp; Work</category></item><item><title>IDC Report: The Evolving Role of the CFO in 2023</title><link>https://www.techrepublic.com/resource-library/whitepapers/idc-report-the-evolving-role-of-the-cfo-in-2023/</link><description>&lt;p&gt;Financial leaders are becoming strategic business partners as manufacturers navigate economic pressures and begin digital transformations. Download this IDC study of over 200 financial leaders to learn how manufacturers are balancing their short- and long-term goals, tightening financial management, improving data-driven decision-making, and expanding into new markets. Key Takeaways: 52% of manufacturers say that financial ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/idc-report-the-evolving-role-of-the-cfo-in-2023/"&gt;IDC Report: The Evolving Role of the CFO in 2023&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/idc-report-the-evolving-role-of-the-cfo-in-2023/</guid><category>Digital Transformation</category><category>Tech &amp; Work</category></item><item><title>SMB ERP Technology Value Matrix 2023</title><link>https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/</link><description>&lt;p&gt;For the second straight year, Epicor earned a leader ranking for its Industry ERP Cloud, a portfolio of industry-specific cloud ERP solutions designed to help customers optimize their businesses and get the edge in crowded markets. In the report, Nucleus Research highlighted that small- and medium-sized businesses value the efficiency of the Epicor solution that ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/"&gt;SMB ERP Technology Value Matrix 2023&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/</guid><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Voice of The Essential Manufacturing Manager</title><link>https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/</link><description>&lt;p&gt;What do 400 manufacturing leaders think about their technology, business strategies, workers, and industry? Download the full report to get unique industry insights. Key takeaways on technology include: 67% of manufacturers are embracing a data-first strategy. 61% of manufacturers are heavily embracing automation. 49% of self-described modern manufacturers are employing AI. Key takeaways on the ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/"&gt;Voice of The Essential Manufacturing Manager&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/</guid><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Epicor is proud to be recognized as a Leader in the 2023 Gartner® Magic Quadrant™ for Cloud ERP for Product-Centric Enterprises</title><link>https://www.techrepublic.com/resource-library/whitepapers/epicor-is-proud-to-be-recognized-as-a-leader-in-the-2023-gartner-magic-quadrant-for-cloud-erp-for-product-centric-enterprises/</link><description>&lt;p&gt;We believe this recognition underscores our relentless drive toward bringing makers, movers, and sellers together with data-driven insights, composable industry cloud solutions, and a culture of partnership focused on customer success. Our vision for the cognitive, digital ecosystem of tomorrow is delivering for customers today, giving them an insight advantage to optimize and grow. Subscribe ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/idc-report-the-evolving-role-of-the-cfo-in-2023/"&gt;IDC Report: The Evolving Role of the CFO in 2023&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/idc-report-the-evolving-role-of-the-cfo-in-2023/</guid><category>Digital Transformation</category><category>Tech &amp; Work</category></item><item><title>Voice of The Essential Manufacturing Manager</title><link>https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/</link><description>&lt;p&gt;What do 400 manufacturing leaders think about their technology, business strategies, workers, and industry? Download the full report to get unique industry insights. Key takeaways on technology include: 67% of manufacturers are embracing a data-first strategy. 61% of manufacturers are heavily embracing automation. 49% of self-described modern manufacturers are employing AI. Key takeaways on the ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/"&gt;Voice of The Essential Manufacturing Manager&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/voice-of-the-essential-manufacturing-manager/</guid><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>SMB ERP Technology Value Matrix 2023</title><link>https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/</link><description>&lt;p&gt;For the second straight year, Epicor earned a leader ranking for its Industry ERP Cloud, a portfolio of industry-specific cloud ERP solutions designed to help customers optimize their businesses and get the edge in crowded markets. In the report, Nucleus Research highlighted that small- and medium-sized businesses value the efficiency of the Epicor solution that ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/"&gt;SMB ERP Technology Value Matrix 2023&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/smb-erp-technology-value-matrix-2023/</guid><category>Tech &amp; Work</category><category>Tech Industry</category></item><item><title>Epicor is proud to be recognized as a Leader in the 2023 Gartner® Magic Quadrant™ for Cloud ERP for Product-Centric Enterprises</title><link>https://www.techrepublic.com/resource-library/whitepapers/epicor-is-proud-to-be-recognized-as-a-leader-in-the-2023-gartner-magic-quadrant-for-cloud-erp-for-product-centric-enterprises/</link><description>&lt;p&gt;We believe this recognition underscores our relentless drive toward bringing makers, movers, and sellers together with data-driven insights, composable industry cloud solutions, and a culture of partnership focused on customer success. Our vision for the cognitive, digital ecosystem of tomorrow is delivering for customers today, giving them an insight advantage to optimize and grow. Subscribe ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/epicor-is-proud-to-be-recognized-as-a-leader-in-the-2023-gartner-magic-quadrant-for-cloud-erp-for-product-centric-enterprises/"&gt;Epicor is proud to be recognized as a Leader in the 2023 Gartner® Magic Quadrant™ for Cloud ERP for Product-Centric Enterprises&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/epicor-is-proud-to-be-recognized-as-a-leader-in-the-2023-gartner-magic-quadrant-for-cloud-erp-for-product-centric-enterprises/</guid><category>Cloud</category><category>Tech &amp; Work</category></item><item><title>MAR-10478915-1.v1 Citrix Bleed</title><link>https://www.cisa.gov/news-events/analysis-reports/ar23-325a</link><description>&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
 &lt;table id="cma-table"&gt;
 &lt;tbody&gt;
@@ -22057,12 +22742,12 @@ Organizations should refine their threat modeling processes to explicitly accoun
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/dana-builds-resilience-and-resolves-incidents-up-to-90-faster-with-splunk-observability/"&gt;DANA Builds Resilience and Resolves Incidents up to 90% Faster With Splunk Observability&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/dana-builds-resilience-and-resolves-incidents-up-to-90-faster-with-splunk-observability/</guid><category>Tech &amp; Work</category></item><item><title>The Essential Guide to Observability for Cloud Native Environments</title><link>https://www.techrepublic.com/resource-library/whitepapers/the-essential-guide-to-observability-for-cloud-native-environments/</link><description>&lt;p&gt;Modern digital businesses increasingly rely on cloud native environments to deliver value to customers faster. However, while being cloud native helps a business scale, increase reliability and improve feature velocity, engineers have to tackle new challenges like increased complexity. Engineering teams with cloud native environments rely on modern observability solutions to provide visibility across their ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/the-essential-guide-to-observability-for-cloud-native-environments/"&gt;The Essential Guide to Observability for Cloud Native Environments&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/the-essential-guide-to-observability-for-cloud-native-environments/</guid><category>Cloud</category><category>Tech &amp; Work</category></item><item><title>2023 Observability Forecast Spotlight for Australia and New Zealand</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-australia-and-new-zealand/</link><description>&lt;p&gt;New Relic partnered with Enterprise Technology Research (ETR) for the third annual Observability Forecast report, which examines the state and future of observability. We surveyed 1,700 technology professionals in 15 countries across Asia Pacific, Europe, and North America to learn about the business value of observability, its return on investment (ROI), and its impact on ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-australia-and-new-zealand/"&gt;2023 Observability Forecast Spotlight for Australia and New Zealand&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-australia-and-new-zealand/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>2023 Observability Forecast Spotlight for the Association of Southeast Asian Nations</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-the-association-of-southeast-asian-nations/</link><description>&lt;p&gt;New Relic partnered with Enterprise Technology Research (ETR) for the third annual Observability Forecast report, which examines the state and future of observability. We surveyed 1,700 technology professionals in 15 countries across Asia Pacific, Europe, and North America to learn about the business value of observability, its return on investment (ROI), and its impact on ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-the-association-of-southeast-asian-nations/"&gt;2023 Observability Forecast Spotlight for the Association of Southeast Asian Nations&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-the-association-of-southeast-asian-nations/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>2023 Observability Forecast Spotlight for India</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/</link><description>&lt;p&gt;New Relic partnered with Enterprise Technology Research (ETR) for the third annual Observability Forecast report, which examines the state and future of observability. We surveyed 1,700 technology professionals in 15 countries across Asia Pacific, Europe, and North America to learn about the business value of observability, its return on investment (ROI), and its impact on ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/"&gt;2023 Observability Forecast Spotlight for India&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>2023 State of the Java Ecosystem At a Glance</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/</link><description>&lt;p&gt;This infographic provides an at-a-glance view of the 2023 State of the Java Ecosystem annual report. It covers the most popular long-term support (LTS) and non-LTS Java versions, Java Developer Kit (JDK) vendors, and garbage collectors, plus compute and memory settings in and outside of containers. Subscribe to the Developer Insider Newsletter From the hottest ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/"&gt;2023 State of the Java Ecosystem At a Glance&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>6 Steps to Achieve Business Observability</title><link>https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/</link><description>&lt;p&gt;From a financial perspective, technology is a black hole. Many organizations struggle with quantifying the business impact of technology. For example, only 37% of the 2022 Observability Forecast survey respondents said their telemetry data includes business context to quantify the business impact of events and incidents. This is often due to a lack of visibility ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/"&gt;6 Steps to Achieve Business Observability&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Log Management Best Practices</title><link>https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/</link><description>&lt;p&gt;Log management has evolved. Organizations have moved beyond sifting through raw dumps of application and infrastructure logs whenever something breaks. Logging now plays a crucial role in an organization’s operations, business intelligence, and marketing. Logs power observability. Well-structured logs are a superpower that enable organizations to understand quickly and easily how their whole system runs—and ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/"&gt;Log Management Best Practices&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Why Distributed Tracing is Essential for APM</title><link>https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/</link><description>&lt;p&gt;Modern software environments and architectures like microservices have the potential to accelerate application development. But in many organizations, software engineering teams face a complex environment, which makes it difficult to diagnose and resolve performance issues and errors before they impact reliability and the customer experience. Business leaders, DevOps engineers, product owners, site reliability engineers (SREs), ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/"&gt;Why Distributed Tracing is Essential for APM&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Hybrid Work Solutions for SMBs</title><link>https://www.techrepublic.com/resource-library/whitepapers/hybrid-work-solutions-for-smbs/</link><description>&lt;p&gt;You want your employees to be able to work anywhere they need or want to be. That’s what Cisco Meraki empowers. Together, let’s inspire your team with workspaces designed for collaboration, not frustration, with integrated technologies that promote seamless security, not headaches, and connectivity that prioritizes rapid reliability, not speed bumps and spotty service. Meraki ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-the-association-of-southeast-asian-nations/"&gt;2023 Observability Forecast Spotlight for the Association of Southeast Asian Nations&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-the-association-of-southeast-asian-nations/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>2023 State of the Java Ecosystem At a Glance</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/</link><description>&lt;p&gt;This infographic provides an at-a-glance view of the 2023 State of the Java Ecosystem annual report. It covers the most popular long-term support (LTS) and non-LTS Java versions, Java Developer Kit (JDK) vendors, and garbage collectors, plus compute and memory settings in and outside of containers. Subscribe to the Developer Insider Newsletter From the hottest ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/"&gt;2023 State of the Java Ecosystem At a Glance&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-state-of-the-java-ecosystem-at-a-glance/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>2023 Observability Forecast Spotlight for India</title><link>https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/</link><description>&lt;p&gt;New Relic partnered with Enterprise Technology Research (ETR) for the third annual Observability Forecast report, which examines the state and future of observability. We surveyed 1,700 technology professionals in 15 countries across Asia Pacific, Europe, and North America to learn about the business value of observability, its return on investment (ROI), and its impact on ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/"&gt;2023 Observability Forecast Spotlight for India&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/2023-observability-forecast-spotlight-for-india/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>6 Steps to Achieve Business Observability</title><link>https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/</link><description>&lt;p&gt;From a financial perspective, technology is a black hole. Many organizations struggle with quantifying the business impact of technology. For example, only 37% of the 2022 Observability Forecast survey respondents said their telemetry data includes business context to quantify the business impact of events and incidents. This is often due to a lack of visibility ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/"&gt;6 Steps to Achieve Business Observability&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/6-steps-to-achieve-business-observability/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Why Distributed Tracing is Essential for APM</title><link>https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/</link><description>&lt;p&gt;Modern software environments and architectures like microservices have the potential to accelerate application development. But in many organizations, software engineering teams face a complex environment, which makes it difficult to diagnose and resolve performance issues and errors before they impact reliability and the customer experience. Business leaders, DevOps engineers, product owners, site reliability engineers (SREs), ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/"&gt;Why Distributed Tracing is Essential for APM&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/why-distributed-tracing-is-essential-for-apm/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Log Management Best Practices</title><link>https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/</link><description>&lt;p&gt;Log management has evolved. Organizations have moved beyond sifting through raw dumps of application and infrastructure logs whenever something breaks. Logging now plays a crucial role in an organization’s operations, business intelligence, and marketing. Logs power observability. Well-structured logs are a superpower that enable organizations to understand quickly and easily how their whole system runs—and ...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/"&gt;Log Management Best Practices&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/log-management-best-practices/</guid><category>Software</category><category>Tech &amp; Work</category></item><item><title>Hybrid Work Solutions for SMBs</title><link>https://www.techrepublic.com/resource-library/whitepapers/hybrid-work-solutions-for-smbs/</link><description>&lt;p&gt;You want your employees to be able to work anywhere they need or want to be. That’s what Cisco Meraki empowers. Together, let’s inspire your team with workspaces designed for collaboration, not frustration, with integrated technologies that promote seamless security, not headaches, and connectivity that prioritizes rapid reliability, not speed bumps and spotty service. Meraki ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/whitepapers/hybrid-work-solutions-for-smbs/"&gt;Hybrid Work Solutions for SMBs&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/hybrid-work-solutions-for-smbs/</guid><category>Collaboration</category></item><item><title>MAR-10454006.r5.v1 SUBMARINE, SKIPJACK, SEASPRAY, WHIRLPOOL, and SALTWATER Backdoors</title><link>https://www.cisa.gov/news-events/analysis-reports/ar23-250a-0</link><description>&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
 &lt;table id="cma-table"&gt;
 &lt;tbody&gt;
