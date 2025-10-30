@@ -1,5 +1,297 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 30 Oct 2025 11:59:17 +0000</lastBuildDate><item><title>Penetration Testing and Scanning Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/penetration-testing-scanning/</link><description>&lt;p&gt;Security or network incidents can be prevented by proactively detecting potential threat opportunities. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This eight-page document covers preparation, remediation, and more. Expertly-Curated — Written by Scott Matteson through 16 hours of research, writing, and editing. This resource is available to download ...&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 30 Oct 2025 12:59:18 +0000</lastBuildDate><item><title>What Security Teams Need to Know as PHP and IoT Exploits Surge</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Attack automation is accelerating, widening the window between detection and response. Qualys TRU telemetry reveals how these attacks unfold and what defenders can do next. The Qualys Threat Research Unit (TRU) has identified a sharp increase in attacks targeting PHP servers, IoT devices, and cloud gateways, primarily driven by botnets such as Mirai, Gafgyt, and [&amp;#8230;]</description><content:encoded>&lt;h2 class="wp-block-heading" id="attack-automation-is-accelerating-widening-the-window-between-detection-and-response-qualys-tru-telemetry-reveals-how-these-attacks-unfold-and-what-defenders-can-do-next"&gt;&lt;strong&gt;Attack automation is accelerating, widening the window between detection and response. Qualys TRU telemetry reveals how these attacks unfold and what defenders can do next.&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has identified a sharp increase in attacks targeting PHP servers, IoT devices, and cloud gateways, primarily driven by botnets such as Mirai, Gafgyt, and Mozi. These automated campaigns exploit known CVE vulnerabilities and cloud misconfigurations to gain control over exposed systems and expand botnet networks.&lt;/p&gt;
+
+
+
+&lt;p&gt;With &lt;a href="https://w3techs.com/technologies/details/pl-php"&gt;PHP powering more than 73% of websites&lt;/a&gt; and &lt;a href="https://www.checkpoint.com/resources/items/cloud-security-report-2024"&gt;82% of enterprises reporting incidents linked to cloud misconfigurations&lt;/a&gt;, the modern attack surface has never been broader. This blog explores the latest exploitation trends, highlights vulnerabilities and misconfigurations actively under attack, and outlines actionable steps security teams can take to strengthen defenses and minimize exposure.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="php-servers-are-the-top-target-for-vulnerabilities-and-misconfigurations"&gt;PHP Servers are the Top Target for Vulnerabilities and Misconfigurations&lt;/h2&gt;
+
+
+
+&lt;p&gt;PHP remains a foundational component for websites and web applications, especially within popular content management systems (CMS) like WordPress. However, this ubiquity also creates a large and attractive attack surface. Many PHP deployments suffer from:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Outdated versions and plugins&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Misconfigured file permissions&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Debugging components left enabled in production&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Insecure file storage&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;These gaps allow threat actors to launch remote code execution (RCE) attacks, exfiltrate data, or turn the server into a launchpad for malware. Left unaddressed, even a single misconfigured or outdated PHP instance can become the entry point for a large-scale compromise. For example, earlier this year hundreds of websites were compromised due to a &lt;a href="https://www.securityweek.com/craft-cms-zero-day-exploited-to-compromise-hundreds-of-websites/" rel="noreferrer noopener" target="_blank"&gt;zero-day vulnerability in the PHP-based Craft CMS&lt;/a&gt;.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="php-exploitation-trends-and-noteworthy-cves"&gt;&lt;strong&gt;PHP Exploitation Trends and Noteworthy CVEs&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Attackers are constantly scanning for weaknesses in popular PHP frameworks and development tools. Here are a few examples of how critical vulnerabilities and insecure configurations continue to provide entry points for RCE and data compromise.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;CVE-2022-47945: Remote Code Execution in ThinkPHP Framework&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;CVE-2022-47945 is a critical RCE vulnerability in ThinkPHP versions before 6.0.14, affecting applications with multi-language support enabled (lang_switch_on = true). The flaw lies in improper input sanitization of the lang parameter, which attackers exploit to perform Local File Inclusion (LFI) of sensitive internal scripts, such as: &lt;br /&gt;&lt;em&gt;/vendor/pear/pearcmd.php&lt;/em&gt; &lt;br /&gt;&lt;em&gt;/usr/local/lib/php/pearcmd&lt;/em&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig1.png"&gt;&lt;img alt="" class="wp-image-38996" height="181" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig1.png" width="624" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 1: CVE-2022-47945 Exploitation command in the network traffic&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Remote Debugging using XDEBUG in PHPStorm&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Qualys researchers have observed exploitation attempts where attackers use the &lt;em&gt;?XDEBUG_SESSION_START=phpstorm&lt;/em&gt; query string to initiate a remote debugging session with the XDebug plugin in combination with an integrated development environment (IDE), typically PHPStorm. If XDebug is unintentionally left active in production environments, attackers may use these sessions to gain insight into application behavior or extract sensitive data.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig2.png"&gt;&lt;img alt="" class="wp-image-38997" height="149" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig2.png" width="622" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 2: HTTP request where the attacker is trying to initiate a remote debugging session&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;CVE-2021-3129: Remote Code Execution (RCE) Vulnerability in Laravel&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;CVE-2021-3129 is an RCE vulnerability that affects Laravel applications when the Ignition debugging package is exposed in production environments. Laravel Ignition exposes the route &lt;em&gt;/_ignition/execute-solution&lt;/em&gt; in debug mode, which is used by developers to execute helper commands for fixing errors. If this feature is left enabled in production, it can be exploited by attackers to execute arbitrary code.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The following is one of the snippets from a network packet where attackers are trying to exploit CVE-2021-3129. Malicious command is base64 encoded in the subsequent HTTP request packet.&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig3.png"&gt;&lt;img alt="" class="wp-image-38998" height="342" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig3.png" width="717" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 3: HTTP request where the attacker is trying to exploit CVE-2021-3129&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;CVE-2017-9841: PHPUnit RCE&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;This long-standing vulnerability resides in PHPUnit, a widely used testing framework in PHP applications. The flaw stems from the presence of the vulnerable “eval-stdin.php” script in older PHPUnit versions, allowing unauthenticated attackers to execute arbitrary PHP code remotely. This vulnerability is often exploited in misconfigured production environments where development tools are unintentionally exposed to the internet.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;HTTP Request URLs often seen in scanning include:&lt;br /&gt;&amp;nbsp;&lt;br /&gt;&lt;kbd&gt;&lt;em&gt;/api/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/backup/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/cms/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/crm/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/demo/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/laravel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/lib/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/lib/phpunit/phpunit/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/lib/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/test/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/testing/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/tests/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/V2/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/phpunit/phpunit/LICENSE/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/phpunit/phpunit/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/ws/ec/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/ws/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/www/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/yii/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/zend/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php&lt;/em&gt;&amp;nbsp;&lt;/kbd&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-dangers-of-exposed-secrets-and-credentials"&gt;&lt;strong&gt;The Dangers of Exposed Secrets and Credentials&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Insecurely stored secrets like credentials, API keys, and access tokens exposed to the internet are one of the most common and dangerous misconfigurations found on servers. Whether left behind during the transition from development to production or accidentally persisted in a deployment, secrets in plaintext files can lead to full compromise of cloud infrastructure. Attackers actively look for these plaintext files during initial recon andpost-exploitation.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The Qualys TRU has identified ongoing attempts by attackers to access sensitive Amazon Web Services (AWS) credential files on exposed or misconfigured Linux servers. Frequently targeted file paths include:&lt;br /&gt;&lt;br /&gt;&lt;kbd&gt;&lt;em&gt;/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/home/ec2-user/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.aws/ecs-task-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.aws/ecs-task-credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.aws/metadata/iam/security-credentials/&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.aws_creds.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.db_credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.smtp-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/.well-known/credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/admin/config?cmd=cat+/root/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/api/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/api/v1/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/api/v1/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/ecs/task-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/ecs/task-credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/iam/credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/iam/ecs-task-credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/iam/temp-creds.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/iam/temporary-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/metadata/iam/security-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/metadata/iam/security-credentials/&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/s3/credentials.bak&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/s3/credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws/s3/credentials.yml&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws_credentials.txt&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/aws_creds.js&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/data/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/ecs/task-credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/ecs/task-credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/email/credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/hidden/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/internal-api/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/internal-api/iam/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/internal/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/k8s/eks/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/latest/meta-data/iam/security-credentials/&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/pms?module=logging&amp;amp;file_name=../../../../../../~/.aws/credentials&amp;amp;number_of_lines=10000&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/private/aws_credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/public/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/s3-credentials.bak&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/s3-credentials.json&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/s3/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/s3/public/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/tmp/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/.aws/credentials&lt;/em&gt;&amp;nbsp;&lt;br /&gt;&lt;em&gt;/vendor/aws/credentials&lt;/em&gt;&amp;nbsp;&lt;/kbd&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="iot-devices-remain-a-weak-link-in-security"&gt;&lt;strong&gt;IOT Devices Remain a Weak Link in Security&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Threat actors also continue to leverage insecure or legacy IoT devices. These systems often use outdated firmware, insecure protocols, and hardcoded credentials, creating a perfect storm for exploitation.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;CVE-2024-3721: TBK DVR Command Injection&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;p&gt;CVE-2024-3721 is a critical command injection vulnerability, stemming from insecure firmware logic, that affects TBK DVR-4104 and DVR-4216 devices and is actively exploited by Mirai-like botnets. The issue stems from unsanitized [mdb/mdc] parameters in HTTP requests, allowing unauthenticated command injection.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Here is a snippet from an exploitation attempt by an attacker:&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig4.png"&gt;&lt;img alt="" class="wp-image-38999" height="200" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig4.png" width="688" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4: CVE-2024-3721 Exploitation command in network traffic&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Successful exploitation leads to the download and execution of the malicious script selftbk.sh file. This shell script acts as a dropper, downloading and executing a variant of the Mirai botnet malware, tailored for the target&amp;#8217;s CPU architecture (e.g., ARM7). Once executed, the infected DVR becomes part of a botnet, capable of launching DDoS attacks, scanning for other vulnerable devices, and persisting within IoT infrastructure.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mvpower-dvr-shell-unauthenticated-command-execution"&gt;&lt;strong&gt;MVPower DVR Shell Unauthenticated Command Execution&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Another recurring target is the MVPower TV-7104HE DVR, which contains a built-in backdoor that allows unauthenticated users to execute arbitrary system commands via an HTTP GET request. Though more of a misconfiguration than a vulnerability, we have observed it is actively targeted by Mirai variants. Following is a snippet from apacket capture where the Mirai Botnet is trying to execute a command on the remote system by exploiting this vulnerability.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig5.png"&gt;&lt;img alt="" class="wp-image-39001" height="181" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig5.png" width="858" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5: MVPower DVR Shell Unauthenticated Command Execution by MIRAI Botnet&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="cloud-vulnerabilities-cve-2022-22947"&gt;&lt;strong&gt;Cloud Vulnerabilities: CVE-2022-22947&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Cloud-native environments are also being targeted through exposed APIs and misconfigured services, with attackers quick to weaponize known flaws. One example is CVE-2022-22947, a critical RCE vulnerability in the Spring Cloud Gateway that allows unauthenticated attackers to execute arbitrary code via a maliciously crafted request to the /actuator/refresh endpoint.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig6.png"&gt;&lt;img alt="" class="wp-image-39002" height="453" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/fig6.png" width="1029" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 6: Malicious HTTP request during Exploitation of CVE-2022-22947&lt;/em&gt;&amp;nbsp;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="threat-actors-exploit-cloud-resources-for-reconnaissance"&gt;&lt;strong&gt;Threat Actors Exploit Cloud Resources for Reconnaissance&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Upon analyzing the source IPs involved in recent scanning activity, it was observed that a significant number of scans originated from cloud infrastructure providers. These include prominent services such as AWS, Google Cloud Platform (GCP), Microsoft Azure, Digital Ocean, and Akamai Cloud, among others.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This pattern aligns with how threat actors often abuse cloud resources, using cheap, temporary, or compromised computer instances to conduct reconnaissance and exploit attempts while masking their real origin. Large portions of this scanning activity appear to be tied to active vulnerability exploitation, such as attempts targeting PHP, ThinkPHP, DVR devices, Laravel, Spring Cloud Gateway servers, SSH brute-force attacks, misconfigurations, and secrets exposure.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;According to the Qualys TRU research, the top autonomous system number (ASN) organizations by total number of scanning source IPs are:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;ASN Organization&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Number of IP Addresses&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GOOGLE-CLOUD-PLATFORM&amp;nbsp;&lt;/td&gt;&lt;td&gt;2373&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;MICROSOFT-CORP-MSN-AS-BLOCK&amp;nbsp;&lt;/td&gt;&lt;td&gt;1725&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Akamai Connected Cloud&amp;nbsp;&lt;/td&gt;&lt;td&gt;1575&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;DIGITALOCEAN-ASN&amp;nbsp;&lt;/td&gt;&lt;td&gt;1403&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;HURRICANE&amp;nbsp;&lt;/td&gt;&lt;td&gt;943&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CHINA UNICOM China169 Backbone&amp;nbsp;&lt;/td&gt;&lt;td&gt;934&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chinanet&amp;nbsp;&lt;/td&gt;&lt;td&gt;848&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AMAZON-02&amp;nbsp;&lt;/td&gt;&lt;td&gt;666&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Alibaba US Technology Co., Ltd.&amp;nbsp;&lt;/td&gt;&lt;td&gt;589&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ONYPHE SAS&amp;nbsp;&lt;/td&gt;&lt;td&gt;550&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;UCLOUD INFORMATION TECHNOLOGY HK LIMITED&amp;nbsp;&lt;/td&gt;&lt;td&gt;538&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CENSYS-ARIN-01&amp;nbsp;&lt;/td&gt;&lt;td&gt;451&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Korea Telecom&amp;nbsp;&lt;/td&gt;&lt;td&gt;394&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AMAZON-AES&amp;nbsp;&lt;/td&gt;&lt;td&gt;387&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;TOT Public Company Limited&amp;nbsp;&lt;/td&gt;&lt;td&gt;344&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Driftnet Ltd&amp;nbsp;&lt;/td&gt;&lt;td&gt;322&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CHEAPY-HOST&amp;nbsp;&lt;/td&gt;&lt;td&gt;189&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This illustrates how easily attackers can operationalize scanning at scale, obscuring their origin by rapidly spinning up short-lived virtual machines (VMs) across providers like AWS and GCP before abandoning them and repeating the cycle. This tactic makes attribution difficult, as the traffic appears to come from trusted cloud infrastructure.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="5-best-practices-to-reduce-exploitation-risk"&gt;&lt;strong&gt;5 Best Practices to Reduce Exploitation Risk&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Reducing the risks highlighted above requires a layered defense strategy that enhances visibility, limits exposure, and prioritizes remediation in the most critical areas of your environment.&lt;/p&gt;
+
+
+
+&lt;p&gt;Here are a few best practices that can help security teams stay ahead of these evolving threats:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Ensure timely updates and patching: &lt;/strong&gt;Regularly update all software dependencies, libraries, and frameworks. Monitor vendor advisory channels for new CVEs. For containerized environments, always rebuild images with the latest base and application versions.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Remove development and debug tools in production: &lt;/strong&gt;Many of the exploited vulnerabilities exist because dev-debug components are deployed in production. Always make sure that these components are disabled in production.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Protect sensitive files and secrets: &lt;/strong&gt;Do not store secrets in plaintext files; instead, use a managed store like AWS Secrets Manager or HashiCorp Vault. It’s also important to regularly audit servers and containers for hardcoded secrets.&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Harden network exposure: &lt;/strong&gt;Allow only necessary IPs to access your cloud infrastructure. Restrict public access to debug ports, IoT device shells, and internal file paths.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Secure cloud access and controls: &lt;/strong&gt;Use security groups to tightly restrict port and IP access. Monitor cloud access logs for IAM misuse or secret scanning attempts.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="building-resilience-with-integrated-security"&gt;&lt;strong&gt;Building Resilience with Integrated Security&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Today’s threat actors don’t need to be highly sophisticated to be effective. With widely available exploit kits, botnet frameworks, and scanning tools, even entry-level attackers can cause significant damage.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;By combining visibility, automation, and risk-based prioritization, the Qualys platform empowers organizations to:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Maintain visibility into internet-facing assets (e.g., PHP servers and IoT devices)&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li&gt;Detect and remediate misconfigurations in real time&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li&gt;Eliminate known vulnerabilities before attackers weaponize them&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li&gt;Protect cloud and on-premises infrastructure with continuous assessment&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;See what’s next in threat intelligence. Stay informed with new findings from the Qualys Threat Research.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/tru/" style="background-color: #ed2e26;"&gt;Get Insights&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38901</guid><category>Vulnerabilities and Threat Research</category><category>iot</category><category>PHP</category><category>Qualys Threat Research</category><category>TRU</category></item><item><title>8 Best Password Managers (2025), Tested and Reviewed</title><link>https://www.wired.com/story/best-password-managers/</link><description>Keep your logins locked down with our favorite password management apps for PC, Mac, Android, iPhone, and web browsers.</description><guid isPermaLink="false">5ce3031cfd8c3451c5008275</guid><category>Gear</category><category>Security</category><category>Gear / Buying Guides</category><category>Security / Security Advice</category><category>buying guides</category><category>Shopping</category><category>Passwords</category><category>vulnerabilities</category><category>security</category><category>software</category><category>encryption</category><category>Buying Guide</category></item><item><title>Penetration Testing and Scanning Policy</title><link>https://www.techrepublic.com/resource-library/it-policy/penetration-testing-scanning/</link><description>&lt;p&gt;Security or network incidents can be prevented by proactively detecting potential threat opportunities. Customizable Document — Ready for use as-is or for edits. Enhance Your Security — This eight-page document covers preparation, remediation, and more. Expertly-Curated — Written by Scott Matteson through 16 hours of research, writing, and editing. This resource is available to download ...&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/it-policy/penetration-testing-scanning/"&gt;Penetration Testing and Scanning Policy&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/penetration-testing-and-scanning-policy/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>ISC Stormcast For Thursday, October 30th, 2025 https://isc.sans.edu/podcastdetail/9678, (Thu, Oct 30th)</title><link>https://isc.sans.edu/diary/rss/32434</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32434</guid></item><item><title>The Microsoft Azure Outage Shows the Harsh Reality of Cloud Failures</title><link>https://www.wired.com/story/the-microsoft-azure-outage-shows-the-harsh-reality-of-cloud-failures/</link><description>The second major cloud outage in less than two weeks, Azure’s downtime highlights the “brittleness” of a digital ecosystem that depends on a few companies never making mistakes.</description><guid isPermaLink="false">690254959f45e40ae292076b</guid><category>Security</category><category>Security / Security News</category><category>Microsoft</category><category>Cloud Computing</category><category>Enterprise</category><category>Amazon</category><category>Infrastructure</category><category>platforms</category><category>Down Detected</category></item><item><title>Ex-L3Harris Cyber Boss Pleads Guilty to Selling Trade Secrets to Russian Firm</title><link>https://www.wired.com/story/peter-williams-trenchant-trade-secrets-theft-russian-firm/</link><description>Peter Williams, a former executive of Trenchant, L3Harris’ cyber division, has pleaded guilty to two counts of stealing trade secrets and selling them to an unnamed Russian software broker.</description><guid isPermaLink="false">69021c4a65b611a9f97823f4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>Crime</category><category>Russia</category><category>national security</category><category>vulnerabilities</category><category>hacking</category><category>security</category><category>cybersecurity</category><category>Bad Deal</category></item><item><title>Nvidia Becomes First Company Valued Above $5 Trillion</title><link>https://www.techrepublic.com/article/news-nvidia-five-trillion/</link><description>&lt;p&gt;The surge comes amid mounting investor enthusiasm surrounding Nvidia’s dominance in AI infrastructure and optimism about future global sales.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-five-trillion/"&gt;Nvidia Becomes First Company Valued Above $5 Trillion&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333691</guid><category>Artificial Intelligence</category><category>News</category><category>NVIDIA</category><category>ai</category><category>nvidia</category></item><item><title>Microsoft, OpenAI Rewrite Partnership Rules Amid AGI Power Rebalance</title><link>https://www.techrepublic.com/article/news-microsoft-openai-reset-partnership/</link><description>&lt;p&gt;Microsoft and OpenAI unveil a deal extending IP rights, adding independent AGI verification, and giving both sides more freedom while maintaining Azure ties.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-openai-reset-partnership/"&gt;Microsoft, OpenAI Rewrite Partnership Rules Amid AGI Power Rebalance&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333698</guid><category>Artificial Intelligence</category><category>Microsoft</category><category>News</category><category>agi</category><category>ai</category><category>openai</category></item><item><title>AI Misfire: Teen Handcuffed After AI Mistakes Doritos for Gun</title><link>https://www.techrepublic.com/article/news-ai-mistakes-doritos-for-gun/</link><description>&lt;p&gt;AI error leads police to handcuff teen after mistaking Doritos for a gun, raising new concerns over ethics in school surveillance systems.&lt;/p&gt;
@@ -4917,7 +5209,7 @@ $mg.DrawImage([System.Drawing.Image]::FromStream($s),0,0);&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24087</guid></item><item><title>When Face Recognition Doesn’t Know Your Face Is a Face</title><link>https://www.wired.com/story/when-face-recognition-doesnt-know-your-face-is-a-face/</link><description>An estimated 100 million people live with facial differences. As face recognition tech becomes widespread, some say they’re getting blocked from accessing essential systems and services.</description><guid isPermaLink="false">68cc242422c3b58003eaf4d3</guid><category>Security</category><category>Security / Privacy</category><category>artificial intelligence</category><category>algorithms</category><category>machine learning</category><category>privacy</category><category>ethics</category><category>Regulation</category><category>face recognition</category><category>Blind Spots</category></item><item><title>Operation Zero Disco: Attackers Exploit Cisco SNMP Vulnerability to Deploy Rootkits</title><link>https://www.trendmicro.com/en_us/research/25/j/operation-zero-disco-cisco-snmp-vulnerability-exploit.html</link><description>Trend™ Research has uncovered an attack campaign exploiting the Cisco SNMP vulnerability CVE-2025-20352, allowing remote code execution and rootkit deployment on unprotected devices, with impacts observed on Cisco 9400, 9300, and legacy 3750G series.</description><guid isPermaLink="false">urn:uuid:dacf0061-0a29-8653-de40-0336f0691441</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Patch Tuesday, October 2025 ‘End of 10’ Edition</title><link>https://krebsonsecurity.com/2025/10/patch-tuesday-october-2025-end-of-10-edition/</link><description>Microsoft today released software updates to plug a whopping 172 security holes in its Windows operating systems, including at least three vulnerabilities that are already being actively exploited. October's Patch Tuesday also marks the final month that Microsoft will ship security updates for Windows 10 systems. If you're running a Windows 10 PC and you're unable or unwilling to migrate to Windows 11, read on for other options.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug a whopping 172 security holes in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems, including at least two vulnerabilities that are already being actively exploited. October&amp;#8217;s Patch Tuesday also marks the final month that Microsoft will ship security updates for &lt;strong&gt;Windows 10&lt;/strong&gt; systems. If you&amp;#8217;re running a Windows 10 PC and you&amp;#8217;re unable or unwilling to migrate to&lt;strong&gt; Windows 11&lt;/strong&gt;, read on for other options.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24087</guid></item><item><title>Operation Zero Disco: Attackers Exploit Cisco SNMP Vulnerability to Deploy Rootkits</title><link>https://www.trendmicro.com/en_us/research/25/j/operation-zero-disco-cisco-snmp-vulnerability-exploit.html</link><description>Trend™ Research has uncovered an attack campaign exploiting the Cisco SNMP vulnerability CVE-2025-20352, allowing remote code execution and rootkit deployment on unprotected devices, with impacts observed on Cisco 9400, 9300, and legacy 3750G series.</description><guid isPermaLink="false">urn:uuid:dacf0061-0a29-8653-de40-0336f0691441</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Patch Tuesday, October 2025 ‘End of 10’ Edition</title><link>https://krebsonsecurity.com/2025/10/patch-tuesday-october-2025-end-of-10-edition/</link><description>Microsoft today released software updates to plug a whopping 172 security holes in its Windows operating systems, including at least three vulnerabilities that are already being actively exploited. October's Patch Tuesday also marks the final month that Microsoft will ship security updates for Windows 10 systems. If you're running a Windows 10 PC and you're unable or unwilling to migrate to Windows 11, read on for other options.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug a whopping 172 security holes in its &lt;strong&gt;Windows&lt;/strong&gt; operating systems, including at least two vulnerabilities that are already being actively exploited. October&amp;#8217;s Patch Tuesday also marks the final month that Microsoft will ship security updates for &lt;strong&gt;Windows 10&lt;/strong&gt; systems. If you&amp;#8217;re running a Windows 10 PC and you&amp;#8217;re unable or unwilling to migrate to&lt;strong&gt; Windows 11&lt;/strong&gt;, read on for other options.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class="aligncenter wp-image-52647" height="549" src="https://krebsonsecurity.com/wp-content/uploads/2020/08/windowsec.png" width="748" /&gt;&lt;/p&gt;
 &lt;p&gt;The first zero-day bug addressed this month (&lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-24990" rel="noopener" target="_blank"&gt;CVE-2025-24990&lt;/a&gt;) involves a third-party modem driver called Agere Modem that&amp;#8217;s been bundled with Windows for the past two decades. Microsoft responded to active attacks on this flaw by completely removing the vulnerable driver from Windows.&lt;/p&gt;
 &lt;p&gt;The other zero-day is &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-59230" rel="noopener" target="_blank"&gt;CVE-2025-59230&lt;/a&gt;, an elevation of privilege vulnerability in &lt;strong&gt;Windows Remote Access Connection Manager&lt;/strong&gt; (also known as &lt;strong&gt;RasMan&lt;/strong&gt;), a service used to manage remote network connections through virtual private networks (VPNs) and dial-up networks.&lt;/p&gt;
@@ -6819,200 +7111,7 @@ $mg.DrawImage([System.Drawing.Image]::FromStream($s),0,0);&lt;/pre&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_72294" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-72294" height="218" src="https://krebsonsecurity.com/wp-content/uploads/2025/10/beaumont-sh.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-72294"&gt;A Mastodon post by Kevin Beaumont, lamenting the prevalence of major companies paying millions to extortionist teen hackers, refers derisively to Thalha Jubair as a part of an APT threat known as &amp;#8220;Advanced Persistent Teenagers.&amp;#8221;&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;In August, convicted Scattered Spider member and 20-year-old Florida man &lt;strong&gt;Noah Michael Urban&lt;/strong&gt; was &lt;a href="https://krebsonsecurity.com/2025/08/sim-swapper-scattered-spider-hacker-gets-10-years/" rel="noopener" target="_blank"&gt;sentenced to 10 years in federal prison&lt;/a&gt; and ordered to pay roughly $13 million in restitution to victims.&lt;/p&gt;
 &lt;p&gt;In April 2025, a 23-year-old Scottish man thought to be an early Scattered Spider member was &lt;a href="https://krebsonsecurity.com/2025/04/alleged-scattered-spider-member-extradited-to-u-s/" rel="noopener" target="_blank"&gt;extradited from Spain to the U.S.&lt;/a&gt;, where he is facing charges of wire fraud, conspiracy and identity theft. U.S. prosecutors allege &lt;strong&gt;Tyler Robert Buchanan&lt;/strong&gt; and co-conspirators hacked into dozens of companies in the United States and abroad, and that he personally controlled more than $26 million stolen from victims.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update, Oct. 8, 8:59 a.m. ET:&lt;/strong&gt; A previous version of this story incorrectly referred to the malware sent by the reader as a Windows screenshot file. Rather, it is a Windows screensaver file.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=72279</guid><category>A Little Sunshine</category><category>Latest Warnings</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>The Coming Storm</category><category>ASYNCRAT</category><category>Austin Larsen</category><category>Charles Carmakal</category><category>Crimson Collective</category><category>CVE-2025-61882</category><category>Oracle E-Business Suite</category><category>Salesforce</category><category>Salesloft</category><category>Scattered LAPSUS$ Hunters</category><category>ShinyHunters</category><category>UNC6040</category><category>UNC6395</category></item><item><title>Subscription Health Dashboard 2025 Update</title><link>https://blog.qualys.com/category/product-tech</link><description>Deployment health is mission-critical in today’s digital environment. Duplicate records, ghost hosts, and stale data obscure insights, slow decisions, and erode confidence. Building on last year’s Subscription Health Dashboard blog and best practices, the 2025 update delivers cleaner visibility, stronger ownership, and sharper awareness across the Qualys Enterprise TruRisk™ Platform. It equips teams to act [&amp;#8230;]</description><content:encoded>&lt;p&gt;Deployment health is mission-critical in today’s digital environment. Duplicate records, ghost hosts, and stale data obscure insights, slow decisions, and erode confidence. Building on &lt;a href="https://blog.qualys.com/product-tech/2024/08/09/subscription-health-dashboard-update-optimize-deployments-and-identify-issues"&gt;last year’s Subscription Health Dashboard blog&lt;/a&gt; and best practices, the 2025 update delivers cleaner visibility, stronger ownership, and sharper awareness across the &lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Qualys Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform&lt;/a&gt;. It equips teams to act decisively and keep deployments efficient and compliant while ensuring confidence in global subscription health.&lt;/p&gt;
-
-
-
-&lt;p&gt;The 2025 Subscription Health Dashboard retains the same clean design with refreshed content and a host of improvements under the hood. Last year’s release helped global teams automate, scale success, and align on best practices faster than ever. This year’s update takes the next step, adding three new widgets, surfacing hidden issues, and delivering prescriptive guidance for faster resolution. Think of it as the new model year for deployment health, built to run smoother, faster, and more reliably.&lt;/p&gt;
-
-
-
-&lt;span id="more-38884"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="6-key-improvements-in-this-release"&gt;6 Key Improvements in This Release&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;1. Documentation Additions, Updates, and Streamlined Steps&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Refreshed documentation links in every widget for easier navigation and reference. (Open the widget, then copy and paste from the Description section; links are &lt;strong&gt;not clickable&lt;/strong&gt; from the UI hover action).&lt;/li&gt;
-
-
-
-&lt;li&gt;Cleanup of QQL, &lt;a href="https://docs.qualys.com/en/ud/latest/qql_topics/list_of_all_tokens.htm"&gt;Qualys Query Language&lt;/a&gt;, search queries for consistency and accuracy.&lt;/li&gt;
-
-
-
-&lt;li&gt;Deeper dive links into the &lt;a href="https://docs.qualys.com/en/vm/latest/authentication/authentication_lp.htm"&gt;authentication&lt;/a&gt; documentation and next steps.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;2. Sharper Ghost Host Detection (Now with Prescriptive Fixes)&lt;/strong&gt;&lt;br /&gt;Ghost hosts bloat counts, complicate reporting, and add little value. This release sharpens detection with two refined widgets updated with IP, NetBIOS, &lt;em&gt;and&lt;/em&gt; DNS tracking methods, as well as tuned queries, while simultaneously zeroing in on TCP and UDP services where polling or scanning access is blocked.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Updated Potential Ghost Host Detection &amp;#8211; &lt;/strong&gt;Spot where &lt;strong&gt;scanners are blocked from TCP and UDP ports&lt;/strong&gt; or associated services.&lt;ul&gt;&lt;li&gt;&lt;a href="https://docs.qualys.com/en/vm/latest/scanner_appliances/scanner_vlan.htm"&gt;Configure for Next Generation Firewalls, Host-Based Firewalls, and Load Balancers&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Review &lt;a href="https://docs.qualys.com/en/vm/latest/option_profiles/option_profiles_lp.htm"&gt;option profiles&lt;/a&gt; to quickly auto-clean subscriptions (see related &lt;a href="https://notifications.qualys.com/product/2024/07/22/qualys-recommended-option-profile-upcoming-important-changes"&gt;“Recommended Option Profile” blog update&lt;/a&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;New Widget #1&lt;/strong&gt;: See where the&lt;strong&gt; scanner is unable to poll TCP/UDP services (&lt;/strong&gt;targeting key QIDs 82023 and 82004).&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Step-by-Step Guidance highlight:&lt;/strong&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;Verify allow lists, trunk ports, and VLAN access.&lt;/li&gt;
-
-
-
-&lt;li&gt;Confirm QIDs 82023 and 82004 are included in the Option Profile.&lt;/li&gt;
-
-
-
-&lt;li&gt;Configure Option Profiles to ignore TCP SYN and SYN-ACK responses from firewalls (Additional tab).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-image q-image-no-shadow"&gt;
-&lt;figure class="aligncenter size-full is-resized"&gt;&lt;img alt="" class="wp-image-38886" height="610" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Sub-Health-dashboard-2025-packet-option.png" style="width: 546px; height: auto;" width="826" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;3. New Widget #2: Agent Merge Default Ports Check&lt;/strong&gt;&lt;br /&gt;&lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_correlation_identifier.htm"&gt;Correlating Qualys Cloud Agent records&lt;/a&gt; with IP-based scans is critical for accurate subscription reporting. This widget helps flag cases where default ports are not enabled, blocking merging, and helps teams to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Catch duplicate issues before they inflate asset counts.&lt;/li&gt;
-
-
-
-&lt;li&gt;Pinpoint root causes behind merging failures.&lt;/li&gt;
-
-
-
-&lt;li&gt;Resolve port-related gaps that block Qualys from unifying unauthenticated scans and agent data.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;4. New Widget #3: Discovered but Unmanaged Assets&lt;/strong&gt;&lt;br /&gt;Catch unknowns and Shadow IT activity with &lt;a href="https://blog.qualys.com/product-tech/2023/11/26/closing-the-visibility-gap-how-qualys-cloud-agent-passive-sensor-caps-eliminates-blind-spots-without-the-hassle"&gt;Qualys Cloud Agent passive discovery, &lt;/a&gt;&amp;nbsp;&lt;a href="https://www.qualys.com/passive-scanning-sensor/"&gt;network sensors&lt;/a&gt;, or the &lt;a href="https://www.qualys.com/apps/external-attack-surface-management/"&gt;External Attack Surface&lt;/a&gt;. This widget highlights unmanaged assets and web applications creeping into the subscription:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Gain insight into discoveries that are not yet covered&lt;a href="https://docs.qualys.com/en/vm/latest/scans/scanning_basics.htm"&gt; by Qualys VMDR&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/csam/latest/inventory/sensors/viewing_inventory_easm_assets_easm_tab.htm"&gt;External Attack Surface&lt;/a&gt;, or &lt;a href="https://docs.qualys.com/en/was/latest/get_started/get_started.htm"&gt;Web Application TotalAppSec scans.&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;5. Stale Assets Section Improvements&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;a href="https://docs.qualys.com/en/ud/latest/widgets/trending.htm?rhhlterm=legend%20legends&amp;amp;rhsearch=legend"&gt;Trending&lt;/a&gt; is automatically enabled when imported.&lt;/li&gt;
-
-
-
-&lt;li&gt;Expanded &lt;a href="https://docs.qualys.com/en/ud/latest/widgets/trending.htm?rhhlterm=legend%20legends&amp;amp;rhsearch=legend"&gt;legend&lt;/a&gt; and links for faster awareness and next steps.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;6. &lt;strong&gt;Branding Alignment&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Updated widgets with &lt;a href="https://www.qualys.com/apps/trurisk-eliminate/"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt; and &lt;a href="https://www.qualys.com/apps/policy-audit/"&gt;Policy Audit&lt;/a&gt; references, reflecting the latest Qualys terminology and capabilities.&lt;/p&gt;
-
-
-
-&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="sharper-insights-clear-action"&gt;Sharper Insights, Clear Action&lt;/h2&gt;
-
-
-
-&lt;p&gt;This release deepens the best practices established last year (&lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_merge_data.htm"&gt;unification&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/vm/latest/host_assets/agent_correlation_identifier.htm"&gt;merging&lt;/a&gt;, &lt;a href="https://blog.qualys.com/product-tech/2022/10/05/qualys-performance-tuning-series-remove-stale-assets-for-best-performance"&gt;purging&lt;/a&gt;, and &lt;a href="https://success.qualys.com/support/s/article/000006761"&gt;depth&lt;/a&gt;) by adding prescriptive guidance. With unmanaged and discovered asset tracking, potential ghost host resolution, and agent merging visibility, teams can &lt;a&gt;maintain&lt;/a&gt; a clean &lt;em&gt;and&lt;/em&gt; automated experience. This year’s updates empower teams to resolve issues, cutting inflated counts faster and helping to keep the platform accurate, reliable, and reporting-ready.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="next-steps"&gt;Next Steps&lt;/h2&gt;
-
-
-
-&lt;p&gt;Log in today to put the latest release to work:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Review hidden, unmanaged, and discovered assets, and then bring them into scope.&lt;/li&gt;
-
-
-
-&lt;li&gt;Enable &lt;a href="https://docs.qualys.com/en/conn/latest/get_started/get_started.htm"&gt;cloud connectors&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/ps/latest/get_started/get_started.htm"&gt;passive&lt;/a&gt; sensors, &lt;a href="https://docs.qualys.com/en/vm/latest/scanner_appliances/choosing_scanner_appliance.htm"&gt;scanners&lt;/a&gt;, &lt;a href="https://docs.qualys.com/en/csam/latest/inventory/sensors/cloud_agent.htm"&gt;agents&lt;/a&gt;, and close coverage gaps.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;a href="https://docs.qualys.com/en/csam/latest/rules/asset_purge_rule.htm"&gt;Purge stale records automatically&lt;/a&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;Check for potential ghost hosts, keep data clean, and unlock assets outside of view.&lt;/li&gt;
-
-
-
-&lt;li&gt;Validate agent merging to avoid duplicates.&lt;/li&gt;
-
-
-
-&lt;li&gt;Bookmark the &lt;a href="https://www.qualys.com/documentation/"&gt;Qualys documentation site&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;No matter which Qualys products the team uses to de-risk the business, with the 2025 Subscription Health Dashboard updates, they will get sharper insights and prescriptive guidance. These tactics combined with the updated dashboard ensure that the Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform subscription stays clean, compliant, and ready for whatever comes next!&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Download the 2025 Subscription Health Dashboard today.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://blog.qualys.com/wp-content/uploads/2025/10/SubHealth_10-7-25-FINAL__UDdashboard-1.json.zip" style="background-color: #ed2e26;"&gt;Download Now&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="contributors"&gt;&lt;strong&gt;C&lt;/strong&gt;ontributors&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Marcus Burrows – Lead Technical Trainer&lt;/li&gt;
-&lt;/ul&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38884</guid><category>Product and Tech</category><category>Subscription Health Dashboard</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on October 7, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update, Oct. 8, 8:59 a.m. ET:&lt;/strong&gt; A previous version of this story incorrectly referred to the malware sent by the reader as a Windows screenshot file. Rather, it is a Windows screensaver file.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=72279</guid><category>A Little Sunshine</category><category>Latest Warnings</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>The Coming Storm</category><category>ASYNCRAT</category><category>Austin Larsen</category><category>Charles Carmakal</category><category>Crimson Collective</category><category>CVE-2025-61882</category><category>Oracle E-Business Suite</category><category>Salesforce</category><category>Salesloft</category><category>Scattered LAPSUS$ Hunters</category><category>ShinyHunters</category><category>UNC6040</category><category>UNC6395</category></item><item><title>CISA Releases Two Industrial Control Systems Advisories</title><link>https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-releases-two-industrial-control-systems-advisories</link><description>&lt;p&gt;CISA released two Industrial Control Systems (ICS) advisories on October 7, 2025. These advisories provide timely information about current security issues, vulnerabilities, and exploits surrounding ICS.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ICSA-25-280-01 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-280-01" title="Delta Electronics DIAScreen"&gt;Delta Electronics DIAScreen&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ICSA-25-226-31 &lt;a href="https://www.cisa.gov/news-events/ics-advisories/icsa-25-226-31" title="Rockwell Automation 1756-EN4TR, 1756-EN4TRXT (Update B)"&gt;Rockwell Automation 1756-EN4TR, 1756-EN4TRXT (Update B)&lt;/a&gt;&lt;/li&gt;
