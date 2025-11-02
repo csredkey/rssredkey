@@ -1,5 +1,485 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 02 Nov 2025 12:59:17 +0000</lastBuildDate><item><title>Canada Warns of Cyberattacks Targeting Industrial Control Systems</title><link>https://www.techrepublic.com/article/news-canada-critical-infrastructure-attacks/</link><description>&lt;p&gt;Hackers breached Canadian water, energy, and farm systems, prompting national warnings to secure industrial control networks.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 02 Nov 2025 13:59:22 +0000</lastBuildDate><item><title>Drawn to Danger: Windows Graphics Vulnerabilities Lead to Remote Code Execution and Memory Exposure</title><link>https://research.checkpoint.com/2025/drawn-to-danger-windows-graphics-vulnerabilities-lead-to-remote-code-execution-and-memory-exposure/</link><description>&lt;p&gt;Background Check Point Research (CPR) identified three security vulnerabilities in the&amp;#160;Graphics Device Interface (GDI) in Windows. We promptly reported these issues to Microsoft, and they were addressed in the&amp;#160;Patch Tuesday&amp;#160;updates in May, July, and August 2025. These are the vulnerabilities: Vulnerability disclosures such as these highlight the need for proactive measures to mitigate potential risks. [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/drawn-to-danger-windows-graphics-vulnerabilities-lead-to-remote-code-execution-and-memory-exposure/"&gt;Drawn to Danger: Windows Graphics Vulnerabilities Lead to Remote Code Execution and Memory Exposure&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="background"&gt;Background&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point Research (CPR) identified three security vulnerabilities in the&amp;nbsp;&lt;em&gt;Graphics Device Interface (&lt;/em&gt;&lt;code&gt;GDI&lt;/code&gt;) in Windows. We promptly reported these issues to Microsoft, and they were addressed in the&amp;nbsp;&lt;em&gt;Patch Tuesday&lt;/em&gt;&amp;nbsp;updates in May, July, and August 2025.&lt;/p&gt;
+
+
+
+&lt;p&gt;These are the vulnerabilities:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-30388"&gt;CVE-2025-30388&lt;/a&gt;, rated important and considered more likely to be exploited;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53766"&gt;CVE-2025-53766&lt;/a&gt;, classified as critical severity and may allow remote attackers to execute arbitrary code on affected systems;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-47984"&gt;CVE-2025-47984&lt;/a&gt;, also rated important and can result in the unauthorized disclosure of sensitive information over the network.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Vulnerability disclosures such as these highlight the need for proactive measures to mitigate potential risks. Our purpose in publishing this blog after security fixes were implemented is to further raise awareness of these vulnerabilities and provide Windows users with defensive insights and mitigation recommendations. In the following sections, we detail the findings of our &lt;a href="https://research.checkpoint.com/2025/denial-of-fuzzing-rust-in-the-windows-kernel/"&gt;fuzzing campaign&lt;/a&gt;, which targeted Windows &lt;code&gt;GDI&lt;/code&gt; using the &lt;code&gt;EMF&lt;/code&gt; format and led to the discovery of these security vulnerabilities.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="geometry-gone-rogue---cve-2025-30388"&gt;Geometry Gone Rogue &amp;#8211; CVE-2025-30388&lt;/h2&gt;
+
+
+
+&lt;p&gt;We found three separate crashes related to the processing of&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/ae7927c3-e416-4069-a9b8-3200113d6c41"&gt;&lt;code&gt;EmfPlusDrawString&lt;/code&gt;&lt;/a&gt;,&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusFillRects&lt;/code&gt;&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/d7b561b0-3dc7-4444-b7ac-55492b5af0f4"&gt;&lt;code&gt;EmfPlusFillClosedCurve&lt;/code&gt;&lt;/a&gt;&amp;nbsp;records. All three cases have a common root cause: another record sets the stage for exploitation. However, the outcome varies depending on which additional records are processed during the execution. Our current analysis focuses on the crash involving the&amp;nbsp;&lt;code&gt;EmfPlusDrawString&lt;/code&gt;&amp;nbsp;record.&lt;/p&gt;
+
+
+
+&lt;p&gt;Multiple access violation exceptions occurred in the&amp;nbsp;&lt;code&gt;ScanOperation::AlphaMultiply_sRGB()&lt;/code&gt;,&amp;nbsp;&lt;code&gt;ScanOperation::Blend_sRGB_sRGB_MMX()&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;EpAntialiasedFiller::OutputSpan()&lt;/code&gt;&amp;nbsp;functions within version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdiplus.dll/261FF48616c000/gdiplus.dll"&gt;&lt;code&gt;10.0.26100.3037&lt;/code&gt;&lt;/a&gt;&amp;nbsp;of the&amp;nbsp;&lt;code&gt;GdiPlus.dll&lt;/code&gt;&amp;nbsp;module. These exceptions were triggered when the system attempted to read or write memory at the end of a&amp;nbsp;&lt;code&gt;4000/0xFA0&lt;/code&gt;&amp;nbsp;bytes heap block, or while attempting to access reserved but unallocated memory.&lt;/p&gt;
+
+
+
+&lt;p&gt;This vulnerability could potentially allow a remote attacker to perform out-of-bounds read or write memory operations using a specially crafted&amp;nbsp;&lt;code&gt;EMF+&lt;/code&gt;&amp;nbsp;metafile.&amp;nbsp;&lt;em&gt;Figure 1&lt;/em&gt;&amp;nbsp;shows the decompiled source code of the&amp;nbsp;&lt;code&gt;ScanOperation::AlphaMultiply_sRGB()&lt;/code&gt;&amp;nbsp;function at the time of the crash.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-32166" height="550" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image1-1024x550.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 1.&lt;/em&gt;&amp;nbsp;Decompiled source code of the affected&amp;nbsp;&lt;code&gt;ScanOperation::AlphaMultiply_sRGB()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;In our crash sample, which serves as a proof of concept (PoC) for reproducing a vulnerability, an&amp;nbsp;&lt;code&gt;EmfPlusClear&lt;/code&gt;&amp;nbsp;record is located before the&amp;nbsp;&lt;code&gt;EmfPlusDrawString&lt;/code&gt;&amp;nbsp;record within the metafile. This record clears the output coordinate space and initializes it with a background color and transparency, as defined by its&amp;nbsp;&lt;code&gt;Color&lt;/code&gt;&amp;nbsp;field. The field contains an&amp;nbsp;&lt;code&gt;EmfPlusARGB&lt;/code&gt;&amp;nbsp;object specifying red, green, blue, and alpha components. This detail is significant because it allows an attacker to control the value written to memory during exploitation.&amp;nbsp;&lt;em&gt;Listing 1&lt;/em&gt;&amp;nbsp;shows the affected&amp;nbsp;&lt;code&gt;EmfPlusClear&lt;/code&gt;&amp;nbsp;record.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;EmfPlusClear clear = {
+    .Type     = 0x4009,
+    .Flags    = 0x0102,
+    .Size     = 0x0000003c,
+    .DataSize = 0x00000030,
+    .Color    = 0xaabbccff  // Value written to memory
+};
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 1. Sample EmfPlusClear record showing the value written to memory.&lt;/p&gt;
+
+
+
+&lt;p&gt;Further investigation revealed that the&amp;nbsp;&lt;code&gt;EmfPlusClear&lt;/code&gt;&amp;nbsp;record handler uses the&amp;nbsp;&lt;code&gt;EpScanBitmap::Start()&lt;/code&gt;&amp;nbsp;function to allocate a heap block to store 4000 bytes (0xFA0). This buffer is then populated with the specified&amp;nbsp;&lt;code&gt;EmfPlusARGB&lt;/code&gt;&amp;nbsp;object, which undergoes alpha multiplication by the&amp;nbsp;&lt;code&gt;AlphaMultiply_sRGB()&lt;/code&gt;&amp;nbsp;function during the processing of the&amp;nbsp;&lt;code&gt;EmfPlusDrawString&lt;/code&gt;&amp;nbsp;record.&lt;/p&gt;
+
+
+
+&lt;p&gt;Note that the loop counter stored in the&amp;nbsp;&lt;code&gt;ebx&lt;/code&gt;&amp;nbsp;register begins at 0x950. As each iteration writes a 4-byte object into the target buffer at&amp;nbsp;&lt;code&gt;ecx + edx&lt;/code&gt;, the function writes out-of-bounds after 1000 bytes, when the counter reaches 0x567. This behavior can be observed in&amp;nbsp;&lt;em&gt;Listing 2&lt;/em&gt;&amp;nbsp;which shows an excerpt from the crash analysis.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;0:000&gt; g
+(16b8.5ec): Access violation - code c0000005 (first/second chance not available)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+eax=ffccbbaa ebx=00000567 ecx=022cec8c edx=08732374 esi=000015e3 edi=db000000
+eip=74e16d9d esp=0075ddb0 ebp=0075ddc0 iopl=0         nv up ei ng nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000282
+gdiplus!ScanOperation::AlphaMultiply_sRGB+0x2d:
+74e16d9d 890411          mov     dword ptr [ecx+edx],eax ds:002b:0aa01000=????????
+0:000&gt; kb
+ # ChildEBP RetAddr      Args to Child              
+00 0075ddc0 74e16653     00000950 0872bd0c 0075e99c gdiplus!ScanOperation::AlphaMultiply_sRGB+0x2d
+01 0075ddf4 74e16520     00000000 00000000 00000015 gdiplus!EpScanBitmap::NextBuffer+0xc3
+02 0075de2c 74e15c91     00000000 00000000 00000015 gdiplus!DpOutputSolidColorSpan::OutputSpan+0x40
+03 0075de58 74e188d4     00000000 ffffff19 00000955 gdiplus!DpClipRegion::OutputSpan+0x141
+04 0075de7c 74e15988     00000000 0f47eed0 74e01b40 gdiplus!EpAliasedFiller::FillEdgesWinding+0x54
+05 0075e938 74e0420e     00000001 00000003 00000000 gdiplus!RasterizePath+0x5d8
+06 0075ea74 74e01cee     08747da0 0873cf98 0075eab8 gdiplus!DpDriver::StrokePath+0x3ee
+07 0075ea9c 74e01db7     0075eab8 0075eb20 0075ede0 gdiplus!GpGraphics::DrvStrokePath+0x38
+08 0075eadc 74df3b06     0075eb10 0075eb20 0075edcc gdiplus!GpGraphics::RenderDrawPath+0xbc
+09 0075ed68 74e50a58     0075edcc 0075ed98 00000002 gdiplus!GpGraphics::DrawLines+0x148
+0a 0075ee54 74f034c2     0aa08ff0 0f2a2fb8 00000000 gdiplus!FullTextImager::GdipLscbkDrawUnderline+0x228
+0b 0075eee4 74ef7d57     0075f048 00000004 00000000 gdiplus!DrawUnderlineMerge+0x16f
+0c 0075ef90 74eef9fd     00000001 00000000 00001015 gdiplus!DisplaySublineCore+0x25b
+0d 0075f018 74ed907c     0aa40fa0 0aa40fa0 0aa40fa0 gdiplus!LsDisplayLine+0x193
+0e 0075f02c 74edc08e     0075f048 00000000 0aa04e70 gdiplus!BuiltLine::Draw+0x12
+0f 0075f058 74edbfd4     0aa40fa0 00000000 0aa04e70 gdiplus!FullTextImager::RenderLine+0x50
+10 0075f0d8 74ed915f     0aa04e70 74ed9090 00000000 gdiplus!FullTextImager::Render+0x211
+11 0075f108 74e6192a     0873ed28 0075f150 08744cb0 gdiplus!FullTextImager::Draw+0xcf
+12 0075f3c8 74e8c55f     05b70184 00000014 0874bfe0 gdiplus!GpGraphics::DrawString+0x2f412
+13 0075f404 74e02081     08744cb0 0000401c 0000df00 gdiplus!DrawStringEPR::Play+0xdf                        // Affects EmfPlusDrawString record
+14 0075f428 74e01f97     0000401c 0000df00 00000044 gdiplus!GdipPlayMetafileRecordCallback+0x71
+15 0075f45c 74e01e7c     00000104 05b700a8 0865ad58 gdiplus!MetafilePlayer::EnumerateEmfPlusRecords+0x97
+16 0075f47c 75ca5d2f     a901095a 0866cff8 05b70098 gdiplus!EnumEmfWithDownLevel+0x8c
+17 0075f510 75ca4309     74e01df0 08744cb0 0075f58c gdi32full!bInternalPlayEMF+0x830
+18 0075f524 771cad7f     a901095a 824606f7 74e01df0 gdi32full!EnumEnhMetaFile+0x39
+19 0075f544 74df5ed6     a901095a 824606f7 74e01df0 GDI32!EnumEnhMetaFileStub+0x2f
+1a 0075f5a0 74df5b3b     a901095a 824606f7 0075f5e4 gdiplus!MetafilePlayer::EnumerateEmfRecords+0xdf
+1b 0075f648 74df81bc     08744cb0 824606f7 0075f774 gdiplus!GpGraphics::EnumEmfPlusDual+0x351              // Affects EMF+ Dual
+1c 0075f7b8 74e1384c     0075f810 0075f810 00000002 gdiplus!GpMetafile::EnumerateForPlayback+0x819
+1d 0075f8d8 74e01903     08723f28 0075f908 0075f918 gdiplus!GpGraphics::DrawImage+0x5ec
+1e 0075f944 74e8a69e     08723f28 0075f96c 0075f97c gdiplus!GpGraphics::DrawImage+0x61
+1f 0075f9a4 74e8b8a6     00000064 00000064 08723f28 gdiplus!GpMetafile::GetBitmap+0x1d2
+20 0075f9b8 74e6e16b     00000064 00000064 00000000 gdiplus!GpMetafile::GetThumbnail+0x26
+21 0075f9e0 006511a0     08723f28 00000064 00000064 gdiplus!GdipGetImageThumbnail+0x6b                     // Reachable via thumbnails
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;unnecessary information removed&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+0:000&gt; dd [ecx+edx]-0xfa0-10 L8
+0aa00050  00000000 00000000 046e0b3c dcbabbbb
+0aa00060  ffccbbaa ffccbbaa ffccbbaa ffccbbaa 
+0:000&gt; dd [ecx+edx]-10 L8
+0aa00ff0  ffccbbaa ffccbbaa ffccbbaa ffccbbaa 
+0aa01000  ???????? ???????? ???????? ????????&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Listing 2.&lt;/em&gt;&amp;nbsp;Stack trace showing an access violation in the&amp;nbsp;&lt;code&gt;ScanOperation::AlphaMultiply_sRGB()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;Alpha values are multiplied by color values to ensure that transparent areas (where the alpha value is 0) do not contribute any color (R = G = B = 0). As a result, colors in semi-transparent areas appear darker because these objects emit less light compared to opaque ones.&lt;/p&gt;
+
+
+
+&lt;p&gt;The fourth byte is the alpha value, which can range from 0x00 to 0xFF. Setting the alpha value to 0xFF allows an attacker near-complete control over what is written to the buffer, as the RGB values remain unchanged. In the example above,&amp;nbsp;&lt;code&gt;B=0xAA&lt;/code&gt;,&amp;nbsp;&lt;code&gt;G=0xBB&lt;/code&gt;,&amp;nbsp;&lt;code&gt;R=0xCC&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;A=0xFF&lt;/code&gt;&amp;nbsp;were written into the target buffer.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-32167" height="561" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image2-1024x561.png" width="1024" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 2.&lt;/em&gt;&amp;nbsp;Binary differences showing the new&amp;nbsp;&lt;code&gt;ValidateAndSet()&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;IsRectValid()&lt;/code&gt;&amp;nbsp;functions.&lt;/p&gt;
+
+
+
+&lt;p&gt;As illustrated by&amp;nbsp;&lt;em&gt;Figure 2&lt;/em&gt;, patch analysis confirmed that the crashes which occurred during the processing of various metafile records all shared a common root cause: the presence of invalid&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-rect"&gt;&lt;code&gt;RECT&lt;/code&gt;&lt;/a&gt;&amp;nbsp;objects within an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/0dfb6f4f-e53c-413b-80cf-57a3cadd5d38"&gt;&lt;code&gt;EmfPlusSetTSClip&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record that preceded the other records in which the crashes were observed.&amp;nbsp;&lt;em&gt;Listing 3&lt;/em&gt;&amp;nbsp;shows the affected record from our crash samples.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;EmfPlusSetTSClip clip = {
+    .Type        = 0x403a,
+    .Flags       = 0x0003, // Number of RECT objects
+    .Size        = 0x00000048,
+    .DataSize    = 0x0000003c,
+    .NumRects[3] = {
+        { 0x00000005, 0x00000000, 0x04000000, 0x0000001f }, // Valid
+        { 0x00000000, 0x00e90000, 0xfff70000, 0x00000000 }, // Not valid
+        { 0x00000000, 0x00000000, 0x00000015, 0x003f8000 }  // Valid
+    }
+};
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 3. Sample EmfPlusSetTSClip record containing invalid RECT objects.&lt;/p&gt;
+
+
+
+&lt;p&gt;Processing invalid&amp;nbsp;&lt;code&gt;RECT&lt;/code&gt;&amp;nbsp;objects results in a heap-based buffer overflow that may allow an attacker to perform out-of-bounds memory operations. An attacker could exploit this vulnerability by using various other metafile records to write or read memory, as a corrupted&amp;nbsp;&lt;code&gt;EmfPlusSetTSClip&lt;/code&gt;&amp;nbsp;record sets the stage for exploitation. Looking at the rendering of the sample&amp;nbsp;&lt;code&gt;EmfPlusFillRects&lt;/code&gt;&amp;nbsp;record in&amp;nbsp;&lt;em&gt;Figure 3&lt;/em&gt;&amp;nbsp;indicates that it is possible to disclose uninitialized or initialized heap bytes via the filled rectangle.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32174" height="520" src="https://research.checkpoint.com/wp-content/uploads/2025/11/image3.gif" width="960" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 3.&lt;/em&gt;&amp;nbsp;Leaking heap memory in Word via the sample&amp;nbsp;&lt;code&gt;EmfPlusFillRects&lt;/code&gt;&amp;nbsp;record.&lt;/p&gt;
+
+
+
+&lt;p&gt;As we can see from the resulting image in Microsoft Word 365, the output varies in each rendering, which demonstrates that this crash sample leaks memory and eventually Word is unexpectedly terminated. This behavior already crosses a security boundary as it can lead to information disclosure if an attacker can read back the rendered image, for example, using JavaScript in a web browser.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft fixed this vulnerability within the&amp;nbsp;&lt;code&gt;SetTSClipEPR::Play()&lt;/code&gt;&amp;nbsp;handler function in version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdiplus.dll/83C295AB173000/gdiplus.dll"&gt;10.0.26100.4061&lt;/a&gt;&amp;nbsp;of&amp;nbsp;&lt;code&gt;GdiPlus.dll&lt;/code&gt;&amp;nbsp;by introducing the&amp;nbsp;&lt;code&gt;ValidateAndSet()&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;IsRectValid()&lt;/code&gt;&amp;nbsp;functions to validate&amp;nbsp;&lt;code&gt;RECT&lt;/code&gt;&amp;nbsp;objects, as shown in&amp;nbsp;&lt;em&gt;Figure 4&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;em&amp;gt;Figure 4.&amp;lt;/em&amp;gt; New functions in &amp;lt;code&amp;gt;GdiPlus.dll&amp;lt;/code&amp;gt; to
+validate &amp;lt;code&amp;gt;RECT&amp;lt;/code&amp;gt; objects." src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image4.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 4.&lt;/em&gt;&amp;nbsp;New functions in&amp;nbsp;&lt;code&gt;GdiPlus.dll&lt;/code&gt;&amp;nbsp;to validate&amp;nbsp;&lt;code&gt;RECT&lt;/code&gt;&amp;nbsp;objects.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This bug was addressed with&amp;nbsp;&lt;a href="https://support.microsoft.com/en-us/topic/may-13-2025-kb5058411-os-build-26100-4061-356568c2-c730-469e-819d-b680d43b1265"&gt;KB5058411&lt;/a&gt;&amp;nbsp;in the&amp;nbsp;&lt;em&gt;May 2025 Patch Tuesday&lt;/em&gt;&amp;nbsp;as a remote code execution vulnerability of important severity, tracked as&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-30388"&gt;CVE-2025-30388&lt;/a&gt;. Notably, this issue also affects Microsoft Office for Mac and Android. In addition, MSRC’s exploitability assessment is “&lt;em&gt;Exploitation More Likely”&lt;/em&gt;, indicating that this vulnerability presents a high-value target for attackers.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="negative-space---cve-2025-53766"&gt;Negative Space &amp;#8211; CVE-2025-53766&lt;/h2&gt;
+
+
+
+&lt;p&gt;We identified a fourth crash while processing an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/ae7927c3-e416-4069-a9b8-3200113d6c41"&gt;&lt;code&gt;EmfPlusDrawRects&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record. An access violation exception occurred in the&amp;nbsp;&lt;code&gt;ScanOperation::AlphaDivide_sRGB()&lt;/code&gt;&amp;nbsp;function within version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdiplus.dll/261FF48616c000/gdiplus.dll"&gt;10.0.26100.4202&lt;/a&gt;&amp;nbsp;of&amp;nbsp;&lt;code&gt;GdiPlus.dll&lt;/code&gt;, as it attempted to write to reserved but unallocated memory.&lt;/p&gt;
+
+
+
+&lt;p&gt;This vulnerability could allow a remote attacker to perform an out-of-bounds memory write using a specially crafted&amp;nbsp;&lt;code&gt;EMF+&lt;/code&gt;&amp;nbsp;metafile.&amp;nbsp;&lt;em&gt;Figure 5&lt;/em&gt;&amp;nbsp;shows the decompiled source code of the affected&amp;nbsp;&lt;code&gt;ScanOperation::AlphaDivide_sRGB()&lt;/code&gt;&amp;nbsp;function at the time of the crash.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-32169" height="550" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image5-1024x550.png" width="1024" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 5.&lt;/em&gt;&amp;nbsp;Decompiled source code of the&amp;nbsp;&lt;code&gt;ScanOperation::AlphaDivide_sRGB()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;This issue is similar to&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-30388"&gt;CVE-2025-30388&lt;/a&gt;, the vulnerability we previously discussed. That bug was caused by invalid&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;RECT&lt;/code&gt;&lt;/a&gt;&amp;nbsp;objects within an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusSetTSClip&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record that preceded other records in which the crash occurred. In this new case, the vulnerability stems from a series of&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusRect&lt;/code&gt;&lt;/a&gt;&amp;nbsp;objects within the affected&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusDrawRects&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record, detailed in&amp;nbsp;&lt;em&gt;Listing 4&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;EmfPlusDrawRects rects = {
+    .Type     = 0x400B,
+    .Flags    = 0xEF00,
+    .Size     = 0x00000048,
+    .DataSize = 0x0000003C,
+    .Count    = 0x00000003,
+    .RectData[Count] = {
+        { 0x0000, 0x3400, 0x3434, 0x3434 },
+        { 0x3434, 0x3434, 0x3434, 0x3434 },
+        { 0x3434, 0x3434, 0x3434, 0x3434 },
+        { 0x3434, 0x3434, 0x0000, 0x3000 },
+        { 0x3434, 0x3434, 0x3434, 0x3434 },
+        { 0x3434, 0x3434, 0x0034, 0x0010 },
+        { 0x4000, 0x3434, 0x3434, 0x3434 },
+    }
+};
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 4. Sample EmfPlusDrawRects structure containing malformed EmfPlusRect objects.&lt;/p&gt;
+
+
+
+&lt;p&gt;The&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusDrawRects&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record is preceded by an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusObject&lt;/code&gt;&lt;/a&gt;&amp;nbsp;record that specifies an&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-emfplus/8d510051-eeb2-482f-9964-e9cd1dad6fca"&gt;&lt;code&gt;EmfPlusPen&lt;/code&gt;&lt;/a&gt;&amp;nbsp;object used in graphics operations. The&amp;nbsp;&lt;code&gt;EmfPlusPen&lt;/code&gt;&amp;nbsp;object defines a graphics brush associated with the pen. The brush is a solid-color brush, characterized by an&amp;nbsp;&lt;code&gt;EmfPlusARGB&lt;/code&gt;&amp;nbsp;value. The source of the write operation in the&amp;nbsp;&lt;code&gt;eax&lt;/code&gt;&amp;nbsp;register can be controlled by the attacker through this value, as shown by the excerpt of the crash analysis in&amp;nbsp;&lt;em&gt;Listing 5&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;0:000&gt; g
+(abc.7148): Access violation - code c0000005 (first/second chance not available)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+eax=ffff004c ebx=000000ff ecx=fffcf63c edx=086cb9c4 esi=6af57480 edi=0868bd58
+eip=6af574b3 esp=004feb34 ebp=004feb48 iopl=0         nv up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+gdiplus!ScanOperation::AlphaDivide_sRGB+0x33:
+6af574b3 890411          mov     dword ptr [ecx+edx],eax ds:002b:0869b000=10000011
+0:000&gt; kb
+# ChildEBP RetAddr      Args to Child              
+00 004feb48 6af573bd     00000035 0868bd0c 004fef98 gdiplus!ScanOperation::AlphaDivide_sRGB+0x33
+01 004feb7c 6af5b364     00000064 00000063 00000064 gdiplus!EpScanBitmap::NextBuffer+0xdd
+02 004febbc 6af5ab8e     004fef98 004fee40 00000001 gdiplus!OnePixelLineDDAAliased::DrawXMajor+0x54
+03 004fecd4 6af5aabf     004fef98 00000000 00000000 gdiplus!DrawSolidLineOnePixelAliased+0x9e
+04 004fed18 6af58bb8     004fefac 004fee20 00000005 gdiplus!DrawSolidStrokeOnePixel+0x9f
+05 004fef48 6af3fe26     00000000 00000000 6af5aa20 gdiplus!FixedPointPathEnumerate+0x358
+06 004feff8 6af405ac     086a7da0 0869cf98 004ff178 gdiplus!DpDriver::SolidStrokePathOnePixel+0x124
+07 004ff134 6af43107     086a7da0 0869cf98 004ff178 gdiplus!DpDriver::StrokePath+0x33c
+08 004ff15c 6af43096     004ff178 004ff1e8 086b1f8c gdiplus!GpGraphics::DrvStrokePath+0x3b
+09 004ff19c 6af429c7     004ff1c4 004ff1e8 086b1f78 gdiplus!GpGraphics::RenderDrawPath+0xbc
+0a 004ff39c 6afd3746     086b1f78 07bb0160 00000003 gdiplus!GpGraphics::DrawRects+0x356
+0b 004ff3c4 6af40b59     086a4cb0 0000400b 00000400 gdiplus!DrawRectsEPR::Play+0x86
+0c 004ff3e8 6af40a67     0000400b 00000400 0000003c gdiplus!GdipPlayMetafileRecordCallback+0x79
+0d 004ff41c 6af4094c     00000104 07bb00a8 08006d58 gdiplus!MetafilePlayer::EnumerateEmfPlusRecords+0x97
+0e 004ff43c 75eab76f     1c01154a 08d06ff8 07bb0098 gdiplus!EnumEmfWithDownLevel+0x8c
+0f 004ff4d0 75ea9d49     6af408c0 086a4cb0 004ff54c gdi32full!bInternalPlayEMF+0x830
+10 004ff4e4 75f2b9bf     1c01154a a94624e7 6af408c0 gdi32full!EnumEnhMetaFile+0x39
+11 004ff504 6af368f6     1c01154a a94624e7 6af408c0 GDI32!EnumEnhMetaFileStub+0x2f
+12 004ff560 6af36551     1c01154a a94624e7 004ff5a4 gdiplus!MetafilePlayer::EnumerateEmfRecords+0xdf
+13 004ff608 6af38bdc     086a4cb0 a94624e7 004ff734 gdiplus!GpGraphics::EnumEmfPlusDual+0x351
+14 004ff778 6af5454c     004ff7d0 004ff7d0 00000002 gdiplus!GpMetafile::EnumerateForPlayback+0x819
+15 004ff898 6af467ac     08683f28 004ff8c8 004ff8d8 gdiplus!GpGraphics::DrawImage+0x5ec
+16 004ff904 6afd198e     08683f28 004ff92c 004ff93c gdiplus!GpGraphics::DrawImage+0x61
+17 004ff964 6afd2b96     00000064 00000064 08683f28 gdiplus!GpMetafile::GetBitmap+0x1d2
+18 004ff978 6afb540b     00000064 00000064 00000000 gdiplus!GpMetafile::GetThumbnail+0x26
+19 004ff9a0 009a11a0     08683f28 00000064 00000064 gdiplus!GdipGetImageThumbnail+0x6b
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;unnecessary information removed&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 5. Stack trace showing an access violation in the ScanOperation::AlphaDivide_sRGB() function.&lt;/p&gt;
+
+
+
+&lt;p&gt;In a bitmap image, a scan-line is one horizontal row of pixels. Processing an image line by line means handling one scan-line at a time, from left to right and top to bottom. Further analysis showed that the&amp;nbsp;&lt;code&gt;EpScanBitmap::NextBuffer()&lt;/code&gt;&amp;nbsp;function never verified that the number of scan-lines it was about to process fit in the destination bitmap, meaning that the function could be tricked into reading or writing past the bottom edge of an image if a call requested more scan-lines than existed.&lt;/p&gt;
+
+
+
+&lt;p&gt;Assuming that the bitmap allocated for thumbnail generation is 100&amp;#215;100 (0x64 × 0x64) pixels, the rectangle data in the PoC metafile deliberately pushes the scan position past the bottom edge of the bitmap and triggers the out-of-bounds write. Any one of those rectangles forces the rasterizer (which converts vector graphics into a pixel grid) to process scan-lines whose Y coordinate is well beyond the 0-99 range of the bitmap.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-32170" height="550" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image6-1024x550.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 6. Function-level differences showing the code blocks added to the EpScanBitmap::NextBuffer() function." src="https://research.checkpoint.com/s2_pandoc-html/media/image6.png" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Microsoft fixed this vulnerability within the&amp;nbsp;&lt;code&gt;EpScanBitmap::NextBuffer()&lt;/code&gt;&amp;nbsp;function in version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdiplus.dll/33BC2927180000/gdiplus.dll"&gt;10.0.26100.4946&lt;/a&gt;&amp;nbsp;of&amp;nbsp;&lt;code&gt;GdiPlus.dll&lt;/code&gt;, as shown in&amp;nbsp;&lt;em&gt;Figure 6&lt;/em&gt;, by adding a check to detect when the requested number of scan-lines exceeds the height of the bitmap. The function now automatically trims the requested scan-lines to fit within the remaining rows, preventing any out-of-bounds access, as shown in&amp;nbsp;&lt;em&gt;Figure 7&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-32171" height="1024" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image7-675x1024.png" width="675" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 7.&lt;/em&gt;&amp;nbsp;Decompiled source code of the patched&amp;nbsp;&lt;code&gt;GEpScanBitmap::NextBuffer()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;This vulnerability was addressed with&amp;nbsp;&lt;a href="https://support.microsoft.com/en-us/topic/august-12-2025-kb5063878-os-build-26100-4946-e4b87262-75c8-4fef-9df7-4a18099ee294"&gt;KB5063878&lt;/a&gt;&amp;nbsp;in the&amp;nbsp;&lt;em&gt;August 2025 Patch Tuesday&lt;/em&gt;&amp;nbsp;as a critical severity remote code execution vulnerability tracked as&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53766"&gt;CVE-2025-53766&lt;/a&gt;. Notably, this vulnerability requires no privileges or user interaction and can be exploited remotely over a network, making it a high-risk threat to web services that parse specially crafted metafiles.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="unfinished-business---cve-2025-48984"&gt;Unfinished Business &amp;#8211; CVE-2025-48984&lt;/h2&gt;
+
+
+
+&lt;p&gt;We identified a fifth crash while processing an&amp;nbsp;&lt;code&gt;EMR_STARTDOC&lt;/code&gt;&amp;nbsp;record, which immediately appeared to be related to the&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/en-us/advisory/CVE-2022-35837"&gt;CVE-2022-35837&lt;/a&gt;&amp;nbsp;vulnerability. An access violation exception happened in the&amp;nbsp;&lt;code&gt;StringLengthWorkerW()&lt;/code&gt;&amp;nbsp;function within version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdi32full.dll/6E5ABE8Aed000/gdi32full.dll"&gt;&lt;code&gt;10.0.26100.3624&lt;/code&gt;&lt;/a&gt;&amp;nbsp;of&amp;nbsp;&lt;code&gt;gdi32full.dll&lt;/code&gt;&amp;nbsp;while attempting to read memory at the end of a&amp;nbsp;&lt;code&gt;288/0x120&lt;/code&gt;&amp;nbsp;bytes heap block.&amp;nbsp;&lt;em&gt;Listing 6&lt;/em&gt;&amp;nbsp;contains the relevant excerpt of the crash analysis.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;0:000&gt; g
+(48b0.7b68): Access violation - code c0000005 (first chance)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+eax=00dbf028 ebx=08195f7c ecx=08196000 edx=7fffffbc esi=7ffffffe edi=00000000
+eip=7792d586 esp=00dbf014 ebp=00dbf01c iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00010202
+gdi32full!StringLengthWorkerW+0xf:
+7792d586 663939          cmp     word ptr [ecx],di        ds:002b:08196000=????
+0:000&gt; kb
+ # ChildEBP RetAddr      Args to Child              
+00 00d3f37c 7796f55c     00d3f388 00000000 00d3f3cc gdi32full!StringLengthWorkerW+0xf
+01 00d3f38c 77974155     00d3f3b0 0885bf4c 779740b0 gdi32full!StringCbLengthW+0x1a
+02 00d3f3cc 77966ffb     9e011903 0885dff8 00000001 gdi32full!MRSTARTDOC::bPlay+0xa5
+03 00d3f420 6d971f4d     9e011903 0885dff8 0885bf4c gdi32full!PlayEnhMetaFileRecord+0x5b
+04 00d3f438 6d971e21     08ab5720 6d971c40 0000006b gdiplus!EmfEnumState::PlayRecord+0x2d
+05 00d3f450 6d980b8c     0000006b 00000024 0885bf54 gdiplus!EmfEnumState::ProcessRecord+0x1e1
+06 00d3f470 6d9b939d     0000006b 00000000 00000024 gdiplus!GdipPlayMetafileRecordCallback+0xec
+07 00d3f49c 7796824f     9e011903 0885dff8 0885bf4c gdiplus!EnumEmfDownLevel+0x7d
+08 00d3f530 77966829     6d9b9320 08ab2cb0 00d3f5ac gdi32full!bInternalPlayEMF+0x830
+09 00d3f544 7632ad7f     9e011903 65461856 6d9b9320 gdi32full!EnumEnhMetaFile+0x39
+0a 00d3f564 6d9768c6     9e011903 65461856 6d9b9320 GDI32!EnumEnhMetaFileStub+0x2f
+0b 00d3f5c0 6d9741ac     9e011903 65461856 00d3f664 gdiplus!MetafilePlayer::EnumerateEmfRecords+0xdf
+0c 00d3f678 6d9789eb     08ab2cb0 65461856 00d3f7b4 gdiplus!GpGraphics::EnumEmf+0x413
+0d 00d3f7f8 6d99452c     00d3f850 00d3f850 00000002 gdiplus!GpMetafile::EnumerateForPlayback+0x658
+0e 00d3f918 6d98676c     08a93f28 00d3f948 00d3f958 gdiplus!GpGraphics::DrawImage+0x5ec
+0f 00d3f984 6da108fe     08a93f28 00d3f9ac 00d3f9bc gdiplus!GpGraphics::DrawImage+0x61
+10 00d3f9e4 6da11b06     00000064 00000064 08a93f28 gdiplus!GpMetafile::GetBitmap+0x1d2
+11 00d3f9f8 6d9f439b     00000064 00000064 00000000 gdiplus!GpMetafile::GetThumbnail+0x26
+12 00d3fa20 00db11aa     08a93f28 00000064 00000064 gdiplus!GdipGetImageThumbnail+0x6b
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;unnecessary information removed&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 6. Stack trace showing an access violation in the StringLengthWorkerW() function.&lt;/p&gt;
+
+
+
+&lt;p&gt;The stack trace suggests that the issue may lie with the&amp;nbsp;&lt;code&gt;StringLengthWorkerW()&lt;/code&gt;&amp;nbsp;function, which performs a length check on user-controlled data and assumes the input is a null-terminated string. However, if the provided string is not null-terminated, the function may read beyond the allocated buffer, leading to potential information disclosure.&lt;/p&gt;
+
+
+
+&lt;p&gt;The decompiled source code of the&amp;nbsp;&lt;code&gt;MRSTARTDOC::bPlay()&lt;/code&gt;&amp;nbsp;function shown in&amp;nbsp;&lt;em&gt;Figure 8&lt;/em&gt;&amp;nbsp;demonstrates that&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-35837"&gt;CVE-2022-35837&lt;/a&gt;&amp;nbsp;was addressed by assigning values to the&amp;nbsp;&lt;code&gt;lpszDocName&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;lpszOutput&lt;/code&gt;&amp;nbsp;fields through a calculated offset stored in the&amp;nbsp;&lt;code&gt;v5&lt;/code&gt;&amp;nbsp;variable, if their respective fields are non-null.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-32172" height="550" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image8-1024x550.png" width="1024" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 8.&lt;/em&gt;&amp;nbsp;Decompiled source code of the&amp;nbsp;&lt;code&gt;MRSTARTDOC::bPlay()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;Listing 7&lt;/em&gt;&amp;nbsp;shows the affected&amp;nbsp;&lt;code&gt;EMR_STARTDOC&lt;/code&gt;&amp;nbsp;metafile record. The&amp;nbsp;&lt;code&gt;DOCINFO&lt;/code&gt;&amp;nbsp;structure contains the input and output file names and other information used by the&amp;nbsp;&lt;code&gt;StartDoc()&lt;/code&gt;&amp;nbsp;function, which starts a print job.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;EMR_STARTDOC startDoc = {
+    .Type             = 0x0000006b,
+    .Size             = 0x0000002c,
+    .docInfo = {
+        .cbSize       = 0x00000020,
+        .lpszDocName  = 0x2b464d45,  // -&gt; 0x1002
+        .lpszOutput   = 0x00004001,  // -&gt; 0x6b14
+        .lpszDatatype = 0x0000001c,
+        .fwType       = 0x00000010
+    }
+};
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 7. Sample EMR_STARTDOC record with a DOCINFO structure.&lt;/p&gt;
+
+
+
+&lt;p&gt;The raw&amp;nbsp;&lt;code&gt;EMR_STARTDOC&lt;/code&gt;&amp;nbsp;record shown in&amp;nbsp;&lt;em&gt;Listing 8&lt;/em&gt;&amp;nbsp;demonstrates that after patching the originally reported&amp;nbsp;&lt;a href="https://www.seljan.hu/posts/arbitrary-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_startdoc-record/"&gt;arbitrary information disclosure&lt;/a&gt;, the&amp;nbsp;&lt;code&gt;lpszDocName&lt;/code&gt;&amp;nbsp;field points to&amp;nbsp;&lt;code&gt;0x1002&lt;/code&gt;, located immediately after the record at offset&amp;nbsp;&lt;code&gt;1Ch&lt;/code&gt;. Meanwhile, the&amp;nbsp;&lt;code&gt;lpszOutput&lt;/code&gt;&amp;nbsp;field points to&amp;nbsp;&lt;code&gt;0x6b14&lt;/code&gt;, positioned at offset&amp;nbsp;&lt;code&gt;1Ch + 14h = 30h&lt;/code&gt;:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;0000h  6B 00 00 00 2C 00 00 00 20 00 00 00 45 4D 46 2B  k...,... ...EMF+ 
+0010h  01 40 00 00 1C 00 00 00 10 00 00 00 02 10 C0 DB  .@............ÀÛ 
+0020h  01 00 00 05 05 7F FF 00 60 00 00 00 46 00 00 00  .....ÿ.`...F... 
+0030h  14 6B 6B 6B 6B 6B 6B 6B 6B 6B 6B 6B 6B 6B 5C 6B  .kkkkkkkkkkkkk\k 
+0040h  6B 6B 6B 6B 6B 6B 6B 6B 6B 10 6B 6B 6B 6B 6B 6B  kkkkkkkkk.kkkkkk 
+0050h  6B 6B 6B 6B                                      kkkk
+&lt;/pre&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;Listing 8. Raw EMR_STARTDOC record showing the calculated offsets.&lt;/p&gt;
+
+
+
+&lt;p&gt;The out-of-bounds read occurs because the&amp;nbsp;&lt;code&gt;MRSTARTDOC::bPlay()&lt;/code&gt;&amp;nbsp;function validates string offsets inside the record. A specially crafted metafile may pad the first string in the&amp;nbsp;&lt;code&gt;lpszDocName&lt;/code&gt;&amp;nbsp;field so that it nearly reaches the end of the record. After copying that string, the code advances its internal cursor beyond that point, but the next validation for the&amp;nbsp;&lt;code&gt;lpszOutput&lt;/code&gt;&amp;nbsp;field still treats the supplied offset as if it were relative to the original base of the record.&lt;/p&gt;
+
+
+
+&lt;p&gt;This discrepancy allows an attacker to provide a value that passes the&amp;nbsp;&lt;code&gt;MR::bValidOff()&lt;/code&gt;&amp;nbsp;function while actually pointing outside the heap block. Because no null terminator is found, the&amp;nbsp;&lt;code&gt;StringLengthWorkerW()&lt;/code&gt;&amp;nbsp;function continues reading into adjacent memory, exposing its contents. The crash sample intensifies the issue by setting the&amp;nbsp;&lt;code&gt;EMF_HEADER.nBytes&lt;/code&gt;&amp;nbsp;field to just 0x120 (288) bytes, causing the allocated buffer to be smaller than the embedded data and guaranteeing an over-read.&lt;/p&gt;
+
+
+
+&lt;p&gt;Microsoft fixed this vulnerability within the&amp;nbsp;&lt;code&gt;MRSTARTDOC::bPlay()&lt;/code&gt;&amp;nbsp;handler function in version&amp;nbsp;&lt;a href="https://msdl.microsoft.com/download/symbols/gdi32full.dll/A25C4001f1000/gdi32full.dll"&gt;10.0.26100.4652&lt;/a&gt;&amp;nbsp;of&amp;nbsp;&lt;code&gt;gdi32full.dll&lt;/code&gt;&amp;nbsp;by correcting the offset arithmetic. The patched function now converts the pointer back to an offset relative to the start of the record before revalidating it and applies the same logic to the&amp;nbsp;&lt;code&gt;lpszOutput&lt;/code&gt;&amp;nbsp;field. Therefore, the check matches the data that will be dereferenced, as shown in&amp;nbsp;&lt;em&gt;Figure 9&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-32173" height="550" src="https://research.checkpoint.com/wp-content/uploads/2025/11/GJ98BB3FT2-image9-1024x550.png" width="1024" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;em&gt;Figure 9.&lt;/em&gt;&amp;nbsp;Decompiled source code of the patched&amp;nbsp;&lt;code&gt;MRSTARTDOC::bPlay()&lt;/code&gt;&amp;nbsp;function.&lt;/p&gt;
+
+
+
+&lt;p&gt;This bug was addressed with&amp;nbsp;&lt;a href="https://support.microsoft.com/en-us/topic/july-8-2025-kb5062553-os-build-26100-4652-523e69cb-051b-43c6-8376-6a76d6caeefd"&gt;KB5062553&lt;/a&gt;&amp;nbsp;in the&amp;nbsp;&lt;em&gt;July 2025 Patch Tuesday&lt;/em&gt;&amp;nbsp;as an important severity information disclosure vulnerability tracked as&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-47984"&gt;CVE-2025-47984&lt;/a&gt;. MSRC classified it as&amp;nbsp;&lt;em&gt;CWE-693: Protection Mechanism Failure&lt;/em&gt;, which in this case really means that the security fix to address&amp;nbsp;&lt;a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-35837"&gt;CVE-2022-35837&lt;/a&gt;&amp;nbsp;was incomplete.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;We discovered vulnerabilities in Windows&amp;nbsp;&lt;code&gt;GDI&lt;/code&gt;&amp;nbsp;that could have serious implications for system security. Our extensive investigation into&amp;nbsp;&lt;code&gt;EMF+&lt;/code&gt;&amp;nbsp;files shows that staying ahead of potential threats requires continuous diligence and adaptation. By sharing these findings, we hope to raise awareness and provide valuable insights and recommendations to enhance security for all Windows users.&lt;/p&gt;
+
+
+
+&lt;p&gt;Security vulnerabilities can persist undetected for years, often resurfacing due to incomplete fixes. A particular information disclosure vulnerability, despite being formally addressed with a security patch, remained active for years due to the original issue receiving only a partial fix. This example underscores a basic conundrum for researchers: introducing a vulnerability is often easy, fixing it can be difficult, and verifying that a fix is both thorough and effective is even more challenging.&lt;/p&gt;
+
+
+
+&lt;p&gt;These issues highlight why comprehensive and continuous security testing, using verification techniques that must be constantly updated and improved, is crucial. This effort can be greatly enhanced by close collaboration between vendors and security researchers, including sharing planned fixes with the researchers who initially reported the issue. Such a collaborative approach adds an extra layer of review, helping to catch potential gaps early and strengthens the overall security of the software ecosystem.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/drawn-to-danger-windows-graphics-vulnerabilities-lead-to-remote-code-execution-and-memory-exposure/"&gt;Drawn to Danger: Windows Graphics Vulnerabilities Lead to Remote Code Execution and Memory Exposure&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=32165</guid><category>Check Point Research Publications</category></item><item><title>Canada Warns of Cyberattacks Targeting Industrial Control Systems</title><link>https://www.techrepublic.com/article/news-canada-critical-infrastructure-attacks/</link><description>&lt;p&gt;Hackers breached Canadian water, energy, and farm systems, prompting national warnings to secure industrial control networks.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-canada-critical-infrastructure-attacks/"&gt;Canada Warns of Cyberattacks Targeting Industrial Control Systems&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334090</guid><category>Cybersecurity</category><category>International</category><category>News</category><category>Canada cybersecurity alert</category><category>critical infrastructure cyberattacks</category><category>hacktivist attacks</category><category>ICS security</category><category>industrial control systems</category></item><item><title>Amazon Reports Strong Q3 Amid AI and Cloud Expansion</title><link>https://www.techrepublic.com/article/news-amazon-q3-2025-results/</link><description>&lt;p&gt;CEO says "AWS is growing at a pace we haven’t seen since 2022, re-accelerating to 20.2% YoY.”&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-amazon-q3-2025-results/"&gt;Amazon Reports Strong Q3 Amid AI and Cloud Expansion&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334053</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Cloud</category><category>News</category><category>ai</category><category>AWS</category><category>cloud</category><category>financial results</category></item><item><title>How to Hack a Poker Game</title><link>https://www.wired.com/story/uncanny-valley-podcast-how-to-hack-a-poker-game/</link><description>This week on Uncanny Valley, we break down how one of the most common card shufflers could be altered to cheat, and why that matters—even for those who don’t frequent the poker table.</description><guid isPermaLink="false">6901645683c4ffb306eab380</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Uncanny Valley Podcast</category><category>podcasts</category><category>hacks</category><category>hacking</category><category>Crime</category><category>poker</category><category>Sports</category><category>NBA</category><category>gambling</category><category>Uncanny Valley</category></item><item><title>ISC Stormcast For Friday, October 31st, 2025 https://isc.sans.edu/podcastdetail/9680, (Fri, Oct 31st)</title><link>https://isc.sans.edu/diary/rss/32438</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32438</guid></item><item><title>Leaker reveals which Pixels are vulnerable to Cellebrite phone hacking</title><link>https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/</link><description>Cellebrite can apparently extract data from most Pixel phones, unless they're running GrapheneOS.</description><content:encoded>&lt;p&gt;Despite being a vast repository of personal information, smartphones used to have little by way of security. That has thankfully changed, but companies like Cellebrite offer law enforcement tools that can &lt;a href="https://arstechnica.com/security/2025/02/android-0-day-sold-by-cellebrite-exploited-to-hack-serbian-students-phone/"&gt;bypass security on some devices&lt;/a&gt;. The company keeps the specifics quiet, but an anonymous individual recently logged in to a Cellebrite briefing and came away with a list of which of Google’s Pixel phones are vulnerable to Cellebrite phone hacking.&lt;/p&gt;
 &lt;p&gt;This person, who goes by the handle rogueFed, posted screenshots from the recent Microsoft Teams meeting to the &lt;a href="https://discuss.grapheneos.org/d/27698-new-cellebrite-capability-obtained-in-teams-meeting"&gt;GrapheneOS forums&lt;/a&gt; (spotted by &lt;a href="https://www.404media.co/someone-snuck-into-a-cellebrite-microsoft-teams-call-and-leaked-phone-unlocking-details/"&gt;404 Media&lt;/a&gt;). GrapheneOS is an Android-based operating system that can be installed on select phones, including Pixels. It ships with enhanced security features and no Google services. Because of its popularity among the security-conscious, Cellebrite apparently felt the need to include it in its matrix of Pixel phone support.&lt;/p&gt;
@@ -12983,39 +13463,7 @@ screenquestion[.]org
 &lt;p&gt;Over the following weeks, Google alerted Gmail users to an increase in phishing attacks in July and August. It didn’t offer many details, but many believed the spike in phishing was related to the corporate server breach. Indeed, more people are talking about hacking attempts on social media right now. This led to the claim that Gmail’s entire user base of 2.5 billion people was about to be hacked at any moment, with some reports advising everyone to change their passwords and enable two-factor authentication. While that’s generally good security advice, Google says the truth is much less dramatic.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/09/google-says-reports-of-massive-gmail-data-breach-are-entirely-false/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/09/google-says-reports-of-massive-gmail-data-breach-are-entirely-false/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/gadgets/2025/09/google-says-reports-of-massive-gmail-data-breach-are-entirely-false/</guid><category>Google</category><category>Tech</category><category>gmail</category><category>google</category><category>security</category></item><item><title>Top Tech Conferences &amp; Events to Add to Your Calendar in 2025</title><link>https://www.techrepublic.com/article/top-tech-conferences-events/</link><description>&lt;p&gt;A great way to stay current with the latest tech trends and innovations is to attend conferences. Read and bookmark TechRepublic's events guide.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/top-tech-conferences-events/"&gt;Top Tech Conferences &amp;#038; Events to Add to Your Calendar in 2025&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/2022-tech-conferences-and-events-to-add-to-your-calendar/</guid><category>Amazon</category><category>Apple</category><category>Australia</category><category>Big Data</category><category>Cloud Security</category><category>CXO</category><category>Developer</category><category>Google</category><category>Innovation</category><category>International</category><category>Microsoft</category><category>News</category><category>Security</category><category>United Kingdom</category><category>tech conferences</category><category>tech events</category></item><item><title>Google Says Claims of Mass Gmail Security Breach Are ‘Entirely False’</title><link>https://www.techrepublic.com/article/news-gmail-security-breach-false-google/</link><description>&lt;p&gt;Google has debunked the recent reports that it was alerting its billions of Gmail users to a security breach.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-gmail-security-breach-false-google/"&gt;Google Says Claims of Mass Gmail Security Breach Are &amp;#8216;Entirely False&amp;#8217;&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4325131</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category></item><item><title>1st September – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/1st-september-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 1st September, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES American consumer credit reporting agency TransUnion has suffered a data breach that resulted in the exposure of sensitive personal information for over 4.4 million individuals in the United States. The leaked data [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/1st-september-threat-intelligence-report/"&gt;1st September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 1st September, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/09/Threat_Intelligence_News_2025-09-01.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;American consumer credit reporting agency TransUnion has &lt;a href="https://www.reuters.com/markets/europe/transunion-says-44-million-consumers-data-compromised-hack-2025-08-28/"&gt;suffered&lt;/a&gt; a data breach that resulted in the exposure of sensitive personal information for over 4.4 million individuals in the United States. The leaked data includes names, billing addresses, phone numbers, email addresses, dates of birth, unredacted Social Security Numbers, transaction reasons, and customer support messages.&lt;/li&gt;
-&lt;li&gt;Miljödata, a major Swedish IT provider, has &lt;a href="https://securityaffairs.com/181668/security/200-swedish-municipalities-impacted-by-a-major-cyberattack-on-it-provider.html"&gt;disclosed&lt;/a&gt; a cyber attack that resulted in service disruptions to over 200 Swedish municipalities. The attack raised concerns over the theft of sensitive personal data, including medical certificates, rehabilitation cases, and occupational injury reports.&lt;/li&gt;
-&lt;li&gt;Healthcare Services Group has &lt;a href="https://www.techradar.com/pro/security/major-healthcare-service-breach-exposes-data-on-over-600-000-people-names-ssns-and-more-stolen-heres-what-we-know"&gt;suffered&lt;/a&gt; a data breach that resulted in the unauthorized access and exfiltration of sensitive personal information from its network. The incident impacted approximately 624,000 individuals, exposing data that may include full names, Social Security numbers, driver&amp;#8217;s license and state identification numbers, financial account details, and account credentials.&lt;/li&gt;
-&lt;li&gt;The Maryland Transit Administration (MTA) has &lt;a href="https://www.scworld.com/brief/cyberattack-disrupts-maryland-transit-administration-systems"&gt;experienced&lt;/a&gt; a cyber attack that resulted in disruption of Mobility paratransit service. The attack affected scheduling systems and related real-time information and call-center systems, preventing users from booking trips.&lt;/li&gt;
-&lt;li&gt;The State of Nevada has &lt;a href="https://thenevadaindependent.com/article/as-crippling-cyberattack-against-nevada-continues-lombardo-says-were-working-through-it"&gt;confirmed&lt;/a&gt; a cyber attack that resulted in widespread disruption of services. The attack affected governmental websites, phone systems, and online platforms, forcing the closure of all state offices and impacting the availability of various state technology systems.&lt;/li&gt;
-&lt;li&gt;Nissan has &lt;a href="https://www.bleepingcomputer.com/news/security/nissan-confirms-design-studio-data-breach-claimed-by-qilin-ransomware/"&gt;suffered&lt;/a&gt; a data breach that resulted in four terabytes of sensitive design studio data being stolen from its subsidiary Creative Box Inc. These include 3D vehicle models, financial documents, VR workflows, and photos. The breach impacts Nissan only, exposing proprietary experimental and concept vehicle designs but no external clients or contractors. Qilin ransomware group claimed responsibility for the attack and published samples of the stolen information.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;em&gt;Check Point Threat Emulation and Harmony Endpoint provide protection against this threat&lt;/em&gt; &lt;em&gt;(Ransomware.Wins.Qilin.*)&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Farmers Insurance has &lt;a href="https://www.newsweek.com/farmers-insurance-data-breach-impacts-1-million-americans-what-know-2120605"&gt;disclosed&lt;/a&gt; a data breach that resulted in the theft of sensitive customer information, including names, addresses, dates of birth, driver’s license numbers, and/or the last four digits of Social Security numbers. The breach impacted 1,111,386 customers.&lt;/li&gt;
-&lt;li&gt;Auchan has &lt;a href="https://www.scworld.com/brief/auchan-data-breach-exposes-customer-information-cybersecurity-impact"&gt;suffered&lt;/a&gt; a data breach that resulted in unauthorized access to sensitive data from several hundred thousand customer loyalty accounts. The personal information exposed includes full names, titles, client status, postal addresses, email addresses, phone numbers, and loyalty card numbers. No banking data, passwords, or PINs were compromised in the incident.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;VULNERABILITIES AND PATCHES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;WhatsApp has &lt;a href="https://www.whatsapp.com/security/advisories/2025"&gt;released&lt;/a&gt; a patch for a zero-click authorization vulnerability (CVE-2025-55177) affecting iOS and Mac versions of the app, which allowed attackers to process content from arbitrary URLs via abused linked device synchronization messages. This vulnerability, exploited in targeted zero-day attacks, was used alongside an Apple OS-level flaw (CVE-2025-43300) in sophisticated spyware campaigns against select users. Successful exploitation enabled remote code execution.&lt;/li&gt;
-&lt;li&gt;Citrix has &lt;a href="https://support.citrix.com/support-home/kbsearch/article?articleNumber=CTX694938"&gt;fixed&lt;/a&gt; a critical remote code execution vulnerability (CVE-2025-7775) in NetScaler ADC and NetScaler Gateway, which was exploited as a zero-day via a memory overflow bug allowing unauthenticated RCE on unpatched systems. Additional patched vulnerabilities include CVE-2025-7776 (memory overflow, DoS) and CVE-2025-8424 (improper access control).&lt;/li&gt;
-&lt;li&gt;Passwordstate, a password manager used by over 29,000 organizations, has &lt;a href="https://arstechnica.com/security/2025/08/high-severity-vulnerability-in-passwordstate-credential-manager-patch-now/"&gt;released&lt;/a&gt; a patched version, addressing a high-severity authentication bypass vulnerability. The flaw allows threat actors to craft a malicious URL targeting the Emergency Access page, granting unauthorized access to the administration section, and does not yet have a CVE ID.&lt;/li&gt;
-&lt;li&gt;Google has &lt;a href="https://chromereleases.googleblog.com/2025/08/stable-channel-update-for-desktop_26.html"&gt;released&lt;/a&gt; a security update for Google Chrome, addressing CVE-2025-9478, a critical use after free vulnerability in ANGLE. Malicious attackers could craft websites to trigger memory corruption and achieve remote code execution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;THREAT INTELLIGENCE REPORTS&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check Point Research &lt;a href="https://research.checkpoint.com/2025/zipline-phishing-campaign/"&gt;revealed&lt;/a&gt; the ZipLine campaign, a sophisticated phishing operation targeting US supply chain-critical manufacturing companies by leveraging legitimate-appearing business interactions initiated through corporate “Contact Us” forms. The attack involves multi-week email exchanges, followed by the delivery of the custom MixShell implant. Technical analysis reveals advanced persistence mechanisms, dynamic payload customization, and infrastructure spoofing.&lt;/li&gt;
-&lt;li&gt;Check Point Research have &lt;a href="https://research.checkpoint.com/2025/silver-fox-apt-vulnerable-drivers/"&gt;uncovered&lt;/a&gt; an active campaign attributed to the Silver Fox APT group that abuses newly discovered and previously known vulnerable, Microsoft-signed kernel drivers. This in order to terminate protected security processes and evade EDR/AV detection on fully updated Windows 10/11 systems. The attackers employ a dual-driver strategy for cross-version compatibility, embedding both drivers in a single loader, which incorporates anti-analysis measures and ultimately delivers the ValleyRAT remote access trojan.&lt;/li&gt;
-&lt;li&gt;Check Point researchers &lt;a href="https://blog.checkpoint.com/email-security/phishing-in-the-classroom-115000-emails-exploit-google-classroom-to-target-13500-organizations/"&gt;uncovered&lt;/a&gt; an active phishing campaign in which threat actors abused Google Classroom’s invitation system to send over 115,000 phishing emails targeting 13,500 organizations across the globe within a single week. The attackers distributed fake Google Classroom invitations containing commercial offers, directing recipients to communicate via WhatsApp. This allowed them to bypass enterprise monitoring and leverage Google’s legitimate infrastructure to evade security measures.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/1st-september-threat-intelligence-report/"&gt;1st September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31839</guid><category>Global Cyber Attack Reports</category></item><item><title>Automating threat analysis and response with Cloudy</title><link>https://blog.cloudflare.com/automating-threat-analysis-and-response-with-cloudy/</link><description>Cloudy now supercharges analytics investigations and Cloudforce One threat intelligence! Get instant insights from threat events and APIs on APTs, DDoS, cybercrime &amp; more - powered by Workers AI.</description><content:encoded>&lt;p&gt;Security professionals everywhere face a paradox: while more data provides the visibility needed to catch threats, it also makes it harder for humans to process it all and find what's important. When there’s a sudden spike in suspicious traffic, every second counts. But for many security teams — especially lean ones — it’s hard to quickly figure out what’s going on. Finding a root cause means diving into dashboards, filtering logs, and cross-referencing threat feeds. All the data tracking that has happened can be the very thing that slows you down — or worse yet, what buries the threat that you’re looking for. &lt;/p&gt;&lt;p&gt;Today, we’re excited to announce that we’ve solved that problem. We’ve integrated &lt;a href="https://blog.cloudflare.com/introducing-ai-agent/"&gt;&lt;u&gt;Cloudy&lt;/u&gt;&lt;/a&gt; — Cloudflare’s first &lt;a href="https://www.cloudflare.com/learning/ai/what-is-agentic-ai/"&gt;&lt;u&gt;AI agent&lt;/u&gt;&lt;/a&gt; — with our security analytics functionality, and we’ve also built a new, conversational interface that Cloudflare users can use to ask questions, refine investigations, and get answers.  With these changes, Cloudy can now help Cloudflare users find the needle in the digital haystack, making security analysis faster and more accessible than ever before.  &lt;/p&gt;&lt;p&gt;Since Cloudy’s launch in March of this year, its adoption has been exciting to watch. Over &lt;b&gt;54,000&lt;/b&gt; users have tried Cloudy for &lt;a href="https://developers.cloudflare.com/waf/custom-rules/"&gt;&lt;u&gt;custom rule&lt;/u&gt;&lt;/a&gt; creation, and &lt;b&gt;31%&lt;/b&gt; of them have deployed a rule suggested by the agent. For our log explainers in &lt;a href="https://www.cloudflare.com/zero-trust/products/gateway/"&gt;&lt;u&gt;Cloudflare Gateway&lt;/u&gt;&lt;/a&gt;, Cloudy has been loaded over &lt;b&gt;30,000 &lt;/b&gt; times in just the last month, with &lt;b&gt;80%&lt;/b&gt; of the feedback we received confirming the summaries were insightful. We are excited to empower our users to do even more.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-gmail-security-breach-false-google/"&gt;Google Says Claims of Mass Gmail Security Breach Are &amp;#8216;Entirely False&amp;#8217;&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4325131</guid><category>Cloud Security</category><category>Google</category><category>News</category><category>Security</category></item><item><title>Automating threat analysis and response with Cloudy</title><link>https://blog.cloudflare.com/automating-threat-analysis-and-response-with-cloudy/</link><description>Cloudy now supercharges analytics investigations and Cloudforce One threat intelligence! Get instant insights from threat events and APIs on APTs, DDoS, cybercrime &amp; more - powered by Workers AI.</description><content:encoded>&lt;p&gt;Security professionals everywhere face a paradox: while more data provides the visibility needed to catch threats, it also makes it harder for humans to process it all and find what's important. When there’s a sudden spike in suspicious traffic, every second counts. But for many security teams — especially lean ones — it’s hard to quickly figure out what’s going on. Finding a root cause means diving into dashboards, filtering logs, and cross-referencing threat feeds. All the data tracking that has happened can be the very thing that slows you down — or worse yet, what buries the threat that you’re looking for. &lt;/p&gt;&lt;p&gt;Today, we’re excited to announce that we’ve solved that problem. We’ve integrated &lt;a href="https://blog.cloudflare.com/introducing-ai-agent/"&gt;&lt;u&gt;Cloudy&lt;/u&gt;&lt;/a&gt; — Cloudflare’s first &lt;a href="https://www.cloudflare.com/learning/ai/what-is-agentic-ai/"&gt;&lt;u&gt;AI agent&lt;/u&gt;&lt;/a&gt; — with our security analytics functionality, and we’ve also built a new, conversational interface that Cloudflare users can use to ask questions, refine investigations, and get answers.  With these changes, Cloudy can now help Cloudflare users find the needle in the digital haystack, making security analysis faster and more accessible than ever before.  &lt;/p&gt;&lt;p&gt;Since Cloudy’s launch in March of this year, its adoption has been exciting to watch. Over &lt;b&gt;54,000&lt;/b&gt; users have tried Cloudy for &lt;a href="https://developers.cloudflare.com/waf/custom-rules/"&gt;&lt;u&gt;custom rule&lt;/u&gt;&lt;/a&gt; creation, and &lt;b&gt;31%&lt;/b&gt; of them have deployed a rule suggested by the agent. For our log explainers in &lt;a href="https://www.cloudflare.com/zero-trust/products/gateway/"&gt;&lt;u&gt;Cloudflare Gateway&lt;/u&gt;&lt;/a&gt;, Cloudy has been loaded over &lt;b&gt;30,000 &lt;/b&gt; times in just the last month, with &lt;b&gt;80%&lt;/b&gt; of the feedback we received confirming the summaries were insightful. We are excited to empower our users to do even more.&lt;/p&gt;
     &lt;div&gt;
       &lt;h2&gt;Talk to your traffic: a new conversational interface for faster RCA and mitigation&lt;/h2&gt;
       &lt;a href="https://blog.cloudflare.com/tag/security/rss#talk-to-your-traffic-a-new-conversational-interface-for-faster-rca-and-mitigation"&gt;
