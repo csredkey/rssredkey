@@ -1,5 +1,1404 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 03 Nov 2025 12:59:19 +0000</lastBuildDate><item><title>Government Agencies Issue Emergency Guidance for Microsoft Exchange Server</title><link>https://www.techrepublic.com/article/news-guidance-microsoft-exchange-server/</link><description>&lt;p&gt;The NSA, CISA, Australia's Cyber Security Centre, and Canada's Cyber Centre jointly released comprehensive security practices for Exchange hardening. &lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 03 Nov 2025 13:59:21 +0000</lastBuildDate><item><title>Beating XLoader at Speed: Generative AI as a Force Multiplier for Reverse Engineering</title><link>https://research.checkpoint.com/2025/generative-ai-for-reverse-engineering/</link><description>&lt;p&gt;Research by: Alexey Bukhteyev Key takeaways Introduction XLoader is a widely observed malicious loader with information-stealing capabilities. It first surfaced in 2020 as a rebrand of the FormBook code base, a well-known and capable information stealer, and has since undergone substantial hardening and feature growth. In addition to the Windows variant, its developers also marketed [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/generative-ai-for-reverse-engineering/"&gt;Beating XLoader at Speed: Generative AI as a Force Multiplier for Reverse Engineering&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;&lt;strong&gt;Research by: Alexey Bukhteyev&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="key-takeaways"&gt;Key takeaways&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;XLoader remains one of the most challenging malware families to analyze. Its code decrypts only at runtime and is protected by multiple layers of encryption, each locked with a different key hidden somewhere else in the binary. Even sandboxes are no help: evasions block malicious branches, and the real C2 (command and control) domains are buried among dozens of fakes. With new versions released faster than researchers can investigate, analysis is almost always a (losing) race against time.&lt;/li&gt;
+
+
+
+&lt;li&gt;Generative AI flips the balance. Instead of spending days on painstaking manual analysis and writing decryption routines and reverse-engineering scripts by hand, researchers can now use AI to examine complex functions, identify algorithms, and generate working tools in just hours, accelerating the path to decrypted code, strings, and IoCs.&lt;/li&gt;
+
+
+
+&lt;li&gt;Check Point Research (CPR) demonstrated a new way to use ChatGPT for malware analysis directly from the web interface. By exporting IDA data and analyzing it in the ChatGPT cloud, we showed that deep static reverse engineering with AI is possible without relying on Model Context Protocol (MCP) or a live disassembler session. This approach not only removes the dependency on local heavy tooling, but also makes the results reproducible, easier to share, and more collaborative across research teams.&lt;/li&gt;
+
+
+
+&lt;li&gt;In this research we use a fresh XLoader 8.0 sample to demonstrate how cloud-based static analysis with ChatGPT can be combined with MCP for runtime key extraction and live debugging validation. We documented the time spent on key tasks and included real prompt examples, showing how the workflow progresses from unpacking a fully encrypted binary to recovering hidden C2 domains.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="introduction"&gt;Introduction&lt;/h2&gt;
+
+
+
+&lt;p&gt;XLoader is a widely observed malicious loader with information-stealing capabilities. It first surfaced in 2020 as a rebrand of the FormBook code base, a well-known and capable information stealer, and has since undergone substantial hardening and feature growth. In addition to the Windows variant, its developers also marketed a&amp;nbsp;&lt;a href="https://research.checkpoint.com/2021/time-proven-tricks-in-a-new-environment-the-macos-evolution-of-formbook/"&gt;macOS build&lt;/a&gt;, though it appears far less prevalent in the wild.&lt;/p&gt;
+
+
+
+&lt;p&gt;XLoader is a prime example of malware that is extremely difficult to analyze. It combines several layers of protection: customized encryption with additional mixing steps, encrypted blocks disguised as valid but meaningless assembly code, obfuscated API calls, injections into system processes, and a wide set of sandbox evasion techniques. In addition, XLoader encrypts its network traffic, and hides real C2 addresses among dozens of decoys and fake domains.&lt;/p&gt;
+
+
+
+&lt;p&gt;An important feature of XLoader is its ongoing development. The authors release new versions regularly, changing internal mechanisms beyond recognition and adding new anti-analysis methods. As a result, previous research quickly becomes outdated. In earlier versions, extracting the configuration required pulling out a few keys using intricate algorithms. At the same time, obtaining the decrypted data only required peeling off two layers of obfuscation and encryption. Version 5 introduced a built-in packer, and in versions 6 and 7 analysts had to work through dozens of chained functions that decrypt each other, extracting intermediate keys at every stage. For someone new to XLoader, the entry barrier has become very high: on top of the analysis itself, extra time is needed for onboarding. By the time one research cycle is completed, the next iteration of the malware may already be out – and if there are significant changes, another time-consuming investigation is required.&lt;/p&gt;
+
+
+
+&lt;p&gt;When we began this research, XLoader version 8.0 had just been discovered. It seemed the XLoader developers were winning the race. But with the rise of generative models, we asked ourselves: can AI change the rules of the game and help us analyze such complex malware more quickly? To explore this, we applied generative AI assistance in two ways: by directly integrating with our analysis tools through a live MCP connection, and by leveraging ChatGPT’s project and file-upload capabilities to work from exported data. Each approach turned out to have distinct benefits, and together they allow us to solve reverse engineering tasks more effectively.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this study, we focus on the second approach and show how ChatGPT without MCP can be effectively used for reverse engineering tasks, using one of the latest XLoader samples as an example.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="motivation"&gt;Motivation&lt;/h2&gt;
+
+
+
+&lt;p&gt;To defend against XLoader, it is critical to extract up-to-date Indicators of Compromise (IoCs) from each new version — real C2 domains and URLs, cryptographic keys, and version identifiers. These IoCs feed into detection signatures and help track active campaigns. The primary way to obtain IoCs is by extracting and decrypting the malware’s configuration data from samples.&lt;/p&gt;
+
+
+
+&lt;p&gt;The challenge is that XLoader’s constantly shifting tactics break automated extraction tools and scripts almost as soon as they’re developed. The malware authors frequently tweak encryption schemes and packing methods specifically to thwart these efforts. An automated config extractor that worked yesterday might fail today, meaning each major version demands a fresh reverse-engineering cycle.&lt;/p&gt;
+
+
+
+&lt;p&gt;Sandboxes offer little relief:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Aggressive evasion:&lt;/strong&gt;&amp;nbsp;XLoader checks for signs of virtual machines and analysis tools. If it detects them, the malicious branch may never run at all.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Just-in-time decryption:&lt;/strong&gt;&amp;nbsp;Critical functions and data remain encrypted in memory until just before use and revert to encrypted form shortly afterward. A sandbox might never capture them in their decrypted state. Even if you manage to dump the process memory in a sandbox, you often end up with an incoherent snapshot: pieces of encrypted and decrypted data jumbled together, missing whatever wasn’t in memory at that exact time.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Useless memory dumps:&lt;/strong&gt;&amp;nbsp;When trying to get a memory dump at the exact moment of calling certain API functions, such as NtResumeThread or NtAllocateVirtualMemory, you only get almost completely encrypted code.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;C2 camouflage:&lt;/strong&gt;&amp;nbsp;The malware’s real command-and-control domains are obscured among many decoys. Captured network traffic is usually incomplete and contains a lot of noise.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;In short, a sandbox does not solve the problem. It does not provide a reproducible dump or a complete set of IoCs.&lt;/p&gt;
+
+
+
+&lt;p&gt;The most reliable method is still static analysis: unpack everything, function by function, decrypt the config, and extract the IoCs. The downside is that doing this manually for each new version is slow and painstaking. This is where we hoped generative AI could act as a force multiplier.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="two-approaches-to-ai-assisted-analysis"&gt;Two approaches to AI-assisted analysis&lt;/h2&gt;
+
+
+
+&lt;p&gt;In recent months, many reverse engineers began integrating LLMs with IDA Pro via the Model Context Protocol (MCP) to create an AI-assisted workflow. This agentic approach allows a model to interface directly with the disassembler and debugger, but it has its own practical challenges. For example, some MCP client setups lack certain ChatGPT interface features (like Projects or file uploads), and they still rely on maintaining a live IDA session and stable connection.&lt;/p&gt;
+
+
+
+&lt;p&gt;We explored two complementary workflows to apply GPT-5 to unraveling XLoader:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Live MCP integration:&lt;/strong&gt;&amp;nbsp;Using MCP, we gave LLM direct access to our analysis tools (IDA Pro, x64dbg, and a VMware instance). This allowed the AI to query the disassembler, inspect memory, and even control the debugger in real time.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;“Offline” data pipeline with ChatGPT:&lt;/strong&gt;&amp;nbsp;We exported the IDA Pro database (disassembly, decompilations, strings, etc.) and the malware binary to the ChatGPT environment. We then asked ChatGPT to perform static analysis on this data and generate, refine, and execute its own Python scripts against the binary, all within its cloud sandbox. No live connection to our tools was needed.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Each approach has its own strengths. MCP offers an agentic, interactive workflow, whereas the offline pipeline provides a self-contained analysis that’s easy to share and reproduce. These approaches aren’t mutually exclusive — you can use both, picking the appropriate tool for each task.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="mcp-agentic-analysis-with-live-tools"&gt;MCP: Agentic analysis with live tools&lt;/h3&gt;
+
+
+
+&lt;p&gt;The idea of hooking an LLM into IDA isn’t new. For example, researchers at Cisco Talos demonstrated an IDA integration with an LLM acting as a “reverse engineering sidekick” [&lt;a href="https://blog.talosintelligence.com/using-llm-as-a-reverse-engineering-sidekick/"&gt;https://blog.talosintelligence.com/using-llm-as-a-reverse-engineering-sidekick/&lt;/a&gt;]. In our setup, we used MCP to bridge ChatGPT with IDA Pro and also interface with the x64dbg debugger and a VMware virtual machine. This gave LLM a live window into the malware’s execution.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-32150" height="514" src="https://research.checkpoint.com/wp-content/uploads/2025/10/llm4re-1024x514.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 1&lt;/strong&gt;&amp;nbsp;&amp;#8211; Integration of an LLM with the reverse engineering environment through MCP.&lt;/p&gt;
+
+
+
+&lt;p&gt;This live integration, in addition to static analysis and annotating IDA database, enabled the AI to perform these actions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Pull live data on demand.&lt;/strong&gt;&amp;nbsp;Set a breakpoint at a critical function to grab a decrypted buffer or a cryptographic key from memory at runtime.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Perform “experiment and observe” cycles.&lt;/strong&gt;&amp;nbsp;Hypothesize about what a function does, then substitute real runtime data from the debugger and compare the output, adjusting the analysis based on the results.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Assist with unpacking in real time.&lt;/strong&gt;&amp;nbsp;If the sample self-decrypts or unpacks code, work through those routines, dumping out intermediate values or decrypted code as soon as they appear.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;However, the MCP approach isn’t without drawbacks:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Setup and resource requirements:&lt;/strong&gt;&amp;nbsp;This requires a running instance of IDA Pro and other tools. The analyst’s machine effectively becomes part of the loop, and that environment must remain up and stable.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Single-task focus:&lt;/strong&gt;&amp;nbsp;Standard IDA doesn’t support multiple independent analyses in one interface. If we want to work on two samples in parallel with AI assistance, we need two separate IDA sessions and MCP connections.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Network dependency:&lt;/strong&gt;&amp;nbsp;The workflow hinges on a reliable internet connection. A drop in connectivity or an MCP glitch can disrupt the analysis mid-stream.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Limited ChatGPT UI features:&lt;/strong&gt;&amp;nbsp;When using custom MCP clients with API-based access, we can’t utilize some of the conveniences of ChatGPT’s own interface, such as long-term project history or easy file management.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;For many scenarios, these issues are manageable and the benefits of live interaction outweigh the hassles. Some solutions, such as the&amp;nbsp;&lt;a href="https://mcpsuperassistant.ai/"&gt;MCP SuperAssistant&lt;/a&gt;&amp;nbsp;browser extension, reduce friction by bringing the ChatGPT interface and MCP connectivity together. Recently, ChatGPT introduced a&amp;nbsp;&lt;a href="https://platform.openai.com/docs/guides/developer-mode"&gt;Developer Mode&lt;/a&gt;&amp;nbsp;that can use MCP directly, without third-party plugins. Regardless of whether you use a plugin or the built-in mode, the workflow still depends on a live MCP session tied to a running toolchain and stable connection.&lt;/p&gt;
+
+
+
+&lt;p&gt;If any of the requirements listed above are difficult to fulfill, for example, you can’t keep IDA running constantly, or you need to easily share analysis progress with a colleague who doesn’t have the same setup, then a different approach might be preferable. That’s why we developed the “offline” data pipeline as an alternative.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="offline-ida-export-pipeline-reverse-engineering-with-ai-in-the-cloud"&gt;Offline IDA export pipeline: reverse engineering with AI in the cloud&lt;/h3&gt;
+
+
+
+&lt;p&gt;Our second approach ditches the live connection entirely. Here AI acts as a self-reliant analyst working from a full static snapshot of the sample.&lt;/p&gt;
+
+
+
+&lt;p&gt;The workflow is straightforward: we exported everything we could from our IDA Pro database into a structured format (JSON and text). This includes the disassembly and decompiler output of every function, the list of cross-references, the readable strings, and even the original binary itself. We uploaded the .zip file to ChatGPT.&lt;/p&gt;
+
+
+
+&lt;p&gt;For example, our export bundle included these files:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;ida_export.zip             
+├── meta.json           # basic info (sample name, hashes, image base, etc.)
+├── index.json          # lookup tables mapping names/EAs to function indices
+├── functions.jsonl     # NDJSON: disassembly, xrefs, bytes, prototypes, etc
+├── strings.jsonl       # list of strings in the binary and their references
+├── data.jsonl          # globals, arrays, named data references
+├── decomp/             # decompiled pseudocode for functions (if available)
+│   ├── func_or_sub_XXXXXXXX.c
+│   ├── func_or_sub_YYYYYYYY.c
+│   └── ...
+└── sample.bin          # the malware sample itself&lt;/pre&gt;
+
+
+
+&lt;p&gt;In practice, it is better to upload the archive to a ChatGPT project. Files attached only in the chat can disappear after a session restart, while files in a project stay available for the whole engagement, and can be reused in different chats.&lt;/p&gt;
+
+
+
+&lt;p&gt;We also wrote an initial prompt explaining how the data is organized and how the AI should format its outputs (for example, proposing new function names and comments in a machine-readable JSON that we could import back into IDA). Essentially, we taught the AI how to read the phonebook we gave it, and how we wanted its notes recorded.&lt;/p&gt;
+
+
+
+&lt;p&gt;Below is an approximation of our prompt:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;You are my reverse-engineering copilot.
+
+I will upload a ZIP produced by an IDA Pro 9 exporter. It contains:
+- meta.json
+- index.json
+```json
+  {
+    "by_name": { "&amp;lt;funcName&gt;": "0x40XXXXXX", ... },
+    "by_ea":   { "0x40XXXXXX": &amp;lt;line_index_in_functions_jsonl&gt;, ... }
+  }
+```
+- functions.jsonl (NDJSON; one function per line, with mnemonics/operands already plain text)
+```json
+  {
+    "ea": "0x40XXXXXX",
+    "name": "func_or_sub_XXXXXXXX",
+    "prototype": "int __cdecl ...",                // if available
+    "ranges": [["0xstart","0xend"]],               // function address range(s)
+    "xrefs_in": ["0x...","0x..."],                 // callers (function start)
+    "xrefs_out": [{"ea":"0x...","name":"..."},...],// callees (from call sites)
+    "comments": [{"ea":"0x...","kind":"...","text":"..."}],
+    "bb": [{"start":"0x...","end":"0x...","succ":["0x..."]},...], // basic blocks
+    "insn": [
+      {"ea":"0x...","bytes":"8BEC","mnem":"mov","opstr":"...","size":2,"cmt":null},
+      ...
+    ],
+    "bytes_concat": "....",                        // all function bytes hex, no spaces
+    "decomp_path": "decomp/&amp;lt;name&gt;_&amp;lt;EA&gt;.c",         // if Hex-Rays available
+  }
+```
+- decomp/*.c                                         // optional
+
+// Optional:
+- strings.jsonl                                      // readable strings with code xrefs
+- data.jsonl                                         // named globals/arrays
+- data_index.json
+```json
+  {
+    "by_name": { "g_DomainKeys": "0x40YYYYYY", "var_X": "0x40ZZZZZZ", ... }
+  }
+```
+- sample.bad   // malware sample binary
+
+
+## On upload (INIT)
+1) Parse meta.json &amp;amp; index.json.
+2) Stream functions.jsonl just enough to build fast lookups by EA and by
+ name, and to count functions; do NOT eagerly load all decomp/*.c.
+3) Reply with an INIT REPORT:
+   - file_name, imagebase, hashes (MD5/SHA256/CRC32), compiler (if present)
+   - total function count and number with decomp_path
+   - confirm you’ll use Canvas artifacts for tracking changes (see below)
+
+...
+
+## Live suggestions (function-level, stored on Canvas)
+Keep human-readable **suggestions.json** (full JSON, not JSONL) with only proposed renames/comments (no auto-apply).
+
+Schema:
+```json
+{
+  "meta": { "file_name":"&amp;lt;from meta.json&gt;", "imagebase":"0xXXXXXXXX", "input_sha256":"&amp;lt;SHA256&gt;" },
+  "changes": [
+    {
+      "ea": "0xXXXXXXXX",               // function start EA (required)
+      "name": "sub_XXXXXXXX",           // current name (optional precondition)
+      "new_name": "ai_better_name",     // MUST start with "ai_"
+      "comments": [                     // only new/changed comments (optional)
+        { "kind":"func"|"func_rep"|"anterior"|"repeatable",
+          "text":"...", "ea":"0xYYYYYYYY", "mode":"set"|"append" }
+      ]
+    }
+  ]
+}
+```
+...&lt;/pre&gt;
+
+
+
+&lt;p&gt;After it was set up, this pipeline allowed ChatGPT to perform deep static analysis entirely within its own environment. We could ask it to find cryptographic algorithms, trace complex control flows, or even write and execute a Python script to decrypt some data from sample.bin. Many such tasks can be done without any new information from us – the AI works off the data we provided, verifying its logic by running Python scripts as needed. If there is an error, it fixes the script and reruns the tests, repeating this until the result converges. Compared to our previous approach, all these steps (analysis, code, test, correction) run in a single loop without dozens of local MCP calls. Naturally, this works well when using GPT-5 in the “thinking” mode.&lt;/p&gt;
+
+
+
+&lt;p&gt;This approach had several clear benefits:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;No persistent local session needed:&lt;/strong&gt;&amp;nbsp;If our IDA crashed or we closed our laptop, it didn’t matter as ChatGPT could access everything it needed from the cloud. We didn’t need to babysit a live connection.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Easily repeatable and shareable:&lt;/strong&gt;&amp;nbsp;Because the entire state of the analysis was captured in our export, anyone with the archive and the prompt could reproduce the analysis. We can even run multiple ChatGPT sessions on the same data in parallel (to explore different questions or use different prompt strategies) without interference.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Better use of ChatGPT’s features:&lt;/strong&gt;&amp;nbsp;Inside the ChatGPT interface, we can take advantage of file uploads, persistent chat history, and the editable canvas.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Collaboration-friendly&lt;/strong&gt;: Several researchers can work on the same sample independently and later merge their results via sharing suggestions.json file, without the need to diff IDBs.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Safe script execution&lt;/strong&gt;: ChatGPT can prototype and test analysis scripts directly on the “live” sample in a secure cloud environment and deliver a working output to the analyst.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Extremely fast onboarding&lt;/strong&gt;: No need to set up an MCP server or configure complex integrations. The exported data and results can even be shared with colleagues who don’t have IDA installed and cannot open your IDB.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Broad applicability:&lt;/strong&gt;&amp;nbsp;The concept isn’t tied to x86 binaries or IDA. It can be adapted to virtually any platform or technology stack. For example, GoLang, .NET, or JavaScript samples can all be analyzed in the same way. The main challenge is properly preparing the data and providing a tailored prompt that explains how to work with it. The analysis process remains the same.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;That said, the offline approach isn’t a universal magic wand. There were cases where we still needed to resort to actual debugging (and therefore MCP), for example, to confirm a guessed key or to dump something that our static analysis missed. In addition, while analyzing other malware families, we encountered situations where continuous work in IDA was required, involving constant modifications to the live database. Previously, we would have needed to export the database after every iteration of changes. In this instance, the MCP-based approach turned out to be a better i.e. more convenient alternative.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="what-went-wrong-and-how-we-fixed-it"&gt;What went wrong and how we fixed it&lt;/h3&gt;
+
+
+
+&lt;p&gt;Unsurprisingly, using an AI with an offline IDA export wasn’t without hiccups. We encountered a few issues with AI’s performance and solved them by adding strict rules to the prompt.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Guessing missing values.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;Sometimes the model tried to invent missing data, for example, encryption keys that were computed dynamically at runtime. To prevent such “hallucinations”, we enforced an evidence-first rule: every numeric value and every algorithm must be backed by a quote from the export (functions.jsonl, decomp/*.c, or data.jsonl) with the exact EA address. If the data is not there, the model must produce a not-found report that explains where it looked and why nothing was found.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;## Provenance &amp;amp; no-fabrication
+- Any *specific* numeric/structural claim (modulus, key length, magic multipliers like 0x66666667, loop bounds) MUST be backed by direct 
+evidence from the uploaded data:
+  - Quote the exact line(s) from `functions.jsonl` (insn/mnem/opstr/bytes) or from `decomp/*.c`, and cite EA(s).
+  - If the claim is not literally present, mark it **UNPROVEN** and offer a concrete verification plan.
+- If you revise a claim, explicitly state what changed and show the new 
+evidence quote. No silent edits.&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Shaping output to match expectations.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;For example, a string-decryption routine was expected to return printable text, but due to a mistake in extracting the key, the output was corrupted. To make the output “look right,” the model applied Base64. We banned any cosmetic transformations (such as Base64) used just to make results look valid. Instead, the model must find the actual error in the keys or in the algorithm and rerun the tests until the output is correct.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Verification contract
+   * Define acceptance criteria from the task (properties/invariants).
+   * Run self-checks (lengths, wrap-around, bounds monotonicity, step counts, round-trip where applicable).
+   * Do NOT transform outputs to “look right”; if a check fails, proceed to the recovery loop.&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Asking the user for data that is already in the archive.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
+&lt;p&gt;Early on, the model sometimes requested data we had already provided. We fixed this with a local-first rule: search in the archive files first. It should produce a not-found report only if the data is truly missing.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;## Local-first data usage
+- Treat the uploaded dataset as the primary source of truth.
+- Before requesting any bytes/strings/keys from the user, attempt to obtain them from the uploaded files
+- Never ask the user for blobs that are present in data.jsonl/strings.jsonl or are trivially recoverable from functions.jsonl.
+- Only if a needed EA/function is absent from the snapshot, say so and propose next steps (e.g., MCP call).&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+
+&lt;p&gt;With these precautions in place, our AI “assistant” became a reliable analyst for the static portions of the work. In the next sections, we show how it performed on the real challenges within XLoader 8.0, such as decrypting the payload and API resolution and working with occasional MCP-powered dynamic checks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="gpt-5-in-practice-analyzing-xloaders-built-in-crypter"&gt;GPT-5 in Practice: Analyzing XLoader’s Built-in Crypter&lt;/h2&gt;
+
+
+
+&lt;p&gt;When working with older ChatGTP models such as o3, getting the right result required splitting the task into many small steps and explicitly telling the model what to do, down to pointing out exact code addresses and the algorithms to apply. Without this level of detail, the output was unpredictable. This approach was closer to “text-based programming” and required deep engagement on our side.&lt;/p&gt;
+
+
+
+&lt;p&gt;With GPT-5, however, we can pose broader and more abstract tasks. Below we show an example of XLoader’s built-in crypter analysis with a mixed approach: using the IDA export as the main data source, and MCP+x64dbg for result verification.&lt;/p&gt;
+
+
+
+&lt;p&gt;For this task we took a recently discovered XLoader sample with SHA256:&amp;nbsp;&lt;strong&gt;77db3fdccda60b00dd6610656f7fc001948cdcf410efe8d571df91dd84ae53e1&lt;/strong&gt;. For the entire process we used GPT-5 in the “Thinking” mode.&lt;/p&gt;
+
+
+
+&lt;p&gt;After we gave the AI-assistant the instructions for processing the data, we received a short report:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32099" height="515" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image2-Copy-Copy-2.png" width="809" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 2&lt;/strong&gt;&amp;nbsp;&amp;#8211; IDA export initial report.&lt;/p&gt;
+
+
+
+&lt;p&gt;Next, we deliberately formulated the tasks for the AI assistant as if we knew nothing at all about the sample under analysis, assuming this would reflect the actions of someone unfamiliar with XLoader.&lt;/p&gt;
+
+
+
+&lt;p&gt;The first prompt was written in the most abstract way possible:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Perform an initial analysis of the sample starting from the entry point and provide a short report.&lt;/pre&gt;
+
+
+
+&lt;p&gt;Processing this simple prompt took 8 minutes and 46 seconds. As a result, our assistant correctly identified the RC4 implementation and concluded that the sample was packed. It is worth noting that, based only on the data available to the model, it suggested that the sample looked similar to XLoader. At the same time, there was nothing in the archive or in the initial prompt that explicitly pointed to this.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32100" height="110" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image3-Copy-2.png" width="690" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 3&lt;/strong&gt;&amp;nbsp;&amp;#8211; Initial analysis report: Entry point analysis.&lt;/p&gt;
+
+
+
+&lt;p&gt;In addition, it detected API call obfuscation. While the assistant was not fully able to deobfuscate all API calls during the quick triage, in some cases it inferred the function being called from the context and its signature.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32101" height="407" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image4-Copy-2.png" width="693" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 4&lt;/strong&gt;&amp;nbsp;&amp;#8211; Initial analysis report: Presumed call to the VirtualProtectEx function.&lt;/p&gt;
+
+
+
+&lt;p&gt;It also successfully identified the point where execution is handed over to the decrypted code.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32102" height="94" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image5-Copy.png" width="693" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 5&lt;/strong&gt;&amp;nbsp;&amp;#8211; Initial analysis report: Call to the original entry point in the decrypted code.&lt;/p&gt;
+
+
+
+&lt;p&gt;At this stage, our priority was to reach the payload as quickly as possible. We therefore focused on this goal by first asking the assistant to find all cryptographic function calls, and then to analyze how exactly the payload was decrypted.&lt;/p&gt;
+
+
+
+&lt;p&gt;We found out that the main payload block goes through two rounds of RC4: first, an RC4 decryption of the entire buffer, and then a second pass in 256-byte chunks using a different key.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32103" height="407" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image6-Copy-2.png" width="693" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 6&lt;/strong&gt;&amp;nbsp;&amp;#8211; Initial analysis report: Description of the two rounds of RC4 encryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;In addition, the assistant managed to collect:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;The virtual address of the original entry point in the decrypted code (0x00430CB3).&lt;/li&gt;
+
+
+
+&lt;li&gt;The offset of the encrypted block in the binary (0x3143).&lt;/li&gt;
+
+
+
+&lt;li&gt;The encrypted blob size (0x44A00).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The next step was to obtain the real-time keys and verify the result. At this point, we turned to MCP. In one of the steps, we also asked the assistant to read a section of decrypted data to validate the correctness of the static decryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;As a result, it obtained the following keys:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Stage-1 Key&lt;/td&gt;&lt;td&gt;20EBC3439E2A201E6FC943EE95DACC6250A8A647&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage-2 Key&lt;/td&gt;&lt;td&gt;86908CFE6813CB2E532949B6F4D7C6E6B00362EE&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;It also obtained a section of decrypted code:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32151" height="921" src="https://research.checkpoint.com/wp-content/uploads/2025/10/Figure-7-AI-controlled-debugging-in-x86dbg.png" width="1528" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 7&lt;/strong&gt;&amp;nbsp;&amp;#8211; AI-controlled debugging in x86dbg.&lt;/p&gt;
+
+
+
+&lt;p&gt;After the final keys were read from memory, we asked the assistant to identify where and by which algorithms the keys were generated, and to verify the analysis was correct using the real-time data obtained in the previous step.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Find how the Stage-1 and Stage-2 RC4 keys are calculated: source key material and algorithms. Please note that ALL the required data is available to you in IDA export. 
+Check your assumptions using the captured realtime values. Start with the Stage-1 key.&lt;/pre&gt;
+
+
+
+&lt;p&gt;In the end, AI produced a working script that unpacked the analyzed sample. Unfortunately, the script was not universally applicable, as the patterns it used to locate the keys were tightly bound to this particular sample. As a result, it failed when we tried to apply it to samples from other versions, requiring further manual fine-tuning.&lt;/p&gt;
+
+
+
+&lt;p&gt;Excluding the final step of creating a generic unpacker, the entire analysis took about 40 minutes and required 39 MCP calls. The table below lists the prompts we used and the time spent on each analysis step.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Time consumed&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Number of MCP calls&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Initial prompt (instructions).&lt;/td&gt;&lt;td&gt;37s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Perform an initial analysis of the sample starting from the entry point and provide a short report.&lt;/td&gt;&lt;td&gt;8m 46s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Find and carefully inspect all calls to the found cryptographic functions.&lt;/td&gt;&lt;td&gt;4m 13s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Analyze main payload blob decryption. Make sure you inspected all touches of the encrypted blob across different functions.&lt;/td&gt;&lt;td&gt;4m 13s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Set breakpoints on required addresses and capture the required data. Also, set a breakpoint before calling the OEP and capture a small decrypted block at OEP for using it later for the decryption verification. Before start, please provide a plan.&lt;/td&gt;&lt;td&gt;9m 7s&lt;/td&gt;&lt;td&gt;39&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Find how the Stage-1 and Stage-2 RC4 keys are calculated: source key material and algorithms. Please note that ALL the required data is available to you in IDA export. Check your assumptions using the captured realtime values. Start with the Stage-1 key.&lt;/td&gt;&lt;td&gt;6m 56s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Move to Stage-2 key derivation.&lt;/td&gt;&lt;td&gt;4m 40s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Implement an offline reproducer for Stage-1 and Stage-2 keys. Then implement a complete static decryptor that works directly with sample.bin: extracts the encrypted payload from the binary and decrypts it. Verify it works correctly using the captured data (OEP bytes).&lt;/td&gt;&lt;td&gt;1m 13s&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;Total&lt;/em&gt;&lt;/td&gt;&lt;td&gt;39m 8s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="analysis-of-the-unpacked-sample"&gt;Analysis of the unpacked sample&lt;/h2&gt;
+
+
+
+&lt;p&gt;After manually creating a function at address&amp;nbsp;&lt;em&gt;0x00430CB3&lt;/em&gt;&amp;nbsp;(original entry point: OEP) which we named&amp;nbsp;&lt;em&gt;oep_start&lt;/em&gt;, we opened the unpacked sample in IDA and applied the export script again. We also created a new project to analyze the unpacked sample.&lt;/p&gt;
+
+
+
+&lt;p&gt;Even before starting a deep dive, it was clear that IDA failed to recognize a large portion of the code, and many of the identified functions did not look valid.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image"&gt;&lt;img alt="" src="https://research.checkpoint.com/s2_pandoc-html/media/image8.png" /&gt;&lt;/figure&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32105" height="718" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image8-Copy-2.png" width="1130" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 8&lt;/strong&gt;&amp;nbsp;&amp;#8211; Unpacked XLoader sample in IDA.&lt;/p&gt;
+
+
+
+&lt;p&gt;This may indicate that the code is obfuscated in some way, or that the functions are encrypted. In fact, we know that XLoader uses on-the-fly function decryption, as we mentioned in the introduction. For some functions, multi-layer encryption is applied.&lt;/p&gt;
+
+
+
+&lt;p&gt;For the sake of the experiment, we wanted to see if the AI assistant could determine all this on its own, without our guidance. We started the analysis with the same type of prompt we used when analyzing the packed sample.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Perform an initial analysis of the sample starting from the `oep_start` (`0x00430CB3`) and provide a short report.&lt;/pre&gt;
+
+
+
+&lt;p&gt;After initial analysis, we identified:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Use of obfuscated API calls.&lt;/li&gt;
+
+
+
+&lt;li&gt;Use of RC4 encryption with additional modifications before and after using RC4.&lt;/li&gt;
+
+
+
+&lt;li&gt;Some stage-1 builder (a decryptor of the encrypted function).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32106" height="481" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image9-Copy-2.png" width="1342" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 9&lt;/strong&gt;&amp;nbsp;&amp;#8211; Triage report and the “Stage-1 builder” function (a function decryptor stub).&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="function-decryption-scheme-i"&gt;Function decryption scheme I&lt;/h3&gt;
+
+
+
+&lt;p&gt;Next, we asked the assistant to focus on the logic around the so-called&amp;nbsp;&lt;strong&gt;stage-1 builder&lt;/strong&gt;&amp;nbsp;(&lt;em&gt;sub_429143&lt;/em&gt;) and to locate cross-references of the functions involved. The AI assistant identified 90 similar functions. These functions derive 6-byte head and tail markers, use those markers to locate a target region in memory, overwrite the markers with six &lt;code&gt;NOP&lt;/code&gt; instructions (&lt;em&gt;&lt;code&gt;90 90 90 90 90 90&lt;/code&gt;&lt;/em&gt;), transform the region, and then transfer execution to a hardcoded address unique to each wrapper.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32107" height="257" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image10.png" width="713" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 10&lt;/strong&gt;&amp;nbsp;&amp;#8211; Results of the function encryption scheme analysis, together with the renamed functions from the analysis.&lt;/p&gt;
+
+
+
+&lt;p&gt;The assistant also implemented inline Python snippets and decrypted one of the encrypted functions, providing us with all the data and the keys, as well as the part of the decrypted code:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32108" height="526" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image11.png" width="690" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 11&lt;/strong&gt;&amp;nbsp;&amp;#8211; Report on the successful decryption of one of the functions (0x00418DB3).&lt;/p&gt;
+
+
+
+&lt;p&gt;Interestingly, in this case, the use of MCP wasn’t even necessary, as the validity of the extracted keys can be easily verified by AI: if it’s possible to locate the start and end markers of the code after decryption, it means the keys and the algorithm were recovered correctly. Additionally, we can see that the decrypted data doesn’t appear to be random (it contains sequences like&amp;nbsp;&lt;em&gt;&lt;code&gt;00 00&lt;/code&gt;&lt;/em&gt;&amp;nbsp;and&amp;nbsp;&lt;em&gt;&lt;code&gt;ff ff&lt;/code&gt;&lt;/em&gt;), which suggests the function was indeed decrypted correctly.&lt;/p&gt;
+
+
+
+&lt;p&gt;The AI performed very well in reimplementing the algorithms, including the modified RC4 with additional tweaks, as well as in locating the keys within the provided sample. It also successfully implemented functions for detecting 6-byte markers.&lt;/p&gt;
+
+
+
+&lt;p&gt;However, it was unable to fully implement a universal script capable of decrypting all functions without human assistance. The issue arose in locating all the XOR modifiers required to construct the 20-byte effective RC4 key.&lt;/p&gt;
+
+
+
+&lt;p&gt;The challenge lies in the fact that the effective RC4 key is derived by XOR-ing its 4-byte components with a 4-byte modifier, which is unique for each encrypted function and is calculated this way:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-code"&gt;&lt;code&gt;&lt;em&gt;seed_external ^ seed_internal ^ 0x6CFC3E60&lt;/em&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 12&amp;lt;/strong&amp;gt; - Calculation of the 4-byte XOR modifier
+for the key required to decrypt the functions." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image12.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 12&lt;/strong&gt;&amp;nbsp;&amp;#8211; Calculation of the 4-byte XOR modifier for the key required to decrypt the functions.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;While&amp;nbsp;&lt;em&gt;&lt;code&gt;seed_internal&lt;/code&gt;&lt;/em&gt;&amp;nbsp;is always located within the wrapper function near the markers, the assistant was unable to implement a universal method for finding&amp;nbsp;&lt;em&gt;&lt;code&gt;seed_external&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(see Figure 13 below), as it could be placed in various locations within the calling function and might be deliberately mixed with other constants.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 13&amp;lt;/strong&amp;gt; - Report on the limitations encountered
+while creating the function decryption script." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image13.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 13&lt;/strong&gt;&amp;nbsp;&amp;#8211; Report on the limitations encountered while creating the function decryption script.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;We had to manually modify the script to ensure it could correctly locate all external seeds. Additionally, we modified the rules for locating the remaining constants to make the script truly robust and capable of working with other samples as well. Therefore, the AI significantly reduced the time required for analysis and script development, but at this stage, it could not fully replace a human.&lt;/p&gt;
+
+
+
+&lt;p&gt;It is clear that the creators of XLoader deliberately complicated the key construction process by scattering crucial constants across multiple functions, to the extent that even AI was unable to develop an algorithm to locate it. We are not disclosing how we derive the keys, so as not to give the XLoader developers any advantage.&lt;/p&gt;
+
+
+
+&lt;p&gt;Finally, after applying the script, we obtained 51 functions decrypted in the first pass. Many of the decrypted functions also contained similar calls to encrypted functions. Applying the script three times in a row, we got a total of 77 decrypted functions out of the 90 initially found.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32111" height="359" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image14.png" width="563" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 14&lt;/strong&gt;&amp;nbsp;&amp;#8211; Decrypted function example with a patched 6-byte head marker (six NOP instructions).&lt;/p&gt;
+
+
+
+&lt;p&gt;After loading the resulting sample into IDA, we can see that a significant number of code blocks are still unrecognized:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32112" height="45" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image15.png" width="847" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 15&lt;/strong&gt;&amp;nbsp;&amp;#8211; Significant number of code blocks remain unrecognized by IDA.&lt;/p&gt;
+
+
+
+&lt;p&gt;During a quick review, we also identified several functions that still remain encrypted:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32113" height="225" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image16.png" width="1345" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 16&lt;/strong&gt;&amp;nbsp;&amp;#8211; Functions that remained encrypted after applying the decryption script.&lt;/p&gt;
+
+
+
+&lt;p&gt;It’s also worth noting that in the scheme described above, encrypted functions are located using 6-byte sequences, which are replaced with six NOP instructions after decryption. This implies that the function must have a valid, unencrypted prologue. At the same time, in Figure 16, on the right we can see an encrypted function that lacks a valid prologue. This likely indicates that a different decryption method was used.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="function-decryption-scheme-ii"&gt;Function decryption scheme II&lt;/h3&gt;
+
+
+
+&lt;p&gt;We recreated exporting the database and loaded it into ChatGPT. We initiated the analysis with the following prompt and uploaded the decryption log of the 77 functions:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;In the analyzed scheme, encrypted functions are located using 6-byte sequences, which are replaced with six NOP instructions after decryption.
+This implies that the function must have a valid, unencrypted prologue. Some of the encrypted functions do not have a valid prologue (e.g., `sub_407293`, `sub_411053`, `sub_415343`). 
+This likely indicates that a different method is used for it. Try to find it.&lt;/pre&gt;
+
+
+
+&lt;p&gt;It’s worth noting that we used a little trickery by pointing out the absence of a valid prologue in the prompt. Without this observation, the AI assistant was unable to identify the additional decryptors.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32137" height="163" src="https://research.checkpoint.com/wp-content/uploads/2025/10/image-2.png" width="975" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 17&lt;/strong&gt;&amp;nbsp;&amp;#8211; Second decryption/patching scheme discovered.&lt;/p&gt;
+
+
+
+&lt;p&gt;Instead of 6-byte tags, the newly discovered scheme computes 4-byte&amp;nbsp;&lt;em&gt;head&lt;/em&gt;&amp;nbsp;and&amp;nbsp;&lt;em&gt;tail&lt;/em&gt;&amp;nbsp;markers using XOR. For example:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32138" height="114" src="https://research.checkpoint.com/wp-content/uploads/2025/10/image-3.png" width="880" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 18&lt;/strong&gt;&amp;nbsp;&amp;#8211; Calculation of the head marker using XOR.&lt;/p&gt;
+
+
+
+&lt;p&gt;The head marker anchors one byte before the real entry. After decryption, the code writes a canonical prologue (&lt;em&gt;&lt;code&gt;55 8B EC&lt;/code&gt;&lt;/em&gt;) at the buffer pointer plus one byte and patches the tail with &lt;em&gt;&lt;code&gt;90 90 90 90&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32139" height="47" src="https://research.checkpoint.com/wp-content/uploads/2025/10/image-4.png" width="934" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 19&lt;/strong&gt;&amp;nbsp;&amp;#8211; Patching the head and tail markers with valid instructions.&lt;/p&gt;
+
+
+
+&lt;p&gt;The function body is decrypted in two layers using&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_xform_sub_rc4_sub&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Layer 1 key: Constructed by&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_rc4key20_build&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(&lt;em&gt;&lt;code&gt;0x00404543&lt;/code&gt;&lt;/em&gt;) and then XOR-ed with 1-byte modifier (&lt;em&gt;0x36&lt;/em&gt;&amp;nbsp;in the example below):&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 20&amp;lt;/strong&amp;gt; - Calculation of the Layer 1 key for
+function decryption." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image19.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 20&lt;/strong&gt;&amp;nbsp;&amp;#8211; Calculation of the Layer 1 key for function decryption.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Layer 2 key: Constructed by concatenating the head marker with 16 zero bytes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Wrapper &lt;em&gt;&lt;code&gt;0x00415943&lt;/code&gt;&lt;/em&gt; decrypts function &lt;em&gt;&lt;code&gt;0x00415343&lt;/code&gt;&lt;/em&gt; using:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Markers&lt;/strong&gt;: &lt;code&gt;4c ed 39 65&lt;/code&gt;, &lt;code&gt;a7 32 ca 6a&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Key-1&lt;/strong&gt;: 3f548513b8c7d376ec59d1a03e3313aaf6cd4262 (20B from &lt;code&gt;sub_404543&lt;/code&gt;, then XOR 0x36)&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Key-2&lt;/strong&gt;: 4ced396500000000000000000000000000000000&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Function decryption scheme III&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;In the latest scheme, 4-byte markers are also used to find the start and end of a function. As in the previous method, two layers of encryption are applied, and the same key is used to decrypt the first layer. However, the 20-byte key for the second layer is embedded within the wrappers (unique for each encrypted function) and is modified using a 4-byte value.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Wrapper &lt;em&gt;&lt;code&gt;0x00418dc3&lt;/code&gt;&lt;/em&gt; decrypts function &lt;em&gt;&lt;code&gt;0x0040d543&lt;/code&gt;&lt;/em&gt; using:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Markers&lt;/strong&gt;: &lt;code&gt;9c da 5e e8&lt;/code&gt;, &lt;code&gt;0e e7 b2 36&lt;/code&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Key-1&lt;/strong&gt;: 3f548513b8c7d376ec59d1a03e3313aaf6cd4262 (20B from &lt;code&gt;sub_404543&lt;/code&gt;, then XOR 0x36)&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Key-2&lt;/strong&gt;: c2b2622cf0608327d4e542bc4ac3d2f709e092dc (calculated in the wrapper)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Additionally, a separate function may be used to handle the decryption of the second layer and the patching process.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32117" height="436" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image20.png" width="659" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 21&lt;/strong&gt;&amp;nbsp;&amp;#8211; Function used to handle the decryption of the second layer and the patching process.&lt;/p&gt;
+
+
+
+&lt;p&gt;We identified three distinct function decryption schemes in XLoader:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Scheme 1 –&lt;/strong&gt;&amp;nbsp;Most common. In this scheme, encrypted functions already begin with a valid prologue. A global 20-byte base key is reused across all functions, but each function also has a unique 4-byte XOR modifier. The base key and modifier are combined to derive a per-function RC4 key. A modified RC4 routine is then used with this key to decrypt two 6-byte markers that define the boundaries of the encrypted block, and the same key is subsequently applied to the function body itself. Once decrypted, the two markers are overwritten with NOPs.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Scheme 2.&lt;/strong&gt;&amp;nbsp;Uses 4-byte markers and two encryption layers. The first layer uses a 20-byte key produced by a dedicated key-builder function, then XOR-tweaked with a single byte. The second layer key is constructed from the 4-byte head marker concatenated with sixteen zero bytes. After decryption, the wrapper repairs the function by patching&amp;nbsp;&lt;em&gt;&lt;code&gt;55 8B EC&lt;/code&gt;&lt;/em&gt;&amp;nbsp;at the prologue and filling the tail with NOPs.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Scheme 3.&lt;/strong&gt;&amp;nbsp;Similar to Scheme 2, but the second-layer key is not derived from the head marker. Instead, each wrapper embeds its own 20-byte constant (five DWORDs XORed with salt), which is used to decrypt the prefix up to a sentinel value before the same prologue/tail patching is applied.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;It is worth noting that to implement universal static decryptors, we still had to break the task down into smaller steps ourselves: locating wrapper functions, extracting 20-byte keys, recovering 4-byte modifiers, and identifying and calculating marker positions. We combined them into a single decryptor only after confirming that each step worked reliably and produced the correct data for every function. At the same time, AI significantly reduced the time required to implement regular expressions (even though they had to be adjusted manually) as well as during the analysis and implementation of cryptographic algorithms.&lt;/p&gt;
+
+
+
+&lt;p&gt;With each decryption iteration we obtained a new batch of decrypted functions, some of which contained the keys required for decrypting additional functions. By applying all three decryptors sequentially over four iterations, we ultimately succeeded in decrypting&amp;nbsp;101 functions.&lt;/p&gt;
+
+
+
+&lt;p&gt;Unfortunately, it was not possible to accurately measure the time spent on this task, as it required a considerable amount of additional work and manual corrections. However, this stage turned out to be the most complex and time-consuming for both us and the LLM.&lt;/p&gt;
+
+
+
+&lt;p&gt;We also got&amp;nbsp;&lt;em&gt;suggestions.json&lt;/em&gt;&amp;nbsp;with the suggested names for the analyzed functions. This is very useful, because we can keep this file for other analysis sessions and easily import it in the current IDB, or even in a new IDB (after decrypting the functions) without the need to diff it with the old database.&lt;/p&gt;
+
+
+
+&lt;p&gt;We now have a fully decrypted sample, which allows us to continue the analysis using the same methodology.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="api-calls-deobfuscation"&gt;API Calls deobfuscation&lt;/h2&gt;
+
+
+
+&lt;p&gt;Now that we have a fully decrypted sample, we can apply the same approach to it. We first load&amp;nbsp;&lt;em&gt;suggestions.json&lt;/em&gt;&amp;nbsp;and then perform an export. As stated earlier, even during the very first analysis of the sample (before we had obtained the decrypted functions) the assistant pointed out the presence of obfuscated API calls. The import table in this sample is empty and there are no plaintext strings that might contain library or function names.&lt;/p&gt;
+
+
+
+&lt;p&gt;As we created a new clean session by uploading the decrypted sample, we decided to test how reproducible the analysis results were.&lt;/p&gt;
+
+
+
+&lt;p&gt;Therefore, in the very first prompt, without providing any hints, we asked the assistant to identify the API call obfuscation mechanisms. As in the previous case, we specified that the analysis should begin at the OEP rather than at the&amp;nbsp;&lt;em&gt;start&lt;/em&gt;&amp;nbsp;function, so that the AI assistant would not get bogged down analyzing the packer.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;The IAT is empty, no plaintext strings in the sample.
+Determine how the sample resolves and invokes Windows APIs. Start the analysis from `oep_start` (`0x00430CB3`).&lt;/pre&gt;
+
+
+
+&lt;p&gt;Four minutes later, we received a description of the algorithm:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32118" height="601" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image21.png" width="776" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 22&lt;/strong&gt;&amp;nbsp;&amp;#8211; Description of one of the API resolution algorithms.&lt;/p&gt;
+
+
+
+&lt;p&gt;Interestingly, during the first analysis (when part of the functions was still encrypted) and the second analysis, our AI assistant identified different functions responsible for API hash decryption. In the first case, it pointed to&amp;nbsp;&lt;em&gt;&lt;code&gt;sub_404603&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(later renamed to&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_apiid_decrypt_salt&lt;/code&gt;&lt;/em&gt;), while in the second case it identified only&amp;nbsp;&lt;em&gt;&lt;code&gt;sub_4045B3&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(&lt;em&gt;&lt;code&gt;ai_apiid_decrypt&lt;/code&gt;&lt;/em&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;Next, we used the following simple prompt to generate a script for API call deobfuscation:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Implement an IDAPython script for deobfuscating API calls. Annotate the resolver and every call site with Module!Function, original ID, and EA; IDA 9+. Log all deobfuscation attempts.&lt;/pre&gt;
+
+
+
+&lt;p&gt;We got a script with the following functionality:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 23&amp;lt;/strong&amp;gt; - Description of the IDA Python script for
+API call deobfuscation." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image22.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 23&lt;/strong&gt;&amp;nbsp;&amp;#8211; Description of the IDA Python script for API call deobfuscation.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;As the assistant did not have access to IDA, we had to test the script manually. If there were errors, we sent the results back to the chat and asked for corrections. It took five iterations and about 20 additional minutes to obtain a fully working version.&lt;/p&gt;
+
+
+
+&lt;p&gt;Therefore, we also asked the assistant to analyze an alternative path:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Analyze routine `sub_404603` as an alternate API-hash decrypter. Recover its algorithm. Find call sites. Extend the IDAPython deobfuscator.&lt;/pre&gt;
+
+
+
+&lt;p&gt;It took another five iterations (sending back errors and corrections) and 14 minutes before we obtained a fully functional script.&lt;/p&gt;
+
+
+
+&lt;p&gt;XLoader uses the same hash-decryption mechanism to look for sandbox artifacts, virtual machines, and processes typical of a researcher’s environment. While fixing issues, we also added dictionary-based hash brute forcing (loading the wordlist from a separate file), which let us automatically annotate not only functions but also certain strings corresponding to specific evasion techniques:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32120" height="335" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image23.png" width="527" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 24&lt;/strong&gt;&amp;nbsp;&amp;#8211; Deobfuscated API function and string identifiers.&lt;/p&gt;
+
+
+
+&lt;p&gt;As a bonus, we received a summary of how API resolution works, describing two different methods:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 25&amp;lt;/strong&amp;gt; - Description of the two methods for
+decrypting hashes and resolving API functions." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image24.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 25&lt;/strong&gt;&amp;nbsp;&amp;#8211; Description of the two methods for decrypting hashes and resolving API functions.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Overall, it took roughly one hour of the AI assistant’s work to go from the first prompt to a fully functional API deobfuscation script. This figure does not include local testing or the time spent writing prompts. For this task, the human effort was minimal.&lt;/p&gt;
+
+
+
+&lt;p&gt;The table below summarizes the prompts we used and the time required for each step:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Time consumed&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Initial prompt (instructions)&lt;/td&gt;&lt;td&gt;1m 26s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;The IAT is empty, with no plaintext strings in the sample.&lt;br /&gt;Determine how the sample resolves and invokes Windows APIs. Start the analysis from &lt;code&gt;oep_start&lt;/code&gt; (&lt;code&gt;0x00430CB3&lt;/code&gt;).&lt;/td&gt;&lt;td&gt;4m 28s&lt;/td&gt;&lt;td&gt;Found only one path (ai_apiid_decrypt).&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Implement an IDAPython script for deobfuscating API calls. Annotate the resolver and every call site with Module!Function, original ID, and EA; IDA 9+. Log all deobfuscation attempts.&lt;/td&gt;&lt;td&gt;9m 44s&lt;/td&gt;&lt;td&gt;The script did not work.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;Multiple&lt;/em&gt;&lt;/td&gt;&lt;td&gt;20m&lt;/td&gt;&lt;td&gt;Local testing of the script and sending error reports, 5 iterations.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Analyze routine &lt;code&gt;sub_404603&lt;/code&gt; as an alternate API-hash decrypter. Recover its algorithm. Find call sites. Extend the IDAPython deobfuscator.&lt;/td&gt;&lt;td&gt;4m 49s&lt;/td&gt;&lt;td&gt;Described the second API resolution path through ai_apiid_decrypt_salt (formerly sub_404603). The updated script did not work.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;Multiple&lt;/em&gt;&lt;/td&gt;&lt;td&gt;14m 35s&lt;/td&gt;&lt;td&gt;Local testing of the script, sending error reports and notes on incorrect behavior, 5 iterations.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Please provide a summary on two algorithms &lt;code&gt;ai_apiid_decrypt_salt&lt;/code&gt;, &lt;code&gt;ai_apiid_decrypt&lt;/code&gt; -&amp;gt; &lt;code&gt;ai_resolve_export&lt;/code&gt;&lt;/td&gt;&lt;td&gt;17s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;Total time&lt;/em&gt;&lt;/td&gt;&lt;td&gt;55m 2s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Additional protection of critical API calls&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;While reviewing the API call deobfuscation results, we noticed that some functions are invoked through an interesting wrapper which was originally hidden among the encrypted functions at address &lt;code&gt;0x0040AC93&lt;/code&gt; (&lt;code&gt;ai_dec_func_16&lt;/code&gt;).&lt;/p&gt;
+
+
+
+&lt;p&gt;This function acts as a&amp;nbsp;&lt;em&gt;secure-call trampoline&lt;/em&gt;: it temporarily encrypts nearly the entire image before invoking a function pointer and then decrypts those same regions once the call returns. Only a tiny “island” (the space between the call-site’s return address and a marker) remains unencrypted by the per-call XOR so that execution can proceed.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32140" height="411" src="https://research.checkpoint.com/wp-content/uploads/2025/10/image-5.png" width="975" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 26&lt;/strong&gt;&amp;nbsp;&amp;#8211; “Secure-call trampoline” decompiled function explained by LLM.&lt;/p&gt;
+
+
+
+&lt;p&gt;What makes this mechanism notable? Because the function stays encrypted nearly the entire time, it is difficult to even detect its existence without static decryption. In memory dumps, it appears only in encrypted form.&lt;/p&gt;
+
+
+
+&lt;p&gt;At the same time, if some security software or a sandbox hooks API calls protected by this wrapper and tries to analyze or dump the process memory at the time of the call, the mechanism effectively shields the malicious code.&lt;/p&gt;
+
+
+
+&lt;p&gt;In total, 20 functions are protected this way, including NTAPI routines related to processes, threads, memory, and file operations, as well as several WinSock functions. The full list is shown in the image below:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32123" height="288" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image26.png" width="468" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 27&lt;/strong&gt;&amp;nbsp;&amp;#8211; The list of API calls protected by “secure-call trampoline.”&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="string-decryption"&gt;String decryption&lt;/h2&gt;
+
+
+
+&lt;p&gt;The sample contains no readable strings. At the same time, the code features a series of short routines that share the same skeleton: the prologue allocates a small stack frame and initializes a local array (its size varies by function). This is followed by a recurring trio of calls with the same order and identical argument signatures:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32124" height="476" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image27.png" width="618" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Figure 28&lt;/strong&gt;&amp;nbsp;&amp;#8211; Example of an encrypted string in XLoader code.&lt;/p&gt;
+
+
+
+&lt;p&gt;Let’s analyze one of these functions. Because we started a fresh session for this task, we instructed the AI assistant to trust the existing comments that briefly describe each function’s behavior, so it doesn’t reanalyze routines that were already covered.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Analyze the functionality starting from `sub_405773`. Recurse into its callees. Trust the comments in the disassembly.&lt;/pre&gt;
+
+
+
+&lt;p&gt;As a result, we determined that this function decrypts a string using the algorithm implemented in one of the previously decrypted routines (&lt;code&gt;ai_dec_func14&lt;/code&gt;). Note how the AI built the call graph and described each routine’s behavior from a single short prompt, relying solely on the data in the previously prepared archive:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32125" height="434" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image28.png" width="691" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 29&lt;/strong&gt;&amp;nbsp;&amp;#8211; Call graph and description of the string decryptor stub.&lt;/p&gt;
+
+
+
+&lt;p&gt;With a simple prompt, we readily obtain the encryption keys and the decrypted string.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Decrypt the string from `sub_405773`.&lt;/pre&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32126" height="449" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image29.png" width="658" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 30&lt;/strong&gt;&amp;nbsp;&amp;#8211; String decryption result with derived key and ciphertext.&lt;/p&gt;
+
+
+
+&lt;p&gt;Now that we are confident the AI assistant understands how the encrypted strings are stored, knows how the key is derived, and already analyzed and correctly reimplemented the decryption algorithm (verifying it on real data), we can move on to implementing a script to decrypt the remaining strings.&lt;/p&gt;
+
+
+
+&lt;p&gt;This time we used a slightly more detailed prompt because we wanted specific information to appear both in the comments and in the console output:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Implement an IDAPython script (IDA 9+) that decrypts strings. Requirements:
+- Find and annotate every call to the decrypter function `sub_4050F3` with the decrypted string.
+- For each string, output debug info: encrypted buffer, XOR tweak byte (`BL`), length, and decrypted bytes.
+- Print all binary data in hex.&lt;/pre&gt;
+
+
+
+&lt;p&gt;This time we were lucky and immediately got a working script which we used to decrypt 175 strings:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-32127" height="311" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image30-1024x311.png" width="1024" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 31&lt;/strong&gt;&amp;nbsp;&amp;#8211; Decrypted strings in IDA.&lt;/p&gt;
+
+
+
+&lt;p&gt;The total time required for the analysis was about 20 minutes:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Time consumed&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Initial prompt (instructions)&lt;/td&gt;&lt;td&gt;1m 26s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Analyze the functionality starting from sub_405773. Recurse into its callees. Trust the comments in the disassembly.&lt;/td&gt;&lt;td&gt;7m 45s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Decrypt the string from sub_405773&lt;/td&gt;&lt;td&gt;5m 10s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Implement an IDAPython script (IDA 9+) that decrypts strings. Requirements:Find and annotate every call to the decrypter function sub_4050F3 with the decrypted string.For each string, output debug info: encrypted buffer, XOR tweak byte (BL), length, and decrypted bytes.Print all binary data in hex.&lt;/td&gt;&lt;td&gt;5m 30s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Total time&lt;/td&gt;&lt;td&gt;19m 51s&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;We now have a decrypted sample with deobfuscated strings and API calls that we can analyze like a regular binary. However, XLoader is not that simple: some data remains encrypted even at this stage.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="decrypting-domain-names"&gt;Decrypting domain names&lt;/h2&gt;
+
+
+
+&lt;p&gt;Extracting lists of Indicators of Compromise (IoCs) is always a critical task in malware analysis. Network indicators, such as domain names and URLs, are especially important because they help detect and classify malware through traffic analysis. That is why extracting domains is essential — even though some may be decoys or bait, or currently inactive but intended for later use.&lt;/p&gt;
+
+
+
+&lt;p&gt;Among the recovered strings, we see 64 Base64-encoded entries. Looking at the version history of XLoader, we find that starting from version 2.8 it began storing encrypted domain names in Base64 form. Without a doubt, these 64 Base64 strings represent domain names that we must decrypt. As early as version 4, XLoader added two additional layers of modified RC4 encryption with different keys, making the decryption more complicated. In later versions, this process became even more complex. In total, to reach the decrypted domain names we need to peel off at least five layers after first identifying where and how the keys are initialized: decrypt the functions that initialize encrypted strings, decrypt the strings themselves (which we already did earlier), base64-decode the results, and apply two more layers of decryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;At the same time, obtaining the keys for each layer is the most difficult part, as the different pieces of data needed to generate them are scattered across multiple functions, making them hard to locate.&lt;/p&gt;
+
+
+
+&lt;p&gt;Before moving on, we updated our string deobfuscation script so that it also renames the functions responsible for retrieving decrypted strings and assigns a prefix&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_domain_{NN}&lt;/code&gt;&lt;/em&gt;&amp;nbsp;to all functions handling Base64-encoded strings. We then exported the database to prepare for domain decryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;All calls to the&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_domain_{NN}&lt;/code&gt;&lt;/em&gt;&amp;nbsp;functions occur inside a single function,&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_func_0&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(&lt;em&gt;&lt;code&gt;0x00404913&lt;/code&gt;&lt;/em&gt;):&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32128" height="540" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image31.png" width="407" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 32&lt;/strong&gt;&amp;nbsp;&amp;#8211; Domain generation function.&lt;/p&gt;
+
+
+
+&lt;p&gt;We start the analysis of this function using the simplest prompt:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Analyze `ai_dec_func_0` (0x00404913)&lt;/pre&gt;
+
+
+
+&lt;p&gt;As a result of our analysis, we obtained a detailed description showing that &lt;code&gt;ai_dec_func_0&lt;/code&gt; (later renamed to &lt;code&gt;ai_dec_func_0_domain_tag_generate&lt;/code&gt;) is XLoader’s stage-1 domain builder. For a given domain index (1..64), it pulls the matching seed string from&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_domain_NN&lt;/code&gt;&lt;/em&gt;, base64-decodes it, then runs a keyed RC4-with-diff transform whose key is a 20-byte secret stored at&amp;nbsp;&lt;em&gt;&lt;code&gt;ctx+0x23D0&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(where&amp;nbsp;&lt;em&gt;&lt;code&gt;ctx&lt;/code&gt;&lt;/em&gt;&amp;nbsp;is a global structure that stores keys, function addresses, and other data), and byte-XORed with the domain index. The result is re-encoded to base64 and written to the output buffer. This is an intermediate artifact, not the final ASCII domain.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 33&amp;lt;/strong&amp;gt; - Domain generation function analysis
+report." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image32.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 33&lt;/strong&gt;&amp;nbsp;&amp;#8211; Domain generation function analysis report.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;A special “token” branch is enabled when&amp;nbsp;&lt;em&gt;&lt;code&gt;a5==222&lt;/code&gt;&lt;/em&gt;&amp;nbsp;is used for generating a path string for a URL. It emits a short pattern&amp;nbsp;&lt;em&gt;&lt;code&gt;/&amp;lt;4-byte token&amp;gt;/&lt;/code&gt;&lt;/em&gt;&amp;nbsp;from a static table and applies the same keyed transform.&lt;/p&gt;
+
+
+
+&lt;p&gt;Next, we asked the assistant to reproduce the transformations implemented in &lt;code&gt;ai_dec_func_0_domain_tag_generate&lt;/code&gt;. Because our script already retrieved the decrypted strings and added them as comments in the previous step, we requested that these strings also be used alongside the repeated string decryption:&lt;/p&gt;
+
+
+
+&lt;p&gt;Comments in the disassembly of &lt;em&gt;&lt;code&gt;ai_dec_domain_NN&lt;/code&gt;&lt;/em&gt; contain base64-encoded encrypted domain names.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Take the one from `ai_dec_domain_01`, then transform it with `ai_dec_func_0` and return the final string.&lt;/pre&gt;
+
+
+
+&lt;p&gt;As a result, our assistant was unable to locate the key at&amp;nbsp;&lt;em&gt;ctx+0x23D0&lt;/em&gt;&amp;nbsp;on its own:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-32130" height="59" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image33.png" width="740" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 34&lt;/strong&gt;&amp;nbsp;&amp;#8211; AI was unable to locate the key.&lt;/p&gt;
+
+
+
+&lt;p&gt;That was not surprising, as none of the exported data contained references to the structure’s fields and can only be located by the offset in the structure, or captured in the debugger.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32132" height="302" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image35.png" width="684" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 35&lt;/strong&gt;&amp;nbsp;&amp;#8211; Initialization of the RC4 key for decrypting the first layer.&lt;/p&gt;
+
+
+
+&lt;p&gt;We therefore had to manually locate where this key was initialized and provide that information to the AI assistant.&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;You can find `ctx+0x23D0` initialization in `ai_dec_func_4` (`0x00407293`), also check `sub_404453`.
+After the keys were extracted, we tried again:Now you have the required key.
+Take the sting from `ai_dec_domain_01`, then transform it with `ai_dec_func_0` and return the final string.&lt;/pre&gt;
+
+
+
+&lt;p&gt;As a result, we obtained an intermediate value for the string returned by&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_domain_01&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(&lt;em&gt;&lt;code&gt;1Qo1bG/xbpI2gGY8lCzWBw==&lt;/code&gt;&lt;/em&gt;) after the first decryption layer, which was re-encoded in Base64 as (&lt;em&gt;&lt;code&gt;Qvm75Acm5NpYTbnYXdcvBw==&lt;/code&gt;&lt;/em&gt;):&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32132" height="302" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image35.png" width="684" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 36&lt;/strong&gt;&amp;nbsp;&amp;#8211; Result of reproducing the domain generation function’s behavior for index 2.&lt;/p&gt;
+
+
+
+&lt;p&gt;Because the string is still encrypted, and we do not yet know what happens to it next, we need to investigate further:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;The string you returned is still encrypted. Trace the complete transformation chain from `ai_dec_func_0` (case 2, string `Qvm75Acm5NpYTbnYXdcvBw==`) to the final ASCII domain. 
+Discover any remaining layers, locate and derive all required keys/parameters from the context/initializers, and cite function names with EAs used. 
+Output the final domain, and a concise step-by-step pipeline, print all keys/IVs as hex. If any value is missing, state exactly what it is and where to read it.&lt;/pre&gt;
+
+
+
+&lt;p&gt;As a result, we discovered that the obtained Base64 string is decoded again and then decrypted by a second layer using a 20-byte key generated inside the function&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_func_11&lt;/code&gt;&lt;/em&gt;&amp;nbsp;(&lt;em&gt;&lt;code&gt;0x004095F3&lt;/code&gt;&lt;/em&gt;). This key is additionally XORed with&amp;nbsp;&lt;em&gt;SALT_DWORD&lt;/em&gt;. However, the initialization of&amp;nbsp;&lt;em&gt;&lt;code&gt;SALT_DWORD&lt;/code&gt;&lt;/em&gt;&amp;nbsp;is missing from&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_func_11&lt;/code&gt;&lt;/em&gt;, and the assistant was therefore unable to retrieve it on its own.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32133" height="688" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image36.png" width="1014" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 37&lt;/strong&gt;&amp;nbsp;&amp;#8211; AI was unable to locate the Stage-2 key.&lt;/p&gt;
+
+
+
+&lt;p&gt;As in the previous case, we manually recovered the missing value. The complication was that instead of offset&amp;nbsp;&lt;em&gt;0x25C8&lt;/em&gt;, the base&amp;nbsp;&lt;em&gt;0x2000&lt;/em&gt;&amp;nbsp;was used, with&amp;nbsp;&lt;em&gt;0x5C8&lt;/em&gt;&amp;nbsp;added later, which made the search a bit more difficult.&lt;/p&gt;
+
+
+
+&lt;p&gt;We provided not only the address of the function where the initialization of&amp;nbsp;&lt;em&gt;&lt;code&gt;SALT_DWORD&lt;/code&gt;&lt;/em&gt;&amp;nbsp;was assumed to occur, but also the relevant code snippets:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;You can find SALT_DWORD in `ai_dec_func_20` (`0x00411053`). Please verify and continue:
+.text:004111B3 81 C7 00 20 00 00                       add     edi, 2000h
+...
+.text:0041182B C7 87 C8 05 00 00 00 A6                 mov     dword ptr [edi+5C8h], 0C6EA600h&lt;/pre&gt;
+
+
+
+&lt;p&gt;During the analysis, our AI assistant confirmed that the key was correct and successfully decrypted the domain corresponding to&amp;nbsp;&lt;em&gt;ai_dec_domain_01&lt;/em&gt;:&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;img alt="" class="wp-image-32134" height="201" src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image37.png" width="736" /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Figure 38&lt;/strong&gt;&amp;nbsp;&amp;#8211; Result of successful domain decryption.&lt;/p&gt;
+
+
+
+&lt;p&gt;Now the AI assistant can automatically decrypt all the domains. Let’s verify this by asking it to decrypt the first 16 domains:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Decrypt domains from `ai_dec_domain_00` to `ai_dec_domain_15`. Output: table (index, src_base64, final_domain). Take per-function base64 from `ai_dec_domain_NN` disassembly comments.&lt;/pre&gt;
+
+
+
+&lt;p&gt;In the end, we obtained a table with the fully decrypted domain names:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Index&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Base64 string&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Domain&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;00&lt;/td&gt;&lt;td&gt;vzdmFbhw7yOvxdFkCmo=&lt;/td&gt;&lt;td&gt;taxi-in[.]online&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;01&lt;/td&gt;&lt;td&gt;1Qo1bG/xbpI2gGY8lCzWBw==&lt;/td&gt;&lt;td&gt;taskcomputer[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;02&lt;/td&gt;&lt;td&gt;pl3FzS0/qAShr9lpPklP&lt;/td&gt;&lt;td&gt;synergydrop[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;03&lt;/td&gt;&lt;td&gt;HjGg/gTdG4wotWUMc2FdaQM4&lt;/td&gt;&lt;td&gt;royal-bet-king[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;04&lt;/td&gt;&lt;td&gt;DfIa6p4SMpuTl9pz88upxCs=&lt;/td&gt;&lt;td&gt;goldenspoon[.]click&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;05&lt;/td&gt;&lt;td&gt;j5pycQ0Z6wgJNE5bRsgHZg==&lt;/td&gt;&lt;td&gt;spark-stack[.]shop&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;06&lt;/td&gt;&lt;td&gt;kVA0/yW+XRq9ONJ2DHOKcHWmYC5B&lt;/td&gt;&lt;td&gt;lecerisierenfleur[.]net&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;07&lt;/td&gt;&lt;td&gt;gqIXlaPvhlfqj/rC45qHCivuyg==&lt;/td&gt;&lt;td&gt;shhiajtdaz9bhau[.]top&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;08&lt;/td&gt;&lt;td&gt;zax+KZqwt6q9KWiv9Ao=&lt;/td&gt;&lt;td&gt;allslotvip[.]vip&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;09&lt;/td&gt;&lt;td&gt;VnrxgJfuzU1AL7YRsrhn&lt;/td&gt;&lt;td&gt;debatevxtlm[.]sbs&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;qjZURKL4uqdfIR6t/6ZRdBY/s9E/qw==&lt;/td&gt;&lt;td&gt;theexcelconundrum[.]info&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;LiJnz4B0FuWt3hyZKCg=&lt;/td&gt;&lt;td&gt;runsociety[.]org&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;L/EwBoA7HTg=&lt;/td&gt;&lt;td&gt;avvo[.]com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;zV9rEdBGpqvEo3v3cAnEkw==&lt;/td&gt;&lt;td&gt;botbuilders[.]team&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;vk923CIZnNuJkgaN4qXyZA==&lt;/td&gt;&lt;td&gt;hawkingonsol[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;Q97vXR4iHn+C7yQMHTBY5Jk=&lt;/td&gt;&lt;td&gt;streamingsite[.]xyz&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Let’s recall that at the very beginning of the analysis we discovered a separate branch of&amp;nbsp;&lt;em&gt;&lt;code&gt;ai_dec_func_0&lt;/code&gt;&lt;/em&gt;&amp;nbsp;that activates when the last value equals 222. In this case, a 4-character tag is generated which later becomes part of the URL. Previously, this tag was the same for all domains and unique to a malware campaign. Now, however, each domain has its own tag.&lt;/p&gt;
+
+
+
+&lt;p&gt;We tried to decrypt the tags for the first 16 domains using the following prompt:&lt;/p&gt;
+
+
+
+&lt;pre class="EnlighterJSRAW"&gt;Reproduce the output of `ai_dec_func_0` for a5=222 and domain index 0..15.&lt;/pre&gt;
+
+
+
+&lt;p&gt;In response to the prompt, the assistant provided a description of how the malware generates those 4-character tags, and the table containing the first 16 tags.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter"&gt;&lt;img alt="&amp;lt;strong&amp;gt;Figure 39&amp;lt;/strong&amp;gt; - Description of the domain generation
+function in “token” mode." src="https://research.checkpoint.com/wp-content/uploads/2025/10/VU7DWNN81O-image38.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;strong&gt;Figure 39&lt;/strong&gt;&amp;nbsp;&amp;#8211; Description of the domain generation function in “token” mode.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;strong&gt;Index&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Source bytes (hex, 4B LE)&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Output bytes (hex, 6B)&lt;/strong&gt;&lt;/th&gt;&lt;th&gt;&lt;strong&gt;Output string&lt;/strong&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;00 f6 76 09&lt;/td&gt;&lt;td&gt;2f 7a 62 75 75 2f&lt;/td&gt;&lt;td&gt;/zbuu/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;62 64 68 53&lt;/td&gt;&lt;td&gt;2f 6e 74 64 35 2f&lt;/td&gt;&lt;td&gt;/ntd5/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2a bd 03 94&lt;/td&gt;&lt;td&gt;2f 78 65 72 73 2f&lt;/td&gt;&lt;td&gt;/xers/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;82 7e 4e 51&lt;/td&gt;&lt;td&gt;2f 6c 30 6d 6c 2f&lt;/td&gt;&lt;td&gt;/l0ml/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;0a 7c 87 3c&lt;/td&gt;&lt;td&gt;2f 38 67 6e 35 2f&lt;/td&gt;&lt;td&gt;/8gn5/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;e1 5c f0 cb&lt;/td&gt;&lt;td&gt;2f 65 32 63 71 2f&lt;/td&gt;&lt;td&gt;/e2cq/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;27 21 aa e4&lt;/td&gt;&lt;td&gt;2f 33 67 6c 64 2f&lt;/td&gt;&lt;td&gt;/3gld/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;ca ca b2 c7&lt;/td&gt;&lt;td&gt;2f 6b 6d 39 34 2f&lt;/td&gt;&lt;td&gt;/km94/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;51 7c 8a 6b&lt;/td&gt;&lt;td&gt;2f 7a 6b 33 32 2f&lt;/td&gt;&lt;td&gt;/zk32/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;30 d3 9f 6a&lt;/td&gt;&lt;td&gt;2f 7a 74 6b 72 2f&lt;/td&gt;&lt;td&gt;/ztkr/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;c8 9a be 30&lt;/td&gt;&lt;td&gt;2f 35 67 6d 69 2f&lt;/td&gt;&lt;td&gt;/5gmi/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;2a 30 1c e3&lt;/td&gt;&lt;td&gt;2f 69 76 37 6e 2f&lt;/td&gt;&lt;td&gt;/iv7n/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;51 7b 47 41&lt;/td&gt;&lt;td&gt;2f 37 74 6e 61 2f&lt;/td&gt;&lt;td&gt;/7tna/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;d1 d5 0d d2&lt;/td&gt;&lt;td&gt;2f 6f 67 61 67 2f&lt;/td&gt;&lt;td&gt;/ogag/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;8d 34 e0 6f&lt;/td&gt;&lt;td&gt;2f 71 30 73 66 2f&lt;/td&gt;&lt;td&gt;/q0sf/&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;df 4a 1e b6&lt;/td&gt;&lt;td&gt;2f 65 63 69 73 2f&lt;/td&gt;&lt;td&gt;/ecis/&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The table below summarizes the prompts we used, and the time required for each step:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Time consumed&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Initial prompt (instructions)&lt;/td&gt;&lt;td&gt;1m 31s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Analyze &lt;code&gt;ai_dec_func_0&lt;/code&gt; (0x00404913)&lt;/td&gt;&lt;td&gt;5m 22s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Comments in the disassembly of &lt;code&gt;ai_dec_domain_NN&lt;/code&gt; contain base64-encoded encrypted domain names. Take the one from &lt;code&gt;ai_dec_domain_01&lt;/code&gt;, then transform it with &lt;code&gt;ai_dec_func_0&lt;/code&gt; and return the final string.&lt;/td&gt;&lt;td&gt;11m 33s&lt;/td&gt;&lt;td&gt;Failed to obtain the layer 1 RC4 key&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;You can find &lt;code&gt;ctx+0x23D0&lt;/code&gt; initialization in &lt;code&gt;ai_dec_func_4&lt;/code&gt; (&lt;code&gt;0x00407293&lt;/code&gt;), also check &lt;code&gt;sub_404453&lt;/code&gt;.&lt;/td&gt;&lt;td&gt;1m 34s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Now you have the required key. Take the sting from &lt;code&gt;ai_dec_domain_01&lt;/code&gt;, then transform it with &lt;code&gt;ai_dec_func_0&lt;/code&gt; and return the final string.&lt;/td&gt;&lt;td&gt;5m 14s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;The string you returned is still encrypted. Trace the complete transformation chain from &lt;code&gt;ai_dec_func_0&lt;/code&gt; (case 2, string &lt;code&gt;Qvm75Acm5NpYTbnYXdcvBw==&lt;/code&gt;) to the final ASCII domain.&lt;br /&gt;Discover any remaining layers, locate and derive all required keys/parameters from the context/initializers, and cite function names with EAs used.&lt;br /&gt;Output the final domain, and a concise step-by-step pipeline, print all keys/IVs as hex. If any value is missing, state exactly what it is and where to read it.&lt;/td&gt;&lt;td&gt;10m 2s&lt;/td&gt;&lt;td&gt;Failed to obtain SALT_DOWRD&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;You can find SALT_DWORD in &lt;code&gt;ai_dec_func_20&lt;/code&gt; (&lt;code&gt;0x00411053&lt;/code&gt;). Please verify and continue:&lt;br /&gt;.text:004111B3 81 C7 00 20 00 00 add edi, 2000h&lt;br /&gt;&amp;#8230;&lt;br /&gt;.text:0041182B C7 87 C8 05 00 00 00 A6 mov dword ptr [edi+5C8h], 0C6EA600h&lt;/td&gt;&lt;td&gt;3m 20s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Decrypt domains from &lt;code&gt;ai_dec_domain_00&lt;/code&gt; to &lt;code&gt;ai_dec_domain_15&lt;/code&gt;. Output: table (index, src_base64, final_domain). Take per-function base64 from &lt;code&gt;ai_dec_domain_NN&lt;/code&gt; disassembly comments.&lt;/td&gt;&lt;td&gt;5m 36s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Reproduce the output of &lt;code&gt;ai_dec_func_0&lt;/code&gt; for a5=222 and domain index 0..15.&lt;/td&gt;&lt;td&gt;3m 42s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;Total time&lt;/em&gt;&lt;/td&gt;&lt;td&gt;47m 54s&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;From its initial appearance, XLoader has always been a moving target, with each new version raising the bar for security analysts and defenders. XLoader began as a two-layer puzzle but evolved into a maze of nested decryptors, scattered key material, and runtime-only code. For years, this meant that by the time researchers fully unraveled a sample, attackers were already one step ahead with the next version.&lt;/p&gt;
+
+
+
+&lt;p&gt;Generative AI changes this balance. Combining cloud-based analysis and occasional MCP-assisted runtime checks, we delegated a large part of the mechanical reverse engineering to LLM. Instead of spending hours rewriting decryption routines by hand, we asked our AI model to do it and received working prototypes in minutes.&lt;/p&gt;
+
+
+
+&lt;p&gt;The use of AI doesn’t eliminate the need for human expertise. XLoader’s most sophisticated protections, such as scattered key derivation logic and multi-layer function encryption, still require manual analysis and targeted adjustments. But the heavy lifting of triage, deobfuscation, and scripting can now be accelerated dramatically. What once took days can now be compressed into hours.&lt;/p&gt;
+
+
+
+&lt;p&gt;For defenders, this is more than a productivity boost. Faster turnaround means fresher IoCs, quicker detection updates, and a shorter window of opportunity for attackers. For researchers, it lowers the entry barrier to analyzing some of the most complex malware families in the wild.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our research shows that with the right workflows, generative models can already serve as a force multiplier — helping security defenders keep pace with threats that were once considered prohibitively time-consuming to analyze.&lt;/p&gt;
+
+
+
+&lt;p&gt;However, it’s too soon to declare victory, as we expect malware authors to adapt their techniques in response to AI-assisted analysis. And in turn, we’ll need to come up with the next game-changer.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading"&gt;Protection&lt;/h2&gt;
+
+
+
+&lt;p&gt;Check Point&amp;nbsp;&lt;a href="https://www.checkpoint.com/infinity/zero-day-protection/"&gt;Threat Emulation&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.checkpoint.com/harmony/endpoint/"&gt;Harmony Endpoint&lt;/a&gt;&amp;nbsp;provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/generative-ai-for-reverse-engineering/"&gt;Beating XLoader at Speed: Generative AI as a Force Multiplier for Reverse Engineering&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=32000</guid><category>Check Point Research Publications</category></item><item><title>Android’s AI Blocks 58% More Scams Than iPhone, Study Shows</title><link>https://www.techrepublic.com/article/news-android-ai-blocks-scams/</link><description>&lt;p&gt;Google’s AI-driven security systems block over 10 billion malicious communications every month.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-android-ai-blocks-scams/"&gt;Android&amp;#8217;s AI Blocks 58% More Scams Than iPhone, Study Shows&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334097</guid><category>Android</category><category>Artificial Intelligence</category><category>Cybersecurity</category><category>Google</category><category>News</category><category>ai</category><category>android</category><category>cybercrime</category><category>cybersecurity</category><category>iphone</category><category>scams</category></item><item><title>Android’s AI Blocks 58% More Scams Than iPhone, Study Shows</title><link>https://www.techrepublic.com/article/news-android-ai-blocks-scams/</link><description>&lt;p&gt;Google’s AI-driven security systems block over 10 billion malicious communications every month.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-android-ai-blocks-scams/"&gt;Android&amp;#8217;s AI Blocks 58% More Scams Than iPhone, Study Shows&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334097</guid><category>Android</category><category>Artificial Intelligence</category><category>Cybersecurity</category><category>Google</category><category>News</category><category>ai</category><category>android</category><category>cybercrime</category><category>cybersecurity</category><category>iphone</category><category>scams</category></item><item><title>Government Agencies Issue Emergency Guidance for Microsoft Exchange Server</title><link>https://www.techrepublic.com/article/news-guidance-microsoft-exchange-server/</link><description>&lt;p&gt;The NSA, CISA, Australia's Cyber Security Centre, and Canada's Cyber Centre jointly released comprehensive security practices for Exchange hardening. &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-guidance-microsoft-exchange-server/"&gt;Government Agencies Issue Emergency Guidance for Microsoft Exchange Server&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334082</guid><category>Cybersecurity</category><category>Microsoft</category><category>News</category><category>cybersecurity</category><category>Microsoft Exchange Server</category></item><item><title>An Anarchist’s Conviction Offers a Grim Foreshadowing of Trump’s War on the ‘Left’</title><link>https://www.wired.com/story/an-anarchists-conviction-offers-a-grim-foreshadowing-of-trumps-war-on-the-left/</link><description>As the Trump administration ramps up its targeting of left-leaning people and groups, the prosecution and harsh sentencing of Casey Goonan may provide a glimpse of things to come.</description><guid isPermaLink="false">68dee6b73f8d95fc344e45c1</guid><category>Security</category><category>Security / National Security</category><category>Politics / Policy</category><category>Politics / Extremism</category><category>Crime</category><category>terrorism</category><category>department of justice</category><category>Donald Trump</category><category>politics</category><category>extremism</category><category>Shifting Priorities</category></item><item><title>Hack Exposes Kansas City’s Secret Police Misconduct List</title><link>https://www.wired.com/story/hack-exposes-kansas-city-kansas-polices-secret-misconduct-list/</link><description>A major breach of the Kansas City, Kansas, Police Department reveals, for the first time, a list of alleged officer misconduct including dishonesty, sexual harassment, excessive force, and false arrest.</description><guid isPermaLink="false">68ffc5d01e90dfd610a2da20</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>Crime</category><category>Police</category><category>hacks</category><category>ransomware</category><category>cybersecurity</category><category>security</category><category>FBI</category><category>Bad Apples</category></item><item><title>3rd November – Threat Intelligence Report</title><link>https://research.checkpoint.com/2025/3rd-november-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 3rd November, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES The Everest ransomware group has claimed responsibility for a series of attacks impacting AT&amp;#38;T, Dublin Airport, and Air Arabia. The ransomware gang exfiltrated sensitive data including 576,000 AT&amp;#38;T applicant records, 1.5 million [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/3rd-november-threat-intelligence-report/"&gt;3rd November – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 3rd November, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2025/11/Threat_Intelligence_News_2025-11-03.pdf"&gt;Threat Intelligence Bulletin&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
@@ -1833,8 +3232,7 @@ Senior handler&lt;br /&gt;
 &lt;p&gt;AI summarization optimization is a small, subtle shift, but it illustrates how the adoption of AI is reshaping human behavior in unexpected ways. The potential implications are quietly profound.&lt;/p&gt;
 &lt;p&gt;Meetings&amp;#8212;humanity’s most fundamental collaborative ritual&amp;#8212;are being silently reengineered by those who understand the algorithm’s preferences. The articulate are gaining an invisible advantage over the wise. Adversarial thinking is becoming routine, embedded in the most ordinary workplace rituals, and, as AI becomes embedded in organizational life, strategic interactions with AI notetakers and summarizers may soon be a necessary executive skill for navigating corporate culture.&lt;/p&gt;
 &lt;p&gt;AI summarization optimization illustrates how quickly humans adapt communication strategies to new technologies. As AI becomes more embedded in workplace communication, recognizing these emerging patterns may prove increasingly important.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This essay was written with Gadi Evron, and originally appeared in &lt;a href="https://www.csoonline.com/article/4077438/manipulating-the-meeting-notetaker-the-rise-of-ai-summarization-optimization.html"&gt;CSO&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=71086</guid><category>Uncategorized</category><category>AI</category><category>hacking</category><category>LLM</category></item><item><title>Amazon Explains How Its AWS Outage Took Down the Web</title><link>https://www.wired.com/story/amazon-explains-how-its-aws-outage-took-down-the-web/</link><description>Plus: The Jaguar Land Rover hack sets an expensive new record, OpenAI’s new Atlas browser raises security fears, Starlink cuts off scam compounds, and more.</description><guid isPermaLink="false">68fbb2b44a23c33f07ae3287</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>security</category><category>cybersecurity</category><category>Amazon</category><category>OpenAI</category><category>ChatGPT</category><category>artificial intelligence</category><category>privacy</category><category>data breach</category><category>hacking</category><category>Security Roundup</category></item><item><title>DHS Wants a Fleet of AI-Powered Surveillance Trucks</title><link>https://www.wired.com/story/dhs-wants-a-fleet-of-ai-powered-surveillance-trucks/</link><description>US border patrol is asking companies to submit plans to turn standard 4x4 trucks into AI-powered watchtowers—combining radar, cameras, and autonomous tracking to extend surveillance on demand.</description><guid isPermaLink="false">68fbd4b11c5a6c9b492ed23e</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Department of Homeland Security</category><category>immigration</category><category>privacy</category><category>surveillance</category><category>national security</category><category>Vision Quest</category></item><item><title>Apple Starts Shipping AI Servers From Houston Factory</title><link>https://www.techrepublic.com/article/news-apple-ai-servers-houston/</link><description>&lt;p&gt;The move answers President Donald Trump’s repeated calls for technology companies to bring jobs and production back home.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-apple-ai-servers-houston/"&gt;Apple Starts Shipping AI Servers From Houston Factory&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333045</guid><category>Apple</category><category>Artificial Intelligence</category><category>News</category><category>ai</category></item><item><title>CISA Adds Two Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/10/24/cisa-adds-two-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added two new vulnerabilities to its &lt;a class="Hyperlink SCXW183082615 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;&lt;u&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/u&gt;&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This essay was written with Gadi Evron, and originally appeared in &lt;a href="https://www.csoonline.com/article/4077438/manipulating-the-meeting-notetaker-the-rise-of-ai-summarization-optimization.html"&gt;CSO&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=71086</guid><category>Uncategorized</category><category>AI</category><category>hacking</category><category>LLM</category></item><item><title>Amazon Explains How Its AWS Outage Took Down the Web</title><link>https://www.wired.com/story/amazon-explains-how-its-aws-outage-took-down-the-web/</link><description>Plus: The Jaguar Land Rover hack sets an expensive new record, OpenAI’s new Atlas browser raises security fears, Starlink cuts off scam compounds, and more.</description><guid isPermaLink="false">68fbb2b44a23c33f07ae3287</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>security</category><category>cybersecurity</category><category>Amazon</category><category>OpenAI</category><category>ChatGPT</category><category>artificial intelligence</category><category>privacy</category><category>data breach</category><category>hacking</category><category>Security Roundup</category></item><item><title>DHS Wants a Fleet of AI-Powered Surveillance Trucks</title><link>https://www.wired.com/story/dhs-wants-a-fleet-of-ai-powered-surveillance-trucks/</link><description>US border patrol is asking companies to submit plans to turn standard 4x4 trucks into AI-powered watchtowers—combining radar, cameras, and autonomous tracking to extend surveillance on demand.</description><guid isPermaLink="false">68fbd4b11c5a6c9b492ed23e</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Department of Homeland Security</category><category>immigration</category><category>privacy</category><category>surveillance</category><category>national security</category><category>Vision Quest</category></item><item><title>CISA Adds Two Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/10/24/cisa-adds-two-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added two new vulnerabilities to its &lt;a class="Hyperlink SCXW183082615 BCX8" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noreferrer noopener" target="_blank" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;&lt;u&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/u&gt;&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="Hyperlink SCXW86249478 BCX8" href="https://www.cve.org/CVERecord?id=CVE-2025-54236" rel="noreferrer noopener" target="_blank" title="CVE-2025-54236"&gt;&lt;u&gt;CVE-2025-54236&lt;/u&gt;&lt;/a&gt; Adobe Commerce and Magento Improper Input Validation Vulnerability&lt;/li&gt;
 &lt;li&gt;&lt;a class="Hyperlink SCXW123144316 BCX8" href="https://www.cve.org/CVERecord?id=CVE-2025-59287" rel="noreferrer noopener" target="_blank" title="CVE-2025-59287"&gt;&lt;u&gt;CVE-2025-59287&lt;/u&gt;&lt;/a&gt; Microsoft Windows Server Update Service (WSUS) Deserialization of Untrusted Data Vulnerability&amp;nbsp;&lt;/li&gt;
@@ -9482,8 +10880,7 @@ if file_count &gt; 0 then
 &lt;/ul&gt;
 &lt;p&gt;These types of vulnerabilities are frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01" title="Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf" title="BOD 22-01 Fact Sheet"&gt;BOD 22-01 Fact Sheet&lt;/a&gt;&amp;nbsp;for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24025</guid></item><item><title>IT Leader’s Guide to IoT Security</title><link>https://www.techrepublic.com/resource-library/guide/iot-security/</link><description>&lt;p&gt;Securing the Internet of Things is a challenging prospect, but it can be done with the help of this guide. Constantly Updated — The guide contains the latest and most accurate details. Strengthen Your Security — This 12-page PDF looks at strategies, hardware, data, and more. Expert Guidance — Written by TechRepublic staff through 24 ...&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/resource-library/guide/iot-security/"&gt;IT Leader&amp;#8217;s Guide to IoT Security&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/resource-library/whitepapers/iot-security/</guid><category>Cybersecurity</category><category>IT Resources</category></item><item><title>CNAPP is the Solution to Multi-cloud Flexibility</title><link>https://www.trendmicro.com/en_us/research/25/i/cnapp-multi-cloud.html</link><description>Cloud-native application protection platform (CNAPP) not only helps organizations protect, but offers the flexibility of multi-cloud.</description><guid isPermaLink="false">urn:uuid:d0d057a0-9efc-f4ce-0186-dfed4576ffbf</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Consumer Focus</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Cloud Security in the CNAPP Era: Eight Important Takeaways</title><link>https://www.trendmicro.com/en_us/research/25/i/cloud-security-cnapp.html</link><description>Eight takeaways on why Trend Vision One™ embodies the best of today’s CNAPP vision. Includes insights from 2025 Gartner® Market Guide for CNAPP</description><guid isPermaLink="false">urn:uuid:52d269a6-d97e-7ac3-789f-3337c203527e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Safe in the sandbox: security hardening for Cloudflare Workers</title><link>https://blog.cloudflare.com/safe-in-the-sandbox-security-hardening-for-cloudflare-workers/</link><description>We are further hardening Cloudflare Workers with the latest software and hardware features. We use defense-in-depth, including V8 sandboxes and the CPU's memory protection keys to keep your data safe.</description><content:encoded>&lt;p&gt;As a &lt;a href="https://www.cloudflare.com/learning/serverless/what-is-serverless/"&gt;&lt;u&gt;serverless&lt;/u&gt;&lt;/a&gt; cloud provider, we run your code on our globally distributed infrastructure. Being able to run customer code on our network means that anyone can take advantage of our global presence and low latency. Workers isn’t just efficient though, we also make it simple for our users. In short: &lt;a href="https://workers.cloudflare.com/"&gt;&lt;u&gt;You write code. We handle the rest&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Part of 'handling the rest' is making Workers as secure as possible. We have previously written about our &lt;a href="https://blog.cloudflare.com/mitigating-spectre-and-other-security-threats-the-cloudflare-workers-security-model/"&gt;&lt;u&gt;security architecture&lt;/u&gt;&lt;/a&gt;. Making Workers secure is an interesting problem because the whole point of Workers is that we are running third party code on our hardware. This is one of the hardest security problems there is: any attacker has the full power available of a programming language running on the victim's system when they are crafting their attacks.&lt;/p&gt;&lt;p&gt;This is why we are constantly updating and improving the Workers Runtime to take advantage of the latest improvements in both hardware and software. This post shares some of the latest work we have been doing to keep Workers secure.&lt;/p&gt;&lt;p&gt;Some background first: &lt;a href="https://www.cloudflare.com/developer-platform/products/workers/"&gt;&lt;u&gt;Workers&lt;/u&gt;&lt;/a&gt; is built around the &lt;a href="https://v8.dev/"&gt;&lt;u&gt;V8&lt;/u&gt;&lt;/a&gt; JavaScript runtime, originally developed for Chromium-based browsers like Chrome. This gives us a head start, because V8 was forged in an adversarial environment, where it has always been under intense attack and &lt;a href="https://github.blog/security/vulnerability-research/getting-rce-in-chrome-with-incorrect-side-effect-in-the-jit-compiler/"&gt;&lt;u&gt;scrutiny&lt;/u&gt;&lt;/a&gt;. Like Workers, Chromium is built to run adversarial code safely. That's why V8 is constantly being tested against the best fuzzers and sanitizers, and over the years, it has been hardened with new technologies like &lt;a href="https://v8.dev/blog/oilpan-library"&gt;&lt;u&gt;Oilpan/cppgc&lt;/u&gt;&lt;/a&gt; and improved static analysis.&lt;/p&gt;&lt;p&gt;We use V8 in a slightly different way, though, so we will be describing in this post how we have been making some changes to V8 to improve security in our use case.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt;&amp;nbsp;as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities" title="Reducing the Significant Risk of Known Exploited Vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24025</guid></item><item><title>CNAPP is the Solution to Multi-cloud Flexibility</title><link>https://www.trendmicro.com/en_us/research/25/i/cnapp-multi-cloud.html</link><description>Cloud-native application protection platform (CNAPP) not only helps organizations protect, but offers the flexibility of multi-cloud.</description><guid isPermaLink="false">urn:uuid:d0d057a0-9efc-f4ce-0186-dfed4576ffbf</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Consumer Focus</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Cloud Security in the CNAPP Era: Eight Important Takeaways</title><link>https://www.trendmicro.com/en_us/research/25/i/cloud-security-cnapp.html</link><description>Eight takeaways on why Trend Vision One™ embodies the best of today’s CNAPP vision. Includes insights from 2025 Gartner® Market Guide for CNAPP</description><guid isPermaLink="false">urn:uuid:52d269a6-d97e-7ac3-789f-3337c203527e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Safe in the sandbox: security hardening for Cloudflare Workers</title><link>https://blog.cloudflare.com/safe-in-the-sandbox-security-hardening-for-cloudflare-workers/</link><description>We are further hardening Cloudflare Workers with the latest software and hardware features. We use defense-in-depth, including V8 sandboxes and the CPU's memory protection keys to keep your data safe.</description><content:encoded>&lt;p&gt;As a &lt;a href="https://www.cloudflare.com/learning/serverless/what-is-serverless/"&gt;&lt;u&gt;serverless&lt;/u&gt;&lt;/a&gt; cloud provider, we run your code on our globally distributed infrastructure. Being able to run customer code on our network means that anyone can take advantage of our global presence and low latency. Workers isn’t just efficient though, we also make it simple for our users. In short: &lt;a href="https://workers.cloudflare.com/"&gt;&lt;u&gt;You write code. We handle the rest&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Part of 'handling the rest' is making Workers as secure as possible. We have previously written about our &lt;a href="https://blog.cloudflare.com/mitigating-spectre-and-other-security-threats-the-cloudflare-workers-security-model/"&gt;&lt;u&gt;security architecture&lt;/u&gt;&lt;/a&gt;. Making Workers secure is an interesting problem because the whole point of Workers is that we are running third party code on our hardware. This is one of the hardest security problems there is: any attacker has the full power available of a programming language running on the victim's system when they are crafting their attacks.&lt;/p&gt;&lt;p&gt;This is why we are constantly updating and improving the Workers Runtime to take advantage of the latest improvements in both hardware and software. This post shares some of the latest work we have been doing to keep Workers secure.&lt;/p&gt;&lt;p&gt;Some background first: &lt;a href="https://www.cloudflare.com/developer-platform/products/workers/"&gt;&lt;u&gt;Workers&lt;/u&gt;&lt;/a&gt; is built around the &lt;a href="https://v8.dev/"&gt;&lt;u&gt;V8&lt;/u&gt;&lt;/a&gt; JavaScript runtime, originally developed for Chromium-based browsers like Chrome. This gives us a head start, because V8 was forged in an adversarial environment, where it has always been under intense attack and &lt;a href="https://github.blog/security/vulnerability-research/getting-rce-in-chrome-with-incorrect-side-effect-in-the-jit-compiler/"&gt;&lt;u&gt;scrutiny&lt;/u&gt;&lt;/a&gt;. Like Workers, Chromium is built to run adversarial code safely. That's why V8 is constantly being tested against the best fuzzers and sanitizers, and over the years, it has been hardened with new technologies like &lt;a href="https://v8.dev/blog/oilpan-library"&gt;&lt;u&gt;Oilpan/cppgc&lt;/u&gt;&lt;/a&gt; and improved static analysis.&lt;/p&gt;&lt;p&gt;We use V8 in a slightly different way, though, so we will be describing in this post how we have been making some changes to V8 to improve security in our use case.&lt;/p&gt;
     &lt;div&gt;
       &lt;h2&gt;Hardware-assisted security improvements from Memory Protection Keys&lt;/h2&gt;
       &lt;a href="https://blog.cloudflare.com/tag/security/rss#hardware-assisted-security-improvements-from-memory-protection-keys"&gt;
@@ -12603,345 +14000,7 @@ Ledger Live&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;Researchers &lt;a href="https://www.akamai.com/blog/security-research/new-malware-targeting-docker-apis-akamai-hunt"&gt;found&lt;/a&gt; a new malware strain targeting exposed Docker APIs with expanded infection capabilities, observed in August 2025 through honeypots. This version blocks external API access and deploys a binary containing previously used tools with broader functionality.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/15th-september-threat-intelligence-report/"&gt;15th September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31911</guid><category>Global Cyber Attack Reports</category></item><item><title>Yurei &amp; The Ghost of Open Source Ransomware</title><link>https://research.checkpoint.com/2025/yurei-the-ghost-of-open-source-ransomware/</link><description>&lt;p&gt;Key Points Yurei Ransomware Check Point Research discovered a new ransomware group on September 5. The group calls themselves Yurei (a sort of spirit in Japanese folklore), and initially listed one victim, a Sri Lankan food manufacturing company, on their darknet blog. These blogs are used by ransomware groups to list their victims, show proofs [&amp;#8230;]&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/yurei-the-ghost-of-open-source-ransomware/"&gt;Yurei &amp;amp; The Ghost of Open Source Ransomware&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="key-points"&gt;Key Points&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;First observed on September 5, Yurei is a newly emerged ransomware group that targeted a Sri Lankan food manufacturing company as its first leaked victim. The group follows a double-extortion model: they encrypt the victim’s files and&amp;nbsp;exfiltrate sensitive data, and then demand a ransom payment to decrypt and refrain from publishingthe stolen information.&lt;/li&gt;
-
-
-
-&lt;li&gt;Check Point Research (CPR) determined that Yurei’s ransomware is derived with only minor modifications from Prince-Ransomware, an open-source ransomware family written in Go. This highlights how open-source malware significantly lowers the barrier to entry for cybercriminals, enabling even less-skilled threat actors to launch ransomware operations.&lt;/li&gt;
-
-
-
-&lt;li&gt;Yurei’s ransomware contains a flaw that may allow partial recovery through Shadow Copies, but the group primarily relies on data-theft-based extortion. As they state&lt;del&gt;d&lt;/del&gt;&amp;nbsp;on their blog, the fear and implications of data leakage are their main pressure point to get victims to pay the ransom.&lt;/li&gt;
-
-
-
-&lt;li&gt;Since the first victim was listed on September 5, the number of victims has risen to three so far, pointing to a fast-growing operation.&lt;/li&gt;
-
-
-
-&lt;li&gt;The investigation revealed hints that the threat actor’s origins may be in Morocco.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="yurei-ransomware"&gt;Yurei Ransomware&lt;/h2&gt;
-
-
-
-&lt;p&gt;Check Point Research discovered a new ransomware group on September 5. The group calls themselves Yurei (a sort of spirit in Japanese folklore), and initially listed one victim, a Sri Lankan food manufacturing company, on their darknet blog. These blogs are used by ransomware groups to list their victims, show proofs of compromise such as screenshots of internal documents, and to provide a secure chat interface where the victim can negotiate with the operators. In the first few days of the operation, two new victims were listed, one from India and one from Nigeria, making a total of three as of September 9.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image"&gt;&lt;img alt="Figure 1 — Yurei ransomware site on September 5." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId21.png" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;Figure 1 — Yurei ransomware site on September 5.&lt;/p&gt;
-
-
-
-&lt;p&gt;The Yurei ransomware is written in the Go programming language. While malware in Go is not uncommon, it still provides a challenge for some Antivirus vendors to detect. Combined with an easier development experience than C or C++ and the ability to cross-compile to different platforms, Go continues to be an attractive choice for malware developers.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this case, the threat actor made the mistake of not stripping symbols from the binary. Therefore, function and module names were preserved, through which it becomes clear that Yurei’s ransomware is largely based on an open-source ransomware named Prince-Ransomware (currently only available as a&amp;nbsp;&lt;a href="https://github.com/oakkaya/Prince-Ransomware"&gt;reupload&lt;/a&gt;&amp;nbsp;on GitHub), with only minor modifications. This same ransomware codebase was already used in campaigns by other actors, such as in the case of&amp;nbsp;&lt;a href="https://labs.withsecure.com/publications/crazyhunter-ransomware"&gt;CrazyHunter&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;The ransom note is dropped as &lt;code&gt;_README_Yurei.txt &lt;/code&gt;and instructs the victim to visit their site and enter their chat using a provided access token for further negotiation. Upon payment, the threat actor claims to provide a decryption tool as well as a report of the vulnerabilities exploited to compromise the environment, akin to a report of a penetration test.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2 — Ransom note." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId26.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2 — Ransom note.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;The victim is provided with the negotiation .onion page, where the victim and threat actors can communicate and negotiate the price of decryption and deletion of the stolen data as well as assurances against publishing corporate files.&amp;nbsp;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 2 — Yurei chat interface." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId29.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3 — Yurei chat interface.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="technical-analysis"&gt;Technical Analysis&lt;/h2&gt;
-
-
-
-&lt;p&gt;As stated previously, Yurei is an offshoot of the open-source Prince-Ransomware, written in Go, with minor modifications. On a high level, the ransomware takes the following actions:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Enumerates all drives&lt;/li&gt;
-
-
-
-&lt;li&gt;For each drive in parallel, it encrypts files and adds the&amp;nbsp;&lt;code&gt;.Yurei&lt;/code&gt;&amp;nbsp;extension&lt;/li&gt;
-
-
-
-&lt;li&gt;Attempts to set a wallpaper&lt;/li&gt;
-
-
-
-&lt;li&gt;Waits and monitors for newly attached network drives to then encrypt&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="encryption"&gt;Encryption&lt;/h3&gt;
-
-
-
-&lt;p&gt;Files are encrypted using the ChaCha20 algorithm and are appended the&amp;nbsp;&lt;code&gt;.Yurei&lt;/code&gt;&amp;nbsp;extension. The ransomware generates a random ChaCha20 key and a random nonce per file and then encrypts both with ECIES using the attacker’s public key. The encrypted files then store the encrypted key, nonce, and file content, separated by the&amp;nbsp;&lt;code&gt;||&lt;/code&gt;&amp;nbsp;characters:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 3 — Encrypted file structure." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId33.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4 — Encrypted file structure.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="open-source-origin"&gt;Open Source Origin&lt;/h3&gt;
-
-
-
-&lt;p&gt;The authors of the ransomware did not implement any anti-analysis features, such as obfuscation, but instead even included symbols in the shipped binary.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 4 — Yurei modules and functions." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId37.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5 — Yurei modules and functions.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;The same module names,&amp;nbsp;&lt;code&gt;filewalker&lt;/code&gt;,&amp;nbsp;&lt;code&gt;encryption&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;configuration&lt;/code&gt;&amp;nbsp;are also used by the Open Source&amp;nbsp;&lt;a href="https://github.com/oakkaya/Prince-Ransomware/tree/main/Encryptor"&gt;Prince-Ransomware&lt;/a&gt;:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 5 — Prince-Ransomware source files on GitHub." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId41.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6 — Prince-Ransomware source files on GitHub.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;Further inspection of the code that changes the wallpaper confirms the suspicion that Yurei is based on Prince-Ransomware.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 6 — Prince-Ransomware code to set the wallpaper." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId44.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7 — Prince-Ransomware code to set the wallpaper.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;Yurei carries over an unaltered set of the same PowerShell commands.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 7 — Yurei code to set the wallpaper." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId47.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8 — Yurei code to set the wallpaper.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;The first command is supposed to download a wallpaper from a remote URL and save it as&amp;nbsp;&lt;code&gt;Wallpaper.png&lt;/code&gt;&amp;nbsp;in the&amp;nbsp;&lt;code&gt;%TEMP%&lt;/code&gt;&amp;nbsp;directory. The next command then compiles a .NET assembly to call&amp;nbsp;&lt;code&gt;SystemParametersInfo&lt;/code&gt;&amp;nbsp;with&amp;nbsp;&lt;code&gt;SPI_SETDESKWALLPAPER&lt;/code&gt;&amp;nbsp;to set the current wallpaper.&lt;/p&gt;
-
-
-
-&lt;p&gt;Usually, ransomware sets the wallpaper to a sort of Logo or ransom note. Interestingly, the Yurei developers did not supply a wallpaper to be downloaded. Therefore, the malware runs a download command via PowerShell that errors out due to a missing URL. As the wallpaper is set to a non-existing file in the subsequent PowerShell command, Windows falls back to setting the background to a single color, e.g., black.&lt;/p&gt;
-
-
-
-&lt;p&gt;Examining the builder’s source code on GitHub reveals that the binary is shipped with symbols because the builder does not set the appropriate linker flags to strip them from the binary. The threat actors likely did not touch the builder code at all.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 8 — Prince-Ransomware linker flags." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId50.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 — Prince-Ransomware linker flags.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="yureis-modifications"&gt;Yurei’s modifications&lt;/h3&gt;
-
-
-
-&lt;p&gt;While most of the source code was not modified, the code to enumerate which files and drives to encrypt differs slightly from the publicly available version on GitHub. While the original repository uses single-threaded encryption, Yurei makes use of goroutines, Go’s concurrency mechanism, to encrypt each drive concurrently:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 9 — Yurei goroutines." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId54.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10 — Yurei goroutines.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;Once the encryption is finished, the malware enters a new routine which continuously monitors for new network drives to add to the encryption queue:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 10 — Yurei &amp;lt;code&amp;gt;monitorNetworkShares&amp;lt;/code&amp;gt; routine." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId57.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11 — Yurei&amp;nbsp;&lt;code&gt;monitorNetworkShares&lt;/code&gt;&amp;nbsp;routine.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;While there is no evidence that this was AI-assisted development, these types of modifications on top of existing codebases can easily be performed even by lower-skilled developers, using simple prompts on Large Language Models (LLMs).&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="shadow-copy-recovery"&gt;Shadow Copy Recovery&lt;/h3&gt;
-
-
-
-&lt;p&gt;Although the threat actor modified the codebase, the Yurei ransomware still has a major flaw: It does not delete existing Shadow copies. Shadow copies are backup snapshots of files or entire volumes that, if enabled, are generated by the Volume Shadow Copy Service (VSS). Ransomware usually targets and deletes these copies to block victims from using Windows’ built-in recovery options.&lt;/p&gt;
-
-
-
-&lt;p&gt;As Yurei does not include this functionality, if Shadow Copies are enabled, the Victim can&amp;nbsp;&lt;strong&gt;restore their files to a previous snapshot&lt;/strong&gt;&amp;nbsp;without having to negotiate with Yurei. This oversight again shows the lack of sophistication this threat actor employs in its operation. As a result, activating VSS and continuously taking snapshots of systems is highly recommended as a protective measure against threats such as Yurei.&amp;nbsp; However, ransomware groups are increasingly shifting to&amp;nbsp;&lt;a href="https://research.checkpoint.com/2025/the-state-of-ransomware-q2-2025/"&gt;data-theft-based extortion&lt;/a&gt;, so this only aids in operational recovery but does not protect against extortion. As Yurei states on their blog, the main pressure point for victims paying the ransom is the threat of data leakage. This has major implications for businesses, and in the case of e.g.&amp;nbsp;Midcity Marketing, can also affect food security and state supply chains.&amp;nbsp;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 11 — Yurei on the implications of a possible Leak." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId62.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12 — Yurei on the implications of a possible Leak.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h2 class="wp-block-heading" id="tracing-the-threat-actor"&gt;Tracing the Threat Actor&lt;/h2&gt;
-
-
-
-&lt;p&gt;Looking at the samples on VirusTotal shows that all samples were first submitted from Morocco. One sample did not include a ticket ID, indicating that this could be a test build, possibly uploaded by the developer themselves. It is possible that the threat actor may have used VirusTotal as a means to test the detection rate of his ransomware, once again showing that we are dealing with a low-skilled actor.&lt;/p&gt;
-
-
-
-&lt;p&gt;When we analyzed the HTML source code of the .onion page, we found a comment in Arabic:&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter"&gt;&lt;img alt="Figure 12 — Arabic comment inside HTML code from the .onion page." src="https://research.checkpoint.com/wp-content/uploads/2025/09/375V3B0QJV-rId67.png" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13 — Arabic comment inside HTML code from the .onion page.&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;The path artifacts from the available samples all list the local path as&amp;nbsp;&lt;code&gt;D:\satanlockv2\*&lt;/code&gt;, indicating possible ties to the SatanLockv2 ransomware. Looking at other samples of SatanLockv2, they were first uploaded from Morocco and based on Prince-Ransomware as well.&lt;/p&gt;
-
-
-
-&lt;p&gt;As a result, we assess with low confidence that the threat actor is based in Morocco.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;Yurei demonstrates how easily threat actors can weaponize open open- source ransomware projects with only minimal modifications, enabling low-level threat actors to enter the ransomware business without the necessary development skills or even investing much effort. By reusing the codebase of Prince-Ransomware, the group managed to launch operations quickly but also inherited its flaws, most notably the failure to remove Volume Shadow Copies. This oversight enables partial recovery in environments where VSS is enabled. As ransomware groups increasingly focus on data-theft-based extortion, however, this flaw, does not have a critical impact on the ransomware operation’s success.&lt;/p&gt;
-
-
-
-&lt;p&gt;While open-source malware is a threat, it also gives defenders opportunities to detect and mitigate these variations. However, Yurei succeeded in running their operation on several victims, which shows that even low-effort operations can still lead to success&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="protections"&gt;Protections&lt;/h2&gt;
-
-
-
-&lt;p&gt;Check Point Threat Emulation and Harmony Endpoint provide comprehensive coverage of attack tactics, file types, and operating systems and protect against the attacks and threats described in this report.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of Compromise&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Onion Page&lt;/td&gt;&lt;td&gt;fewcriet5rhoy66k6c4cyvb2pqrblxtx4mekj3s5l4jjt4t4kn4vheyd.onion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Yurei Ransomware&lt;/td&gt;&lt;td&gt;49c720758b8a87e42829ffb38a0d7fe2a8c36dc3007abfabbea76155185d2902&lt;br /&gt;4f88d3977a24fb160fc3ba69821287a197ae9b04493d705dc2fe939442ba6461 &lt;br /&gt;1ea37e077e6b2463b8440065d5110377e2b4b4283ce9849ac5efad6d664a8e9e &lt;br /&gt;10700ee5caad40e74809921e11b7e3f2330521266c822ca4d21e14b22ef08e1d &lt;br /&gt;89a54d3a38d2364784368a40ab228403f1f1c1926892fe8355aa29d00eb36819 &lt;br /&gt;f5e122b60390bdcc1a17a24cce0cbca68475ad5abee6b211b5be2dea966c2634 &lt;br /&gt;0303f89829763e734b1f9d4f46671e59bfaa1be5d8ec84d35a203efbfcb9bb15 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;SatanLockV2 Ransomware&lt;/td&gt;&lt;td&gt;afa927ca549aaba66867f21fc4a5d653884c349f8736ecc5be3620577cf9981f &lt;br /&gt;d2539173bdc81503bf1b842a21d9599948e957cadc76a283a52f5849323d8e04 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="ransom-note"&gt;&lt;strong&gt;Ransom Note&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;pre class="EnlighterJSRAW"&gt;--== Yurei ==--
-Dear Management,
-
-If you are reading this message, it means that:
-
-├─ Your company’s internal infrastructure has been fully or partially compromised.  
-├─ All your backups — both virtual and physical — and everything we could access have been completely wiped.  
-└─ Additionally, we have exfiltrated a large amount of your corporate data prior to encryption.
-
-We fully understand the damage caused by locking your internal resources. Now, let’s set emotions aside and try to build a constructive dialogue.
-
-WHAT YOU NEED TO KNOW
-
-├─ Dealing with us will save you a lot — we have no interest in financially destroying you.  
-├─ We will thoroughly analyze your finances, bank statements, income, savings, and investments, and present a reasonable demand.  
-├─ If you have active cyber insurance, let us know — we will guide you on how to properly use it.  
-└─ Dragging out negotiations will only cause the deal to fail.
-
-PAYMENT BENEFITS
-
-├─ Paying us saves time, money, and effort — you can be back on track within approximately 24 hours.  
-├─ Our decryptor works perfectly on all files and systems — you can request a test decryption at any time.  
-└─ Attempting recovery on your own may result in permanent file loss or corruption — in such cases, we won’t be able to help.
-
-SECURITY REPORT &amp;amp; EXCLUSIVE INFO
-
-├─ The report and first-hand insights we provide upon agreement are invaluable.  
-└─ No full network audit will reveal the specific vulnerabilities we exploited to access your data and infrastructure.
-
-WHAT HAPPENED
-
-├─ Your network infrastructure has been compromised.  
-├─ Critical data has been exfiltrated.  
-└─ Files have been encrypted.
-
-WHAT YOU SHOULD NOT DO
-
-├─ Do NOT rename, modify, or delete encrypted files.  
-├─ Do NOT shut down your system or run antivirus software — this may cause irreversible damage.  
-└─ Do NOT waste time with data recovery companies — they cannot help you.
-
-VALUABLE DATA WE USUALLY STEAL
-
-├─ Databases, legal documents, and personal information  
-├─ Audit reports, SQL databases  
-├─ Financial documents: statements, invoices, accounting data  
-├─ Work files and corporate communications  
-├─ Any backup solutions  
-└─ Confidential documents
-
-TO DO LIST (Best Practices)
-
-├─ Contact us as soon as possible via our live chat (only).  
-├─ Purchase our decryption tool — there is no other way to recover your data.  
-├─ Avoid third-party negotiators or recovery services.  
-└─ Do not attempt to use public decryption tools — you risk permanent data loss.
-
-RESPONSIBILITY
-
-├─ Violating the terms of this offer will result in:  
-│    - Deletion of your decryption keys  
-│    - Immediate sale or public disclosure of your leaked data  
-│    - Notification of regulatory agencies, competitors, and clients
-
----
-
-**CHAT:** Yurei  
-CHAT:hxxp://fewcriet5rhoy66k6c4cyvb2pqrblxtx4mekj3s5l4jjt4t4kn4vheyd.onion/chat/&amp;lt;VICTIM-GUID/chat.php
-Your Ticket ID: &amp;lt;TICKET-ID&gt;
-Blog:hxxp://fewcriet5rhoy66k6c4cyvb2pqrblxtx4mekj3s5l4jjt4t4kn4vheyd.onion
----
-
-Thank you for your attention.
-
----
-
-**Important Notes:**  
-
-- Renaming, copying, or moving encrypted files may break the cipher and make decryption impossible.  
-- Using third-party recovery tools can irreversibly damage encrypted files.  
-- Shutting down or restarting the system may cause boot or recovery errors and further damage the encrypted data.&lt;/pre&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/yurei-the-ghost-of-open-source-ransomware/"&gt;Yurei &amp;amp; The Ghost of Open Source Ransomware&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31891</guid><category>Check Point Research Publications</category></item><item><title>Bulletproof Host Stark Industries Evades EU Sanctions</title><link>https://krebsonsecurity.com/2025/09/bulletproof-host-stark-industries-evades-eu-sanctions/</link><description>In May 2025, the European Union levied financial sanctions on the owners of Stark Industries Solutions Ltd., a bulletproof hosting provider that materialized two weeks before Russia invaded Ukraine and quickly became a top source of Kremlin-linked cyberattacks and disinformation campaigns. But new data shows those sanctions have done little to stop Stark from simply rebranding and transferring their assets to other corporate entities controlled by its original hosting providers.</description><content:encoded>&lt;p&gt;In May 2025, the European Union levied financial sanctions on the owners of&lt;strong&gt; Stark Industries Solutions Ltd.&lt;/strong&gt;, a bulletproof hosting provider that materialized two weeks before Russia invaded Ukraine and quickly became a top source of Kremlin-linked cyberattacks and disinformation campaigns. But new findings show those sanctions have done little to stop Stark from simply rebranding and transferring their assets to other corporate entities controlled by its original hosting providers.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2025/15th-september-threat-intelligence-report/"&gt;15th September – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=31911</guid><category>Global Cyber Attack Reports</category></item><item><title>Bulletproof Host Stark Industries Evades EU Sanctions</title><link>https://krebsonsecurity.com/2025/09/bulletproof-host-stark-industries-evades-eu-sanctions/</link><description>In May 2025, the European Union levied financial sanctions on the owners of Stark Industries Solutions Ltd., a bulletproof hosting provider that materialized two weeks before Russia invaded Ukraine and quickly became a top source of Kremlin-linked cyberattacks and disinformation campaigns. But new data shows those sanctions have done little to stop Stark from simply rebranding and transferring their assets to other corporate entities controlled by its original hosting providers.</description><content:encoded>&lt;p&gt;In May 2025, the European Union levied financial sanctions on the owners of&lt;strong&gt; Stark Industries Solutions Ltd.&lt;/strong&gt;, a bulletproof hosting provider that materialized two weeks before Russia invaded Ukraine and quickly became a top source of Kremlin-linked cyberattacks and disinformation campaigns. But new findings show those sanctions have done little to stop Stark from simply rebranding and transferring their assets to other corporate entities controlled by its original hosting providers.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_58061" style="width: 751px;"&gt;&lt;img alt="" class="wp-image-58061" height="495" src="https://krebsonsecurity.com/wp-content/uploads/2022/01/wbrkb.jpg" width="741" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-58061"&gt;Image: Shutterstock.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Materializing just two weeks before Russia invaded Ukraine in 2022, Stark Industries Solutions became a frequent source of massive DDoS attacks, Russian-language proxy and VPN services, malware tied to Russia-backed hacking groups, and fake news. ISPs like Stark are called &amp;#8220;bulletproof&amp;#8221; providers when they cultivate a reputation for ignoring any abuse complaints or police inquiries about activity on their networks.&lt;/p&gt;
 &lt;p&gt;In May 2025, the European Union &lt;a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202500965" rel="noopener" target="_blank"&gt;sanctioned&lt;/a&gt; one of Stark&amp;#8217;s two main conduits to the larger Internet &amp;#8212; Moldova-based &lt;strong&gt;PQ Hosting&lt;/strong&gt; &amp;#8212; as well as the company&amp;#8217;s Moldovan owners &lt;strong&gt;Yuri&lt;/strong&gt; and &lt;strong&gt;Ivan Neculiti&lt;/strong&gt;. The EU Commission said the Neculiti brothers and PQ Hosting were linked to Russia&amp;#8217;s hybrid warfare efforts.&lt;/p&gt;
