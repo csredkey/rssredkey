@@ -1,5 +1,324 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 03 Nov 2025 16:59:18 +0000</lastBuildDate><item><title>XWiki SolrSearch Exploit Attempts (CVE-2025-24893) with link to Chicago Gangs/Rappers, (Mon, Nov 3rd)</title><link>https://isc.sans.edu/diary/rss/32444</link><description>&lt;p&gt;XWiki describes itself as "The Advanced Open-Source Enterprise Wiki" and considers itself an alternative to Confluence and MediaWiki. In February, XWiki released an advisory (and patch) for an arbitrary remote code execution vulnerability. Affected was the SolrSearch component, which any user, even with minimal "Guest" privileges, can use. The advisory included PoC code, so it is a bit odd that it took so long for the vulnerability to be widely exploited.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;XWiki describes itself as&amp;nbsp;&amp;quot;The Advanced Open-Source Enterprise Wiki&amp;quot; and considers itself an alternative to Confluence and MediaWiki. In February, XWiki released an advisory (and patch) for an arbitrary remote code execution vulnerability. Affected was the SolrSearch component, which any user, even with minimal &amp;quot;Guest&amp;quot; privileges, can use. The advisory included PoC code, so it is a bit odd that it took so long for the vulnerability to be widely exploited.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 03 Nov 2025 17:59:18 +0000</lastBuildDate><item><title>Microsoft Signs $9.7B Deal With IREN for AI Cloud Expansion</title><link>https://www.techrepublic.com/article/news-microsoft-iren-deal/</link><description>&lt;p&gt;The deal makes Microsoft IREN’s largest customer, with $1.94 billion in annualized revenue expected over the next five years.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-iren-deal/"&gt;Microsoft Signs $9.7B Deal With IREN for AI Cloud Expansion&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4334450</guid><category>Artificial Intelligence</category><category>Australia</category><category>Cloud</category><category>Data Centers</category><category>Microsoft</category><category>News</category><category>ai</category><category>cloud</category><category>data center</category><category>IREN</category></item><item><title>Inside an Automotive Giant’s Data Leak — A Cloud Misconfiguration Lesson for AWS Users</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>70 TB+ of data, hard-coded keys, and weak IAM controls. For even the most experienced enterprises, one configuration decision can be enough to surface how interdependent and vulnerable modern cloud systems truly are. The recent data exposure incident at a large automotive firm highlights this reality, an incident shaped less by exploitation and more by [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;70 TB+ of data, hard-coded keys, and weak IAM controls.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;For even the most experienced enterprises, one configuration decision can be enough to surface how interdependent and vulnerable modern cloud systems truly are. The recent data exposure incident at a large automotive firm highlights this reality, an incident shaped less by exploitation and more by the inherent challenges of managing cloud-scale systems. It began like many cloud stories do — with good intentions and complex systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;Recently, a South Asian-based automotive giant resolved a cloud misconfiguration that exposed tens of terabytes of sensitive customer and infrastructure data. According to public reports, the exposure traced back to mismanaged AWS credentials, weak authentication controls, and publicly accessible cloud storage.&lt;/p&gt;
+
+
+
+&lt;p&gt;For cloud-native teams, DevOps practitioners and security engineers, this case is less about blame and more about pattern recognition. It serves as a clear example of why cloud governance and continuous compliance must evolve alongside innovation. The most relevant lessons span: secrets-management, least-privilege IAM, continuous compliance monitoring, and proper asset inventory in the age of analytics and data lakes.&lt;/p&gt;
+
+
+
+&lt;p&gt;In an age where data lakes, analytics pipelines, and automation intersect, this is the new reality of risk, one that demands visibility, discipline, and continuous validation.&lt;/p&gt;
+
+
+
+&lt;span id="more-39048"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-was-exposed-and-how-big-was-the-impact"&gt;What Was Exposed And How Big Was the Impact?&lt;/h2&gt;
+
+
+
+&lt;p&gt;The breadth of exposure is striking:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;A security researcher discovered plaintext AWS access keys in the code of the “spare-parts portal operated by the company.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Those keys provided access to hundreds of S3 buckets containing customer databases, invoices (with names, addresses, PAN numbers), database backups, internal dashboards, and fleet-telemetry data.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;One bucket reportedly exceeded 70 terabytes of data, tied to their system for fleet tracking.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Additional AWS keys were “encrypted” in client-side code (for the fleet tracking system) but could be easily extracted.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;The exposure extended to back-door-style access to an analytics platform and a third-party fleet API, exposing test-drive / vehicle-location data.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;The issue, first reported in 2023, was later fixed and publicly disclosed in late 2025, with the firm confirming that the security flaws had been resolved.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The combination of personal data, analytics access, and fleet telemetry made this not just a data incident but a reminder of how interconnected cloud systems amplify risk.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="root-cause-key-technical-gaps"&gt;Root Cause &amp;amp; Key Technical Gaps&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Based on publicly available information, the incident appears to have resulted from basic control gaps rather than a sophisticated attack.&lt;br /&gt;&lt;br /&gt;Here are the key missteps identified by researchers:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Hard-coded AWS credentials in public-facing, i.e., front-end, code had overly broad permissions.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Use of weak or reversible “client-side encryption” for secrets (in the fleet tracking system) that led to exposing secrets in the front end.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Over-privileged IAM roles had unrestricted S3 access (list, read, write) when least-privilege parameter was lacking. The researcher noted that the keys effectively acted like master keys.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Publicly accessible or misconfigured S3 buckets and the lack of continuous monitoring allowed excessive growth of the data lake (~70 TB).&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Weak authentication or “back-door” token flows (analytics platform access) bypassed standard login/password mechanisms.  &lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;Together, these illustrate how small oversights in IAM and secrets hygiene across modern cloud infrastructure can compound into large-scale data risks.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-it-could-have-been-prevented"&gt;How It Could Have Been Prevented&lt;/h2&gt;
+
+
+
+&lt;p&gt;This case reinforces a consistent theme across cloud security: misconfiguration, rather than exploitation, is the primary cause of most breaches.&lt;/p&gt;
+
+
+
+&lt;p&gt;Here are the core preventive controls most relevant for AWS environments, especially if you’re using analytics and cloud storage services such as Athena, Glue, and Grafana.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Secrets &amp;amp; Credentials Management&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Never embed &lt;code&gt;aws_access_key_id / aws_secret_access_key&lt;/code&gt; in application code or public repositories. Use IAM roles &amp;amp; instance profiles, along with temporary tokens via STS whenever possible.&lt;/li&gt;
+
+
+
+&lt;li&gt;Centralize secrets in AWS Secrets Manager or Parameter Store, encrypted and access-controlled.&lt;/li&gt;
+
+
+
+&lt;li&gt;Implement continuous secret-scanning (static/dynamic) of code, IaC, and containers for exposed keys.&lt;/li&gt;
+
+
+
+&lt;li&gt;Rotate credentials frequently and audit access logs via CloudTrail and IAM Access Advisor.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;IAM / Least-privilege Design&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Create IAM roles with the narrowly scoped permissions, limiting actions and resources: e.g., only S3 list/read of specific buckets rather than *.&lt;/li&gt;
+
+
+
+&lt;li&gt;Apply resource‐based conditions such as source IP and encryption requirements within bucket policies.&lt;/li&gt;
+
+
+
+&lt;li&gt;Use IAM Access Analyzer to detect overly broad policies or excessive privileges.&lt;/li&gt;
+
+
+
+&lt;li&gt;Regularly review roles/privileges and remove stale or orphaned accounts.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Storage &amp;amp; Data Lake Governance&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Enable S3 Block Public Access by default across accounts.&lt;/li&gt;
+
+
+
+&lt;li&gt;Enforce encryption by default with bucket-level and object-level encryption (SSE-S3, SSE-KMS) and validate through bucket policies.&lt;/li&gt;
+
+
+
+&lt;li&gt;Apply lifecycle policies to archive or delete old data as needed. Large data volumes increase risk.&lt;/li&gt;
+
+
+
+&lt;li&gt;Monitor for unusual data egress (S3 GetObject, large downloads) via CloudTrail and Athena.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Continuous Monitoring &amp;amp; Compliance&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Use a Cloud Security Posture Management (CSPM) tool such as Qualys TotalCloud to continuously assess for:
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Exposed hard-coded keys or IAM user access keys with recent use.&lt;/li&gt;
+
+
+
+&lt;li&gt;Publicly accessible S3 storage buckets.&lt;/li&gt;
+
+
+
+&lt;li&gt;Over-privileged IAM policies or roles.&lt;/li&gt;
+
+
+
+&lt;li&gt;Unencrypted or unclassified data stores or data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;Integrate alerts into existing DevOps workflows (Slack, Jira, MS Teams) to ensure immediate remediation.&lt;/li&gt;
+
+
+
+&lt;li&gt;Establish baseline dashboards to track key metrics such as open S3 buckets, active access keys, and IAM roles with * permissions, to measure improvement over time.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;DevOps &amp;amp; Secure Infrastructure Hygiene&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Shift left: Integrate IaC scanning in your CI/CD pipelines to detect secrets, misconfigurations before deployment.&lt;/li&gt;
+
+
+
+&lt;li&gt;Mandate code reviews for changes to IAM, storage, and logging.&lt;/li&gt;
+
+
+
+&lt;li&gt;Isolate environments (dev, staging, prod) with distinct AWS accounts and restrict cross-environment permissions.&lt;/li&gt;
+
+
+
+&lt;li&gt;Maintain complete audit trails through CloudTrail and enforce restricted log access via privileged roles.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="qualys-totalcloud-to-strengthen-the-loop"&gt;Qualys TotalCloud to Strengthen the Loop&lt;/h2&gt;
+
+
+
+&lt;p&gt;For teams already using dashboards, analytics, and cost monitoring tools for cloud cost/asset visibility, Qualys TotalCloud helps extend that visibility into security and compliance. With TotalCloud, you can:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Scan for exposed credentials in repositories, storage buckets, and front-end code for exposed AWS keys using the &lt;strong&gt;Secrets Detection &lt;/strong&gt;module.&lt;/li&gt;
+
+
+
+&lt;li&gt;Identify overprivileged users with broad permissions and dormant keys through &lt;strong&gt;CSPM and &lt;br /&gt;CIEM and Trurisk Insights&lt;/strong&gt;.&lt;/li&gt;
+
+
+
+&lt;li&gt;Visualize compliance posture with &lt;strong&gt;Continuous Compliance Dashboards&lt;/strong&gt; that track ‘hard-coded keys found’, ‘public S3 buckets’, ‘IAM roles with full S3 access’ as metrics you present to leadership.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Integrate with your existing analytics stack&lt;/strong&gt; (Anthena, Glue, Grafana) for unified monitoring of cost, performance, and risk.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;The outcome is a single operational lens that connects cloud cost optimization with continuous compliance, enabling informed and proactive governance.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="essential-takeaways-for-cloud-teams"&gt;Essential Takeaways for Cloud Teams&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Even large, mature enterprises with decades of legacy can be exposed by small, preventable lapses such as hard-coded secrets, over-broad roles, and unmonitored buckets.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;The true risk lies in accessibility, not just data volume. The size of the data (70 TB+) is less important than the fact that an attacker &lt;em&gt;could&lt;/em&gt; have accessed it. Risk is about possibility, not just proof of exploit.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Speed of detection and disclosure directly influences impact. Organizations must act quickly and proactively.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Dashboards and analytics should visualize risk indicators, not just cost metrics. Your dashboards, analytics, and cost-monitoring pipelines can and should also reflect &lt;em&gt;risk posture&lt;/em&gt;.&lt;br /&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Embedding compliance checks into DevOps workflows turns security from reactive to preventive. By using tools like Qualys TotalCloud integrated into your workflow, it’s much simpler to create a preventative layer above your asset pipeline rather than relying on reactive detection.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;The incident is more than a data leak in an automotive company. It underscores that cloud security maturity is about governance, not size. Misconfigurations, weak IAM design, and exposed secrets remain the most frequent root causes of breaches.&lt;/p&gt;
+
+
+
+&lt;p&gt;For today’s DevOps and CloudOps teams, risk visibility must evolve alongside automation&lt;strong&gt;.&lt;/strong&gt; Secrets-hygiene, least-privilege access, and continuous compliance are no longer best practices; they are operational necessities.&lt;/p&gt;
+
+
+
+&lt;p&gt;Organizations that monitor cost and performance with precision should measure risk the same way. By embedding Qualys TotalCloud into existing workflows, teams create a preventive control plane that transforms compliance from a checklist into a continuous advantage.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Build tomorrow’s security on today’s insight with Qualys&lt;a href="https://www.qualys.com/apps/totalcloud/"&gt; &lt;/a&gt;TotalCloud&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/apps/totalcloud/" style="background-color: #ed2e26;"&gt;Start Now&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=39048</guid><category>Product and Tech</category><category>Vulnerabilities and Threat Research</category><category>cloud misconfiguration</category></item><item><title>XWiki SolrSearch Exploit Attempts (CVE-2025-24893) with link to Chicago Gangs/Rappers, (Mon, Nov 3rd)</title><link>https://isc.sans.edu/diary/rss/32444</link><description>&lt;p&gt;XWiki describes itself as "The Advanced Open-Source Enterprise Wiki" and considers itself an alternative to Confluence and MediaWiki. In February, XWiki released an advisory (and patch) for an arbitrary remote code execution vulnerability. Affected was the SolrSearch component, which any user, even with minimal "Guest" privileges, can use. The advisory included PoC code, so it is a bit odd that it took so long for the vulnerability to be widely exploited.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;XWiki describes itself as&amp;nbsp;&amp;quot;The Advanced Open-Source Enterprise Wiki&amp;quot; and considers itself an alternative to Confluence and MediaWiki. In February, XWiki released an advisory (and patch) for an arbitrary remote code execution vulnerability. Affected was the SolrSearch component, which any user, even with minimal &amp;quot;Guest&amp;quot; privileges, can use. The advisory included PoC code, so it is a bit odd that it took so long for the vulnerability to be widely exploited.&lt;/p&gt;
 
 &lt;p&gt;NIST added the vulnerability to its &amp;quot;Known Exploited Vulnerabilities&amp;quot; list this past&amp;nbsp;Friday. Our data shows some reconnaissance scans starting in July, but actual exploit attempts did not commence until yesterday.&amp;nbsp;&lt;/p&gt;
 
@@ -3110,8 +3429,7 @@ Jan Kopriva&lt;br /&gt;
  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32428</guid></item><item><title>OpenAI Pushes White House For Major Energy Buildout</title><link>https://www.techrepublic.com/article/news-openai-energy-ai-policy/</link><description>&lt;p&gt;OpenAI urges the US to treat electricity generation as a national-security and competitiveness priority essential to sustaining America’s AI leadership.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-openai-energy-ai-policy/"&gt;OpenAI Pushes White House For Major Energy Buildout&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333426</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>News</category><category>ai</category><category>openai</category><category>President Trump</category><category>white house</category></item><item><title>This Is the Nuclear-Powered Ship Deployed in Trump’s War on Drug Boats</title><link>https://www.wired.com/story/this-is-the-nuclear-powered-ship-deployed-in-trumps-war-on-drug-boats/</link><description>The USS Gerald R. Ford is a $13 billion aircraft carrier sailing to the Caribbean with nuclear propulsion, an electromagnetic plane launcher, and 90 aircraft onboard.</description><guid isPermaLink="false">68ffdf052a0cc1a8eeca12e8</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>Politics / Politics News</category><category>Donald Trump</category><category>Military</category><category>military tech</category><category>drug war</category><category>drugs</category><category>war</category><category>Show of Force</category></item><item><title>ISC Stormcast For Tuesday, October 28th, 2025 https://isc.sans.edu/podcastdetail/9674, (Tue, Oct 28th)</title><link>https://isc.sans.edu/diary/rss/32426</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32426</guid></item><item><title>Critical Dell Storage Bugs Open Door to Remote Attacks</title><link>https://www.techrepublic.com/article/news-critical-dell-storage-bug-remote-attacks/</link><description>&lt;p&gt;Severe bugs in Dell Storage Manager let hackers bypass authentication and gain remote access. Patch now to secure enterprise storage systems.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-critical-dell-storage-bug-remote-attacks/"&gt;Critical Dell Storage Bugs Open Door to Remote Attacks&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333357</guid><category>Cybersecurity</category><category>News</category><category>Storage</category><category>critical security flaws</category><category>CVE-2025-43995</category><category>Dell Storage Manager vulnerabilities</category><category>remote code execution</category></item><item><title>AI Security: NVIDIA BlueField Now with Vision One™</title><link>https://www.trendmicro.com/en_us/research/25/j/ai-security-nvidia-bluefield.html</link><description>Launching at NVIDIA GTC 2025 - Transforming AI Security with Trend Vision One™ on NVIDIA BlueField</description><guid isPermaLink="false">urn:uuid:dffaf819-8014-9bbc-ce93-0c870a763c92</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Web</category><category>Trend Micro Research : Connected Car</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Social Media</category><category>Trend Micro Research : Smart Home</category><category>Trend Micro Research : Data center</category><category>Trend Micro Research : ICS OT</category><category>Trend Micro Research : IoT</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Mobile</category><category>Trend Micro Research : Network</category></item><item><title>Qualcomm Steps Into Data Center Arena With New AI Chips to Rival Nvidia, AMD</title><link>https://www.techrepublic.com/article/news-qualcomm-unveils-ai-chips-to-rival-nvidia-amd/</link><description>&lt;p&gt;Qualcomm unveils AI200 and AI250 chips to challenge Nvidia and AMD, marking its bold entry into the booming AI data center market.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-qualcomm-unveils-ai-chips-to-rival-nvidia-amd/"&gt;Qualcomm Steps Into Data Center Arena With New AI Chips to Rival Nvidia, AMD&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333334</guid><category>Artificial Intelligence</category><category>Innovation</category><category>News</category><category>NVIDIA</category><category>Tech Industry</category><category>ai</category><category>ai chips</category><category>amd</category><category>artificial intelligence</category><category>nvidia</category><category>qualcomm</category></item><item><title>Meta Lays Off 600 Employees in AI Division Amid Leadership and Strategy Shift</title><link>https://www.techrepublic.com/article/news-meta-ai-layoffs-600/</link><description>&lt;p&gt;Meta has laid off 600 employees in its AI unit as it restructures operations and consolidates leadership under Wang Jian to advance its AI strategy.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-meta-ai-layoffs-600/"&gt;Meta Lays Off 600 Employees in AI Division Amid Leadership and Strategy Shift&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333330</guid><category>Artificial Intelligence</category><category>News</category><category>Tech Industry</category><category>Workforce</category><category>AI layoffs</category><category>automation</category><category>enterprise ai</category><category>generative ai</category><category>meta</category><category>technology management</category><category>workforce strategy</category></item><item><title>Louvre Jewel Heist</title><link>https://www.schneier.com/blog/archives/2025/10/louvre-jewel-heist.html</link><description>&lt;p&gt;I assume I don&amp;#8217;t have to explain last week&amp;#8217;s &lt;a href="https://www.nytimes.com/2025/10/19/world/europe/louvre-paris-robbery.html"&gt;Louvre jewel heist&lt;/a&gt;. I love a good caper, and have (like &lt;a href="https://www.nytimes.com/2025/10/23/opinion/louvre-heist-internet-thrill.html"&gt;many others&lt;/a&gt;) eagerly followed the &lt;a href="https://www.theguardian.com/world/2025/oct/20/louvre-museum-robbery-thieves-stolen-jewellery"&gt;details&lt;/a&gt;. An electric ladder to a second-floor window, an angle grinder to get into the room and the display cases, security guards there more to protect patrons than valuables&amp;#8212;seven minutes, in and out.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-qualcomm-unveils-ai-chips-to-rival-nvidia-amd/"&gt;Qualcomm Steps Into Data Center Arena With New AI Chips to Rival Nvidia, AMD&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4333334</guid><category>Artificial Intelligence</category><category>Innovation</category><category>News</category><category>NVIDIA</category><category>Tech Industry</category><category>ai</category><category>ai chips</category><category>amd</category><category>artificial intelligence</category><category>nvidia</category><category>qualcomm</category></item><item><title>Louvre Jewel Heist</title><link>https://www.schneier.com/blog/archives/2025/10/louvre-jewel-heist.html</link><description>&lt;p&gt;I assume I don&amp;#8217;t have to explain last week&amp;#8217;s &lt;a href="https://www.nytimes.com/2025/10/19/world/europe/louvre-paris-robbery.html"&gt;Louvre jewel heist&lt;/a&gt;. I love a good caper, and have (like &lt;a href="https://www.nytimes.com/2025/10/23/opinion/louvre-heist-internet-thrill.html"&gt;many others&lt;/a&gt;) eagerly followed the &lt;a href="https://www.theguardian.com/world/2025/oct/20/louvre-museum-robbery-thieves-stolen-jewellery"&gt;details&lt;/a&gt;. An electric ladder to a second-floor window, an angle grinder to get into the room and the display cases, security guards there more to protect patrons than valuables&amp;#8212;seven minutes, in and out.&lt;/p&gt;
 &lt;p&gt;There were &lt;a href="https://www.theatlantic.com/ideas/archive/2025/10/praise-louvre-heist/684677/"&gt;security lapses&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The Louvre, it turns out&amp;#8212;at least certain nooks of the ancient former palace&amp;#8212;is something like an anopticon: a place where no one is observed. The world now knows what the four thieves (two burglars and two accomplices) realized as recently as last week: The museum&amp;#8217;s Apollo Gallery, which housed the stolen items, was monitored by a single outdoor camera angled away from its only exterior point of entry, a balcony. In other words, a free-roaming Roomba could have provided the world&amp;#8217;s most famous museum with more information about the interior of this space. There is no surveillance footage of the break-in...&lt;/p&gt;&lt;/blockquote&gt;</description><content:encoded>&lt;p&gt;I assume I don&amp;#8217;t have to explain last week&amp;#8217;s &lt;a href="https://www.nytimes.com/2025/10/19/world/europe/louvre-paris-robbery.html"&gt;Louvre jewel heist&lt;/a&gt;. I love a good caper, and have (like &lt;a href="https://www.nytimes.com/2025/10/23/opinion/louvre-heist-internet-thrill.html"&gt;many others&lt;/a&gt;) eagerly followed the &lt;a href="https://www.theguardian.com/world/2025/oct/20/louvre-museum-robbery-thieves-stolen-jewellery"&gt;details&lt;/a&gt;. An electric ladder to a second-floor window, an angle grinder to get into the room and the display cases, security guards there more to protect patrons than valuables&amp;#8212;seven minutes, in and out.&lt;/p&gt;
 &lt;p&gt;There were &lt;a href="https://www.theatlantic.com/ideas/archive/2025/10/praise-louvre-heist/684677/"&gt;security lapses&lt;/a&gt;:&lt;/p&gt;
@@ -8527,491 +8845,7 @@ $mg.DrawImage([System.Drawing.Image]::FromStream($s),0,0);&lt;/pre&gt;
 
 
 
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38892</guid><category>Patch Management</category><category>Product and Tech</category><category>gigaom</category><category>GigaOM Radar</category><category>patch management</category></item><item><title>Ensuring Safe and Reliable Updates with Qualys TruRisk™ Manifest Version Control</title><link>https://blog.qualys.com/category/product-tech</link><description>The Fragility of “One Bad Update” In cybersecurity, speed is non-negotiable. New vulnerabilities surface daily, and enterprises expect coverage the moment exploits are in the wild. For years, the mantra was simple: push signatures fast, and you reduce risk. Faster updates meant faster protection. But speed without guardrails introduces fragility. A single flawed update can [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;The Fragility of “One Bad Update”&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;In cybersecurity, speed is non-negotiable. New vulnerabilities surface daily, and enterprises expect coverage the moment exploits are in the wild. For years, the mantra was simple: push signatures fast, and you reduce risk. Faster updates meant faster protection.&lt;/p&gt;
-
-
-
-&lt;p&gt;But speed without guardrails introduces fragility. A single flawed update can cascade across thousands of endpoints, halting business operations and creating costly downtime. According to Veeam’s &lt;em&gt;2019 Cloud Data Management Report&lt;/em&gt;, enterprises experience multiple unplanned outages each year, with each hour of downtime carrying an average six-figure cost for many organizations. For large enterprises, that figure quickly climbs into hundreds of thousands, even millions, per hour.&lt;/p&gt;
-
-
-
-&lt;p&gt;That reality has prompted an industry-wide reckoning: &lt;strong&gt;resilience matters just as much as speed.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;span id="more-38839"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-update-validation-matters-as-much-as-speed"&gt;&lt;strong&gt;Why Update Validation Matters as Much as Speed&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Today, organizations no longer view immediate updates as an unquestioned good. The conversation has shifted to a trade-off that must be actively managed:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Immediate Deployment&lt;/strong&gt;: “We want new signatures as soon as they’re available.”&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Safe Deployment&lt;/strong&gt;: “We want updates applied only once they’ve been validated in our operational context.”&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Security teams operate under the pressure of zero-day exploits, where every hour matters, while operations teams must protect uptime for customer-facing systems and critical business processes. Add to that hybrid architectures, where Windows servers, cloud workloads, containers, and legacy host types coexist, and you have an environment where updates can behave differently in every segment.&lt;/p&gt;
-
-
-
-&lt;p&gt;Most platforms offer limited controls: an all-or-nothing push, or a manual, high-friction process. Without staging, canaries, or the ability to prevent a manifest from applying to certain assets, customers are left balancing risk and exposure without the necessary tools.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Other industries have already learned this lesson.&lt;/strong&gt; In aviation, for example, new systems are staged in simulators and test flights before widespread adoption. In financial services, trading systems are stress-tested under load before live deployment. Both sectors know that speed is meaningless without safeguards, and security operations are no different. What’s emerging now in cybersecurity is the same principle: resilience must be engineered into the process, not bolted on after failure.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Manifest Version Control in the Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The &lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Qualys TruRisk Platform&lt;/a&gt; resolves this tension by building resilience into the update lifecycle itself. &lt;strong&gt;Manifest Version Control (MVC)&lt;/strong&gt; is the mechanism that turns manifest updates from an uncontrollable vendor push into a governed, observable, and reversible operational process.&lt;/p&gt;
-
-
-
-&lt;div style="padding: 56.25% 0 0 0;"&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="core-capabilities-of-manifest-version-control-in-trurisk-platform"&gt;&lt;strong&gt;Core Capabilities&lt;/strong&gt; of Manifest Version Control in TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform&lt;/h2&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Delay Manifest Assignment&lt;/strong&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Introduce a configurable 0–48 hour buffer between release and deployment.&lt;/li&gt;
-
-
-
-&lt;li&gt;Align updates with maintenance windows, change management approvals, and operational readiness checks.&lt;/li&gt;
-
-
-
-&lt;li&gt;Stage adoption across environments so new signatures land first in test or canary groups before reaching production.&lt;/li&gt;
-
-
-
-&lt;li&gt;Use the buffer to run smoke tests and monitor telemetry, catching instability before broad rollout.&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Prevent Manifest Update&lt;/strong&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Temporarily block specific manifests from applying to chosen assets or groups.&lt;/li&gt;
-
-
-
-&lt;li&gt;Target controls by profile, OS, region, or any grouping that reflects operational risk.&lt;/li&gt;
-
-
-
-&lt;li&gt;Validate updates safely in dev/test while keeping production locked until issues are resolved.&lt;/li&gt;
-
-
-
-&lt;li&gt;Re-enable a manifest when stable or roll forward a corrected version without exposing live systems to disruption.&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Manifest Insights&lt;/strong&gt;
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Provide clear metadata, including release dates, version deltas, QID lists, and change logs.&lt;/li&gt;
-
-
-
-&lt;li&gt;Offer a human-readable summary of what each signature does and why it matters.&lt;/li&gt;
-
-
-
-&lt;li&gt;Surface delta analysis and QID correlation so teams can distinguish between new and modified detections.&lt;/li&gt;
-
-
-
-&lt;li&gt;Tie insights to telemetry and health signals, enabling rollout decisions based on evidence rather than guesswork.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/manifests.png"&gt;&lt;img alt="" class="wp-image-38845" height="887" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/manifests.png" width="1914" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="progressive-rollouts-and-canary-testing-operational-patterns"&gt;&lt;strong&gt;Progressive Rollouts and Canary Testing (Operational Patterns)&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Beyond delay and prevention, MVC enables progressive rollout patterns that mirror best practices in modern software delivery:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Canary groups&lt;/strong&gt;: deploy a manifest to a small representative subset, monitor errors and performance, then expand.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Waves&lt;/strong&gt;: roll out in defined waves (for example: 1% → 10% → 50% → 100%) to reduce blast radius.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Telemetry gates&lt;/strong&gt;: automatically pause or stop rollout if predefined health signals cross thresholds.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Real-World Example&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Consider an enterprise with distinct non-production and production profiles. In non-production, updates are applied immediately to validate detection accuracy and compatibility. In production, updates are delayed by 24 hours while canary groups and telemetry checks run.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/mvc-main.png"&gt;&lt;img alt="" class="wp-image-38851" height="894" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/mvc-main.png" width="1921" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;If an issue is observed in non-production or in a canary cohort, for example, a detection that triggers excessive scanning load or a false positive affecting a business application, operators can activate &lt;strong&gt;Prevent Manifest Update&lt;/strong&gt; for production profiles. Qualys engineering can then investigate, patch the manifest, and release a corrected version. Because the rollout was staged, the business avoided widespread disruption while still benefiting from fast detection once the issue was resolved.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-manifest-version-control-matters"&gt;&lt;strong&gt;Why Manifest Version Control Matters&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Manifest Version Control addresses a set of concrete challenges enterprises face:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/profile.png"&gt;&lt;img alt="" class="wp-image-38852" height="883" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/profile.png" width="1912" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Resilience Without Sacrificing Speed&lt;/strong&gt;: MVC lets security teams receive signatures rapidly while operations control when and where they apply.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Minimized Business Risk&lt;/strong&gt;: By avoiding sudden, unverified pushes to production, organizations reduce the chance of outages that carry six-figure impacts.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Granular Rollouts&lt;/strong&gt;: Wave and canary strategies limit blast radius and surface compatibility issues early.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Audit-Ready Transparency&lt;/strong&gt;: Detailed change logs and QID lists support compliance and post-incident analysis.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Operational Confidence&lt;/strong&gt;: Teams move from reactive firefighting to evidence-driven, strategic update management.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="accuracy-engineered-into-every-detection"&gt;&lt;strong&gt;Accuracy Engineered into Every Detection&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Resilience starts with the code. Every Qualys detection (QID) is created and verified through a disciplined, multi-step process:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Authoring&lt;/strong&gt;: Engineering authors the detection and documents expected behavior and impact.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Peer Review&lt;/strong&gt;: Human reviewers validate logic, edge cases, and potential performance implications.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;QA and Regression&lt;/strong&gt;: Automated and manual tests verify detection accuracy, performance overhead, and compatibility across OS and agent versions.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Staging&lt;/strong&gt;: New signatures are exercised in lab and hybrid environments, including targeted functional and load tests.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Release&lt;/strong&gt;: Only after passing these gates does a signature enter a production manifest, and even then, MVC governs its rollout.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;For example, a detection that requires a new parsing command is first committed to a test branch. Engineers run regression scans across representative OS images and agent versions to validate both detection fidelity and resource overhead. Any performance degradation triggers a remediation loop before the signature is promoted.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="agent-version-control-for-consistency-and-security"&gt;&lt;strong&gt;Agent Version Control for Consistency and Security&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Engineering validation in isolation is necessary but not sufficient. &lt;strong&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Labs&lt;/strong&gt; maintains a portfolio of environments that mirrors customer diversity: virtualization stacks (VMware, KVM), cloud providers, containers (KubeVirt), legacy hosts (Solaris, PowerVM), and bare metal.&lt;/p&gt;
-
-
-
-&lt;p&gt;With roughly a thousand on-premises instances and automated provisioning workflows, Labs can construct large hybrid environments quickly, enabling broad validation far faster than ad-hoc customer testing permits. Continuous integration pipelines exercise signatures under realistic load and interaction patterns, surfacing corner cases early.&lt;/p&gt;
-
-
-
-&lt;p&gt;For zero-day vulnerabilities, Labs prioritizes creating the required configuration and test harnesses the same day to accelerate QID release, while ensuring changes pass the multi-step validation above.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="always-on-resilience-with-self-healing-agents"&gt;&lt;strong&gt;Always-On Resilience with Self-Healing Agents&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Platform resilience is incomplete without resilient agents. The TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform extends resilience to the agent level. &lt;strong&gt;Qualys Cloud Agents&lt;/strong&gt; are designed to self-heal, eliminating the need for manual reinstalls or downtime. &lt;/p&gt;
-
-
-
-&lt;p&gt;Key aspects include:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Immediate Recovery&lt;/strong&gt;: Agents fetch latest configs and manifests on restart.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Smart Retry&lt;/strong&gt;: Failed requests retry automatically.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Adaptive Communication&lt;/strong&gt;: Proxy handling and backoff prevent bottlenecks.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Safe Data Handling&lt;/strong&gt;: Pending scans and updates are preserved during errors.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Robust Error Handling&lt;/strong&gt;: Unexpected conditions are auto-managed to maintain protection.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;These capabilities reduce the need for manual intervention and help maintain continuous visibility and coverage even when parts of the infrastructure are degraded.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Agent Version Control: Consistency and Security&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a&gt;Agent Version Control (AVC)&lt;/a&gt;, an innovative feature of the &lt;a&gt;Qualys Cloud Agent&lt;/a&gt;, adds another layer of resilience to the TruRisk Platform by giving organizations enhanced control and flexibility over their agent deployment. AVC ensures that agent versions are consistent, security protocols are standardized, and updates are aligned with organizational priorities:all while maintaining the automated protections and self-healing capabilities that make Qualys agents reliable.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-38854" height="894" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/09/mvc-main-1.png" width="1921" /&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Key Features&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Uniform agent versions for consistent protection&lt;/li&gt;
-
-
-
-&lt;li&gt;Controlled update staging to minimize disruption&lt;/li&gt;
-
-
-
-&lt;li&gt;AVC profiles tailored by OS or workload&lt;/li&gt;
-
-
-
-&lt;li&gt;Access to previously supported binaries for stable deployment&lt;/li&gt;
-
-
-
-&lt;li&gt;Streamlined update workflows with automated protections&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Uniform Security Measures&lt;/strong&gt;: Endpoints remain consistently protected.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Enhanced Reliability&lt;/strong&gt;: Controlled agent rollouts reduce compatibility issues.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Reduced IT Workload&lt;/strong&gt;: Automation frees teams to focus on strategic priorities.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Stable, Risk-Aware Operations&lt;/strong&gt;: Security aligned with organizational readiness.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;Together, MVC and AVC deliver &lt;strong&gt;end-to-end resilience&lt;/strong&gt;: the agent itself and the updates it applies are governed, controlled, and reliable.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="achieving-precision-with-custom-assessment-and-remediation"&gt;&lt;strong&gt;Achieving Precision with Custom Assessment and Remediation&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Automation handles most scenarios, but sometimes direct intervention is required. &lt;a href="https://www.qualys.com/apps/custom-assessment-remediation/"&gt;&lt;strong&gt;Custom Assessment and Remediation (CAR)&lt;/strong&gt;&lt;/a&gt; enables safe execution of PowerShell, Bash, Python, or other scripts directly on endpoints.&lt;/p&gt;
-
-
-
-&lt;p&gt;With CAR, teams can:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Run PowerShell, Bash, Python, or other scripts securely on endpoints.&lt;/li&gt;
-
-
-
-&lt;li&gt;Remediate misconfigurations, apply mitigations, or collect forensic data without uninstalling agents.&lt;/li&gt;
-
-
-
-&lt;li&gt;Orchestrate targeted remediation workflows that align with change management policies.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;CAR is designed to complement automation rather than replacing it, enabling precise, auditable interventions when an automated path is insufficient.&lt;/p&gt;
-
-
-
-&lt;p&gt;This gives IT teams precision control when needed, complementing the self-healing capabilities of Cloud Agents with targeted, policy-aligned actions.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-bigger-picture-of-risk-aligned-security"&gt;&lt;strong&gt;The Bigger Picture of Risk-Aligned Security&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;More than a feature set, this is a strategic shift: aligning security delivery with operational risk tolerance. Manifest Version Control, Agent Version Control, self-healing agents, CAR, and resilient lab validation together allow organizations to:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Keep detection velocity high without exposing production to unnecessary risk.&lt;/li&gt;
-
-
-
-&lt;li&gt;Map rollout strategies to business criticality and regulatory requirements.&lt;/li&gt;
-
-
-
-&lt;li&gt;Demonstrate control in audits and incident reviews with rich telemetry and change history.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;This shift is also reshaping board-level conversations. CISOs are no longer evaluated solely on how fast they patch but on how well they balance &lt;strong&gt;speed with continuity, compliance, and trust.&lt;/strong&gt; By embedding resilience, they can show that the security program not only reacts to threats but also protects uptime and customer confidence. That alignment between security and business resilience is becoming a new benchmark of leadership.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion-end-to-end-resilience-and-control"&gt;&lt;strong&gt;Conclusion: End-to-End Resilience and Control&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Platform delivers both speed and stability by embedding resilience at every layer:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Validated Detections&lt;/strong&gt;: Signatures vetted through rigorous QA.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Resilient Infrastructure&lt;/strong&gt;: Self-healing Cloud Agents with AVC safeguards.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Intelligent Update Management&lt;/strong&gt;: MVC and CAR ensure safe, controlled rollouts.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;From the lab to production, resilience is engineered, validated, and proven in customer-like environments. By making updates a &lt;strong&gt;strategic, risk-aware process&lt;/strong&gt;, the TruRisk Platform empowers organizations to reduce operational risk, maintain business continuity, and strengthen security posture.&lt;/p&gt;
-
-
-
-&lt;p&gt;Ultimately, resilience is less about resisting disruption and more about absorbing it without compromising security or momentum. It should be understood as a living capability, as the combination of adaptability, protection, and continuity that enables enterprises to thrive in environments where change is the only constant. Those who embed this outlook into their strategy build not just defenses, but enduring confidence.&lt;/p&gt;
-
-
-
-&lt;p&gt;Contact &lt;a href="https://success.qualys.com/customersupport/s/"&gt;Qualys Customer Support&lt;/a&gt; to enable Manifest Version Control in your environment and operationalize risk-aware update management across endpoints.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38839</guid><category>Product and Tech</category><category>Risk Reduction</category><category>security updates</category><category>trurisk</category></item><item><title>LABScon25 Replay | Auto-Poking The Bear: Analytical Tradecraft In The AI Age</title><link>https://www.sentinelone.com/labs/labscon25-replay-auto-poking-the-bear-analytical-tradecraft-in-the-ai-age/</link><description>AI agents promise speed, but at what cost to trust? Dreadnode’s Wendiggensen &amp;#038; Palm unpack this dilemma through a hands-on study of leaked Russian data.</description><content:encoded>&lt;p&gt;In this LABScon25 talk, Dreadnode’s &lt;a href="https://www.labscon.io/speakers/martin-wendiggensen/" rel="noopener noreferrer" target="_blank"&gt;Martin Wendiggensen&lt;/a&gt; and &lt;a href="https://www.labscon.io/speakers/brad-palm/" rel="noopener noreferrer" target="_blank"&gt;Brad Palm&lt;/a&gt; explore how AI is changing Cyber Threat Intelligence and the research practices that support it.&lt;/p&gt;
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38892</guid><category>Patch Management</category><category>Product and Tech</category><category>gigaom</category><category>GigaOM Radar</category><category>patch management</category></item><item><title>LABScon25 Replay | Auto-Poking The Bear: Analytical Tradecraft In The AI Age</title><link>https://www.sentinelone.com/labs/labscon25-replay-auto-poking-the-bear-analytical-tradecraft-in-the-ai-age/</link><description>AI agents promise speed, but at what cost to trust? Dreadnode’s Wendiggensen &amp;#038; Palm unpack this dilemma through a hands-on study of leaked Russian data.</description><content:encoded>&lt;p&gt;In this LABScon25 talk, Dreadnode’s &lt;a href="https://www.labscon.io/speakers/martin-wendiggensen/" rel="noopener noreferrer" target="_blank"&gt;Martin Wendiggensen&lt;/a&gt; and &lt;a href="https://www.labscon.io/speakers/brad-palm/" rel="noopener noreferrer" target="_blank"&gt;Brad Palm&lt;/a&gt; explore how AI is changing Cyber Threat Intelligence and the research practices that support it.&lt;/p&gt;
 &lt;p&gt;Analytical tradecraft and shared standards have transformed Cyber Threat Intelligence from a niche discipline into a collaborative industry-wide research endeavor. Researchers and analysts now routinely build on each other’s work, creating a foundation of trust and shared methodology.&lt;/p&gt;
 &lt;p&gt;That ecosystem is being disrupted as teams increasingly hand off data preparation, analysis, and entire workflows to AI assistants. These tools boost productivity, but they introduce new costs. You might have confidence in your own AI-assisted process, but how much can you rely on another researcher’s prompts or agentic workflow?&lt;/p&gt;
 &lt;p&gt;Given concerns over reliability and transparency, the CTI community will need to adapt its research methodology and develop a new joint understanding of the promises, pitfalls, and probabilities inherent in AI-assisted work.&lt;/p&gt;
