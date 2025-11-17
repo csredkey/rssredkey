@@ -1,5 +1,418 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 17 Nov 2025 15:59:19 +0000</lastBuildDate><item><title>Apple Plots iPhone Revamp to Reduce Reliance on Annual Fall Launch</title><link>https://www.techrepublic.com/article/news-apple-plots-iphone-revamp/</link><description>&lt;p&gt;The shift reflects an effort to stabilize revenue throughout the year and reduce pressure on its workforce and suppliers.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 17 Nov 2025 16:59:17 +0000</lastBuildDate><item><title>What It Takes to Design Trust into Event-Driven Architectures with Amazon EventBridge</title><link>https://blog.qualys.com/category/product-tech</link><description>How disciplined design turns Amazon EventBridge from an open event bus into a system of verified trust. &amp;#160; Event-driven architecture has become essential for achieving agility in the cloud. Yet as integrations multiply, so do the hidden pathways that adversaries can exploit. Amazon EventBridge helps unify these distributed systems, but its very flexibility demands disciplined [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;How disciplined design turns Amazon EventBridge from an open event bus into a system of verified trust. &lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Event-driven architecture has become essential for achieving agility in the cloud. Yet as integrations multiply, so do the hidden pathways that adversaries can exploit. Amazon EventBridge helps unify these distributed systems, but its very flexibility demands disciplined governance.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog explores how attackers use reconnaissance techniques to map event flows and presents a structured defense model that strengthens Amazon EventBridge security across organizational, account, and service layers.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;span id="more-39069"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="inside-the-pulse-of-cloud-architecture"&gt;Inside the Pulse of Cloud Architecture&lt;/h2&gt;
+
+
+
+&lt;p&gt;Every cloud system has a pulse. It moves invisibly through messages, APIs, and data flows that link distributed services into one living network. Each event triggers another, forming the rhythm that keeps modern cloud applications alive. When that rhythm is broken or observed by the wrong actor, trust becomes the first casualty.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Amazon EventBridge keeps that pulse synchronized. It enables event-driven architecture (EDA), where applications react instantly to state changes. According to AWS&lt;sup&gt;&lt;a href="https://blog.qualys.com/product-tech/2025/11/17/eventbridge-security-reconnaissance-attack-best-practices-2025#:~:text=Discover%20Qualys%20TotalCloud-,References,-Amazon%20EventBridge%20User"&gt;1&lt;/a&gt;&lt;/sup&gt;, EventBridge can process over 2,000 events per second per account — that’s more than 172 million a day. Yet agility often outpaces governance. The Coleman Parkes Research&lt;sup&gt;&lt;a href="https://blog.qualys.com/product-tech/2025/11/17/eventbridge-security-reconnaissance-attack-best-practices-2025#:~:text=Discover%20Qualys%20TotalCloud-,References,-Amazon%20EventBridge%20User"&gt;2&lt;/a&gt;&lt;/sup&gt; found that while 85% of organizations consider EDA critical, only 13% have achieved full maturity. That gap explains why securing event flows, not just enabling them, is now a strategic imperative.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;With its native routing capabilities, integrated filtering, and effortless cross-account integration, EventBridge converts disparate services into a robust, real-time nervous system for your cloud.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Yet while EventBridge delivers speed and scale, it also introduces new risks. This article explores how to secure Amazon EventBridge architecture, how reconnaissance attacks exploit event flows, and which EventBridge best practices protect event-driven architectures without limiting agility.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Your cloud architecture has a backstory. Start with Cloud &amp;amp; SaaS Security Insights.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-amazon-eventbridge-works"&gt;&lt;strong&gt;How Amazon EventBridge Works&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Amazon EventBridge&lt;/strong&gt;&lt;sup&gt;&lt;a href="https://blog.qualys.com/product-tech/2025/11/17/eventbridge-security-reconnaissance-attack-best-practices-2025#:~:text=Discover%20Qualys%20TotalCloud-,References,-Amazon%20EventBridge%20User"&gt;3&lt;/a&gt;&lt;/sup&gt; offers architectural advantages that go far beyond simple event transmission. Its design promotes loose coupling between producers and consumers, allowing each to deploy, scale, and recover independently. This isolation reduces the impact of downstream failures and creates a natural form of resilience.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;EventBridge also includes content-based filtering, enabling rules to route events intelligently without requiring intermediary Lambda functions. The result is lower latency, reduced operational overhead, and lower costs. Event buses can span both accounts and regions, enabling cross-account EventBridge architectures that securely and efficiently share events without fragile, point-to-point connections.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Core Components&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Source Account:&lt;/strong&gt; Defines the event source and the primary event bus that forwards events to destination accounts.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Destination Account:&lt;/strong&gt; Receives events from other accounts or regions and routes them to defined targets for processing.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Event Rules:&lt;/strong&gt; Govern which events are delivered to which targets, based on event patterns or predefined schedules.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Event Bus:&lt;/strong&gt; Serves as the central router that receives and dispatches events to zero or more targets.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Event Targets:&lt;/strong&gt; Specify which resources—such as SQS, SNS, Lambda, or API destinations—are invoked when a rule is triggered.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;IAM Roles:&lt;/strong&gt; Define permissions for secure, cross-account access.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/jpeg_eb-scaled.jpeg"&gt;&lt;img alt="EventBridge Architecture Diagram" class="wp-image-39071" height="1497" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/jpeg_eb-scaled.jpeg" width="2560" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;EventBridge Architecture&amp;nbsp;&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Together, these components form a dynamic and secure EventBridge architecture that enables real-time interaction across microservices, AWS accounts, and SaaS applications. However, the same openness that enables flexibility can also expose hidden vulnerabilities if not properly governed. One of the most overlooked of these is the reconnaissance attack.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="understanding-reconnaissance-attacks-in-event-driven-systems"&gt;&lt;strong&gt;Understanding Reconnaissance Attacks in Event-Driven Systems&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;A reconnaissance&lt;sup&gt;&lt;a href="https://blog.qualys.com/product-tech/2025/11/17/eventbridge-security-reconnaissance-attack-best-practices-2025#:~:text=Discover%20Qualys%20TotalCloud-,References,-Amazon%20EventBridge%20User"&gt;4&lt;/a&gt;&lt;/sup&gt; attack in AWS EventBridge is an early-stage intrusion where attackers quietly analyze how your system communicates before executing an exploit.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;How an EventBridge Reconnaissance Attack Works&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;&lt;strong&gt;Initial Access:&lt;/strong&gt; The attacker gains entry through stolen IAM credentials, broad permissions, or misconfigurations.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Creating a Rule:&lt;/strong&gt; A rule is added to capture every event in the account using a pattern such as:&amp;nbsp;&lt;br /&gt;&lt;code&gt;{"source": [{"exists": true}]}&amp;nbsp;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;This single rule grants visibility into all event traffic.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list" start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Adding a Target:&lt;/strong&gt; The attacker links the rule to a Lambda function under their control, which logs or forwards events.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="4"&gt;
+&lt;li&gt;&lt;strong&gt;Intercepting Events:&lt;/strong&gt; They now see real-time activity—EC2 launches, IAM changes, S3 access, or Secrets Manager use.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;ol class="wp-block-list" start="5"&gt;
+&lt;li&gt;&lt;strong&gt;Analyzing for Weakness:&lt;/strong&gt; They identify integration points and plan future attacks without detection.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;This type of reconnaissance thrives on unmonitored IAM roles, permissive event rules, and cross-account EventBridge risks. It is a reminder that event-driven architecture security depends on governance and precision.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-to-secure-amazon-eventbridge-architecture"&gt;&lt;strong&gt;How to Secure Amazon EventBridge Architecture&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;EventBridge security is achieved through layered governance, starting with organizational policies, followed by account-level access control, and finally, service-level precision.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;1. Organization-Level Governance&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Use &lt;strong&gt;Service Control Policies (SCPs)&lt;/strong&gt; to restrict actions such as &lt;kbd&gt;events:PutEvents&lt;/kbd&gt; across your AWS Organization. SCPs prevent event injection from unauthorized accounts.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Example SCP Policy:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;kbd&gt;{&lt;br /&gt;&amp;nbsp;&amp;nbsp; "Version": "2012-10-17",&lt;br /&gt;&amp;nbsp;&amp;nbsp; "Statement": [{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Sid": "DenyExternalEventBridge",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Effect": "Deny",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Action": "events:PutEvents",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Resource": "*",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Condition": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "StringNotEquals": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "aws:ResourceOrgID": "${aws:PrincipalOrgID}"&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;br /&gt;&amp;nbsp;&amp;nbsp; }]&lt;br /&gt;}&lt;/kbd&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;2. Account-Level Access Control&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Apply the &lt;strong&gt;principle of least privilege&lt;/strong&gt;. Limit EventBridge&amp;nbsp;IAM roles&amp;nbsp;to essential roles and enforce &lt;strong&gt;p&lt;/strong&gt;ermission boundaries.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Regularly audit:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Who can create or modify EventBridge rules.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Which accounts can publish cross-account events.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Whether resource policies allow unwanted access.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Restrictive Event Bus Policy Example:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;kbd&gt;{&lt;br /&gt;&amp;nbsp;&amp;nbsp; "Version": "2012-10-17",&lt;br /&gt;&amp;nbsp;&amp;nbsp; "Statement": [{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Effect": "Allow",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Principal": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "AWS": "arn:aws:iam::123456789012:root"&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Action": "events:PutEvents",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Resource": "arn:aws:events:region:account-id:event-bus/bus-name",&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "Condition": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "StringEquals": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "aws:SourceAccount": "TRUSTED-ACCOUNT-ID"&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;br /&gt;&amp;nbsp;&amp;nbsp; }]&lt;br /&gt;}&lt;/kbd&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Use VPC Endpoints&lt;/strong&gt; to ensure EventBridge operates within private subnets. Attach endpoint policies and security groups that restrict access to approved IAM roles or IPs.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;3. Service-Level Precision&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Use narrow EventBridge rules to limit unnecessary visibility.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Example Secure Rule Pattern:&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;kbd&gt;{&lt;br /&gt;&amp;nbsp;&amp;nbsp; "source": ["aws.ec2"],&lt;br /&gt;&amp;nbsp;&amp;nbsp; "detail-type": ["EC2 Instance State-change Notification"],&lt;br /&gt;&amp;nbsp;&amp;nbsp; "detail": {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "state": ["running"]&lt;br /&gt;&amp;nbsp;&amp;nbsp; }&lt;br /&gt;}&lt;/kbd&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Monitoring and Detection&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Track PutRule, PutTargets, and PutEvents activity through &lt;strong&gt;CloudTrail&lt;/strong&gt; and &lt;strong&gt;CloudWatch&lt;/strong&gt;.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Set alerts for rules that match “all sources” or add unrecognized targets.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Watch for unexpected cost spikes in EventBridge, Lambda, or SQS activity.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This turns Amazon EventBridge security from an open data router into a verifiable control surface.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="advantages-of-amazon-eventbridge"&gt;&lt;strong&gt;Advantages of Amazon EventBridge&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;When properly governed, a secure EventBridge architecture strengthens both performance and compliance:&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Reduced Complexity:&lt;/strong&gt; Simplifies integration across systems without adding new infrastructure layers.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Loose Coupling:&lt;/strong&gt; Enables teams to innovate independently while maintaining system coherence.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Scalability and Resilience:&lt;/strong&gt; Components scale individually and recover gracefully from failure.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Real-Time Responsiveness:&lt;/strong&gt; Allows systems to adapt instantly to changing conditions.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Archiving and Replay:&lt;/strong&gt; Facilitates auditing, debugging, and recovery with event replay capabilities.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Each of these benefits reinforces the foundation of event-driven architecture security—not just operational efficiency, but trustworthiness at scale.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="conclusion-trust-is-the-true-metric-of-scale"&gt;&lt;strong&gt;Conclusion: Trust is the True Metric of Scale&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;p&gt;In an event-driven world, trust is the architecture. Each event is a statement of intent, and securing that intent is what keeps systems alive.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Amazon EventBridge empowers organizations to scale their applications without friction, but it also demands precision. Reconnaissance attacks succeed only when trust boundaries blur. When SCPs, IAM roles, event rules, and monitoring systems reinforce one another, EventBridge evolves from an event bus into a system of verified trust&lt;strong&gt;.&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;A secure EventBridge architecture does more than prevent intrusion. It ensures that every event, every reaction, and every outcome remains authentic and accountable. That is what it means to build with trust at cloud scale.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;See how Qualys helps you design trust into your cloud architecture.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/apps/totalcloud/" style="background-color: #ed2e26;"&gt;Discover Qualys TotalCloud&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-quota.html"&gt;Amazon EventBridge User Guide&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://solace.com/resources/solace-event-driven-architecture-resources/wp-download-the-great-eda-migration-2021-survey-results"&gt;The Coleman Parkes Research Survey on Event-Driven Architectures, commissioned by Solace &lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html#:~:text=EventBridge%20is%20a%20serverless%20service,emitting%20and%20responding%20to%20events." rel="noreferrer noopener" target="_blank"&gt;What is EventBridge?&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;a href="https://www.codecademy.com/article/passive-active-reconnaissance" rel="noreferrer noopener" target="_blank"&gt;Passive &amp;amp; Active Reconnaissance&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Frequently Asked Questions (&lt;strong&gt;FAQs&lt;/strong&gt;)&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;1. Why is securing Amazon EventBridge architecture important?&lt;/strong&gt;&lt;br /&gt;EventBridge connects distributed cloud systems. Securing it ensures event flows remain trusted, preventing unauthorized access and protecting integrations across accounts.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;2. What happens if EventBridge security is misconfigured?&lt;/strong&gt;&lt;br /&gt;Weak IAM roles or broad event rules can expose events to interception or injection. Attackers may observe activity patterns, leading to deeper intrusions.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;3. What is a reconnaissance attack in EventBridge?&lt;/strong&gt;&lt;br /&gt;It’s when attackers quietly monitor event traffic by creating catch-all rules and malicious targets. Tight permissions and event filtering prevent this.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;4. How do Service Control Policies (SCPs) help secure EventBridge?&lt;/strong&gt;&lt;br /&gt;AWS EventBridge SCPs restrict actions like events:PutEvents across accounts, stopping unauthorized event publishing and enforcing organization-wide trust.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;5. What are the key best practices for EventBridge security?&lt;/strong&gt;&lt;br /&gt;Use SCPs, least-privilege IAM roles, narrow event patterns, VPC endpoints, and CloudTrail monitoring to build a layered and secure EventBridge architecture.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;6. How can teams balance agility and security?&lt;/strong&gt;&lt;br /&gt;Policy-based governance and automated monitoring enable innovation while maintaining verified trust boundaries across event-driven systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;7. Does EventBridge support compliance requirements?&lt;/strong&gt;&lt;br /&gt;Yes. EventBridge event archiving and replay features support auditing, tracing, and forensic analysis for compliance and governance.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;8. How do EventBridge quotas affect security design in 2025?&lt;/strong&gt;&lt;br /&gt;Quota-aware design prevents overloads that could affect monitoring or control. Staying within limits ensures consistent, secure performance.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;9. What role does trust play in EventBridge security?&lt;/strong&gt;&lt;br /&gt;Trust is the architecture. Secure EventBridge design ensures every event is authenticated, authorized, and accountable.&lt;/p&gt;
+
+
+
+&lt;p&gt;In essence, a secure EventBridge architecture is not just a technical safeguard but a design principle. When every event is governed by trust, agility and assurance move in sync.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=39069</guid><category>Product and Tech</category></item><item><title>Apple Plots iPhone Revamp to Reduce Reliance on Annual Fall Launch</title><link>https://www.techrepublic.com/article/news-apple-plots-iphone-revamp/</link><description>&lt;p&gt;The shift reflects an effort to stabilize revenue throughout the year and reduce pressure on its workforce and suppliers.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-apple-plots-iphone-revamp/"&gt;Apple Plots iPhone Revamp to Reduce Reliance on Annual Fall Launch&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4336340</guid><category>Apple</category><category>Artificial Intelligence</category><category>Innovation</category><category>Mobile</category><category>News</category><category>ai</category><category>innovation</category><category>iphone</category></item><item><title>Threat Hunting Power Up | Enhance Campaign Discovery With Validin and Synapse</title><link>https://www.sentinelone.com/labs/threat-hunting-power-up-enhance-campaign-discovery-with-validin-and-synapse/</link><description>Accelerate adversary tracking and reveal hidden infrastructure with our open-source Synapse Rapid Power-Up for Validin.</description><content:encoded>&lt;p&gt;Tracking threat actor infrastructure has become increasingly complex. Modern adversaries rotate domains, reuse hosting, and replicate infrastructure templates across operations, making it difficult to connect isolated indicators to broader activity. Checking an IP,  a domain, or a certificate in isolation can often return little of value when adversaries hide behind short-lived domains and churned TLS certificates.&lt;/p&gt;
 &lt;p&gt;As a result, analysts can struggle to see how infrastructure evolves over time or to identify shared traits like favicon hashes, header patterns, or registration overlaps that can link related assets.&lt;/p&gt;
 &lt;p&gt;To help address this, SentinelLABS is sharing a &lt;a href="https://synapse.docs.vertex.link/en/latest/synapse/power_ups.html" rel="noopener noreferrer" target="_blank"&gt;Synapse Rapid Power-Up&lt;/a&gt; for &lt;a href="https://www.validin.com/" rel="noopener noreferrer" target="_blank"&gt;Validin&lt;/a&gt;. Developed in-house by SentinelLABS engineers, the &lt;a href="https://github.com/SentineLabs/sentinelone-validin" rel="noopener noreferrer" target="_blank"&gt;sentinelone-validin power-up&lt;/a&gt; provides commands to query for and model DNS records, HTTP crawl data, TLS certificates, and WHOIS information, enabling analysts to quickly search, pivot through, and investigate network infrastructure for time-aware, cross-source analysis.&lt;/p&gt;
@@ -195,7 +608,7 @@ inet:fqdn=&amp;lt;target domain&gt; | s1.validin.enrich
 &lt;li&gt;Use the compose file at docker-compose.yml to bring up a local Cortex&lt;/li&gt;
 &lt;li&gt;Load the sentinelone-validin package&lt;/li&gt;
 &lt;li&gt;Open a Storm shell connected to it
-&lt;pre&gt;	# From the repository root
+&lt;pre&gt;# From the repository root
 docker compose up -d cortex
 docker compose --profile tools run --rm loadpkg
 docker compose --profile tools run --rm storm&lt;/pre&gt;
@@ -10274,145 +10687,7 @@ $mg.DrawImage([System.Drawing.Image]::FromStream($s),0,0);&lt;/pre&gt;
 
 
 
-&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38913</guid><category>Product and Tech</category><category>ETM Identity</category><category>identity</category><category>Qualys ETM</category><category>trurisk</category></item><item><title>Introducing TruLens for Enterprise TruRisk™ Management: Unified Threat Intelligence</title><link>https://blog.qualys.com/category/product-tech</link><description>CISOs and security leaders today face extraordinary challenges: the constant influx of vast quantities of fragmented threat data, information that lacks the context necessary for their unique organizations, and mounting operational gaps that hinder genuine risk reduction. The need has shifted from &amp;#8220;more visibility&amp;#8221; to &amp;#8220;more insight.&amp;#8221; To sift through the noise and move faster [&amp;#8230;]</description><content:encoded>&lt;p&gt;CISOs and security leaders today face extraordinary challenges: the constant influx of vast quantities of fragmented threat data, information that lacks the context necessary for their unique &lt;a&gt;organizations, and&lt;/a&gt; mounting operational gaps that hinder genuine risk reduction.&lt;/p&gt;
-
-
-
-&lt;p&gt;The need has shifted from &amp;#8220;more visibility&amp;#8221; to &amp;#8220;more insight.&amp;#8221; To sift through the noise and move faster than attackers, security teams need the ability to precisely map global threat trends directly to business priorities. To address this, Qualys introduces TruLens, an innovative capability within the Enterprise TruRisk&lt;sup&gt;TM&lt;/sup&gt; Management (ETM) platform that provides security leaders with authoritative, contextualized threat intelligence tailored for the complexities of modern enterprises.&lt;/p&gt;
-
-
-
-&lt;span id="more-38928"&gt;&lt;/span&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/TruLens-Landing-1-scaled.png"&gt;&lt;img alt="" class="wp-image-38931" height="1717" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/TruLens-Landing-1-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="what-is-trulens"&gt;&lt;strong&gt;What is TruLens?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;TruLens represents a new approach to threat intelligence: a unified gateway built directly into Qualys Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Management that delivers tailored, industry-specific threat intelligence alongside business context, financial impact, and Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Score for a clear focus on high-impact risks. For global enterprise organizations, TruLens combines sophisticated technology with human expertise, enabling enterprises to make sense of global threat signals and turn them into prioritized actions. This integration ensures that vulnerability intelligence is not just comprehensive, but highly relevant to each enterprise’s particular risk profile and business context.&lt;/p&gt;
-
-
-
-&lt;p&gt;To make this information accessible from anywhere, TruLens will also be the first of Qualys&amp;#8217; cybersecurity products to be offered as a mobile application available in the Apple App and Google Play stores. By enabling mobile access, security leaders and their teams will be able to keep on top of their highest-risk vulnerabilities and personalized business risk, no matter where they are.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-trulens-delivers-tailored-threat-intelligence"&gt;&lt;strong&gt;How TruLens Delivers Tailored Threat Intelligence&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;div class="wp-block-media-text has-media-on-the-right is-stacked-on-mobile is-image-fill-element"&gt;&lt;div class="wp-block-media-text__content"&gt;
-&lt;p&gt;TruLens mobilizes data from across the ETM platform, aggregating and analyzing signals from internal assets, vulnerabilities, misconfigurations, and emerging external threats. More than 120 dedicated analysts in the &lt;a href="https://www.qualys.com/tru/"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; scrutinize this data, validating and enriching business-relevant and trending CVEs. By mapping threats back to a comprehensive asset inventory and the unique context of your organization, TruLens creates a direct line from global headlines to actionable, enterprise-specific risk mitigation. The result is clear: organizations gain a unified, operative view that supports both proactive security operations and strategic objectives.&lt;/p&gt;
-&lt;/div&gt;&lt;figure class="wp-block-media-text__media"&gt;&lt;img alt="" class="wp-image-38933 size-full" height="2320" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/5_Impact-BE-1070x2320.png" width="1070" /&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="take-action-on-risks-before-they-hit-the-cisa-kev"&gt;&lt;strong&gt;Take Action on Risks Before They Hit the CISA KEV&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;TruLens is built on the foundation of industry-leading threat intelligence. It achieves over 99% coverage of the CISA Known Exploited Vulnerabilities (KEV), offering robust detection and ensuring that organizations have early visibility into the most impactful threats. Leveraging the Qualys Detection Score (QDS), TruLens can elevate the severity of emerging vulnerabilities on average 40 days before their appearance in the official CISA KEV catalog. This early warning gives security teams a valuable head start in remediating potential risks. Notably, 20% of Qualys customers benefit by remediating CISA KEV vulnerabilities before those threats even enter the CISA KEV list, demonstrating the tangible business impact and real-world advantage TruLens provides.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/TruLens-CVE-listing-scaled.png"&gt;&lt;img alt="" class="wp-image-38932" height="1454" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/TruLens-CVE-listing-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="key-benefits-and-business-outcomes"&gt;&lt;strong&gt;Key Benefits and Business Outcomes&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Without TruLens, security teams must rely on disparate, disconnected threat intelligence feeds to gain insight into threats to their industry, like Cl0p, Scattered Spider, active ransomware groups, or other hacking groups. Mapping exposures like risky vulnerabilities, identities, and misconfigurations to these trending threats requires even more labor-intensive and error-prone manual work. Identifying whether these threats are likely to affect high-value “crown jewel” assets requires correlating these threats with yet another data source. Only when all these steps are completed can security teams come up with risk reduction plans and begin to take action.&lt;/p&gt;
-
-
-
-&lt;p&gt;Integrating TruLens into your risk management strategy allows teams to execute all these stages in a single integrated process. Organizations gain true end-to-end risk visibility by unifying asset data, threat intelligence, and organizational business context—significantly reducing blind spots across the IT landscape. Security teams can prioritize risks based on business impact, not just technical severity, allowing resources to be allocated efficiently and effectively.&lt;/p&gt;
-
-
-
-&lt;p&gt;With this clarity, decision-making is accelerated, supported by timely, contextualized data that drives strategic action. TruLens equips you to deliver actionable, executive-ready insights that showcase measurable improvements in risk posture.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="threat-intelligence-enhanced-by-agentic-ai"&gt;&lt;strong&gt;Threat Intelligence, Enhanced by Agentic AI&lt;/strong&gt; &lt;strong&gt;&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Because TruLens is fully integrated into Qualys Enterprise TruRisk Management, TruLens users also gain access to a powerful tool to scale their threat intelligence teams: Agentic AI with &lt;a href="https://blog.qualys.com/product-tech/2025/08/14/unleashing-agentic-ai-for-superior-threat-informed-risk-prioritization-with-agent-nyra"&gt;Agent Nyra&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Part of the Qualys Agentic AI marketplace, Agent Nyra is built to monitor adversaries and parse threat intelligence to make security teams work more effectively and efficiently. The autonomous agent continuously surfaces the most relevant, real-time adversary behavior and threat intelligence for each organization’s industry and environment—so defenders see what matters most. Agent Nyra proactively alerts teams to emerging threats and can kick off patching or mitigation playbooks automatically.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="use-cases"&gt;&lt;strong&gt;Use Cases&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;TruLens demonstrates substantial value for organizations across a range of scenarios. Here are just a few:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Prioritize risks based on business impact&lt;/strong&gt; with comparisons of the impact of new vulnerabilities on the enterprise’s business entities. The platform empowers organizations to optimize remediation efforts, ensuring that protection focuses on the most critical assets and services.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Accelerate and enhance decision-making&lt;/strong&gt; with clarity supported by timely, contextualized data. Security teams can proactively remediate high-impact vulnerabilities, anticipating and resolving exposures before they escalate into industry-wide threats.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Deliver actionable, executive-ready insights&lt;/strong&gt; to facilitate board-level conversations. When reporting to executive leadership or the board, technical findings are translated into business-level narratives, including automatic peer and industry benchmarking.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Showcase measurable improvements in risk posture&lt;/strong&gt; to drive strategic action. TruLens supports regulatory readiness, offering near-real-time threat coverage and documentation to help organizations stay ahead of evolving compliance demands.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Effectively managing cyber risk today requires more than disparate tools or reactive processes. By transforming global threat intelligence into focused, actionable insights, TruLens empowers CISOs and security leaders to align cyber defenses with enterprise business goals.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt;See how unified threat intelligence turns risk insight into business-aligned security with Qualys Enterprise TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Management.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="http://qualys.com/free-trial-new/enterprise-trurisk-management/" style="background-color: #ed2e26;"&gt;Start Your Free 30-Day Trial&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="contributors"&gt;Contributors&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Emma Zaballos, Senior Product Marketing Manager, Qualys&lt;/li&gt;
-&lt;/ul&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38928</guid><category>Product and Tech</category><category>Enterprise TruRisk Management</category><category>TruLens</category></item><item><title>CISA Directs Federal Agencies to Mitigate Vulnerabilities in F5 Devices</title><link>https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-directs-federal-agencies-mitigate-vulnerabilities-f5-devices</link><description>&lt;p&gt;Today, CISA issued Emergency Directive &lt;a href="https://www.cisa.gov/news-events/directives/ed-26-01-mitigate-vulnerabilities-f5-devices" title="ED 26-01: Mitigate Vulnerabilities in F5 Devices"&gt;ED 26-01: Mitigate Vulnerabilities in F5 Devices&lt;/a&gt; to direct Federal Civilian Executive Branch agencies to inventory F5 BIG-IP products, evaluate if the networked management interfaces are accessible from the public internet, and apply newly released updates from F5.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38913</guid><category>Product and Tech</category><category>ETM Identity</category><category>identity</category><category>Qualys ETM</category><category>trurisk</category></item><item><title>CISA Directs Federal Agencies to Mitigate Vulnerabilities in F5 Devices</title><link>https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-directs-federal-agencies-mitigate-vulnerabilities-f5-devices</link><description>&lt;p&gt;Today, CISA issued Emergency Directive &lt;a href="https://www.cisa.gov/news-events/directives/ed-26-01-mitigate-vulnerabilities-f5-devices" title="ED 26-01: Mitigate Vulnerabilities in F5 Devices"&gt;ED 26-01: Mitigate Vulnerabilities in F5 Devices&lt;/a&gt; to direct Federal Civilian Executive Branch agencies to inventory F5 BIG-IP products, evaluate if the networked management interfaces are accessible from the public internet, and apply newly released updates from F5.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;A nation-state affiliated cyber threat actor has compromised F5 systems and exfiltrated data, including portions of the BIG-IP proprietary source code and vulnerability information, which provides the actor with a technical advantage to exploit F5 devices and software. This poses an imminent threat to federal networks using F5 devices and software.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Key Actions Required:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
