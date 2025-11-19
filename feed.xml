@@ -1,5 +1,389 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 19 Nov 2025 06:59:17 +0000</lastBuildDate><item><title>ISC Stormcast For Wednesday, November 19th, 2025 https://isc.sans.edu/podcastdetail/9706, (Wed, Nov 19th)</title><link>https://isc.sans.edu/diary/rss/32500</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32500</guid></item><item><title>New Google Calendar Update Makes Deep Work Easier Than Ever</title><link>https://www.techrepublic.com/article/news-google-calendar-update-built-in-task-scheduling/</link><description>&lt;p&gt;Google Calendar now lets you block time for Google Tasks with busy status, auto-decline, and DND settings, making deep work easier and more intentional.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 19 Nov 2025 07:59:16 +0000</lastBuildDate><item><title>What is Patch Management Automation and Why It Matters</title><link>https://blog.qualys.com/category/product-tech</link><description>Executive Summary Environments rarely stay as orderly as they begin. New workloads, faster releases, and growing attack surfaces stretch manual patching beyond its limits. The real risk emerges in the widening gap between spotting a vulnerability and fixing it. Automated patch management closes that gap. It creates a unified patch lifecycle that monitors assets continuously, [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;strong&gt;Executive Summary&lt;/strong&gt; &lt;/p&gt;
+
+
+
+&lt;p&gt;Environments rarely stay as orderly as they begin. New workloads, faster releases, and growing attack surfaces stretch manual patching beyond its limits. The real risk emerges in the widening gap between spotting a vulnerability and fixing it. Automated patch management closes that gap.&lt;/p&gt;
+
+
+
+&lt;p&gt;It creates a unified patch lifecycle that monitors assets continuously, applies risk-based patch prioritization, validates updates through production patch testing, and uses patch management software to deploy fixes across hybrid cloud environments. MTTR vulnerability patching improves because the workflow moves from scattered tasks to an intelligence-led sequence.&lt;/p&gt;
+
+
+
+&lt;p&gt;This blog explores the conditions that make automated patching dependable and the structural shifts needed to move from ad-hoc remediation to automation built for scale.&lt;/p&gt;
+
+
+
+&lt;span id="more-39126"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="rebuilding-patch-management-for-environments-that-refuse-to-slow-down"&gt;Rebuilding Patch Management for Environments That Refuse to Slow Down&lt;/h2&gt;
+
+
+
+&lt;p&gt;Digital footprints of most organizations are expanding faster than their resources to secure them. Every new application, workload, or endpoint introduces another surface that must be secured. Manual patching once worked when environments were small and static. Today, it buckles under the velocity of change.&lt;/p&gt;
+
+
+
+&lt;p&gt;That is why patch management automation has become the invisible engine of modern resilience. It uses intelligent workflows and orchestration software to detect vulnerabilities, test patches, deploy updates, and validate outcomes, all without continuous human oversight. That way, patching is transformed from a periodic task into a continuous safeguard that runs quietly in the background.&lt;/p&gt;
+
+
+
+&lt;p&gt;Automation does more than accelerate remediation; it restores balance and shortens the distance between detection and defense — the narrow window where most breaches occur. When patching becomes automated, digital trust stops depending on human endurance and starts operating on system intelligence.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="manual-vs-automated-patch-management"&gt;&lt;strong&gt;Manual Vs. Automated Patch Management&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Manual patching was built for a slower world. One where applications changed quarterly, not hourly. In that world, IT teams could plan updates, test them on a few systems, and move through the network, one patch at a time.&lt;/p&gt;
+
+
+
+&lt;p&gt;That rhythm has collapsed under the weight of scale. Hybrid environments now span thousands of endpoints running different systems and dependencies, and no spreadsheet or ticket queue can keep pace with that speed or complexity.&lt;/p&gt;
+
+
+
+&lt;p&gt;That is where automation changes the equation. It replaces fragmented, ticket-based steps with policy-driven orchestration and continuous governance. Instead of waiting for human approval, systems detect vulnerabilities, map them to available patches, and deploy fixes under defined policies. The process is faster, but more importantly, it is repeatable, governed by logic rather than fatigue.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Characteristic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Manual patching&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Automated patch management&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Discovery&lt;/td&gt;&lt;td&gt;Spreadsheet audits&lt;/td&gt;&lt;td&gt;Continuous asset inventory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Prioritization&lt;/td&gt;&lt;td&gt;Human triage&lt;/td&gt;&lt;td&gt;&lt;a href="https://www.qualys.com/enterprise-trurisk-platform/"&gt;Risk-based scoring&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Testing&lt;/td&gt;&lt;td&gt;Ad hoc&lt;/td&gt;&lt;td&gt;Staged rings and rollback&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Deployment&lt;/td&gt;&lt;td&gt;Manual scripts&lt;/td&gt;&lt;td&gt;Policy-driven automation&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Verification&lt;/td&gt;&lt;td&gt;Spot checks&lt;/td&gt;&lt;td&gt;Automated validation and reports&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The difference between Manual Patching and Automated Patch Management is structural. Manual patching depends on coordination. Automated patching depends on connection. Every stage, from detection to validation, speaks the same language, driven by data that updates in real time. The outcome is consistency at scale, where patches are applied uniformly, errors decline, and risk windows shrink.&lt;/p&gt;
+
+
+
+&lt;p&gt;A mature automated patch management process does not eliminate the need for human judgment. It preserves it for where it matters most, deciding what to prioritize, what to delay, and how to align remediation with business continuity. It turns the patch cycle from a scramble into a system.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-patch-management-automation-works"&gt;&lt;strong&gt;How Patch Management Automation Works&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Every effective patch management process follows a structured sequence. These steps seem simple, but coordinating them across thousands of assets is difficult without automation.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;The Patch Management Lifecycle&lt;/h3&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;&lt;strong&gt;Asset discovery:&lt;/strong&gt; Build a live inventory of all operating systems, applications, and dependencies.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Vulnerability assessment:&lt;/strong&gt; Identify which assets are missing patches or contain exploitable weaknesses.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Patch mapping:&lt;/strong&gt; Correlate each vulnerability to the vendor’s fix or mitigation.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Testing:&lt;/strong&gt; Deploy updates in controlled groups to prevent production incidents.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Deployment:&lt;/strong&gt; Roll out patches automatically within approved maintenance windows.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Validation:&lt;/strong&gt; Confirm successful installation and generate audit reports.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;In an automated setup, each step feeds into the next through shared intelligence. Discovery builds a live inventory. Detection identifies vulnerabilities. Prioritization ranks them by risk. Testing and deployment occur in controlled phases, and validation confirms success.&lt;/p&gt;
+
+
+
+&lt;p&gt;By linking these actions through a single data model, automation replaces fragmented processes with continuous orchestration. What used to be a series of disconnected updates becomes a unified, measurable cycle of risk reduction.&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full is-resized"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/image-7.png"&gt;&lt;img alt="The patch management lifecycle steps" class="wp-image-39135" height="1299" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/image-7.png" style="width: 399px; height: auto;" width="867" /&gt;&lt;/a&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Source: NIST SP 800-40 Rev. 4 (Guide to Enterprise Patch Management Technologies); CISA CDM Program Framework&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Modern patching software platforms unify these stages in a single console. Only a few extend visibility to remote and cloud environments, applying the same governance regardless of where the workload lives.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-tangible-benefits-of-automated-patch-management"&gt;&lt;strong&gt;The Tangible Benefits of Automated Patch Management&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Executives measure cybersecurity by impact, specifically, how quickly detection is turned into remediation and how reliably that progress can be verified. Patch management automation directly influences those metrics.&lt;/p&gt;
+
+
+
+&lt;p&gt;Of all the benefits of automated patching, speed is the first visible gain. Automated patching can reduce the mean time to patch from an industry average of over 30 days to less than a week, shrinking the exploit window before attackers act.&lt;/p&gt;
+
+
+
+&lt;p&gt;Consistency is next. Policy-based automation ensures that every asset, whether on-premises or in the cloud, receives updates on time and according to governance standards.&lt;/p&gt;
+
+
+
+&lt;p&gt;Reliability follows. Automated testing, staged rollouts, and rollback controls make patching safer than manual intervention. And because each step is logged, compliance reporting becomes faster and more precise.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Measured benefits include:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;Faster mean time to patch, often from weeks to days.&lt;/li&gt;
+
+
+
+&lt;li&gt;Up to 90% on-time compliance with internal patch SLAs.&lt;/li&gt;
+
+
+
+&lt;li&gt;Lower rates of unplanned downtime due to better testing and rollback.&lt;/li&gt;
+
+
+
+&lt;li&gt;Reduced audit effort through consistent evidence collection.&lt;/li&gt;
+
+
+
+&lt;li&gt;Higher employee productivity as routine tasks move to policy-based automation.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;From a cost perspective, automation lowers total effort while improving control quality. From a risk perspective, it prevents known exploits from turning into breaches. Both matter equally to boards and regulators.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="common-challenges-in-automating-the-patch-management-process"&gt;&lt;strong&gt;Common Challenges in Automating the Patch Management Process&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Even automation brings friction. It simplifies execution but introduces new forms of complexity. The most advanced platforms still depend on solid operational discipline.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Frequent challenges include:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Legacy systems:&lt;/strong&gt; End-of-life operating systems or custom software with no vendor support.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Integration complexity:&lt;/strong&gt; Multiple tools for asset management, vulnerability scanning, and deployment that do not share context.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Testing constraints:&lt;/strong&gt; The need to validate critical patches without breaking production workloads.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Change windows:&lt;/strong&gt; Limited downtime for globally distributed systems.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Cultural resistance:&lt;/strong&gt; Teams accustomed to manual control can be slow to trust automation.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Legacy environments and fragmented toolchains can slow adoption, as some patches need testing to prevent disruptions, and integrations with CMDBs, ITSM workflows, and scanners demand both technical and governance alignment. Confidence in automation grows only through transparency, via clear dashboards that show what was patched, when, and why.&lt;/p&gt;
+
+
+
+&lt;p&gt;Automation succeeds when it augments human decision-making, rather than replacing it. The technology handles repetition; people handle judgment. Together, they close the distance between detection and defense.&lt;/p&gt;
+
+
+
+&lt;p&gt;True progress happens when organizations treat automation as a journey, starting with standardized discovery and gradually extending it to prioritization and deployment once trust in data accuracy is established.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-to-look-for-in-a-patch-management-automation-platform"&gt;&lt;strong&gt;What to Look for in a Patch Management Automation Platform&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;With dozens of patching software solutions on the market, it is critical to evaluate beyond the feature checklist. The right platform should align with your operational maturity, security architecture, and compliance needs, delivering both automation and intelligence. It must not only deploy updates but also help teams understand &lt;em&gt;why&lt;/em&gt; those patches matter.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The most capable platforms share six traits:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li&gt;Broad coverage across operating systems and third-party apps.&lt;/li&gt;
+
+
+
+&lt;li&gt;Integration with vulnerability detection tools or risk scoring platforms for unified visibility.&lt;/li&gt;
+
+
+
+&lt;li&gt;Policy-based scheduling and risk-based prioritization.&lt;/li&gt;
+
+
+
+&lt;li&gt;Staged rollouts and rollback safeguards in case of failed updates.&lt;/li&gt;
+
+
+
+&lt;li&gt;Real-time reporting and SLA tracking.&lt;/li&gt;
+
+
+
+&lt;li&gt;Scalability across hybrid and multi-cloud environments.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;The most valuable feature is &lt;strong&gt;visibility&lt;/strong&gt;, knowing exactly which systems are patched, which remain exposed, and why. That transparency enables better governance and more informed security reporting, making patching part of a continuous risk management cycle.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="choosing-the-right-automated-patching-approach"&gt;&lt;strong&gt;Choosing the Right Automated Patching Approach&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Selecting the right automation strategy starts with clarity about your environment, risk appetite, and operational model. Begin by mapping assets, dependencies, and patch workflows to identify where delays occur — in prioritization, testing, or scheduling.&lt;/p&gt;
+
+
+
+&lt;p&gt;Key considerations include:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li&gt;&lt;strong&gt;Size and scale:&lt;/strong&gt; Large enterprises benefit from centralized control and policy templates, while smaller organizations may prefer managed patching as a service.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Compliance expectations:&lt;/strong&gt; Regulated industries require detailed audit trails and reporting automation.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Network architecture:&lt;/strong&gt; Hybrid networks need optimized content delivery to reduce bandwidth impact.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Change management style:&lt;/strong&gt; Some teams value full automation; others prefer guided recommendations and human approval points.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Ownership model:&lt;/strong&gt; Decide whether IT or security leads the process, or whether both unify under shared governance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Automation succeeds when it adapts to your structure, and not the other way around.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="how-qualys-supports-patch-management-automation-at-scale"&gt;&lt;strong&gt;How Qualys Supports Patch Management Automation at Scale&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys &lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/"&gt;VMDR&lt;/a&gt; with &lt;a href="https://www.qualys.com/apps/patch-management/"&gt;Patch Management&lt;/a&gt; exemplifies how modern security automation bridges continuous vulnerability assessment with automated patch deployment. VMDR continuously identifies and prioritizes vulnerabilities across on-premises and cloud environments, while Patch Management operationalizes that insight, correlating each risk with the right fix and deploying updates through governed workflows. It continuously discovers assets across on-premises and cloud environments, maps vulnerabilities to verified patches, and orchestrates deployment through a single, governed workflow. &amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/image-5.png"&gt;&lt;img alt="Business impact metrics" class="wp-image-39130" height="541" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/11/image-5.png" width="541" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By anchoring both vulnerability intelligence and patch execution to the same data foundation, organizations gain real-time visibility, faster decision cycles, and stronger governance. This convergence redefines remediation, shifting it from reactive maintenance to a proactive strategy for measurable risk reduction and enterprise resilience.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-future-of-patch-automation"&gt;&lt;strong&gt;The Future of Patch Automation&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;As enterprises adopt AI-driven observability and autonomous infrastructure, patching will evolve from reaction to prediction. Future systems will use AI and predictive analytics to anticipate vulnerabilities before public disclosure and pre-stage patches accordingly. Self-healing environments will apply updates dynamically, analyzing dependencies in real time to minimize downtime.&lt;/p&gt;
+
+
+
+&lt;p&gt;The cultural shift will be as significant as the technical one. Security and IT operations will converge into shared accountability models: a unified discipline often described as risk operations. Automation will no longer be a feature; it will be the baseline for resilience.&lt;/p&gt;
+
+
+
+&lt;p&gt;As enterprise environments grow more distributed, the objective will shift from patching faster to preventing exposure altogether. Automation will become the connective tissue linking vulnerability management, configuration control, and incident response, creating a continuous defense loop. Organizations that start this journey now will not just patch faster; they will build the adaptive resilience that defines modern cybersecurity.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center"&gt;&lt;strong&gt;Make automated patching count. Use Qualys TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; to eliminate high-impact exposures with clarity and precision&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/forms/trurisk-eliminate/" style="background-color: #ed2e26;"&gt;Try TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="frequently-asked-questions-faqs"&gt;&lt;strong&gt;Frequently Asked Questions (FAQs&lt;/strong&gt;)&lt;/h2&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;What is automated patch management?&lt;/strong&gt;&lt;br /&gt;Automated patch management uses software to identify missing updates, prioritize them based on risk, test and deploy them on schedule, and verify success — or apply configuration-based fixes when no patch exists — all without manual intervention.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Why is patch management important for cybersecurity?&lt;/strong&gt;&lt;br /&gt;Most breaches exploit known vulnerabilities. A strong patch management process limits the time between disclosure and fix, reducing exposure to common attack vectors.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;What are the main benefits of automated patching tools?&lt;/strong&gt;&lt;br /&gt;They deliver speed, consistency, compliance visibility, and fewer configuration errors compared to manual patching.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Is automated patching safe for production systems?&lt;/strong&gt;&lt;br /&gt;Yes, when applied through staged rollouts, maintenance windows, and rollback options tested under controlled policies.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Can automation handle third-party applications?&lt;/strong&gt;&lt;br /&gt;Modern tools manage updates for browsers, productivity suites, runtimes, and developer tools alongside operating systems.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;What challenges do large enterprises face?&lt;/strong&gt;&lt;br /&gt;Scale, legacy systems, distributed networks, and fragmented ownership across IT and security remain common hurdles.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=39126</guid><category>Patch Management</category><category>Product and Tech</category><category>automated patch management</category><category>zero disruption patching</category></item><item><title>ISC Stormcast For Wednesday, November 19th, 2025 https://isc.sans.edu/podcastdetail/9706, (Wed, Nov 19th)</title><link>https://isc.sans.edu/diary/rss/32500</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32500</guid></item><item><title>New Google Calendar Update Makes Deep Work Easier Than Ever</title><link>https://www.techrepublic.com/article/news-google-calendar-update-built-in-task-scheduling/</link><description>&lt;p&gt;Google Calendar now lets you block time for Google Tasks with busy status, auto-decline, and DND settings, making deep work easier and more intentional.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-google-calendar-update-built-in-task-scheduling/"&gt;New Google Calendar Update Makes Deep Work Easier Than Ever&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4336530</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>deep work</category><category>focus time</category><category>google calendar</category><category>google tasks</category><category>productivity tools</category><category>task management</category><category>time blocking</category><category>workspace updates</category></item><item><title>Agents built into your workflow: Get Security Copilot with Microsoft 365 E5</title><link>https://www.microsoft.com/en-us/security/blog/2025/11/18/agents-built-into-your-workflow-get-security-copilot-with-microsoft-365-e5/</link><description>&lt;p&gt;At Microsoft Ignite 2025, we are not just announcing new features—we are redefining what’s possible, empowering security teams to shift from reactive responses to proactive strategies.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2025/11/18/agents-built-into-your-workflow-get-security-copilot-with-microsoft-365-e5/"&gt;Agents built into your workflow: Get Security Copilot with Microsoft 365 E5&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;The cybersecurity landscape is at a historic inflection point. As cyberattackers wield AI to automate cyberattacks at extraordinary speed and scale, the challenge before us is not just to keep pace—but to leap ahead. There are over four million unfilled cybersecurity jobs, so depending solely on human resources isn&amp;#8217;t enough to safeguard our digital future.&lt;sup&gt;1&lt;/sup&gt; To close this gap, it&amp;#8217;s important to empower security professionals, enhancing their capabilities through intelligent agents—AI collaborators designed to augment human expertise and help transform organizational security.&lt;/p&gt;
 
@@ -10593,329 +10977,7 @@ $mg.DrawImage([System.Drawing.Image]::FromStream($s),0,0);&lt;/pre&gt;
 
 
 
-&lt;p&gt;&lt;a href="https://www.qualys.com/rocon/2025/houston/"&gt;ROCon&lt;/a&gt; is where all security professionals can come together, learn, and shape what’s next. I hope to see you at this year’s event, but if you can’t make it, look for recordings of the sessions on our &lt;a href="https://www.youtube.com/@Qualys"&gt;YouTube channel&lt;/a&gt; in the week following the event.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38957</guid><category>Product and Tech</category><category>Agentic AI</category><category>ETM Identity</category><category>Qualys ETM</category><category>ROCon 2025</category><category>TruConfirm</category><category>TruLens</category></item><item><title>Qualys ETM Identity — The First True Quantification of the Identity Perimeter</title><link>https://blog.qualys.com/category/product-tech</link><description>Security has always been about controlling who can do what and where. In 2025, that control is mediated entirely by identity. When an attacker “logs in,” not &amp;#8220;breaks in&amp;#8221;, they inherit legitimate permissions, blend into normal telemetry, and pivot across AD, Entra/Okta, SaaS, and cloud, driving multi-million-dollar losses. Credentials, tokens, and service accounts have become [&amp;#8230;]</description><content:encoded>&lt;p&gt;Security has always been about controlling &lt;em&gt;who&lt;/em&gt; can do &lt;em&gt;what&lt;/em&gt; and &lt;em&gt;where&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;In 2025, that control is mediated entirely by &lt;strong&gt;identity&lt;/strong&gt;. When an attacker “logs in,” not &amp;#8220;breaks in&amp;#8221;, they inherit legitimate permissions, blend into normal telemetry, and pivot across AD, Entra/Okta, SaaS, and cloud, driving multi-million-dollar losses. Credentials, tokens, and service accounts have become the real perimeter — and most organizations still can’t measure how exposed that perimeter is.&lt;/p&gt;
-
-
-
-&lt;span id="more-38913"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="identity-has-become-the-new-attack-surface"&gt;Identity Has Become the New Attack Surface&lt;/h2&gt;
-
-
-
-&lt;p&gt;Recent data quantifies the shift. &lt;a href="https://www.ibm.com/think/insights/cost-of-a-data-breach-2024-financial-industry"&gt;IBM’s 2024 breach study&lt;/a&gt; found stolen or compromised credentials were the slowest to detect and drives an average loss of &lt;strong&gt;$4.88 million&lt;/strong&gt;. Hybrid attacks that pivot from AD to Entra ID show that identity compromise now spans on-prem and cloud. Machine and AI identities have exploded where machine: human ratio is ~&lt;strong&gt;50:1 &lt;/strong&gt;&amp;#8211; yet risks from machine identities remain largely unmanaged. Deepfake and AI-assisted phishing have increased success rates. &lt;em&gt;The perimeter hasn’t disappeared; it’s multiplied.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Built inside &lt;a href="https://www.qualys.com/apps/enterprise-trurisk-management/"&gt;Qualys ETM&lt;/a&gt;,&lt;strong&gt; Qualys ETM Identity&lt;/strong&gt; converts identity posture into a single risk language, correlating identities with asset context to close the most exploitable identity risks and operationalize risk reduction. It is the essence of modern risk operations and the first true quantification of the identity perimeter.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/homepage-2.png"&gt;&lt;img alt="" class="wp-image-38919" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/homepage-2.png" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="what-security-leaders-are-struggling-with"&gt;What Security Leaders Are Struggling With&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;blockquote class="wp-block-quote is-style-default is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"&gt;
-&lt;p class="has-text-align-left"&gt;&lt;em&gt;&amp;#8220;&lt;/em&gt;&lt;strong&gt;&lt;em&gt;Most organizations already deploy IAM, IGA, PAM, ITDR, or AD assessment tools, yet identity-driven breaches persist&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;.&amp;#8221;&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;There are tools that validate access, not risk; govern provisioning workflows without business or asset context; protect credentials, but not the blast radius; detect anomalies, not root causes; visualize trust paths but lack continuous, correlated insight. These tools add more silos. Each tool solves a piece of the puzzle, but &lt;em&gt;none measure how identity exposure changes enterprise risk&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;Security teams face a lack of unified visibility into identity risk, with fragmented telemetry that separates identity and asset risks into silos, ambiguous ownership, and valid login abuse that is difficult to detect. Additionally, posture drift&lt;strong&gt; lacks an audit trail&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;In short, identity security today is where vulnerability management was a decade ago &amp;#8211; rich in controls, poor in context. Even the most mature security programs are flying blind on identity risk. The controls exist, but the telemetry doesn’t connect.&lt;/p&gt;
-
-
-
-&lt;p&gt;As a result, CISOs can’t answer the simplest risk question: &lt;em&gt;&lt;strong&gt;Which identities represent measurable loss potential?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Security leaders aren’t short on tools. They’re short on measurable alignment between identity posture and business risk. Until that alignment exists, identity remains &lt;strong&gt;the least quantified and most exploited attack surface&lt;/strong&gt; in the enterprise.&lt;em&gt;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-etm-identity"&gt;Introducing ETM Identity&lt;/h2&gt;
-
-
-
-&lt;p&gt;ETM Identity is the identity risk measurement and operationalization layer that makes those controls effective.&lt;/p&gt;
-
-
-
-&lt;p&gt;ETM Identity consolidates identity posture into a single risk score that correlates identities (human, service, machine, AI) with asset exposure to prioritize what makes a business impact and operationalize identity risk management for reducing identity-driven attack surface. ETM Identity expresses identity exposure in TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;, correlates posture with threat intel, maps attack paths and domain trust, and then operationalizes risk reduction through closed-loop actions and auto-rescoring.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Measure Identity Risk&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;ETM Identity discovers &lt;strong&gt;human and machine identities&lt;/strong&gt; across AD, Entra ID, IdPs, IDaaS; unifies identity risk signals from &lt;a href="https://www.qualys.com/cloud-agent/"&gt;Qualys Cloud Agent &lt;/a&gt;telemetry, native connectors, and third-party identity tools; and correlates with asset exploitability. ETM Identity turns identity exposure into one actionable per-identity score &amp;#8211; &lt;strong&gt;Identity TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;, &lt;/strong&gt;the same risk language that can be used alongside assets, vulnerabilities, misconfigurations across hosts, applications, cloud &amp;#8211; now directories, identity providers and so on.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Communicate Identity Risk &lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;ETM Identity transforms raw identity findings, identity insights (hygiene gaps, toxic privilege chains, misconfigurations) and attack path analysis (lateral routes, domain/forest trust maps) into a shared risk score, aligned with enterprise risk operations. &lt;strong&gt;Identity TruRisk&lt;/strong&gt; correlates with Asset TruRisk and rolls up to Org TruRisk, communicating board-ready metrics on &lt;em&gt;what changed, why it mattered, and how much risk was reduced&lt;/em&gt;. ETM Identity creates an identity posture that’s measurable, reportable, and explainable, bridging the gap between security engineers, auditors, and executives with a single risk language.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Eliminate Identity Risk&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Measurement without elimination is just observation. ETM Identity operationalizes reduction through &lt;strong&gt;risk response orchestration&lt;/strong&gt;, translating findings into verified, automated action. It integrates with ServiceNow and Jira to open, track, and close remediation tickets; executes over 200 AD policy controls, patches, and ready-to-run automation scripts; and performs one-click identity-aware actions. Additionally, it automatically validates closure and creates measurable before/after deltas for TruRisk, ensuring accurate scoring. When patching isn’t feasible, it applies compensating controls — such as policy hardening, conditional-access updates, or containment — to reduce exploitability immediately.&lt;/p&gt;
-
-
-
-&lt;p&gt;With ETM Identity, the enterprise can &lt;strong&gt;measure what matters, communicate it credibly, and eliminate what’s exploitable, all within one platform and one risk language.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="key-capabilities-built-to-measure-communicate-and-eliminate-identity-risk"&gt;Key Capabilities — Built to Measure, Communicate, and Eliminate Identity Risk&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Comprehensive Identity Inventory &amp;#8211; &lt;/strong&gt;Discovers human, service, and machine/non-human identities across AD, Entra ID, Okta and other IdP, IDaaS systems; maps owners, life-cycle state, entitlements, and change history.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Inventory-Identity-Users-scaled.png"&gt;&lt;img alt="" class="wp-image-38920" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Inventory-Identity-Users-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Unified Identity Risk View &amp;#8211; &lt;/strong&gt;Consolidates identity risk signals from Qualys Cloud Agent, native identity connectors, and 3rd-party tools (IGA, PAM, ITDR, AD assessors like BloodHound, SailPoint, etc.), unifying identity posture with endpoint, workload, and network telemetry.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Risk-Management-Findings-scaled.png"&gt;&lt;img alt="" class="wp-image-38921" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Risk-Management-Findings-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Attack Path Analysis &amp;amp; Domain Trust Map &amp;#8211;&lt;/strong&gt; Visualize hidden relationships inside AD, see blast radius with toxic privilege combinations, choke points, and rank exploitable paths by TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;. The Domain Trust Map surfaces lateral movement routes across domains/forests/tenants to identify easy pivots.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Attack-Path-02-scaled.png"&gt;&lt;img alt="" class="wp-image-38951" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Attack-Path-02-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Identity Insights &amp;#8211; &lt;/strong&gt;Flags weak password policies, plaintext credentials, stale/admin rights, excessive permissions, risky OAuth consents, and ADCS misconfigurations. Targets the “need of the hour”: AD hardening, service-account risk (e.g., Kerberoasting), and certificate abuse vectors for high ROI fixes that rapidly shrink the blast radius.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/image-13.png"&gt;&lt;img alt="" class="wp-image-38916" height="586" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/image-13.png" width="1065" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Identity TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; &amp;#8211; &lt;/strong&gt;Quantifies per-identity risk from aggregated misconfigurations, excessive privileges, vulnerabilities, and IOR, correlates with asset exposure (internet-facing, vuln/KEV proximity), and rolls up to Asset TruRisk and Org TruRisk. It provides one risk language for ROC, SecOps, and the executive board.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-38922" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Users-Details-Page-scaled.png" width="2560" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Risk Response Orchestration – &lt;/strong&gt;Executes &lt;strong&gt;200+ policy controls for AD&lt;/strong&gt;, out-of-the-box automation scripts, patch, mitigate or isolate, automates one-click identity actions (enforce MFA, de-privilege, disable/quarantine, remove toxic rights). It integrates ITSM workflows for &lt;strong&gt;ServiceNow/Jira&lt;/strong&gt; ticketing with evidence, approvals, and auto-rescore on closure.&lt;br /&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Agent Grant, an agentic AI coworker for identity security &amp;#8211; &lt;/strong&gt;Built on the &lt;a href="https://blog.qualys.com/product-tech/2025/08/04/from-exposure-whack-a-mole-to-autonomous-cyber-risk-management-meet-agentic-ai-on-the-qualys-platform"&gt;Qualys Agentic AI&lt;/a&gt; fabric, Agent Grant is a pre-built Cyber Risk Agent specialized for ETM Identity. It continuously maps identities, flags toxic privilege chains and AD to cloud attack paths, and then executes next-best actions, including opening/advancing ServiceNow or Jira tickets, prompting MFA enforcement, de-privileging, or quarantining risky accounts while capturing evidence and re-scoring Identity TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;. Agent Grant benefits from 25+ threat intel feeds, Cloud Agent telemetry, and CMDB business context inside the Qualys Enterprise TruRisk Management (ETM), which can be tailored (or even cloned) for your workflows via the agent marketplace/no-code builder.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Agentic-Flow-35-1-scaled.png"&gt;&lt;img alt="" class="wp-image-38948" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Agentic-Flow-35-1-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;&lt;strong&gt;Compliance Mapping &amp;amp; Audit Lineage &amp;#8211; &lt;/strong&gt;Maps identity controls/findings toDISA STIG (AD), CIS M365&lt;strong&gt;,&lt;/strong&gt; HIPAA/PCI/GDPR, etc. and maintains versioned change history (who/what/when/where). Replaces screenshots with continuous, non-repudiable evidence; speeds audits and proves control effectiveness.&lt;br /&gt;&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Identity Integrity Monitoring &amp;#8211; &lt;/strong&gt;Tracks configuration drift across AD, Entra/Okta, and SaaS tenants; alerts on high-risk changes to policies, trusts, or entitlements.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Integrity-Monitoring-scaled.png"&gt;&lt;img alt="" class="wp-image-38923" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/Integrity-Monitoring-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="the-next-evolution-of-qualys-etm-and-your-stack"&gt;The Next Evolution of Qualys ETM (and Your Stack)&lt;/h2&gt;
-
-
-
-&lt;p&gt;Every security team says the same thing today: “We have identity tools, but we still don’t know which identities actually matter.” That’s the heart of the problem ETM Identity was built to solve. ETM Identity is how Qualys extends its risk operations DNA to the identity perimeter, giving you a unified and auditable view of cyber risk across people, machines, and systems.&lt;/p&gt;
-
-
-
-&lt;p&gt;Inside the Qualys Enterprise TruRisk&lt;sup&gt;&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt;&lt;/sup&gt; Management (ETM) platform, ETM Identity becomes another high-fidelity, first-class telemetry source. Qualys ETM unifies asset, vulnerability, configuration, and now identity exposure under TruRisk so ROC teams can make trade-offs with evidence. It correlates identity findings and asset exploitability and then rolls up those findings into the single TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/16.0.1/72x72/2122.png" style="height: 1em;" /&gt; score that fuels your Risk Operations Center. It’s also deeply integrated. Qualys Cloud Agent data, threat intelligence from 25+ feeds, business context from CMDB and Business Entities &amp;#8211; all converge to create one view of exposure. Whether the risk stems from a vulnerable workload, a stale admin, or a misconfigured trust path, it’s visible, correlated, and prioritized.&lt;/p&gt;
-
-
-
-&lt;p&gt;Plus, it fits neatly into what you already have. Qualys ETM Identity doesn’t replace your existing IAM, IGA, or PAM stack &amp;#8211; it connects them. ETM Identity ingests from AD, Entra ID, Okta, and third-party tools like PingCastle, BloodHound, and SailPoint, ensuring your existing investments keep working, now with a measurable ROI.&lt;/p&gt;
-
-
-&lt;div class="wp-block-image"&gt;
-&lt;figure class="aligncenter size-full"&gt;&lt;a href="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/business-view-scaled.png"&gt;&lt;img alt="" class="wp-image-38924" height="1440" src="https://ik.imagekit.io/qualys/wp-content/uploads/2025/10/business-view-scaled.png" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Why it matters&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Identity exposure is quantified in the same units as vulnerabilities and misconfigurations, so you can choose the &lt;em&gt;highest risk-reduction&lt;/em&gt;.&lt;/li&gt;
-
-
-
-&lt;li&gt;Instead of chasing alerts, teams follow a repeatable loop, proving reductions in MTTR.&lt;/li&gt;
-
-
-
-&lt;li&gt;Non-repudiable change history and consistent roll-ups replace screenshots and spreadsheets.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p&gt;When you can measure risk across identities, assets, cloud, and applications in one model, prioritization stops being a guessing game. Because risk isn’t about how many controls you have &amp;#8211; it’s about how well you can measure, communicate, and eliminate what truly drives business impact.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ready to see your identity perimeter in measurable terms?&lt;/strong&gt; &lt;a href="https://www.qualys.com/identity"&gt;&lt;strong&gt;Explore&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;how ETM Identity turns identity exposure into quantifiable insight.&lt;/strong&gt;&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center"&gt;&lt;strong&gt; Discover how quickly identity risks can be eliminated from your environment when you have the right insight&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/identity-trial" style="background-color: #ed2e26;"&gt;Start Your Free 30-Day Trial&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38913</guid><category>Product and Tech</category><category>ETM Identity</category><category>identity</category><category>Qualys ETM</category><category>trurisk</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.qualys.com/rocon/2025/houston/"&gt;ROCon&lt;/a&gt; is where all security professionals can come together, learn, and shape what’s next. I hope to see you at this year’s event, but if you can’t make it, look for recordings of the sessions on our &lt;a href="https://www.youtube.com/@Qualys"&gt;YouTube channel&lt;/a&gt; in the week following the event.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=38957</guid><category>Product and Tech</category><category>Agentic AI</category><category>ETM Identity</category><category>Qualys ETM</category><category>ROCon 2025</category><category>TruConfirm</category><category>TruLens</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities (KEV) Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-54253" target="_blank" title="https://www.cve.org/cverecord?id=cve-2025-54253"&gt;&lt;u&gt;CVE-2025-54253&lt;/u&gt;&lt;/a&gt; Adobe Experience Manager Forms Code Execution Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
