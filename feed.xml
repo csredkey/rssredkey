@@ -1,5 +1,1340 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 29 Mar 2026 21:59:18 +0000</lastBuildDate><item><title>FBI confirms hack of Director Patel's personal email inbox</title><link>https://www.bleepingcomputer.com/news/security/fbi-confirms-hack-of-director-patels-personal-email-inbox/</link><description>The Handala hackers associated with Iran have breached the personal email account of FBI Director Kash Patel and published photos and documents. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fbi-confirms-hack-of-director-patels-personal-email-inbox/</guid><category>Security</category></item><item><title>File read flaw in Smart Slider plugin impacts 500K WordPress sites</title><link>https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/</link><description>A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/</guid><category>Security</category></item><item><title>AI Threat Landscape Digest January-February 2026</title><link>https://research.checkpoint.com/2026/ai-threat-landscape-digest-january-february-2026/</link><description>&lt;p&gt;KEY FINDINGS AI-assisted malware development has reached operational maturity.VoidLink framework, which is modular, professionally engineered, and fully functional,was built by a single developer using a commercial AI-powered IDE within a compressedtimeframe. AI-assisted development is no longer experimental but produces deploymentreadyoutput. AI-assisted development is not always obvious from the final product.VoidLink was initially assessed as the [&amp;#8230;]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 30 Mar 2026 03:59:18 +0000</lastBuildDate><item><title>ISC Stormcast For Monday, March 30th, 2026 https://isc.sans.edu/podcastdetail/9870, (Mon, Mar 30th)</title><link>https://isc.sans.edu/diary/rss/32844</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32844</guid></item><item><title>DShield (Cowrie) Honeypot Stats and When Sessions Disconnect, (Mon, Mar 30th)</title><link>https://isc.sans.edu/diary/rss/32840</link><description>&lt;p&gt;A lot of the information seen on DShield honeypots &amp;#x5b;1&amp;#x5d; is repeated bot traffic, especially when looking at the Cowrie &amp;#x5b;2&amp;#x5d; telnet and SSH sessions. However, how long a session lasts, how many commands are run per session and what the last commands run before a session disconnects can vary. Some of this information could help indicate whether a session is automated and if a honeypot was fingerprinted. This information can also be used to find more interesting honeypot sessions.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;A lot of the information seen on DShield honeypots [1] is repeated bot traffic, especially when looking at the Cowrie [2] telnet and SSH sessions. However, how long a session lasts, how many commands are run per session&amp;nbsp;and what the last commands run before a session disconnects can vary. Some of this information could help indicate whether a session is automated and if a honeypot was fingerprinted. This information can also be used to find more interesting honeypot sessions.&lt;/p&gt;
+
+&lt;p&gt;To get an idea of what that variety looks like, I reviewed about 3 years of data from 6 honeypots. Some of the honeypots have been running for different periods of time, but it should give a good overview of different attacks seen on telnet/SSH honeypots. Since I already made a python script [3] that summarizes some of this data for me, it made the process a bit easier. Before going into the details, some of the basic information:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Data Timeframe: &lt;/strong&gt;4/13/2022 - 3/21/2026&lt;br /&gt;
+&lt;strong&gt;Number of Sessions:&amp;nbsp;&lt;/strong&gt;1,206,566&lt;/p&gt;
+
+&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 800px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&amp;nbsp;&lt;/th&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&lt;strong&gt;Min&lt;/strong&gt;&lt;/th&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&lt;strong&gt;Max&lt;/strong&gt;&lt;/th&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&lt;strong&gt;Median&lt;/strong&gt;&lt;/th&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&lt;strong&gt;Mean&lt;/strong&gt;&lt;/th&gt;
+			&lt;th scope="col" style="text-align: center;"&gt;&lt;strong&gt;Range (Max-Min)&lt;/strong&gt;&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Number of Commands Per Session&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;0&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;27742&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;17.49&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;20.0&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;27742&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;&lt;strong&gt;Duration of Sessions (Seconds)&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;0.041&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;1563.38&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;17.42&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;22.80&lt;/td&gt;
+			&lt;td style="text-align: center;"&gt;1563.38&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 1: Basic statistics for Cowrie session durations and number of commands run per session.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In most sessions, we see about 20 commands and a session lasts for about 20 seconds.&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;&lt;br /&gt;
+Number of Commands Per Session&lt;/h2&gt;
+
+&lt;p&gt;When a Cowrie session is allowed through, the client connection has the option of running commands. They client may decide to disconnect, run an automated script or run commands manually. Most of the time, there are&amp;nbsp;usually under 30 commands run per session, but there are some sessions that have had over 25,000 commands run in a single session.&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-03-30_figure1.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 648px;" /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 2: There are many telnet/SSH sessions interacting with DShield honeypots that run over 25,000 commands in a single session, but most are much lower.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-03-30_figure2.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 614px;" /&gt;&lt;br /&gt;
+Figure 3: Looking at most frequenty occuring number of commands run per telnet/SSH session, the majority are under 50 commads with the most frequent being 22 commands in a session.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;table align="center" border="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Commands in session&lt;/th&gt;
+			&lt;th&gt;Sessions found&lt;/th&gt;
+			&lt;th&gt;Percentage&lt;/th&gt;
+			&lt;th&gt;Running total&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;22&lt;/td&gt;
+			&lt;td&gt;461,561&lt;/td&gt;
+			&lt;td&gt;38.26%&lt;/td&gt;
+			&lt;td&gt;38.26%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;20&lt;/td&gt;
+			&lt;td&gt;348,708&lt;/td&gt;
+			&lt;td&gt;28.91%&lt;/td&gt;
+			&lt;td&gt;67.17%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;1&lt;/td&gt;
+			&lt;td&gt;104,217&lt;/td&gt;
+			&lt;td&gt;8.64%&lt;/td&gt;
+			&lt;td&gt;75.81%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;3&lt;/td&gt;
+			&lt;td&gt;58,850&lt;/td&gt;
+			&lt;td&gt;4.88%&lt;/td&gt;
+			&lt;td&gt;80.69%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;9&lt;/td&gt;
+			&lt;td&gt;39,111&lt;/td&gt;
+			&lt;td&gt;3.24%&lt;/td&gt;
+			&lt;td&gt;83.93%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;13&lt;/td&gt;
+			&lt;td&gt;28,274&lt;/td&gt;
+			&lt;td&gt;2.34%&lt;/td&gt;
+			&lt;td&gt;86.27%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;46&lt;/td&gt;
+			&lt;td&gt;27,595&lt;/td&gt;
+			&lt;td&gt;2.29%&lt;/td&gt;
+			&lt;td&gt;88.56%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;5&lt;/td&gt;
+			&lt;td&gt;25,302&lt;/td&gt;
+			&lt;td&gt;2.10%&lt;/td&gt;
+			&lt;td&gt;90.66%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;18&lt;/td&gt;
+			&lt;td&gt;20,174&lt;/td&gt;
+			&lt;td&gt;1.67%&lt;/td&gt;
+			&lt;td&gt;92.33%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: center;"&gt;10&lt;/td&gt;
+			&lt;td&gt;19,188&lt;/td&gt;
+			&lt;td&gt;1.59%&lt;/td&gt;
+			&lt;td&gt;93.92%&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 4: The top 10 most commonly seen number of commands run in a session accounts for about 94% of the telnet/SSH sessions.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Are the sessions with 22 commands similar? To help commands for differnet sessions the commands per session were concatenated and then hashed to arrive at a value that could be compared across sessions. This value would be the same if the same commands were run in the same order. This seemed like a great idea until I found a very small number of similar hashes when looking at sessions with 22 commands. Rather than seeing tens or hundreds of thousands of similar hashes, there were only 4. Looking more closely at the data demonstrated what was missed.&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-03-30_figure5_v2.png" style="width: 1000px; height: 400px;" /&gt;&lt;br /&gt;
+Figure 5: Cowrie sessions with matching command hashes, but with data that changed based on script inputs, in this case, passwords.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Many attacks will often try to change passwords, but these comamnds will often change since differnet passwords may be successful on a honeypot and new password used could also be different. Trying to simplify the search and ignoring command by command details,&amp;nbsp;99.95% of sessions with a total command count of 22 may be similar (461,344 out of 461,561).&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-sql"&gt;select count(sessions.session) from sessions, commands where sessions.total_commands="22" and sessions.session=commands.session and commands.command LIKE "%Enter new UNIX password:%";&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The total number of commands run may be a good indicator of bot scripts being run. Even though many sessions may run the same commands in the same order, the duration of the sessions has a wide range.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-sql"&gt;SELECT 
+    printf('%.10f', min(cast(session_duration as real))),
+    printf('%.10f', max(cast(session_duration as real)))
+FROM sessions, commands
+WHERE sessions.total_commands = "22"
+  AND sessions.session = commands.session
+  AND commands.command LIKE "%Enter new UNIX password:%"
+  AND cast(session_duration as real) != 0;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Minimum Duration: &lt;/strong&gt;1.63 seconds&lt;br /&gt;
+&lt;strong&gt;Maximum Duration:&lt;/strong&gt; 233.05 seconds (a little under 4 minutes)&lt;/p&gt;
+
+&lt;p&gt;While a shorter session time may indicate automation, a longer session duration&amp;nbsp;doesn't neccessarily mean that there is&amp;nbsp;a person behind the keyboard.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Session Durations&lt;/h2&gt;
+
+&lt;p&gt;Session durations had much more variety than expected. They can range from about a second to upwards of 26 minutes. Taking into account only those command counts where we had at least two sessions:&lt;/p&gt;
+
+&lt;table align="center" border="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Commands in Session&lt;/th&gt;
+			&lt;th&gt;Sessions Found&lt;/th&gt;
+			&lt;th&gt;Min Duration (s)&lt;/th&gt;
+			&lt;th&gt;Max Duration (s)&lt;/th&gt;
+			&lt;th&gt;Duration Range (s)&lt;/th&gt;
+			&lt;th&gt;Mean Duration (s)&lt;/th&gt;
+			&lt;th&gt;Mean Commands/s&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;22&lt;/td&gt;
+			&lt;td&gt;461561&lt;/td&gt;
+			&lt;td&gt;1.63&lt;/td&gt;
+			&lt;td&gt;233.05&lt;/td&gt;
+			&lt;td&gt;231.42&lt;/td&gt;
+			&lt;td&gt;19.44&lt;/td&gt;
+			&lt;td&gt;1.13&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;20&lt;/td&gt;
+			&lt;td&gt;348708&lt;/td&gt;
+			&lt;td&gt;3.13&lt;/td&gt;
+			&lt;td&gt;298.86&lt;/td&gt;
+			&lt;td&gt;295.72&lt;/td&gt;
+			&lt;td&gt;19.53&lt;/td&gt;
+			&lt;td&gt;1.02&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;1&lt;/td&gt;
+			&lt;td&gt;104217&lt;/td&gt;
+			&lt;td&gt;0.05&lt;/td&gt;
+			&lt;td&gt;1099.30&lt;/td&gt;
+			&lt;td&gt;1099.25&lt;/td&gt;
+			&lt;td&gt;8.48&lt;/td&gt;
+			&lt;td&gt;0.12&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;58850&lt;/td&gt;
+			&lt;td&gt;0.04&lt;/td&gt;
+			&lt;td&gt;371.12&lt;/td&gt;
+			&lt;td&gt;371.08&lt;/td&gt;
+			&lt;td&gt;12.32&lt;/td&gt;
+			&lt;td&gt;0.24&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;9&lt;/td&gt;
+			&lt;td&gt;39111&lt;/td&gt;
+			&lt;td&gt;0.16&lt;/td&gt;
+			&lt;td&gt;1074.53&lt;/td&gt;
+			&lt;td&gt;1074.36&lt;/td&gt;
+			&lt;td&gt;23.39&lt;/td&gt;
+			&lt;td&gt;0.38&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;13&lt;/td&gt;
+			&lt;td&gt;28274&lt;/td&gt;
+			&lt;td&gt;0.35&lt;/td&gt;
+			&lt;td&gt;234.83&lt;/td&gt;
+			&lt;td&gt;234.47&lt;/td&gt;
+			&lt;td&gt;8.37&lt;/td&gt;
+			&lt;td&gt;1.55&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;46&lt;/td&gt;
+			&lt;td&gt;27595&lt;/td&gt;
+			&lt;td&gt;3.38&lt;/td&gt;
+			&lt;td&gt;217.07&lt;/td&gt;
+			&lt;td&gt;213.69&lt;/td&gt;
+			&lt;td&gt;113.72&lt;/td&gt;
+			&lt;td&gt;0.40&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;5&lt;/td&gt;
+			&lt;td&gt;25302&lt;/td&gt;
+			&lt;td&gt;0.10&lt;/td&gt;
+			&lt;td&gt;908.05&lt;/td&gt;
+			&lt;td&gt;907.94&lt;/td&gt;
+			&lt;td&gt;6.78&lt;/td&gt;
+			&lt;td&gt;0.74&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;18&lt;/td&gt;
+			&lt;td&gt;20174&lt;/td&gt;
+			&lt;td&gt;0.63&lt;/td&gt;
+			&lt;td&gt;397.26&lt;/td&gt;
+			&lt;td&gt;396.63&lt;/td&gt;
+			&lt;td&gt;22.19&lt;/td&gt;
+			&lt;td&gt;0.81&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;10&lt;/td&gt;
+			&lt;td&gt;19188&lt;/td&gt;
+			&lt;td&gt;0.55&lt;/td&gt;
+			&lt;td&gt;582.49&lt;/td&gt;
+			&lt;td&gt;581.94&lt;/td&gt;
+			&lt;td&gt;59.71&lt;/td&gt;
+			&lt;td&gt;0.17&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;0&lt;/td&gt;
+			&lt;td&gt;16281&lt;/td&gt;
+			&lt;td&gt;0.04&lt;/td&gt;
+			&lt;td&gt;1563.38&lt;/td&gt;
+			&lt;td&gt;1563.34&lt;/td&gt;
+			&lt;td&gt;83.30&lt;/td&gt;
+			&lt;td&gt;0.00&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;15&lt;/td&gt;
+			&lt;td&gt;15617&lt;/td&gt;
+			&lt;td&gt;0.73&lt;/td&gt;
+			&lt;td&gt;211.46&lt;/td&gt;
+			&lt;td&gt;210.73&lt;/td&gt;
+			&lt;td&gt;20.74&lt;/td&gt;
+			&lt;td&gt;0.72&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;11&lt;/td&gt;
+			&lt;td&gt;6753&lt;/td&gt;
+			&lt;td&gt;0.69&lt;/td&gt;
+			&lt;td&gt;795.15&lt;/td&gt;
+			&lt;td&gt;794.46&lt;/td&gt;
+			&lt;td&gt;56.99&lt;/td&gt;
+			&lt;td&gt;0.19&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;7&lt;/td&gt;
+			&lt;td&gt;6742&lt;/td&gt;
+			&lt;td&gt;0.09&lt;/td&gt;
+			&lt;td&gt;729.69&lt;/td&gt;
+			&lt;td&gt;729.60&lt;/td&gt;
+			&lt;td&gt;50.52&lt;/td&gt;
+			&lt;td&gt;0.14&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;5375&lt;/td&gt;
+			&lt;td&gt;0.11&lt;/td&gt;
+			&lt;td&gt;990.44&lt;/td&gt;
+			&lt;td&gt;990.33&lt;/td&gt;
+			&lt;td&gt;42.32&lt;/td&gt;
+			&lt;td&gt;0.09&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;5136&lt;/td&gt;
+			&lt;td&gt;0.09&lt;/td&gt;
+			&lt;td&gt;993.03&lt;/td&gt;
+			&lt;td&gt;992.94&lt;/td&gt;
+			&lt;td&gt;50.70&lt;/td&gt;
+			&lt;td&gt;0.04&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;19&lt;/td&gt;
+			&lt;td&gt;3310&lt;/td&gt;
+			&lt;td&gt;1.29&lt;/td&gt;
+			&lt;td&gt;207.76&lt;/td&gt;
+			&lt;td&gt;206.47&lt;/td&gt;
+			&lt;td&gt;43.97&lt;/td&gt;
+			&lt;td&gt;0.43&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;6&lt;/td&gt;
+			&lt;td&gt;2833&lt;/td&gt;
+			&lt;td&gt;0.47&lt;/td&gt;
+			&lt;td&gt;992.60&lt;/td&gt;
+			&lt;td&gt;992.14&lt;/td&gt;
+			&lt;td&gt;43.38&lt;/td&gt;
+			&lt;td&gt;0.14&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;45&lt;/td&gt;
+			&lt;td&gt;2614&lt;/td&gt;
+			&lt;td&gt;1.95&lt;/td&gt;
+			&lt;td&gt;225.16&lt;/td&gt;
+			&lt;td&gt;223.21&lt;/td&gt;
+			&lt;td&gt;84.67&lt;/td&gt;
+			&lt;td&gt;0.53&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;21&lt;/td&gt;
+			&lt;td&gt;1538&lt;/td&gt;
+			&lt;td&gt;0.42&lt;/td&gt;
+			&lt;td&gt;201.84&lt;/td&gt;
+			&lt;td&gt;201.42&lt;/td&gt;
+			&lt;td&gt;59.18&lt;/td&gt;
+			&lt;td&gt;0.35&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;17&lt;/td&gt;
+			&lt;td&gt;1311&lt;/td&gt;
+			&lt;td&gt;0.43&lt;/td&gt;
+			&lt;td&gt;197.86&lt;/td&gt;
+			&lt;td&gt;197.42&lt;/td&gt;
+			&lt;td&gt;53.24&lt;/td&gt;
+			&lt;td&gt;0.32&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;14&lt;/td&gt;
+			&lt;td&gt;1158&lt;/td&gt;
+			&lt;td&gt;2.59&lt;/td&gt;
+			&lt;td&gt;212.90&lt;/td&gt;
+			&lt;td&gt;210.31&lt;/td&gt;
+			&lt;td&gt;69.58&lt;/td&gt;
+			&lt;td&gt;0.20&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;16&lt;/td&gt;
+			&lt;td&gt;792&lt;/td&gt;
+			&lt;td&gt;6.19&lt;/td&gt;
+			&lt;td&gt;197.18&lt;/td&gt;
+			&lt;td&gt;190.99&lt;/td&gt;
+			&lt;td&gt;68.01&lt;/td&gt;
+			&lt;td&gt;0.24&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;12&lt;/td&gt;
+			&lt;td&gt;778&lt;/td&gt;
+			&lt;td&gt;1.05&lt;/td&gt;
+			&lt;td&gt;212.98&lt;/td&gt;
+			&lt;td&gt;211.93&lt;/td&gt;
+			&lt;td&gt;67.56&lt;/td&gt;
+			&lt;td&gt;0.18&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;8&lt;/td&gt;
+			&lt;td&gt;775&lt;/td&gt;
+			&lt;td&gt;0.29&lt;/td&gt;
+			&lt;td&gt;728.80&lt;/td&gt;
+			&lt;td&gt;728.51&lt;/td&gt;
+			&lt;td&gt;67.80&lt;/td&gt;
+			&lt;td&gt;0.12&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;27&lt;/td&gt;
+			&lt;td&gt;643&lt;/td&gt;
+			&lt;td&gt;0.87&lt;/td&gt;
+			&lt;td&gt;220.30&lt;/td&gt;
+			&lt;td&gt;219.42&lt;/td&gt;
+			&lt;td&gt;132.93&lt;/td&gt;
+			&lt;td&gt;0.20&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;29&lt;/td&gt;
+			&lt;td&gt;289&lt;/td&gt;
+			&lt;td&gt;3.62&lt;/td&gt;
+			&lt;td&gt;190.15&lt;/td&gt;
+			&lt;td&gt;186.54&lt;/td&gt;
+			&lt;td&gt;125.45&lt;/td&gt;
+			&lt;td&gt;0.23&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;30&lt;/td&gt;
+			&lt;td&gt;234&lt;/td&gt;
+			&lt;td&gt;0.83&lt;/td&gt;
+			&lt;td&gt;211.35&lt;/td&gt;
+			&lt;td&gt;210.52&lt;/td&gt;
+			&lt;td&gt;103.22&lt;/td&gt;
+			&lt;td&gt;0.29&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;33&lt;/td&gt;
+			&lt;td&gt;205&lt;/td&gt;
+			&lt;td&gt;0.96&lt;/td&gt;
+			&lt;td&gt;207.39&lt;/td&gt;
+			&lt;td&gt;206.43&lt;/td&gt;
+			&lt;td&gt;136.79&lt;/td&gt;
+			&lt;td&gt;0.24&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;31&lt;/td&gt;
+			&lt;td&gt;103&lt;/td&gt;
+			&lt;td&gt;2.36&lt;/td&gt;
+			&lt;td&gt;195.15&lt;/td&gt;
+			&lt;td&gt;192.78&lt;/td&gt;
+			&lt;td&gt;60.91&lt;/td&gt;
+			&lt;td&gt;0.51&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;25&lt;/td&gt;
+			&lt;td&gt;77&lt;/td&gt;
+			&lt;td&gt;1.54&lt;/td&gt;
+			&lt;td&gt;235.10&lt;/td&gt;
+			&lt;td&gt;233.56&lt;/td&gt;
+			&lt;td&gt;49.69&lt;/td&gt;
+			&lt;td&gt;0.50&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;44&lt;/td&gt;
+			&lt;td&gt;75&lt;/td&gt;
+			&lt;td&gt;69.90&lt;/td&gt;
+			&lt;td&gt;78.91&lt;/td&gt;
+			&lt;td&gt;9.01&lt;/td&gt;
+			&lt;td&gt;73.54&lt;/td&gt;
+			&lt;td&gt;0.60&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;48&lt;/td&gt;
+			&lt;td&gt;61&lt;/td&gt;
+			&lt;td&gt;27.76&lt;/td&gt;
+			&lt;td&gt;57.52&lt;/td&gt;
+			&lt;td&gt;29.75&lt;/td&gt;
+			&lt;td&gt;34.34&lt;/td&gt;
+			&lt;td&gt;1.40&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;28&lt;/td&gt;
+			&lt;td&gt;49&lt;/td&gt;
+			&lt;td&gt;1.00&lt;/td&gt;
+			&lt;td&gt;189.89&lt;/td&gt;
+			&lt;td&gt;188.89&lt;/td&gt;
+			&lt;td&gt;47.23&lt;/td&gt;
+			&lt;td&gt;0.59&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;24&lt;/td&gt;
+			&lt;td&gt;34&lt;/td&gt;
+			&lt;td&gt;1.52&lt;/td&gt;
+			&lt;td&gt;226.81&lt;/td&gt;
+			&lt;td&gt;225.28&lt;/td&gt;
+			&lt;td&gt;68.83&lt;/td&gt;
+			&lt;td&gt;0.35&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;26&lt;/td&gt;
+			&lt;td&gt;32&lt;/td&gt;
+			&lt;td&gt;1.35&lt;/td&gt;
+			&lt;td&gt;181.03&lt;/td&gt;
+			&lt;td&gt;179.68&lt;/td&gt;
+			&lt;td&gt;39.25&lt;/td&gt;
+			&lt;td&gt;0.66&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;23&lt;/td&gt;
+			&lt;td&gt;28&lt;/td&gt;
+			&lt;td&gt;0.22&lt;/td&gt;
+			&lt;td&gt;139.07&lt;/td&gt;
+			&lt;td&gt;138.85&lt;/td&gt;
+			&lt;td&gt;59.32&lt;/td&gt;
+			&lt;td&gt;0.39&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;57&lt;/td&gt;
+			&lt;td&gt;23&lt;/td&gt;
+			&lt;td&gt;23.72&lt;/td&gt;
+			&lt;td&gt;106.73&lt;/td&gt;
+			&lt;td&gt;83.01&lt;/td&gt;
+			&lt;td&gt;80.62&lt;/td&gt;
+			&lt;td&gt;0.71&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;32&lt;/td&gt;
+			&lt;td&gt;16&lt;/td&gt;
+			&lt;td&gt;29.53&lt;/td&gt;
+			&lt;td&gt;101.30&lt;/td&gt;
+			&lt;td&gt;71.77&lt;/td&gt;
+			&lt;td&gt;55.89&lt;/td&gt;
+			&lt;td&gt;0.57&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;34&lt;/td&gt;
+			&lt;td&gt;16&lt;/td&gt;
+			&lt;td&gt;2.77&lt;/td&gt;
+			&lt;td&gt;188.89&lt;/td&gt;
+			&lt;td&gt;186.11&lt;/td&gt;
+			&lt;td&gt;67.76&lt;/td&gt;
+			&lt;td&gt;0.50&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;37&lt;/td&gt;
+			&lt;td&gt;16&lt;/td&gt;
+			&lt;td&gt;2.02&lt;/td&gt;
+			&lt;td&gt;182.75&lt;/td&gt;
+			&lt;td&gt;180.72&lt;/td&gt;
+			&lt;td&gt;67.63&lt;/td&gt;
+			&lt;td&gt;0.55&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;47&lt;/td&gt;
+			&lt;td&gt;16&lt;/td&gt;
+			&lt;td&gt;23.18&lt;/td&gt;
+			&lt;td&gt;188.09&lt;/td&gt;
+			&lt;td&gt;164.92&lt;/td&gt;
+			&lt;td&gt;119.36&lt;/td&gt;
+			&lt;td&gt;0.39&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;177&lt;/td&gt;
+			&lt;td&gt;13&lt;/td&gt;
+			&lt;td&gt;180.56&lt;/td&gt;
+			&lt;td&gt;202.43&lt;/td&gt;
+			&lt;td&gt;21.87&lt;/td&gt;
+			&lt;td&gt;185.73&lt;/td&gt;
+			&lt;td&gt;0.95&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;39&lt;/td&gt;
+			&lt;td&gt;12&lt;/td&gt;
+			&lt;td&gt;1.49&lt;/td&gt;
+			&lt;td&gt;4.93&lt;/td&gt;
+			&lt;td&gt;3.44&lt;/td&gt;
+			&lt;td&gt;3.96&lt;/td&gt;
+			&lt;td&gt;9.85&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;95&lt;/td&gt;
+			&lt;td&gt;12&lt;/td&gt;
+			&lt;td&gt;133.53&lt;/td&gt;
+			&lt;td&gt;181.83&lt;/td&gt;
+			&lt;td&gt;48.30&lt;/td&gt;
+			&lt;td&gt;177.13&lt;/td&gt;
+			&lt;td&gt;0.54&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;40&lt;/td&gt;
+			&lt;td&gt;11&lt;/td&gt;
+			&lt;td&gt;2.69&lt;/td&gt;
+			&lt;td&gt;181.40&lt;/td&gt;
+			&lt;td&gt;178.71&lt;/td&gt;
+			&lt;td&gt;66.94&lt;/td&gt;
+			&lt;td&gt;0.60&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;41&lt;/td&gt;
+			&lt;td&gt;11&lt;/td&gt;
+			&lt;td&gt;41.73&lt;/td&gt;
+			&lt;td&gt;193.47&lt;/td&gt;
+			&lt;td&gt;151.74&lt;/td&gt;
+			&lt;td&gt;72.61&lt;/td&gt;
+			&lt;td&gt;0.56&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;35&lt;/td&gt;
+			&lt;td&gt;10&lt;/td&gt;
+			&lt;td&gt;24.28&lt;/td&gt;
+			&lt;td&gt;181.30&lt;/td&gt;
+			&lt;td&gt;157.02&lt;/td&gt;
+			&lt;td&gt;78.69&lt;/td&gt;
+			&lt;td&gt;0.44&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;42&lt;/td&gt;
+			&lt;td&gt;9&lt;/td&gt;
+			&lt;td&gt;42.21&lt;/td&gt;
+			&lt;td&gt;78.63&lt;/td&gt;
+			&lt;td&gt;36.42&lt;/td&gt;
+			&lt;td&gt;58.45&lt;/td&gt;
+			&lt;td&gt;0.72&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;175&lt;/td&gt;
+			&lt;td&gt;8&lt;/td&gt;
+			&lt;td&gt;180.73&lt;/td&gt;
+			&lt;td&gt;183.23&lt;/td&gt;
+			&lt;td&gt;2.49&lt;/td&gt;
+			&lt;td&gt;182.19&lt;/td&gt;
+			&lt;td&gt;0.96&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;38&lt;/td&gt;
+			&lt;td&gt;7&lt;/td&gt;
+			&lt;td&gt;41.88&lt;/td&gt;
+			&lt;td&gt;87.17&lt;/td&gt;
+			&lt;td&gt;45.29&lt;/td&gt;
+			&lt;td&gt;69.20&lt;/td&gt;
+			&lt;td&gt;0.55&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;125&lt;/td&gt;
+			&lt;td&gt;6&lt;/td&gt;
+			&lt;td&gt;31.29&lt;/td&gt;
+			&lt;td&gt;78.38&lt;/td&gt;
+			&lt;td&gt;47.10&lt;/td&gt;
+			&lt;td&gt;49.21&lt;/td&gt;
+			&lt;td&gt;2.54&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;78&lt;/td&gt;
+			&lt;td&gt;6&lt;/td&gt;
+			&lt;td&gt;111.30&lt;/td&gt;
+			&lt;td&gt;174.92&lt;/td&gt;
+			&lt;td&gt;63.62&lt;/td&gt;
+			&lt;td&gt;125.12&lt;/td&gt;
+			&lt;td&gt;0.62&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;172&lt;/td&gt;
+			&lt;td&gt;5&lt;/td&gt;
+			&lt;td&gt;181.24&lt;/td&gt;
+			&lt;td&gt;325.32&lt;/td&gt;
+			&lt;td&gt;144.08&lt;/td&gt;
+			&lt;td&gt;267.44&lt;/td&gt;
+			&lt;td&gt;0.64&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;117&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;49.05&lt;/td&gt;
+			&lt;td&gt;50.66&lt;/td&gt;
+			&lt;td&gt;1.62&lt;/td&gt;
+			&lt;td&gt;49.85&lt;/td&gt;
+			&lt;td&gt;2.35&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;176&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;180.91&lt;/td&gt;
+			&lt;td&gt;183.87&lt;/td&gt;
+			&lt;td&gt;2.96&lt;/td&gt;
+			&lt;td&gt;182.78&lt;/td&gt;
+			&lt;td&gt;0.96&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;179&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;181.69&lt;/td&gt;
+			&lt;td&gt;325.78&lt;/td&gt;
+			&lt;td&gt;144.09&lt;/td&gt;
+			&lt;td&gt;219.17&lt;/td&gt;
+			&lt;td&gt;0.82&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;36&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;40.89&lt;/td&gt;
+			&lt;td&gt;181.54&lt;/td&gt;
+			&lt;td&gt;140.65&lt;/td&gt;
+			&lt;td&gt;146.30&lt;/td&gt;
+			&lt;td&gt;0.25&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;62&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+			&lt;td&gt;67.24&lt;/td&gt;
+			&lt;td&gt;81.67&lt;/td&gt;
+			&lt;td&gt;14.43&lt;/td&gt;
+			&lt;td&gt;74.51&lt;/td&gt;
+			&lt;td&gt;0.83&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;124&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;31.25&lt;/td&gt;
+			&lt;td&gt;79.62&lt;/td&gt;
+			&lt;td&gt;48.37&lt;/td&gt;
+			&lt;td&gt;63.08&lt;/td&gt;
+			&lt;td&gt;1.97&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;168&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;109.26&lt;/td&gt;
+			&lt;td&gt;182.33&lt;/td&gt;
+			&lt;td&gt;73.08&lt;/td&gt;
+			&lt;td&gt;137.21&lt;/td&gt;
+			&lt;td&gt;1.22&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;213&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;181.80&lt;/td&gt;
+			&lt;td&gt;185.54&lt;/td&gt;
+			&lt;td&gt;3.74&lt;/td&gt;
+			&lt;td&gt;183.80&lt;/td&gt;
+			&lt;td&gt;1.16&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;836&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;180.92&lt;/td&gt;
+			&lt;td&gt;181.53&lt;/td&gt;
+			&lt;td&gt;0.61&lt;/td&gt;
+			&lt;td&gt;181.15&lt;/td&gt;
+			&lt;td&gt;4.61&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;128&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;53.00&lt;/td&gt;
+			&lt;td&gt;79.62&lt;/td&gt;
+			&lt;td&gt;26.62&lt;/td&gt;
+			&lt;td&gt;66.31&lt;/td&gt;
+			&lt;td&gt;1.93&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;1344&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;180.93&lt;/td&gt;
+			&lt;td&gt;180.98&lt;/td&gt;
+			&lt;td&gt;0.05&lt;/td&gt;
+			&lt;td&gt;180.96&lt;/td&gt;
+			&lt;td&gt;7.43&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;1361&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;180.91&lt;/td&gt;
+			&lt;td&gt;180.94&lt;/td&gt;
+			&lt;td&gt;0.03&lt;/td&gt;
+			&lt;td&gt;180.93&lt;/td&gt;
+			&lt;td&gt;7.52&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;1375&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;180.92&lt;/td&gt;
+			&lt;td&gt;180.97&lt;/td&gt;
+			&lt;td&gt;0.05&lt;/td&gt;
+			&lt;td&gt;180.94&lt;/td&gt;
+			&lt;td&gt;7.60&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;138&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;45.79&lt;/td&gt;
+			&lt;td&gt;51.62&lt;/td&gt;
+			&lt;td&gt;5.84&lt;/td&gt;
+			&lt;td&gt;48.71&lt;/td&gt;
+			&lt;td&gt;2.83&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;140&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;1435.33&lt;/td&gt;
+			&lt;td&gt;1435.33&lt;/td&gt;
+			&lt;td&gt;0.00&lt;/td&gt;
+			&lt;td&gt;1435.33&lt;/td&gt;
+			&lt;td&gt;0.10&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;154&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;182.05&lt;/td&gt;
+			&lt;td&gt;182.40&lt;/td&gt;
+			&lt;td&gt;0.36&lt;/td&gt;
+			&lt;td&gt;182.23&lt;/td&gt;
+			&lt;td&gt;0.85&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;158&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;182.28&lt;/td&gt;
+			&lt;td&gt;1428.41&lt;/td&gt;
+			&lt;td&gt;1246.13&lt;/td&gt;
+			&lt;td&gt;805.34&lt;/td&gt;
+			&lt;td&gt;0.20&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;178&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;180.74&lt;/td&gt;
+			&lt;td&gt;181.69&lt;/td&gt;
+			&lt;td&gt;0.95&lt;/td&gt;
+			&lt;td&gt;181.21&lt;/td&gt;
+			&lt;td&gt;0.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;184&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;325.64&lt;/td&gt;
+			&lt;td&gt;325.69&lt;/td&gt;
+			&lt;td&gt;0.05&lt;/td&gt;
+			&lt;td&gt;325.66&lt;/td&gt;
+			&lt;td&gt;0.56&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;214&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.73&lt;/td&gt;
+			&lt;td&gt;182.95&lt;/td&gt;
+			&lt;td&gt;1.22&lt;/td&gt;
+			&lt;td&gt;182.34&lt;/td&gt;
+			&lt;td&gt;1.17&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;248&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.17&lt;/td&gt;
+			&lt;td&gt;181.55&lt;/td&gt;
+			&lt;td&gt;0.38&lt;/td&gt;
+			&lt;td&gt;181.36&lt;/td&gt;
+			&lt;td&gt;1.37&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;270&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;47.66&lt;/td&gt;
+			&lt;td&gt;48.63&lt;/td&gt;
+			&lt;td&gt;0.97&lt;/td&gt;
+			&lt;td&gt;48.15&lt;/td&gt;
+			&lt;td&gt;5.61&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;312&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;180.71&lt;/td&gt;
+			&lt;td&gt;180.95&lt;/td&gt;
+			&lt;td&gt;0.24&lt;/td&gt;
+			&lt;td&gt;180.83&lt;/td&gt;
+			&lt;td&gt;1.72&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;346&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;68.62&lt;/td&gt;
+			&lt;td&gt;69.07&lt;/td&gt;
+			&lt;td&gt;0.44&lt;/td&gt;
+			&lt;td&gt;68.84&lt;/td&gt;
+			&lt;td&gt;5.02&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;404&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;184.94&lt;/td&gt;
+			&lt;td&gt;186.00&lt;/td&gt;
+			&lt;td&gt;1.07&lt;/td&gt;
+			&lt;td&gt;185.47&lt;/td&gt;
+			&lt;td&gt;2.18&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;437&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;177.62&lt;/td&gt;
+			&lt;td&gt;182.26&lt;/td&gt;
+			&lt;td&gt;4.64&lt;/td&gt;
+			&lt;td&gt;179.94&lt;/td&gt;
+			&lt;td&gt;2.43&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;440&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;34.02&lt;/td&gt;
+			&lt;td&gt;34.73&lt;/td&gt;
+			&lt;td&gt;0.71&lt;/td&gt;
+			&lt;td&gt;34.37&lt;/td&gt;
+			&lt;td&gt;12.80&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;444&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.53&lt;/td&gt;
+			&lt;td&gt;183.21&lt;/td&gt;
+			&lt;td&gt;1.68&lt;/td&gt;
+			&lt;td&gt;182.37&lt;/td&gt;
+			&lt;td&gt;2.43&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;451&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;83.74&lt;/td&gt;
+			&lt;td&gt;182.24&lt;/td&gt;
+			&lt;td&gt;98.50&lt;/td&gt;
+			&lt;td&gt;132.99&lt;/td&gt;
+			&lt;td&gt;3.39&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;484&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.76&lt;/td&gt;
+			&lt;td&gt;181.84&lt;/td&gt;
+			&lt;td&gt;0.08&lt;/td&gt;
+			&lt;td&gt;181.80&lt;/td&gt;
+			&lt;td&gt;2.66&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;50&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;3.91&lt;/td&gt;
+			&lt;td&gt;25.21&lt;/td&gt;
+			&lt;td&gt;21.30&lt;/td&gt;
+			&lt;td&gt;14.56&lt;/td&gt;
+			&lt;td&gt;3.43&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;53&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;37.27&lt;/td&gt;
+			&lt;td&gt;59.70&lt;/td&gt;
+			&lt;td&gt;22.43&lt;/td&gt;
+			&lt;td&gt;48.48&lt;/td&gt;
+			&lt;td&gt;1.09&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;556&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;136.02&lt;/td&gt;
+			&lt;td&gt;137.87&lt;/td&gt;
+			&lt;td&gt;1.85&lt;/td&gt;
+			&lt;td&gt;136.95&lt;/td&gt;
+			&lt;td&gt;4.06&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;573&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;4.16&lt;/td&gt;
+			&lt;td&gt;185.50&lt;/td&gt;
+			&lt;td&gt;181.34&lt;/td&gt;
+			&lt;td&gt;94.83&lt;/td&gt;
+			&lt;td&gt;6.04&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;618&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;187.52&lt;/td&gt;
+			&lt;td&gt;201.55&lt;/td&gt;
+			&lt;td&gt;14.03&lt;/td&gt;
+			&lt;td&gt;194.53&lt;/td&gt;
+			&lt;td&gt;3.18&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;619&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;185.00&lt;/td&gt;
+			&lt;td&gt;195.52&lt;/td&gt;
+			&lt;td&gt;10.52&lt;/td&gt;
+			&lt;td&gt;190.26&lt;/td&gt;
+			&lt;td&gt;3.25&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;633&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.05&lt;/td&gt;
+			&lt;td&gt;182.58&lt;/td&gt;
+			&lt;td&gt;1.53&lt;/td&gt;
+			&lt;td&gt;181.81&lt;/td&gt;
+			&lt;td&gt;3.48&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;66&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;102.33&lt;/td&gt;
+			&lt;td&gt;186.28&lt;/td&gt;
+			&lt;td&gt;83.95&lt;/td&gt;
+			&lt;td&gt;144.31&lt;/td&gt;
+			&lt;td&gt;0.46&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;665&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;182.14&lt;/td&gt;
+			&lt;td&gt;182.27&lt;/td&gt;
+			&lt;td&gt;0.13&lt;/td&gt;
+			&lt;td&gt;182.21&lt;/td&gt;
+			&lt;td&gt;3.65&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;68&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;127.56&lt;/td&gt;
+			&lt;td&gt;181.32&lt;/td&gt;
+			&lt;td&gt;53.77&lt;/td&gt;
+			&lt;td&gt;154.44&lt;/td&gt;
+			&lt;td&gt;0.44&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;749&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.04&lt;/td&gt;
+			&lt;td&gt;181.61&lt;/td&gt;
+			&lt;td&gt;0.58&lt;/td&gt;
+			&lt;td&gt;181.32&lt;/td&gt;
+			&lt;td&gt;4.13&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;75&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;128.19&lt;/td&gt;
+			&lt;td&gt;161.05&lt;/td&gt;
+			&lt;td&gt;32.85&lt;/td&gt;
+			&lt;td&gt;144.62&lt;/td&gt;
+			&lt;td&gt;0.52&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;835&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;181.40&lt;/td&gt;
+			&lt;td&gt;181.49&lt;/td&gt;
+			&lt;td&gt;0.09&lt;/td&gt;
+			&lt;td&gt;181.44&lt;/td&gt;
+			&lt;td&gt;4.60&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 6: Breakdown of session durations grouped by the number of commands run per session.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Looking at one of the sessions with a higher frequency of command run shows an ELF executable being constructed byte by byte (command count 440, 12.80 commands per second).&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-03-30_figure7.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 661px;" /&gt;&lt;br /&gt;
+Figure 7: ELF exeutable being constructed byte by byte (file name &amp;quot;anthrax&amp;quot;) [4].&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The file being constructed is shown as benign on VirusTotal, but similar sessions with&amp;nbsp;the file &amp;quot;&lt;strong&gt;&lt;code&gt;/tmp/anthrax&lt;/code&gt;&lt;/strong&gt;&amp;quot; has also been noted as being a Mirai variant [5] and affiliated with other benign files [6].&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Last Command Before Session Disconnect&lt;/h2&gt;
+
+&lt;p&gt;Commands run usually have a purpose. Maybe it's to create an executable, gain persistence or even fingerprint a honeypot. Looking at the last command run on a honeypot may help indicate why a session disconnection happened. If the attacker things they have run into a honeypot, there may be no value into performing other actions.&lt;/p&gt;
+
+&lt;table align="center" border="1" style="width: 1000px;"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Last Command&lt;/th&gt;
+			&lt;th&gt;Session Count&lt;/th&gt;
+			&lt;th&gt;Percent of Sessions&lt;/th&gt;
+			&lt;th&gt;Running Percentage&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;df -h | head -n 2 | awk 'FNR == 2 {print $2;}'&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;813959&lt;/td&gt;
+			&lt;td&gt;68.69%&lt;/td&gt;
+			&lt;td&gt;68.69%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;cd ~ &amp;amp;&amp;amp; rm -rf .ssh &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; echo &amp;quot;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEArDp4cun2lhr4&lt;br /&gt;
+			KUhBGE7VvAcwdli2a8dbnrTOrbMz1+5O73fcBOx8NVbUT0bUanUV9tJ2/9p7+vD0EpZ3Tz/+0kX34uAx1RV&lt;br /&gt;
+			/75GVOmNx+9EuWOnvNoaJe0QXxziIg9eLBHpgLMuakb5+BgTFB+rKJAw9u9FSTDengvS8hX1kNFS4Mju&lt;br /&gt;
+			x0hJOK8rvcEmPecjdySYMb66nylAKGwCEE6WEQHmd1mUPgHwGQ0hWCwsQk13yCGPK5w6hYp5zYkF&lt;br /&gt;
+			nvlC8hGmd4Ww+u97k6pfTGTUbJk14ujvcD9iUKQTTWYYjIIu5PmUux5bsZ0R4WFwdIe6+i6rBLAsPKgAyS&lt;br /&gt;
+			VKPRK+oRw== mdrfckr&amp;quot;&amp;gt;&amp;gt;.ssh/authorized_keys &amp;amp;&amp;amp; chmod -R go= ~/.ssh &amp;amp;&amp;amp; cd ~&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;83972&lt;/td&gt;
+			&lt;td&gt;7.09%&lt;/td&gt;
+			&lt;td&gt;75.78%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -s -v -n -r -m&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;52070&lt;/td&gt;
+			&lt;td&gt;4.39%&lt;/td&gt;
+			&lt;td&gt;80.17%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /bin/echo&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;32189&lt;/td&gt;
+			&lt;td&gt;2.72%&lt;/td&gt;
+			&lt;td&gt;82.89%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;kill %1&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;27802&lt;/td&gt;
+			&lt;td&gt;2.35%&lt;/td&gt;
+			&lt;td&gt;85.23%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;rm .s; exit&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;27433&lt;/td&gt;
+			&lt;td&gt;2.32%&lt;/td&gt;
+			&lt;td&gt;87.55%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;cat /proc/uptime 2 &amp;gt; /dev/null | cut -d. -f1&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;21446&lt;/td&gt;
+			&lt;td&gt;1.81%&lt;/td&gt;
+			&lt;td&gt;89.36%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -s -m&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;15696&lt;/td&gt;
+			&lt;td&gt;1.32%&lt;/td&gt;
+			&lt;td&gt;90.68%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /proc/self/exe&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;14119&lt;/td&gt;
+			&lt;td&gt;1.19%&lt;/td&gt;
+			&lt;td&gt;91.87%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -a&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;8213&lt;/td&gt;
+			&lt;td&gt;0.69%&lt;/td&gt;
+			&lt;td&gt;92.57%&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 8: The 10 most frequently run &amp;quot;last command&amp;quot; before a Cowrie session ends, which accounts for almost 93% of sessions.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Since I wanted to see, from these examples, what the output looked like for a honeypot in comparison to a real system, I set up a Ubuntu VM for testing. This may not fit an IoT scenario, but it's just a starting point. I also wanted to see output from Cowrie, so I set it up using a docker container on the same system. Some troubleshooting was needed to get the configuration to function based on the Cowrie download for the DShield honeypot, but I've been able to repeat the setup multiple times with success.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;#install docker
+sudo apt update
+sudo apt install ca-certificates curl -y
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;amp;&amp;amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+#download DShield Cowrie
+curl https://www.dshield.org/cowrie.zip &amp;gt; cowrie.zip
+unzip cowrie.zip
+
+#copy and configure settings for honeypot
+cd cowrie/docker
+sed -i 's/context: context/context: ./' docker-compose.yml
+sed -i 's/- cowrie-etc:\/cowrie\/cowrie-git\/etc/- .\/etc:\/cowrie\/cowrie-git\/etc/' docker-compose.yml
+sed -i 's/- cowrie-var:\/cowrie\/cowrie-git\/var/- .\/var:\/cowrie\/cowrie-git\/var/' docker-compose.yml
+sed -i 's|- ./var:/cowrie/cowrie-git/var|- ./var:/cowrie/cowrie-git/var\n      - ./honeyfs:/cowrie/cowrie-git/honeyfs|' docker-compose.yml
+sed -i 's|- ./honeyfs:/cowrie/cowrie-git/honeyfs|- ./honeyfs:/cowrie/cowrie-git/honeyfs\n      - ./share:/cowrie/cowrie-git/share|' docker-compose.yml
+cp ../requirements.txt ./requirements-output.txt
+cp -r ../src .
+cp ../setup.py . 
+cp ../setup.cfg . 
+cp ../pyproject.toml .
+cp -r ../honeyfs .
+cp -r ../etc .
+cp -r ../var .
+cp -r ../share .
+
+#change settings to all passwords attempted are allowed
+cp etc/userdb.example etc/userdb.txt
+echo "*:x:*" &amp;gt;&amp;gt; etc/userdb.txt
+sudo chown -R 1000:1000 var/log var/lib
+sudo chmod -R 777 var/log var/lib
+
+#run Cowrie in docker
+sudo docker compose up -d
+
+#connect to cowrie
+ssh root@localhost -p 2222
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;table align="center" border="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Last Command&lt;/th&gt;
+			&lt;th&gt;Ubuntu Output&lt;/th&gt;
+			&lt;th&gt;Honeypot Output&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;code&gt;df -h | head -n 2 | awk 'FNR == 2 {print $2;}'&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;387M&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Size&lt;br /&gt;
+			4.7G&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+			&lt;p&gt;&lt;code&gt;cd ~ &amp;amp;&amp;amp; rm -rf .ssh &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; echo &amp;quot;ssh-rsa AAAAB3NzaC&lt;br /&gt;
+			1yc2EAAAABJQAAAQEArDp4cun2lhr4KUhBGE7VvAcwdli2a8dbn&lt;br /&gt;
+			rTOrbMz1+5O73fcBOx8NVbUT0bUanUV9tJ2/9p7+vD0EpZ3Tz/+0k&lt;br /&gt;
+			X34uAx1RV/75GVOmNx+9EuWOnvNoaJe0QXxziIg9eLBHpgLMua&lt;br /&gt;
+			kb5+BgTFB+rKJAw9u9FSTDengvS8hX1kNFS4Mjux0hJOK8rvcEm&lt;br /&gt;
+			PecjdySYMb66nylAKGwCEE6WEQHmd1mUPgHwGQ0hWCwsQk&lt;br /&gt;
+			13yCGPK5w6hYp5zYkFnvlC8hGmd4Ww+u97k6pfTGTUbJk14ujvc&lt;br /&gt;
+			D9iUKQTTWYYjIIu5PmUux5bsZ0R4WFwdIe6+i6rBLAsPKgAySVK&lt;br /&gt;
+			PRK+oRw== mdrfckr&amp;quot;&amp;gt;&amp;gt;.ssh/authorized_keys &amp;amp;&amp;amp; chmod -R go= ~/.ssh &amp;amp;&amp;amp; cd ~&lt;/code&gt;&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;no output&amp;gt;&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;no output&amp;gt;&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -s -v -n -r -m&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux sans-isc-default 6.17.0-19-generic #19~24.04.2-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar 6 23:08:46 UTC 2 x86_64&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux svr04 3.2.0-4-amd64 #1 SMP Debian 3.2.68-1+deb7u1 x86_64&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /bin/echo&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;will output contents of file running the process (busybox) or the echo binary&amp;gt;&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;cat: /proc/self/exe: No such file or directory ELF&amp;gt;x@@&amp;amp;#x40;@8@@@yy .shstrtab.text x@xy&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;code&gt;kill %1&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;bash: kill: %1: no such job&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;no output&amp;gt;&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;rm .s; exit&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;will exit terminal&amp;gt;&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;will exit terminal&amp;gt;&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;code&gt;cat /proc/uptime 2 &amp;gt; /dev/null | cut -d. -f1&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;cat: 2: No such file or directory&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;-bash: cut: command not found&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -s -m&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux x86_64&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux x86_64&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /proc/self/exe&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;&amp;lt;will output contents of file running the process (busybox) or the cat binary&amp;gt;&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;cat: /proc/self/exe: No such file or directory cat: /proc/self/exe: No such file or directory&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;code&gt;uname -a&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux sans-isc-default 6.17.0-19-generic #19~24.04.2-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar 6 23:08:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux&lt;/code&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;code&gt;Linux svr04 3.2.0-4-amd64 #1 SMP Debian 3.2.68-1+deb7u1 x86_64 GNU/Linux&lt;/code&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 9: Comparison of different command outputs for a Cowrie versus Ubuntu VM.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Some of these commands will be different for any system, but the most notable in this comparison were:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;df -h | head -n 2 | awk 'FNR == 2 {print $2;}'&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /bin/echo&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;kill %1&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;cat /proc/uptime 2 &amp;gt; /dev/null | cut -d. -f1&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;/bin/busybox cat /proc/self/exe || cat /proc/self/exe&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This was a limited comparison since they didn't account for any of the preceeding commands, which may change the output. However, it gives a process that can be used for comparison and improving honeypot configurations. Modifying the file system or text outputs could be options to test how differences in returned data impact honeypot interactions [7]. At the very least, some additional data, such as the number of commands run in a session, could help highlight interesting honeypot data.&lt;/p&gt;
+
+&lt;p&gt;Some future items to explore for this data:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Improve identification similar sessions by removing data that may have variable input/output (password changes, URL downloads, etc)&lt;/li&gt;
+	&lt;li&gt;Modify Cowrie to better replicate responses to some of the examples from real systems&lt;/li&gt;
+	&lt;li&gt;Look at sessions that are outliers within the session durations and total command counts per session&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;How are you modifying your honeypots or finding interesting data? Let us know!&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://github.com/DShield-ISC/dshield" target="_blank"&gt;https://github.com/DShield-ISC/dshield&lt;/a&gt;&lt;br /&gt;
+[2]&amp;nbsp;&lt;a href="https://github.com/cowrie/cowrie" target="_blank"&gt;https://github.com/cowrie/cowrie&lt;/a&gt;&lt;br /&gt;
+[3]&amp;nbsp;&lt;a href="https://github.com/jslagrew/cowrieprocessor" target="_blank"&gt;https://github.com/jslagrew/cowrieprocessor&lt;/a&gt;&lt;br /&gt;
+[4]&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/bb403e1761fed33c966d99393630c16ae138ec887b9b32befe6f1bae5f2bc13d/details" target="_blank"&gt;https://www.virustotal.com/gui/file/bb403e1761fed33c966d99393630c16ae138ec887b9b32befe6f1bae5f2bc13d/details&lt;/a&gt;&lt;br /&gt;
+[5]&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/646af726da8182da9910c4a50aac4f648808de4f9f98bc26058ea190e9bf8e20" target="_blank"&gt;https://www.virustotal.com/gui/file/646af726da8182da9910c4a50aac4f648808de4f9f98bc26058ea190e9bf8e20&lt;/a&gt;&lt;br /&gt;
+[6]&amp;nbsp;&lt;a href="https://www.virustotal.com/gui/file/b0d1282989c786cffe85093947f307a26f20601c2f039efc88e3b692d670d076/detection" target="_blank"&gt;https://www.virustotal.com/gui/file/b0d1282989c786cffe85093947f307a26f20601c2f039efc88e3b692d670d076/detection&lt;/a&gt;&lt;br /&gt;
+[7]&amp;nbsp;&lt;a href="https://docs.cowrie.org/en/latest/README.html" target="_blank"&gt;https://docs.cowrie.org/en/latest/README.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Jesse La Grew&lt;br /&gt;
+Senior Handler&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32840</guid></item><item><title>FBI confirms hack of Director Patel's personal email inbox</title><link>https://www.bleepingcomputer.com/news/security/fbi-confirms-hack-of-director-patels-personal-email-inbox/</link><description>The Handala hackers associated with Iran have breached the personal email account of FBI Director Kash Patel and published photos and documents. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fbi-confirms-hack-of-director-patels-personal-email-inbox/</guid><category>Security</category></item><item><title>File read flaw in Smart Slider plugin impacts 500K WordPress sites</title><link>https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/</link><description>A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/</guid><category>Security</category></item><item><title>AI Threat Landscape Digest January-February 2026</title><link>https://research.checkpoint.com/2026/ai-threat-landscape-digest-january-february-2026/</link><description>&lt;p&gt;KEY FINDINGS AI-assisted malware development has reached operational maturity.VoidLink framework, which is modular, professionally engineered, and fully functional,was built by a single developer using a commercial AI-powered IDE within a compressedtimeframe. AI-assisted development is no longer experimental but produces deploymentreadyoutput. AI-assisted development is not always obvious from the final product.VoidLink was initially assessed as the [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/ai-threat-landscape-digest-january-february-2026/"&gt;AI Threat Landscape Digest January-February 2026&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h3 class="wp-block-heading"&gt;KEY FINDINGS&lt;/h3&gt;
 
 
@@ -3500,78 +4835,7 @@ DeviceTvmSoftwareInventory
 
 
 
-&lt;p&gt;As environments become more complex and dynamic, organizations are shifting toward continuous, outcome-driven risk management delivered through partners who can standardize prioritization, remediation, and validation at scale.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40028</guid><category>Product and Tech</category><category>mROC</category><category>mROC Alliance</category><category>mROC Partner Alliance</category><category>Partners</category></item><item><title>Detecting IP KVMs, (Tue, Mar 24th)</title><link>https://isc.sans.edu/diary/rss/32824</link><description>&lt;p&gt;I have written about how to&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&lt;a href="https://isc.sans.edu/diary/32598"&gt;use IP KVMs securely&lt;/a&gt;, and recently, researchers at Eclypsium published yet another report on &lt;a href="https://eclypsium.com/blog/your-kvm-is-the-weak-link-how-30-dollar-devices-can-own-your-entire-network/"&gt;IP KVM vulnerabilities.&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;But there is another issue I haven&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t mentioned yet with IP KVMs: rogue IP KVMs. IP KVMs are often used by criminals. For example, North Koreans used KVMs to connect remotely to laptops sent to them by their employers. The laptops were located in the US, and the North Korean workers used IP KVMs to remotely connect to them. IP KVMs could also be used to access office PCs, either to enable undetected "work from home"&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;or by threat actors who use them to gain remote access after installing the device on site.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I have written about how to&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32598"&gt;use IP KVMs securely&lt;/a&gt;, and recently, researchers at Eclypsium published yet another report on &lt;a href="https://eclypsium.com/blog/your-kvm-is-the-weak-link-how-30-dollar-devices-can-own-your-entire-network/"&gt;IP KVM vulnerabilities.&lt;/a&gt;&amp;nbsp;But there is another issue I haven't mentioned yet with IP KVMs: rogue IP KVMs. IP KVMs are often used by criminals. For example, North Koreans used KVMs to connect remotely to laptops sent to them by their employers. The laptops were located in the US, and the North Korean workers used IP KVMs to remotely connect to them. IP KVMs could also be used to access office PCs, either to enable undetected &amp;quot;work from home&amp;quot;&amp;nbsp;or by threat actors who use them to gain remote access after installing the device on site.&lt;/p&gt;
-
-&lt;p&gt;IP KVMs usually connect to the system in two ways:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;USB for keyboard/mouse&lt;/li&gt;
-	&lt;li&gt;HDMI for the monitor connection (some older variants may also use VGA)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For my testing, I used two different IP KVMs. A &amp;quot;PiKVM&amp;quot; and a &amp;quot;NanoKVM&amp;quot; (Sipeed). Both were connected to Linux systems, but the techniques should work on other operating systems as well.&lt;/p&gt;
-
-&lt;h3&gt;USB&lt;/h3&gt;
-
-&lt;p&gt;For the Sipeed NanoKVM, &amp;quot;lsusb&amp;quot; give away the device:&amp;nbsp;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;tt&gt;$ lsusb&lt;br /&gt;
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub&lt;br /&gt;
-Bus 001 Device 002: ID 0bda:c821 Realtek Semiconductor Corp. Bluetooth Radio&lt;br /&gt;
-Bus 001 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply&lt;br /&gt;
-&lt;u&gt;&lt;strong&gt;Bus 001 Device 005: ID 3346:1009 sipeed NanoKVM&lt;/strong&gt;&lt;/u&gt;&lt;br /&gt;
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub&lt;/tt&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;PiKVM is a little bit less obvious, but this USB entry appears to be associated with PiVKM&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Bus 001 Device 004: ID 1d6b:0104 Linux Foundation Multifunction Composite Gadget&lt;br /&gt;
-Bus 001 Device 017: ID 1b3f:2008 Generalplus Technology Inc. USB Audio Device&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This needs a bit more testing for the PiKVM.&lt;/p&gt;
-
-&lt;h3&gt;HDMI&lt;/h3&gt;
-
-&lt;p&gt;HDMI devices send &amp;quot;EDID&amp;quot; (Extended Display Identification Data) to the system the display is connected to. The main purpose of EDID is to communicate available video modes and resolutions. But it also includes manufacturer information.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;For the NanoKVM:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;sudo get-edid | parse-edid&lt;br /&gt;
-...&lt;br /&gt;
-Section &amp;quot;Monitor&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Identifier &amp;quot;Connector&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ModelName &amp;quot;Connector&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; VendorName &amp;quot;VCS&amp;quot;&lt;br /&gt;
-...&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Not very obvious, but the &amp;quot;VCS&amp;quot; vendor name could be a reasonable indicator (check for false positives)&lt;/p&gt;
-
-&lt;p&gt;For PiKVM, the &amp;quot;Identified&amp;quot; and &amp;quot;ModelName&amp;quot;&amp;nbsp;&amp;nbsp;are&amp;nbsp;more telling:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Section &amp;quot;Monitor&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Identifier &amp;quot;PiKVM V3&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ModelName &amp;quot;PiKVM V3&amp;quot;&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; VendorName &amp;quot;LNX&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;Evasion&lt;/h3&gt;
-
-&lt;p&gt;Of course, a more sophisticated attacker can modify these strings. PiKVM offers a configuration file to do so, in part to allow for better compatibility. I do not know whether the NanoKVM provides a similar, simple way to evade detection (but&amp;nbsp;it is likely not terribly hard). So &amp;quot;sophisticated attacker&amp;quot; may translate to &amp;quot;able and willing to read the manual&amp;quot;.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Many endpoint protection solutions monitor USB devices and may alert on odd devices being connected. But I am not aware of any that check monitor EDID strings. This may be another neat feature for any solutions. In office environments, most organizations provide a limited set of monitor types. For home office use, things may be more complex as users often connect their own monitors.&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32824</guid></item><item><title>Team Mirai and Democracy</title><link>https://www.schneier.com/blog/archives/2026/03/team-mirai-and-democracy.html</link><description>&lt;p&gt;Japan’s &lt;a href="https://theconversation.com/japans-ruling-party-secures-historic-election-victory-but-challenges-lie-ahead-275279" rel="noopener" target="_blank"&gt;election&lt;/a&gt; last month and the rise of the country’s newest and most innovative political party, &lt;a href="https://team-mir.ai/" rel="noopener" target="_blank"&gt;Team Mirai&lt;/a&gt;, illustrates the viability of a different way to do politics.&lt;/p&gt;
+&lt;p&gt;As environments become more complex and dynamic, organizations are shifting toward continuous, outcome-driven risk management delivered through partners who can standardize prioritization, remediation, and validation at scale.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40028</guid><category>Product and Tech</category><category>mROC</category><category>mROC Alliance</category><category>mROC Partner Alliance</category><category>Partners</category></item><item><title>Team Mirai and Democracy</title><link>https://www.schneier.com/blog/archives/2026/03/team-mirai-and-democracy.html</link><description>&lt;p&gt;Japan’s &lt;a href="https://theconversation.com/japans-ruling-party-secures-historic-election-victory-but-challenges-lie-ahead-275279" rel="noopener" target="_blank"&gt;election&lt;/a&gt; last month and the rise of the country’s newest and most innovative political party, &lt;a href="https://team-mir.ai/" rel="noopener" target="_blank"&gt;Team Mirai&lt;/a&gt;, illustrates the viability of a different way to do politics.&lt;/p&gt;
 &lt;p&gt;In this model, technology is used to make democratic processes stronger, instead of undermining them. It is harnessed to root out corruption, instead of serving as a cash cow for campaign donations.&lt;/p&gt;
 &lt;p&gt;Imagine an election where every voter has the opportunity to opine directly to politicians on precisely the issues they care about. They’re not expected to spend hours becoming policy experts. Instead, an ...&lt;/p&gt;</description><content:encoded>&lt;p&gt;Japan’s &lt;a href="https://theconversation.com/japans-ruling-party-secures-historic-election-victory-but-challenges-lie-ahead-275279" rel="noopener" target="_blank"&gt;election&lt;/a&gt; last month and the rise of the country’s newest and most innovative political party, &lt;a href="https://team-mir.ai/" rel="noopener" target="_blank"&gt;Team Mirai&lt;/a&gt;, illustrates the viability of a different way to do politics.&lt;/p&gt;
 &lt;p&gt;In this model, technology is used to make democratic processes stronger, instead of undermining them. It is harnessed to root out corruption, instead of serving as a cash cow for campaign donations.&lt;/p&gt;
@@ -3591,7 +4855,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;p&gt;AI is the issue driving the most societal and economic change we will encounter in our lifetime, yet US political parties are largely &lt;a href="https://time.com/7371825/trump-data-center-ai-backlash-ai-america-china/" rel="noopener" target="_blank"&gt;silent&lt;/a&gt;. But AI and Big Tech companies and their owners are &lt;a href="https://www.axios.com/2026/01/23/ai-tech-lobbying-2025" rel="noopener" target="_blank"&gt;ramping up&lt;/a&gt; their political spending to &lt;a href="https://www.wired.com/story/openai-president-greg-brockman-political-donations-trump-humanity/" rel="noopener" target="_blank"&gt;influence&lt;/a&gt; the parties. To the extent that AI has shown up in our politics, it seems to be limited to the question of where to site the next generation of data centers and how to channel populist &lt;a href="https://www.politico.com/news/magazine/2025/12/28/ai-job-losses-populism-democrats-bernie-sanders-00706680" rel="noopener" target="_blank"&gt;backlash&lt;/a&gt; to big tech.&lt;/p&gt;
 &lt;p&gt;Those are causes worthy of political organizing, but very few US politicians are leveraging the technology for public listening or other pro-democratic purposes. With the midterms still nine months away and with innovators like Team Mirai making products in the open for anyone to use, there is still plenty of time for an American politician to demonstrate what a new politics could look like.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;This essay was written with Nathan E. Sanders, and originally appeared in &lt;a href="https://www.techpolicy.press/japans-team-mirai-uses-tech-to-bolster-democracy-not-undermine-it/"&gt;Tech Policy Press&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=71775</guid><category>Uncategorized</category><category>AI</category><category>democracy</category><category>Japan</category><category>LLM</category></item><item><title>Your Body Is Betraying Your Right to Privacy</title><link>https://www.wired.com/story/book-excerpt-your-data-will-be-used-against-you-andrew-guthrie-ferguson/</link><description>Attachment to smart devices and biometric surveillance leaves Americans more vulnerable to police searches than ever. Left unchecked it will only get worse.</description><guid isPermaLink="false">69b1c240c0efa4d50c96a15c</guid><category>The Big Story</category><category>Security</category><category>Book Excerpt</category><category>longreads</category><category>surveillance</category><category>Policing</category><category>law enforcement</category><category>privacy</category><category>data</category><category>artificial intelligence</category></item><item><title>‘Get Down! Get Down! They’re Gonna See Us!’: Six Months of Hiding From ICE</title><link>https://www.wired.com/story/get-down-get-down-six-months-of-hiding-from-ice/</link><description>A family in Chicago has been terrified to leave their apartment. Agents could be anywhere.</description><guid isPermaLink="false">698d09eec092dc0d6c3de041</guid><category>The Big Story</category><category>Security</category><category>longreads</category><category>War Machine</category><category>Donald Trump</category><category>Immigration and Customs Enforcement</category><category>immigration</category><category>Unsafe House</category></item><item><title>ICE Is Paying Salaries and More for This Town’s Entire Police Force</title><link>https://www.wired.com/story/ice-is-paying-the-salaries-of-this-towns-entire-police-force/</link><description>Under a Homeland Security program, police departments around the US are signing up to assist in immigration enforcement. The cops of Carroll, New Hampshire, are going all in—and they’re likely not alone.</description><guid isPermaLink="false">69bc1228d7f400200be20124</guid><category>Security</category><category>Security / National Security</category><category>Security / Security News</category><category>immigration</category><category>Immigration and Customs Enforcement</category><category>Department of Homeland Security</category><category>Crime</category><category>Police</category><category>Freedom of Information Act</category><category>Cover Me</category></item><item><title>10 Best Business Email Providers for Small Businesses in 2026</title><link>https://www.techrepublic.com/article/best-business-email-providers/</link><description>&lt;p&gt;Looking for the best business email provider? Compare top options like Google Workspace, Microsoft 365, and Zoho Mail to choose the right one.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-business-email-providers/"&gt;10 Best Business Email Providers for Small Businesses in 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4252843</guid><category>Artificial Intelligence</category><category>Cloud</category><category>CXO</category><category>Google</category><category>Microsoft</category><category>Software</category><category>Start-Ups</category><category>Top Products</category><category>artificial intelligence</category><category>bluehost</category><category>email</category><category>email marketing</category><category>email providers</category><category>Google Workspace</category><category>hostinger</category><category>icewarp</category><category>inmotion hosting</category><category>ionos</category><category>Microsoft 365</category><category>proton mail</category><category>scalahosting</category><category>soho mail</category></item><item><title>ISC Stormcast For Tuesday, March 24th, 2026 https://isc.sans.edu/podcastdetail/9862, (Tue, Mar 24th)</title><link>https://isc.sans.edu/diary/rss/32822</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32822</guid></item><item><title>MSSQLand – Lightweight MS-SQL Interaction Tool for Lateral Movement and Post-Exploitation</title><link>https://www.darknet.org.uk/2026/03/mssqland-lightweight-ms-sql-interaction-tool-for-lateral-movement-and-post-exploitation/</link><description>MSSQLand enables red teams to interact with MS-SQL servers and linked instances in restricted environments without complex T-SQL queries. Assembly-ready tool for lateral movement.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=213945</guid><category>Database Hacking</category></item><item><title>AI’s Power Crisis Is Closer Than You Might Think</title><link>https://www.techrepublic.com/article/news-ai-energy-demand-power-grid-crisis/</link><description>&lt;p&gt;AI growth is accelerating, but energy limits may slow it down as data center demand strains power grids and raises concerns across the tech industry.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-business-email-providers/"&gt;10 Best Business Email Providers for Small Businesses in 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4252843</guid><category>Artificial Intelligence</category><category>Cloud</category><category>CXO</category><category>Google</category><category>Microsoft</category><category>Software</category><category>Start-Ups</category><category>Top Products</category><category>artificial intelligence</category><category>bluehost</category><category>email</category><category>email marketing</category><category>email providers</category><category>Google Workspace</category><category>hostinger</category><category>icewarp</category><category>inmotion hosting</category><category>ionos</category><category>Microsoft 365</category><category>proton mail</category><category>scalahosting</category><category>soho mail</category></item><item><title>MSSQLand – Lightweight MS-SQL Interaction Tool for Lateral Movement and Post-Exploitation</title><link>https://www.darknet.org.uk/2026/03/mssqland-lightweight-ms-sql-interaction-tool-for-lateral-movement-and-post-exploitation/</link><description>MSSQLand enables red teams to interact with MS-SQL servers and linked instances in restricted environments without complex T-SQL queries. Assembly-ready tool for lateral movement.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=213945</guid><category>Database Hacking</category></item><item><title>AI’s Power Crisis Is Closer Than You Might Think</title><link>https://www.techrepublic.com/article/news-ai-energy-demand-power-grid-crisis/</link><description>&lt;p&gt;AI growth is accelerating, but energy limits may slow it down as data center demand strains power grids and raises concerns across the tech industry.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-ai-energy-demand-power-grid-crisis/"&gt;AI’s Power Crisis Is Closer Than You Might Think&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4353014</guid><category>Artificial Intelligence</category><category>Data Centers</category><category>Google</category><category>News</category><category>Sustainability</category><category>Tech Industry</category><category>ai infrastructure</category><category>ai sustainability</category><category>artificial intelligence</category><category>data centers</category><category>electricity</category><category>energy demand</category><category>power grid</category><category>tech industry</category></item><item><title>Inside the AI Warehouse: How Otto Group Is Teaching Robots to Work Together</title><link>https://www.techrepublic.com/article/news-otto-group-ai-warehouse-robotics/</link><description>&lt;p&gt;Otto Group uses Nvidia Omniverse and AI to coordinate warehouse robots, boosting efficiency and redefining logistics with digital twins and automation.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-otto-group-ai-warehouse-robotics/"&gt;Inside the AI Warehouse: How Otto Group Is Teaching Robots to Work Together&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4353005</guid><category>Artificial Intelligence</category><category>EU</category><category>Hardware</category><category>International</category><category>News</category><category>Robots</category><category>Tech &amp; Work</category><category>Tech Industry</category><category>artificial intelligence</category><category>digital twin</category><category>logistics</category><category>nvidia omniverse</category><category>retail technology</category><category>robotics</category><category>supply chain</category><category>warehouse automation</category></item><item><title>Amazon Reportedly Building AI Smartphone to Revive Alexa Ecosystem</title><link>https://www.techrepublic.com/article/news-amazon-ai-smartphone-transformer-alexa/</link><description>&lt;p&gt;Amazon is reportedly working on building an AI-native smartphone, codenamed ‘Transformer,’ several years after its Fire Phone flopped.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-amazon-ai-smartphone-transformer-alexa/"&gt;Amazon Reportedly Building AI Smartphone to Revive Alexa Ecosystem&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4353001</guid><category>Amazon</category><category>Artificial Intelligence</category><category>Chatbots</category><category>Hardware</category><category>Innovation</category><category>International</category><category>News</category><category>Smartphones</category><category>ai smartphone</category><category>alexa</category><category>amazon transformer</category><category>artificial intelligence</category><category>consumer technology</category><category>mobile devices</category><category>tech industry</category></item><item><title>Navia Data Breach Hits 2.7 Million People, Exposing Sensitive Personal Data</title><link>https://www.techrepublic.com/article/news-navia-benefits-data-breach-2-7-million-exposed/</link><description>&lt;p&gt;Navia Benefit Solutions says a data breach exposed personal and benefits data tied to 2.7 million people after weeks of unauthorized access.&lt;/p&gt;
