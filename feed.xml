@@ -1,5 +1,136 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 15 Apr 2026 21:59:22 +0000</lastBuildDate><item><title>New AgingFly malware used in attacks on Ukraine govt, hospitals</title><link>https://www.bleepingcomputer.com/news/security/new-agingfly-malware-used-in-attacks-on-ukraine-govt-hospitals/</link><description>A new malware family named 'AgingFly' has been identified in attacks against local governments and hospitals that steal authentication data from Chromium-based browsers and WhatsApp messenger. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-agingfly-malware-used-in-attacks-on-ukraine-govt-hospitals/</guid><category>Security</category></item><item><title>Defense in Depth, Medieval Style</title><link>https://www.schneier.com/blog/archives/2026/04/defense-in-depth-medieval-style.html</link><description>&lt;p&gt;This &lt;a href="https://turkisharchaeonews.net/object/theodosian-land-walls-constantinople"&gt;article&lt;/a&gt; on the walls of Constantinople is fascinating.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 16 Apr 2026 03:59:21 +0000</lastBuildDate><item><title>ISC Stormcast For Thursday, April 16th, 2026 https://isc.sans.edu/podcastdetail/9894, (Thu, Apr 16th)</title><link>https://isc.sans.edu/diary/rss/32902</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32902</guid></item><item><title>&amp;#x5b;Guest Diary&amp;#x5d; Compromised DVRs and Finding Them in the Wild, (Thu, Apr 16th)</title><link>https://isc.sans.edu/diary/rss/32886</link><description>&lt;p&gt;&lt;span&gt;&lt;span&gt;&amp;#x26;#x5b;This is a Guest Diary by Alec Jaffe, an ISC intern as part of the SANS.edu Bachelor&amp;#x26;&amp;#x26;#x23&amp;#x26;#x3b;39&amp;#x26;#x3b;s Degree in Applied Cybersecurity (BACS) program &amp;#x26;#x5b;1&amp;#x5d;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;span style="color: #ffffff;"&gt;&lt;span style="background-color: #c0392b;"&gt;[This is a Guest Diary by Alec Jaffe, an ISC intern as part of the SANS.edu Bachelor's Degree in Applied Cybersecurity (BACS) program [1].&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Security cameras are great at monitoring physical doors, but terrible at locking their own digital ones. Across the internet, thousands of unpatched DVRs sit publicly exposed, many guarded only by the default vendor passwords they shipped with. For threat actors, these are low-hanging fruit. This write-up details a recent two-second Telnet capture, providing a mechanical breakdown of how quickly an exposed camera system goes from online to fully compromised by bad actors.&lt;/p&gt;
+
+&lt;p&gt;An attack from IP address %%ip:46.6.14.135%% was detected for 1.934 seconds, successfully connecting and authenticating to TCP %%port:23%% (Telnet) for the aforementioned time period. This initial access vector (utilizing username root and password root) maps to MITRE ATT&amp;amp;CK techniques T1110.001 (Password Guessing) [2] and T1078 (Valid Accounts) [3]. The execution of ten sequential commands within a ~2-second session is inconsistent with manual interaction, meaning the attack is most likely automated.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure1_v2.PNG" style="width: 896px; height: 577px;" /&gt;&lt;br /&gt;
+Figure 1: Summary of attack from output of cowrieprocessor [4].&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Further investigation of the IP address using Shodan [5] reveals that the offending device is an Airspace Digital Video Recorder, (DVR) exposing an 8-channel CCTV system in Spain. Note that the OEM of Airspace is Dahua, a Chinese manufacturer of surveillance cameras and related equipment.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure2_v2.PNG" style="width: 1000px; height: 694px;" /&gt;&lt;br /&gt;
+Figure 2: General information &amp;amp; exposed services of offending device, retrieved from Shodan [5], as of 2026-04-01.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure3_v2.PNG" style="width: 561px; height: 935px;" /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 3: More exposed services of the offending DVR device, retrieved from Shodan [5], as of 2026-04-01.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Note that the cameras are exposed through the web service. It&amp;rsquo;s highly likely that an unsophisticated threat actor could gain direct access to the camera video feeds relatively easily through this by leveraging common Dahua default credentials (e.g. &lt;strong&gt;&lt;code&gt;admin/admin&lt;/code&gt;&lt;/strong&gt; or &lt;strong&gt;&lt;code&gt;666666/666666&lt;/code&gt;&lt;/strong&gt;), which are explicitly documented in the vendor's own user manuals for legacy systems [6][7]. Additionally, note that the device&amp;rsquo;s firmware hasn&amp;rsquo;t been updated since at latest August of 2014, indicated by the &lt;strong&gt;&lt;code&gt;Last-Modified&lt;/code&gt;&lt;/strong&gt; value.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure4_v2.PNG" style="width: 776px; height: 479px;" /&gt;&lt;br /&gt;
+Figure 4: AbuseIPDB results [8], as of 2026-04-01.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure5_v2.PNG" style="width: 1000px; height: 86px;" /&gt;&lt;br /&gt;
+Figure 5: First attack reported on AbuseIPDB [8], indicating the device has been compromised since 2025-11-28.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Noticing similar attacks in my honeypot logs, I prototyped a PowerShell script (assisted by Gemini Pro) to estimate the global footprint of these compromised DVRs. For reference, the script is available on my Github [9]. It pulls IPs from Shodan matching the offending device's RTSP server hash [10], then cross-references them against AbuseIPDB to check for malicious activity reported within the last 90 days, utilizing the APIs of both services.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2006-04-16_figure6_v2.PNG" style="width: 1000px; height: 485px;" /&gt;&lt;br /&gt;
+Figure 6: sample of PowerShell script [8] output.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Due to AbuseIPDB&amp;rsquo;s free-tier API limits, I could only scan the first 1,000 of the 5,313 matching IPs identified on Shodan. Within that limited sample, 38 IPs (3.8%) were actively reported for abuse.&lt;/p&gt;
+
+&lt;p&gt;Extrapolating this 3.8% infection rate across all 5,313 exposed devices yields roughly 202 compromised DVRs globally. Because this script only flags devices caught and reported in the last 90 days, this 202 figure should be treated as a highly conservative baseline. The actual number of compromised devices, including dormant ones, is likely much higher.&lt;/p&gt;
+
+&lt;p&gt;Once authenticated, the attacker executed a reconnaissance and environmental staging script. Below is a line-by-line breakdown of the payload execution:&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# enable 
+# system 
+# shell 
+# sh&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script sequentially attempts to escape restricted, vendor-specific CLI menus to access a standard Unix shell, mapping to MITRE ATT&amp;amp;CK technique T1059.004 (Unix Shell) [11].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# cat /proc/mounts; /bin/busybox RRVHZ&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script reads &lt;strong&gt;&lt;code&gt;/proc/mounts&lt;/code&gt;&lt;/strong&gt; to identify writable file systems, mapping to MITRE ATT&amp;amp;CK technique T1082 (System Information Discovery) [12]. Execution capabilities are subsequently verified by calling a non-existent BusyBox applet (&lt;strong&gt;&lt;code&gt;RRVHZ&lt;/code&gt;&lt;/strong&gt;) and monitoring for the resulting error.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# cd /dev/shm; cat .s || cp /bin/echo .s; /bin/busybox RRVHZ&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script navigates to /dev/shm (a memory-backed filesystem used to evade disk forensics) and copies &lt;strong&gt;&lt;code&gt;/bin/echo&lt;/code&gt;&lt;/strong&gt; to a hidden file (&lt;strong&gt;&lt;code&gt;.s&lt;/code&gt;&lt;/strong&gt;). This dotfile creation maps to MITRE ATT&amp;amp;CK technique T1564.001 (Hidden Files and Directories) [13]. The file is immediately executed to confirm the directory lacks execution restriction, acting as an environmental staging check that maps to MITRE ATT&amp;amp;CK technique T1082 (System Information Discovery) [12].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# tftp; wget; /bin/busybox RRVHZ&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script checks for the presence of network utilities (tftp and wget) to determine the available mechanisms for downloading the primary malware payload, corresponding to MITRE ATT&amp;amp;CK technique T1105 (Ingress Tool Transfer) [14].&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# dd bs=52 count=1 if=.s || cat .s || while read i; do echo $i; done &amp;lt; .s&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script tests three redundant file-reading mechanisms against the hidden .s test file, mapping to MITRE ATT&amp;amp;CK technique T1564.001 (Hidden Files and Directories) [13]. Specifically, &lt;strong&gt;&lt;code&gt;dd bs=52 count=1&lt;/code&gt;&lt;/strong&gt; attempts to read the first 52 bytes, which corresponds to the standard size of a 32-bit ELF file header. This acts as an environmental staging check, corresponding to MITRE ATT&amp;amp;CK technique T1082 (System Information Discovery) [12], verifying the system's ability to read and process dropped malware binaries.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-bash"&gt;# /bin/busybox RRVHZ # rm .s; exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mapping to MITRE T1070.004 (File Deletion) [15], the script removes the temporary .s file to avoid leaving forensic artifacts before terminating the staging session.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;To protect against this specific attack vector, defenders should implement the following baseline configurations:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Restrict Telnet access via a local firewall or VPN to a strictly allowed IP list, preventing exposure to the public internet&lt;/li&gt;
+	&lt;li&gt;Enforce strong password policies and change default credentials for all service accounts&lt;/li&gt;
+	&lt;li&gt;Disallow remote root login over Telnet&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The set-and-forget lifecycle of physical security devices is actively fueling digital insecurity. When a DVR is left exposed and unmanaged, it ceases to be just a camera system and morphs into a free server for malicious actors. The ~2-second compromise documented here is a stark reminder: if you aren't managing your edge devices, someone else already is.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Methodology &amp;amp; Tooling Note:&lt;/strong&gt; The initial triage and data collection for this report were conducted using cowrieprocessor, Shodan, and AbuseIPDB. Gemini Pro [16] was utilized as a supplemental tool to assist with the mechanical breakdown of the staging script and rapid prototyping of the PowerShell script. All AI-assisted analytical conclusions were reviewed and verified by the author to ensure technical accuracy and contextual relevance.&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/" target="_blank"&gt;https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://attack.mitre.org/techniques/T1110/001/" target="_blank"&gt;https://attack.mitre.org/techniques/T1110/001/&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://attack.mitre.org/techniques/T1078/" target="_blank"&gt;https://attack.mitre.org/techniques/T1078/&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://github.com/jslagrew/cowrieprocessor" target="_blank"&gt;https://github.com/jslagrew/cowrieprocessor&lt;/a&gt;&lt;br /&gt;
+[5] &lt;a href="https://www.shodan.io/host/46.6.14.135" target="_blank"&gt;https://www.shodan.io/host/46.6.14.135&lt;/a&gt;&lt;br /&gt;
+[6] &lt;a href="https://dahuawiki.com/images/Files/QSG/NVR_Series_Quick_Start_Guide_V4.0.0.pdf" target="_blank"&gt;https://dahuawiki.com/images/Files/QSG/NVR_Series_Quick_Start_Guide_V4.0.0.pdf&lt;/a&gt;&lt;br /&gt;
+[7] &lt;a href="https://www.a2t.ro/source/CW-HCVR5108H-V2-Manual.pdf" target="_blank"&gt;https://www.a2t.ro/source/CW-HCVR5108H-V2-Manual.pdf&lt;/a&gt;&lt;br /&gt;
+[8] &lt;a href="https://www.abuseipdb.com/check/46.6.14.135" target="_blank"&gt;https://www.abuseipdb.com/check/46.6.14.135&lt;/a&gt;&lt;br /&gt;
+[9] &lt;a href="https://github.com/alecjaffe/shodan_abuseipdb_xref" target="_blank"&gt;https://github.com/alecjaffe/shodan_abuseipdb_xref&lt;/a&gt;&lt;br /&gt;
+[10] &lt;a href="https://www.shodan.io/search?query=hash%3A1321444670" target="_blank"&gt;https://www.shodan.io/search?query=hash%3A1321444670&lt;/a&gt;&lt;br /&gt;
+[11] &lt;a href="https://attack.mitre.org/techniques/T1059/004/" target="_blank"&gt;https://attack.mitre.org/techniques/T1059/004/&lt;/a&gt;&lt;br /&gt;
+[12] &lt;a href="https://attack.mitre.org/techniques/T1082/" target="_blank"&gt;https://attack.mitre.org/techniques/T1082/&lt;/a&gt;&lt;br /&gt;
+[13] &lt;a href="https://attack.mitre.org/techniques/T1564/001/" target="_blank"&gt;https://attack.mitre.org/techniques/T1564/001/&lt;/a&gt;&lt;br /&gt;
+[14] &lt;a href="https://attack.mitre.org/techniques/T1105/" target="_blank"&gt;https://attack.mitre.org/techniques/T1105/&lt;/a&gt;&lt;br /&gt;
+[15] &lt;a href="https://attack.mitre.org/techniques/T1070/004/" target="_blank"&gt;https://attack.mitre.org/techniques/T1070/004/&lt;/a&gt;&lt;br /&gt;
+[16] &lt;a href="https://gemini.google.com" target="_blank"&gt;https://gemini.google.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;--&lt;br /&gt;
+Jesse La Grew&lt;br /&gt;
+Senior Handler&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32886</guid></item><item><title>Critical Nginx UI auth bypass flaw now actively exploited in the wild</title><link>https://www.bleepingcomputer.com/news/security/critical-nginx-ui-auth-bypass-flaw-now-actively-exploited-in-the-wild/</link><description>A critical vulnerability in Nginx UI with Model Context Protocol (MCP) support is now being exploited in the wild for full server takeover without authentication. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/critical-nginx-ui-auth-bypass-flaw-now-actively-exploited-in-the-wild/</guid><category>Security</category></item><item><title>New AgingFly malware used in attacks on Ukraine govt, hospitals</title><link>https://www.bleepingcomputer.com/news/security/new-agingfly-malware-used-in-attacks-on-ukraine-govt-hospitals/</link><description>A new malware family named 'AgingFly' has been identified in attacks against local governments and hospitals that steal authentication data from Chromium-based browsers and WhatsApp messenger. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-agingfly-malware-used-in-attacks-on-ukraine-govt-hospitals/</guid><category>Security</category></item><item><title>Defense in Depth, Medieval Style</title><link>https://www.schneier.com/blog/archives/2026/04/defense-in-depth-medieval-style.html</link><description>&lt;p&gt;This &lt;a href="https://turkisharchaeonews.net/object/theodosian-land-walls-constantinople"&gt;article&lt;/a&gt; on the walls of Constantinople is fascinating.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;The system comprised four defensive lines arranged in formidable layers:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The brick-lined ditch, divided by bulkheads and often flooded, 15­-20 meters wide and up to 7 meters deep.
@@ -3925,7 +4056,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32898</guid></item><item><title>Microsoft April 2026 Patch Tuesday fixes 167 flaws, 2 zero-days</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-april-2026-patch-tuesday-fixes-167-flaws-2-zero-days/</link><description>Today is Microsoft's April 2026 Patch Tuesday with security updates for 167 flaws, including 2 zero-day vulnerabilities. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-april-2026-patch-tuesday-fixes-167-flaws-2-zero-days/</guid><category>Microsoft</category></item><item><title>What is AEO SEO? Why Answer Engine Optimization Is the Next Evolution of SEO</title><link>https://www.techrepublic.com/article/ai-search-optimization-seo/</link><description>&lt;p&gt;AI search is reshaping how users find information, shifting visibility from rankings to AI-generated answers. HubSpot’s new AEO tool highlights how answer engine optimization is emerging as the next phase of SEO.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32898</guid></item><item><title>What is AEO SEO? Why Answer Engine Optimization Is the Next Evolution of SEO</title><link>https://www.techrepublic.com/article/ai-search-optimization-seo/</link><description>&lt;p&gt;AI search is reshaping how users find information, shifting visibility from rankings to AI-generated answers. HubSpot’s new AEO tool highlights how answer engine optimization is emerging as the next phase of SEO.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/ai-search-optimization-seo/"&gt;What is AEO SEO? Why Answer Engine Optimization Is the Next Evolution of SEO&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4355418</guid><category>Artificial Intelligence</category><category>News</category><category>aeo</category><category>AI optimization</category><category>ai tools</category><category>Answer engine optimization</category><category>hubspot</category><category>seo</category></item><item><title>HubSpot Launches AEO Tool to Help Brands Compete in AI Search</title><link>https://www.techrepublic.com/article/hubspot-launches-aeo-tool/</link><description>&lt;p&gt;HubSpot launches an AEO tool inside Marketing Hub to track AI visibility, citations, and competitors. See what this HubSpot news means for marketers.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/hubspot-launches-aeo-tool/"&gt;HubSpot Launches AEO Tool to Help Brands Compete in AI Search&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4355415</guid><category>Artificial Intelligence</category><category>News</category><category>aeo</category><category>AI optimization</category><category>AI Search</category><category>ai tools</category><category>Answer engine optimization</category><category>hubspot</category><category>seo</category></item><item><title>Toyota Unveils Basketball-Shooting Robot With Vision Tech</title><link>https://www.techrepublic.com/article/news-toyota-cue7-basketball-robot-apac/</link><description>&lt;p&gt;Toyota unveils CUE7, its latest AI basketball-shooting robot, with a lighter build, dynamic controls, and a record-setting history.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-toyota-cue7-basketball-robot-apac/"&gt;Toyota Unveils Basketball-Shooting Robot With Vision Tech&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4355484</guid><category>APAC</category><category>Artificial Intelligence</category><category>Hardware</category><category>International</category><category>News</category><category>Robotics</category><category>ai</category><category>apac</category><category>basketball</category><category>humanoids</category><category>robotics</category><category>robots</category><category>sports</category><category>toyota</category></item><item><title>The FCC Has a Fast Lane for Complaints About Trump’s Media Critics</title><link>https://www.wired.com/story/the-fcc-has-a-fast-lane-for-complaints-about-trumps-media-critics/</link><description>Internal emails obtained by WIRED reveal how a conservative legal group with a direct line into FCC chairman Brendan Carr’s office built the case against Jimmy Kimmel and his employees.</description><guid isPermaLink="false">69d3d5ddb6cdf10383907e3d</guid><category>Politics</category><category>Politics / Politics News</category><category>Security / Security News</category><category>Culture / TV</category><category>Politics / Policy</category><category>FCC</category><category>Media</category><category>politics</category><category>Donald Trump</category><category>Television</category><category>Policy</category><category>Freedom of Information Act</category><category>Direct Access</category></item><item><title>Google $135M Settlement: Millions of Android Users May Qualify for Payout</title><link>https://www.techrepublic.com/article/news-google-135m-android-data-settlement-payout/</link><description>&lt;p&gt;Android users may be eligible for a payout from Google’s $135 million settlement over background data use. Here’s who qualifies and how to claim.&lt;/p&gt;
@@ -7602,7 +7733,7 @@ _Im_WebSession (url_has_any = ioc_domains)
 
 &lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/09/intent-redirection-vulnerability-third-party-sdk-android/"&gt;Intent redirection vulnerability in third-party SDK exposed millions of Android wallets to potential risk&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Android</category></item><item><title>On Microsoft’s Lousy Cloud Security</title><link>https://www.schneier.com/blog/archives/2026/04/on-microsofts-lousy-cloud-security.html</link><description>&lt;p&gt;ProPublica has a &lt;a href="https://arstechnica.com/information-technology/2026/03/federal-cyber-experts-called-microsofts-cloud-a-pile-of-shit-approved-it-anyway/"&gt;scoop&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/09/intent-redirection-vulnerability-third-party-sdk-android/"&gt;Intent redirection vulnerability in third-party SDK exposed millions of Android wallets to potential risk&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146407</guid><category>Android</category></item><item><title>On Microsoft’s Lousy Cloud Security</title><link>https://www.schneier.com/blog/archives/2026/04/on-microsofts-lousy-cloud-security.html</link><description>&lt;p&gt;ProPublica has a &lt;a href="https://arstechnica.com/information-technology/2026/03/federal-cyber-experts-called-microsofts-cloud-a-pile-of-shit-approved-it-anyway/"&gt;scoop&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;In late 2024, the federal government&amp;#8217;s cybersecurity evaluators rendered a troubling verdict on one of Microsoft&amp;#8217;s biggest cloud computing offerings.&lt;/p&gt;
 &lt;p&gt;The tech giant&amp;#8217;s &amp;#8220;lack of proper detailed security documentation&amp;#8221; left reviewers with a &amp;#8220;lack of confidence in assessing the system&amp;#8217;s overall security posture,&amp;#8221; according to an internal government report reviewed by ProPublica.&lt;/p&gt;
 &lt;p&gt;Or, as one member of the team put it: &amp;#8220;The package is a pile of shit.&amp;#8221;&lt;/p&gt;
@@ -7613,603 +7744,9 @@ _Im_WebSession (url_has_any = ioc_domains)
 &lt;p&gt;For years, reviewers said, Microsoft had tried and failed to fully explain how it protects sensitive information in the cloud as it hops from server to server across the digital terrain. Given that and other unknowns, government experts couldn&amp;#8217;t vouch for the technology&amp;#8217;s security.&lt;/p&gt;
 &lt;p&gt;[&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The federal government could be further exposed if it couldn&amp;#8217;t verify the cybersecurity of Microsoft&amp;#8217;s Government Community Cloud High, a suite of cloud-based services intended to safeguard some of the nation&amp;#8217;s most sensitive information.&lt;/p&gt;
-&lt;p&gt;Yet, in a highly unusual move that still reverberates across Washington, the Federal Risk and Authorization Management Program, or FedRAMP, authorized the product anyway, bestowing what amounts to the federal government&amp;#8217;s cybersecurity seal of approval. FedRAMP&amp;#8217;s ruling&amp;#8212;which included a kind of &amp;#8220;buyer beware&amp;#8221; notice to any federal agency considering GCC High&amp;#8212;helped Microsoft expand a government business empire worth billions of dollars.&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=71863</guid><category>Uncategorized</category><category>cloud computing</category><category>cybersecurity</category><category>Microsoft</category><category>national security policy</category><category>security theater</category></item><item><title>Politicians Are Spending More Money on Security as They Increasingly Become Targets</title><link>https://www.wired.com/story/political-campaign-security-spending/</link><description>Political candidates are purchasing more home alarms, bulletproof vests, and other protections amid rising fears of political violence.</description><guid isPermaLink="false">69d3d4f4d114591ebc82e584</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Politics News</category><category>elections</category><category>politics</category><category>Policy</category><category>National Affairs</category><category>Crime</category><category>cybersecurity</category><category>security</category><category>Life Goals</category></item><item><title>ISC Stormcast For Thursday, April 9th, 2026 https://isc.sans.edu/podcastdetail/9886, (Thu, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/32882</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32882</guid></item><item><title>Number Usage in Passwords: Take Two, (Thu, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/32866</link><description>&lt;p&gt;In a previous diary &amp;#x5b;1&amp;#x5d;, we looked to see how numbers were used within passwords submitted to honeypots. One of the items of interest was how dates, and more specifically years, were represented within the data and how that changed over time. It is often seen that years and seasons are used in passwords, especially when password change requirements include frequenty password changes. Some examples we might see today:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;In a previous diary [1], we looked to see how numbers were used within passwords submitted to honeypots. One of the items of interest was how dates, and more specifically years, were represented within the data and how that changed over time. It is often seen that years and seasons are used in passwords, especially when password change requirements include frequenty password changes. Some examples we might see today:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;&lt;code&gt;Spring2026!&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;Spring26&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;April2026&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;April@2026&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;AprilShowers26&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;Bloom2026&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;Easter2026!&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;Passover2026&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;How is this data represented within passwords submitted to honeypots? Are bots updated to incorporate new year values at certain intervals?&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Date range of data:&lt;/strong&gt; 4//21/2024 - 3/29/2026&lt;br /&gt;
-&lt;strong&gt;Number of unique passwords:&lt;/strong&gt; 496,562&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure1.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 500px;" /&gt;&lt;br /&gt;
-Figure 1: Top 10 contiguous numbers used in passwords submitted to sample of DShield honeypots.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;When looking at contiguous numbers used within passwords, we see similar data&amp;nbsp;from a couple of years ago. The top two contigious numbers seen within passwords submitted to honeypots were &amp;quot;123&amp;quot; and &amp;quot;1&amp;quot;. However, rather than many of the other high volume contiguous numbers representing a subset of &amp;quot;123456&amp;quot;, the passwords included other numbers such as &amp;quot;100000&amp;quot;, &amp;quot;19&amp;quot;, &amp;quot;69&amp;quot;, &amp;quot;200&amp;quot;.&lt;/p&gt;
-
-&lt;p&gt;It turns out that this activity was related to a potential DDoS or stress testing of and endpoing using ICMP. &amp;quot;100000&amp;quot; was the desired number of packets sent to the destionation host and the other numbers represented each octet of the destination IP.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure2.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 247px;" /&gt;&lt;br /&gt;
-Figure 2: Passwords submitted to honeypots that were supposed to be commands run once access was gained to the honeypot.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The source IP %%ip:147.45.47.117%% was attempting these commands between 11/18/2024 and 11/24/2024. The activity was seen on honeypots distributed in GCP, Digital Ocean, Azure and a residential honeypot. This was not seen on samples from an AWS honeypot.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Other activities from this source were seen between 11/14/2024 and 12/1/2024. Most of the sessions from this host are repeated attempts to download a script from %%ip:45.125.66.215%% and install it as a service.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure3_v2.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 1003px;" /&gt;&lt;br /&gt;
-Figure 3: Repeated attempts to setup and install a service using a downloaded script from %%ip:45.125.66.215%%.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, the&amp;nbsp;file was not downloaded by any of the honeypots, so there was not a file to reference.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Okay, back to passwords and number usage. Let's take a look at number frequency use in the passwords submitted to honeypots.&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure3.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 500px;" /&gt;&lt;br /&gt;
-Figure 4: Individual number frequency used within passwords submitted to honeypots.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Similar to the previous review, generally the lower the number, the more frequently it's used in a password. The most common digits used are &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;2&amp;quot; and &amp;quot;3&amp;quot;. What about 4-digit numbers?&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure4.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 500px;" /&gt;&lt;br /&gt;
-Figure 5: Top 10 numbers used within passwords submitted to honeypots only containing 4 digits.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;This was also similar to the previous review. &amp;quot;1234&amp;quot; is still the most common and usually the most prevelant year seen is the prior year. We do see &amp;quot;2026&amp;quot; in this list, but since there's only a few months of data, it hasn't quite hit the volume of the previous year. One of the curiousities from this data is when these years get introduced. For example, when does &amp;quot;2026&amp;quot; start getting used within a password submitted to a honeypot?&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure6.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 286px;" /&gt;&lt;br /&gt;
-Figure 6: Heatmap of years used within passwords and when they showed up in honeypot data.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Overall, it appears that 4-digit numbers representing years&amp;nbsp;show up more prevalently in the year in which that&amp;nbsp;data was submitted to a honeypot. From Figure 6, we see that &amp;quot;2025&amp;quot; shows up most frequently in data captured from honeypot logs in 2025. This also appears similar for &amp;quot;2024&amp;quot;. An item that was surprising when looking at the data, is that there were already some hits for &amp;quot;2027&amp;quot;.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure7.PNG" style="border-width: 1px; border-style: solid; width: 1001px; height: 429px;" /&gt;&lt;br /&gt;
-Figure 7: Passwords containing year and their volume over time, showing a small number of submissions containing &amp;quot;2027&amp;quot;.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th scope="col"&gt;Year contained in password&lt;/th&gt;
-			&lt;th scope="col"&gt;First seen in samples&lt;/th&gt;
-			&lt;th scope="col"&gt;Example password&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;11/1/2023&lt;br /&gt;
-			(found in expanded dataset)&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;sysadmin2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/5/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;@dm1n2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;5/6/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;@2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2027&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;8/11/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;2027&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 8: Passwords containing recent years, when they first appeared in the dataset along with some example passwords.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Most of the passwords containing what could be a year are introduced the year before. However, that may vary widely from the beginning to the end of the previous year.&amp;nbsp;There are also many other &amp;quot;future&amp;quot; years seen within the dataset.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure8.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 667px;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 9: Heatmap of future years used within passwords from data collection, showing &amp;quot;2023&amp;quot; was heavily used in the data collected near the end of 2024.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th scope="col"&gt;Year contained in password&lt;/th&gt;
-			&lt;th scope="col"&gt;First seen in samples&lt;/th&gt;
-			&lt;th scope="col"&gt;Example password&lt;/th&gt;
-			&lt;th scope="col"&gt;Password submission source&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2028&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;020283&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2029&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;220291&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2030&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/21/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;1020304050&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:124.220.63.230%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2031&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/24/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;19820313&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:103.174.9.66%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2032&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/24/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;19820320&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:103.174.9.66%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2033&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;110220330&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2034&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;8/11/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;2034&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:45.90.13.172%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2035&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;5/5/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;235842035&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:185.161.248.247%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2036&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;3203672&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2037&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;8/11/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;2037&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:45.90.13.172%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2038&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;020384&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2039&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/27/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;220391&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:27.47.108.14%%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2040&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;4/24/2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;19820402&lt;/code&gt;&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;%%ip:103.174.9.66%%&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 10: Passwords containing future&amp;nbsp;years, when they first appeared in the dataset along with some example passwords.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;In the cases where a future year is being used, the passwords likely have nothing to do with that year. However, there are a few examples that could be dates:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;&lt;code&gt;19820313&lt;/code&gt;: 03/13/1982&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;19820320&lt;/code&gt;: 03/20/1982&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;19820402&lt;/code&gt;: 04/02/1982&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure9.PNG" style="border-width: 1px; border-style: solid; width: 1000px; height: 600px;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 11: In most cases, the years are used at the end of the password, rather than in the middle or beginning of the password.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;From the examples, focusing on a 4-digit number that's added to the end of a password could give us more representative examples of a number used intentionally to represent a year. Passwords containing &amp;quot;2027&amp;quot; for example, have a very different distribution on where they appear in the passwords. We see a much higher liklihood of &amp;quot;2027&amp;quot; being in a variety of locations, rather than just at the end of the password.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;There are also many numbers that could represent specific dates.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure12.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 413px;" /&gt;&lt;br /&gt;
-Figure 12: Examples of numbers that could represent dates using diffrent formats.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Depending on the numbers, it can be difficult to know&amp;nbsp;whether numbers representing days or months come first, but can be clearly determined when a day is greater than 12 since a month cannot have a value greater than 12. Some of these dates are found in passwords that have more content, but in most&amp;nbsp;cases the date alone is used as the password. Some examples:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;&lt;code&gt;w@terloo19051954&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;01011958&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;25031959&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;01011960&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;17101971&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;20101971&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;24101971&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;www.txwscx.comsritgyxf2sxy19831122zx&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;19831123&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;20261017&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;20261109&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;20261111&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For the passwords identified as possibly having dates in a YYYYMMDD, MMDDYYYY or DDMMYYYY format (16,713), 88.9% (14,582) of them were just 8-digit numbers. It was interesting to see years from&amp;nbsp;1958 to 2026. Could this be another habit of using dates of birth or just the current day in passwords?&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure13.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 454px;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 13: Top 10 years seen in passwords if numbers&amp;nbsp;represent&amp;nbsp;specific dates in YYYYMMDD, MMDDYYYY or DDMMYYYY formats.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure14.png" style="border-width: 1px; border-style: solid; width: 1000px; height: 384px;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 14: Possible distrubution of months seen in&amp;nbsp;passwords if numbers&amp;nbsp;represent&amp;nbsp;specific dates in YYYYMMDD, MMDDYYYY or DDMMYYYY formats.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure18.png" style="width: 881px; height: 1200px; border-width: 1px; border-style: solid;" /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 15: Distribution of years found within the dates identified in passwords. There is a heavy focus on dates in the 1980s.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure15(1).png" style="border-width: 1px; border-style: solid; width: 1000px; height: 384px;" /&gt;&lt;br /&gt;
-Figure 16: Image showing possible &amp;quot;age&amp;quot; distributions based on different from dates seen in passwords from today.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;There is a high distribution of &amp;quot;0&amp;quot; year age dates. One hypothesis is that the current day is used within passwords, assuming someone changed their password that day and they used today's date. Looking at general proximity, there were around 1,000 passwords submitted that included dates close to submission date. This represents about 94% of similar passwords submitted in a proximity of 180 days from the password submission date to a honeypot. If the password submitted to a honeypot contains a date and it's close to the current date, it's probably very close.&amp;nbsp;&lt;/p&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-04-09_figure16(1).png" style="border-width: 1px; border-style: solid; width: 1000px; height: 371px;" /&gt;&lt;br /&gt;
-Figure 17: Distribution of passwords containing dates close to the date of interaction with a honeypot.&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;I really enjoyed&amp;nbsp;the heatmaps, but the largest one didn't display well in this diary. It zooms in well [2], so feel free to download it &lt;a href="https://www.dropbox.com/scl/fi/nl995gb6yziostxttxrol/2026-04-09_figure16.png?rlkey=mfu6oteed72ohwhae8ml9y24g&amp;amp;st=192holxm&amp;amp;dl=0" target="_blank"&gt;here&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;To finish things off, the most and least common passwords containing years from sample honeypot data:&lt;/p&gt;
-
-&lt;table align="center" border="1"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;Capture Year&lt;/th&gt;
-			&lt;th&gt;Password&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;ubuntu@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;postgres@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Qwer@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Admin@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;dev@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Azerty2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;P@ssw0rd@2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Itsemoemo2025@Washere2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Admin@2025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;claude2026!&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;20262026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;admin2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;P@ssw0rd2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 18: Most common passwords containing years from honeypot samples.&amp;nbsp;&lt;/strong&gt;&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;table align="center" border="1"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;Capture Year&lt;/th&gt;
-			&lt;th&gt;Password&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;bscs@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;gameserver2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;dell1@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Redis@2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2024&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;redhat2024&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;uqkxipImdQ97hzWScUrk20250402&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;100202500200&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;01022025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;12025988&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2025&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;001002025&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;test-2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;es!2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;P@ssw0rd2026~&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;ec2-user@2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td style="text-align: center;"&gt;2026&lt;/td&gt;
-			&lt;td style="text-align: center;"&gt;&lt;code&gt;Ubuntu!2026&lt;/code&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="text-align: center;"&gt;&lt;strong&gt;Figure 19: Least common passwords containing years from honeypot samples.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Keep years and dates, especially the current year,&amp;nbsp;out of your passwords.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/Number+Usage+in+Passwords/30540" target="_blank"&gt;https://isc.sans.edu/diary/Number+Usage+in+Passwords/30540&lt;/a&gt;&lt;br /&gt;
-[2]&amp;nbsp;&lt;a href="https://www.dropbox.com/scl/fi/nl995gb6yziostxttxrol/2026-04-09_figure16.png?rlkey=mfu6oteed72ohwhae8ml9y24g&amp;amp;st=192holxm&amp;amp;dl=0" target="_blank"&gt;https://www.dropbox.com/scl/fi/nl995gb6yziostxttxrol/2026-04-09_figure16.png?rlkey=mfu6oteed72ohwhae8ml9y24g&amp;amp;st=192holxm&amp;amp;dl=0&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Jesse La Grew&lt;br /&gt;
-Senior Handler&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32866</guid></item><item><title>U.S. Public Sector Under Siege: Threat Intelligence for Q1 2026</title><link>https://www.trendmicro.com/en_us/research/26/d/us-public-sector-under-siege.html</link><description>The first quarter of 2026 has reinforced a hard truth: U.S. government agencies and educational institutions are operating in the most hostile cyber threat environment ever recorded.</description><guid isPermaLink="false">urn:uuid:74201df5-6fa6-543d-15fd-03350fdd676e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>‘We Were Not Ready for This’: Lebanon's Emergency System Is Hanging by a Thread</title><link>https://www.wired.com/story/we-were-not-ready-for-this-lebanons-emergency-system-is-hanging-by-a-thread/</link><description>In Lebanon, nearly 1 in 5 people has been displaced by Israeli attacks, leaving the government to manage a modern crisis without modern digital infrastructure.</description><guid isPermaLink="false">69d66fdf539e5361b486f16b</guid><category>Security</category><category>Israel</category><category>Middle East</category><category>war</category><category>identity</category><category>State of War</category></item><item><title>Why Operationalizing AI Security Is the Next Great Enterprise Hurdle</title><link>https://www.techrepublic.com/article/news-nwn-ai-security-platform-tool-sprawl-alert-fatigue/</link><description>&lt;p&gt;NWN launches an AI-powered security platform to tackle tool sprawl, alert fatigue, and modern cyber threats in the era of agentic enterprises.&lt;/p&gt;
+&lt;p&gt;Yet, in a highly unusual move that still reverberates across Washington, the Federal Risk and Authorization Management Program, or FedRAMP, authorized the product anyway, bestowing what amounts to the federal government&amp;#8217;s cybersecurity seal of approval. FedRAMP&amp;#8217;s ruling&amp;#8212;which included a kind of &amp;#8220;buyer beware&amp;#8221; notice to any federal agency considering GCC High&amp;#8212;helped Microsoft expand a government business empire worth billions of dollars.&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=71863</guid><category>Uncategorized</category><category>cloud computing</category><category>cybersecurity</category><category>Microsoft</category><category>national security policy</category><category>security theater</category></item><item><title>Politicians Are Spending More Money on Security as They Increasingly Become Targets</title><link>https://www.wired.com/story/political-campaign-security-spending/</link><description>Political candidates are purchasing more home alarms, bulletproof vests, and other protections amid rising fears of political violence.</description><guid isPermaLink="false">69d3d4f4d114591ebc82e584</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Politics News</category><category>elections</category><category>politics</category><category>Policy</category><category>National Affairs</category><category>Crime</category><category>cybersecurity</category><category>security</category><category>Life Goals</category></item><item><title>ISC Stormcast For Thursday, April 9th, 2026 https://isc.sans.edu/podcastdetail/9886, (Thu, Apr 9th)</title><link>https://isc.sans.edu/diary/rss/32882</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32882</guid></item><item><title>U.S. Public Sector Under Siege: Threat Intelligence for Q1 2026</title><link>https://www.trendmicro.com/en_us/research/26/d/us-public-sector-under-siege.html</link><description>The first quarter of 2026 has reinforced a hard truth: U.S. government agencies and educational institutions are operating in the most hostile cyber threat environment ever recorded.</description><guid isPermaLink="false">urn:uuid:74201df5-6fa6-543d-15fd-03350fdd676e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>‘We Were Not Ready for This’: Lebanon's Emergency System Is Hanging by a Thread</title><link>https://www.wired.com/story/we-were-not-ready-for-this-lebanons-emergency-system-is-hanging-by-a-thread/</link><description>In Lebanon, nearly 1 in 5 people has been displaced by Israeli attacks, leaving the government to manage a modern crisis without modern digital infrastructure.</description><guid isPermaLink="false">69d66fdf539e5361b486f16b</guid><category>Security</category><category>Israel</category><category>Middle East</category><category>war</category><category>identity</category><category>State of War</category></item><item><title>Why Operationalizing AI Security Is the Next Great Enterprise Hurdle</title><link>https://www.techrepublic.com/article/news-nwn-ai-security-platform-tool-sprawl-alert-fatigue/</link><description>&lt;p&gt;NWN launches an AI-powered security platform to tackle tool sprawl, alert fatigue, and modern cyber threats in the era of agentic enterprises.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nwn-ai-security-platform-tool-sprawl-alert-fatigue/"&gt;Why Operationalizing AI Security Is the Next Great Enterprise Hurdle&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4354911</guid><category>Artificial Intelligence</category><category>Chatbots</category><category>Cybersecurity</category><category>Enterprise Technology</category><category>News</category><category>Security</category><category>Tech &amp; Work</category><category>Tech Industry</category><category>ai security</category><category>cloud security</category><category>cybersecurity trends</category><category>enterprise security</category><category>managed security services</category><category>security operations</category><category>soc modernization</category><category>threat detection</category></item><item><title>10 ChatGPT AI Prompts L1 SOC Analysts Can Use in Their Daily Work</title><link>https://www.techrepublic.com/article/news-chatgpt-prompts-soc-analysts-incident-response/</link><description>&lt;p&gt;Discover 10 practical ChatGPT prompts SOC analysts can use to speed up triage, analyze threats, improve documentation, and enhance incident response workflows.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-chatgpt-prompts-soc-analysts-incident-response/"&gt;10 ChatGPT AI Prompts L1 SOC Analysts Can Use in Their Daily Work&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4354897</guid><category>Artificial Intelligence</category><category>Chatbots</category><category>ChatGPT</category><category>Cybersecurity</category><category>International</category><category>News</category><category>OpenAI</category><category>Security</category><category>chatgpt prompts</category><category>cybersecurity operations</category><category>incident response</category><category>mitre attack</category><category>security automation</category><category>siem</category><category>SOC Analyst</category><category>Threat hunting</category></item><item><title>TeamPCP Supply Chain Campaign: Update 007 - Cisco Source Code Stolen via Trivy-Linked Breach, Google GTIG Tracks TeamPCP as UNC6780, and CISA KEV Deadline Arrives with No Standalone Advisory, (Wed, Apr 8th)</title><link>https://isc.sans.edu/diary/rss/32880</link><description>&lt;p&gt;This is the seventh update to the TeamPCP supply chain campaign threat intelligence report,&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&lt;a href="https://www.sans.org/white-papers/when-security-scanner-became-weapon"&gt;"When the Security Scanner Became the Weapon"&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;(v3.0, March 25, 2026).&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&lt;a href="https://isc.sans.edu/diary/32864"&gt;Update 006&lt;/a&gt;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;covered developments through April 3, including the CERT-EU European Commission breach disclosure, ShinyHunters&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b; confirmation of credential sharing, Sportradar breach details, and Mandiant&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s quantification of 1,000&amp;#x2b; compromised SaaS environments. This update consolidates five days of intelligence from April 3 through April 8, 2026.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;This is the seventh update to the TeamPCP supply chain campaign threat intelligence report,&amp;nbsp;&lt;a href="https://www.sans.org/white-papers/when-security-scanner-became-weapon"&gt;&amp;quot;When the Security Scanner Became the Weapon&amp;quot;&lt;/a&gt;&amp;nbsp;(v3.0, March 25, 2026).&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32864"&gt;Update 006&lt;/a&gt;&amp;nbsp;covered developments through April 3, including the CERT-EU European Commission breach disclosure, ShinyHunters' confirmation of credential sharing, Sportradar breach details, and Mandiant's quantification of 1,000+ compromised SaaS environments. This update consolidates five days of intelligence from April 3 through April 8, 2026.&lt;/p&gt;
-
-&lt;h2 id="high-cisco-development-environment-breached-via-trivy-supply-chain-300-repositories-stolen"&gt;HIGH: Cisco Development Environment Breached via Trivy Supply Chain, 300+ Repositories Stolen&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href="https://www.bleepingcomputer.com/news/security/cisco-source-code-stolen-in-trivy-linked-dev-environment-breach/"&gt;BleepingComputer reported&lt;/a&gt;&amp;nbsp;that threat actors leveraged credentials stolen through the Trivy supply chain compromise (%%cve:2026-33634%%) to breach Cisco's internal development environment. The attackers gained access to build systems and developer workstations through a malicious GitHub Action plugin.&lt;/p&gt;
-
-&lt;p&gt;The breach scope is substantial:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;&lt;strong&gt;Over 300 private GitHub repositories&lt;/strong&gt;&amp;nbsp;containing Cisco source code were cloned, including code for AI-powered products and unreleased items&lt;/li&gt;
-	&lt;li&gt;&lt;strong&gt;Customer repositories&lt;/strong&gt;&amp;nbsp;belonging to banks, business process outsourcing firms, and US government agencies were among those exfiltrated&lt;/li&gt;
-	&lt;li&gt;&lt;strong&gt;AWS keys&lt;/strong&gt;&amp;nbsp;were stolen and used for unauthorized activities across Cisco's cloud accounts&lt;/li&gt;
-	&lt;li&gt;&lt;strong&gt;Multiple threat actors&lt;/strong&gt;&amp;nbsp;were reportedly involved in the Cisco CI/CD and AWS account breaches, &amp;quot;with varying degrees of activity&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ShinyHunters subsequently&amp;nbsp;&lt;a href="https://cybernews.com/security/hackers-blackmail-cisco-over-stolen-salesforce-data/"&gt;expanded their claims&lt;/a&gt;&amp;nbsp;beyond the development environment, alleging access to 3 million or more Salesforce records, additional GitHub repositories, and AWS S3 buckets. The claimed dataset allegedly includes records tied to personnel at FBI, DHS, DISA, IRS, and NASA, as well as the Australian Ministry of Defense and Indian government agencies. These expanded claims have not been independently verified.&lt;/p&gt;
-
-&lt;p&gt;ShinyHunters set an extortion deadline of approximately April 3. As of April 8, no public data dump has materialized and Cisco has not issued a public statement specifically addressing the ShinyHunters extortion claim. The deadline passage without publication, combined with CipherForce's infrastructure outage documented below, represents the second data point suggesting potential friction in the campaign's monetization pipeline.&lt;/p&gt;
-
-&lt;p&gt;The Cisco breach is significant because it is the highest-profile technology company confirmed as a direct victim of the Trivy supply chain compromise. The involvement of multiple threat actors in a single victim's environment is consistent with the credential-sharing pattern documented in&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32864"&gt;Update 006&lt;/a&gt;. The theft of customer source code repositories for banks and US government agencies creates secondary exposure obligations for downstream organizations.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended action:&lt;/strong&gt;&amp;nbsp;Organizations that are Cisco customers or partners, particularly those with source code or build artifacts hosted in Cisco's development infrastructure, should contact Cisco to determine whether their repositories were among those exfiltrated. Organizations using Cisco AI products should monitor for unauthorized use of stolen source code.&lt;/p&gt;
-
-&lt;h2 id="medium-google-gtig-formally-designates-teampcp-as-unc6780"&gt;MEDIUM: Google GTIG Formally Designates TeamPCP as UNC6780&lt;/h2&gt;
-
-&lt;p&gt;Google Threat Intelligence Group (GTIG) has assigned the formal tracking designation&amp;nbsp;&lt;strong&gt;UNC6780&lt;/strong&gt;&amp;nbsp;to TeamPCP. The designation appeared in GTIG's&amp;nbsp;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package"&gt;analysis of the axios npm supply chain attack&lt;/a&gt;, which attributed that separate compromise to North Korean threat actor UNC1069. In distinguishing the two campaigns, GTIG identified TeamPCP/UNC6780 as the financially motivated group responsible for the Trivy, Checkmarx, LiteLLM, and Telnyx compromises. GTIG also named TeamPCP's credential stealer payload as&amp;nbsp;&lt;strong&gt;SANDCLOCK&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;The UNC6780 designation is significant for three reasons. First, it confirms Google is formally tracking TeamPCP as a distinct, persistent threat actor rather than treating the campaign as a series of unrelated incidents. Second, UNC (uncategorized) designations in Google's taxonomy indicate the threat actor does not yet map to a known state-sponsored cluster, reinforcing the financially motivated assessment from earlier reporting. Third, the designation provides a standardized reference for cross-vendor threat intelligence sharing as multiple organizations (Mandiant, Wiz, Unit 42, Elastic, Datadog) independently track overlapping aspects of the campaign.&lt;/p&gt;
-
-&lt;p&gt;The&amp;nbsp;&lt;a href="https://cloud.google.com/security/report/resources/cloud-threat-horizons-report-h1-2026"&gt;Google Cloud Threat Horizons H1 2026&lt;/a&gt;&amp;nbsp;report also covers UNC6780. Analysts assess the formal GTIG tracking designation, combined with Mandiant's engagement on the LiteLLM forensics and their quantification of 1,000+ compromised SaaS environments, indicates Google considers UNC6780 a top-tier financially motivated threat actor.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended action:&lt;/strong&gt;&amp;nbsp;Organizations using Google Chronicle, VirusTotal, or Mandiant Advantage should search for UNC6780 indicators in their environments. The SANDCLOCK designation provides a specific malware family name for detection rule authoring.&lt;/p&gt;
-
-&lt;h2 id="medium-cipherforce-leak-infrastructure-goes-dark-as-sportradar-deadline-approaches"&gt;MEDIUM: CipherForce Leak Infrastructure Goes Dark as Sportradar Deadline Approaches&lt;/h2&gt;
-
-&lt;p&gt;CipherForce's two known Tor-based leak sites remain unavailable, confirmed via&amp;nbsp;&lt;a href="https://www.ransomware.live/group/cipherforce"&gt;ransomware tracking services&lt;/a&gt;. The group has not posted new victims since February 23, 2026 (a gap of 44 days). This infrastructure outage coincides with the approaching Sportradar AG data publication deadline (approximately April 10-11), which was set when CipherForce first claimed the Sportradar breach around March 26-27.&lt;/p&gt;
-
-&lt;p&gt;Analysts assess three possible explanations: (1) the outage may be related to the internal friction and &amp;quot;mole hunt&amp;quot;&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32864"&gt;reported in Update 006&lt;/a&gt;, suggesting operational disruption within the TeamPCP ecosystem is affecting CipherForce's ability to maintain infrastructure; (2) the sites may have been deliberately taken offline as an operational security measure following increased law enforcement and researcher attention; or (3) the outage may be temporary and unrelated to operational factors.&lt;/p&gt;
-
-&lt;p&gt;The Sportradar deadline remains the key near-term indicator. If CipherForce's infrastructure returns online with published Sportradar data around April 10-11, it would confirm the group remains operationally capable despite reported infighting. If the deadline passes without publication, it may signal meaningful disruption to TeamPCP's ransomware operations. The ShinyHunters/Cisco extortion deadline lapsing on approximately April 3 without a visible data dump adds a second data point suggesting potential friction in the monetization pipeline, though negotiations may be occurring privately.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended action:&lt;/strong&gt;&amp;nbsp;Organizations monitoring the Sportradar breach (particularly the 161 client organizations and third-party credential holders identified in&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32864"&gt;Update 006&lt;/a&gt;) should continue preparing for potential data publication while noting the operational uncertainty.&lt;/p&gt;
-
-&lt;h2 id="medium-cisa-kev-deadline-arrives-still-no-standalone-advisory-at-day-27"&gt;MEDIUM: CISA KEV Deadline Arrives, Still No Standalone Advisory at Day 27&lt;/h2&gt;
-
-&lt;p&gt;The CISA KEV remediation deadline for %%cve:2026-33634%% is&amp;nbsp;&lt;strong&gt;today, April 8, 2026&lt;/strong&gt;. Federal civilian executive branch agencies are required to have remediated under BOD 22-01. CISA has not issued a standalone advisory, emergency directive, or joint advisory with FBI/NSA specific to the TeamPCP campaign. The regulatory response gap noted in&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32846"&gt;Update 004&lt;/a&gt;&amp;nbsp;persists at day 27 since the campaign's initial compromise.&lt;/p&gt;
-
-&lt;p&gt;For comparison, Singapore's Cyber Security Agency remains the only government worldwide to have issued dedicated advisories, now totaling two:&amp;nbsp;&lt;a href="https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-001/"&gt;AD-2026-001&lt;/a&gt;&amp;nbsp;(TeamPCP campaign, March 27) and AD-2026-002 (axios npm compromise). No advisories from NCSC (UK), ACSC (Australia), CCCS (Canada), or BSI (Germany) have been identified. The absence of a Five Eyes joint advisory for a campaign of this scale (1,000+ SaaS environments, a confirmed EU government breach, and active ransomware partnerships) is notable.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended action:&lt;/strong&gt;&amp;nbsp;Organizations that have not yet completed remediation should treat the KEV deadline as a hard compliance checkpoint. Beyond patching Trivy to v0.69.2+, trivy-action to v0.35.0, or setup-trivy to v0.2.6, organizations must also complete credential rotation for any secrets that may have been exposed during the March 19-27 compromise window. Patching alone is insufficient without credential rotation.&lt;/p&gt;
-
-&lt;h2 id="medium-shinyhunters-claims-snowflakeanodot-breach-in-parallel-operation"&gt;MEDIUM: ShinyHunters Claims Snowflake/Anodot Breach in Parallel Operation&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href="https://www.bleepingcomputer.com/news/security/snowflake-customers-hit-in-data-theft-attacks-after-saas-integrator-breach/"&gt;BleepingComputer reported&lt;/a&gt;&amp;nbsp;on April 7 that ShinyHunters claimed responsibility for data theft from over a dozen Snowflake customers via compromised authentication tokens from Anodot, a SaaS data anomaly detection provider. ShinyHunters confirmed stealing data &amp;quot;from dozens of companies&amp;quot; and demanded ransom payments.&lt;/p&gt;
-
-&lt;p&gt;This breach appears to be a separate operation from the TeamPCP supply chain campaign, with the attack vector being stolen Anodot authentication tokens rather than TeamPCP-sourced credentials. However, it is operationally significant because ShinyHunters is the same group that&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/32864"&gt;confirmed in Update 006&lt;/a&gt;&amp;nbsp;they had accessed credentials from the TeamPCP trove. ShinyHunters is now running at least two concurrent campaigns: TeamPCP credential exploitation (European Commission data publication, Cisco extortion) and the Anodot/Snowflake breach. Their sustained operational tempo across multiple fronts suggests the group has significant capacity and is not constrained by any single operation.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended action:&lt;/strong&gt;&amp;nbsp;Organizations using Snowflake or Anodot should follow Snowflake's guidance for affected customers. For the TeamPCP campaign specifically, this development reinforces that ShinyHunters represents an active and expanding threat vector for stolen credential monetization.&lt;/p&gt;
-
-&lt;h2 id="info-supply-chain-pause-extends-to-24-days"&gt;INFO: Supply Chain Pause Extends to 24 Days&lt;/h2&gt;
-
-&lt;p&gt;No new package compromises have been reported since the Telnyx PyPI disclosure on March 27. The supply chain pause is now approximately 576 hours (24 days). No compromises in RubyGems,&amp;nbsp;&lt;a href="http://crates.io"&gt;crates.io&lt;/a&gt;, or Maven Central have been reported by any source monitoring these registries. The campaign remains confined to five ecosystems: GitHub Actions, PyPI, npm, Docker Hub/GHCR, and OpenVSX.&lt;/p&gt;
-
-&lt;p&gt;The extended pause, now the longest since the campaign began on March 19, is consistent with the operational phase transition from supply chain compromise to credential monetization. TeamPCP/UNC6780 retains an estimated 300 GB+ of stolen credentials, and multiple groups (LAPSUS$, Vect, ShinyHunters) continue actively exploiting this material as documented in prior updates.&lt;/p&gt;
-
-&lt;h2 id="info-campaign-receding-from-daily-security-news-coverage"&gt;INFO: Campaign Receding from Daily Security News Coverage&lt;/h2&gt;
-
-&lt;p&gt;Notably, the April 6-8 period produced no new TeamPCP-specific articles from major Tier 1 security publications (BleepingComputer, The Record, SecurityWeek, Dark Reading). The SANS ISC Stormcast episodes for&amp;nbsp;&lt;a href="https://isc.sans.edu/podcastdetail/9882"&gt;April 7&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://isc.sans.edu/podcastdetail/9884"&gt;April 8&lt;/a&gt;&amp;nbsp;did not mention TeamPCP. This contrasts with the March 25 through April 3 period when the campaign generated daily coverage across multiple outlets.&lt;/p&gt;
-
-&lt;p&gt;Analysts assess this reflects the campaign transitioning from active supply chain compromise (which generates immediate news coverage) to credential monetization (which generates coverage only when specific victims are disclosed). The underlying threat has not diminished; Mandiant's assessment of 1,000+ compromised SaaS environments and an estimated 500,000 machines means the blast radius is still expanding through discovery rather than new attacks.&lt;/p&gt;
-
-&lt;h2 id="watch-item-status"&gt;Watch Item Status&lt;/h2&gt;
-
-&lt;table border="1"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;Watch Item&lt;/th&gt;
-			&lt;th&gt;Status&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Cisco development environment breach&lt;/td&gt;
-			&lt;td&gt;300+ repos stolen via Trivy supply chain; ShinyHunters April 3 extortion deadline passed without visible data dump; expanded claims include 3M+ Salesforce records; no Cisco public statement&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Google GTIG tracking&lt;/td&gt;
-			&lt;td&gt;TeamPCP formally designated UNC6780; credential stealer named SANDCLOCK&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;CipherForce infrastructure&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;OFFLINE&lt;/strong&gt;: Both Tor leak sites unavailable for 44+ days; no new victims posted since Feb 23&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Sportradar data publication deadline&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;IMMINENT&lt;/strong&gt;: CipherForce deadline approximately April 10-11; leak infrastructure currently offline&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;CISA KEV deadline (April 8)&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;TODAY&lt;/strong&gt;: Federal agencies required to have remediated under BOD 22-01; no standalone advisory at day 27&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;ShinyHunters operations&lt;/td&gt;
-			&lt;td&gt;Running concurrent campaigns: TeamPCP credential exploitation AND Snowflake/Anodot breach (April 7); high operational tempo&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;TeamPCP internal friction&lt;/td&gt;
-			&lt;td&gt;Infighting and &amp;quot;mole hunt&amp;quot; reported; may be connected to CipherForce infrastructure outage and lapsed extortion deadlines&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Campaign blast radius&lt;/td&gt;
-			&lt;td&gt;Mandiant: 1,000+ SaaS environments; organizations still discovering breaches from initial wave&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Databricks official statement&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;Pending&lt;/strong&gt;: No official disclosure or denial; internal investigation ongoing per Update 004&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;AstraZeneca confirmation or denial&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;No official statement&lt;/strong&gt;: Now approximately 19 days since initial LAPSUS$ claim; data released for free after failed monetization&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Additional package compromises&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;No new compromises&lt;/strong&gt;: 24-day pause, longest since campaign began&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;CISA standalone advisory&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;Pending at day 27&lt;/strong&gt;: KEV entries, FBI alert, and Singapore CSA advisories only&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Expansion to RubyGems/crates.io/Maven&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;Not observed&lt;/strong&gt;: No compromises reported in these registries&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Law enforcement action&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;No public action&lt;/strong&gt;: No arrests, indictments, or infrastructure seizures&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;ownCloud build restoration&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;Pending&lt;/strong&gt;: Build infrastructure remains fully offline; no restoration timeline provided&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Vect ransomware affiliate deployments&lt;/td&gt;
-			&lt;td&gt;&lt;strong&gt;No confirmed mass deployments&lt;/strong&gt;: Sportradar confirmed as joint operation; no broad affiliate activity reported&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/32880</guid></item><item><title>New Scam Alert: QR Codes Replace Links in Traffic Ticket Phishing</title><link>https://www.techrepublic.com/article/news-qr-code-traffic-ticket-scam-2026/</link><description>&lt;p&gt;Scammers are using fake traffic violation texts with QR codes to steal personal and financial data, posing as state courts and government agencies.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-chatgpt-prompts-soc-analysts-incident-response/"&gt;10 ChatGPT AI Prompts L1 SOC Analysts Can Use in Their Daily Work&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4354897</guid><category>Artificial Intelligence</category><category>Chatbots</category><category>ChatGPT</category><category>Cybersecurity</category><category>International</category><category>News</category><category>OpenAI</category><category>Security</category><category>chatgpt prompts</category><category>cybersecurity operations</category><category>incident response</category><category>mitre attack</category><category>security automation</category><category>siem</category><category>SOC Analyst</category><category>Threat hunting</category></item><item><title>New Scam Alert: QR Codes Replace Links in Traffic Ticket Phishing</title><link>https://www.techrepublic.com/article/news-qr-code-traffic-ticket-scam-2026/</link><description>&lt;p&gt;Scammers are using fake traffic violation texts with QR codes to steal personal and financial data, posing as state courts and government agencies.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-qr-code-traffic-ticket-scam-2026/"&gt;New Scam Alert: QR Codes Replace Links in Traffic Ticket Phishing&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4354844</guid><category>Cybersecurity</category><category>Mobile</category><category>News</category><category>Security</category><category>Smartphones</category><category>Software</category><category>cybersecurity threats</category><category>data privacy</category><category>identity theft</category><category>mobile scams</category><category>phishing attacks</category><category>qr code scams</category><category>scam alerts</category><category>traffic ticket scam</category></item><item><title>‘BlueHammer’ Exploit Targets Windows, Potentially Impacting 1 Billion+ Devices</title><link>https://www.techrepublic.com/article/news-bluehammer-windows-zero-day-exploit-microsoft/</link><description>&lt;p&gt;A researcher released a working ‘BlueHammer’ Windows zero-day exploit that could impact over 1 billion devices, granting SYSTEM-level access and leaving no patch yet.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-bluehammer-windows-zero-day-exploit-microsoft/"&gt;‘BlueHammer’ Exploit Targets Windows, Potentially Impacting 1 Billion+ Devices&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4354837</guid><category>Cybersecurity</category><category>Microsoft</category><category>News</category><category>Operating System</category><category>Security</category><category>Windows</category><category>bluehammer</category><category>cybersecurity threat</category><category>exploit release</category><category>privilege escalation</category><category>system access</category><category>windows security</category><category>zero-day vulnerability</category></item><item><title>Python Supply-Chain Compromise</title><link>https://www.schneier.com/blog/archives/2026/04/python-supply-chain-compromise.html</link><description>&lt;p&gt;This is &lt;a href="https://www.truesec.com/hub/blog/malicious-pypi-package-litellm-supply-chain-compromise"&gt;news&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;A malicious supply chain compromise has been identified in the Python Package Index package litellm version 1.82.8. The published wheel contains a malicious .pth file (litellm_init.pth, 34,628 bytes) which is automatically executed by the Python interpreter on every startup, without requiring any explicit import of the litellm module.&lt;/p&gt;&lt;/blockquote&gt;
@@ -8928,7 +8465,7 @@ CloudAppEvents
 
 
 &lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/07/soho-router-compromise-leads-to-dns-hijacking-and-adversary-in-the-middle-attacks/"&gt;SOHO router compromise leads to DNS hijacking and adversary-in-the-middle attacks&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Adversary-in-the-middle (AiTM)</category><category>Cyberespionage</category><category>Forest Blizzard</category><category>State-sponsored threat actor</category></item><item><title>Claude Code Packaging Error Remains a Lure in an Active Campaign: What Defenders Should Do</title><link>https://www.trendmicro.com/en_us/research/26/d/claude-code-remains-a-lure-what-defenders-should-do.html</link><description>Threat actors leveraged Anthropic’s Claude Code npm release packaging error to distribute Vidar, GhostSocks, and PureLog Stealer. This blog details immediate steps organizations can take and best practices to prevent further risk.</description><guid isPermaLink="false">urn:uuid:788d6ca5-c382-1f99-8405-0bbffcfab2af</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Why Every Enterprise Needs a Risk Operations Center (ROC)</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Enterprise security has long optimized for speed of response over prevention of risk. At Qualys, we recognized early that this left half the problem unsolved, and we have spent years building the operational frameworks to close that gap. The Risk Operations Center is the result. Here is a scenario every security leader will recognize. A [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;em&gt;Enterprise security has long optimized for speed of response over prevention of risk. At Qualys, we recognized early that this left half the problem unsolved, and we have spent years building the operational frameworks to close that gap. The Risk Operations Center is the result.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/07/soho-router-compromise-leads-to-dns-hijacking-and-adversary-in-the-middle-attacks/"&gt;SOHO router compromise leads to DNS hijacking and adversary-in-the-middle attacks&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146395</guid><category>Adversary-in-the-middle (AiTM)</category><category>Cyberespionage</category><category>Forest Blizzard</category><category>State-sponsored threat actor</category></item><item><title>Claude Code Packaging Error Remains a Lure in an Active Campaign: What Defenders Should Do</title><link>https://www.trendmicro.com/en_us/research/26/d/claude-code-remains-a-lure-what-defenders-should-do.html</link><description>Threat actors leveraged Anthropic’s Claude Code npm release packaging error to distribute Vidar, GhostSocks, and PureLog Stealer. This blog details immediate steps organizations can take and best practices to prevent further risk.</description><guid isPermaLink="false">urn:uuid:788d6ca5-c382-1f99-8405-0bbffcfab2af</guid><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Why Every Enterprise Needs a Risk Operations Center (ROC)</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Enterprise security has long optimized for speed of response over prevention of risk. At Qualys, we recognized early that this left half the problem unsolved, and we have spent years building the operational frameworks to close that gap. The Risk Operations Center is the result. Here is a scenario every security leader will recognize. A [&amp;#8230;]</description><content:encoded>&lt;p&gt;&lt;em&gt;Enterprise security has long optimized for speed of response over prevention of risk. At Qualys, we recognized early that this left half the problem unsolved, and we have spent years building the operational frameworks to close that gap. The Risk Operations Center is the result.&lt;/em&gt;&lt;/p&gt;
 
 
 
@@ -10744,7 +10281,7 @@ DeviceProcessEvents
 
 
 &lt;p class="wp-block-paragraph"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/02/cookie-controlled-php-webshells-tradecraft-linux-hosting-environments/"&gt;Cookie-controlled PHP webshells: A stealthy tradecraft in Linux hosting environments&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Linux</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/02/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added&amp;nbsp;one&amp;nbsp;new&amp;nbsp;vulnerability&amp;nbsp;to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/02/cookie-controlled-php-webshells-tradecraft-linux-hosting-environments/"&gt;Cookie-controlled PHP webshells: A stealthy tradecraft in Linux hosting environments&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146255</guid><category>Linux</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/02/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added&amp;nbsp;one&amp;nbsp;new&amp;nbsp;vulnerability&amp;nbsp;to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-3502" target="_blank"&gt;CVE-2026-3502&lt;/a&gt;&amp;nbsp;TrueConf&amp;nbsp;Client Download of Code Without Integrity Check Vulnerability&amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
