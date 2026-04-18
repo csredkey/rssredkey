@@ -1,5 +1,859 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 18 Apr 2026 09:59:26 +0000</lastBuildDate><item><title>Mythos and Cybersecurity</title><link>https://www.schneier.com/blog/archives/2026/04/mythos-and-cybersecurity.html</link><description>&lt;p&gt;Last week, Anthropic pulled back the curtain on &lt;a href="https://red.anthropic.com/2026/mythos-preview/"&gt;Claude Mythos Preview&lt;/a&gt;, an AI model so capable at finding and exploiting software vulnerabilities that the company &lt;a href="https://globalnews.ca/news/11769446/anthropic-ai-model-too-powerful/"&gt;decided&lt;/a&gt; it was too dangerous to release to the public. Instead, access has been &lt;a href="https://thehill.com/policy/technology/5824219-anthropic-new-ai-dangerous-public/"&gt;restricted&lt;/a&gt; to roughly 50 organizations&amp;#8212;Microsoft, Apple, Amazon Web Services, CrowdStrike and other vendors of critical infrastructure&amp;#8212;under an initiative called &lt;a href="https://www.anthropic.com/glasswing"&gt;Project Glasswing&lt;/a&gt;.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 18 Apr 2026 15:59:23 +0000</lastBuildDate><item><title>Critical flaw in Protobuf library enables JavaScript code execution</title><link>https://www.bleepingcomputer.com/news/security/critical-flaw-in-protobuf-library-enables-javascript-code-execution/</link><description>Proof-of-concept exploit code has been published for a critical remote code execution flaw in protobuf.js, a widely used JavaScript implementation of Google's Protocol Buffers. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/critical-flaw-in-protobuf-library-enables-javascript-code-execution/</guid><category>Security</category></item><item><title>Microsoft Teams right-click paste broken by Edge update bug</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-teams-right-click-paste-broken-by-edge-update-bug/</link><description>Microsoft is warning that a recent Microsoft Edge browser update introduced a bug that breaks right-click paste in chats in the Microsoft Teams desktop client. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-teams-right-click-paste-broken-by-edge-update-bug/</guid><category>Microsoft</category></item><item><title>NAKIVO v11.2: Ransomware Defense, Faster Replication, vSphere 9, and Proxmox VE 9.0 Support</title><link>https://www.bleepingcomputer.com/news/security/nakivo-v112-ransomware-defense-faster-replication-vsphere-9-and-proxmox-ve-90-support/</link><description>NAKIVO Inc. announced the general availability of NAKIVO Backup &amp; Replication v11.2, focused on fast, reliable, and proactive data protection. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/nakivo-v112-ransomware-defense-faster-replication-vsphere-9-and-proxmox-ve-90-support/</guid><category>Security</category></item><item><title>Cross‑tenant helpdesk impersonation to data exfiltration: A human-operated intrusion playbook</title><link>https://www.microsoft.com/en-us/security/blog/2026/04/18/crosstenant-helpdesk-impersonation-data-exfiltration-human-operated-intrusion-playbook/</link><description>&lt;p&gt;Threat actors are abusing external Microsoft Teams collaboration to impersonate IT helpdesk staff and convince users to grant remote access. Once inside, attackers can abuse legitimate tools and standard admin protocols to move laterally and exfiltrate data while appearing as routine IT support—activity Microsoft Defender helps detect across Teams, endpoint, and identity telemetry.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/18/crosstenant-helpdesk-impersonation-data-exfiltration-human-operated-intrusion-playbook/"&gt;Cross‑tenant helpdesk impersonation to data exfiltration: A human-operated intrusion playbook&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-e9f70be9-39a3-4792-835a-50873c36dd87"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-e9f70be9-39a3-4792-835a-50873c36dd87"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#risk-to-enterprise-environments"&gt;Risk to enterprise environments&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-1-initial-contact-via-teams-t1566-003-spearphishing-via-service"&gt;Stage 1: Initial contact via Teams (T1566.003 Spearphishing via Service)&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-2-remote-assistance-foothold"&gt;Stage 2: Remote assistance foothold&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-3-interactive-reconnaissance-and-access-validation"&gt;Stage 3: Interactive reconnaissance and access validation&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-4-payload-placement-and-trusted-application-invocation"&gt;Stage 4: Payload placement and trusted application invocation&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-5-execution-context-validation-and-registry-backed-loader-state"&gt;Stage 5: Execution context validation and registry backed loader state&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-6-command-and-control"&gt;Stage 6: Command and control&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-7-internal-discovery-and-lateral-movement-toward-high-value-assets"&gt;Stage 7: Internal discovery and lateral movement toward high value assets&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-8-remote-deployment-of-auxiliary-access-tooling-level-rmm"&gt;Stage 8: Remote deployment of auxiliary access tooling (Level RMM)&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#stage-9-data-exfiltration"&gt;Stage 9: Data exfiltration&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-protection-outcomes"&gt;Microsoft protection outcomes&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#hunting-queries"&gt;Hunting queries&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#references"&gt;References&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn More&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors are initiating cross-tenant Microsoft Teams communications while impersonating IT or helpdesk personnel to socially engineer users into granting remote desktop access. After access is established through Quick Assist or similar remote support tools, attackers often execute trusted vendor-signed applications alongside attacker-supplied modules to enable malicious code execution. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This access pathway might be used to perform credential-backed lateral movement using native administrative protocols such as Windows Remote Management (WinRM), allowing threat actors to pivot toward high-value assets including domain controllers. In observed intrusions, follow-on commercial remote management software and data transfer utilities such as Rclone were used to expand access across the enterprise environment and stage business-relevant information for transfer to external cloud storage. This intrusion chain relies heavily on legitimate applications and administrative protocols, allowing threat actors to blend into expected enterprise activity during multiple intrusion phases.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Threat actors are increasingly abusing external Microsoft Teams collaboration to impersonate IT or helpdesk personnel and convince users to grant remote assistance access. From this initial foothold, attackers can leverage trusted tools and native administrative protocols to move laterally across the enterprise and stage sensitive data for exfiltration—often blending into routine IT support activity throughout the intrusion lifecycle. Microsoft Defender provides correlated visibility across identity, endpoint, and collaboration telemetry to help detect and disrupt this user‑initiated access pathway before it escalates into broader compromise.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="risk-to-enterprise-environments"&gt;Risk to enterprise environments&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By abusing enterprise collaboration workflows instead of traditional email‑based phishing channels, attackers may initiate contact through applications such as Microsoft Teams in a way that appears consistent with routine IT support interactions. While Teams includes built‑in security features such as external‑sender labeling and Accept/Block prompts, this attack chain relies on convincing users to bypass those warnings and voluntarily grant remote access through legitimate support tools. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In observed intrusions, risk is introduced not by external messaging alone, but when a user approves follow‑on actions — such as launching a remote assistance session — that result in interactive system access.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;An approved external Teams interaction might enable threat actors to:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Establish credential-backed interactive system access &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Deploy trusted applications to execute attacker-controlled code &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Pivot toward identity and domain infrastructure using WinRM &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Deploy commercially available remote management tooling &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Stage sensitive business-relevant data for transfer to external cloud infrastructure &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In the campaign, lateral movement and follow-on tooling installation occurred shortly after initial access, increasing the risk of enterprise-wide persistence and targeted data exfiltration. As each environment is different and with potential handoff to different threat actors, stages might differ if not outright bypassed.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146658 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-38.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1: Attack chain.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-1-initial-contact-via-teams-t1566-003-spearphishing-via-service"&gt;Stage 1: Initial contact via Teams (T1566.003 Spearphishing via Service)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The intrusion begins with abuse of external collaboration features in Microsoft Teams, where an attacker operating from a separate tenant initiates contact while impersonating internal support personnel as a means to social engineer the user. Because interaction occurs within an enterprise collaboration platform rather than through traditional email‑based phishing vectors, it might bypass initial user skepticism associated with unsolicited external communication. Security features protecting Teams users are detailed &lt;a href="https://learn.microsoft.com/en-us/microsoftteams/teams-security-guide"&gt;here&lt;/a&gt;, for reference. It’s important to note that this attack relies on users willfully ignoring or overlooking security notices and other protection features.  The lure varies and might include “Microsoft Security Update”, “Spam Filter Update”, “Account Verification” but the objective is constant: convince the user to ignore warnings and external contact flags, launch a remote management session, and accept elevation. Voice phishing (vishing) is sometimes layered to increase trust or compliance if they don’t replace the messaging altogether.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Timing matters. We regularly see a “ChatCreated” event to indicate a first contact situation, followed by suspicious chats or vishing, remote management, and other events t that commonly produce alerts to include mailbombing or URL click alerts.   All of these can be correlated by account and chat thread information in your Defender hunting environment.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Teams security warnings:&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;External Accept/Block screens provide notice to users about First Contact events, which prompt the user to inspect the sender’s identity before accepting:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146659 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-39.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: External Accept/Block screens.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Higher confidence warnings alert the user of spam or phishing attempts on first contact:&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146660 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-40.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: spam or phishing alert.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;External warnings notify users that they are communicating with a tenant/organization other than their own and should be treated with scrutiny:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146661 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-41.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: External warnings.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Message warnings alert the user on the risk in clicking the URL:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146663 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-43.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: URL click warning.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Safe Links for time-of-click protection warns users when URLs from Teams chat messages are malicious:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146664 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-44.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: time-of-click protection warning.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Zero-hour Auto Purge (ZAP) can remove messages that were flagged as malicious after they have been sent:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146665 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-45.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: Removed malicious from ZAP.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;It’s important to note that the attacker often does not send the URL over a Teams message. Instead, they will navigate to it while on the endpoint during a remote management session. Therefore, the best security is user education on understanding the importance of not ignoring external flags for new helpdesk contacts. See “User education” in the “Defend, harden, and educate (Controls to deploy now)” section for further advice.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-2-remote-assistance-foothold"&gt;Stage 2: Remote assistance foothold&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;With user consent obtained through social engineering, the attacker gains interactive control of the device using remote support tools such as Quick Assist. This access typically results in the launch of QuickAssist.exe, followed by the display of standard Windows elevation prompts through Consent.exe as the attacker is guided through approval steps.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146666 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-46.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Quick Assist Key Logs.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;From the user’s perspective, the attacker  convinces them to open Quick Assist, enter a short key, the follow all prompts and approvals to grant access.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146667 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-47.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9 &amp;#8211; Quick Assist Launch.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This step is often completed in under a minute. The urgency and interactivity are the signal: a remote‑assist process tree followed immediately by “cmd.exe” or PowerShell on the same desktop.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-3-interactive-reconnaissance-and-access-validation"&gt;Stage 3: Interactive reconnaissance and access validation&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Immediately after establishing control through Quick Assist, the attacker typically spends the first 30–120 seconds assessing their level of access and understanding the compromised environment. This is often reflected by a brief surge of &lt;em&gt;cmd.exe&lt;/em&gt; activity, used to verify user context and privilege levels, gather basic system information such as host identity and operating system details, and confirm domain affiliation. In parallel, the attacker might query registry values to determine OS build and edition, while also performing quick network reconnaissance to evaluate connectivity, reachability, and potential opportunities for lateral movement.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146668 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-48.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10: Enumeration.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;On systems with limited privileges—such as kiosks, VDI, or non-corp-joined devices—actors might pause without deploying payloads, leaving only brief reconnaissance activity. They often return later when access improves or pivot to other targets within the same tenant.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-4-payload-placement-and-trusted-application-invocation"&gt;Stage 4: Payload placement and trusted application invocation&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once remote access is established, the intrusion transitions from user‑assisted interaction to preparing the environment for persistent execution. At this point, attackers introduce a small staging bundle onto disk using either archive‑based deployment or short‑lived scripting activity.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After access is established, attackers stage payloads in locations such as ProgramData and execute them using DLL side‑loading through trusted signed applications. This includes: &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;AcroServicesUpdater2_x64.exe loading a staged msi.dll&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;ADNotificationManager.exe loading vcruntime140_1.dll&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;DlpUserAgent.exe loading mpclient.dll&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;werfault.exe loading Faultrep.dll&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Allowing attacker‑supplied modules to run under a trusted execution context from non‑standard paths.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146669 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-49.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11: Sample Payload.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-5-execution-context-validation-and-registry-backed-loader-state"&gt;Stage 5: Execution context validation and registry backed loader state&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Following payload delivery, the attacker performs runtime checks to validate host conditions before execution. A large encoded value is then written to a user‑context registry location, serving as a staging container for encrypted configuration data to be retrieved later at runtime.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146670 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-50.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12: Representative commands / actions (sanitized).&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In this stage, a sideloaded module acting as an intermediary loader decrypts staged registry data in memory to reconstruct execution and C2 configuration without writing files to disk. This behavior aligns with intrusion frameworks such as Havoc, which externalize encrypted configuration to registry storage, allowing trusted sideloaded components to dynamically recover execution context and maintain operational continuity across restarts or remediation events.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender for Endpoint may detect this activity as:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Unexpected DLL load by trusted application&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Service‑path execution outside vendor installation directory&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Execution from user‑writable directories such as ProgramData&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Attack surface reduction rules and Windows Defender Application Control policies can be used to restrict execution pathways commonly leveraged for sideloaded module activation.&lt;a id="_msocom_3"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-6-command-and-control"&gt;Stage 6: Command and control&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Following successful execution of the sideloaded component, the updater‑themed process &lt;em&gt;AcroServicesUpdater2_x64.exe&lt;/em&gt; began initiating outbound HTTPS connections over TCP port 443 to externally hosted infrastructure.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Unlike expected application update workflows which are typically restricted to known vendor services these connections were directed toward dynamically hosted cloud‑backed endpoints and unknown external domains. This behavior indicates remote attacker‑controlled infrastructure rather than legitimate update mechanisms.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Establishing outbound encrypted communications in this manner enables compromised processes to operate as beaconing implants, allowing adversaries to remotely retrieve instructions and maintain control within the affected environment while blending command traffic into routine HTTPS activity. The use of cloud‑hosted hosting layers further reduces infrastructure visibility and improves the attacker’s ability to modify or rotate communication endpoints without altering the deployed payload.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This activity marks the transition from local execution to externally directed command‑and‑control — enabling subsequent stages of discovery and movement inside the enterprise network.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-7-internal-discovery-and-lateral-movement-toward-high-value-assets"&gt;Stage 7: Internal discovery and lateral movement toward high value assets&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Shortly after external communications were established, the compromised process began initiating internal remote management connections over WinRM (TCP&amp;nbsp;5985) toward additional domain‑joined systems within the enterprise environment.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender may surface these activities as multi‑device incidents reflecting credential‑backed lateral movement initiated from a user‑context remote session.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Analysis of WinRM activity indicates that the threat actor used native Windows remote execution to pivot from the initially compromised endpoint toward high‑value infrastructure assets, including identity and domain management systems such as domain controllers. Use of WinRM from a non‑administrative application suggests credential‑backed lateral movement directed by an external operator, enabling remote command execution, interaction with domain infrastructure, and deployment of additional tooling onto targeted hosts.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Targeting identity‑centric infrastructure at this stage reflects a shift from initial foothold to broader enterprise control and persistence. Notably, this internal pivot preceded the remote deployment of additional access tooling in later stages, indicating that attacker‑controlled WinRM sessions were subsequently leveraged to extend sustained access across&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Protocol: &amp;#8220;HTTP&amp;#8221; &lt;br /&gt;Entity Type: &amp;#8220;IP&amp;#8221; &lt;br /&gt;Ip: &amp;lt;IP Address&gt; &lt;br /&gt;Target: &amp;#8220;http://host.domain.local:5985/wsman&amp;#8221; &lt;br /&gt;RequestUserAgent: &amp;#8220;Microsoft WinRM Client&amp;#8221;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-8-remote-deployment-of-auxiliary-access-tooling-level-rmm"&gt;Stage 8: Remote deployment of auxiliary access tooling (Level RMM)&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Subsequent activity revealed the remote installation of an additional management platform across compromised hosts using Windows Installer (msiexec.exe). This introduced an alternate control channel independent of the original intrusion components, reducing reliance on the initial implant and enabling sustained access through standard administrative mechanisms. As a result, attackers could maintain persistent remote control even if earlier payloads were disrupted or removed.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146672 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-51.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stage-9-data-exfiltration"&gt;Stage 9: Data exfiltration&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Actors used the file‑synchronization tool Rclone to transfer data from internal network locations to an external cloud storage service. File‑type exclusions in the transfer parameters suggest a targeted effort to exfiltrate business‑relevant documents while minimizing transfer size and detection risk.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-146673 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/image-52.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender might detect this activity as possible data exfiltration involving uncommon synchronization tooling.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Family / Product&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Protection&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Reference documents&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Microsoft Teams&lt;/td&gt;&lt;td&gt;Review external collaboration policies and ensure users receive clear external sender notifications when interacting with cross‑tenant contacts. Consider device‑ or identity‑based access requirements prior to granting remote support sessions.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/microsoftteams/trusted-organizations-external-meetings-chat"&gt;https://learn.microsoft.com/en-us/microsoftteams/trusted-organizations-external-meetings-chat&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-about"&gt;https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-about&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Microsoft Defender for Office 365&lt;/td&gt;&lt;td&gt;Enable Safe Links for Teams conversations with time-of-click verification, and ensure zero-hour auto purge (ZAP) is active to retroactively quarantine weaponized messages.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-office-365/safe-links-about"&gt;https://learn.microsoft.com/en-us/defender-office-365/safe-links-about&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Microsoft Defender for Endpoint&lt;/td&gt;&lt;td&gt;Disable or restrict remote management tools to authorized roles, enable standard ASR rules in block mode, and apply WDAC to prevent DLL sideloading from ProgramData and AppData paths used by these actors.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference"&gt;https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Microsoft Entra ID&lt;/td&gt;&lt;td&gt;Enforce Conditional Access requiring MFA and compliant devices for administrative roles, restrict WinRM to authorized management workstations, and monitor for Rclone or similar synchronization utilities used for data exfiltration via hunting or custom alerts tuned to your environment.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"&gt;https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview"&gt;https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/custom-detections-overview"&gt;https://learn.microsoft.com/en-us/defender-xdr/custom-detections-overview&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Network Controls&lt;/td&gt;&lt;td&gt;Enable network protection to block implant C2 beaconing to poor-reputation and newly registered domains, and alert on registry modifications to ASEP locations by non-installer processes.&amp;nbsp; Hunting and custom detections tuned to your environment will assist in detecting network threats.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/network-protection"&gt;https://learn.microsoft.com/en-us/defender-endpoint/network-protection&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Education&lt;/td&gt;&lt;td&gt;The attackers will often initiate Teams calls with their targets to talk them through completing actions that result in machine compromise. It may be useful to establish a verbal authentication code between IT Helpdesk and employees: a key phrase that an attacker is unlikely to know. Inform employees how IT Helpdesk would normally reach out to them: which medium(s) of communication? Email, Teams, Phone calls, etc. What identifiers would those IT Helpdesk contacts have? Domain names, aliases, phone numbers, etc. Show example images of your Helpdesk vs. an attacker impersonating them over your communication medium. &amp;nbsp;Show examples of how to identify external versus internal Teams communications, block screens, message and call reporting, as well as how to identify a display name vs. the real caller’s name and domain.&amp;nbsp; Inform employees that URLs shared by an external Helpdesk account leading to Safe Links warnings about malicious websites are extremely suspicious. They should report the message as phish and contact your security team. &amp;nbsp; If they receive any URLs from IT Helpdesk that involve going to a webpage for security updates or spam mailbox cleanings, then they should report that to your security team. &amp;nbsp;Treat unsolicited and unexpected external contact from IT Helpdesk as inherently suspicious.&lt;/td&gt;&lt;td&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/"&gt;Disrupting threats targeting Microsoft Teams | Microsoft Security Blog&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-protection-outcomes"&gt;Microsoft protection outcomes&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Family / Product&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Protection in addition to detections.&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Reference Documents&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AI driven detection &amp;amp; attack disruption&lt;/td&gt;&lt;td&gt;When Defender detects credential‑backed WinRM lateral movement following a Quick Assist session, Automatic Attack Disruption can suspend the originating user session and contain the users prior to domain‑controller interaction &amp;nbsp;— limiting lateral movement before your SOC engages. Look for incidents tagged “Attack Disruption” in your queue.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption"&gt;https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/configure-attack-disruption"&gt;https://learn.microsoft.com/en-us/defender-xdr/configure-attack-disruption&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cross-family / product incident correlation&lt;/td&gt;&lt;td&gt;Teams/MDO, Entra ID, and MDE signals are automatically correlated into unified incidents. This entire attack chain surfaces as one multi-stage incident — not dozens of disconnected alerts. Review “Multi-stage” incidents for the full story.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-xdr/incident-queue"&gt;https://learn.microsoft.com/en-us/defender-xdr/incident-queue&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Threat analytics and continuous tuning&lt;/td&gt;&lt;td&gt;Threat analytics reports for these TTPs include exposure assessments and mitigations for your environment. Detection logic is continuously updated to reflect evolving tradecraft. Check your Threat Analytics dashboard for reports tagged to these Storm actors.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-xdr/threat-analytics"&gt;https://learn.microsoft.com/en-us/defender-xdr/threat-analytics&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Teams external message accept/block controls&lt;/td&gt;&lt;td&gt;When an external user initiates contact, Teams presents the recipient with a message preview and an explicit Accept or Block prompt before any conversation begins.&amp;nbsp; Blocking prevents future messages and hides your presence status from that sender.&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/microsoftteams/teams-security-best-practices-for-safer-messaging"&gt;https://learn.microsoft.com/en-us/microsoftteams/teams-security-best-practices-for-safer-messaging&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Security recommendations&lt;/td&gt;&lt;td&gt;Following security recommendations can help in improving the security posture of the org. Apply UAC restrictions to local accounts on network logonsSafe DLL Search ModeEnable Network ProtectionDisable &amp;#8216;Allow Basic authentication&amp;#8217; for WinRM Client/Service&lt;/td&gt;&lt;td&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-security-recommendation"&gt;https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-security-recommendation&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender provides pre-breach and post-breach coverage for this campaign, supported by the &amp;nbsp;generic and specific alerts listed below.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Initial Access&lt;/td&gt;&lt;td&gt;The actor&amp;nbsp;initiates&amp;nbsp;a cross‑tenant Teams chat or&amp;nbsp;call from an often newly created&amp;nbsp;tenant using an IT/Help‑Desk persona&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Office 365&lt;/strong&gt; &amp;#8211; Microsoft Teams chat initiated by a suspicious external user &amp;#8211; IT Support Teams Voice phishing following mail bombing activity &amp;#8211; A user clicked through to a potentially malicious URL. &amp;#8211; A potentially malicious URL click was detected. &lt;strong&gt; &lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &amp;#8211; Possible initial access from an emerging threat&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&amp;nbsp;&lt;/td&gt;&lt;td&gt;The attacker gains interactive control via&amp;nbsp;remote management tools&amp;nbsp;to include&amp;nbsp;Quick Assist.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious activity using Quick Assist &amp;#8211; Uncommon remote access software &amp;#8211; Remote monitoring and management software suspicious activity&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Trojan:Win64/DllHijack.VGA!MTB &amp;#8211; Trojan:Win64/DllHijack.VGB!MTB &amp;#8211; Trojan:Win64/Tedy!MTB  &amp;#8211; Trojan.Win64.Malgent  &amp;#8211; Trojan:Win64/Zusy!MTB&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lateral Movement&lt;/td&gt;&lt;td&gt;Attacker pivots via WinRM to target high￼value assets (e.g., domain controllers).&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious sign-in activity &amp;#8211; Potential human-operated malicious activity &amp;#8211; Hands-on-keyboard attack involving multiple devices&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence&lt;/td&gt;&lt;td&gt;Runtime environment validated and encoded loader state stored within user registry.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious registry modification&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion &amp;amp; Privilege Escalation&lt;/td&gt;&lt;td&gt;DLL Side-Loading (e.g., AcroServicesUpdater2_x64.exe, ADNotificationManager.exe,&amp;nbsp;or DlpUserAgent.exe)&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; An executable file loaded an unexpected DLL file &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Trojan:Win64/DllHijack.VGA!MTB &amp;#8211; Trojan:Win64/DllHijack.VGB!MTB &amp;#8211; Trojan:Win64/Tedy!MTB  &amp;#8211; Trojan.Win64.Malgent  &amp;#8211; Trojan:Win64/Zusy!MTB&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command &amp;amp; Control&lt;/td&gt;&lt;td&gt;The implant or sideloaded host typically beacons over HTTPS&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Connection to a custom network indicator &amp;#8211; A file or network connection related to a ransomware-linked emerging threat activity group detected&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Data Exfiltration&lt;/td&gt;&lt;td&gt;Widely available&amp;nbsp;file‑synchronization&amp;nbsp;utility Rclone to systematically transfer data&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Possible data exfiltration&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Multi-tactic&lt;/td&gt;&lt;td&gt;Many alerts span across multiple tactics or stages of an attack and cover many platforms.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender (All)&lt;/strong&gt; &amp;#8211; Multi-stage incident involving Execution &amp;#8211; Remote management event after suspected Microsoft Teams IT support phishing &amp;#8211; An Office application ran suspicious commands&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="hunting-queries"&gt;Hunting queries&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security teams can use the advanced hunting capabilities in Microsoft Defender XDR to proactively look for indicators of exploitation.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;A. Teams → RMM correlation&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+let _timeFrame = 30m;
+// Teams message signal 
+let _teams =
+    MessageEvents
+    | where Timestamp &gt; ago(14d)
+    //| where SenderDisplayName contains "add keyword"
+    //          or SenderDisplayName contains "add keyword"
+    | extend Recipient = parse_json(RecipientDetails)
+    | mv-expand Recipient
+    | extend VictimAccountObjectId = tostring(Recipient.RecipientObjectId),
+             VictimRecipientDisplayName = tostring(Recipient.RecipientUserDisplayName)
+    | project
+        TTime = Timestamp,
+        SenderEmailAddress,
+        SenderDisplayName,
+        VictimRecipientDisplayName,
+        VictimAccountObjectId;
+// RMM launches on endpoint side
+let _rmm =
+    DeviceProcessEvents
+    | where Timestamp &gt; ago(14d)
+    | where FileName in~ ("QuickAssist.exe", "AnyDesk.exe", "TeamViewer.exe")
+    | extend VictimAccountObjectId = tostring(InitiatingProcessAccountObjectId)
+    | project
+        DeviceName,
+        QTime = Timestamp,
+        RmmTool = FileName,
+        VictimAccountObjectId;
+_teams
+| where isnotempty(VictimAccountObjectId)
+| join kind=inner _rmm on VictimAccountObjectId
+| where isnotempty(DeviceName)
+| where QTime between ((TTime) .. (TTime +(_timeFrame)))
+| project DeviceName, SenderEmailAddress, SenderDisplayName, VictimRecipientDisplayName, VictimAccountObjectId, TTime, QTime, RmmTool
+| order by QTime desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;B. Execution&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceProcessEvents
+| where Timestamp &gt; ago(7d)
+| where InitiatingProcessFileName =~ "cmd.exe"
+| where FileName =~ "cmd.exe"
+| where ProcessCommandLine has_all ("/S /D /c", "\" set /p=\"PK\"", "1&gt;")
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;C. ZIP → ProgramData service path → signed host sideload&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+let _timeFrame = 10m;
+let _armOrDevice =
+    DeviceFileEvents
+    | where Timestamp &gt; ago(14d)
+    | where FolderPath has_any (
+        "C:\\ProgramData\\Adobe\\ARM\\", 
+        "C:\\ProgramData\\Microsoft\\DeviceSync\\",
+        "D:\\ProgramData\\Adobe\\ARM\\", 
+        "D:\\ProgramData\\Microsoft\\DeviceSync\\")
+      and ActionType in ("FileCreated","FileRenamed")
+    | project DeviceName, First=Timestamp, FileName;
+let _hostRun =
+    DeviceProcessEvents
+    | where Timestamp &gt; ago(14d)
+    | where FileName in~ ("AcroServicesUpdater2_x64.exe","DlpUserAgent.exe","ADNotificationManager.exe")
+    | project DeviceName, Run=Timestamp, Host=FileName;
+_armOrDevice
+| join kind=inner _hostRun on DeviceName
+| where Run between (First .. (First+(_timeFrame)))
+| summarize First=min(First), Run=min(Run), Files=make_set(FileName, 10) by DeviceName, Host
+| order by Run desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;D. PowerShell → high‑risk TLD → writes %AppData%/Roaming EXE&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+let _timeFrame = 5m;
+let _psNet = DeviceNetworkEvents
+| where Timestamp &gt; ago(14d)
+| where InitiatingProcessFileName in~ ("powershell.exe","pwsh.exe")
+| where RemoteUrl matches regex @"(?i)\.(top|xyz|zip|click)$"
+| project DeviceName, NetTime=Timestamp, RemoteUrl, RemoteIP;
+let _exeWrite = DeviceFileEvents
+| where Timestamp &gt; ago(14d)
+| where FolderPath has @"\AppData\Roaming\" and FileName endswith ".exe"
+| project DeviceName, WTime=Timestamp, FileName, FolderPath, SHA256;
+_psNet
+| join kind=inner _exeWrite on DeviceName
+| where WTime between (NetTime .. (NetTime+(_timeFrame)))
+| project DeviceName, NetTime, RemoteUrl, RemoteIP, WTime, FileName, FolderPath, SHA256
+| order by WTime desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;E. Registry breadcrumbs / ASEP anomalies&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceRegistryEvents
+| where Timestamp &gt; ago(30d)
+| where RegistryKey has @"\SOFTWARE\Classes\Local Settings\Software\Microsoft"
+| where RegistryValueName in~ ("UCID","UFID","XJ01","XJ02","UXMP")
+| project Timestamp, DeviceName, ActionType, RegistryKey, RegistryValueName, PreviousRegistryValueData, InitiatingProcessFileName
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;F. Non‑browser process → API‑Gateway → internal AD protocols&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+let _timeFrame = 10m;
+let _net1 =
+    DeviceNetworkEvents
+    | where Timestamp &gt; ago(14d)
+    | where RemoteUrl has ".execute-api."
+    | where InitiatingProcessFileName !in~ ("chrome.exe","msedge.exe","firefox.exe")
+    | project DeviceName,
+              Proc=InitiatingProcessFileName,
+              OutTime=Timestamp,
+              RemoteUrl,
+              RemoteIP;
+let _net2 =
+    DeviceNetworkEvents
+    | where Timestamp &gt; ago(14d)
+    | where RemotePort in (135,389,445,636)
+    | project DeviceName,
+              Proc=InitiatingProcessFileName,
+              InTime=Timestamp,
+              RemoteIP,
+              RemotePort;
+_net1
+| join kind=inner _net2 on DeviceName, Proc
+| where InTime between (OutTime .. (OutTime+(_timeFrame)))
+| project DeviceName, Proc, OutTime, RemoteUrl, InTime, RemotePort
+| order by InTime desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;G. PowerShell history deletion&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceFileEvents
+| where Timestamp &gt; ago(14d)
+| where FileName =~ "ConsoleHost_history.txt" and ActionType == "FileDeleted"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, FolderPath
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;H. Reconnaissance burst (cmd / PowerShell)&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceProcessEvents
+| where Timestamp &gt; ago(14d)
+| where FileName in~ ("cmd.exe","powershell.exe","pwsh.exe")
+| where ProcessCommandLine has_any (
+    "whoami", "whoami /all", "whoami /groups", "whoami /priv",
+    "hostname", "systeminfo", "ver", "wmic os get",
+    "reg query HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",
+    "query user", "net user", "nltest", "ipconfig /all", "arp -a", "route print",
+    "dir", "icacls"
+)
+| project Timestamp, DeviceName, FileName, InitiatingProcessFileName, ProcessCommandLine
+| summarize eventCount = count(), FileNames = make_set(FileName), InitiatingProcessFileNames = make_set(InitiatingProcessFileName), ProcessCommandLines = make_set(ProcessCommandLine, 5) by DeviceName
+| where eventCount &gt; 2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;I. Data Exfil&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceProcessEvents
+| where Timestamp &gt; ago(2d)
+| where FileName =~ "rclone.exe" or ProcessVersionInfoOriginalFileName =~ "rclone.exe"
+| where ProcessCommandLine has_all ("copy ", "--config rclone_uploader.conf", "--transfers 16", "--checkers 16", "--buffer-size 64M", "--max-age=3y", "--exclude *.mdf")
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;J. Quick Assist–anchored recon (no staging writes within 10 minutes)&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+let _reconWindow = 10m; // common within 1-5 minutes
+let _stageWindow = 15m; // common 1-2 minutes after recon, or less
+// Anchor on RMM 
+let _rmm =
+    DeviceProcessEvents
+    | where Timestamp &gt; ago(14d)
+    | where FileName in~ ("QuickAssist.exe", "AnyDesk.exe", "TeamViewer.exe")
+    | project DeviceName, RMMTime=Timestamp;
+// Recon commands within X minutes of RMM start (targeted list)
+let _recon =
+    DeviceProcessEvents
+    | where Timestamp &gt; ago(14d)
+    | where FileName in~ ("cmd.exe","powershell.exe","pwsh.exe")
+    | where ProcessCommandLine has_any (
+        "whoami", "hostname", "systeminfo", "ver", "wmic os get",
+        "reg query HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",
+        "query user", "net user", "nltest", "ipconfig /all", "arp -a", "route print",
+        "dir", "icacls"
+    )
+    | project DeviceName, ReconTime=Timestamp, ReconCmd=ProcessCommandLine, ReconProc=FileName;
+// Suspect staging writes (ZIP/EXE/DLL)
+let _staging =
+    DeviceFileEvents
+    | where Timestamp &gt; ago(14d)
+    | where ActionType in ("FileCreated","FileRenamed")
+    | where FileName matches regex @"(?i).*\\.(zip|exe|dll)$"
+    | project DeviceName, STime=Timestamp, StageFile=FileName, StagePath=FolderPath;
+// Correlate RMM + recon, then exclude cases with staging writes in the next X minutes
+let _rmmRecon =
+    _rmm
+    | join kind=inner _recon on DeviceName
+    | where ReconTime between (RMMTime .. (RMMTime+(_reconWindow)))
+    | project DeviceName, RMMTime, ReconTime, ReconProc, ReconCmd;
+_rmmRecon
+| join kind=leftouter _staging on DeviceName
+| extend HasStagingInWindow = iff(STime between (RMMTime .. (RMMTime+(_stageWindow))), 1, 0)
+| summarize HasStagingInWindow=max(HasStagingInWindow) by DeviceName, RMMTime, ReconTime, ReconProc, ReconCmd
+| where HasStagingInWindow == 0
+| project DeviceName, RMMTime, ReconTime, ReconProc, ReconCmd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;K. Sample Correlation Query Between Chat, First Contact, and Alerts&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+Note. Please modify or tune for your specific environment.
+
+let _timeFrame = 30m;      // Tune: how long after the Teams event to look for matching alerts
+let _huntingWindow = 4d;   // Tune: broader lookback increases coverage but also cost
+// Seed Teams message activity and normalize the victim/join fields you want to carry forward
+let _teams = materialize (
+    MessageEvents
+    | where Timestamp &gt; ago(_huntingWindow)
+    | extend Recipient = parse_json(RecipientDetails)
+    // Optional tuning: add sender/name/content filters here first to reduce volume early
+    //| where SenderDisplayName contains "add keyword"
+    //          or SenderDisplayName contains "add keyword"
+    // add other hunting terms 
+    | mv-expand Recipient
+    | extend VictimAccountObjectId = tostring(Recipient.RecipientObjectId),
+             VictimUPN = tostring(Recipient.RecipientSmtpAddress)
+    | project
+        TTime = Timestamp,
+        SenderUPN = SenderEmailAddress,
+        SenderDisplayName,
+        VictimUPN,
+        VictimAccountObjectId,
+        ChatThreadId = ThreadId
+);
+// Distinct key sets used to prefilter downstream tables before joining
+let _VictimAccountObjectId = materialize(
+    _teams
+    | where isnotempty(VictimAccountObjectId)
+    | distinct VictimAccountObjectId
+);
+let _VictimUPN = materialize(
+    _teams
+    | where isnotempty(VictimUPN)
+    | distinct VictimUPN
+);
+let _ChatThreadId = materialize(
+    _teams
+    | where isnotempty(ChatThreadId)
+    | distinct ChatThreadId
+);
+// Find first-seen chat creation events for the chat threads already present in _teams
+// Tune: add more CloudAppEvents filters here if you want to narrow to external / one-on-one / specific chat types
+let _firstContact = materialize(
+    CloudAppEvents
+    | where Timestamp &gt; ago(_huntingWindow)
+    | where Application has "Teams"
+    | where ActionType == "ChatCreated"
+    | extend Raw = todynamic(RawEventData)
+    | extend ChatThreadId = tostring(Raw.ChatThreadId)
+    | where isnotempty(ChatThreadId)
+    | join kind=innerunique (_ChatThreadId) on ChatThreadId
+    | summarize FCTime = min(Timestamp) by ChatThreadId
+);
+// Alert branch 1: match by victim object ID
+// Usually the cleanest identity join if the field is populated consistently
+let _alerts_by_oid = materialize(
+    AlertEvidence
+    | where Timestamp &gt; ago(_huntingWindow)
+    | where AccountObjectId in (_VictimAccountObjectId)
+    | project
+        ATime = Timestamp,
+        AlertId,
+        Title,
+        AccountName,
+        AccountObjectId,
+        AccountUpn = "",
+        SourceId = "",
+        ChatThreadId = ""
+);
+// Alert branch 2: match by victim UPN
+// Useful when ObjectId is missing or alert evidence is only populated with UPN
+let _alerts_by_upn = materialize(
+    AlertEvidence
+    | where Timestamp &gt; ago(_huntingWindow)
+    | where AccountUpn in (_VictimUPN)
+    | project
+        ATime = Timestamp,
+        AlertId,
+        Title,
+        AccountName,
+        AccountObjectId,
+        AccountUpn,
+        SourceId = "",
+        ChatThreadId = ""
+);
+// Alert branch 3: match by chat thread ID
+// Tune: this is typically the most expensive branch because it inspects AdditionalFields
+let _alerts_by_thread = materialize(
+    AlertEvidence
+    | where Timestamp &gt; ago(_huntingWindow)
+    | where AdditionalFields has_any (_ChatThreadId)
+    | extend AdditionalFields = todynamic(AdditionalFields)
+    | extend
+        SourceId = tostring(AdditionalFields.SourceId),
+        ChatThreadIdRaw = tostring(AdditionalFields.ChatThreadId)
+    | extend ChatThreadId = coalesce(
+        ChatThreadIdRaw,
+        extract(@"/(?:chats|channels|conversations|spaces)/([^/]+)/", 1, SourceId)
+    )
+    | where isnotempty(ChatThreadId)
+    | join kind=innerunique (_ChatThreadId) on ChatThreadId
+    | project
+        ATime = Timestamp,
+        AlertId,
+        Title,
+        AccountName,
+        AccountObjectId,
+        AccountUpn = "",
+        SourceId,
+        ChatThreadId
+);
+//
+// add branch 4 to corrilate with host events
+//
+// Add first-contact context back onto the Teams seed set
+let _teams_fc = materialize(
+    _teams
+    | join kind=leftouter _firstContact on ChatThreadId
+    | extend FirstContact = isnotnull(FCTime)
+);
+// Join path 1: Teams victim object ID -&gt; alert AccountObjectId
+let _matches_oid =
+    _teams_fc
+    | where isnotempty(VictimAccountObjectId)
+    | join hint.strategy=broadcast kind=leftouter (
+        _alerts_by_oid
+    ) on $left.VictimAccountObjectId == $right.AccountObjectId
+    // Time bound keeps only alerts near the Teams activity; widen/narrow _timeFrame to tune sensitivity
+    | where isnull(ATime) or ATime between (TTime .. TTime + _timeFrame)
+    | extend MatchType = "ObjectId";
+// Join path 2: Teams victim UPN -&gt; alert AccountUpn
+let _matches_upn =
+    _teams_fc
+    | where isnotempty(VictimUPN)
+    | join hint.strategy=broadcast kind=leftouter (
+        _alerts_by_upn
+    ) on $left.VictimUPN == $right.AccountUpn
+    | where isnull(ATime) or ATime between (TTime .. TTime + _timeFrame)
+    | extend MatchType = "VictimUPN";
+// Join path 3: Teams chat thread -&gt; alert chat thread
+let _matches_thread =
+    _teams_fc
+    | where isnotempty(ChatThreadId)
+    | join hint.strategy=broadcast kind=leftouter (
+        _alerts_by_thread
+    ) on ChatThreadId
+    | where isnull(ATime) or ATime between (TTime .. TTime + _timeFrame)
+    | extend MatchType = "ChatThreadId";
+//
+// add branch 4 for host events
+//
+// Merge all match paths and collapse multiple alert hits per Teams event into one row
+union _matches_oid, _matches_upn, _matches_thread
+| summarize
+    AlertTitles = make_set(Title, 50),
+    AlertIds = make_set(AlertId, 50),
+    MatchTypes = make_set(MatchType, 10),
+    FirstAlertTime = min(ATime)
+    by
+        TTime,
+        SenderUPN,
+        SenderDisplayName,
+        VictimUPN,
+        VictimAccountObjectId,
+        ChatThreadId,
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;Protecting your organization from collaboration‑based impersonation attacks as demonstrated throughout this intrusion chain, cross‑tenant helpdesk impersonation campaigns rely less on platform exploitation and more on persuading users to initiate trusted remote access workflows within legitimate enterprise collaboration tools such as Microsoft Teams. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Organizations should treat any unsolicited external support contact as inherently suspicious and implement layered defenses that limit credential‑backed remote sessions, enforce Conditional Access with MFA and compliant device requirements, and restrict the use of administrative protocols such as WinRM to authorized management workstations. At the endpoint and identity layers, enabling Attack Surface Reduction (ASR) rules, Zero‑hour Auto Purge (ZAP), Safe Links for Teams messages, and network protection can reduce opportunities for sideloaded execution and outbound command‑and‑control activity that blend into routine HTTPS traffic. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Finally, organizations should reinforce user education—such as establishing internal helpdesk authentication phrases and training employees to verify external tenant indicators—to prevent adversaries from converting legitimate collaboration workflows into attacker‑guided remote access and staged data exfiltration pathways.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://techcommunity.microsoft.com/blog/MicrosoftDefenderforOffice365Blog/protection-against-email-bombs-with-microsoft-defender-for-office-365/4418048" rel="noreferrer noopener" target="_blank"&gt;Protection Against Email Bombs with Microsoft Defender for Office 365 | Microsoft Community Hub&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://techcommunity.microsoft.com/blog/microsoftdefenderforoffice365blog/protection-against-multi-modal-attacks-with-microsoft-defender/4438786" rel="noreferrer noopener" target="_blank"&gt;Protection against multi-modal attacks with Microsoft Defender | Microsoft Community Hub&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2026/03/16/help-on-the-line-how-a-microsoft-teams-support-call-led-to-compromise/" rel="noreferrer noopener" target="_blank"&gt;Help on the line: How a Microsoft Teams support call led to compromise | Microsoft Security Blog&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/" rel="noreferrer noopener" target="_blank"&gt;Disrupting threats targeting Microsoft Teams | Microsoft Security Blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;This research is provided by Microsoft Defender Security Research with contributions from Jesse Birch, Sagar Patil, Balaji Venkatesh S (DEX), Eric Hopper, Charu Puhazholi&lt;/em&gt;, &lt;em&gt;and other members of Microsoft Threat Intelligence.&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn More&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt;  &lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest &lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/real-time-agent-protection-during-runtime" rel="noreferrer noopener" target="_blank"&gt;Protect your agents in real-time during runtime (Preview)&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://eurppc-word-edit.officeapps.live.com/we/%E2%80%A2%09https:/learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-agent-builder" rel="noreferrer noopener" target="_blank"&gt;how to build and customize agents with Copilot Studio Agent Builder&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/18/crosstenant-helpdesk-impersonation-data-exfiltration-human-operated-intrusion-playbook/"&gt;Cross‑tenant helpdesk impersonation to data exfiltration: A human-operated intrusion playbook&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146657</guid></item><item><title>It Takes 2 Minutes to Hack the EU’s New Age-Verification App</title><link>https://www.wired.com/story/security-news-this-week-it-takes-2-minutes-to-hack-the-eus-new-age-verification-app/</link><description>Plus: Major data breaches at a gym chain and hotel giant, a disruptive DDoS attack against Bluesky, dubious ICE hires, and more.</description><guid isPermaLink="false">69e26d517cc0742ca47575ff</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>cybersecurity</category><category>security</category><category>Russia</category><category>hacking</category><category>Europe</category><category>data breaches</category><category>surveillance</category><category>privacy</category><category>Crime</category><category>artificial intelligence</category><category>Security Roundup</category></item><item><title>Mythos and Cybersecurity</title><link>https://www.schneier.com/blog/archives/2026/04/mythos-and-cybersecurity.html</link><description>&lt;p&gt;Last week, Anthropic pulled back the curtain on &lt;a href="https://red.anthropic.com/2026/mythos-preview/"&gt;Claude Mythos Preview&lt;/a&gt;, an AI model so capable at finding and exploiting software vulnerabilities that the company &lt;a href="https://globalnews.ca/news/11769446/anthropic-ai-model-too-powerful/"&gt;decided&lt;/a&gt; it was too dangerous to release to the public. Instead, access has been &lt;a href="https://thehill.com/policy/technology/5824219-anthropic-new-ai-dangerous-public/"&gt;restricted&lt;/a&gt; to roughly 50 organizations&amp;#8212;Microsoft, Apple, Amazon Web Services, CrowdStrike and other vendors of critical infrastructure&amp;#8212;under an initiative called &lt;a href="https://www.anthropic.com/glasswing"&gt;Project Glasswing&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The announcement was accompanied by a barrage of hair-raising anecdotes: &lt;a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-latest-ai-model-identifies-thousands-of-zero-day-vulnerabilities-in-every-major-operating-system-and-every-major-web-browser-claude-mythos-preview-sparks-race-to-fix-critical-bugs-some-unpatched-for-decades"&gt;thousands&lt;/a&gt; of vulnerabilities uncovered across &lt;a href="https://www.helpnetsecurity.com/2026/04/08/anthropic-claude-mythos-preview-identify-vulnerabilities/"&gt;every major...&lt;/a&gt;&lt;/p&gt;</description><content:encoded>&lt;p&gt;Last week, Anthropic pulled back the curtain on &lt;a href="https://red.anthropic.com/2026/mythos-preview/"&gt;Claude Mythos Preview&lt;/a&gt;, an AI model so capable at finding and exploiting software vulnerabilities that the company &lt;a href="https://globalnews.ca/news/11769446/anthropic-ai-model-too-powerful/"&gt;decided&lt;/a&gt; it was too dangerous to release to the public. Instead, access has been &lt;a href="https://thehill.com/policy/technology/5824219-anthropic-new-ai-dangerous-public/"&gt;restricted&lt;/a&gt; to roughly 50 organizations&amp;#8212;Microsoft, Apple, Amazon Web Services, CrowdStrike and other vendors of critical infrastructure&amp;#8212;under an initiative called &lt;a href="https://www.anthropic.com/glasswing"&gt;Project Glasswing&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The announcement was accompanied by a barrage of hair-raising anecdotes: &lt;a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-latest-ai-model-identifies-thousands-of-zero-day-vulnerabilities-in-every-major-operating-system-and-every-major-web-browser-claude-mythos-preview-sparks-race-to-fix-critical-bugs-some-unpatched-for-decades"&gt;thousands&lt;/a&gt; of vulnerabilities uncovered across &lt;a href="https://www.helpnetsecurity.com/2026/04/08/anthropic-claude-mythos-preview-identify-vulnerabilities/"&gt;every major&lt;/a&gt; operating system and browser, including a 27-year-old bug in OpenBSD, a 16-year-old flaw in FFmpeg. Mythos was able to weaponize a set of vulnerabilities it found in the Firefox browser into 181 usable attacks; Anthropic&amp;#8217;s previous flagship model could only achieve two.&lt;/p&gt;
 &lt;p&gt;This is, in many respects, exactly the kind of responsible disclosure that security researchers have long urged. And yet the public has been given remarkably little with which to evaluate Anthropic&amp;#8217;s decision. We have been shown a highlight reel of spectacular successes. However, we can&amp;#8217;t tell if we have a blockbuster until they let us see the whole movie.&lt;/p&gt;
@@ -807,7 +1661,7 @@ Senior Handler&lt;/p&gt;
 
 
 &lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" rel="noopener" target="_blank"&gt;website&lt;/a&gt;. Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" rel="noopener" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/16/building-your-cryptographic-inventory-a-customer-strategy-for-cryptographic-posture-management/"&gt;Building your cryptographic inventory: A customer strategy for cryptographic posture management&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146516</guid></item><item><title>Google expands Gemini AI use to fight malicious ads on its platform</title><link>https://www.bleepingcomputer.com/news/google/google-expands-gemini-ai-use-to-fight-malicious-ads-on-its-platform/</link><description>Google says it is increasingly using its Gemini AI models to detect and block harmful ads on its advertising platforms, as scammers and threat actors continue to evolve their tactics to evade detection. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/google/google-expands-gemini-ai-use-to-fight-malicious-ads-on-its-platform/</guid><category>Google</category><category>Security</category></item><item><title>Dissecting Sapphire Sleet’s macOS intrusion from lure to compromise</title><link>https://www.microsoft.com/en-us/security/blog/2026/04/16/dissecting-sapphire-sleets-macos-intrusion-from-lure-to-compromise/</link><description>&lt;p&gt;The Microsoft Defender Security Research Team uncovered a sophisticated macOS intrusion campaign attributed to the North Korean threat actor Sapphire Sleet that abuses user driven execution and social engineering to bypass macOS security protections and steal credentials, cryptocurrency assets, and sensitive data.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/16/building-your-cryptographic-inventory-a-customer-strategy-for-cryptographic-posture-management/"&gt;Building your cryptographic inventory: A customer strategy for cryptographic posture management&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146516</guid></item><item><title>Dissecting Sapphire Sleet’s macOS intrusion from lure to compromise</title><link>https://www.microsoft.com/en-us/security/blog/2026/04/16/dissecting-sapphire-sleets-macos-intrusion-from-lure-to-compromise/</link><description>&lt;p&gt;The Microsoft Defender Security Research Team uncovered a sophisticated macOS intrusion campaign attributed to the North Korean threat actor Sapphire Sleet that abuses user driven execution and social engineering to bypass macOS security protections and steal credentials, cryptocurrency assets, and sensitive data.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/16/dissecting-sapphire-sleets-macos-intrusion-from-lure-to-compromise/"&gt;Dissecting Sapphire Sleet’s macOS intrusion from lure to compromise&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-0e01600f-eff1-4a29-9eae-8fd50e894cb9"&gt;
 	&lt;button class="btn btn-collapse" type="button"&gt;
 		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
@@ -1701,7 +2555,7 @@ let SapphireSleet_threats = dynamic([
 
 &lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/16/dissecting-sapphire-sleets-macos-intrusion-from-lure-to-compromise/"&gt;Dissecting Sapphire Sleet’s macOS intrusion from lure to compromise&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146554</guid><category>Credential theft</category><category>Elevation of privilege</category><category>macOS</category><category>Phishing</category><category>Sapphire Sleet</category><category>Sleet</category></item><item><title>Adobe Expands Firefly Into AI-Powered Editing Assistant Across Creative Apps</title><link>https://www.techrepublic.com/article/news-adobe-agentic-firefly-workflows/</link><description>&lt;p&gt;Adobe unveils Firefly AI Assistant, new editing tools, and adds partner models as it turns Firefly into a hub for agentic creative workflows.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-adobe-agentic-firefly-workflows/"&gt;Adobe Expands Firefly Into AI-Powered Editing Assistant Across Creative Apps&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4355818</guid><category>Applications</category><category>Artificial Intelligence</category><category>Innovation</category><category>International</category><category>News</category><category>adobe</category><category>adobe firefly</category><category>agentic ai</category><category>ai</category><category>ai agent</category><category>ai models</category><category>anthropic</category><category>claude</category><category>Illustrator</category><category>kling</category><category>Photoshop</category></item><item><title>New ATHR vishing platform uses AI voice agents for automated attacks</title><link>https://www.bleepingcomputer.com/news/security/new-athr-vishing-platform-uses-ai-voice-agents-for-automated-attacks/</link><description>A new cybercrime platform called ATHR can harvest credentials via fully automated voice phishing attacks that use both human operators and AI agents for the social engineering phase. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-athr-vishing-platform-uses-ai-voice-agents-for-automated-attacks/</guid><category>Security</category><category>Artificial Intelligence</category></item><item><title>Most "AI SOCs" Are Just Faster Triage. That's Not Enough.</title><link>https://www.bleepingcomputer.com/news/security/most-ai-socs-are-just-faster-triage-thats-not-enough/</link><description>AI-powered SOC tools promise automation, but most only speed up triage instead of reducing real workload. Tines shows how real gains come from end-to-end workflows that execute actions across systems, not just summarize alerts. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/most-ai-socs-are-just-faster-triage-thats-not-enough/</guid><category>Security</category></item><item><title>What is digital fingerprinting: Is my device ever truly anonymous?</title><link>http://privacyinternational.org/explainer/5761/what-digital-fingerprinting-my-device-ever-truly-anonymous</link><guid isPermaLink="false">5761 at http://privacyinternational.org</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-adobe-agentic-firefly-workflows/"&gt;Adobe Expands Firefly Into AI-Powered Editing Assistant Across Creative Apps&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4355818</guid><category>Applications</category><category>Artificial Intelligence</category><category>Innovation</category><category>International</category><category>News</category><category>adobe</category><category>adobe firefly</category><category>agentic ai</category><category>ai</category><category>ai agent</category><category>ai models</category><category>anthropic</category><category>claude</category><category>Illustrator</category><category>kling</category><category>Photoshop</category></item><item><title>What is digital fingerprinting: Is my device ever truly anonymous?</title><link>http://privacyinternational.org/explainer/5761/what-digital-fingerprinting-my-device-ever-truly-anonymous</link><guid isPermaLink="false">5761 at http://privacyinternational.org</guid></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/16/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-34197" target="_blank"&gt;CVE-2026-34197&lt;/a&gt; Apache ActiveMQ Improper Input Validation Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
@@ -9266,7 +10120,7 @@ _Im_WebSession (url_has_any = ioc_domains)
 
 &lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/09/intent-redirection-vulnerability-third-party-sdk-android/"&gt;Intent redirection vulnerability in third-party SDK exposed millions of Android wallets to potential risk&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=146407</guid><category>Android</category></item><item><title>Politicians Are Spending More Money on Security as They Increasingly Become Targets</title><link>https://www.wired.com/story/political-campaign-security-spending/</link><description>Political candidates are purchasing more home alarms, bulletproof vests, and other protections amid rising fears of political violence.</description><guid isPermaLink="false">69d3d4f4d114591ebc82e584</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Politics News</category><category>elections</category><category>politics</category><category>Policy</category><category>National Affairs</category><category>Crime</category><category>cybersecurity</category><category>security</category><category>Life Goals</category></item><item><title>U.S. Public Sector Under Siege: Threat Intelligence for Q1 2026</title><link>https://www.trendmicro.com/en_us/research/26/d/us-public-sector-under-siege.html</link><description>The first quarter of 2026 has reinforced a hard truth: U.S. government agencies and educational institutions are operating in the most hostile cyber threat environment ever recorded.</description><guid isPermaLink="false">urn:uuid:74201df5-6fa6-543d-15fd-03350fdd676e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>‘We Were Not Ready for This’: Lebanon's Emergency System Is Hanging by a Thread</title><link>https://www.wired.com/story/we-were-not-ready-for-this-lebanons-emergency-system-is-hanging-by-a-thread/</link><description>In Lebanon, nearly 1 in 5 people has been displaced by Israeli attacks, leaving the government to manage a modern crisis without modern digital infrastructure.</description><guid isPermaLink="false">69d66fdf539e5361b486f16b</guid><category>Security</category><category>Israel</category><category>Middle East</category><category>war</category><category>identity</category><category>State of War</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/08/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/09/intent-redirection-vulnerability-third-party-sdk-android/"&gt;Intent redirection vulnerability in third-party SDK exposed millions of Android wallets to potential risk&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Android</category></item><item><title>Politicians Are Spending More Money on Security as They Increasingly Become Targets</title><link>https://www.wired.com/story/political-campaign-security-spending/</link><description>Political candidates are purchasing more home alarms, bulletproof vests, and other protections amid rising fears of political violence.</description><guid isPermaLink="false">69d3d4f4d114591ebc82e584</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Politics / Politics News</category><category>elections</category><category>politics</category><category>Policy</category><category>National Affairs</category><category>Crime</category><category>cybersecurity</category><category>security</category><category>Life Goals</category></item><item><title>U.S. Public Sector Under Siege: Threat Intelligence for Q1 2026</title><link>https://www.trendmicro.com/en_us/research/26/d/us-public-sector-under-siege.html</link><description>The first quarter of 2026 has reinforced a hard truth: U.S. government agencies and educational institutions are operating in the most hostile cyber threat environment ever recorded.</description><guid isPermaLink="false">urn:uuid:74201df5-6fa6-543d-15fd-03350fdd676e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Expert Perspective</category><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Ransomware</category><category>Trend Micro Research : Artificial Intelligence (AI)</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>‘We Were Not Ready for This’: Lebanon's Emergency System Is Hanging by a Thread</title><link>https://www.wired.com/story/we-were-not-ready-for-this-lebanons-emergency-system-is-hanging-by-a-thread/</link><description>In Lebanon, nearly 1 in 5 people has been displaced by Israeli attacks, leaving the government to manage a modern crisis without modern digital infrastructure.</description><guid isPermaLink="false">69d66fdf539e5361b486f16b</guid><category>Security</category><category>Israel</category><category>Middle East</category><category>war</category><category>identity</category><category>State of War</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/08/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-1340" target="_blank"&gt;CVE-2026-1340&lt;/a&gt; Ivanti Endpoint Manager Mobile (EPMM) Code Injection Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
@@ -10687,432 +11541,7 @@ CloudAppEvents
 
 &lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/"&gt;Inside an AI‑enabled device code phishing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Phishing</category></item><item><title>Storm-1175 focuses gaze on vulnerable web-facing assets in high-tempo Medusa ransomware operations</title><link>https://www.microsoft.com/en-us/security/blog/2026/04/06/storm-1175-focuses-gaze-on-vulnerable-web-facing-assets-in-high-tempo-medusa-ransomware-operations/</link><description>&lt;p&gt;The financially motivated cybercriminal threat actor Storm-1175 operates high-velocity ransomware campaigns that weaponize recently disclosed vulnerabilities to obtain initial access, exfiltrate data, and deploy Medusa ransomware.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/06/storm-1175-focuses-gaze-on-vulnerable-web-facing-assets-in-high-tempo-medusa-ransomware-operations/"&gt;Storm-1175 focuses gaze on vulnerable web-facing assets in high-tempo Medusa ransomware operations&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-f0f33cdc-42a4-4e8d-8447-ba3a82b18ccd"&gt;
-	&lt;button class="btn btn-collapse" type="button"&gt;
-		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
-		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
-
-		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
-			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-f0f33cdc-42a4-4e8d-8447-ba3a82b18ccd"&gt;
-		&lt;div class="table-of-contents-block__content"&gt;
-			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#storm-1175-s-rapid-attack-chain-from-initial-access-to-impact"&gt;Storm-1175’s rapid attack chain: From initial access to impact&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-defender-detections"&gt;Microsoft Defender detections&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#indicators-of-compromise"&gt;Indicators of compromise&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
-&lt;/aside&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The financially motivated cybercriminal actor tracked by Microsoft Threat Intelligence as Storm-1175 operates high-velocity ransomware campaigns that weaponize N-days, targeting vulnerable, web-facing systems during the window between vulnerability disclosure and widespread patch adoption. Following successful exploitation, Storm-1175 rapidly moves from initial access to data exfiltration and deployment of Medusa ransomware, often within a few days and, in some cases, within 24 hours. The threat actor’s high operational tempo and proficiency in identifying exposed perimeter assets have proven successful, with recent intrusions heavily impacting healthcare organizations, as well as those in the education, professional services, and finance sectors in Australia, United Kingdom, and United States.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The pace of Storm-1175’s campaigns is enabled by the threat actor’s consistent use of recently disclosed vulnerabilities to obtain initial access. While the threat actor typically uses N-day vulnerabilities, we have also observed Storm-1175 leveraging zero-day exploits, in some cases a full week before public vulnerability disclosure. The threat actor has also been observed chaining together multiple exploits to enable post-compromise activity. After initial access, Storm-1175 establishes persistence by creating new user accounts, deploys various tools including remote monitoring and management software for lateral movement, conducts credential theft, and tampers with security solutions before deploying ransomware throughout the compromised environment.&lt;/p&gt;
-
-
-
-&lt;div class="alignright wp-block-bloginabox-theme-kicker"&gt;
-	&lt;div class="kicker"&gt;
-		&lt;h2 class="kicker__title"&gt;
-			RANSOMWARE AS A SERVICE		&lt;/h2&gt;
-		&lt;p class="kicker__content"&gt;
-							&lt;a class="kicker__link" href="https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/" rel="noopener noreferrer" target="_blank"&gt;
-						Understanding the cybercrime gig economy							›&lt;/a&gt;
-					&lt;/p&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In this blog post, we delve into the attack techniques attributed to Storm-1175 over several years. While Storm-1175&amp;#8217;s methodology aligns with the tactics, techniques, and procedures (TTPs) of many tracked ransomware actors, analysis of their post-compromise tactics provides essential insights into how organizations can harden and defend against attackers like Storm-1175, informing opportunities to disrupt attackers even if they have gained initial access to a network.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="storm-1175-s-rapid-attack-chain-from-initial-access-to-impact"&gt;Storm-1175’s rapid attack chain: From initial access to impact&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Exploitation of vulnerable web-facing assets&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 rapidly weaponizes recently disclosed vulnerabilities to obtain initial access. Since 2023, Microsoft Threat Intelligence has observed exploitation of over 16 vulnerabilities, including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21529"&gt;CVE-2023-21529&lt;/a&gt; (Microsoft Exchange)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27351"&gt;CVE-2023-27351&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27350"&gt;CVE-2023-27350&lt;/a&gt; (Papercut)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-46805"&gt;CVE-2023-46805&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-21887"&gt;CVE-2024-21887&lt;/a&gt; (Ivanti Connect Secure and Policy Secure)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-1709"&gt;CVE-2024-1709&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-1708"&gt;CVE-2024-1708&lt;/a&gt; (ConnectWise ScreenConnect)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-27198"&gt;CVE-2024-27198&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-27199"&gt;CVE-2024-27199&lt;/a&gt; (JetBrains TeamCity)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57726"&gt;CVE-2024-57726&lt;/a&gt;, &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57727"&gt;CVE-2024-57727&lt;/a&gt;, and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57728"&gt;CVE-2024-57728&lt;/a&gt; (SimpleHelp)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31161"&gt;CVE‑2025‑31161&lt;/a&gt; (CrushFTP)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-10035"&gt;CVE-2025-10035&lt;/a&gt; (GoAnywhere MFT)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52691"&gt;CVE-2025-52691&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-23760"&gt;CVE-2026-23760&lt;/a&gt; (SmarterMail)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1731"&gt;CVE-2026-1731&lt;/a&gt; (BeyondTrust)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 rotates exploits quickly during the time between disclosure and patch availability or adoption, taking advantage of the period where many organizations remain unprotected. In some cases, Storm-1175 has weaponized exploits for disclosed vulnerabilities in as little as one day, as was the case for CVE-2025-31324 impacting SAP NetWeaver: the security issue was disclosed on April 24, 2025, and we observed Storm-1175 exploitation soon after on April 25.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram showing timeline of Storm-1175 exploitation, of various vulnerabilities over the years, including date of disclosure and date of weaponization" class="wp-image-146347 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/Storm-1175-exploitation-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. Timeline of disclosure and exploitation of vulnerabilities used by Storm-1175 in campaigns&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In multiple intrusions, Storm-1175 has chained together exploits to enable post-compromise activities like remote code execution (RCE). For example, in July 2023, Storm-1175 exploited two vulnerabilities affecting on-premises Microsoft Exchange Servers, &lt;a href="https://www.crowdstrike.com/en-us/blog/owassrf-exploit-analysis-and-recommendations/"&gt;dubbed “OWASSRF” by public researchers&lt;/a&gt;: exploitation of CVE‑2022‑41080 provided initial access by exposing Exchange PowerShell via Outlook Web Access (OWA), and Storm-1175 subsequently exploited CVE‑2022‑41082 to achieve remote code execution.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 has also demonstrated a capability for targeting Linux systems as well: in late 2024, Microsoft Threat Intelligence identified the exploitation of vulnerable Oracle WebLogic instances across multiple organizations, though we were unable to identify the exact vulnerability being exploited in these attacks.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Finally, we have also observed the use of at least three zero-day vulnerabilities including, most recently, CVE-2026-23760 in SmarterMail, which was exploited by Storm-1175 the week prior to public disclosure, and CVE-2025-10035 in GoAnywhere Managed File Transfer, also exploited one week before public disclosure. While these more recent attacks demonstrate an evolved development capability or new access to resources like exploit brokers for Storm-1175, it is worth noting that GoAnywhere MFT has previously been targeted by ransomware attackers, and that the SmarterMail vulnerability was reportedly &lt;a href="https://labs.watchtowr.com/attackers-with-decompilers-strike-again-smartertools-smartermail-wt-2026-0001-auth-bypass/"&gt;similar to a previously disclosed flaw&lt;/a&gt;; these factors may have helped to facilitate subsequent zero-day exploitation activity by Storm-1175, who still primarily leverages N-day vulnerabilities. Regardless, as attackers increasingly become more adept at identifying new vulnerabilities, understanding your digital footprint—such as through the use of public scanning interfaces like &lt;a href="https://www.microsoft.com/security/business/cloud-security/microsoft-defender-external-attack-surface-management"&gt;Microsoft Defender External Attack Surface Management&lt;/a&gt;—is essential to defending against perimeter network attacks.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="covert-persistence-and-lateral-movement"&gt;Covert persistence and lateral movement&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;During exploitation, Storm-1175 typically creates a web shell or drops a remote access payload to establish their initial hold in the environment. From this point, Microsoft Threat Intelligence has observed Storm-1175 moving from initial access to ransomware deployment in as little as one day, though many of the actor’s attacks have occurred over a period of five to six days.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Diagram showing the Storm-1175 attack chain from Exploitation to Impact" class="wp-image-146345 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/Storm-1175-attack-chain.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Storm-1175 attack chain&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;On the initially compromised device, the threat actor often establishes persistence by creating a new user and adding that user to the administrators group:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code for creating new user account and adding as administrator" class="wp-image-146352 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/Storm-1175-figure3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Storm-1175 creates a new user account and adds it as an administrator&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;From this account, Storm-1175 begins their reconnaissance and lateral movement activity. Storm-1175 has a rotation of tools to accomplish these subsequent attack stages. Most commonly, we observe the use of living-off-the-land binaries (LOLBins), including PowerShell and PsExec, followed by the use of Cloudflare tunnels (renamed to mimic legitimate binaries like &lt;em&gt;conhost.exe&lt;/em&gt;) to move laterally over Remote Desktop Protocol (RDP) and deliver payloads to new devices. If RDP is not allowed in the environment, Storm-1175 has been observed using administrator privileges to modify the Windows Firewall policy to enable Remote Desktop.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="Screenshot of code for modifying the firewall and enabling RDP" class="wp-image-146353 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/04/Storm-1175-figure4.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. From an initial foothold after the compromise of a SmarterMail application, Storm-1175 modifies the firewall and enables remote desktop access for lateral movement, writing the results of the command to a TXT file&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 has also demonstrated a heavy reliance on remote monitoring and management (RMM) tools during post-compromise activity. Since 2023, Storm-1175 has used multiple RMMs, including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Atera RMM&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Level RMM&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;N-able&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;DWAgent&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;MeshAgent&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;ConnectWise ScreenConnect&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;AnyDesk&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;SimpleHelp&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;While often used by enterprise IT teams, these RMM tools have multi-pronged functionality that could also allow adversaries to maintain persistence in a compromised network, create new user accounts, enable an alternative command-and-control (C2) method, deliver additional payloads, or use as an interactive remote desktop session.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In many attacks, Storm-1175 relies on PDQ Deployer, a legitimate software deployment tool that lets system administrators silently install applications, for both lateral movement and payload delivery, including ransomware deployment throughout the network.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Additionally, Storm-1175 has leveraged Impacket for lateral movement. Impacket is a collection of open-source Python classes designed for working with network protocols, and it is popular with adversaries due to ease of use and wide range of capabilities. Microsoft Defender for Endpoint has a dedicated attack surface reduction rule to defend against lateral movement techniques used by Impacket: &lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference#block-process-creations-originating-from-psexec-and-wmi-commands"&gt;Block process creations originating from PSExec and WMI commands&lt;/a&gt;); &lt;a href="https://www.microsoft.com/en-us/security/blog/2022/10/26/how-to-prevent-lateral-movement-attacks-using-microsoft-365-defender/"&gt;protecting lateral movement pathways&lt;/a&gt; can also mitigate Impacket.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="credential-theft"&gt;Credential theft&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Impacket is further used to facilitate credential dumping through LSASS; the threat actor also leveraged the commodity credential theft tool Mimikatz in identified intrusions in 2025. Additionally, Storm-1175 has relied on known living-off-the-land techniques for stealing credentials, such as by modifying the registry entry &lt;em&gt;UseLogonCredential&lt;/em&gt; to turn on WDigest credential caching, or using Task Manager to dump LSASS credentials; for both of these attack techniques, the threat actor must obtain local administrative privileges to modify these resources. The attack surface reduction rule &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?ocid=magicti_ta_learndoc#block-credential-stealing-from-the-windows-local-security-authority-subsystem"&gt;block credential stealing from LSASS&lt;/a&gt; can limit the effectiveness of this type of attack, and—more broadly—limiting the use of local administrator rights by end users. Ensuring that local administrator passwords are not shared through the environment can also reduce the risk of these LSASS dumping techniques.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;We have also observed that after gaining administrator credentials, Storm-1175 has used a script to recover passwords from Veeam backup software, which is used to connect to remote hosts, therefore enabling ransomware deployment to additional connected systems.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;With sufficient privileges, Storm-1175 can then use tools like PsExec to pivot to a Domain Controller, where they have accessed the NTDS.dit dump, a copy of the Active Directory database which contains user data and passwords that can be cracked offline. This privileged position has also granted Storm-1175 access to the security account manager (SAM), which provides detailed configuration and security settings, enabling an attacker to understand and manipulate the system environment on a much wider scale.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="security-tampering-for-ransomware-delivery"&gt;Security tampering for ransomware delivery&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 modifies the Microsoft Defender Antivirus settings stored in the registry to tamper with the antivirus software and prevent it from blocking ransomware payloads; in order to accomplish this, an attacker must have access to highly privileged accounts that can modify the registry directly. For this reason, prioritizing alerts related to credential theft activity, which typically indicate an active attacker in the environment, is essential to responding to ransomware signals and preventing attackers from gaining privileged account access.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Storm-1175 has also used encoded PowerShell commands to add the &lt;em&gt;C:\&lt;/em&gt; drive to the antivirus exclusion path, preventing the security solution from scanning the drive and allowing payloads to run without any alerts. Defenders can harden against these tampering techniques by combining tamper protection with the &lt;em&gt;DisableLocalAdminMerge&lt;/em&gt; setting, which prevents attackers from using local administrator privileges to set antivirus exclusions.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="data-exfiltration-and-ransomware-deployment"&gt;Data exfiltration and ransomware deployment&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Like other &lt;a href="https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/"&gt;ransomware as a service&lt;/a&gt; (RaaS) offerings, Medusa offers a leak site to facilitate double extortion operations for its affiliates: attackers not only encrypt data, but steal the data and hold it for ransom, threatening to leak the files publicly if a ransom is not paid. To that aim, Storm-1175 often uses Bandizip to collect files and Rclone for data exfiltration. Data synchronization tools like Rclone allow threat actors to easily transfer large volumes of data to a remote attacker-owned cloud resource. These tools also provide data synchronization capabilities, moving newly created or updated files to cloud resources in real-time to enable continuous exfiltration throughout all stages of the attack without needing attacker interaction.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Finally, having gained sufficient access throughout the network, Storm-1175 frequently leverages PDQ Deployer to launch a script (&lt;em&gt;RunFileCopy.cmd&lt;/em&gt;) and deliver Medusa ransomware payloads. In some cases, Storm-1175 has alternatively used highly privileged access to create a Group Policy update to broadly deploy ransomware.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To defend against Storm-1175 TTPs and similar activity, Microsoft recommends the following mitigation measures:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Use a perimeter scanning tool like Microsoft Defender External Attack Surface Management to understand your organization’s digital footprint and potential attack surface. Targeting web-facing vulnerabilities continues to be one of the most effective attack methods for initial access.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Ensure any web-facing systems are isolated from the public internet with a secure network boundary and access them with a virtual private network (VPN). If certain servers must be accessible on the public internet, position them behind a &lt;a href="https://azure.microsoft.com/products/web-application-firewall/"&gt;web application firewall (WAF)&lt;/a&gt;, &lt;a href="https://microsoft.github.io/reverse-proxy/articles/getting-started.html"&gt;reverse proxy&lt;/a&gt;, or &lt;a href="https://learn.microsoft.com/azure/architecture/reference-architectures/dmz/secure-vnet-dmz"&gt;perimeter network&lt;/a&gt; (also known as a DMZ), which can reduce the risk of vulnerability exploitation in some cases.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Follow the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/#defending-against-ransomware?ocid=magicti_ta_blog" rel="noreferrer noopener" target="_blank"&gt;defending against ransomware&lt;/a&gt;&amp;nbsp;guidance in Microsoft’s ransomware as a service blog post, which details how to build credential hygiene as well as how to limit lateral movement using the principle of least privilege.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Implement &lt;a href="https://learn.microsoft.com/en-us/windows/security/identity-protection/credential-guard/how-it-works"&gt;Credential Guard&lt;/a&gt;, a critical security feature that protects credentials stored in process memory &amp;nbsp;– in the LSA process &lt;em&gt;lsass.exe&lt;/em&gt;. Credential Guard is turned on by default in Windows 11. However, if Credential Guard was previously disabled on a device, updating a device to Windows 11 does not override that setting, and Credential Guard will need to be re-enabled. Additionally, Credential Guard should be enabled before a device is joined to a domain or before a domain user signs in for the first time. If Credential Guard is enabled after domain join, the user and device secrets may already be compromised. Credential Guard&amp;nbsp;&lt;a href="https://learn.microsoft.com/en-us/windows/security/identity-protection/credential-guard/configure?tabs=intune#enable-credential-guard"&gt;can be enabled using Group Policy, the registry, or Microsoft Intune&lt;/a&gt;.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Turn on&amp;nbsp;tenant-wide&amp;nbsp;&lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection?ocid=magicti_ta_learndoc"&gt;tamper protection&lt;/a&gt;&amp;nbsp;features&amp;nbsp;to prevent attackers from stopping security services or using antivirus exclusions. Without tamper protection, attackers could simply turn off Microsoft Defender Antivirus without the need to acquire higher privileges.
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Customers running Intune or Microsoft Defender for Endpoint&amp;nbsp;Security Configuration&amp;nbsp;can&amp;nbsp;&lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/manage-tamper-protection-intune?ocid=magicti_ta_learndoc#tamper-protection-for-antivirus-exclusions"&gt;enable DisableLocalAdminMerge to prevent modification of antivirus exclusions via GPO&lt;/a&gt;.&amp;nbsp;&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;In addition to tamper protection, you can also&amp;nbsp;&lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/configure-real-time-protection-microsoft-defender-antivirus?ocid=magicti_ta_learndoc"&gt;enable and configure Microsoft Defender Antivirus always-on protection in Group Policy&lt;/a&gt;.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;If there is an issue with a device during roll out of various antivirus features, the device can be placed in&amp;nbsp;&lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/enable-troubleshooting-mode?ocid=magicti_ta_learndoc"&gt;Troubleshooting mode&lt;/a&gt;&amp;nbsp;to turn off Tamper Protection temporarily without impacting the wider organizational security policy.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;For approved RMM systems used in your environment, enforce security settings where possible to implement MFA. If an unapproved RMM installation is discovered in your network, reset passwords for accounts used to install the RMM services. If a System-level account was used to install the software, further investigation may be warranted.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Configure&amp;nbsp;&lt;a href="https://learn.microsoft.com/defender-xdr/configure-attack-disruption"&gt;automatic attack disruption&lt;/a&gt;&amp;nbsp;in Microsoft Defender XDR. Automatic attack disruption is designed to contain attacks in progress, limit the impact on an organization&amp;#8217;s assets, and provide more time for security teams to remediate the attack fully.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Microsoft Defender XDR customers can turn on&amp;nbsp;&lt;a href="https://docs.microsoft.com/microsoft-365/security/defender-endpoint/attack-surface-reduction?view=o365-worldwide"&gt;attack surface reduction rules&lt;/a&gt;&amp;nbsp;to prevent common attack techniques used in ransomware attacks:
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://docs.microsoft.com/microsoft-365/security/defender-endpoint/attack-surface-reduction#block-credential-stealing-from-the-windows-local-security-authority-subsystem"&gt;Block credential stealing from the Windows local security authority subsystem (lsass.exe)&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#block-execution-of-potentially-obfuscated-scripts"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#block-webshell-creation-for-servers"&gt;Block Webshell creation for Servers&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#block-process-creations-originating-from-psexec-and-wmi-commands"&gt;Block process creations originating from PSExec and WMI commands&lt;/a&gt; (Some organizations might experience compatibility issues with this rule on certain server systems but should deploy it to other systems to prevent lateral movement originating from PsExec and WMI.)&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#block-execution-of-potentially-obfuscated-scripts"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#block-use-of-copied-or-impersonated-system-tools"&gt;Block use of copied or impersonated system tools&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide#use-advanced-protection-against-ransomware"&gt;Use advanced protection against ransomware&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-defender-detections"&gt;Microsoft Defender detections&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.microsoft.com/security/business/microsoft-defender"&gt;Microsoft Defender&lt;/a&gt; customers can refer to the list of applicable detections below. Microsoft Defender coordinates detection, prevention, investigation, and response across endpoints, identities, email, apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Initial Access&lt;/td&gt;&lt;td&gt;Storm-1175 exploits vulnerable web-facing applications&lt;/td&gt;&lt;td&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Ransomware-linked threat actor detected&lt;br /&gt;&amp;#8211; Possible Beyond Trust software vulnerability exploitation&lt;br /&gt;&amp;#8211; Possible exploitation of&amp;nbsp;GoAnywhere MFT vulnerability&lt;br /&gt;&amp;#8211; Possible SAP NetWeaver vulnerability exploitation&amp;nbsp;Possible exploitation of JetBrains TeamCity vulnerability&lt;br /&gt;&amp;#8211; Suspicious command execution via ScreenConnect&lt;br /&gt;&amp;#8211; Suspicious service launched&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence and privilege escalation&lt;/td&gt;&lt;td&gt;Storm-1175 creates new user accounts under administrative groups using the &lt;em&gt;net&lt;/em&gt; command&lt;/td&gt;&lt;td&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&amp;#8211; User account created under suspicious circumstances&lt;br /&gt;&amp;#8211; New local admin added using Net commands&lt;br /&gt;&amp;#8211; New group added suspiciously&lt;br /&gt;&amp;#8211; Suspicious account creation&lt;br /&gt;&amp;#8211; Suspicious Windows account manipulation&lt;br /&gt;&amp;#8211; Anomalous account lookups&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Credential theft&lt;/td&gt;&lt;td&gt;Storm-1175 dumps credentials from LSASS, or uses a privileged position from the Domain Controller to access NTDS.dit and SAM hive&lt;/td&gt;&lt;td&gt;&lt;strong&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/windows/comprehensive-security" rel="noopener noreferrer" target="_blank"&gt;Microsoft Defender Antivirus&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Behavior:Win32/SAMDumpz &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Exposed credentials at risk of compromise&lt;br /&gt;&amp;#8211; Compromised account credentials&lt;br /&gt;&amp;#8211; Process memory dump&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence, lateral movement&lt;/td&gt;&lt;td&gt;Storm-1175 uses RMM tools for persistence, payload delivery, and lateral movement&lt;/td&gt;&lt;td&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;Microsoft Defender for Endpoint&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Suspicious Atera activity&lt;br /&gt;&amp;#8211; File dropped and launched from remote location&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;Storm-1175 delivers tools such as PsExec or leverages LOLbins like PowerShell to carry out post-compromise activity&lt;/td&gt;&lt;td&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/windows/comprehensive-security"&gt;Microsoft Defender Antivirus&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Behavior:Win32/PsexecRemote &lt;br /&gt;&lt;br /&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&amp;#8211; Hands-on-keyboard attack involving multiple devices&lt;br /&gt;&amp;#8211; Remote access software&lt;br /&gt;&amp;#8211; Suspicious PowerShell command line&lt;br /&gt;&amp;#8211; Suspicious PowerShell download or encoded command execution&lt;br /&gt;&amp;#8211; Ransomware-linked threat actor detected&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Exfiltration&lt;/td&gt;&lt;td&gt;Storm-1175 uses the synch tool Rclone to steal documents&lt;/td&gt;&lt;td&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&amp;#8211; Potential human-operated malicious activity&lt;br /&gt;&amp;#8211; Renaming of legitimate tools for possible data exfiltration&lt;br /&gt;&amp;#8211; Possible data exfiltration&lt;br /&gt;&amp;#8211; Hidden dual-use tool launch attempt&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense evasion&lt;/td&gt;&lt;td&gt;Storm-1175 disables Windows Defender&lt;/td&gt;&lt;td&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&amp;#8211; Defender detection bypass&lt;br /&gt;&amp;#8211; Attempt to turn off Microsoft Defender Antivirus protection&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Impact&lt;/td&gt;&lt;td&gt;Storm-1175 deploys Medusa ransomware&lt;/td&gt;&lt;td&gt;&lt;strong&gt;&lt;a href="https://www.microsoft.com/windows/comprehensive-security"&gt;Microsoft Defender Antivirus&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Ransom:Win32/Medusa &lt;br /&gt;&lt;br /&gt;&lt;a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&amp;#8211; Possible ransomware activity based on a known malicious extension&lt;br /&gt;&amp;#8211; Possible compromised user account delivering ransomware-related files&lt;br /&gt;&amp;#8211; Potentially compromised assets exhibiting ransomware-like behavior&lt;br /&gt;&amp;#8211; Ransomware behavior detected in the file system&lt;br /&gt;&amp;#8211; File dropped and launched from remote location&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.microsoft.com/en-us/security/business/ai-machine-learning/microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/a&gt; is &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;embedded in Microsoft Defender&lt;/a&gt; and provides security teams with AI-powered capabilities to summarize incidents, analyze files and scripts, summarize identities, use guided responses, and generate device summaries, hunting queries, and incident reports.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Customers can also &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-agents-defender"&gt;deploy AI agents&lt;/a&gt;, including the following &lt;a href="https://learn.microsoft.com/copilot/security/agents-overview"&gt;Microsoft Security Copilot agents&lt;/a&gt;, to perform security tasks efficiently:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/threat-intel-briefing-agent-defender"&gt;Threat Intelligence Briefing agent&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/phishing-triage-agent"&gt;Phishing Triage agent&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/advanced-hunting-security-copilot-threat-hunting-agent"&gt;Threat Hunting agent&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/dynamic-threat-detection-agent"&gt;Dynamic Threat Detection agent&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security Copilot is also available as a &lt;a href="https://learn.microsoft.com/en-us/copilot/security/experiences-security-copilot"&gt;standalone experience&lt;/a&gt; where customers can perform specific security-related tasks, such as incident investigation, user analysis, and vulnerability impact assessment. In addition, Security Copilot offers &lt;a href="https://learn.microsoft.com/copilot/security/developer/custom-agent-overview"&gt;developer scenarios&lt;/a&gt; that allow customers to build, test, publish, and integrate AI agents and plugins to meet unique security needs.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can use the following &lt;a href="https://learn.microsoft.com/defender-xdr/threat-analytics"&gt;threat analytics&lt;/a&gt; reports in the Defender portal (requires license for at least one Defender XDR product) to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/5db46cbf-9bd3-4f63-83d5-bded91408025/overview"&gt;Actor profile: Storm-1175&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/adb12f14-423e-4d0f-9865-dea310335621/overview"&gt;Tool profile: Medusa ransomware&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://security.microsoft.com/threatanalytics3/b42038f7-a361-40c0-bcaf-5dbb63f33dc3/overview"&gt;Threat overview profile: Human-operated ransomware&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="indicators-of-compromise"&gt;Indicators of compromise&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following indicators are gathered from identified Storm-1175 attacks during 2026.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;First seen&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Last seen&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;0cefeb6210b7103fd32b996beff518c9b6e1691a97bb1cda7f5fb57905c4be96&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;Gaze.exe&lt;/em&gt; (Medusa Ransomware)&lt;/td&gt;&lt;td&gt;2026-03-01&lt;/td&gt;&lt;td&gt;2026-03-01&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9632d7e4a87ec12fdd05ed3532f7564526016b78972b2cd49a610354d672523c *Note that we have seen this hash in ransomware intrusions by other threat actors since 2024 as well&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;lsp.exe&lt;/em&gt; (Rclone)&lt;/td&gt;&lt;td&gt;2024-04-01 &amp;nbsp;&lt;/td&gt;&lt;td&gt;2026-02-18&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;e57ba1a4e323094ca9d747bfb3304bd12f3ea3be5e2ee785a3e656c3ab1e8086&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;main.exe&lt;/em&gt; (SimpleHelp)&lt;/td&gt;&lt;td&gt;2026-01-15&lt;/td&gt;&lt;td&gt;2026-01-15&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5ba7de7d5115789b952d9b1c6cff440c9128f438de933ff9044a68fff8496d19&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;&lt;em&gt;moon.exe&lt;/em&gt; (SimpleHelp)&lt;/td&gt;&lt;td&gt;2025-09-15&lt;/td&gt;&lt;td&gt;2025-09-22&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;185.135.86[.]149&lt;/td&gt;&lt;td&gt;IP&lt;/td&gt;&lt;td&gt;SimpleHelp C2&lt;/td&gt;&lt;td&gt;2024-02-23&lt;/td&gt;&lt;td&gt;2026-03-15&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;134.195.91[.]224&lt;/td&gt;&lt;td&gt;IP&lt;/td&gt;&lt;td&gt;SimpleHelp C2&lt;/td&gt;&lt;td&gt;2024-02-23&lt;/td&gt;&lt;td&gt;2026-02-26&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;85.155.186[.]121&lt;/td&gt;&lt;td&gt;IP&lt;/td&gt;&lt;td&gt;SimpleHelp C2&lt;/td&gt;&lt;td&gt;2024-02-23&lt;/td&gt;&lt;td&gt;2026-02-12&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="references"&gt;References&lt;/h3&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://labs.watchtowr.com/attackers-with-decompilers-strike-again-smartertools-smartermail-wt-2026-0001-auth-bypass/"&gt;Attackers With Decompilers Strike Again (SmarterTools SmarterMail WT-2026-0001 Auth Bypass)&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.crowdstrike.com/en-us/blog/owassrf-exploit-analysis-and-recommendations/"&gt;OWASSRF: CrowdStrike Identifies New Exploit Method for Exchange Bypassing ProxyNotShell Mitigations&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/06/storm-1175-focuses-gaze-on-vulnerable-web-facing-assets-in-high-tempo-medusa-ransomware-operations/"&gt;Storm-1175 focuses gaze on vulnerable web-facing assets in high-tempo Medusa ransomware operations&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Human-operated ransomware</category><category>Ransomware</category><category>Ransomware as a service</category><category>Storm</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/06/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/"&gt;Inside an AI‑enabled device code phishing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Phishing</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/06/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added one new vulnerability to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-35616" target="_blank"&gt;CVE-2026-35616&lt;/a&gt; - Fortinet FortiClient EMS Improper Access Control Vulnerability&lt;/li&gt;
 &lt;/ul&gt;
@@ -11168,7 +11597,7 @@ CloudAppEvents
 &lt;p&gt;There is little that connects Shchukin to UNKNOWN&amp;#8217;s various accounts on the Russian crime forums. But a review of the Russian crime forums indexed by the cyber intelligence firm &lt;strong&gt;Intel 471&lt;/strong&gt; shows there is plenty connecting Shchukin to a hacker identity called &amp;#8220;&lt;strong&gt;Ger0in&lt;/strong&gt;&amp;#8221; who operated large botnets and sold &amp;#8220;installs&amp;#8221; &amp;#8212; allowing other cybercriminals to rapidly deploy malware of their choice to thousands of PCs in one go. However, Ger0in was only active between 2010 and 2011, well before UNKNOWN&amp;#8217;s appearance as the REvil front man.&lt;/p&gt;
 &lt;p&gt;A review of the mugshots released by the BKA at the image comparison site Pimeyes found a match on &lt;a href="https://event-myata.ru/private/02#!/tab/581005712-2" rel="noopener" target="_blank"&gt;this birthday celebration from 2023&lt;/a&gt;, which features a young man named Daniel wearing the same fancy watch as in the BKA photos.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_73401" style="width: 760px;"&gt;&lt;a href="https://krebsonsecurity.com/wp-content/uploads/2026/04/shchukin-bday.png" rel="noopener" target="_blank"&gt;&lt;img alt="" class="wp-image-73401" height="170" src="https://krebsonsecurity.com/wp-content/uploads/2026/04/shchukin-bday.png" width="750" /&gt;&lt;/a&gt;&lt;p class="wp-caption-text" id="caption-attachment-73401"&gt;Images from Daniil Shchukin&amp;#8217;s birthday party celebration in Krasnodar in 2023.&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Update, April 6, 12:06 p.m. ET&lt;/strong&gt;: A &lt;a href="https://infosec.exchange/@odr_k4tana" rel="noopener" target="_blank"&gt;reader&lt;/a&gt; forwarded &lt;a href="https://us.mirror.ionos.com/projects/media.ccc.de/congress/2023/mp3-translated/37c3-12134-eng-Hirne_hacken_Hackback_Edition_mp3-2.mp3" rel="noopener" target="_blank"&gt;this English-dubbed audio recording&lt;/a&gt; from a ccc.de (37C3) conference talk in Germany from 2023 that previously outed Shchukin as the REvil leader (Shchuckin is mentioned at around 24:25).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73394</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>Web Fraud 2.0</category><category>Anatoly Sergeevitsch Kravchuk</category><category>Daniel Golden</category><category>Daniil Maksimovich Shchukin</category><category>Dmitry Smilyanets</category><category>GandCrab</category><category>Ger0in</category><category>German Federal Criminal Police</category><category>Intel 471</category><category>Recorded Future</category><category>Renee Dudley</category><category>rEvil</category><category>UNKN</category></item><item><title>The Hack That Exposed Syria’s Sweeping Security Failures</title><link>https://www.wired.com/story/inside-the-hack-that-exposed-syrias-security-failures/</link><description>When Syrian government accounts were hijacked in March, the breach looked chaotic. But it revealed something more troubling: a state struggling with the most basic layer of cybersecurity.</description><guid isPermaLink="false">69d0299db4952a3941314d23</guid><category>Security</category><category>Security / National Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>cybersecurity</category><category>Russia</category><category>hacking</category><category>security</category><category>hacks</category><category>Syria</category><category>Facades</category></item><item><title>Hackers Are Posting the Claude Code Leak With Bonus Malware</title><link>https://www.wired.com/story/security-news-this-week-hackers-are-posting-the-claude-code-leak-with-bonus-malware/</link><description>Plus: The FBI says a recent hack of its wiretap tools poses a national security risk, attackers stole Cisco source code as part of an ongoing supply chain hacking spree, and more.</description><guid isPermaLink="false">69d00b4d930f0c6762bef1b6</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>security roundup</category><category>hacking</category><category>cybersecurity</category><category>security</category><category>malware</category><category>FBI</category><category>Cisco</category><category>artificial intelligence</category><category>apple</category><category>ios</category><category>Security Roundup</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/02/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added&amp;nbsp;one&amp;nbsp;new&amp;nbsp;vulnerability&amp;nbsp;to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update, April 6, 12:06 p.m. ET&lt;/strong&gt;: A &lt;a href="https://infosec.exchange/@odr_k4tana" rel="noopener" target="_blank"&gt;reader&lt;/a&gt; forwarded &lt;a href="https://us.mirror.ionos.com/projects/media.ccc.de/congress/2023/mp3-translated/37c3-12134-eng-Hirne_hacken_Hackback_Edition_mp3-2.mp3" rel="noopener" target="_blank"&gt;this English-dubbed audio recording&lt;/a&gt; from a ccc.de (37C3) conference talk in Germany from 2023 that previously outed Shchukin as the REvil leader (Shchuckin is mentioned at around 24:25).&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73394</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>Web Fraud 2.0</category><category>Anatoly Sergeevitsch Kravchuk</category><category>Daniel Golden</category><category>Daniil Maksimovich Shchukin</category><category>Dmitry Smilyanets</category><category>GandCrab</category><category>Ger0in</category><category>German Federal Criminal Police</category><category>Intel 471</category><category>Recorded Future</category><category>Renee Dudley</category><category>rEvil</category><category>UNKN</category></item><item><title>The Hack That Exposed Syria’s Sweeping Security Failures</title><link>https://www.wired.com/story/inside-the-hack-that-exposed-syrias-security-failures/</link><description>When Syrian government accounts were hijacked in March, the breach looked chaotic. But it revealed something more troubling: a state struggling with the most basic layer of cybersecurity.</description><guid isPermaLink="false">69d0299db4952a3941314d23</guid><category>Security</category><category>Security / National Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>cybersecurity</category><category>Russia</category><category>hacking</category><category>security</category><category>hacks</category><category>Syria</category><category>Facades</category></item><item><title>CISA Adds One Known Exploited Vulnerability to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/04/02/cisa-adds-one-known-exploited-vulnerability-catalog</link><description>&lt;p&gt;CISA has added&amp;nbsp;one&amp;nbsp;new&amp;nbsp;vulnerability&amp;nbsp;to its&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&amp;nbsp;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-3502" target="_blank"&gt;CVE-2026-3502&lt;/a&gt;&amp;nbsp;TrueConf&amp;nbsp;Client Download of Code Without Integrity Check Vulnerability&amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
