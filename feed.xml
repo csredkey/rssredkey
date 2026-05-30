@@ -1,5 +1,732 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 29 May 2026 21:59:18 +0000</lastBuildDate><item><title>Friday Squid Blogging: Another Squid</title><link>https://www.schneier.com/blog/archives/2026/05/friday-squid-blogging-another-squid.html</link><description>&lt;p&gt;Someone named &amp;#8220;Squid&amp;#8221; seems to be a &amp;#8220;&lt;a href="https://crackmagazine.net/2026/05/simple-things-2026-line-up/"&gt;West Country legend&lt;/a&gt;.&amp;#8221;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 30 May 2026 03:59:18 +0000</lastBuildDate><item><title>Malicious npm packages abuse dependency confusion to profile developer environments</title><link>https://www.microsoft.com/en-us/security/blog/2026/05/29/33-malicious-npm-packages-abuse-dependency-confusion-profile-developer-environments/</link><description>&lt;p&gt;A dependency confusion campaign leveraged 33 malicious npm packages to collect reconnaissance data from developer and build environments. This report details the attack chain, observed tradecraft, and detection opportunities to help organizations identify and disrupt related activity.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/29/33-malicious-npm-packages-abuse-dependency-confusion-profile-developer-environments/"&gt;Malicious npm packages abuse dependency confusion to profile developer environments&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-fa796990-8537-48df-bf38-2f9f4e9fb9a0"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-fa796990-8537-48df-bf38-2f9f4e9fb9a0"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#threat-actor-attribution"&gt;Threat actor attribution&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#indicators-of-compromise-ioc"&gt;Indicators of Compromise (IOC)&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#references"&gt;References&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence has uncovered an active supply chain attack involving malicious npm packages registered under organizational scopes that mirror real internal corporate namespaces, employing dependency confusion technique to deploy an obfuscated reconnaissance payload.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;On May 28 and May 29, 2026, a threat actor operating under three maintainer aliases mr.4nd3r50n (&lt;em&gt;mr.4nd3r50n@yandex[.]ru&lt;/em&gt;), ce-rwb (&lt;em&gt;ogvanta@yandex[.]ru&lt;/em&gt;), and t-in-one (&lt;em&gt;t-in-one@yandex[.]ru&lt;/em&gt;) published malicious packages across two publishing bursts. The packages impersonate internal corporate packages across nine different organizational scopes using a dependency confusion technique, and several spoof internal enterprise infrastructure URLs (GitHub Enterprise, Jira, documentation portals) in their &lt;em&gt;package.json&lt;/em&gt; to appear legitimate. Once installed, the packages download and execute an obfuscated reconnaissance payload from an attacker-controlled command-and-control (C2) server.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;All packages in the cluster ship the same heavily obfuscated &lt;em&gt;postinstall&lt;/em&gt; stager and connect to the same C2 endpoint, a ~17 KB JavaScript dropper used for for environment fingerprinting and credential reconnaissance. The payload runs silently during &lt;em&gt;npm install&lt;/em&gt; and operates in  &amp;#8220;reconnaissance-only&amp;#8221; mode, collecting system information, hostnames, environment variables, and developer context. The architecture includes a &lt;em&gt;RECON_ONLY&lt;/em&gt; flag that can be toggled server-side for full exploitation in follow-on attacks. Based on our investigation and feedback to the npm team these repos and users were taken down.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Key capabilities observed in the campaign include automatic execution through npm lifecycle hooks, obfuscator.io-style anti-analysis techniques, platform-specific payload delivery (Windows, macOS, Linux), continuous integration and continuous delivery (CI/CD) environment detection and bypass, cache-based deduplication to evade repeated-execution monitoring, and a two-phase attack design (reconnaissance now, exploitation later).&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;The campaign spans dozens of scoped packages published under three npm maintainer accounts that our forensic analysis attributes to a single operator (detailed in the Attribution section below). The attack proceeds through:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Publication of dependency confusion packages under three actor identities across nine organizational scopes&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Automatic payload execution through a &lt;em&gt;postinstall&lt;/em&gt; hook during &lt;em&gt;npm install&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Execution chain: &lt;em&gt;npm install&lt;/em&gt; → &lt;em&gt;postinstall&lt;/em&gt; → &lt;em&gt;scripts/postinstall.js&lt;/em&gt; (obfuscated) → HTTPS GET to C2 → write payload to &lt;em&gt;tmpdir&lt;/em&gt;&amp;nbsp;→ &lt;em&gt;spawn&lt;/em&gt; detached process&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Environment reconnaissance with credentials and context exfiltration using environment variables passed to the spawned payload&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147812 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-180.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. Dependency confusion attack flow.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="the-lure-dependency-confusion-and-spoofed-internal-metadata"&gt;The lure: Dependency confusion and spoofed internal metadata&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The actor adopted three social-engineering techniques designed to drive installs through misconfigured package managers or developer trust transference:&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="namespace-squatting"&gt;&lt;strong&gt;Namespace squatting&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;strong&gt;&amp;nbsp;&lt;/strong&gt;attacker registered packages under organizational scopes that mirror real internal corporate namespaces: &lt;em&gt;@cloudplatform-single-spa&lt;/em&gt;, &lt;em&gt;@wb-track&lt;/em&gt;, &lt;em&gt;@data-science&lt;/em&gt;, &lt;em&gt;@ce-rwb&lt;/em&gt;, &lt;em&gt;@payments-widget&lt;/em&gt;, &lt;em&gt;@travel-autotests&lt;/em&gt;, &lt;em&gt;@t-in-one&lt;/em&gt;, &lt;em&gt;@capibar.chat&lt;/em&gt;, and &lt;em&gt;@sber-ecom-core&lt;/em&gt;. Package names like svp-baas, enterprise, monitoring, ssh-keys, shared-front, payments-widget-sdk, add_application_service_token, ui-kit, and sberpay-widget target specific internal services — the last of which directly impersonates Sberbank&amp;#8217;s SberPay payment widget.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="spoofed-enterprise-metadata"&gt;&lt;strong&gt;Spoofed enterprise metadata&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Every package sets its &lt;em&gt;package.json&lt;/em&gt; homepage, repository, bugs, and author fields to fabricated but realistic-looking internal infrastructure URLs. For example:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Repository: &lt;em&gt;git+https://github[.]cloudplatform-single-spa[.]io/platform/svp-baas.git&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Homepage: &lt;em&gt;https://docs[.]cloudplatform-single-spa[.]io/platform/svp-baas&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Bugs: &lt;em&gt;https://jira[.]cloudplatform-single-spa[.]io/projects/PLATFORM&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Author: &lt;em&gt;Cloudplatform-Single-Spa Platform Engineering &amp;lt;platform@cloudplatform-single-spa[.]io&amp;gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These URLs follow the pattern of enterprise GitHub, Jira, and documentation portals, lending an air of legitimacy designed to evade casual inspection during code review.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="inflated-version-numbers"&gt;&lt;strong&gt;Inflated version numbers&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;mr.4nd3r50n uses version 100.100.100, an absurdly high version number designed to win npm&amp;#8217;s server resolution against any real internal package version. ce-rwb uses a more realistic 3.5.22 to blend in with legitimate release histories. t-in-one mixes both tactics: the ten @t-in-one packages ship at 5.7.1, while @capibar.chat/ui-kit (99.5.7) and @sber-ecom-core/sberpay-widget (99.5.8) use inflated numbers — and both of the latter scopes were pre-staged with 99.0.7 releases on 2026-05-04, weeks before the main bursts.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147813 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-181.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. The malicious package.json. The postinstall hook gains code execution on every &lt;code&gt;npm install&lt;/code&gt;. Version 100.100.100 ensures the malicious package wins dependency resolution over any real internal version.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="execution-npm-lifecycle-hook-abuse"&gt;Execution: npm lifecycle hook abuse&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Every package in the cluster declares an automatic install-time hook in &lt;em&gt;package.json&lt;/em&gt;:&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+"scripts": {
+    "build": "tsc --noEmit || true",
+    "test": "node test/index.test.js",
+    "postinstall": "node scripts/postinstall.js",
+    "prepublishOnly": "echo 'Building...'"
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The malicious code executes the moment a victim runs &lt;em&gt;npm install&lt;/em&gt;; no &lt;em&gt;require()&lt;/em&gt; from victim code is needed. The &lt;em&gt;build&lt;/em&gt; and &lt;em&gt;test&lt;/em&gt; scripts are cosmetic, designed to make the package appear to have a legitimate development workflow.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="stager-obfuscated-javascript-dropper"&gt;Stager: Obfuscated JavaScript dropper&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;scripts/postinstall.js&lt;/em&gt; is approximately 7 KB of heavily obfuscated JavaScript using &lt;strong&gt;obfuscator.io-style&lt;/strong&gt; techniques:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;String array encoding&lt;/strong&gt;: All meaningful strings (URLs, function names, environment variable keys) are stored in a rotated array and decoded at runtime through a custom Base64 variant&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Control flow flattening&lt;/strong&gt;: Logic branches are obscured through computed dispatch tables&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Dead code injection&lt;/strong&gt;: Anti-analysis noise makes manual review prohibitively time-consuming&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Self-defending code&lt;/strong&gt;: Anti-tampering checks detect modifications to the obfuscated code&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147814 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-182.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Obfuscated postinstall.js. After deobfuscation, the payload reveals the C2 URL, platform detection logic, and file-drop/spawn execution pattern.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="execution-flow-from-npm-install-to-detached-payload"&gt;Execution flow: from &lt;em&gt;npm install&lt;/em&gt; to detached payload&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The deobfuscated execution flow proceeds through eight distinct stages:&lt;/p&gt;
+
+
+
+&lt;ol class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;CI detection bypass&lt;/strong&gt;: The stager checks for the &lt;em&gt;CI&lt;/em&gt; environment variable (or scope-specific equivalents like &lt;em&gt;CLOUDPLATFORM_SINGLE_SPA_NO_TELEMETRY&lt;/em&gt;). If detected, execution silently aborts. This avoids triggering alerts in monitored CI/CD pipelines where security tooling is more likely to detect anomalous behavior.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Node.js version validation&lt;/strong&gt;: The stager verifies &lt;em&gt;process.versions.node&lt;/em&gt; &amp;gt;= 16.0. Older Node.js versions are skipped, likely because the payload depends on modern APIs.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Cache deduplication&lt;/strong&gt;: A cache directory is created at &lt;em&gt;~/.cache/&amp;lt;scope&amp;gt;_init/&lt;/em&gt; (for example, &lt;em&gt;~/.cache/._cloudplatform-single-spa_init/&lt;/em&gt;). The stager generates a hash key from the package name, version, and project root path. If a cache entry exists and hasn&amp;#8217;t expired, the stager exits. This prevents the payload from re-running on every &lt;em&gt;npm install&lt;/em&gt; in the same project, reducing the chance of detection through repeated network connections.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Project root detection&lt;/strong&gt;: The stager walks up the directory tree from &lt;em&gt;process.cwd()&lt;/em&gt; looking for &lt;em&gt;package.json&lt;/em&gt;, &lt;em&gt;yarn.lock&lt;/em&gt;, or &lt;em&gt;.git&lt;/em&gt; to identify the project root. This context is incorporated into the cache key and passed to the payload.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Platform detection&lt;/strong&gt;: &lt;em&gt;os.platform()&lt;/em&gt; determines the target OS variant (&lt;em&gt;win32&lt;/em&gt; → &lt;em&gt;win&lt;/em&gt;, &lt;em&gt;darwin&lt;/em&gt; → &lt;em&gt;mac&lt;/em&gt;, &lt;em&gt;default&lt;/em&gt; → &lt;em&gt;linux&lt;/em&gt;).&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Payload download&lt;/strong&gt;: An HTTPS GET request is made to the C2 server at &lt;em&gt;https://oob.moika[.]tech/payload/&amp;lt;platform&amp;gt;&lt;/em&gt; with a 30-second timeout. The response is a binary payload.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Payload drop&lt;/strong&gt;: The downloaded binary is written to &lt;em&gt;os.tmpdir()&lt;/em&gt; as a &lt;em&gt;.js&lt;/em&gt; file (for example, &lt;em&gt;/tmp/._cloudplatform-single-spa_init.js&lt;/em&gt;).&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Detached execution&lt;/strong&gt;: Payload spawned as an independent background process with .unref() to outlive npm install.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147816 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-184.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Detailed execution chain from npm install trigger through CI detection, caching, C2 download, to detached background process spawn.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="reconnaissance-mode-and-two-phase-design"&gt;Reconnaissance mode and two-phase design&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The environment variables passed to the spawned payload reveal a deliberate two-phase attack architecture:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Variable&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Purpose&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*_RECON_ONLY&lt;/td&gt;&lt;td&gt;Set to &amp;#8220;1&amp;#8221; by default; limits payload to reconnaissance&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*_PKG&lt;/td&gt;&lt;td&gt;Identifies which internal package triggered the execution&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*_VER&lt;/td&gt;&lt;td&gt;Package version for campaign tracking&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*_SECRET&lt;/td&gt;&lt;td&gt;Hard-coded authentication token for C2 communication&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;RECON_ONLY&lt;/em&gt; flag is hard-coded to &amp;#8220;1&amp;#8221; in the current campaign, indicating the attacker is in&lt;strong&gt;&amp;nbsp;Reconnaissance&lt;/strong&gt;&amp;nbsp; — collecting environment information, hostnames, installed packages, and developer context. The architecture supports a&lt;strong&gt;&amp;nbsp;Full exploitation&lt;/strong&gt; mode where the flag can be toggled server-side to enable data exfiltration, credential theft, or backdoor installation on previously fingerprinted targets.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This two-phase design is sophisticated: it minimizes the risk of detection during initial deployment while building a target inventory for selective, high-value exploitation later.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="threat-actor-attribution"&gt;Threat actor attribution&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Forensic analysis of npm registry metadata across every package in the cluster provides high-confidence evidence that the three accounts (mr.4nd3r50n, ce-rwb, and t-in-one) are operated by the same individual. The single strongest piece of evidence is a shared hardcoded authentication value, l95HdDaz3kQx1Zsg3WxH6HvKANf51RY1, sent as the X-Secret HTTP header on every outbound C2 request from every package in all three accounts.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147819 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-185.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;&lt;em&gt;Figure 5. Side-by-side forensic comparison of the two actor accounts. Every measurable property matches or is nearly identical, providing high-confidence single-operator attribution.&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="identical-c2-infrastructure"&gt;&lt;strong&gt;Identical C2 infrastructure&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Both accounts&amp;#8217; payloads connect to the exact same C2 server: &lt;em&gt;https://oob.moika[.]tech/payload&lt;/em&gt;. Sharing offensive infrastructure across &amp;#8220;separate&amp;#8221; personas is the strongest single indicator of a single operator. Maintaining separate C2 servers would be trivial, so using the same one indicates the shared infrastructure supports our assessment that the activity is associated with a single operator.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="same-publishing-toolchain"&gt;&lt;strong&gt;Same publishing toolchain&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;mr.4nd3r50n&amp;#8217;s early versions (v99.99.99) were published with Node.js 20.20.1 / npm 10.8.2. ce-rwb&amp;#8217;s packages were published with Node.js 20.20.0 / npm 10.8.2. t-in-one&amp;#8217;s @t-in-one packages were published with Node.js 20.20.1 / npm 10.8.2 — matching mr.4nd3r50n exactly. The minor variance across the three accounts suggests the same machine at slightly different patch levels, or a small set of machines configured from the same provisioning script.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="identical-package-template-generator"&gt;&lt;strong&gt;Identical package template generator&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Both actors use the exact same templating system for generating fake package metadata:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Author: &lt;em&gt;&amp;#8220;&amp;lt;Scope-Name&amp;gt; Platform Engineering&amp;#8221; &amp;lt;platform@&amp;lt;scope&amp;gt;.io&amp;gt;&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Repository: &lt;em&gt;git+https://github.&amp;lt;scope&amp;gt;.io/platform/&amp;lt;pkg&amp;gt;.git&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Documentation: &lt;em&gt;https://docs.&amp;lt;scope&amp;gt;.io/platform/&amp;lt;pkg&amp;gt;&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Issue tracker: &lt;em&gt;https://jira.&amp;lt;scope&amp;gt;.io/projects/PLATFORM&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;README: Identical structure including a fake &amp;#8220;Telemetry&amp;#8221; disclaimer and the same changelog entries (&amp;#8220;Added ARM64 support&amp;#8221;, &amp;#8220;Improved error handling&amp;#8221;, &amp;#8220;Updated TypeScript types&amp;#8221;)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;This level of template consistency, down to identical changelog entries across every package, including the @t-in-one README that points developers at a fabricated internal registry at npm.t-in-one[.]io with matching docs.t-in-one[.]io and jira.t-in-one[.]io references — indicates a single automated package generator.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="temporal-correlation-12-minute-gap"&gt;&lt;strong&gt;Temporal correlation: 12-minute gap&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;mr.4nd3r50n published 26 packages between 18:47–18:51 UTC on May 28. ce-rwb published 7 packages between 19:02–19:03 UTC on May 28 — a 12-minute gap consistent with one person completing one publishing batch, switching npm accounts, and starting the next. t-in-one returned the following day, publishing 10 @t-in-one packages between 09:01:56 and 09:02:39 UTC on May 29 (a 43-second automated burst), with the @capibar.chat and @sber-ecom-core republishes following minutes later. The ~14-hour overnight gap between ce-rwb and t-in-one, paired with the unchanged C2 host and identical X-Secret, indicates the same operator returning to expand the campaign rather than a separate group.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="bug-bounty-to-malware-pipeline"&gt;&lt;strong&gt;Bug bounty to malware pipeline&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;@cloudplatform-single-spa/logaas&lt;/em&gt; package reveals a critical piece of the actor&amp;#8217;s history:&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147820 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/05/image-186.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. The actor&amp;#8217;s evolution from bug bounty researcher (April 2024) to hosting malware (May 2026), with a ~2 year gap between phases.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;v0.0.0&lt;/strong&gt; (April 10, 2024): Published with keywords [&amp;#8220;Bugbounty&amp;#8221;, &amp;#8220;mr4nd3r50n&amp;#8221;] and description &amp;#8220;BugBounty testing by mr4nd3r50n&amp;#8221; using Node.js 21.7.1 / npm 10.5.0&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;v99.99.99&lt;/strong&gt; (June 5, 2024): Same bug bounty markers, same toolchain&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;v99.99.100&lt;/strong&gt; (May 28, 2026, 18:47 UTC): First appearance of the malicious obfuscated payload, upgraded to Node.js 24.8.0 / npm 11.6.0&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;v100.100.100&lt;/strong&gt; (May 28, 2026, 18:50 UTC): Final malicious version&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This timeline shows mr.4nd3r50n began as a &amp;nbsp;bug bounty researcher probing npm dependency confusion in April 2024 followed by the malicious packages observed in this campaign.y approximately two years later. The ce-rwb account has no prior publishing history, suggesting it was created specifically for the May 2026 campaign as a secondary persona to broaden the attack surface across additional organizational scopes.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="affected-packages"&gt;Affected packages&lt;/h3&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="mr-4nd3r50n-26-packages-all-version-100-100-100"&gt;mr.4nd3r50n — 26 packages (all version 100.100.100)&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;All packages use the scope @cloudplatform-single-spa:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Package&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;svp-baas&lt;/td&gt;&lt;td&gt;Database/Backend-as-a-Service&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;enterprise&lt;/td&gt;&lt;td&gt;Enterprise platform&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;vpn&lt;/td&gt;&lt;td&gt;VPN service&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;monitoring&lt;/td&gt;&lt;td&gt;Monitoring platform&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;dataplatform-trino&lt;/td&gt;&lt;td&gt;Trino data platform&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;marketplace-gigachat&lt;/td&gt;&lt;td&gt;GigaChat marketplace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;support&lt;/td&gt;&lt;td&gt;Support tools&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;svp-s3-storage&lt;/td&gt;&lt;td&gt;S3 storage service&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ml-ai-agents-agent&lt;/td&gt;&lt;td&gt;ML/AI agents&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ssh-keys&lt;/td&gt;&lt;td&gt;SSH key management&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;security-groups&lt;/td&gt;&lt;td&gt;Security groups&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;employees&lt;/td&gt;&lt;td&gt;Employee directory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cp-api-gw&lt;/td&gt;&lt;td&gt;API gateway&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;base-static-page&lt;/td&gt;&lt;td&gt;Static page framework&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;administration&lt;/td&gt;&lt;td&gt;Administration panel&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ml-ai-agents-agent-system&lt;/td&gt;&lt;td&gt;AI agent system&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;arenadata-db&lt;/td&gt;&lt;td&gt;ArenaData database&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;business-solutions&lt;/td&gt;&lt;td&gt;Business solutions&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;dataplatform-metastore&lt;/td&gt;&lt;td&gt;Data metastore&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cloud-dns&lt;/td&gt;&lt;td&gt;Cloud DNS&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;dataplatform&lt;/td&gt;&lt;td&gt;Data platform&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;datagrid&lt;/td&gt;&lt;td&gt;Data grid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;floating-ips&lt;/td&gt;&lt;td&gt;Floating IP management&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cnapp-ui&lt;/td&gt;&lt;td&gt;CNAPP security UI&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;svp-interfaces&lt;/td&gt;&lt;td&gt;SVP interfaces&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;logaas&lt;/td&gt;&lt;td&gt;Logging-as-a-Service&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="ce-rwb-7-packages-all-version-3-5-22"&gt;ce-rwb — 7 packages (all version 3.5.22)&lt;/h4&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Package&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Scope Targeted&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@wb-track/shared-front&lt;/td&gt;&lt;td&gt;WB-Track (warehouse/logistics tracking)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@data-science/llm&lt;/td&gt;&lt;td&gt;Data Science / LLM platform&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@ce-rwb/ce-tools-editor-admin&lt;/td&gt;&lt;td&gt;CE-RWB internal editor tools&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@ce-rwb/ce-tools-editor-render&lt;/td&gt;&lt;td&gt;CE-RWB internal editor tools&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@ce-rwb/ce-tools-editor-core&lt;/td&gt;&lt;td&gt;CE-RWB internal editor tools&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@payments-widget/payments-widget-sdk&lt;/td&gt;&lt;td&gt;Payments processing SDK&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@travel-autotests/npm-proto&lt;/td&gt;&lt;td&gt;Travel platform test protobuf&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="t-in-one-12-packages-may-29-wave"&gt;t-in-one — 12 packages (May 29 wave)&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;t-in-one returned on May 29 with a third npm account, t-in-one (t-in-one@yandex[.]ru), and expanded the campaign across three previously unused scopes. The ten @t-in-one package names are deliberately credential- and token-themed so they read as internal auth modules; @capibar.chat/ui-kit is a textbook dependency confusion artifact against an internal UI kit; and @sber-ecom-core/sberpay-widget directly impersonates Sberbank&amp;#8217;s SberPay payment widget — making the campaign&amp;#8217;s financial-sector targeting explicit. Unlike the May 28 wave, the May 29 stager ships a three-layer-obfuscated postinstall (~13 KB) and adds a functional T_IN_ONE_NO_TELEMETRY kill switch and a run-once marker directory at ~/.cache/._t-in-one_init/. The C2 host, payload endpoints, and hardcoded X-Secret value are identical to the May 28 wave.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Package&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Scope Targeted&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/add_application&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/add_app_middleware_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/get_application_hid&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/form_product_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/application_id_storage_key_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/only_difference_payload&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/prefill_credit_data_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/prefill_bundle_data_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/add_application_tid&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@t-in-one/add_application_service_token&lt;/td&gt;&lt;td&gt;T-in-one — credential/auth module&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@capibar.chat/ui-kit&lt;/td&gt;&lt;td&gt;Capibar Chat — internal UI kit&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@sber-ecom-core/sberpay-widget&lt;/td&gt;&lt;td&gt;Sberbank — impersonation of SberPay payment widget&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Review dependency trees for direct or transitive usage of any of the nine affected scoped packages (@cloudplatform-single-spa, @wb-track, @data-science, @ce-rwb, @payments-widget, @travel-autotests, @t-in-one, @capibar.chat, @sber-ecom-core).&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Identify systems that installed or built any of the affected package versions on or after May 28, 2026, including the pre-staged @capibar.chat/ui-kit 99.0.7 and @sber-ecom-core/sberpay-widget 99.0.7 releases from 2026-05-04.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Pin known-good package versions where possible and avoid automatic dependency upgrades for the affected scopes until validation is complete.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Disable pre- and post-installation script execution by ensuring you run npm install with &amp;#8211;ignore-scripts (or by setting npm config set ignore-scripts true globally).&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Rotate credentials, tokens, npm access tokens, CI/CD secrets, and cloud credentials that might have been exposed on affected developer workstations or CI/CD runners.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Scope-lock internal npm registries by configuring .npmrc so that all nine targeted scopes resolve exclusively to your private registry and never fall back to the public npm registry.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Block egress to oob.moika[.]tech and the lure domains npm.t-in-one[.]io, docs.t-in-one[.]io, and jira.t-in-one[.]io at proxy, firewall, and DNS layers.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Audit CI/CD logs for unexpected outbound network connections, script execution, or suspicious package lifecycle activity tied to the affected scopes.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Review npm package lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml), build logs, and artifact provenance for evidence of compromised package versions.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Audit ~/.cache/ directories and os.tmpdir() for dropped .js payloads matching the pattern ._&amp;lt;scope&amp;gt;_init.js (e.g., ._cloudplatform-single-spa_init.js, ._wb-track_init.js, ._t-in-one_init.js) and the run-once marker directory ~/.cache/._t-in-one_init/.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Hunt for outbound HTTP requests carrying the header value X-Secret: l95HdDaz3kQx1Zsg3WxH6HvKANf51RY1 — its presence is a high-fidelity indicator of compromise across all three operator accounts.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enable cloud-delivered protection in Microsoft Defender Antivirus or equivalent antivirus protection.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Use Microsoft Defender XDR to investigate suspicious activity across endpoints, identities, cloud apps, and developer environments.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Use Microsoft Defender Vulnerability Management to search for affected scoped packages across your estate.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="how-microsoft-defender-helps"&gt;How Microsoft Defender helps&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender Antivirus detects and blocks the obfuscated postinstall stager and the detached recon payload on access. During reproduction in our analysis environment, the dropped ._&amp;lt;scope&amp;gt;_init.js stager was automatically quarantined the moment the package tarball was extracted to disk, preventing the C2 beacon to oob.moika[.]tech and blocking the platform-specific second-stage download. Microsoft Defender for Endpoint provides additional behavior-based coverage for the npm lifecycle script-abuse and detached child-process patterns observed in this campaign.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR Detections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog. Customers with provisioned access can also use Microsoft Security Copilot in Microsoft Defender to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;Suspicious script execution during npm install or package lifecycle activity tied to the affected scopes&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;– Trojan:JS/ObfusNpmJs.SA &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;– Suspicious Node.js process behavior &lt;br /&gt;– Suspicious detached child process spawned with windowsHide=true &lt;br /&gt;– Suspicious file creation in temporary directory by Node.js binary&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Three-layer-obfuscated postinstall.js (obfuscator.io + custom base64 + integer-shuffle string table) and install-time kill switch (T_IN_ONE_NO_TELEMETRY)&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;– Trojan:JS/ObfusNpmJs &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;– Suspicious obfuscated JavaScript execution – Anomalous environment variable usage in npm lifecycle script&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Credential Access&lt;/td&gt;&lt;td&gt;Reconnaissance and potential harvesting of environment variables, tokens, and developer secrets via the detached payload&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;– Credential access attempt &lt;br /&gt;– Suspicious cloud credential access by npm-spawned process &lt;br /&gt;– Environment variable enumeration indicative of credential access &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt; &lt;br /&gt;– Possible command injection to exfiltrate credentials from a build pipeline&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Control&lt;/td&gt;&lt;td&gt;Outbound HTTPS connections from build systems or developer machines to oob.moika[.]tech carrying the hardcoded X-Secret header&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;– Connection to a custom network indicator &lt;br /&gt;– Suspicious outbound connection from Node.js process to low-reputation domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence&lt;/td&gt;&lt;td&gt;Run-once marker directory at ~/.cache/._t-in-one_init/ and ._&amp;lt;scope&amp;gt;_init.js payloads dropped in os.tmpdir() and launched with detached: true&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;– Suspicious persistence file creation in user cache directory &lt;br /&gt;– Detached Node.js process surviving parent npm install exit&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.microsoft.com/en-us/security/business/ai-machine-learning/microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/a&gt; is &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;embedded in Microsoft Defender&lt;/a&gt; and provides security teams with AI-powered capabilities to summarize incidents, analyze files and scripts, summarize identities, use guided responses, and generate device summaries, hunting queries, and incident reports.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Customers can also &lt;a href="https://learn.microsoft.com/defender-xdr/security-copilot-agents-defender"&gt;deploy AI agents&lt;/a&gt;, including the following &lt;a href="https://learn.microsoft.com/copilot/security/agents-overview"&gt;Microsoft Security Copilot agents&lt;/a&gt;, to perform security tasks efficiently:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/threat-intel-briefing-agent-defender"&gt;Threat Intelligence Briefing agent&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/phishing-triage-agent"&gt;Phishing Triage agent&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/advanced-hunting-security-copilot-threat-hunting-agent"&gt;Threat Hunting agent&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-xdr/dynamic-threat-detection-agent"&gt;Dynamic Threat Detection agent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot is also available as a &lt;a href="https://learn.microsoft.com/en-us/copilot/security/experiences-security-copilot"&gt;standalone experience&lt;/a&gt; where customers can perform specific security-related tasks, such as incident investigation, user analysis, and vulnerability impact assessment. In addition, Security Copilot offers &lt;a href="https://learn.microsoft.com/copilot/security/developer/custom-agent-overview"&gt;developer scenarios&lt;/a&gt; that allow customers to build, test, publish, and integrate AI agents and plugins to meet unique security needs.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-threat-analytics"&gt;Microsoft Defender XDR Threat analytics&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can reference the Threat analytics report for this campaign in the Microsoft Defender portal at &lt;a href="https://security.microsoft.com/threatanalytics3"&gt;https://security.microsoft.com/threatanalytics3&lt;/a&gt; for the latest indicators, recommended actions, and mitigation status across their estate.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="advanced-hunting"&gt;Advanced hunting&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following sample queries let you search for a week&amp;#8217;s worth of events. To explore up to 30 days of raw data, go to the Advanced Hunting page &amp;gt; Query tab, and update the time range to Last 30 days.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for suspicious npm lifecycle script execution involving the affected scopes.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches for Node.js and npm activity involving install lifecycle behavior and references to the nine affected scoped packages.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceProcessEvents
+ | where FileName in~ ("node.exe", "npm.cmd", "npm.exe", "npx.cmd", "npx.exe")
+ | where ProcessCommandLine has_any ("preinstall", "postinstall", "install")
+ | where ProcessCommandLine has_any (
+     "@cloudplatform-single-spa", "@wb-track", "@data-science",
+     "@ce-rwb", "@payments-widget", "@travel-autotests",
+     "@t-in-one", "@capibar.chat", "@sber-ecom-core")
+ | project Timestamp, DeviceName, FileName, ProcessCommandLine,
+           InitiatingProcessFileName, InitiatingProcessCommandLine,
+           AccountName
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for affected package versions in software inventory.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches device software inventory for any installed packages from the affected scopes.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceTvmSoftwareInventory
+ | where SoftwareName has_any (
+     "cloudplatform-single-spa", "wb-track", "data-science",
+     "ce-rwb", "payments-widget", "travel-autotests",
+     "t-in-one", "capibar.chat", "sber-ecom-core")
+ | project DeviceName, OSPlatform, SoftwareVendor, SoftwareName,
+           SoftwareVersion
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for outbound C2 activity to oob.moika[.]tech.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches for any device network connection to the campaign C2 host.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceNetworkEvents
+ | where Timestamp &gt; ago(7d)
+ | where RemoteUrl has "oob.moika.tech"
+    or RemoteUrl has_any ("npm.t-in-one.io", "docs.t-in-one.io",
+                          "jira.t-in-one.io")
+ | project Timestamp, DeviceName, RemoteUrl, RemoteIP, RemotePort,
+           InitiatingProcessFileName, InitiatingProcessCommandLine,
+           AccountName
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for suspicious outbound activity from Node.js processes.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches for network connections initiated by Node.js or npm processes referencing the affected scopes or node_modules paths.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceNetworkEvents
+ | where InitiatingProcessFileName in~ ("node.exe", "npm.exe", "npx.exe")
+ | where InitiatingProcessCommandLine has_any (
+     "@cloudplatform-single-spa", "@wb-track", "@data-science",
+     "@ce-rwb", "@payments-widget", "@travel-autotests",
+     "@t-in-one", "@capibar.chat", "@sber-ecom-core", "node_modules")
+ | project Timestamp, DeviceName, RemoteUrl, RemoteIP,
+           InitiatingProcessFileName, InitiatingProcessCommandLine,
+           AccountName
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for dropped stager payloads in temp and cache directories.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches device file events for the ._&amp;lt;scope&amp;gt;_init.js payload pattern and the May 29 run-once marker directory.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceFileEvents
+ | where Timestamp &gt; ago(7d)
+ | where FileName matches regex @"^\._.*_init\.js$"
+    or FolderPath has_any (
+         ".cache/._cloudplatform-single-spa_init",
+         ".cache/._wb-track_init",
+         ".cache/._t-in-one_init")
+ | project Timestamp, DeviceName, FolderPath, FileName, ActionType,
+           InitiatingProcessFileName, InitiatingProcessCommandLine
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for the campaign-wide X-Secret header in outbound HTTP traffic.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches for outbound web traffic carrying the hardcoded X-Secret value used by all three operator accounts (requires TLS decryption or proxy logging that captures request headers or bodies).&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceNetworkEvents
+ | where Timestamp &gt; ago(7d)
+ | where AdditionalFields has "l95HdDaz3kQx1Zsg3WxH6HvKANf51RY1"
+    or RemoteUrl has "oob.moika.tech"
+ | project Timestamp, DeviceName, RemoteUrl, RemoteIP, AdditionalFields,
+           InitiatingProcessFileName, InitiatingProcessCommandLine
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Hunt for affected dependency references in developer directories.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Searches for package manifest or lockfile activity referencing the affected scoped packages.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceFileEvents
+ | where FileName in~ ("package.json", "package-lock.json", "yarn.lock",
+                       "pnpm-lock.yaml", ".npmrc")
+ | where FolderPath has_any ("node_modules", "src", "repo", "workspace")
+ | where AdditionalFields has_any (
+     "@cloudplatform-single-spa", "@wb-track", "@data-science",
+     "@ce-rwb", "@payments-widget", "@travel-autotests",
+     "@t-in-one", "@capibar.chat", "@sber-ecom-core")
+ | project Timestamp, DeviceName, FolderPath, FileName,
+           InitiatingProcessFileName, InitiatingProcessCommandLine
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;Indicators of Compromise (IOC)&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="actor-and-network-iocs"&gt;Actor and network IOCs&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;mr.4nd3r50n&lt;/td&gt;&lt;td&gt;npm maintainer&lt;/td&gt;&lt;td&gt;Threat actor (mr.4nd3r50n) — 26 packages, May 28 wave&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ce-rwb&lt;/td&gt;&lt;td&gt;npm maintainer&lt;/td&gt;&lt;td&gt;Threat actor (ce-rwb) — 7 packages, May 28 wave&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;mr.4nd3r50n@yandex[.]ru&lt;/td&gt;&lt;td&gt;Email&lt;/td&gt;&lt;td&gt;mr.4nd3r50n contact email&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ogvanta@yandex[.]ru&lt;/td&gt;&lt;td&gt;Email&lt;/td&gt;&lt;td&gt;ce-rwb contact email&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;t-in-one&lt;/td&gt;&lt;td&gt;npm maintainer&lt;/td&gt;&lt;td&gt;Threat actor (t-in-one) — 12 packages across @t-in-one, @capibar.chat, @sber-ecom-core, May 29 wave&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;t-in-one@yandex[.]ru&lt;/td&gt;&lt;td&gt;Email&lt;/td&gt;&lt;td&gt;t-in-one contact email&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;l95HdDaz3kQx1Zsg3WxH6HvKANf51RY1&lt;/td&gt;&lt;td&gt;Shared secret&lt;/td&gt;&lt;td&gt;Hardcoded X-Secret HTTP header value sent on every outbound C2 request from all three accounts — single-operator attribution marker&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;npm.t-in-one[.]io&lt;/td&gt;&lt;td&gt;Lure domain&lt;/td&gt;&lt;td&gt;Fabricated internal-registry hostname referenced in @t-in-one README to lend legitimacy&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;docs.t-in-one[.]io / jira.t-in-one[.]io&lt;/td&gt;&lt;td&gt;Lure domain&lt;/td&gt;&lt;td&gt;Fabricated documentation and issue-tracker hostnames in @t-in-one package metadata&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`oob.moika[.]tech`&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server for payload delivery&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`https://oob.moika[.]tech/payload/win`&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;Windows payload endpoint&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`https://oob.moika[.]tech/payload/mac`&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;macOS payload endpoint&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`https://oob.moika[.]tech/payload/linux`&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;Linux payload endpoint&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="file-and-environment-iocs"&gt;File and environment IOCs&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`scripts/postinstall.js`&lt;/td&gt;&lt;td&gt;Filename&lt;/td&gt;&lt;td&gt;Obfuscated stager (~7 KB)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`._cloudplatform-single-spa_init.js`&lt;/td&gt;&lt;td&gt;Filename&lt;/td&gt;&lt;td&gt;Dropped payload in tmpdir&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`._wb-track_init.js`&lt;/td&gt;&lt;td&gt;Filename&lt;/td&gt;&lt;td&gt;Dropped payload (ce-rwb variant)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`~/.cache/._cloudplatform-single-spa_init/`&lt;/td&gt;&lt;td&gt;Directory&lt;/td&gt;&lt;td&gt;Cache/dedup directory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`~/.cache/._wb-track_init/`&lt;/td&gt;&lt;td&gt;Directory&lt;/td&gt;&lt;td&gt;Cache/dedup directory (ce-rwb)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`*_RECON_ONLY=1`&lt;/td&gt;&lt;td&gt;Env var&lt;/td&gt;&lt;td&gt;Reconnaissance mode flag&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`*_PKG`&lt;/td&gt;&lt;td&gt;Env var&lt;/td&gt;&lt;td&gt;Package name identifier&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`*_VER`&lt;/td&gt;&lt;td&gt;Env var&lt;/td&gt;&lt;td&gt;Package version identifier&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;`*_SECRET`&lt;/td&gt;&lt;td&gt;Env var&lt;/td&gt;&lt;td&gt;C2 authentication token&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;._t-in-one_init.js&lt;/td&gt;&lt;td&gt;Filename&lt;/td&gt;&lt;td&gt;Dropped payload in tmpdir — t-in-one (May 29 wave)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;~/.cache/._t-in-one_init/&lt;/td&gt;&lt;td&gt;Directory&lt;/td&gt;&lt;td&gt;Run-once marker directory used by the May 29 stager for per-host deduplication&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;T_IN_ONE_NO_TELEMETRY&lt;/td&gt;&lt;td&gt;Env var&lt;/td&gt;&lt;td&gt;Functional install-time kill switch honored by the May 29 obfuscated stager (the May 28 *_NO_TELEMETRY variables are README fiction only)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;X-Secret: l95HdDaz3kQx1Zsg3WxH6HvKANf51RY1&lt;/td&gt;&lt;td&gt;HTTP header&lt;/td&gt;&lt;td&gt;Hardcoded authentication header sent on every outbound C2 request from all three accounts&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.npmjs.com/~mr.4nd3r50n"&gt;https://www.npmjs.com/~mr.4nd3r50n&lt;/a&gt; — npm maintainer profile (26 packages)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.npmjs.com/~ce-rwb"&gt;https://www.npmjs.com/~ce-rwb&lt;/a&gt; — npm maintainer profile (7 packages)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.npmjs.com/~t-in-one"&gt;https://www.npmjs.com/~t-in-one&lt;/a&gt; — npm maintainer profile (12 packages across @t-in-one, @capibar.chat, @sber-ecom-core)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="learn-more"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on&amp;nbsp;&lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;,&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the&amp;nbsp;&lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest&amp;nbsp;&lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/real-time-agent-protection-during-runtime" rel="noreferrer noopener" target="_blank"&gt;Protect your agents in real-time during runtime (Preview)&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://eurppc-word-edit.officeapps.live.com/we/%E2%80%A2%09https:/learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-agent-builder" rel="noreferrer noopener" target="_blank"&gt;how to build and customize agents with Copilot Studio Agent Builder&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/29/33-malicious-npm-packages-abuse-dependency-confusion-profile-developer-environments/"&gt;Malicious npm packages abuse dependency confusion to profile developer environments&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147811</guid><category>npm</category></item><item><title>Friday Squid Blogging: Another Squid</title><link>https://www.schneier.com/blog/archives/2026/05/friday-squid-blogging-another-squid.html</link><description>&lt;p&gt;Someone named &amp;#8220;Squid&amp;#8221; seems to be a &amp;#8220;&lt;a href="https://crackmagazine.net/2026/05/simple-things-2026-line-up/"&gt;West Country legend&lt;/a&gt;.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.schneier.com/blog/archives/2024/06/new-blog-moderation-policy.html"&gt;Blog moderation policy.&lt;/a&gt;&lt;/p&gt;</description><content:encoded>&lt;p&gt;Someone named &amp;#8220;Squid&amp;#8221; seems to be a &amp;#8220;&lt;a href="https://crackmagazine.net/2026/05/simple-things-2026-line-up/"&gt;West Country legend&lt;/a&gt;.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
@@ -4298,7 +5025,7 @@ DeviceProcessEvents
 
 &lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/22/from-edge-appliance-to-enterprise-compromise-multi-stage-linux-intrusion-via-f5-and-confluence/"&gt;From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147621</guid><category>Credential theft</category><category>Linux</category></item><item><title>Lawmakers Demand Answers as CISA Tries to Contain Data Leak</title><link>https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/</link><description>Lawmakers in both houses of Congress are demanding answers from the U.S. Cybersecurity &amp;#038; Infrastructure Security Agency (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public GitHub account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.</description><content:encoded>&lt;p&gt;Lawmakers in both houses of Congress are demanding answers from the &lt;strong&gt;U.S. Cybersecurity &amp;amp; Infrastructure Security Agency&lt;/strong&gt; (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public &lt;strong&gt;GitHub&lt;/strong&gt; account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/22/from-edge-appliance-to-enterprise-compromise-multi-stage-linux-intrusion-via-f5-and-confluence/"&gt;From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Credential theft</category><category>Linux</category></item><item><title>Lawmakers Demand Answers as CISA Tries to Contain Data Leak</title><link>https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/</link><description>Lawmakers in both houses of Congress are demanding answers from the U.S. Cybersecurity &amp;#038; Infrastructure Security Agency (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public GitHub account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.</description><content:encoded>&lt;p&gt;Lawmakers in both houses of Congress are demanding answers from the &lt;strong&gt;U.S. Cybersecurity &amp;amp; Infrastructure Security Agency&lt;/strong&gt; (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public &lt;strong&gt;GitHub&lt;/strong&gt; account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class=" wp-image-73648 aligncenter" height="153" src="https://krebsonsecurity.com/wp-content/uploads/2026/05/CISA-logo.png" width="748" /&gt;&lt;/p&gt;
 &lt;p&gt;On May 18, KrebsOnSecurity reported that a CISA contractor with administrative access to the agency&amp;#8217;s code development platform had &lt;a href="https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/" rel="noopener" target="_blank"&gt;created a public GitHub profile&lt;/a&gt; called &amp;#8220;&lt;strong&gt;Private-CISA&lt;/strong&gt;&amp;#8221; that included plaintext credentials to dozens of internal CISA systems. Experts who reviewed the exposed secrets said the commit logs for the code repository showed the CISA contractor disabled GitHub&amp;#8217;s built-in protection against publishing sensitive credentials in public repos.&lt;/p&gt;
 &lt;p&gt;CISA acknowledged the leak but has not responded to questions about the duration of the data exposure. However, experts who reviewed the now-defunct Private-CISA archive said it was originally created in November 2025, and that it exhibits a pattern consistent with an individual operator using the repository as a working scratchpad or synchronization mechanism rather than a curated project repository.&lt;/p&gt;
@@ -5180,7 +5907,7 @@ getsqldeveloper[.]com&lt;/pre&gt;
 
 
 &lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/business" target="_blank"&gt;website.&lt;/a&gt;&amp;nbsp;Bookmark the&amp;nbsp;&lt;a href="https://www.microsoft.com/security/blog/" target="_blank"&gt;Security blog&lt;/a&gt;&amp;nbsp;to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;)&amp;nbsp;for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/21/whats-new-in-microsoft-security-may-2026/"&gt;What’s new in Microsoft Security: May 2026&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147454</guid><category>Microsoft 365</category><category>Microsoft Agent 365</category><category>Microsoft Security Insights</category></item><item><title>CISA Adds Two Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/05/21/cisa-adds-two-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added two new vulnerabilities to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/21/whats-new-in-microsoft-security-may-2026/"&gt;What’s new in Microsoft Security: May 2026&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Microsoft 365</category><category>Microsoft Agent 365</category><category>Microsoft Security Insights</category></item><item><title>CISA Adds Two Known Exploited Vulnerabilities to Catalog</title><link>https://www.cisa.gov/news-events/alerts/2026/05/21/cisa-adds-two-known-exploited-vulnerabilities-catalog</link><description>&lt;p&gt;CISA has added two new vulnerabilities to its &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" title="Known Exploited Vulnerabilities Catalog"&gt;Known Exploited Vulnerabilities (KEV) Catalog&lt;/a&gt;, based on evidence of active exploitation.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2025-34291" target="_blank"&gt;CVE-2025-34291&lt;/a&gt; Langflow Origin Validation Error Vulnerability&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-34926" target="_blank"&gt;CVE-2026-34926&lt;/a&gt; Trend Micro Apex One (On-Premise) Directory Traversal Vulnerability&lt;/li&gt;
@@ -5797,181 +6524,7 @@ CloudProcessEvents
 
 
 &lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/20/mini-shai-hulud-compromised-antv-npm-packages-enable-ci-cd-credential-theft/"&gt;Mini Shai Hulud: Compromised @antv npm packages enable CI/CD credential theft&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147567</guid><category>Linux</category></item><item><title>A New York Cop Got Injured at a Boxing Match. Now Madison Square Garden Is Banning His Lawyer</title><link>https://www.wired.com/story/msg-bans-lawyer-representing-new-york-cop-injured-at-a-boxing-match/</link><description>Attorney John Scola is representing a police officer who is suing over injuries allegedly sustained while working security at an MSG property in 2025.</description><guid isPermaLink="false">6a074550cc137669535c6e98</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>surveillance</category><category>Police</category><category>new york</category><category>law</category><category>lawsuits</category><category>nyc</category><category>face recognition</category><category>privacy</category><category>No Game</category></item><item><title>Securing the gaming culture of cultures</title><link>https://www.microsoft.com/en-us/security/blog/2026/05/20/securing-the-gaming-culture-of-cultures/</link><description>&lt;p&gt;Read about the unique challenges and rewards of securing gaming platforms and how to better protect gaming communities.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/20/securing-the-gaming-culture-of-cultures/"&gt;Securing the gaming culture of cultures&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;&lt;em&gt;The Deputy CISO blog series is where&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/blog/topic/office-of-the-ciso/" rel="noreferrer noopener" target="_blank"&gt;Microsoft&amp;nbsp;&lt;em&gt;Deputy Chief Information Security Officers&lt;/em&gt;&lt;/a&gt;&amp;nbsp;(CISOs) share their thoughts on what is most important in their respective domains. In this series, you will get practical advice, tactics to start (and stop) deploying, forward-looking commentary on where the industry is going, and more.&lt;/em&gt;&lt;/em&gt; &lt;em&gt;In this article, Aaron Zollman, Vice President and Deputy CISO for Gaming at Microsoft discusses the unique challenges and rewards of securing gaming&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;There are more than 500 million monthly active players¹ across Xbox consoles, PC, handheld, and more through &lt;a href="https://news.xbox.com/en-us/2025/11/14/building-a-trusted-gaming-future-how-security-powers-fair-play/" rel="noopener noreferrer" target="_blank"&gt;Xbox cloud gaming&lt;/a&gt;. They’re the folks who come to mind when people refer to “gaming culture.” But they’re not really the whole story. Globally, more than 3 billion people engage with gaming.² The majority of these people are gamers, but the number also includes developers working for independent gaming studios, engineers supporting the Xbox platform, and the security and operations professionals that support them all.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In my role as Deputy CISO for Gaming at Microsoft, it’s this much larger, much more complex community that I have to take into account. My team and I aren’t tasked solely with protecting consoles or player accounts. We’re safeguarding intellectual property (IP), live operations, and the trust of billions of interactions. We’re also partnering on risks that range from cheating and monetization exploits to supply chain vulnerabilities and regulatory compliance for child safety and privacy.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Gaming isn’t really a single culture, but rather a culture of cultures—each with their own risk factors to account for. At the heart of gaming is the player experience—their need for seamless access, low latency, and frictionless, immersive experiences. This goes hand-in-hand with privacy and safety in a world where cyberattackers could target well-known players. But aside from those basic needs, players form their own tribes, and a diverse, global player base requires a different approach—which makes securing gaming unique. You don’t approach it like you might traditional enterprise. Studios operate with creative autonomy, platforms demand global scale and low latency, and players expect frictionless experiences. That diversity makes gaming vibrant while also creating unique security challenges.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="each-culture-comes-with-its-own-security-risks"&gt;Each culture comes with its own security risks&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Let’s first take a look at the risks that most often appear with each of the overlapping cultures that make up the world of gaming:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Platforms&lt;/strong&gt;, underpinning services like Xbox Game Pass and Xbox Cloud Gaming, require centralized infrastructure with high availability. Here, security must integrate seamlessly with &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/identity-access" rel="noopener noreferrer" target="_blank"&gt;identity systems&lt;/a&gt; and Microsoft-wide standards without slowing down gameplay. But platforms face a number of distinct risks.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The complexity of platforms makes them a rich target for financially-motivated cyberattackers seeking to take over top accounts—or send targeted messages to individuals in an environment where they aren’t expecting &lt;a href="https://www.microsoft.com/en-us/security/business/security-101/what-is-phishing" rel="noopener noreferrer" target="_blank"&gt;phishing&lt;/a&gt;, which can threaten both ecosystem trust and commercial strategy. And because platforms serve as the connective tissue between devices, we have to pay special attention to weaknesses in integration points.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;We also contend with fraud and abuse in commerce systems, where bad actors attempt to manipulate in-game economies or exploit payment flows. These persistent cyberthreats require layered defenses, real-time monitoring, and rapid responses.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/solutions/identity-access" rel="noopener noreferrer" target="_blank"&gt;Learn more about Microsoft identity and access solutions&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Game development studios&lt;/strong&gt;, whether they are AAA giants, indie teams, or sole developers, thrive on flexibility. Their environments are highly individualized and frequently blend proprietary tools with third-party assets and co-development with partners. My job is to make sure they can innovate securely—balancing their creative freedom with &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/data-security-governance" rel="noopener noreferrer" target="_blank"&gt;governance and compliance&lt;/a&gt; timelines. But this flexibility introduces risks that look very different from experienced by centralized platforms.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;On the plus side, studios’ independence creates smaller failure domains, leaving them free to make their own choices and experiment with new tools, partners and engineering practices, without putting the broader platform and peer studios at risk. But reputation, regulatory liability, and cyberattacker interest can’t be firewalled off so easily. So, we need to establish a baseline of controls and detect anomalies early, closing down blind spots—despite fragmented development environments and third-party risk from studios that rely on external contractors, middleware providers, and asset marketplaces.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;And some of the cyberattacks are the same: Without tight identity governance, credential sprawl can create highly-privileged accounts that become prime targets for threat actors. Studios operate under tight deadlines and with small margins, so we need empathy for their desire to make things easier—and to avoid security checks when under milestone pressure—despite the risk those actions could cause to production.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;It&amp;#8217;s also important to note that the driving factor for many threat actors targeting studios is the incredibly high value of unreleased IP. For the same reason, social engineering and insider threats are a constant risk for studios.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/solutions/data-security-governance" rel="noopener noreferrer" target="_blank"&gt;Explore Microsoft data governance solutions&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Studio Central Teams&lt;/strong&gt; provide shared IT and infrastructure support. They’re the bridge between creative teams and operational security, ensuring that artists, producers, and marketers work in environments that are both productive and resilient. But that role comes with its own set of risks, which are often hidden in the complexity of shared services.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;When central teams support diverse projects, maintaining consistent security baselines across cloud resources, build servers, and collaboration tools becomes difficult. Failing to maintain security consistency can lead to configuration drift—where a single misconfigured storage bucket or firewall rule can expose critical assets. But because central teams manage shared infrastructure, they are risk-averse to changes, including some critical security patches, that could cause cascading production failures.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These central teams can be security’s best partners for implementing strong monitoring and segmentation—but also need to be governed to avoid insider risk and toxic combinations of overlapping permissions.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="collaboration-over-control"&gt;Collaboration over control&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security in gaming isn’t about imposing rules. It’s more about partnership. I work closely with Temi Adabambo, General Manager for Gaming Security, Microsoft, and Eric Mourinho, Chief Architect, Microsoft, to co-develop secure environments and shared tooling. Governance is a dialogue. We collaborate between platform teams, studio IT, security architects, and technical directors in game studios. That’s how we manage exception handling, cross-team dependencies, and the tension between creative speed and security rigor.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One of the advantages of the Microsoft environment is the access it grants us to a security ecosystem that scales globally. In gaming, we build upon that foundation, adapting it for the unique needs of developers, platforms, and players:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Identity and access management&lt;/strong&gt;: We use &lt;a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id" rel="noopener noreferrer" target="_blank"&gt;Microsoft Entra ID&lt;/a&gt; to secure identities across Xbox Live, Game Pass, and studio environments. Shared identity systems allow frictionless sign-in for players while enforcing strong authentication for developers and partners.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Compliance and governance&lt;/strong&gt;:&lt;strong&gt; &lt;/strong&gt;We rely on a combination of tools and processes to manage sensitive data and meet regulatory obligations across environments like public cloud infrastructure and bespoke studio setups. This includes &lt;a href="https://www.microsoft.com/en-us/security/business/microsoft-purview" rel="noopener noreferrer" target="_blank"&gt;Microsoft Purview&lt;/a&gt; for data classification and compliance monitoring, &lt;a href="https://www.microsoft.com/en-us/security/business/cloud-security/microsoft-defender-cloud" rel="noopener noreferrer" target="_blank"&gt;Microsoft Defender for Cloud&lt;/a&gt; for policy enforcement and resource hardening, Entra ID for identity governance, and &lt;a href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel" rel="noopener noreferrer" target="_blank"&gt;Microsoft Sentinel&lt;/a&gt; for audit and reporting. Together, these capabilities help us maintain visibility, enforce standards, and respond quickly to compliance exceptions without slowing down development.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Threat&amp;nbsp;intelligence and&amp;nbsp;detection&lt;/strong&gt;: With Microsoft Defender for Cloud, Microsoft Sentinel, and proprietary Microsoft tooling, we gain visibility into cyberthreats across platforms and supply chains. These tools allow us to detect anomalies, respond quickly, and share intelligence across teams without slowing down creative workflows.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Secure&amp;nbsp;development&amp;nbsp;lifecycles&lt;/strong&gt;: We embed security into game development through automated code scanning, vulnerability management, and secure build pipelines, helping studios ship faster without sacrificing safety.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These&amp;nbsp;are&amp;nbsp;enterprise-grade&amp;nbsp;capabilities, adapted to the needs of&amp;nbsp;the global gaming culture of cultures. They allow us to protect billions of interactions while enabling the creativity that defines this industry.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="looking-ahead"&gt;Looking&amp;nbsp;ahead&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Gaming will only grow more complex. But I see that as an opportunity. Security presents challenges, but in facing those challenges head-on, we are constantly refining our practices, products, and player experiences. When we design for resilience, we protect not just games but the communities that help them thrive.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For Microsoft, that means treating gaming security as an ever-evolving system—one that changes with each new iteration of technology, player expectations, and the creative heartbeat of the industry.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security teams and their families are gamers too. Visit the Xbox Wire and our &lt;a href="https://news.xbox.com/en-us/2026/02/04/xbox-safer-internet-day-transparency-report-2026-minecraft-education/" rel="noopener noreferrer" target="_blank"&gt;recent blog post for Safer Internet Day&lt;/a&gt; to learn more about how we keep players and communities safe and secure at Xbox.&lt;/p&gt;
-
-
-
-&lt;div class="is-style-inline-centered wp-block-bloginabox-theme-promotional"&gt;
-	
-&lt;div class="promotional promotional--has-media promotional--media-right"&gt;
-	&lt;div class="promotional__wrapper"&gt;
-		&lt;div class="promotional__content-wrapper"&gt;
-			&lt;div class="promotional__content"&gt;
-				
-
-&lt;h2 class="wp-block-heading has-h-2-font-size" id="microsoftdeputy-cisos"&gt;Microsoft&lt;br /&gt;Deputy CISOs&lt;/h2&gt;
-
-
-
-&lt;p class="has-h-5-font-size wp-block-paragraph"&gt;&lt;strong&gt;To hear more from Microsoft Deputy CISOs, check out the&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/blog/topic/office-of-the-ciso/" rel="noreferrer noopener" target="_blank"&gt;OCISO blog series&lt;/a&gt;&lt;/strong&gt;:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To stay on top of important security industry updates, explore resources specifically designed for CISOs, and learn best practices for improving your organization’s security posture, join the&amp;nbsp;&lt;a href="https://info.microsoft.com/ww-landing-subscribe-to-ciso-digest.html?lcid=en-us" rel="noreferrer noopener" target="_blank"&gt;Microsoft CISO Digest distribution list&lt;/a&gt;.&lt;/p&gt;
-
-			&lt;/div&gt;
-		&lt;/div&gt;
-					&lt;div class="promotional__media-wrapper"&gt;
-				&lt;div class="promotional__media"&gt;
-											&lt;img alt="Man with smile on face working with laptop" class="attachment-full size-full" height="370" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2025/10/Man-with-smile-on-face-working-with-laptop-2.webp" width="748" /&gt;									&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and&amp;nbsp;X&amp;nbsp;(&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;¹&lt;a href="https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4" rel="noreferrer noopener" target="_blank"&gt;Microsoft FY25 Fourth Quarter Earnings Conference Call&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;²&lt;a href="https://news.microsoft.com/source/2022/01/18/microsoft-to-acquire-activision-blizzard-to-bring-the-joy-and-community-of-gaming-to-everyone-across-every-device/" rel="noreferrer noopener" target="_blank"&gt;Microsoft to acquire Activision Blizzard to bring the joy and community of gaming to everyone, across every device&lt;/a&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/20/securing-the-gaming-culture-of-cultures/"&gt;Securing the gaming culture of cultures&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147432</guid></item><item><title>CVE-2026-46333: Local Root Privilege Escalation and Credential Disclosure in the Linux Kernel ptrace Path</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The Qualys Threat Research Unit (TRU) has discovered and published the full advisory for CVE-2026-46333, a logic flaw in the Linux kernel&amp;#8217;s __ptrace_may_access() function that permits an unprivileged local user to disclose sensitive files and execute arbitrary commands as root on default installations of several major distributions. The bug has resided in mainline Linux since [&amp;#8230;]</description><content:encoded>&lt;p&gt;The &lt;a href="https://www.qualys.com/tru"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has discovered and published the full advisory for CVE-2026-46333, a logic flaw in the Linux kernel&amp;#8217;s __ptrace_may_access() function that permits an unprivileged local user to disclose sensitive files and execute arbitrary commands as root on default installations of several major distributions. The bug has resided in mainline Linux since November 2016 (v4.10-rc1). Upstream patches and distribution updates are already available. Working exploits are circulating publicly, and administrators should apply vendor kernel updates without delay.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/20/mini-shai-hulud-compromised-antv-npm-packages-enable-ci-cd-credential-theft/"&gt;Mini Shai Hulud: Compromised @antv npm packages enable CI/CD credential theft&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147567</guid><category>Linux</category></item><item><title>A New York Cop Got Injured at a Boxing Match. Now Madison Square Garden Is Banning His Lawyer</title><link>https://www.wired.com/story/msg-bans-lawyer-representing-new-york-cop-injured-at-a-boxing-match/</link><description>Attorney John Scola is representing a police officer who is suing over injuries allegedly sustained while working security at an MSG property in 2025.</description><guid isPermaLink="false">6a074550cc137669535c6e98</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>surveillance</category><category>Police</category><category>new york</category><category>law</category><category>lawsuits</category><category>nyc</category><category>face recognition</category><category>privacy</category><category>No Game</category></item><item><title>CVE-2026-46333: Local Root Privilege Escalation and Credential Disclosure in the Linux Kernel ptrace Path</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>The Qualys Threat Research Unit (TRU) has discovered and published the full advisory for CVE-2026-46333, a logic flaw in the Linux kernel&amp;#8217;s __ptrace_may_access() function that permits an unprivileged local user to disclose sensitive files and execute arbitrary commands as root on default installations of several major distributions. The bug has resided in mainline Linux since [&amp;#8230;]</description><content:encoded>&lt;p&gt;The &lt;a href="https://www.qualys.com/tru"&gt;Qualys Threat Research Unit (TRU)&lt;/a&gt; has discovered and published the full advisory for CVE-2026-46333, a logic flaw in the Linux kernel&amp;#8217;s __ptrace_may_access() function that permits an unprivileged local user to disclose sensitive files and execute arbitrary commands as root on default installations of several major distributions. The bug has resided in mainline Linux since November 2016 (v4.10-rc1). Upstream patches and distribution updates are already available. Working exploits are circulating publicly, and administrators should apply vendor kernel updates without delay.&lt;/p&gt;
 
 
 
