@@ -1,5 +1,101 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 31 May 2026 21:59:32 +0000</lastBuildDate><item><title>YARA-X 1.17.0 Release, (Sun, May 31st)</title><link>https://isc.sans.edu/diary/rss/33032</link><description>&lt;p&gt;&lt;a href="https://github.com/VirusTotal/yara-x/releases/tag/v1.17.0"&gt;YARA-X&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s 1.17.0&lt;/a&gt; release brings 5 improvements (several performance improvements) and 1 bugfix.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;a href="https://github.com/VirusTotal/yara-x/releases/tag/v1.17.0"&gt;YARA-X's 1.17.0&lt;/a&gt; release brings 5 improvements (several performance improvements) and 1 bugfix.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 01 Jun 2026 03:59:23 +0000</lastBuildDate><item><title>ISC Stormcast For Monday, June 1st, 2026 https://isc.sans.edu/podcastdetail/9952, (Mon, Jun 1st)</title><link>https://isc.sans.edu/diary/rss/33036</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33036</guid></item><item><title>Unidentified RAT pushes NetSupport RAT, (Mon, Jun 1st)</title><link>https://isc.sans.edu/diary/rss/33034</link><description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This diary provides indicators from an unidentified RAT infection on Wednesday 2026-05-27 that was followed by a malicious NetSupport Manager RAT package. This originated from the SmartApeSG ClickFix campaign. I still don't know the name of the initial RAT, but it has consistently been generating encoded (not HTTPS/SSL/TLS) traffic to a command and control (C2) server at&amp;nbsp;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;89.110.110[.]119&lt;/span&gt; over TCP port 443 since I first noticed it sometime in April 2026.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Images from the infection&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-01a.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-01.png" style="border-width: 2px; border-style: solid;" /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Shown above: Fake verification page with ClickFix instructions from the SmartApeSG campaign.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-02a.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-02.png" style="border-width: 2px; border-style: solid;" /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Shown above: Initial RAT malware on an infected Windows host.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-03a.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-03.png" style="border-width: 2px; border-style: solid;" /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Shown above: Follow-up files for NetSupport RAT sent through the initial RAT C2 traffic.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-04a.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-06-01-ISC-diary-image-04.png" style="border-width: 2px; border-style: solid;" /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Shown above: NetSupport RAT C2 traffic.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Indicators of Compromise&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Example of SmartApeSG URLs seen on Wednesday 2026-05-27:&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxps[:]//hiddenplanetlab[.]top/signin/secure-util.js&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxps[:]//hiddenplanetlab[.]top/signin/private-template?c66kjD5i&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxps[:]//hiddenplanetlab[.]top/signin/legacy-worker.js?18b3825af007e53d&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Example of traffic generated by running the associated ClickFix script:&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxp[:]//178.156.165[.]82/&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxp[:]//178.156.173[.]194/&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxps[:]//silverharvestnetwork[.]com/check&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Initial RAT C2 traffic:&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;tcp[:]//89.110.110[.]119:443/&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IP address for NetSupport RAT C2 server:&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxp[:]//185.163.47[.]217:443&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Files from the infection:&lt;/p&gt;
+
+&lt;p&gt;SHA256 hash: &lt;a href="https://www.virustotal.com/gui/file/1514b1268e9dc6d2f37137aa38c756cb4bf8186ac9235d6863b78e7f8bbbe976"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;1514b1268e9dc6d2f37137aa38c756cb4bf8186ac9235d6863b78e7f8bbbe976&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;File size: 26,555,757 bytes&lt;/li&gt;
+	&lt;li&gt;File type: Zip archive data, at least v2.0 to extract&lt;/li&gt;
+	&lt;li&gt;File location: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;hxxps[:]//silverharvestnetwork[.]com/check&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;File description: Zip archive containing software package for the initial RAT.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SHA256 hash: &lt;a href="https://www.virustotal.com/gui/file/469bac8e10f50263e8ff0806e6ba126bb4cc660799129a8653eab3f8ec7201e5"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;469bac8e10f50263e8ff0806e6ba126bb4cc660799129a8653eab3f8ec7201e5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;File size: 109 bytes&lt;/li&gt;
+	&lt;li&gt;File type: ASCII text&lt;/li&gt;
+	&lt;li&gt;File location: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;C:\ProgramData\processor.vbs&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;File description: Initial script that runs token.bat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SHA256 hash: &lt;a href="https://www.virustotal.com/gui/file/9c7eda2c4d3aaa8746495741bef57a07de180f0409409faf0f91658e88ba33f5"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;9c7eda2c4d3aaa8746495741bef57a07de180f0409409faf0f91658e88ba33f5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;File size: 8,262 bytes&lt;/li&gt;
+	&lt;li&gt;File type: DOS batch file text, ASCII text, with very long lines&lt;/li&gt;
+	&lt;li&gt;File location: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;C:\ProgramData\token.bat&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;File description: Batch scrip that extracts, runs, and makes persistent NetSupport RAT from setub.cab&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SHA256 hash: &lt;a href="https://www.virustotal.com/gui/file/7ba5481c873bb3081442561f749f590badd72ef249fddfe993e30b28dc0c2112"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;7ba5481c873bb3081442561f749f590badd72ef249fddfe993e30b28dc0c2112&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul style="margin-left: 40px;"&gt;
+	&lt;li&gt;File size: 17,275,805 bytes&lt;/li&gt;
+	&lt;li&gt;File type: Microsoft Cabinet archive data&lt;/li&gt;
+	&lt;li&gt;File location: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;C:\ProgramData\setup.cab&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;File description: CAB file containing malicious NetSupport RAT package&lt;/li&gt;
+	&lt;li&gt;Contents of this CAB file extracted to:&amp;nbsp;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;C:\ProgramData\UpdateInstaller\&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note 1: The files &lt;span style="font-family: Courier New,Courier,monospace;"&gt;processor.vbs&lt;/span&gt;, &lt;span style="font-family: Courier New,Courier,monospace;"&gt;token.bat&lt;/span&gt;, and&amp;nbsp;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;setup.cab&lt;/span&gt; are all deleted by the&amp;nbsp;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;token.bat&lt;/span&gt; script after it installs the malicious NetSupport RAT package and makes it persistent on the infected Windows host.&lt;/p&gt;
+
+&lt;p&gt;Note 2: The indicators for this activity (domains, file hashes, etc.) change on a daily basis. For more up-to-date indicators on SmartApeSG and similar campaigns, see the &lt;a href="https://infosec.exchange/@monitorsg"&gt;@monitorsg feed&lt;/a&gt; on Mastodon.&lt;/p&gt;
+
+&lt;p&gt;---&lt;br /&gt;
+Bradley Duncan&lt;br /&gt;
+brad [at] malware-traffic-analysis.net&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33034</guid></item><item><title>YARA-X 1.17.0 Release, (Sun, May 31st)</title><link>https://isc.sans.edu/diary/rss/33032</link><description>&lt;p&gt;&lt;a href="https://github.com/VirusTotal/yara-x/releases/tag/v1.17.0"&gt;YARA-X&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s 1.17.0&lt;/a&gt; release brings 5 improvements (several performance improvements) and 1 bugfix.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;a href="https://github.com/VirusTotal/yara-x/releases/tag/v1.17.0"&gt;YARA-X's 1.17.0&lt;/a&gt; release brings 5 improvements (several performance improvements) and 1 bugfix.&lt;/p&gt;
 
 &lt;p&gt;Didier Stevens&lt;br /&gt;
 Senior handler&lt;br /&gt;
@@ -4263,125 +4359,7 @@ brad [at] malware-traffic-analysis.net&lt;/p&gt;
 &lt;li&gt;Researchers &lt;a href="https://cybersecuritynews.com/hackers-abuse-middle-east-telecom-networks/"&gt;identified&lt;/a&gt; large-scale abuse of Middle Eastern telecom and hosting networks, with more than 1,350 active command-and-control servers across 98 providers. Linked activity included Phorpiex, Eagle Werewolf espionage, exploitation of a React Native CLI flaw, and RondoDox botnet activity at significant scale.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/25th-may-threat-intelligence-report/"&gt;25th May – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=33105</guid><category>Global Cyber Attack Reports</category></item><item><title>Hacker Lists 340M OnlyFans User Records for Sale</title><link>https://www.techrepublic.com/article/news-onlyfans-340m-database-sale/</link><description>&lt;p&gt;A hacker is selling a 340M OnlyFans database, but the seller says old leaks and public data were used to link creators and subscribers to real identities.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-onlyfans-340m-database-sale/"&gt;Hacker Lists 340M OnlyFans User Records for Sale&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4360201</guid><category>Cybersecurity</category><category>News</category><category>Security</category><category>cybersecurity</category><category>dark web</category><category>data breach</category><category>data leak</category><category>identity exposure</category><category>onlyfans</category><category>phishing</category><category>user privacy</category></item><item><title>Microsoft Access VBA, (Mon, May 25th)</title><link>https://isc.sans.edu/diary/rss/33012</link><description>&lt;p&gt;Microsoft Access files (Microsoft Office&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s Database) can contain VBA code.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Microsoft Access files (Microsoft Office's Database) can contain VBA code.&lt;/p&gt;
-
-&lt;p&gt;But they are not ole or OOXML files. You can't analyze them with &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/oledump.py"&gt;oledump.py&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260525-151257.png" style="width: 993px; height: 215px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Neither do they contain an embedded OLE file:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260525-152941.png" style="width: 993px; height: 215px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Microsoft does not publish official documentation for the Microsoft Access file format, like it does for CFB (ole) and OOXML.&lt;/p&gt;
-
-&lt;p&gt;That inspired me to add support for VBA compression to my &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/search-for-compression.py"&gt;search-for-compression.py&lt;/a&gt; tool.&lt;/p&gt;
-
-&lt;p&gt;search-for-compression.py is a tool that searches through binary files, looking for data that is ZLIB compressed. I've now added the option to search for compressed VBA code too. That is done with option -t:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260525-155505.png" style="width: 993px; height: 201px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;There are 3 entries. The first 2 decompress to binary data (01 00 04 ...). These are similar to dir streams in ole files. dir&amp;nbsp;streams specify VBA project properties, project references, and module properties. They can be dumped:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260525-161133.png" style="width: 993px; height: 527px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The 3th one starts with ASCII data (Attritut). This is VBA code that can be selected and dumped:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260525-155904.png" style="width: 993px; height: 245px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;This example is simple, because it's just an empty database that I created for this diary entry.&lt;/p&gt;
-
-&lt;p&gt;Real samples are a bit more complex. I'll cover some examples in an upcoming diary entry.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Didier Stevens&lt;br /&gt;
-Senior handler&lt;br /&gt;
-&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33012</guid></item><item><title>TeamPCP Supply Chain Campaign: Activity Through 2026-05-24, (Mon, May 25th)</title><link>https://isc.sans.edu/diary/rss/33016</link><description>&lt;p&gt;TeamPCP now operates across three package ecosystems in parallel, it reached GitHub&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s own internal codebase, it trojanized an officially Microsoft-published Python SDK, and it appears to have open-sourced its own framework on GitHub.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;TeamPCP now operates across three package ecosystems in parallel, it reached GitHub's own internal codebase, it trojanized an officially Microsoft-published Python SDK, and it appears to have open-sourced its own framework on GitHub.&lt;/p&gt;
-
-&lt;h2 id="bottom-line-up-front"&gt;Bottom line up front&lt;/h2&gt;
-
-&lt;p&gt;Three escalations stacked inside a single week. First, GitHub's CISO Alexis Wales publicly named a malicious Nx Console VS Code extension build (v18.95.0, publisher nrwl.angular-console, verified-publisher badge, roughly 2.2 million installs) as the root of an intrusion that exfiltrated approximately 3,800 GitHub-internal repositories; OpenAI, Grafana Labs, and Mistral AI were named as downstream victims. The poisoned extension was live on the Visual Studio Marketplace for roughly 18 minutes. Second, an officially Microsoft-published Python SDK on PyPI (&lt;a href="https://pypi.org/project/durabletask/"&gt;durabletask&lt;/a&gt;, the Azure Durable Functions client, roughly 417,000 monthly downloads) was trojanized across three versions (1.4.1 through 1.4.3) inside an approximately 35-minute window, and independent reporting characterizes the second-stage payload as carrying a Linux disk wiper. Third, the same operator pushed a third Mini Shai-Hulud wave through the @antv npm ecosystem: 639 malicious package versions across 323 packages, including echarts-for-react (roughly 1.1 million weekly downloads) and size-sensor (roughly 4.2 million weekly downloads). Action: rotate any developer or CI/CD credentials exposed during the windows below, stop treating publisher-verified or attestation badges as install-time safety signals, and inspect AI coding agent configuration files for persistence.&lt;/p&gt;
-
-&lt;h2 id="how-this-developed"&gt;How this developed&lt;/h2&gt;
-
-&lt;p&gt;The week opened with a credentials-to-publish chain that nobody had previously walked end-to-end in public. Reporting from&amp;nbsp;&lt;a href="https://www.bleepingcomputer.com/news/security/github-links-repo-breach-to-tanstack-npm-supply-chain-attack/"&gt;BleepingComputer&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.helpnetsecurity.com/2026/05/21/github-grafana-breach-root-cause-nx-console/"&gt;Help Net Security&lt;/a&gt;&amp;nbsp;ties OIDC credentials harvested in the May 11 TanStack wave to the Nx Console publish on May 18, which means the same operator that built the worm two weeks earlier used its loot to push a trojanized VS Code extension through a verified-publisher account. In parallel, the same operator poisoned the @antv npm ecosystem through a compromised maintainer account (&amp;quot;atool&amp;quot;) and dropped a trojanized build of Microsoft's own durabletask SDK on PyPI. Within 72 hours, GitHub itself, Microsoft, and several named AI-lab developer endpoints were affected. By Friday, multiple vendors reported the Shai-Hulud framework source had been published to GitHub, and copycat forks were already running.&lt;/p&gt;
-
-&lt;h2 id="what-changed-by-theme"&gt;What changed, by theme&lt;/h2&gt;
-
-&lt;h3 id="the-github-internal-breach-a-multi-stage-operation-that-worked"&gt;The GitHub-internal breach: a multi-stage operation that worked&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: TanStack-harvested credentials from May 11 were used to publish the trojanized Nx Console extension that breached GitHub itself. This is the first publicly confirmed multi-stage operation in the campaign.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;On 2026-05-18 a malicious build of the Nx Console VS Code extension (v18.95.0, publisher nrwl.angular-console) was published to the Visual Studio Marketplace and was live for approximately 18 minutes before it was pulled. Per&amp;nbsp;&lt;a href="https://www.helpnetsecurity.com/2026/05/20/github-breached-teampcp/"&gt;Help Net Security&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.ox.security/blog/teampcp-strikes-again-how-a-trojan-vs-code-extension-brought-down-github/"&gt;OX Security&lt;/a&gt;, an Nx maintainer credential was used to publish; per&amp;nbsp;&lt;a href="https://www.bleepingcomputer.com/news/security/github-links-repo-breach-to-tanstack-npm-supply-chain-attack/"&gt;BleepingComputer&lt;/a&gt;, that credential traces back to the TanStack OIDC abuse chain tracked as %%cve:2026-45321%%. On a GitHub employee endpoint, the extension auto-updated during the 18-minute window, exfiltrated developer secrets, and was then used to move laterally through GitHub's internal CI/CD. The intrusion exfiltrated approximately 3,800 GitHub-internal repositories before containment; reporting suggests no customer-tenant data was affected. On 2026-05-21, GitHub CISO Alexis Wales publicly named Nx Console as the root and confirmed OpenAI, Grafana Labs, and Mistral AI as named downstream victims whose developers had auto-update enabled.&lt;/p&gt;
-
-&lt;p&gt;The practical lesson is uncomfortable: the malicious extension carried the Visual Studio Marketplace verified-publisher badge. Treating that badge as a safety signal at install time would not have prevented this intrusion. A publisher account being legitimate and a specific publish event being legitimate are different claims, and the campaign now operationalizes that gap.&lt;/p&gt;
-
-&lt;h3 id="the-official-microsoft-sdk-durabletask-141-through-143"&gt;The official Microsoft SDK: durabletask 1.4.1 through 1.4.3&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: For the first time in this campaign, an officially Microsoft-published package surface was trojanized. The second-stage payload reportedly carries a Linux disk wiper.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Three malicious versions of the&amp;nbsp;&lt;a href="https://pypi.org/project/durabletask/"&gt;durabletask&lt;/a&gt;&amp;nbsp;Python client (Microsoft's official Azure Durable Functions SDK, roughly 417,000 monthly downloads) were published to PyPI on 2026-05-19 and yanked within hours. Per&amp;nbsp;&lt;a href="https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack"&gt;Wiz&lt;/a&gt;,&amp;nbsp;&lt;a href="https://www.aikido.dev/blog/durabletask-package-compromised-mini-shai-hulud"&gt;Aikido&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://www.endorlabs.com/learn/trojanized-microsoft-sdk-durabletask-1-4-1-through-1-4-3-deliver-credential-stealing-malware"&gt;Endor Labs&lt;/a&gt;, the dropper is injected into the package's Python source files, so importing the SDK is sufficient to execute it. The second stage is a credential stealer and worm that targets AWS, Azure, GCP, HashiCorp Vault, 1Password, and Bitwarden, and that propagates inside cloud environments via AWS SSM (inside EC2) and&amp;nbsp;&lt;code&gt;kubectl exec&lt;/code&gt;&amp;nbsp;(inside Kubernetes).&amp;nbsp;&lt;a href="https://www.itnews.com.au/news/mini-shai-hulud-worm-injects-disk-wiper-into-microsoft-azure-pypi-package-625988"&gt;iTnews reporting&lt;/a&gt;&amp;nbsp;characterizes the second stage as carrying a Linux disk wiper, materially extending the campaign's destructive capability beyond the W20 1-in-6 locale-conditional wipe.&lt;/p&gt;
-
-&lt;p&gt;If any team installed durabletask versions 1.4.1, 1.4.2, or 1.4.3 on 2026-05-19, the import alone is the trigger. Treat any environment that pulled one of those builds as exposed, including ephemeral CI runners.&lt;/p&gt;
-
-&lt;h3 id="the-antv-npm-wave-the-largest-single-burst-by-package-count"&gt;The @antv npm wave: the largest single burst by package count&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: 639 malicious versions across 323 packages, including echarts-for-react (roughly 1.1 million weekly downloads). Forty-two of the malicious packages were observed displaying fake Sigstore verification badges in the npm UI.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;On 2026-05-19, a compromised maintainer account (&amp;quot;atool&amp;quot;) published a third Mini Shai-Hulud wave across the @antv ecosystem. Independent counts from&amp;nbsp;&lt;a href="https://www.stepsecurity.io/blog/shai-hulud-here-we-go-again-mass-npm-supply-chain-attack-hits-the-antv-ecosystem"&gt;StepSecurity&lt;/a&gt;,&amp;nbsp;&lt;a href="https://snyk.io/blog/mini-shai-hulud-antv-npm-supply-chain-attack/"&gt;Snyk&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://socket.dev/blog/antv-packages-compromised"&gt;Socket&lt;/a&gt;&amp;nbsp;agree on 639 malicious versions across 323 packages, which makes this the largest single-hour Shai-Hulud burst the campaign has produced. The roughly 499 KB obfuscated JavaScript payload runs during&amp;nbsp;&lt;code&gt;npm install&lt;/code&gt;&amp;nbsp;and harvests more than 20 credential classes: GitHub and npm tokens, AWS keys, GCP and Azure tokens, SSH keys, Kubernetes service accounts, HashiCorp Vault secrets, Stripe API keys, and local password vaults from 1Password and Bitwarden. The persistence vector first seen in the TanStack wave (&lt;code&gt;.vscode/tasks.json&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;~/.claude/settings.json&lt;/code&gt;) continues here.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://www.endorlabs.com/learn/mini-shai-hulud-returns-42-malicious-npm-packages-fake-sigstore-badges-in-antv-ecosystem-attack"&gt;Endor Labs&lt;/a&gt;&amp;nbsp;flagged a previously unreported primitive in this wave: 42 of the malicious packages displayed forged Sigstore verification badges in the npm UI. This pairs poorly with the W20 finding that the prior wave shipped valid SLSA Build Level 3 provenance. Read together, provenance is now being attacked from two directions at once: real attestations produced by hijacked release pipelines, and fake attestations rendered by the registry UI. Pin exact versions and verify lockfile hashes; do not rely on either visual indicator. Per&amp;nbsp;&lt;a href="https://thehackernews.com/2026/05/mini-shai-hulud-pushes-malicious-antv.html"&gt;The Hacker News&lt;/a&gt;, the GitHub cleanup invalidated roughly 61,274 npm granular access tokens that had write permissions and 2FA bypass.&lt;/p&gt;
-
-&lt;h3 id="the-framework-code-drop"&gt;The framework code drop&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: Multiple vendors reported on 2026-05-22 that the Shai-Hulud framework source was published to GitHub. Copycat forks were running within hours.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://securitylabs.datadoghq.com/articles/shai-hulud-open-source-framework-static-analysis/"&gt;Datadog Security Labs&lt;/a&gt;&amp;nbsp;published a static analysis of a public GitHub repository containing what appears to be the complete TeamPCP framework: a modular TypeScript/Bun toolkit for credential harvesting, supply chain poisoning, and encrypted exfiltration. The repository README explicitly carries the strings &amp;quot;Love - TeamPCP&amp;quot; and &amp;quot;Change keys and C2 as needed.&amp;quot;&amp;nbsp;&lt;a href="https://www.ox.security/blog/shai-hulud-open-source-malware-github/"&gt;OX Security&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.reversinglabs.com/blog/the-shai-hulud-code-drop"&gt;ReversingLabs&lt;/a&gt;&amp;nbsp;corroborated, and OX subsequently&amp;nbsp;&lt;a href="https://www.ox.security/blog/new-actors-deploy-shai-hulud-clones-teampcp-copycats-are-here/"&gt;documented&lt;/a&gt;&amp;nbsp;the first observed deployments from forks. At least three forks had appeared by Datadog's analysis, including one adding FreeBSD support.&lt;/p&gt;
-
-&lt;p&gt;For defenders, the practical effect is attribution noise. Detection patterns built on framework artifacts (PBKDF2 salt strings, dead-drop string lineage, GitHub repository naming conventions including the reversed-string &amp;quot;niagA oG eW ereH :duluH-iahS&amp;quot;) will now also fire on copycat operators with no operational connection to TeamPCP. Behavioral indicators (writes to&amp;nbsp;&lt;code&gt;~/.claude/settings.json&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;.vscode/tasks.json&lt;/code&gt;, large 2FA-bypassing token harvests, and Session messenger exfiltration to&amp;nbsp;&lt;code&gt;filev2[.]getsession[.]org&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;seed1[.]getsession[.]org&lt;/code&gt;) remain the more durable detection surface.&lt;/p&gt;
-
-&lt;h3 id="microsoft-broke-its-silence-cisa-did-not"&gt;Microsoft broke its silence; CISA did not&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: Microsoft publicly and prominently entered the response coalition. CISA did not add %%cve:2026-45321%% to the Known Exploited Vulnerabilities catalog in either of the two W21 update tranches.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;On 2026-05-20 the&amp;nbsp;&lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/20/mini-shai-hulud-compromised-antv-npm-packages-enable-ci-cd-credential-theft/"&gt;Microsoft Security Blog&lt;/a&gt;&amp;nbsp;published &amp;quot;Mini Shai-Hulud: Compromised @antv npm packages enable CI/CD credential theft,&amp;quot; the first formal Microsoft Security Blog post tied to this campaign in 2026. The next day, GitHub's CISO posted publicly on the Nx Console root cause and named downstream victims. Together, these break the multi-week Microsoft silence that prior weekly updates had flagged as anomalous.&lt;/p&gt;
-
-&lt;p&gt;Federal posture moved the other way. CISA added nine vulnerabilities to the Known Exploited Vulnerabilities catalog inside W21 across two tranches (&lt;a href="https://www.cisa.gov/news-events/alerts/2026/05/20/cisa-adds-seven-known-exploited-vulnerabilities-catalog"&gt;seven on 2026-05-20&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href="https://www.cisa.gov/news-events/alerts/2026/05/21/cisa-adds-two-known-exploited-vulnerabilities-catalog"&gt;two on 2026-05-21&lt;/a&gt;) and added none of the campaign's tracking identifiers. %%cve:2026-45321%% is now absent from the KEV catalog despite the GitHub-internal-codebase intrusion, the Microsoft Security Blog publication, the named impact to OpenAI, Grafana Labs, and Mistral AI, and the trojanization of an officially Microsoft-maintained Python SDK. The continued KEV silence is itself the watch item; it is now the longest such gap of the campaign.&lt;/p&gt;
-
-&lt;h3 id="monetization-stays-frozen"&gt;Monetization stays frozen&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Takeaway: Vect and CipherForce remained inactive through the window.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Direct fetches on 2026-05-24 confirm Vect's victim count unchanged at 25 (most recent posting 2026-04-15, approximately 40 days inactive) and CipherForce inactive at 91 days with 6 victims unchanged. Combined with the earlier Check Point disclosure of cryptographic flaws in Vect 2.0, the affiliate-ransomware monetization channel remains impaired even as the supply chain operation reached new highs.&lt;/p&gt;
-
-&lt;h2 id="what-defenders-should-do-now"&gt;What defenders should do now&lt;/h2&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;Inventory installs of the Nx Console VS Code extension v18.95.0 (publisher nrwl.angular-console) on developer endpoints with auto-update enabled. Treat any endpoint that pulled v18.95.0 during the 2026-05-18 Marketplace window as exposed.&lt;/li&gt;
-	&lt;li&gt;Inventory durabletask installs of versions 1.4.1, 1.4.2, or 1.4.3 (PyPI) from 2026-05-19. Treat any environment that imported one of those builds as exposed, including ephemeral CI runners.&lt;/li&gt;
-	&lt;li&gt;Inventory @antv/* installs and the named packages (echarts-for-react, size-sensor, timeago.js) from the 2026-05-19 window. Tokens, npm credentials, AWS, GCP, Azure, Vault, 1Password, and Bitwarden vaults from affected hosts should be rotated.&lt;/li&gt;
-	&lt;li&gt;Rotate any developer or CI/CD credentials that touched the affected extensions or packages, including GitHub PATs, npm granular access tokens, and cloud provider credentials.&lt;/li&gt;
-	&lt;li&gt;Do not treat the Visual Studio Marketplace verified-publisher badge or npm Sigstore verification badges as install-time safety signals. Pin exact versions and verify lockfile hashes against a known-good baseline.&lt;/li&gt;
-	&lt;li&gt;Inspect developer endpoints for persistence in&amp;nbsp;&lt;code&gt;~/.claude/settings.json&lt;/code&gt;&amp;nbsp;and&amp;nbsp;&lt;code&gt;.vscode/tasks.json&lt;/code&gt;.&lt;/li&gt;
-	&lt;li&gt;For Kubernetes-attached workloads, audit recent&amp;nbsp;&lt;code&gt;kubectl exec&lt;/code&gt;&amp;nbsp;and AWS SSM session history for anomalous activity from compute that ran any of the affected packages.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="compromise-time-windows-for-ci-self-check"&gt;Watch items&lt;/h2&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;A CISA Known Exploited Vulnerabilities addition for %%cve:2026-45321%%, a standalone TeamPCP advisory, or a joint advisory with NSA, FBI, or NCSC-UK. After two W21 KEV tranches that excluded the campaign's tracking CVE despite the GitHub-internal breach and the durabletask trojanization, the continued silence is the watch item.&lt;/li&gt;
-	&lt;li&gt;A Mandiant or Google Threat Intelligence Group named-actor product on UNC6780 covering the @antv wave, the durabletask compromise, or the Nx Console publish chain. Technical attribution still rests on StepSecurity, Wiz, Snyk, Socket, the Microsoft Security Blog, and the GitHub CISO statement.&lt;/li&gt;
-	&lt;li&gt;A formal GitHub incident report or Security Bulletin, including indicators of compromise and a detailed timeline of the May 18 Visual Studio Marketplace publish window. Any Microsoft response on Marketplace publisher-trust validation, given the verified-publisher badge on the malicious build, would be material.&lt;/li&gt;
-	&lt;li&gt;Named copycat-operator deployments from forks of the leaked framework, and any operational-confusion incident in which a fork's activity is misattributed to TeamPCP itself.&lt;/li&gt;
-	&lt;li&gt;Any verified disk-wipe incident tied to the durabletask Linux wiper or the @antv-wave payload, particularly a CERT-IL or CERT-IR advisory in response to vendor IR engagements disclosing data loss.&lt;/li&gt;
-&lt;/ul&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33016</guid></item><item><title>Netherlands Seizes 800 Servers, Arrests 2 for Aiding Cyberattacks</title><link>https://krebsonsecurity.com/2026/05/netherlands-seizes-800-servers-arrests-2-for-aiding-cyberattacks/</link><description>Authorities in the Netherlands have arrested the co-owners of two related Internet hosting companies for operating IT infrastructure used by Russia to carry out cyberattacks, influence operations and disinformation campaigns inside the European Union. The two men were the focus of a 2025 KrebsOnSecurity story about how their hosting companies had assumed control over the technical infrastructure of Stark Industries Solutions, an Internet service provider sanctioned last year by the EU as a frequent staging ground for cyber mischief from Russia's intelligence agencies.</description><content:encoded>&lt;p&gt;Authorities in the Netherlands have arrested the co-owners of two related Internet hosting companies for operating IT infrastructure used by Russia to carry out cyberattacks, influence operations and disinformation campaigns inside the European Union. The two men were the focus of a 2025 KrebsOnSecurity story about how their hosting companies had assumed control over the technical infrastructure of &lt;strong&gt;Stark Industries Solutions&lt;/strong&gt;, an Internet service provider sanctioned last year by the EU as a frequent staging ground for cyber mischief from Russia&amp;#8217;s intelligence agencies.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-onlyfans-340m-database-sale/"&gt;Hacker Lists 340M OnlyFans User Records for Sale&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4360201</guid><category>Cybersecurity</category><category>News</category><category>Security</category><category>cybersecurity</category><category>dark web</category><category>data breach</category><category>data leak</category><category>identity exposure</category><category>onlyfans</category><category>phishing</category><category>user privacy</category></item><item><title>Netherlands Seizes 800 Servers, Arrests 2 for Aiding Cyberattacks</title><link>https://krebsonsecurity.com/2026/05/netherlands-seizes-800-servers-arrests-2-for-aiding-cyberattacks/</link><description>Authorities in the Netherlands have arrested the co-owners of two related Internet hosting companies for operating IT infrastructure used by Russia to carry out cyberattacks, influence operations and disinformation campaigns inside the European Union. The two men were the focus of a 2025 KrebsOnSecurity story about how their hosting companies had assumed control over the technical infrastructure of Stark Industries Solutions, an Internet service provider sanctioned last year by the EU as a frequent staging ground for cyber mischief from Russia's intelligence agencies.</description><content:encoded>&lt;p&gt;Authorities in the Netherlands have arrested the co-owners of two related Internet hosting companies for operating IT infrastructure used by Russia to carry out cyberattacks, influence operations and disinformation campaigns inside the European Union. The two men were the focus of a 2025 KrebsOnSecurity story about how their hosting companies had assumed control over the technical infrastructure of &lt;strong&gt;Stark Industries Solutions&lt;/strong&gt;, an Internet service provider sanctioned last year by the EU as a frequent staging ground for cyber mischief from Russia&amp;#8217;s intelligence agencies.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_73716" style="width: 758px;"&gt;&lt;img alt="" class=" wp-image-73716" height="534" src="https://krebsonsecurity.com/wp-content/uploads/2026/05/fiod-mirhosting.png" width="748" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73716"&gt;An investigator with the Tax Intelligence and Investigation Service (FIOD), the Dutch financial crimes agency, during the raid. Image: FIOD.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;The Dutch daily news outlet &lt;em&gt;de Volkskrant&lt;/em&gt; &lt;a href="https://www.volkskrant.nl/binnenland/how-a-consultant-and-a-concert-pianist-from-the-netherlands-aided-pro-russian-hackers~b60acffb/" rel="noopener" target="_blank"&gt;reports&lt;/a&gt; that the Dutch financial crime agency &lt;strong&gt;FIOD&lt;/strong&gt; on May 18 arrested a 57-year-old from Amsterdam and a 39-year-old from The Hague, charging them with violating sanctions law by directly or indirectly making economic resources available to EU-sanctioned entities.&lt;/p&gt;
 &lt;p&gt;The Dutch investigation focuses on Stark Industries, a sprawling hosting provider that materialized just two weeks before Russia invaded Ukraine. As detailed in &lt;a href="https://krebsonsecurity.com/2024/05/stark-industries-solutions-an-iron-hammer-in-the-cloud/" rel="noopener" target="_blank"&gt;this May 2024 deep-dive&lt;/a&gt;, Stark quickly became the source of massive distributed denial-of-service (DDoS) attacks against European targets, and emerged as a top supplier of proxy and anonymity services that showed up time and again in cyberattacks linked to Russia-backed hacking groups.&lt;/p&gt;
@@ -4954,7 +4932,7 @@ DeviceProcessEvents
 
 &lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/22/from-edge-appliance-to-enterprise-compromise-multi-stage-linux-intrusion-via-f5-and-confluence/"&gt;From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><category>Credential theft</category><category>Linux</category></item><item><title>Lawmakers Demand Answers as CISA Tries to Contain Data Leak</title><link>https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/</link><description>Lawmakers in both houses of Congress are demanding answers from the U.S. Cybersecurity &amp;#038; Infrastructure Security Agency (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public GitHub account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.</description><content:encoded>&lt;p&gt;Lawmakers in both houses of Congress are demanding answers from the &lt;strong&gt;U.S. Cybersecurity &amp;amp; Infrastructure Security Agency&lt;/strong&gt; (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public &lt;strong&gt;GitHub&lt;/strong&gt; account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/22/from-edge-appliance-to-enterprise-compromise-multi-stage-linux-intrusion-via-f5-and-confluence/"&gt;From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147621</guid><category>Credential theft</category><category>Linux</category></item><item><title>Lawmakers Demand Answers as CISA Tries to Contain Data Leak</title><link>https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/</link><description>Lawmakers in both houses of Congress are demanding answers from the U.S. Cybersecurity &amp;#038; Infrastructure Security Agency (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public GitHub account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.</description><content:encoded>&lt;p&gt;Lawmakers in both houses of Congress are demanding answers from the &lt;strong&gt;U.S. Cybersecurity &amp;amp; Infrastructure Security Agency&lt;/strong&gt; (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS GovCloud keys and a vast trove of other agency secrets on a public &lt;strong&gt;GitHub&lt;/strong&gt; account. The inquiry comes as CISA is still struggling to contain the breach and invalidate the leaked credentials.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" class=" wp-image-73648 aligncenter" height="153" src="https://krebsonsecurity.com/wp-content/uploads/2026/05/CISA-logo.png" width="748" /&gt;&lt;/p&gt;
 &lt;p&gt;On May 18, KrebsOnSecurity reported that a CISA contractor with administrative access to the agency&amp;#8217;s code development platform had &lt;a href="https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/" rel="noopener" target="_blank"&gt;created a public GitHub profile&lt;/a&gt; called &amp;#8220;&lt;strong&gt;Private-CISA&lt;/strong&gt;&amp;#8221; that included plaintext credentials to dozens of internal CISA systems. Experts who reviewed the exposed secrets said the commit logs for the code repository showed the CISA contractor disabled GitHub&amp;#8217;s built-in protection against publishing sensitive credentials in public repos.&lt;/p&gt;
 &lt;p&gt;CISA acknowledged the leak but has not responded to questions about the duration of the data exposure. However, experts who reviewed the now-defunct Private-CISA archive said it was originally created in November 2025, and that it exhibits a pattern consistent with an individual operator using the repository as a working scratchpad or synchronization mechanism rather than a curated project repository.&lt;/p&gt;
