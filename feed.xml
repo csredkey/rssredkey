@@ -1,5 +1,63 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 10 Jun 2026 03:59:24 +0000</lastBuildDate><item><title>Anthropic rolls out Claude Fable 5, but it's available for a limited time</title><link>https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-claude-fable-5-but-its-available-for-a-limited-time/</link><description>Anthropic has begun rolling out a new model called "Fable," which is based on the same underlying model as Mythos, its most powerful AI model class. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-claude-fable-5-but-its-available-for-a-limited-time/</guid><category>Artificial Intelligence</category><category>Software</category></item><item><title>ISC Stormcast For Wednesday, June 10th, 2026 https://isc.sans.edu/podcastdetail/9966, (Wed, Jun 10th)</title><link>https://isc.sans.edu/diary/rss/33066</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33066</guid></item><item><title>Microsoft Defender 'RoguePlanet' zero-day grants SYSTEM privileges</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/</link><description>[...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/</guid><category>Microsoft</category><category>Security</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 10 Jun 2026 09:59:20 +0000</lastBuildDate><item><title>Microsoft patches YellowKey, GreenPlasma, MiniPlasma zero-days</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-yellowkey-greenplasma-miniplasma-zero-days/</link><description>On Tuesday, Microsoft patched two zero-day vulnerabilities that let attackers gain SYSTEM privileges on fully patched Windows systems, and a third one that grants access to BitLocker-protected drives. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-yellowkey-greenplasma-miniplasma-zero-days/</guid><category>Microsoft</category><category>Security</category></item><item><title>How has use of framing protection security headers changed in the past 3 years&amp;#x3f;, (Wed, Jun 10th)</title><link>https://isc.sans.edu/diary/rss/33068</link><description>&lt;p&gt;Back in 2023, I wrote a diary&amp;#x5b;&lt;a href="https://isc.sans.edu/diary/29698"&gt;1&lt;/a&gt;&amp;#x5d; discussing how commonly X-Frame-Options and CSP headers containing the frame-ancestors directive were used on 1 million most popular domains on the internet (based on the Tranco list&amp;#x5b;&lt;a href="https://tranco-list.eu/"&gt;2&lt;/a&gt;&amp;#x5d;), and how they were set. Given that three years have passed since then, I thought it might be interesting to repeat the analysis and see what &amp;#xe2;&amp;#x20ac;&amp;#x201c; if anything &amp;#xe2;&amp;#x20ac;&amp;#x201c; has changed in the meantime.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Back in 2023, I wrote a diary[&lt;a href="https://isc.sans.edu/diary/29698"&gt;1&lt;/a&gt;] discussing how commonly X-Frame-Options and CSP headers containing the frame-ancestors directive were used on 1 million most popular domains on the internet (based on the Tranco list[&lt;a href="https://tranco-list.eu/"&gt;2&lt;/a&gt;]), and how they were set. Given that three years have passed since then, I thought it might be interesting to repeat the analysis and see what &amp;ndash; if anything &amp;ndash; has changed in the meantime.&lt;/p&gt;
+
+&lt;p&gt;Before we get to the data, however, let&amp;rsquo;s briefly recap what the headers in question do and why they are important.&lt;/p&gt;
+
+&lt;p&gt;Both headers basically serve the same fundamental purpose &amp;ndash; they inform a browser whether the content of a given web page may be embedded in an iframe or similar object on another web page. Without either of these headers in place, any web page may freely load any other web page in an iframe, which can be quite beneficial in some instances, but also provides a functionality that is commonly abused by phishing actors[&lt;a href="https://isc.sans.edu/diary/29638"&gt;3&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;The most common abuse scenario is related to a generic framing attack, and leads to what is sometimes called an &amp;ldquo;overlay phishing&amp;rdquo;. It is based on an attacker creating a malicious page which loads a legitimate website (usually the official company website of the recipient of the phishing) in a full-screen iframe, then overlays a fake login prompt on top of it. The result is that the victim sees what may appear to be the real login page. Setting either X-Frame-Options or CSP with the frame-ancestors directive on the legitimate site effectively mitigates this approach, because the browser will refuse to load the page inside an iframe in the first place, and all that would be displayed would be a fake login form over a browser message informing the user that a page cannot be loaded (which should make the credential stealing form apper less than trustworthy to most people).&lt;/p&gt;
+
+&lt;p&gt;This is a good reason why these headers are worth implementing on any organization's web site, regardless of how prominent or otherwise &amp;ldquo;interesting&amp;rdquo; the organization might consider itself to be.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;For completeness&amp;rsquo; sake, it should be mentioned that although the two security headers serve a similar purpose, they are not exactly equal. The X-Frame-Options header is the older of the two mechanisms and, while functional, is relatively limited in what it can express. It supports three directives: DENY (the page may not be framed by anyone), SAMEORIGIN (the page may only be framed by pages on the same origin/domain), and ALLOW-FROM (the page may be framed by a specific origin/domain).&lt;/p&gt;
+
+&lt;p&gt;Although the header in general is still widely supported and does its job well, its ALLOW-FROM directive was never universally supported by all browsers and is now considered obsolete[&lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin"&gt;4&lt;/a&gt;].&amp;nbsp;More importantly, however, the X-Frame-Options header as a whole has been basically superseded by the Content Security Policy frame-ancestors directive.&lt;/p&gt;
+
+&lt;p&gt;The CSP frame-ancestors directive offers considerably more flexibility than X-Frame-Options. It supports the same basic use cases (frame-ancestors 'none' being equivalent to DENY, frame-ancestors 'self' being equivalent to SAMEORIGIN), but also enables some additional ones (such as&amp;nbsp; supporting wildcard matching for subdomains etc.). Modern browsers therefore generally treat frame-ancestors as the authoritative directive, ignoring X-Frame-Options entirely when both are present[&lt;a href="https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options"&gt;5&lt;/a&gt;].&amp;nbsp;That said, X-Frame-Options remains relevant for legacy browser compatibility and &amp;ndash; in practice &amp;ndash; both headers can be sent simultaneously without any harm, which is what many HTTP servers actually do.&lt;/p&gt;
+
+&lt;p&gt;With this context in mind, let us look at how the use of these headers has evolved since 2023.&lt;/p&gt;
+
+&lt;p&gt;The data was gathered using the same approach that I used in 2023 &amp;ndash; I used a simple Python script that went through the current Tranco list of the 1 million most popular domains and attempted to connect to each one over HTTPS, recording which security-related headers were present in the response. The script performed no retries on failure, and the following numbers are therefore not completely precise.&amp;nbsp;Nevertheless, based on a few tests, I would estimate the error rate to be significantly less than 0.5%, which I consider sufficient for our purposes of seeing whether and how the use of both &amp;ldquo;framing protection&amp;rdquo; headers has changed over time.&lt;/p&gt;
+
+&lt;p&gt;And as you may see from the following charts, which include both the 2023 and 2026 data for comparison, the numbers have indeed moved in an interesting way over the past three years (and the direction of movement is not entirely consistent across different sample sizes).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame-or-csp.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame-or-csp.png" style="border-width: 1px; border-style: solid; width: 800px; height: 474px;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the top 1 thousand most popular domains, the overall coverage by either X-Frame-Options or CSP frame-ancestors directive has actually decreased &amp;ndash; from 27.1% in 2023 to 23.1% in 2026. On the other hand, in the top 100 thousand domains, the coverage has increased significantly&amp;nbsp;&amp;ndash; from 20.6% to 37.4%&amp;nbsp;&amp;ndash; and in the full top 1 million domains it has grown from 14.4% to 29.7%. The divergence between the top 1k and the larger samples is somewhat puzzling at first glance, though it likely reflects the fact that the composition of the top 1k list has changed quite a bit over three years, with domains of some security-conscious organizations dropping out of the top 1k and being replaced by domains that don't serve web content in the traditional sense (CDN endpoints, infrastructure domains, API backends, and so on) and therefore don't send security headers at all.&lt;/p&gt;
+
+&lt;p&gt;Looking at the breakdown of specific X-Frame-Options directives in use, SAMEORIGIN remains the most common choice across all sample sizes, which is not surprising, as it is generally the most practical option for most web applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame.png" style="border-width: 1px; border-style: solid; width: 800px; height: 474px;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the top 1 thousand domains, SAMEORIGIN has actually declined (from 19.4% to 15.3%), while in the top 100 thousand and top 1 million, it has increased notably &amp;ndash; from 16.9% to 20.8% and from 12.4% to 19.4% respectively. The DENY directive has seen modest increases across all sample sizes, and the ALLOW-FROM directive remains at negligible levels in the larger samples and is completely absent from the 1k sample.&lt;/p&gt;
+
+&lt;p&gt;When it comes to CSP with the frame-ancestors directive, the numbers tell an encouraging story across all sample sizes. In the top 1k, usage has grown from 7.9% to 9.4%. In the top 100k, it has more than doubled &amp;ndash; from 3.8% to 7.9%. And in the full 1 million sample, the increase is even more dramatic, from 1.9% to 7.1%.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-csp.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-csp.png" style="border-width: 1px; border-style: solid; width: 801px; height: 475px;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This, next to the aforementioned more than doubling of domains that use either CSP frame-ancestors or X-Frame-Options, is one of the two the most positive findings in the entire dataset. As discussed above, CSP frame-ancestors is the currently recommended approach for preventing framing attacks, so its growth relative to X-Frame-Options, as well as in absolute terms, is a welcome trend.&lt;/p&gt;
+
+&lt;p&gt;Looking at the specific values used in the frame-ancestors directive, 'self' remains the most common choice, which is consistent with the 2023 findings. The 'none' directive, which provides the strictest protection by disallowing framing entirely regardless of origin, has seen notable growth in the larger sample sizes &amp;ndash; from 0.43% to 1.29% in the top 100k, and from 0.20% to 2.49% in the top 1 million. This suggests that at least some administrators are becoming more deliberate in their framing policies, choosing to explicitly disallow all framing rather than merely restricting it to the same origin. The use of specific domain(s) in the frame-ancestors value has remained relatively flat or slightly decreased across all sample sizes, which is expected, as this configuration requires more deliberate setup, and is generally only applicable to specific deployment scenarios (e.g. embedded widgets, single sign-on flows etc.).&lt;/p&gt;
+
+&lt;p&gt;To sum up, despite the slight regression in the top 1k, the overall picture that emerges from the 2026 data is noticeably more positive than the 2023 one. Both X-Frame-Options and CSP frame-ancestors are more widely deployed across the 1 million most popular domains &amp;ndash; and one can therefore assume that across the internet as a whole as well &amp;ndash; than they were three years ago. CSP frame-ancestors in particular has seen a very significant growth, which is encouraging.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, even with these improvements, the data still shows that even the majority of the most popular domains on the internet do not use either of these headers at all, leaving their users potentially exposed to framing-based attacks, including the phishing techniques discussed at the beginning of this diary. Given how straightforward these headers are to implement (for most web applications, adding the appropriate response header is a matter of a single line of server configuration), there is clearly still considerable room for improvement across the industry as a whole.&lt;/p&gt;
+
+&lt;p&gt;Then again, this also means that it will be that much more interesting to see where things stand in another two or three years&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/29698"&gt;https://isc.sans.edu/diary/29698&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://tranco-list.eu/"&gt;https://tranco-list.eu/&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://isc.sans.edu/diary/29638"&gt;https://isc.sans.edu/diary/29638&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin"&gt;https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin&lt;/a&gt;&lt;br /&gt;
+[5] &lt;a href="https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options"&gt;https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Jan Kopriva&lt;br /&gt;
+&lt;a href="https://www.linkedin.com/in/jan-kopriva/"&gt;LinkedIn&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33068</guid></item><item><title>Ivanti: Max severity Sentry flaw allows code execution as root</title><link>https://www.bleepingcomputer.com/news/security/new-max-severity-ivanti-sentry-flaw-allows-code-execution-as-root/</link><description>Ivanti has patched two critical vulnerabilities in its Sentry secure mobile gateway solution, including a maximum-severity flaw that enables remote attackers to execute code with root privileges. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-max-severity-ivanti-sentry-flaw-allows-code-execution-as-root/</guid><category>Security</category></item><item><title>Anthropic rolls out Claude Fable 5, but it's available for a limited time</title><link>https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-claude-fable-5-but-its-available-for-a-limited-time/</link><description>Anthropic has begun rolling out a new model called "Fable," which is based on the same underlying model as Mythos, its most powerful AI model class. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-claude-fable-5-but-its-available-for-a-limited-time/</guid><category>Artificial Intelligence</category><category>Software</category></item><item><title>ISC Stormcast For Wednesday, June 10th, 2026 https://isc.sans.edu/podcastdetail/9966, (Wed, Jun 10th)</title><link>https://isc.sans.edu/diary/rss/33066</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33066</guid></item><item><title>Microsoft Defender 'RoguePlanet' zero-day grants SYSTEM privileges</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/</link><description>A security researcher has released a new Microsoft Defender zero-day exploit named "RoguePlanet" just hours after Microsoft fixed two previously disclosed flaws during June 2026 Patch Tuesday. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/</guid><category>Microsoft</category><category>Security</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
 &lt;p&gt;The software giant said in &lt;a href="https://www.microsoft.com/en-us/msrc/blog/2026/05/a-note-on-patch-tuesday" rel="noopener" target="_blank"&gt;a blog post&lt;/a&gt; last month that both its engineers and the security community are increasing using artificial intelligence tools to find bugs, meaning this month&amp;#8217;s heavy Patch Tuesday may start to become the norm, said &lt;strong&gt;Satnam Narang&lt;/strong&gt;, senior staff research engineer at &lt;strong&gt;Tenable&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Some surveys put AI usage among security professionals generally at 90%, so it’s unsurprising that this volume of patches may be the norm,&amp;#8221; Narang said. &amp;#8220;Pandora’s proverbial box has been opened, and as more advanced AI models become available, we expect the norm to continue upward across the board, not just for Patch Tuesday.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;June&amp;#8217;s zero-day bugs include &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2026-49160" rel="noopener" target="_blank"&gt;CVE-2026-49160&lt;/a&gt;, a denial of service vulnerability affecting a range of web servers, including Microsoft &lt;strong&gt;Internet Information Services&lt;/strong&gt; (IIS). Microsoft says the flaw was reported by OpenAI&amp;#8217;s Codex.&lt;/p&gt;
@@ -288,6 +346,46 @@
 
 
 &lt;p&gt;This month&amp;#8217;s release notes cover multiple Microsoft product families and products/versions affected, including, but not limited to,&amp;nbsp;Nuance&amp;nbsp;PowerScribe, Microsoft Azure Kubernetes Service, Microsoft Office SharePoint, Microsoft Azure Attestation Service and Device Health Attestation Service, Windows Ancillary Function Driver for WinSock, Microsoft Dynamics 365 (on-premises), Visual Studio Code, Windows Universal Disk Format File System Driver (UDFS), Microsoft Kinect, Azure Stack Edge, M365 Copilot, Windows Projected File System Filter Driver, Windows Administrator Protection, Microsoft Teams for Android, Function Discovery Service (fdwsd.dll), Microsoft&amp;nbsp;PowerToys, Windows Kerberos, Windows TCP/IP, Windows DWM Core Library, Windows Shell, Windows RDP, Remote Desktop Client, Windows&amp;nbsp;Hotpatch&amp;nbsp;Monitoring Service, Windows Telephony Service, Windows NT OS Kernel, Windows Push Notifications, Role: Windows Hyper-V, Windows Performance Monitor, Windows Kernel, Microsoft Graphics Component, Windows Deployment Services,&amp;nbsp;Winlogon, Windows Win32K &amp;#8211; GRFX, Windows Network Controller (NC) Host Agent, Windows Common Log File System Driver, Windows Cryptographic Services, Windows DHCP Client, Microsoft Office Excel, Microsoft Office, Microsoft Office Word, Linux MANA Driver, GitHub Copilot and Visual Studio Code, Microsoft Office Project, Windows Program Compatibility Assistant Service, .NET, Windows Collaborative Translation Framework, Windows Secure Boot, ASP.NET Core, Windows Internet (wininet.dll), Windows SDK, Windows Application Identity (AppID) Subsystem, Windows Mark of the Web (MOTW), UI Automation Manager (uiamanager.dll), Universal Plug and Play (upnp.dll), Windows Kernel-Mode Drivers, Windows DHCP Server, Microsoft&amp;nbsp;UxTheme&amp;nbsp;Library (uxtheme.dll),&amp;nbsp;Microsoft Live Share Canvas SDK, Microsoft Defender for Endpoint, Active Directory Domain Services, Office for Android, Microsoft Bing, Windows UEFI, Windows HTTP.sys, Microsoft Office Click-To-Run, Copilot Chat (Microsoft Edge), Windows Storage, Microsoft Graph, Windows Narrator Braille, Azure&amp;nbsp;HorizonDB, Microsoft Exchange Online, HTTP/2, Microsoft PC Manager, and Windows NTLM.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="discover-and-prioritize-vulnerabilities-in-vulnerability-management-detection-response-vmdr"&gt;Discover and Prioritize Vulnerabilities in&amp;nbsp;&lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response/" rel="noreferrer noopener" target="_blank"&gt;Vulnerability Management, Detection &amp;amp; Response (VMDR)&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Qualys VMDR automatically detects new Patch Tuesday vulnerabilities using continuous updates to its Knowledgebase (KB).&lt;/p&gt;
+
+
+
+&lt;p&gt;You can see all your impacted hosts by these vulnerabilities using the following QQL query:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background"&gt;&lt;i&gt;&lt;span&gt;vulnerabilities.vulnerability: ( qid: 110527 or qid: 110528 or qid: 50147 or qid: 92402 or qid: 92403 or qid: 92404 or qid: 92405 or qid: 92406 or qid: 92407 or qid: 92408 or qid: 92409 or qid: 92411 )&lt;/span&gt;&lt;/i&gt;&lt;/pre&gt;
+
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-40652" height="981" src="https://blog.qualys.com/wp-content/uploads/2026/06/MSPT-June-VMDR-2026.png" width="1918" /&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="rapid-response-with-trurisk-eliminate"&gt;Rapid Response with&amp;nbsp;&lt;a href="https://www.qualys.com/apps/trurisk-eliminate/" rel="noreferrer noopener" target="_blank"&gt;TruRisk&lt;img alt="™" class="wp-smiley" src="https://s.w.org/images/core/emoji/17.0.2/72x72/2122.png" style="height: 1em;" /&gt; Eliminate&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Patch to the Latest Version&lt;/h3&gt;
+
+
+
+&lt;p&gt;VMDR rapidly remediates Windows hosts by deploying the most relevant and applicable per-technology version patches. You can simply select respective QIDs in the Patch Catalog and filter on the “Missing” patches to identify and deploy the applicable, available patches with one click.&lt;/p&gt;
+
+
+
+&lt;p&gt;The following QQL will return the missing patches for this Patch Tuesday:&lt;/p&gt;
+
+
+
+&lt;pre class="wp-block-preformatted has-white-color has-black-background-color has-text-color has-background"&gt;&lt;i&gt;&lt;span&gt;( qid: 110527 or qid: 110528 or qid: 50147 or qid: 92402 or qid: 92403 or qid: 92404 or qid: 92405 or qid: 92406 or qid: 92407 or qid: 92408 or qid: 92409 or qid: 92411 )&lt;/span&gt;&lt;/i&gt;&lt;/pre&gt;
 
 
 
@@ -2858,7 +2956,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
 &lt;p&gt;These types of vulnerabilities are a frequent attack vector for malicious cyber actors and pose significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt; established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the &lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf"&gt;BOD 22-01 Fact Sheet&lt;/a&gt; for more information.&lt;/p&gt;
 &lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/25008</guid></item><item><title>French govt messaging service breached in account hijacking attack</title><link>https://www.bleepingcomputer.com/news/security/french-govt-messaging-service-breached-in-account-hijacking-attack/</link><description>DINUM, the digital affairs directorate of the French government, warned that hackers used a hijacked user account to breach Tchap, the French government's encrypted messaging platform. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/french-govt-messaging-service-breached-in-account-hijacking-attack/</guid><category>Security</category></item><item><title>OpenAI Starts IPO Process With Confidential SEC Filing</title><link>https://www.techrepublic.com/article/news-openai-confidential-sec-ipo-filing/</link><description>&lt;p&gt;OpenAI has submitted a confidential IPO filing, but the ChatGPT maker says it has not decided on timing or disclosed deal terms.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-openai-confidential-sec-ipo-filing/"&gt;OpenAI Starts IPO Process With Confidential SEC Filing&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4361765</guid><category>Anthropic</category><category>Artificial Intelligence</category><category>News</category><category>OpenAI</category><category>Tech &amp; Work</category><category>Tech Industry</category><category>Technology</category><category>ai stocks</category><category>anthropic</category><category>chatgpt</category><category>generative ai</category><category>IPO</category><category>openai</category><category>openai ipo</category><category>SEC</category></item><item><title>16-31 May 2026 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2026/06/09/16-31-may-2026-cyber-attacks-timeline/</link><description>The threat landscape in May H2 2026 was driven by cyber crime and dominated by malware. Exploitation of public-facing app vulnerabilities continued to play an important role, similarly to supply chain attacks.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45710</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>May</category><category>Ransomware</category><category>Supply chain</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>CISA gives feds 3 days to patch Check Point VPN bug exploited as zero-day</title><link>https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/</link><description>CISA has ordered U.S. government agencies to secure their Check Point Remote Access VPN and Mobile Access deployments against a critical vulnerability exploited in zero-day attacks by Qilin ransomware affiliates. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/</guid><category>Security</category></item><item><title>Google patches new Chrome zero-day flaw exploited in the wild</title><link>https://www.bleepingcomputer.com/news/security/google-patches-fifth-chrome-zero-day-bug-exploited-in-attacks-this-year/</link><description>Google has released emergency updates to patch another Chrome zero-day vulnerability that has been exploited in the wild, the fifth such flaw patched since the start of the year. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/google-patches-fifth-chrome-zero-day-bug-exploited-in-attacks-this-year/</guid><category>Security</category><category>Google</category></item><item><title>Defend against frontier cyber models: Cloudflare's architecture as customer zero</title><link>https://blog.cloudflare.com/frontier-model-defense/</link><description>In our post about Project Glasswing, we made the argument that the architecture around a vulnerability matters more than the speed of the patch. Here we walk through what that architecture looks like, the threats it defends against, and how we run it ourselves as Cloudflare's customer zero.</description><content:encoded>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;A few weeks ago, we &lt;a href="https://blog.cloudflare.com/cyber-frontier-models/"&gt;&lt;u&gt;wrote about Project Glasswing&lt;/u&gt;&lt;/a&gt; and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.&lt;/p&gt;&lt;p&gt;In the conversations we've had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare help?&lt;/p&gt;&lt;p&gt;Before getting into the details: the architecture below is built almost entirely from Cloudflare's own products, because Cloudflare security is &lt;a href="https://blog.cloudflare.com/tag/customer-zero/"&gt;&lt;u&gt;customer zero&lt;/u&gt;&lt;/a&gt; for the security products we build. The Cloudflare stack already exists in front of our code, employees, and customer-facing applications. If you're a Cloudflare customer, every layer below is available to you today. If you're not, the principles still apply to whatever stack you've built.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-openai-confidential-sec-ipo-filing/"&gt;OpenAI Starts IPO Process With Confidential SEC Filing&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4361765</guid><category>Anthropic</category><category>Artificial Intelligence</category><category>News</category><category>OpenAI</category><category>Tech &amp; Work</category><category>Tech Industry</category><category>Technology</category><category>ai stocks</category><category>anthropic</category><category>chatgpt</category><category>generative ai</category><category>IPO</category><category>openai</category><category>openai ipo</category><category>SEC</category></item><item><title>16-31 May 2026 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2026/06/09/16-31-may-2026-cyber-attacks-timeline/</link><description>The threat landscape in May H2 2026 was driven by cyber crime and dominated by malware. Exploitation of public-facing app vulnerabilities continued to play an important role, similarly to supply chain attacks.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45710</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>May</category><category>Ransomware</category><category>Supply chain</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>CISA gives feds 3 days to patch Check Point VPN bug exploited as zero-day</title><link>https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/</link><description>CISA has ordered U.S. government agencies to secure their Check Point Remote Access VPN and Mobile Access deployments against a critical vulnerability exploited in zero-day attacks by Qilin ransomware affiliates. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/</guid><category>Security</category></item><item><title>Defend against frontier cyber models: Cloudflare's architecture as customer zero</title><link>https://blog.cloudflare.com/frontier-model-defense/</link><description>In our post about Project Glasswing, we made the argument that the architecture around a vulnerability matters more than the speed of the patch. Here we walk through what that architecture looks like, the threats it defends against, and how we run it ourselves as Cloudflare's customer zero.</description><content:encoded>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;A few weeks ago, we &lt;a href="https://blog.cloudflare.com/cyber-frontier-models/"&gt;&lt;u&gt;wrote about Project Glasswing&lt;/u&gt;&lt;/a&gt; and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.&lt;/p&gt;&lt;p&gt;In the conversations we've had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare help?&lt;/p&gt;&lt;p&gt;Before getting into the details: the architecture below is built almost entirely from Cloudflare's own products, because Cloudflare security is &lt;a href="https://blog.cloudflare.com/tag/customer-zero/"&gt;&lt;u&gt;customer zero&lt;/u&gt;&lt;/a&gt; for the security products we build. The Cloudflare stack already exists in front of our code, employees, and customer-facing applications. If you're a Cloudflare customer, every layer below is available to you today. If you're not, the principles still apply to whatever stack you've built.&lt;/p&gt;
     &lt;div&gt;
       &lt;h2&gt;What a cyber frontier model actually changes&lt;/h2&gt;
       &lt;a href="https://blog.cloudflare.com/tag/security/rss#what-a-cyber-frontier-model-actually-changes"&gt;
@@ -2905,7 +3003,7 @@ On the API surface, we run a positive security model through &lt;a href="https:/
         
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;p&gt;Plenty of security stacks look impenetrable on a whiteboard but fall over in practice. That is why we test ours continuously, both at the perimeter and inside our environment, with our red team involved across both.&lt;/p&gt;&lt;p&gt;&lt;b&gt;At the perimeter&lt;/b&gt;, frontier models are one tool we use to test our application security stack as an adaptive attacker. These models sit alongside the rest of our red team and detection workflows including: manual testing, threat intelligence, observed traffic patterns, proof-of-concept analysis, and signals from our own network. Together, those inputs help us decide where to aim testing: newly launched products, recently changed surfaces, and the paths an attacker is most likely to probe first. The most important part is the process that follows. When something gets through, we identify the gap, use the right mix of tools to understand it, write the rule or mitigation, ship the update, and test again to make sure the gap is closed.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Inside the environment,&lt;/b&gt; our red team starts from the assumption that the perimeter has already failed. They look at what has changed, where sensitive systems carry risk, and whether one compromised identity, path, or credential can reach farther than it should. When we change the architecture based on what they find, they run the scenario again against the new version to confirm the gap is actually closed.&lt;/p&gt;&lt;p&gt;We confirm that this architecture is working by continuously testing its behavior during failures, rather than relying on the perfection of individual layers.&lt;/p&gt;&lt;p&gt;If your team is working on the same problems and would like to compare notes, reach out to us at &lt;a href="https://blog.cloudflare.com/tag/security/rss"&gt;&lt;u&gt;security-ai-research@cloudflare.com&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">5Jw5AkmauDqCVgDeCs0mBa</guid><category>Security</category><category>AI</category><category>Threat Intelligence</category><category>Risk Management</category><category>Customer Zero</category><category>WAF</category><category>Zero Trust</category><category>Cloudforce One</category><category>Bot Management</category></item><item><title>ISC Stormcast For Tuesday, June 9th, 2026 https://isc.sans.edu/podcastdetail/9964, (Tue, Jun 9th)</title><link>https://isc.sans.edu/diary/rss/33062</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33062</guid></item><item><title>NFCShare Android malware spreads via fake banking app updates on GitHub</title><link>https://www.bleepingcomputer.com/news/security/nfcshare-android-malware-spreads-via-fake-banking-app-updates-on-github/</link><description>New variants of the NFCShare Android malware are being distributed as fake updates for legitimate banking apps hosted on GitHub. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/nfcshare-android-malware-spreads-via-fake-banking-app-updates-on-github/</guid><category>Security</category><category>Mobile</category></item><item><title>Apple iOS 27: Faster iPhones, New Safety Features, and More</title><link>https://www.techrepublic.com/article/news-apple-ios-27-siri-ai-liquid-glass-performance/</link><description>&lt;p&gt;Apple’s iOS 27 update focuses on faster performance, Siri AI, Liquid Glass controls, expanded Apple Intelligence, and new family safety tools.&lt;/p&gt;
+    &lt;p&gt;Plenty of security stacks look impenetrable on a whiteboard but fall over in practice. That is why we test ours continuously, both at the perimeter and inside our environment, with our red team involved across both.&lt;/p&gt;&lt;p&gt;&lt;b&gt;At the perimeter&lt;/b&gt;, frontier models are one tool we use to test our application security stack as an adaptive attacker. These models sit alongside the rest of our red team and detection workflows including: manual testing, threat intelligence, observed traffic patterns, proof-of-concept analysis, and signals from our own network. Together, those inputs help us decide where to aim testing: newly launched products, recently changed surfaces, and the paths an attacker is most likely to probe first. The most important part is the process that follows. When something gets through, we identify the gap, use the right mix of tools to understand it, write the rule or mitigation, ship the update, and test again to make sure the gap is closed.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Inside the environment,&lt;/b&gt; our red team starts from the assumption that the perimeter has already failed. They look at what has changed, where sensitive systems carry risk, and whether one compromised identity, path, or credential can reach farther than it should. When we change the architecture based on what they find, they run the scenario again against the new version to confirm the gap is actually closed.&lt;/p&gt;&lt;p&gt;We confirm that this architecture is working by continuously testing its behavior during failures, rather than relying on the perfection of individual layers.&lt;/p&gt;&lt;p&gt;If your team is working on the same problems and would like to compare notes, reach out to us at &lt;a href="https://blog.cloudflare.com/tag/security/rss"&gt;&lt;u&gt;security-ai-research@cloudflare.com&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">5Jw5AkmauDqCVgDeCs0mBa</guid><category>Security</category><category>AI</category><category>Threat Intelligence</category><category>Risk Management</category><category>Customer Zero</category><category>WAF</category><category>Zero Trust</category><category>Cloudforce One</category><category>Bot Management</category></item><item><title>ISC Stormcast For Tuesday, June 9th, 2026 https://isc.sans.edu/podcastdetail/9964, (Tue, Jun 9th)</title><link>https://isc.sans.edu/diary/rss/33062</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33062</guid></item><item><title>Apple iOS 27: Faster iPhones, New Safety Features, and More</title><link>https://www.techrepublic.com/article/news-apple-ios-27-siri-ai-liquid-glass-performance/</link><description>&lt;p&gt;Apple’s iOS 27 update focuses on faster performance, Siri AI, Liquid Glass controls, expanded Apple Intelligence, and new family safety tools.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-apple-ios-27-siri-ai-liquid-glass-performance/"&gt;Apple iOS 27: Faster iPhones, New Safety Features, and More&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4361750</guid><category>Apple</category><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>Mobile</category><category>News</category><category>Operating Systems</category><category>Smartphones</category><category>Tech &amp; Work</category><category>Tech Industry</category><category>apple intelligence</category><category>ios 27</category><category>ios beta</category><category>iphone</category><category>liquid glass</category><category>screen time</category><category>siri</category></item><item><title>EU Unveils ‘Sovereignty Package’ to Break Reliance on US, Chinese Tech</title><link>https://www.techrepublic.com/article/news-eu-tech-sovereignty-package-cloud-chips-emea/</link><description>&lt;p&gt;The EU’s tech sovereignty package targets cloud, chips, AI infrastructure, and open source as Europe tries to reduce foreign tech dependence.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-eu-tech-sovereignty-package-cloud-chips-emea/"&gt;EU Unveils &amp;#8216;Sovereignty Package&amp;#8217; to Break Reliance on US, Chinese Tech&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-eu-tech-sovereignty-package-cloud-chips-emea/</guid><category>APAC</category><category>Artificial Intelligence</category><category>EMEA</category><category>EU</category><category>Hardware</category><category>Innovation</category><category>International</category><category>News</category><category>artificial intelligence</category><category>cloud computing</category><category>data centers</category><category>european commission</category><category>european union</category><category>open source</category><category>semiconductors</category><category>tech policy</category></item><item><title>Meta Deletes Face-Recognition System From Its Smart Glasses App After WIRED Report</title><link>https://www.wired.com/story/meta-removes-face-recognition-code-meta-ai-app-smart-glasses/</link><description>The code WIRED identified is gone from the latest version of Meta AI, the companion app for the company’s smart glasses. Meta won’t say why or whether it’s coming back.</description><guid isPermaLink="false">6a26b0960da90d8bb836006c</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Business / Big Tech</category><category>Business / Social Media</category><category>Meta</category><category>privacy</category><category>surveillance</category><category>smart glasses</category><category>artificial intelligence</category><category>Apps</category><category>Losing Face</category></item><item><title>Meta: NSO Tried Targeting WhatsApp Users Despite Court Order</title><link>https://www.techrepublic.com/article/news-whatsapp-nso-targeted-users-after-court-ban/</link><description>&lt;p&gt;Meta says WhatsApp disrupted new NSO-linked phishing attacks and is asking a court to hold the spyware firm in contempt.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-whatsapp-nso-targeted-users-after-court-ban/"&gt;Meta: NSO Tried Targeting WhatsApp Users Despite Court Order&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4361724</guid><category>Applications</category><category>Cybersecurity</category><category>Enterprise Software</category><category>Legal</category><category>Meta</category><category>Mobile Security</category><category>News</category><category>Privacy</category><category>Security</category><category>Social Media</category><category>cybersecurity</category><category>meta</category><category>mobile security</category><category>nso group</category><category>pegasus</category><category>phishing</category><category>privacy</category><category>security</category><category>spyware</category><category>whatsapp</category></item><item><title>TeamPCP Supply Chain Campaign: Activity Through 2026-06-07, (Mon, Jun 8th)</title><link>https://isc.sans.edu/diary/rss/33060</link><description>&lt;p&gt;This diary continues the Internet Storm Center&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s tracking of the TeamPCP supply chain campaign, first documented in the SANS white paper &lt;a href="https://www.sans.org/white-papers/when-security-scanner-became-weapon"&gt;When the Security Scanner Became the Weapon&lt;/a&gt; and most recently in the handler diary &lt;a href="https://isc.sans.edu/diary/33014"&gt;Activity Through 2026-05-24&lt;/a&gt;. Since that update, the story moved into two new places: the United States government, which formally caught up to the campaign, and the wider population of attackers now wielding the Mini Shai-Hulud framework that TeamPCP open-sourced last month.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;This diary continues the Internet Storm Center's tracking of the TeamPCP supply chain campaign, first documented in the SANS white paper&amp;nbsp;&lt;a href="https://www.sans.org/white-papers/when-security-scanner-became-weapon"&gt;When the Security Scanner Became the Weapon&lt;/a&gt;&amp;nbsp;and most recently in the handler diary&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/33014"&gt;Activity Through 2026-05-24&lt;/a&gt;. Since that update, the story moved into two new places: the United States government, which formally caught up to the campaign, and the wider population of attackers now wielding the Mini Shai-Hulud framework that TeamPCP open-sourced last month.&lt;/p&gt;
@@ -5136,186 +5234,7 @@ Senior handler&lt;br /&gt;
 
 
 
-&lt;p&gt;Peer-to-peer patch distribution is available on Qualys Cloud Agent for Windows 6.5. P2P currently supports agent-managed endpoints; it does not apply to other Qualys sensor types, such as scanners or container sensors (use QGS for those use cases). Endpoints automatically discover and optimize sharing within the local area network without requiring manual configuration.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40544</guid><category>Product and Tech</category><category>Cloud Agent</category><category>P2P</category><category>TruRisk Eliminate</category></item><item><title>Continuing Scans for swagger.json, (Wed, Jun 3rd)</title><link>https://isc.sans.edu/diary/rss/33044</link><description>&lt;p&gt;Enterprise applications often still use complex standards like SOAP for web services. The big advantage of SOAP is its tight and extensive standards, which enable interoperability across an enterprise governed by web services. The disadvantage of SOAP: First, while it is de facto usually used over HTTP, it does not leverage HTTP, leading to unnecessary complexity. Secondly, kids don&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t RTFM, and developers these days tend not to appreciate the art of careful system design&amp;#x3b; they rather throw code at an IDE to see what sticks, if they don&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t vibe code it anyway. &lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Enterprise applications often still use complex standards like SOAP for web services. The big advantage of SOAP is its tight and extensive standards, which enable interoperability across an enterprise governed by web services. The disadvantage of SOAP: First, while it is de facto usually used over HTTP, it does not leverage HTTP, leading to unnecessary complexity. Secondly, kids don't RTFM, and developers these days tend not to appreciate the art of careful system design; they rather throw code at an IDE to see what sticks, if they don't vibe code it anyway.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;So the answer to all of the calls for a simpler standard is the non-standard REST. REST is more a &amp;quot;living standard&amp;quot; defined by commonly used libraries that happen to be popular right now. One of these standards is Swagger, or OpenAPI [1]. A very popular part of Swagger is &amp;quot;swagger.json&amp;quot;, a file that defines how to use an API. Some people here may remember &amp;quot;WSDL&amp;quot;s, or good old &amp;quot;.h&amp;quot; files in C/C++. Same idea, but now with more JSON.&lt;/p&gt;
-
-&lt;p&gt;From a web application security perspective, swagger.json is like a directory listing for an API. It is not that they are inherently evil or insecure. They are often necessary to allow developers to connect to an API efficiently. But on the other hand, they are also a great roadmap for attackers. So it's no surprise that attackers are looking for them. Not only do they provide a list of&amp;nbsp;API features, but metadata&amp;nbsp;in the description will usually identify the underlying application. It is a great way to find vulnerable applications.&lt;/p&gt;
-
-&lt;p&gt;Here are some of the top URLs attackers are scanning recently:&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;URL&lt;/th&gt;
-			&lt;th&gt;First Seen&lt;/th&gt;
-			&lt;th&gt;Last Seen&lt;/th&gt;
-			&lt;th&gt;# of Requests&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/swagger.json&lt;/td&gt;
-			&lt;td&gt;2020-12-28&lt;/td&gt;
-			&lt;td&gt;2026-06-03&lt;/td&gt;
-			&lt;td&gt;32,499&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/api/v2/swagger.json&lt;/td&gt;
-			&lt;td&gt;2021-01-03&lt;/td&gt;
-			&lt;td&gt;2026-06-02&lt;/td&gt;
-			&lt;td&gt;14,536&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/swagger/v1/swagger.json&lt;/td&gt;
-			&lt;td&gt;2020-12-28&lt;/td&gt;
-			&lt;td&gt;2026-06-03&lt;/td&gt;
-			&lt;td&gt;13,791&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/api/swagger.json&lt;/td&gt;
-			&lt;td&gt;2020-12-28&lt;/td&gt;
-			&lt;td&gt;2026-06-03&lt;/td&gt;
-			&lt;td&gt;11,100&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2020-12-28&lt;/td&gt;
-			&lt;td&gt;2026-06-03&lt;/td&gt;
-			&lt;td&gt;8,693&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/v1/swagger.json&lt;/td&gt;
-			&lt;td&gt;2021-01-03&lt;/td&gt;
-			&lt;td&gt;2026-06-02&lt;/td&gt;
-			&lt;td&gt;7,482&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/apidocs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2021-01-03&lt;/td&gt;
-			&lt;td&gt;2026-04-26&lt;/td&gt;
-			&lt;td&gt;6,517&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/api/v1/swagger.json&lt;/td&gt;
-			&lt;td&gt;2021-03-03&lt;/td&gt;
-			&lt;td&gt;2026-06-02&lt;/td&gt;
-			&lt;td&gt;6,495&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/v2/swagger.json&lt;/td&gt;
-			&lt;td&gt;2021-08-07&lt;/td&gt;
-			&lt;td&gt;2026-06-03&lt;/td&gt;
-			&lt;td&gt;1,026&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/api/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2020-12-28&lt;/td&gt;
-			&lt;td&gt;2026-05-12&lt;/td&gt;
-			&lt;td&gt;945&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;And some that started showing up more recently:&lt;/p&gt;
-
-&lt;table&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;URL&lt;/th&gt;
-			&lt;th&gt;First Seen&lt;/th&gt;
-			&lt;th&gt;Last Seen&lt;/th&gt;
-			&lt;th&gt;Number of Requests&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/%2Fswagger.json&lt;/td&gt;
-			&lt;td&gt;2026-04-03&lt;/td&gt;
-			&lt;td&gt;2026-04-22&lt;/td&gt;
-			&lt;td&gt;20&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/swagger/v2/api-docs/service/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-02-27&lt;/td&gt;
-			&lt;td&gt;2026-05-24&lt;/td&gt;
-			&lt;td&gt;17&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/swagger/v3/api-docs/service/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-02-27&lt;/td&gt;
-			&lt;td&gt;2026-05-24&lt;/td&gt;
-			&lt;td&gt;17&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/26-166/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/73/api/apidocs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/hsd1/api/swagger-ui/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/69/api/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/166/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/c/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;/26-166/api/api-docs/swagger.json&lt;/td&gt;
-			&lt;td&gt;2026-01-21&lt;/td&gt;
-			&lt;td&gt;2026-04-18&lt;/td&gt;
-			&lt;td&gt;2&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The number of requests is continuously high, but there are spikes and slow times:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Screenshot%202026-06-03%20at%209_30_47%E2%80%AFAM.png" style="width: 500px; height: 256px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;But the continuing interest shows that attackers see value here.&lt;/p&gt;
-
-&lt;p&gt;What's the lesson? Should you stop using swagger.json? Probably not. Your developers need it. On the other hand, you should be scanning for swagger.json files preemptively in your environment to identify inappropriately published swagger.json files. My intro remarks about REST, while obviously an attempt to finally get someone to read these posts, also point out that with REST, some important design decisions are left up to you, and with lots of freedom comes lots of possibilities to mess things up.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Any comments on good tools to do so? (yes, more engagement farming. But maybe it will cause me to fix the comment system for this site.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;[1] https://swagger.io/specification/&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33044</guid></item><item><title>Impersonation, Click Hijacking, and TDS: Inside a Malware Distribution Ecosystem</title><link>https://research.checkpoint.com/2026/impersonation-click-hijacking-and-tds-inside-a-malware-distribution-ecosystem/</link><description>&lt;p&gt;Research by:&amp;#160;Alexey Bukhteyev Key Takeaways Introduction When we search Google for a popular piece of software, we usually click the first result, sometimes without even looking at the rest, because official project sites tend to rank highest and appear near the top of the results. After landing on a site with a professional design and [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;Peer-to-peer patch distribution is available on Qualys Cloud Agent for Windows 6.5. P2P currently supports agent-managed endpoints; it does not apply to other Qualys sensor types, such as scanners or container sensors (use QGS for those use cases). Endpoints automatically discover and optimize sharing within the local area network without requiring manual configuration.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40544</guid><category>Product and Tech</category><category>Cloud Agent</category><category>P2P</category><category>TruRisk Eliminate</category></item><item><title>Impersonation, Click Hijacking, and TDS: Inside a Malware Distribution Ecosystem</title><link>https://research.checkpoint.com/2026/impersonation-click-hijacking-and-tds-inside-a-malware-distribution-ecosystem/</link><description>&lt;p&gt;Research by:&amp;#160;Alexey Bukhteyev Key Takeaways Introduction When we search Google for a popular piece of software, we usually click the first result, sometimes without even looking at the rest, because official project sites tend to rank highest and appear near the top of the results. After landing on a site with a professional design and [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/impersonation-click-hijacking-and-tds-inside-a-malware-distribution-ecosystem/"&gt;Impersonation, Click Hijacking, and TDS: Inside a Malware Distribution Ecosystem&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;Research by:&amp;nbsp;&lt;strong&gt;Alexey Bukhteyev&lt;/strong&gt;&lt;/p&gt;
 
 
