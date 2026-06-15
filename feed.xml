@@ -1,5 +1,98 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 15 Jun 2026 03:59:22 +0000</lastBuildDate><item><title>ISC Stormcast For Monday, June 15th, 2026 https://isc.sans.edu/podcastdetail/9972, (Mon, Jun 15th)</title><link>https://isc.sans.edu/diary/rss/33076</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33076</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2026/06/upcoming-speaking-engagements-57.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 15 Jun 2026 09:59:27 +0000</lastBuildDate><item><title>Meta Tapped a Pentagon Supplier to Prototype Face Recognition for Its Glasses</title><link>https://www.wired.com/story/meta-rank-one-computing-face-recognition-smart-glasses/</link><description>Rank One, whose board includes a former CIA deputy director and a former FBI science chief, supplied face recognition to Meta for internal development of its smart glasses app.</description><guid isPermaLink="false">6a29d46f8b0f92b3d6867447</guid><category>Security</category><category>Security / Privacy</category><category>Security / National Security</category><category>Security / Security News</category><category>Business / Big Tech</category><category>Business / Social Media</category><category>Business / Artificial Intelligence</category><category>artificial intelligence</category><category>surveillance</category><category>privacy</category><category>machine learning</category><category>Meta</category><category>Facebook</category><category>Instagram</category><category>department of defense</category><category>FBI</category><category>CIA</category><category>military tech</category><category>Military</category><category>Spec Ops</category></item><item><title>Evil MSI Background: BASE64 Statistical Analysis, (Mon, Jun 15th)</title><link>https://isc.sans.edu/diary/rss/33072</link><description>&lt;p&gt;I like it when a fellow handler posts a diary entry about images with malicious content. Last one is Xavier: "&lt;a href="https://isc.sans.edu/diary/The&amp;#x25;20Evil&amp;#x25;20MSI&amp;#x25;20Background&amp;#x25;20is&amp;#x25;20Back&amp;#x21;/33054"&gt;The Evil MSI Background is Back&amp;#x21;&lt;/a&gt;".&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;I like it when a fellow handler posts a diary entry about images with malicious content. Last one is Xavier: &amp;quot;&lt;a href="https://isc.sans.edu/diary/The%20Evil%20MSI%20Background%20is%20Back!/33054"&gt;The Evil MSI Background is Back!&lt;/a&gt;&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;I like to have a go at the sample with my tools, and see if there are any improvements I can make to my tools.&lt;/p&gt;
+
+&lt;p&gt;Let's take a look at the bytes present in this suspicious JPEG file, using my tool &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/byte-stats.py"&gt;byte-stats.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-192621.png" style="width: 993px; height: 637px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The results: almost half of the content (45.65%) is BASE64 characters, and the longest BASE64 string is 1000 characters.&lt;/p&gt;
+
+&lt;p&gt;And the longest string is almost 1 million characters long.&lt;/p&gt;
+
+&lt;p&gt;Let's take a look with &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-192927.png" style="width: 993px; height: 491px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The longest BASE64 string is indeed 1000 characters long but doesn't seem to decode to something recognizable.&lt;/p&gt;
+
+&lt;p&gt;A special encoding must have been used, and this is something you typically figure out by looking at the script or program that extracts and decodes the payload from this JPEG file.&lt;/p&gt;
+
+&lt;p&gt;But what if you don't have that script, what if you just have the JPEG file?&lt;/p&gt;
+
+&lt;p&gt;Then you need a bit of skills and luck to figure out what encoding was used.&lt;/p&gt;
+
+&lt;p&gt;You can try out all the encodings supported by &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260612-054205.png" style="width: 993px; height: 163px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260612-054245.png" style="width: 993px; height: 777px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We see long BASE85 encoded strings, but still no string close to 1 million character. So this must be a custom encoding.&lt;/p&gt;
+
+&lt;p&gt;To try to figure out what custom encoding is used, I've added a --stats option to &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193034.png" style="width: 993px; height: 521px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193107.png" style="width: 993px; height: 521px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;We see that all BASE64 characters appear in the detected BASE64 strings, but that the letter A appears significantly less than other letters.&lt;/p&gt;
+
+&lt;p&gt;If we use a minimum length for the detected BASE64 strings, the letter A is even missing:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193129.png" style="width: 993px; height: 521px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193200.png" style="width: 1000px; height: 521px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that the = character is also missing, but the = character is a padding character in BASE64, not a normal character: it can only appear once or twice at the end of a BASE64 string.&lt;/p&gt;
+
+&lt;p&gt;So this statistics feature of &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt; helps us to detect that we might be dealing with a custom encoding, based on BASE64, where the letter A has been replaced with another character. Which character would that be? Let's take another look at out first analysis:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-192621.png" style="width: 993px; height: 637px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Character # is the most frequent. So probably A has been replaced with #.&lt;/p&gt;
+
+&lt;p&gt;Let's try that out:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193505.png" style="width: 993px; height: 631px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Still no succes.&lt;/p&gt;
+
+&lt;p&gt;Let's run &lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/byte-stats.py"&gt;byte-stats.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193613.png" style="width: 993px; height: 639px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This time we have a very long BASE64 string, almost 1 million characters long. But why isn't &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt; detecting it?&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/byte-stats.py"&gt;byte-stats.py&lt;/a&gt; looks for longest strings, for example the longest string of consecutive BASE64 characters. But it doesn't check if that string length is a multiple of 4 (that's a requirement for BASE64). While &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt; does check this.&lt;/p&gt;
+
+&lt;p&gt;So there must still be some kind of encoding we haven't figured out. Let's take a look at the string:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193710.png" style="width: 993px; height: 777px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-193942.png" style="width: 993px; height: 777px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are a bit familiar with BASE64 encoding, you will notice that the string has been reversed: == appears at the beginning, and not at the end. And the end is ...qVT, which is TVq reversed, and that's a marker for MZ, e.g., a Windows executable.&lt;/p&gt;
+
+&lt;p&gt;So let's reverse the encoded payload with &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/translate.py"&gt;translate.py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-194011(1).png" style="width: 993px; height: 213px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;That's indeed a PE file. And it has the same hash as the file Xavier extracted:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/20260611-194137.png" style="width: 993px; height: 201px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This new feature of &lt;a href="http://github.com/DidierStevens/DidierStevensSuite/blob/master/base64dump.py"&gt;base64dump.py&lt;/a&gt;, --stats, can help with the reversing of custom encodings by providing statistics of the encoding characters.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Didier Stevens&lt;br /&gt;
+Senior handler&lt;br /&gt;
+&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33072</guid></item><item><title>Upcoming Speaking Engagements</title><link>https://www.schneier.com/blog/archives/2026/06/upcoming-speaking-engagements-57.html</link><description>&lt;p&gt;This is a current list of where and when I am scheduled to speak:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I’m giving a keynote at &lt;a href="https://wirtschaftsrat.de/de/hoehepunktveranstaltungen/wir-bauen-die-cybernation-von-der-vision-zur-wirkung/"&gt;Cybernation 2026&lt;/a&gt; in Berlin, Germany, on June 24, 2026.&lt;/li&gt;
 &lt;li&gt;I’m speaking at the &lt;a href="https://potsdamer-sicherheitskonferenz.de/"&gt;Potsdam Conference on National Cybersecurity&lt;/a&gt; at the Hasso Plattner Institut in Potsdam, Germany. The event runs June 24–25, 2026, and my talk will be the evening of June 24.&lt;/li&gt;
@@ -16,7 +109,7 @@
 &lt;li&gt;I’m speaking at the &lt;a href="https://nuernberg.digital/de/"&gt;Nuremberg Digital Festival&lt;/a&gt; in Nuremburg, Germany, on Wednesday, July 1, 2026.&lt;/li&gt;
 &lt;li&gt;I’m speaking at &lt;a href="https://www.secwest.net/"&gt;CanSecWest 2026&lt;/a&gt; in Vancouver, Canada. The conference runs September 30–October 1, 2026; the time of my talk is TBD.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72178</guid><category>Uncategorized</category></item><item><title>FBI disrupts massive AI-powered phishing service using a million URLs</title><link>https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/</link><description>In a coordinated effort, the FBI, working with Google and Black Lotus Labs, has dismantled a massive Chinese phishing-as-a-service operation called Outsider Enterprise with thousands of phishing websites used to steal credit card data and passwords. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/</guid><category>Security</category><category>Legal</category><category>Mobile</category></item><item><title>Bernie Sanders’ AI Sovereign Wealth Fund Plan</title><link>https://www.schneier.com/blog/archives/2026/06/bernie-sanders-ai-sovereign-wealth-fund-plan.html</link><description>&lt;p&gt;Let no one accuse Bernie Sanders of ducking the big questions. Writing in the New York Times last week, the senator &lt;a href="https://www.nytimes.com/2026/06/01/opinion/artificial-intelligence-bernie-sanders.html"&gt;asked&lt;/a&gt;: &amp;#8220;Will the future of humanity be determined by a handful of billionaires who have promoted and developed AI, with virtually no democratic input, who stand to become even richer and more powerful than they are today?&amp;#8221;&lt;/p&gt;
+&lt;p&gt;The list is maintained on &lt;a href="https://www.schneier.com/events/"&gt;this page&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72178</guid><category>Uncategorized</category></item><item><title>ISC Stormcast For Monday, June 15th, 2026 https://isc.sans.edu/podcastdetail/9972, (Mon, Jun 15th)</title><link>https://isc.sans.edu/diary/rss/33076</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33076</guid></item><item><title>FBI disrupts massive AI-powered phishing service using a million URLs</title><link>https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/</link><description>In a coordinated effort, the FBI, working with Google and Black Lotus Labs, has dismantled a massive Chinese phishing-as-a-service operation called Outsider Enterprise with thousands of phishing websites used to steal credit card data and passwords. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/</guid><category>Security</category><category>Legal</category><category>Mobile</category></item><item><title>Bernie Sanders’ AI Sovereign Wealth Fund Plan</title><link>https://www.schneier.com/blog/archives/2026/06/bernie-sanders-ai-sovereign-wealth-fund-plan.html</link><description>&lt;p&gt;Let no one accuse Bernie Sanders of ducking the big questions. Writing in the New York Times last week, the senator &lt;a href="https://www.nytimes.com/2026/06/01/opinion/artificial-intelligence-bernie-sanders.html"&gt;asked&lt;/a&gt;: &amp;#8220;Will the future of humanity be determined by a handful of billionaires who have promoted and developed AI, with virtually no democratic input, who stand to become even richer and more powerful than they are today?&amp;#8221;&lt;/p&gt;
 &lt;p&gt;We agree entirely that this is one of the most potent questions facing global democracy today. Our book, &lt;a href="https://mitpress.mit.edu/9780262049948/rewiring-democracy/"&gt;Rewiring Democracy&lt;/a&gt;, surveys the emerging uses for and impacts of AI in democracy around the world and reaches the same conclusion: that the most urgent risk posed by AI is the ...&lt;/p&gt;</description><content:encoded>&lt;p&gt;Let no one accuse Bernie Sanders of ducking the big questions. Writing in the New York Times last week, the senator &lt;a href="https://www.nytimes.com/2026/06/01/opinion/artificial-intelligence-bernie-sanders.html"&gt;asked&lt;/a&gt;: &amp;#8220;Will the future of humanity be determined by a handful of billionaires who have promoted and developed AI, with virtually no democratic input, who stand to become even richer and more powerful than they are today?&amp;#8221;&lt;/p&gt;
 &lt;p&gt;We agree entirely that this is one of the most potent questions facing global democracy today. Our book, &lt;a href="https://mitpress.mit.edu/9780262049948/rewiring-democracy/"&gt;Rewiring Democracy&lt;/a&gt;, surveys the emerging uses for and impacts of AI in democracy around the world and reaches the same conclusion: that the most urgent risk posed by AI is the &lt;a href="https://www.contrariannews.org/p/how-to-build-ai-for-democracy"&gt;concentration&lt;/a&gt; of power, wealth and control among tech oligarchs.&lt;/p&gt;
 &lt;p&gt;And yet we reached a vastly different conclusion than Sanders on what to do about it.&lt;/p&gt;
@@ -4205,7 +4298,7 @@ Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;
         
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;p&gt;We see roughly a fifth of the world's web traffic and that traffic tells us, in real time, which payloads are mutating, which patterns are picking up, and where attacker tooling is moving next. Two teams turn that visibility into defense.&lt;/p&gt;&lt;p&gt;First is &lt;a href="https://www.cloudflare.com/cloudforce-one/"&gt;&lt;b&gt;&lt;u&gt;Cloudforce One&lt;/u&gt;&lt;/b&gt;&lt;/a&gt;, our threat intelligence, research, and operations team, which sits within the Cloudflare security organization. They turn what we see across the network into insights the rest of the stack can act on: tracked adversaries, emerging campaigns, and indicators of compromise (IOCs). The hard part of this work was never knowing what is malicious — it was the delay in mitigation. Knowledge of a new threat normally has to travel from a threat report, into a feed, and then into a company’s defense before it can be used to block anything. Attackers have learned to move faster than that. Our network closes that gap: Cloudflare customers can now use Cloudforce One threat intelligence &lt;a href="https://blog.cloudflare.com/realtime-threat-intel-waf-rules/"&gt;&lt;u&gt;directly within the WAF&lt;/u&gt;&lt;/a&gt; to block high-risk traffic.&lt;/p&gt;&lt;p&gt;Second is the team that owns the WAF engine that does the actual detecting: the managed rulesets that run in front of our own properties and are available to every Cloudflare customer, the machine learning behind &lt;a href="https://developers.cloudflare.com/waf/about/waf-attack-score/"&gt;&lt;u&gt;WAF Attack Score&lt;/u&gt;&lt;/a&gt;, and the relationships that sometimes let us ship a rule before a CVE is publicly disclosed. The team is globally distributed and moves fast, releasing rules within hours of a proof-of-concept of an attack becoming known. Once a detection is deployed, it reaches our entire network, along with every Cloudflare customer, in under 30 seconds. &lt;a href="https://blog.cloudflare.com/react2shell-rsc-vulnerabilities-exploitation-threat-brief/"&gt;&lt;u&gt;React2Shell&lt;/u&gt;&lt;/a&gt; is a recent example: a managed WAF rule &lt;a href="https://blog.cloudflare.com/waf-rules-react-vulnerability/"&gt;&lt;u&gt;was protecting our own properties, and everyone else's on Cloudflare&lt;/u&gt;&lt;/a&gt;, hours before the official advisory was published.&lt;/p&gt;&lt;p&gt;The scoring layer, the defenses we put in front of the application, and the containment around the vulnerability all build on what these two teams see. &lt;/p&gt;
+    &lt;p&gt;We see roughly a fifth of the web and that tells us, in real time, which payloads are mutating, which patterns are picking up, and where attacker tooling is moving next. Two teams turn that visibility into defense.&lt;/p&gt;&lt;p&gt;First is &lt;a href="https://www.cloudflare.com/cloudforce-one/"&gt;&lt;b&gt;&lt;u&gt;Cloudforce One&lt;/u&gt;&lt;/b&gt;&lt;/a&gt;, our threat intelligence, research, and operations team, which sits within the Cloudflare security organization. They turn what we see across the network into insights the rest of the stack can act on: tracked adversaries, emerging campaigns, and indicators of compromise (IOCs). The hard part of this work was never knowing what is malicious — it was the delay in mitigation. Knowledge of a new threat normally has to travel from a threat report, into a feed, and then into a company’s defense before it can be used to block anything. Attackers have learned to move faster than that. Our network closes that gap: Cloudflare customers can now use Cloudforce One threat intelligence &lt;a href="https://blog.cloudflare.com/realtime-threat-intel-waf-rules/"&gt;&lt;u&gt;directly within the WAF&lt;/u&gt;&lt;/a&gt; to block high-risk traffic.&lt;/p&gt;&lt;p&gt;Second is the team that owns the WAF engine that does the actual detecting: the managed rulesets that run in front of our own properties and are available to every Cloudflare customer, the machine learning behind &lt;a href="https://developers.cloudflare.com/waf/about/waf-attack-score/"&gt;&lt;u&gt;WAF Attack Score&lt;/u&gt;&lt;/a&gt;, and the relationships that sometimes let us ship a rule before a CVE is publicly disclosed. The team is globally distributed and moves fast, releasing rules within hours of a proof-of-concept of an attack becoming known. Once a detection is deployed, it reaches our entire network, along with every Cloudflare customer, in under 30 seconds. &lt;a href="https://blog.cloudflare.com/react2shell-rsc-vulnerabilities-exploitation-threat-brief/"&gt;&lt;u&gt;React2Shell&lt;/u&gt;&lt;/a&gt; is a recent example: a managed WAF rule &lt;a href="https://blog.cloudflare.com/waf-rules-react-vulnerability/"&gt;&lt;u&gt;was protecting our own properties, and everyone else's on Cloudflare&lt;/u&gt;&lt;/a&gt;, hours before the official advisory was published.&lt;/p&gt;&lt;p&gt;The scoring layer, the defenses we put in front of the application, and the containment around the vulnerability all build on what these two teams see. &lt;/p&gt;
     &lt;div&gt;
       &lt;h2&gt;Scores over signatures&lt;/h2&gt;
       &lt;a href="https://blog.cloudflare.com/tag/security/rss#scores-over-signatures"&gt;
@@ -5430,85 +5523,7 @@ On the API surface, we run a positive security model through &lt;a href="https:/
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt; established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the &lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf"&gt;BOD 22-01 Fact Sheet&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/24995</guid></item><item><title>The Evil MSI Background is Back&amp;#x21;, (Fri, Jun 5th)</title><link>https://isc.sans.edu/diary/rss/33054</link><description>&lt;p&gt;A few months ago, I wrote a diary about a payload that was embedded into a JPEG picture. It was a MSI-branded background&amp;#x5b;&lt;a href="https://isc.sans.edu/diary/Malicious&amp;#x2b;Script&amp;#x2b;Delivering&amp;#x2b;More&amp;#x2b;Maliciousness/32682"&gt;1&lt;/a&gt;&amp;#x5d;. Yesterday, I spotted another one&amp;#x21; It seems that the technic is getting more and more popular. This time, it started with a mail containing a WeTransfer link.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;A few months ago, I wrote a diary about a payload that was embedded into a JPEG picture. It was a MSI-branded background[&lt;a href="https://isc.sans.edu/diary/Malicious+Script+Delivering+More+Maliciousness/32682"&gt;1&lt;/a&gt;]. Yesterday, I spotted another one! It seems that the technic is getting more and more popular. This time, it started with a mail containing a WeTransfer link.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260605-1.png" style="width: 600px; height: 923px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Often, the WeTransfer brand is abused in phishing emails. Here, it's was an official link:&amp;nbsp;&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-hxxps://we[.]tl/t-R4Wv1JkvFfC4Awus&lt;/pre&gt;
-
-&lt;p&gt;The thread-actor shared the initial file via this platform. The file is a piece of Javascript called &amp;quot;Remittance Advice.js&amp;quot; (SHA256:8a83de81fbac4eb0961f3d58982f299664a5fa4c874c7469e69f85f3fc5bd33f).&lt;/p&gt;
-
-&lt;p&gt;The contains a lot of junk code that will just do nothing:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260605-2.png" style="width: 600px; height: 361px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Every for-loop will just move to the next line. In the middle of the file (&amp;gt;2MB), we have the interesting code that will perform the following tasks:&lt;/p&gt;
-
-&lt;p&gt;It will decode the next payload in an environment variable:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-[Environment]::SetEnvironmentVariable(&amp;quot;INTERNAL_DB_CACHE&amp;quot;, &amp;lt;encoded_payload&amp;gt;)&lt;/pre&gt;
-
-&lt;p&gt;The obfuscation technique used is ROT13, old but still very efficient:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-cbjrefuryy.rkr -RkrphgvbaCbyvpl Olcnff -AbCebsvyr -JvaqbjFglyr Uvqqra -Pbzznaq&lt;/pre&gt;
-
-&lt;p&gt;Decoded, it becomes:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command&lt;/pre&gt;
-
-&lt;p&gt;PowerShell is executed throug WMI:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;winmgmts:root\cimv2: connect to WMI&lt;/li&gt;
-	&lt;li&gt;Win32_ProcessStartup: configure process startup (hidden window)&lt;/li&gt;
-	&lt;li&gt;Win32_Process.Create(): spawn the process&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The full command is:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command [ScriptBlock]::Create(${env:INTERNAL_DB_CACHE})&lt;/pre&gt;
-
-&lt;p&gt;This code will fetch an MSI background JPEG file from this location:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-hxxp://icy-lab-0431[.]guilherme-telecomunicacoes2024[.]workers[.]dev/mCSlB&lt;/pre&gt;
-
-&lt;p&gt;Note that the threat-actor likes to use well-known services to store his/her payloads. workers.dev is the default, free subdomain provided by Cloudflare for deploying serverless applications[&lt;a href="https://developers.cloudflare.com/workers/"&gt;2&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;The technique to hide the next payload is the same as my previous diary. The Base64-encode payload is delimited here with &amp;quot;IN-&amp;quot; and &amp;quot;-in1&amp;quot;. To defeat simple Base64 lookups, all &amp;quot;A&amp;quot; characters have been replaced by &amp;quot;#&amp;quot;. Once decoded, the payload is a .Net DLL (SHA256:184a3008adff54cb345a599b4f3ca0c7bde29d8ac8379783ff40cd4e7ecc931b). It's a modified version of the Microsoft.Win32.TaskScheduler, an open-source .NET library for managing Windows Task Scheduler[&lt;a href="https://github.com/dahall/taskscheduler"&gt;3&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;The PowerShell payload will also fetch another file that will be passed to the loaded malicious DLL:&lt;/p&gt;
-
-&lt;pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;
-hxxps://pub-a06eb79f0ebe4a6999bcc71a2227d8e3[.]r2[.]dev/snake.png&lt;/pre&gt;
-
-&lt;p&gt;Here again, a legit online service is used. r2.dev is the default domain used by Cloudflare R2 to serve files and assets stored in public cloud-native buckets. It is a globally distributed, S3-compatible object storage service that allows developers to store large amounts of unstructured data[&lt;a href="https://developers.cloudflare.com/r2/buckets/public-buckets/"&gt;4&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;The file looks to be another background and contains probably another payload protected by steganograpy (very common with the .Net loaders):&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260605-3(1).png" style="width: 1024px; height: 574px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I'm now reversing the .Net loader. Stay tuned for more details soon!&lt;/p&gt;
-
-&lt;p&gt;[1]&amp;nbsp;&lt;a href="https://isc.sans.edu/diary/Malicious+Script+Delivering+More+Maliciousness/32682"&gt;https://isc.sans.edu/diary/Malicious+Script+Delivering+More+Maliciousness/32682&lt;/a&gt;&lt;br /&gt;
-[2]&amp;nbsp;&lt;a href="https://developers.cloudflare.com/workers/"&gt;https://developers.cloudflare.com/workers/&lt;/a&gt;&lt;br /&gt;
-[3]&amp;nbsp;&lt;a href="https://github.com/dahall/taskscheduler"&gt;https://github.com/dahall/taskscheduler&lt;/a&gt;&lt;br /&gt;
-[4]&amp;nbsp;&lt;a href="https://developers.cloudflare.com/r2/buckets/public-buckets/"&gt;https://developers.cloudflare.com/r2/buckets/public-buckets/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Xavier Mertens (@xme)&lt;/b&gt;&lt;br /&gt;
-Xameco&lt;br /&gt;
-Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
-&lt;a href="https://raw.githubusercontent.com/xme/pgp/refs/heads/main/public.key"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33054</guid></item><item><title>From Operating Model to Product: How We Built the ROC for Detection-Speed Remediation</title><link>https://blog.qualys.com/category/qualys-insights</link><description>In the first article in this series, we made the case for a prevention-led operating model. This article is about what happened next: the decision to build something that did not exist, and what it took to make it real. Turning an operating model into a product sounds straightforward until you are standing in front [&amp;#8230;]</description><content:encoded>&lt;p&gt;In the &lt;a href="https://blog.qualys.com/qualys-insights/2026/04/06/why-every-enterprise-needs-a-risk-operations-center-roc" rel="noreferrer noopener" target="_blank"&gt;first article&lt;/a&gt; in this series, we made the case for a prevention-led operating model. This article is about what happened next: the decision to build something that did not exist, and what it took to make it real.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/24995</guid></item><item><title>From Operating Model to Product: How We Built the ROC for Detection-Speed Remediation</title><link>https://blog.qualys.com/category/qualys-insights</link><description>In the first article in this series, we made the case for a prevention-led operating model. This article is about what happened next: the decision to build something that did not exist, and what it took to make it real. Turning an operating model into a product sounds straightforward until you are standing in front [&amp;#8230;]</description><content:encoded>&lt;p&gt;In the &lt;a href="https://blog.qualys.com/qualys-insights/2026/04/06/why-every-enterprise-needs-a-risk-operations-center-roc" rel="noreferrer noopener" target="_blank"&gt;first article&lt;/a&gt; in this series, we made the case for a prevention-led operating model. This article is about what happened next: the decision to build something that did not exist, and what it took to make it real.&lt;/p&gt;
 
 
 
@@ -8991,7 +9006,7 @@ inotifywait -m /tmp -e create | grep '^/tmp/p.*\.js$'
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vectors for malicious cyber actors and poses significant risks to the federal enterprise.&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt;&amp;nbsp;established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf"&gt;BOD 22-01 Fact Sheet&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24969</guid></item><item><title>The Romance Scammer Who Made a Small Fortune Posing as a WWE Superstar</title><link>https://www.wired.com/story/wired-book-club-excerpt-the-yahoo-boys-carlos-barragan/</link><description>In this excerpt from WIRED Book Club pick The Yahoo Boys, journalist Carlos Barragán traces one scammer’s journey from flop to fortune.</description><guid isPermaLink="false">6a187520931e039d612e0957</guid><category>The Big Story</category><category>Security</category><category>Book Excerpt</category><category>longreads</category><category>scams</category><category>Books</category><category>WIRED Book Club</category></item><item><title>Websites Can Now Spy on You Through Your Hard Drive</title><link>https://www.wired.com/story/websites-can-now-spy-on-you-through-your-hard-drive/</link><description>Thanks to the newly detailed FROST technique, telltale SSD activity can be measured in the browser using simple JavaScript.</description><guid isPermaLink="false">6a18add548dbb041b0784aa4</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Security News</category><category>Security / Privacy</category><category>Ars Technica</category><category>Frosty Perception</category></item><item><title>Pwn2Own Berlin 2026: On the Ground With TrendAI™ ZDI's Biggest AI Showdown Yet</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-berlin-2026.html</link><description>47 zero-days fell at Pwn2Own Berlin 2026 for US$1,298,250 in payouts. TrendAI™ was on the ground all three days — here's what we saw.</description><guid isPermaLink="false">urn:uuid:b63c7e4e-2223-cd3c-f39d-3eb913bd3479</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category></item><item><title>6 Best Free Password Managers for 2026</title><link>https://www.techrepublic.com/article/best-free-password-managers/</link><description>&lt;p&gt;A free password manager protects your logins but are they all safe? Discover the best free password managers in 2026.&lt;/p&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24969</guid></item><item><title>The Romance Scammer Who Made a Small Fortune Posing as a WWE Superstar</title><link>https://www.wired.com/story/wired-book-club-excerpt-the-yahoo-boys-carlos-barragan/</link><description>In this excerpt from WIRED Book Club pick The Yahoo Boys, journalist Carlos Barragán traces one scammer’s journey from flop to fortune.</description><guid isPermaLink="false">6a187520931e039d612e0957</guid><category>The Big Story</category><category>Security</category><category>Book Excerpt</category><category>longreads</category><category>scams</category><category>Books</category><category>WIRED Book Club</category></item><item><title>Pwn2Own Berlin 2026: On the Ground With TrendAI™ ZDI's Biggest AI Showdown Yet</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-berlin-2026.html</link><description>47 zero-days fell at Pwn2Own Berlin 2026 for US$1,298,250 in payouts. TrendAI™ was on the ground all three days — here's what we saw.</description><guid isPermaLink="false">urn:uuid:b63c7e4e-2223-cd3c-f39d-3eb913bd3479</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category></item><item><title>6 Best Free Password Managers for 2026</title><link>https://www.techrepublic.com/article/best-free-password-managers/</link><description>&lt;p&gt;A free password manager protects your logins but are they all safe? Discover the best free password managers in 2026.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-free-password-managers/"&gt;6 Best Free Password Managers for 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4217513</guid><category>Cloud Security</category><category>Top Products</category><category>free password manager</category><category>password manager</category></item><item><title>Malicious npm packages abuse dependency confusion to profile developer environments</title><link>https://www.microsoft.com/en-us/security/blog/2026/05/29/33-malicious-npm-packages-abuse-dependency-confusion-profile-developer-environments/</link><description>&lt;p&gt;A dependency confusion campaign leveraged 33 malicious npm packages to collect reconnaissance data from developer and build environments. This report details the attack chain, observed tradecraft, and detection opportunities to help organizations identify and disrupt related activity.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/05/29/33-malicious-npm-packages-abuse-dependency-confusion-profile-developer-environments/"&gt;Malicious npm packages abuse dependency confusion to profile developer environments&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-fa796990-8537-48df-bf38-2f9f4e9fb9a0"&gt;
 	&lt;button class="btn btn-collapse" type="button"&gt;
