@@ -1,5 +1,541 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 18 Jun 2026 03:59:26 +0000</lastBuildDate><item><title>ISC Stormcast For Thursday, June 18th, 2026 https://isc.sans.edu/podcastdetail/9978, (Thu, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/33088</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33088</guid></item><item><title>The Behavior of Coordinated SSH Brute Force Attacks over the last three months &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33086</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program]&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 18 Jun 2026 09:59:28 +0000</lastBuildDate><item><title>The UK Will Scan Asylum-Seekers’ Faces for Age Checks—Despite Knowing the Tech Is Flawed</title><link>https://www.wired.com/story/facial-age-estimate-uk-asylum-seekers/</link><description>Internal Home Office tests of age-verification technology show the risks of life-altering errors. It’s moving forward anyway.</description><guid isPermaLink="false">6a30448ba875d61d4130a6a3</guid><category>Security</category><category>Security / National Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>artificial intelligence</category><category>UK</category><category>national security</category><category>immigration</category><category>machine learning</category><category>privacy</category><category>ethics</category><category>algorithms</category><category>Check, Mate</category></item><item><title>From package to postinstall payload: Inside the Mastra npm supply chain compromise</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/17/postinstall-payload-inside-mastra-npm-supply-chain-compromise/</link><description>&lt;p&gt;A poisoned npm package infected 140+ projects with a hidden payload. This report highlights how to detect, hunt, and defend against supply chain attacks using Microsoft Defender and actionable threat intelligence.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/postinstall-payload-inside-mastra-npm-supply-chain-compromise/"&gt;From package to postinstall payload: Inside the Mastra npm supply chain compromise&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-c4b17bbc-068c-45d9-8c09-3577ce5da4d1"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-c4b17bbc-068c-45d9-8c09-3577ce5da4d1"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#discovery-and-initial-indicators"&gt;Discovery and initial indicators&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#dependency-injection-the-poisoned-package-json"&gt;Dependency injection: the poisoned package.json&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#typosquat-analysis-easy-day-js"&gt;Typosquat analysis: easy-day-js&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#staged-delivery-pattern"&gt;Staged delivery pattern&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#obfuscation-and-payload-analysis"&gt;Obfuscation and payload analysis&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#tls-bypass-to-self-deletion"&gt;TLS bypass to self-deletion&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#timeline-analysis"&gt;Timeline analysis&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#advanced-hunting"&gt;Advanced hunting&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#references"&gt;References&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence observed a large-scale npm supply chain attack affecting 140+ packages across the mastra and @mastra scopes on the npm registry. Microsoft shared its findings with the npm security team, and the compromised packages have been removed and the attacker&amp;#8217;s publish access to the @mastra scope has been revoked. The compromise originated from the takeover of the ehindero npm maintainer account, which had publish rights across the Mastra ecosystem and was used to publish poisoned package versions that introduced &lt;em&gt;easy-day-js&lt;/em&gt;, a malicious typosquat of the popular &lt;em&gt;dayjs&lt;/em&gt; library.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once installed, &lt;em&gt;easy-day-js&lt;/em&gt; triggered a postinstall hook that executed an obfuscated dropper script, disabled Transport Layer Security (TLS) certificate verification, contacted attacker-controlled command-and-control (C2) infrastructure, downloaded a second-stage payload, and executed the payload as a detached hidden process. The activity followed a coordinated staged delivery pattern, with a clean bait version published first, followed by a weaponized version and rapid publication of the compromised Mastra packages.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Because the payload executes during installation, any developer workstation or continuous integration and continuous delivery (CI/CD) pipeline that ran npm install or npm update after the compromised versions were published was potentially exposed, regardless of whether the package was imported in application code.  This created risk to credentials, tokens, build environments, and downstream software integrity. Microsoft Defender Antivirus, Microsoft Defender for Endpoint, and Microsoft Defender XDR provide detections and hunting coverage for suspicious Node.js execution, malicious package behavior, reflective code loading, persistence activity and command-and-control communication.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148200 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-30.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. End-to-end attack chain from npm account takeover through mass dependency injection to second-stage payload execution.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;At a high level, the attack progressed through six phases:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Account compromise:&lt;/strong&gt; The attacker gained control of the ehindero npm account , a listed maintainer with publish rights across the entire @mastra scope.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Typosquat creation:&lt;/strong&gt; The attacker published &lt;em&gt;easy-day-js&lt;/em&gt;, a package impersonating the legitimate &lt;em&gt;dayjs&lt;/em&gt; library (57M+ weekly downloads), using a coordinating anonymous email account ).&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Mass poisoning:&lt;/strong&gt; Using the compromised account, the attacker published new versions of 140+packages across the @mastra scope, each injected with &lt;em&gt;easy-day-js@^1.11.21&lt;/em&gt; as a new dependency. All poisoned versions were tagged as latest.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Delivery:&lt;/strong&gt; Developers and CI/CD pipelines running npm install automatically resolved to the compromised versions. The semantic versioning (SemVer) range ^1.11.21 resolved to 1.11.22, the version containing the malicious postinstall hook.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Execution:&lt;/strong&gt; The postinstall hook executed an obfuscated 4,572-byte dropper that disabled TLS verification, dropped tracking markers, and contacted the C2 server.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Second-stage payload:&lt;/strong&gt; The dropper fetched executable code from the C2 server, wrote it as a randomly named &lt;em&gt;.js&lt;/em&gt; file, and spawned it as a fully detached, window-hidden Node.js process.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="discovery-and-initial-indicators"&gt;Discovery and initial indicators&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence identified the compromise through anomalous publishing patterns on the mastra package. All previous versions of mastra (through v1.13.0) were published through GitHub Actions OpenID Connect (OIDC), the legitimate CI/CD pipeline. Version 1.13.1 was manually published by ehindero using a Tutamail address, an anonymous email service.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148201 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-31.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Publisher comparison across mastra versions showing the anomalous manual publish on v1.13.1.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The only change between mastra@1.13.0 and mastra@1.13.1 was the addition of &lt;em&gt;easy-day-js@^1.11.21&lt;/em&gt; as a dependency. No corresponding code changes were present in the Mastra GitHub repository. Both the compromised publisher (&lt;em&gt;ehindero2016@tutamail.com&lt;/em&gt;) and the typosquat publisher (&lt;em&gt;sergey2016@tutamail.com&lt;/em&gt;) used the same anonymous email provider, Tutamail.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="dependency-injection-the-poisoned-package-json"&gt;Dependency injection: the poisoned package.json&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The compromised mastra@1.13.1 &lt;em&gt;package.json&lt;/em&gt; reveals the injected dependency alongside the anomalous publisher metadata:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148202 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-32.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. The compromised mastra@1.13.1 package.json with the injected easy-day-js dependency and the anomalous npm publisher.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The easy-day-js dependency was not present in any prior versions of mastra npm packages. Its addition, paired with the SemVer range ^1.11.21, ensures that the npm resolves to the weaponized 1.11.22 release.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="typosquat-analysis-easy-day-js"&gt;Typosquat analysis: &lt;em&gt;easy-day-js&lt;/em&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;easy-day-js&lt;/em&gt; package is a deliberate impersonation of the legitimate &lt;em&gt;dayjs&lt;/em&gt; library:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Attribute&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Legitimate dayjs&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Malicious easy-day-js&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Maintainer&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;iamkun &amp;lt;&lt;em&gt;kunhello@outlook[.]com&lt;/em&gt;&amp;gt;&lt;/td&gt;&lt;td&gt;sergey2016 &amp;lt;&lt;em&gt;sergey2016@tutamail[.]com&lt;/em&gt;&amp;gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Claimed author&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;iamkun&lt;/td&gt;&lt;td&gt;iamkun (impersonated)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Repository URL&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;github.com/iamkun/dayjs&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;github.com/iamkun/dayjs &lt;/em&gt;(copied)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Weekly downloads&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;57,251,792&lt;/td&gt;&lt;td&gt;newly created&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Version count&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;89+ versions since 2018&lt;/td&gt;&lt;td&gt;2 versions (both June 16, 2026)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;postinstall script&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;td&gt;&lt;em&gt;node setup.cjs &amp;#8211;no-warnings &lt;/em&gt;(v1.11.22)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="staged-delivery-pattern"&gt;Staged delivery pattern&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The typosquat used a two-phase delivery strategy:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Phase 1 (clean bait):&lt;/strong&gt; &lt;em&gt;easy-day-js@1.11.21&lt;/em&gt; was published at 07:05 UTC on June 16, 2026. This version contained only legitimate &lt;em&gt;dayjs&lt;/em&gt; code with no postinstall hook.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Phase 2 (weaponization):&lt;/strong&gt; &lt;em&gt;easy-day-js@1.11.22&lt;/em&gt; was published at 01:01 UTC on June 17, 2026, adding the &lt;em&gt;setup.cjs&lt;/em&gt; payload and the postinstall hook. The &lt;em&gt;dayjs.min.js&lt;/em&gt; file is byte-identical between both versions, confirming only the dropper was added.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The weaponized &lt;em&gt;package.json&lt;/em&gt; in version 1.11.22 exposes the postinstall hook:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148203 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-33.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. The weaponized easy-day-js@1.11.22 package.json. The postinstall hook runs setup.cjs automatically on npm install.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="obfuscation-and-payload-analysis"&gt;Obfuscation and payload analysis&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 0: Obfuscated dropper (&lt;em&gt;setup.cjs&lt;/em&gt;)&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;setup.cjs&lt;/em&gt; payload is protected with JavaScript obfuscation using rotated string arrays and a custom base64 decoder function:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148204 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-34.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. The obfuscated setup.cjs dropper with rotated string array and base64 encoded string lookups.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The obfuscation technique uses a common pattern: an array of 40 Base64-encoded strings is shuffled at initialization using a numeric seed (0x4c11d), then accessed through a decoder function that performs Base64 decoding with character substitution. This prevents static analysis tools from extracting meaningful strings.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 1: String table decryption&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Decoding the rotated string array reveals the payload&amp;#8217;s true capabilities:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148205 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-35.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. The decoded string table revealing C2 addresses, file system operations, and process spawning functionality.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Key decoded strings include the secondary C2 address (23.254.164[.]123:443), Node.js built-in module references (&lt;em&gt;node:child_process&lt;/em&gt;, &lt;em&gt;node:os&lt;/em&gt;), and file system operations (&lt;em&gt;writeFileSync&lt;/em&gt;, &lt;em&gt;rmSync&lt;/em&gt;).&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 2: Deobfuscated payload logic&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After resolving all string references and control flow, the full payload logic emerges as a five-step attack sequence:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148206 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-36.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. The fully deobfuscated setup.cjs payload showing the five-step attack sequence from.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="tls-bypass-to-self-deletion"&gt;TLS bypass to self-deletion&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 1: Disable TLS verification.&lt;/strong&gt; The payload sets &lt;em&gt;NODE_TLS_REJECT_UNAUTHORIZED&lt;/em&gt; to &amp;#8216;0&amp;#8217;, disabling certificate validation for all HTTPS requests in the Node.js process. This enables communication with the C2 server without valid certificates.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 2: Drop filesystem markers.&lt;/strong&gt; Two tracking files are written to the OS temp directory: &lt;em&gt;$TMPDIR/.pkg_history&lt;/em&gt; contains the install path of the compromised package, and &lt;em&gt;$TMPDIR/.pkg_logs&lt;/em&gt; contains the package name encoded with XOR 0x80:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148207 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-37.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8. XOR 0x80 decoding of the .pkg_logs marker reveals the string easy-day-js.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 3: Fetch second-stage payload.&lt;/strong&gt; The dropper issues a GET request to &lt;em&gt;hxxps://23.254.164[.]92:8000/update/49890878&lt;/em&gt; and reads the response body as text.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The second-stage payload is a ~41 KB cross-platform Node.js tasking client. Unlike a fire-and-forget stealer, the implant installs sign-in persistence, sends a Start beacon to the C2, then enters a repeated Check poll loop. Tasks returned by the server are dispatched to built-in runners (a Node runner and a Shell runner), and it honors configuration update and exit commands, meaning the operator can push and execute arbitrary follow-on code on the host at any time. On Windows, the payload additionally executes reflective .NET assembly injection for in-memory code execution.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 3.A: Windows execution chain.&lt;/strong&gt; On Windows, the payload performs host reconnaissance and reflective in-memory code execution before establishing persistence.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The payload enumerates all installed applications across three sources—Start Menu entries (&lt;em&gt;Get-StartApps&lt;/em&gt;), registry Uninstall keys, and UWP packages (&lt;em&gt;Get-AppxPackage&lt;/em&gt;)—to fingerprint the compromised host:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148208 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-38.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Each enumeration is wrapped in try/catch with silent error handling. The deduplicated results are exfiltrated back to the C2 for victim profiling, enabling the attacker to identify installed security products and high-value targets.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A second PowerShell script receives two C2 endpoint URLs through the &lt;em&gt;SCRIPT_ARGS&lt;/em&gt; environment variable. It disables SSL certificate validation and defines an HTTP POST function that Base64-encodes request bodies using a legacy IE8 User-Agent string:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148209 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-39.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The first C2 request downloads a .NET DLL that is loaded directly into memory via reflection, completely bypassing disk-based detection. The script resolves the &lt;em&gt;Extension.SubRoutine&lt;/em&gt; class and invokes its Run2 method with a second downloaded payload, the path to &lt;em&gt;cmd.exe&lt;/em&gt;, and the C2 callback address:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148210 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-40.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This pattern is consistent with process injection, where the payload is injected into a &lt;em&gt;cmd.exe&lt;/em&gt; process that communicates back to the C2 over HTTPS (port 443). The entire chain is fileless—no artifacts are written to disk.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 3.B: Cross-platform persistence.&lt;/strong&gt; The implant installs login persistence on all three major operating systems, using a consistent NVM/Node masquerade theme across platforms:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;OS&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Persistence mechanism&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Drop location&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Artifact name&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Registry Run key&lt;br /&gt;(&lt;em&gt;HKCU\&amp;#8230;\CurrentVersion\Run&lt;/em&gt;)&lt;/td&gt;&lt;td&gt;&lt;em&gt;C:\ProgramData\NodePackages\&lt;/em&gt;&lt;/td&gt;&lt;td&gt;NvmProtocal&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;macOS&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;LaunchAgent&lt;br /&gt;&amp;nbsp;(RunAtLoad)&lt;/td&gt;&lt;td&gt;&lt;em&gt;~/Library/NodePackages/&lt;/em&gt;&lt;/td&gt;&lt;td&gt;com.nvm.protocal.plist&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Linux&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;systemd user unit&lt;br /&gt;&amp;nbsp;(WantedBy=default.target)&lt;/td&gt;&lt;td&gt;&lt;em&gt;~/.config/systemd/nvmconf/&lt;/em&gt;&lt;/td&gt;&lt;td&gt;nvmconf.service&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;On Windows, the Run key launches a hidden PowerShell process that invokes Node.js:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148211 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-41.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;On Linux, the systemd user unit restarts the implant on failure with a 5-second delay:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148212 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-42.webp" /&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;All three persistence paths drop the implant as &lt;em&gt;protocal.cjs&lt;/em&gt; (a deliberate misspelling) into directories named to mimic legitimate Node.js installations. The value name &lt;em&gt;NvmProtocal&lt;/em&gt;, the macOS label &lt;em&gt;com.nvm.protocal&lt;/em&gt;, and the Linux unit &lt;em&gt;nvmconf.service&lt;/em&gt; are deliberately designed to blend into a developer workstation.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 3.C: Collection and exfiltration.&lt;/strong&gt; The implant performs the following collection before exfiltrating to the C2:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Cryptocurrency wallet inventory: A hardcoded list of 166 wallet browser-extension IDs (MetaMask, Phantom, Coinbase Wallet, Binance Wallet, TronLink, and others) is matched against installed extensions across Chrome, Edge, and Brave profiles.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Browser history: Each profile’s History SQLite database is copied to a temp directory prefixed with &lt;em&gt;browser-hist-&lt;/em&gt; and queried through node:sqlite.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Host reconnaissance: Gather hostname, architecture, platform, user ID, installed applications, and running processes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Collected data is exfiltrated using a custom ICAP-style protocol over HTTPS POST (reqmod, PrimaryUrl, SecondaryUrl headers), with hostnames resolved through &lt;em&gt;node:dns&lt;/em&gt; and traffic carrying a spoofed legacy IE8 User-Agent string.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 4: Writing and executing the payload. &lt;/strong&gt;The downloaded code is written to a file with a cryptographically random name (&lt;em&gt;&amp;lt;12 random hex bytes&amp;gt;.js&lt;/em&gt;) in the OS temp directory, then spawned as a detached, window-hidden Node.js process using &lt;em&gt;child_process.spawn&lt;/em&gt; with &lt;em&gt;unref()&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Step 5: Self-deletion.&lt;/strong&gt; The dropper removes itself (&lt;em&gt;fs.rmSync(__filename)&lt;/em&gt;) to eliminate forensic evidence from the installed package directory.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="timeline-analysis"&gt;Timeline analysis&lt;em&gt;&lt;/em&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Every package published by the ehindero account contained &lt;em&gt;easy-day-js&lt;/em&gt; as an injected dependency. Packages last published by GitHub Actions CI/CD or other legitimate maintainers were not affected.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Attack timeline&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Timestamp (UTC)&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Event&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;June 16, 07:05&lt;/td&gt;&lt;td&gt;easy-day-js@1.11.21 published (clean bait, no payload)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;June 17, 01:01&lt;/td&gt;&lt;td&gt;easy-day-js@1.11.22 published (adds postinstall with &lt;em&gt;setup.cjs&lt;/em&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;June 17, 01:20&lt;/td&gt;&lt;td&gt;mastra@1.13.1 and 140+ other @mastra/* packages published with &lt;em&gt;easy-day-js&lt;/em&gt; dependency&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;** Microsoft Threat Intelligence monitoring observed easy-day-js@1.11.22 at 01:07 UTC and mastra@1.13.1 at 01:28 UTC on June 17, 2026&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Review dependency trees for direct or transitive usage of affected @mastra packages at the compromised versions listed above.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Check for the presence of &lt;em&gt;easy-day-js&lt;/em&gt; in &lt;em&gt;node_modules/&lt;/em&gt; or &lt;em&gt;package-lock.json&lt;/em&gt; files across your projects and CI/CD environments.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Pin known-good package versions where possible. For mastra, version 1.13.0 and earlier are unaffected. For @mastra/core, version 1.42.0 and earlier are unaffected.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Run &lt;em&gt;npm install&lt;/em&gt; with &lt;em&gt;&amp;#8211;ignore-scripts&lt;/em&gt; to prevent automatic execution of postinstall hooks during dependency installation.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Check systems for indicators of compromise (IOC) artifacts: Look for &lt;em&gt;$TMPDIR/.pkg_history&lt;/em&gt;, &lt;em&gt;$TMPDIR/.pkg_logs&lt;/em&gt;, and unexpected &lt;em&gt;.js&lt;/em&gt; files in the user&amp;#8217;s home or temp directories.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Rotate any credentials, tokens, or API keys that may have been present on systems where the compromised packages were installed.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Block the C2 IP addresses 23.254.164[.]92 and 23.254.164[.]123 at the network perimeter.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Audit CI/CD logs for unexpected outbound connections to the C2 IP addresses or suspicious postinstall script execution.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enable cloud-delivered protection in Microsoft Defender Antivirus or equivalent antivirus protection.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Initial access&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Suspicious script execution during npm install or package lifecycle activity&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &amp;#8211; Trojan:JS/NpmStealz.Z!MTB&lt;br /&gt;&amp;#8211; Trojan:JS/NpmStealz.ZA!MTB&lt;br /&gt;&lt;strong&gt; &lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious Node.js process behavior &lt;br /&gt;&amp;#8211; Suspicious Node.js script execution&lt;br /&gt;&lt;strong&gt; &lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Execution&lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;( Stage 1&amp;nbsp; )&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Postinstall hook automatically executes obfuscated setup.cjs dropper (4,572 bytes) during npm install;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious Node.js process behavior &lt;br /&gt;&amp;#8211; Suspicious Node.js script execution  &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Execution / Defense evasion&amp;nbsp;&lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;(Stage 2)&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Second-stage payload: Reflective .NET assembly injection: PowerShell downloads DLL, loads via [Reflection.Assembly]::Load(), invokes Extension.SubRoutine.Run2 method to inject payload into cmd.exe process; entire chain is fileless&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;Trojan:JS/NpmSteal.DB!MTB&lt;br /&gt;Trojan:PowerShell/PsExec.DE!MTB&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;-Process loaded suspicious .NET assembly&lt;br /&gt;-A process was injected with potentially malicious code&lt;br /&gt;-Reflective code loading (Fileless In-Memory Execution)&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt;&lt;br /&gt;-Possible AI Tools Reconnaissance Detected&lt;br /&gt;-Possible Secret Reconnaissance Detected&lt;br /&gt;-Access to cloud metadata service detected&lt;br /&gt;-Possible Post-Compromise Activity Detected in CICD Runner&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Persistence&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Registry Run key created, executing hidden PowerShell that launches &lt;em&gt;protocal.cjs&lt;/em&gt; on every user login&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Anomaly detected in ASEP registry  &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Command and control&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;GET request to &lt;em&gt;hxxps://23.254.164[.]92:8000/update/49890878&lt;/em&gt; and reads the response body as text.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Command-line process communicating with malicious network endpoint  &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to&amp;nbsp;&lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts" rel="noreferrer noopener" target="_blank"&gt;create their own prompts&lt;/a&gt;&amp;nbsp;or run the following&amp;nbsp;&lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks" rel="noreferrer noopener" target="_blank"&gt;prebuilt promptbooks&lt;/a&gt;&amp;nbsp;to automate incident response or investigation tasks related to this threat:&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Incident investigation  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Microsoft User analysis  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat actor profile  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat Intelligence 360 report based on MDTI article  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Vulnerability impact assessment  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="advanced-hunting"&gt;Advanced hunting&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following KQL queries can be used in Microsoft Defender XDR Advanced Hunting to identify potential exposure to this supply chain compromise.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Detect postinstall execution of setup.cjs&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents 
+ | where Timestamp &gt; ago(7d) 
+ | where FileName in ("node", "node.exe") 
+ | where ProcessCommandLine has "setup.cjs" 
+     or ProcessCommandLine has "easy-day-js" 
+|  where ProcessCommandLine has “--no-warnings” 
+ | project Timestamp, DeviceName, AccountName, 
+     ProcessCommandLine, FolderPath, InitiatingProcessFileName 
+ | sort by Timestamp desc 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Outbound connections to C2 infrastructure&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; title: ; notranslate"&gt;
+DeviceNetworkEvents
+| where Timestamp &gt; ago(7d)
+| where RemoteIP in ("23.254.164.92", "23.254.164.123")
+| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,
+    InitiatingProcessFileName, InitiatingProcessCommandLine
+| sort by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Network indicators&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;23.254.164.92&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;Primary C2 server&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;23.254.164.123&lt;/td&gt;&lt;td&gt;IP address&lt;/td&gt;&lt;td&gt;Secondary C2 address (from deobfuscated strings)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;https[:]//23[.]254[.]164[.]92:8000/update/49890878&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;Payload download endpoint&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;File indicators&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;B122A9873BEDF145AE2A7FD024B5F309007DBB025149F4DC4AC3F7E4F32A36A4&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;td&gt;setup.cjs (malicious postinstall dropper)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AE70DD4F6BC0D1C8C2848E4E6B51934626C4818DCB5AF99D080DDBD7DC337185&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;td&gt;easy-day-js-1.11.22.tgz (weaponized tarball)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;4A8860240E4231C3A74C81949BE655A28E096A7D72F38FBE84E5B37636B98417&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;td&gt;easy-day-js-1.11.21.tgz (clean bait tarball)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;B73DE25C053C3225A077738A1FCBD9CA6966D7B3CD6F5494A30F0AA0EAE55C7E&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;td&gt;mastra-1.13.1.tgz (compromised CLI tarball)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;221c45a790dec2a296af57969e1165a16f8f49733aeab64c0bbd768d9943badf&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;td&gt;protocol.cjs&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Host indicators&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;$TMPDIR/.pkg_history&lt;/em&gt;&lt;/td&gt;&lt;td&gt;File artifact&lt;/td&gt;&lt;td&gt;Contains the install path of the compromised package&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;$TMPDIR&lt;/em&gt;&lt;em&gt; /.pkg_logs &lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;td&gt;File artifact&lt;/td&gt;&lt;td&gt;Contains XOR 0x80 encoded string &amp;#8220;easy-day-js&amp;#8221;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;&amp;lt;homedir&amp;gt;/&amp;lt;random_hex&amp;gt;.js&lt;/em&gt;&lt;/td&gt;&lt;td&gt;File artifact&lt;/td&gt;&lt;td&gt;Downloaded second-stage payload&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Package indicators&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;easy-day-js&lt;/td&gt;&lt;td&gt;npm package&lt;/td&gt;&lt;td&gt;Malicious typosquat of dayjs&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sergey2016&lt;/td&gt;&lt;td&gt;npm account&lt;/td&gt;&lt;td&gt;Publisher of easy-day-js&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ehindero&lt;/td&gt;&lt;td&gt;npm account&lt;/td&gt;&lt;td&gt;Compromised publisher of 140+ Mastra packages&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://github.com/mastra-ai/mastra/issues/18046"&gt;Security: mastra@1.13.1 is compromised — malicious postinstall payload via `easy-day-js` dependency · Issue #18046 · mastra-ai/mastra&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.linkedin.com/posts/microsoft-threat-intelligence_microsoft-has-identified-a-supply-chain-attack-activity-7472860912715018241-znk7"&gt;Microsoft has identified a supply chain attack on the Mastra-AI npm ecosystem, with 80+ packages compromised through npm account takeover. The attacker introduced a phantom dependency into the… | Microsoft Threat Intelligence&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;This research is provided by Microsoft Defender Security Research, &lt;/em&gt;Suriyaraj Natarajan, Sagar Patil,&lt;em&gt; Rajesh Kumar Natarajan&lt;/em&gt;, Mahesh Mandava, Arvind Gowda, and &lt;em&gt;with contributions from members of Microsoft Threat Intelligence.&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="learn-more"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on&amp;nbsp;&lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;,&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the&amp;nbsp;&lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://eurppc-word-edit.officeapps.live.com/we/%E2%80%A2%09https:/learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-agent-builder" rel="noreferrer noopener" target="_blank"&gt;how to build and customize agents with Copilot Studio Agent Builder&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt;  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest &lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/real-time-agent-protection-during-runtime" rel="noreferrer noopener" target="_blank"&gt;Protect your agents in real-time during runtime (Preview)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/postinstall-payload-inside-mastra-npm-supply-chain-compromise/"&gt;From package to postinstall payload: Inside the Mastra npm supply chain compromise&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148197</guid><category>Malware</category><category>npm</category></item><item><title>ISC Stormcast For Thursday, June 18th, 2026 https://isc.sans.edu/podcastdetail/9978, (Thu, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/33088</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33088</guid></item><item><title>The Behavior of Coordinated SSH Brute Force Attacks over the last three months &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33086</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program]&lt;/p&gt;
 
 &lt;p&gt;Brute force SSH attacks are an ever-present threat on the internet today. We examine probing behavior over the last three months to identify coordinated and opportunistic attacks by threat actors. A DShield Honeypot has quietly collected and logged the behavior of these threat actors to develop a clearer picture of their malicious intentions. During the log collection period, several significant cyber and geopolitical events occurred. We will take a closer look at these behaviors by analyzing their timing and cross-referencing them with external factors that align with their attack patterns. Can an increase or change in SSH brute force botnet activity be observed during these volatile times?&lt;/p&gt;
 
@@ -2203,7 +2739,7 @@ exit 0
 &lt;p&gt;Canada offers another example of what more rigorous and participatory disclosure might look like. In 2025, they &lt;a href="https://www.canada.ca/en/treasury-board-secretariat/news/2025/11/canada-launches-first-register-of-ai-uses-in-federal-government.html"&gt;launched&lt;/a&gt; an AI use case &lt;a href="https://open.canada.ca/data/en/dataset/fcbc0200-79ba-4fa4-94a6-00e32facea6b"&gt;registry&lt;/a&gt;, not unlike the US inventory. However, Canada &lt;a href="https://worldprivacyforum.org/documents/9/WPF_AI_Governance_Canada_AIA_August2024_fs.pdf"&gt;also has&lt;/a&gt; a federal directive mandating a transparent risk-scoring and impact assessment &lt;a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/algorithmic-impact-assessment.html"&gt;process&lt;/a&gt; for automated systems that make administrative decisions about citizens.&lt;/p&gt;
 &lt;p&gt;That longstanding directive requires a detailed explanation of risks and benefits as well as &lt;a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/algorithmic-impact-assessment.html#:~:text=consultation%20approach%20with%20federal%20colleagues%2C%20clients%20or%20interest%20groups%20that%20represent%20clients%20or%20other%20partners"&gt;consultation&lt;/a&gt; with certain stakeholders from the conception of the AI use case. The Canadian system could be improved; it could require a public comment period and an obligation for agencies to respond substantively to feedback before engaging in sensitive uses of AI.&lt;/p&gt;
 &lt;p&gt;AI offers real potential to improve the efficacy, efficiency and accessibility of government. But, equally, there is legitimate reason for public concern and distrust that can only be addressed through transparency and dialog. The US should adopt, at the federal and state level, algorithmic impact risk assessment procedures and public comment processes to facilitate a safe, trusted, equitable transformation of government agencies to take advantage of modern technology.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This essay was written with Nathan E. Sanders, and originally appeared in &lt;a href="https://www.theguardian.com/commentisfree/2026/jun/15/ai-use-by-the-us-government-is-ballooning-and-the-lack-of-transparency-is-troubling"&gt;The Guardian&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72194</guid><category>Uncategorized</category><category>AI</category><category>democracy</category><category>laws</category><category>LLM</category><category>regulation</category><category>transparency</category></item><item><title>CISA orders feds to patch max severity Joomla plugin flaw by Friday</title><link>https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</link><description>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered federal agencies to patch a maximum-severity flaw in the Widget Factory Joomla Content Editor (JCE) plugin that is being actively exploited in the wild. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</guid><category>Security</category></item><item><title>7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art</title><link>https://www.techrepublic.com/article/best-ai-art-generators/</link><description>&lt;p&gt;This is a comprehensive list of the best AI art generators. Explore the advanced technology that transforms imagination into stunning artworks.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This essay was written with Nathan E. Sanders, and originally appeared in &lt;a href="https://www.theguardian.com/commentisfree/2026/jun/15/ai-use-by-the-us-government-is-ballooning-and-the-lack-of-transparency-is-troubling"&gt;The Guardian&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72194</guid><category>Uncategorized</category><category>AI</category><category>democracy</category><category>laws</category><category>LLM</category><category>regulation</category><category>transparency</category></item><item><title>CISA orders feds to patch max severity Joomla plugin flaw by Friday</title><link>https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</link><description>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered federal agencies to patch a maximum-severity flaw in the Widget Factory Joomla Content Editor (JCE) plugin that is being actively exploited in the wild. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</guid><category>Security</category></item><item><title>Time to address the human rights implications of AI in the military domain</title><link>http://privacyinternational.org/advocacy/5787/time-address-human-rights-implications-ai-military-domain</link><guid isPermaLink="false">5787 at http://privacyinternational.org</guid></item><item><title>7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art</title><link>https://www.techrepublic.com/article/best-ai-art-generators/</link><description>&lt;p&gt;This is a comprehensive list of the best AI art generators. Explore the advanced technology that transforms imagination into stunning artworks.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-ai-art-generators/"&gt;7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4133860</guid><category>Artificial Intelligence</category><category>Innovation</category><category>Software</category><category>Top Products</category><category>ai</category><category>ai art generators</category><category>artificial intelligence</category><category>crayon</category><category>dalle 2</category><category>deepai</category><category>jasper art</category><category>midjourney</category><category>nightcafe</category><category>runway</category></item><item><title>Microsoft working on Defender patch for RoguePlanet zero-day</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</link><description>Microsoft confirmed that it's working on a security patch for a Defender zero-day vulnerability named "RoguePlanet," disclosed one week ago. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</guid><category>Microsoft</category><category>Security</category></item><item><title>Kodak confirms data breach claimed by ShinyHunters extortion gang</title><link>https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</link><description>Kodak has confirmed that it's working with external cybersecurity experts to investigate a security breach after hackers gained access to some of the company's data. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</guid><category>Security</category></item><item><title>ISC Stormcast For Wednesday, June 17th, 2026 https://isc.sans.edu/podcastdetail/9976, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33082</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33082</guid></item><item><title>Threat Actors Abuse claude.ai Shared Chat for ClickFix Malvertising Campaign</title><link>https://www.trendmicro.com/en_us/research/26/f/claudeai-shared-chat-abused-in-malvertising.html</link><description>Cybercriminals hijacked Google Ads searches for popular AI developer tools to funnel over 2,000 victims toward malicious download pages before quietly moving their operation onto claude.ai's own platform, turning the trusted domain into a delivery mechanism for credential-stealing malware.</description><guid isPermaLink="false">urn:uuid:88d648a8-abc9-3b48-3c19-c1a216010c24</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Malicious JetBrains Marketplace plugins steal AI API keys from developers</title><link>https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</link><description>At least 15 malicious plugins found on the JetBrains Marketplace were designed to steal AI API keys from developers. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</guid><category>Security</category></item><item><title>Leak Exposes Members of Peter Thiel’s Secretive ‘Dialog’ Society</title><link>https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/</link><description>More than 200 of the world's elites registered for a retreat whose agenda runs from panels on cult-building and sex to prepping for World War III. An associated app offers matchmaking.</description><guid isPermaLink="false">6a31687d64340aad9268452b</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>politics</category><category>surveillance</category><category>cybersecurity</category><category>data</category><category>leaks</category><category>Peter Thiel</category><category>department of defense</category><category>congress</category><category>Immigration and Customs Enforcement</category><category>Group Chat</category></item><item><title>New Rokarolla Android malware targets 217 banking, crypto apps</title><link>https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</link><description>A new Android banking trojan named Rokarolla is targeting 217 banking and cryptocurrency applications using an extensive set of 137 commands. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</guid><category>Security</category><category>Mobile</category></item><item><title>Steam Workshop abused to spread malware via Wallpaper Engine app</title><link>https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</link><description>Threat actors are abusing Steam Workshop, Valve's community hub for downloading game-related content, to push various malware hidden in wallpaper packages. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</guid><category>Security</category></item><item><title>Nvidia Eyes $20B Debt Sale as AI Cash Flow Soars [Update: $25B Secured]</title><link>https://www.techrepublic.com/article/news-nvidia-debt-sale/</link><description>&lt;p&gt;Nvidia’s planned debt sale could top $20 billion, giving enterprise buyers another look at its cash flow, debt profile, and AI financing plans.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-debt-sale/"&gt;Nvidia Eyes $20B Debt Sale as AI Cash Flow Soars [Update: $25B Secured]&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-nvidia-debt-sale/</guid><category>AI</category><category>Artificial Intelligence</category><category>News</category><category>NVIDIA</category><category>Tech Industry</category><category>Technology</category><category>ai chips</category><category>ai infrastructure</category><category>bond sale</category><category>corporate debt</category><category>enterprise it</category><category>nvidia</category><category>procurement</category><category>vendor risk</category></item><item><title>SpaceX to Acquire Cursor in $60B Stock Deal, Deepening Elon Musk’s AI Empire</title><link>https://www.techrepublic.com/article/news-spacex-cursor-acquisition/</link><description>&lt;p&gt;SpaceX will buy Cursor parent Anysphere in a $60B all-stock deal, giving Elon Musk’s company a major AI coding asset days after its IPO.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-spacex-cursor-acquisition/"&gt;SpaceX to Acquire Cursor in $60B Stock Deal, Deepening Elon Musk’s AI Empire&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-spacex-cursor-acquisition/</guid><category>Artificial Intelligence</category><category>Collaboration</category><category>Innovation</category><category>International</category><category>News</category><category>Tech Industry</category><category>ai acquisition</category><category>ai coding</category><category>ai coding tools</category><category>ai infrastructure</category><category>all-stock deal</category><category>anthropic</category><category>anysphere</category><category>artificial intelligence</category><category>claude code</category><category>cursor</category><category>developer tools</category><category>elon musk</category><category>nasdaq</category><category>openai</category><category>openai codex</category><category>spacex</category><category>spacex ipo</category><category>vibe coding</category><category>xai</category></item><item><title>‘Dangerous’ AI Models Are Coming No Matter What</title><link>https://www.wired.com/story/dangerous-ai-models-are-coming-no-matter-what/</link><description>The US government crackdown on Anthropic’s Claude Fable 5 and Mythos 5 hides a glaring truth: AI models with advanced hacking capabilities will soon be the norm.</description><guid isPermaLink="false">6a301df9a875d61d4130a48b</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>artificial intelligence</category><category>hacking</category><category>security</category><category>vulnerabilities</category><category>Anthropic</category><category>OpenAI</category><category>Thanks, Capitalism</category></item><item><title>Salesforce Makes $3.6B Play for AI Customer Service</title><link>https://www.techrepublic.com/article/news-salesforce-acquires-fin-agentforce-ai-agents/</link><description>&lt;p&gt;Salesforce will buy Fin, formerly Intercom, for about $3.6 billion to expand Agentforce with AI customer service agents and support automation.&lt;/p&gt;
@@ -4099,7 +4635,7 @@ def _msgpack_ext_hook(code: int, data: bytes) -&gt; Any:
 &lt;p&gt;But the simplest explanation is that cybercriminals of all nationalities tend to make a number of basic operational security mistakes early in their careers, when they are less savvy and have far less to lose by their carelessness. A review of Hastalamuerte&amp;#8217;s early posts on the crime forums (circa 2019-2020) shows a relatively unsophisticated and low-skilled hacker still trying to learn the ropes and earn a positive reputation on these communities.&lt;/p&gt;
 &lt;p&gt;For example, in June 2020 Hastalamuerte&amp;#8217;s Telegram account joined a multi-month training program (@pntst) to learn how to use popular penetration testing tools, and their candid posts to this hacker training camp show Hastalamuerte struggling to use these tools effectively. A Google-translated record of Hastalmuerte&amp;#8217;s posts to @pntst is &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2026/06/pntst-chat.txt" rel="noopener" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update, June 11, 10:23 a.m. ET:&lt;/strong&gt;  The threat research group &lt;strong&gt;PRODAFT&lt;/strong&gt; has released &lt;a href="https://catalyst.prodaft.com/public/report/inside-the-phantom-mantis-operation/overview#paragraph-1077|172" rel="noopener" target="_blank"&gt;a detailed writeup&lt;/a&gt; on the history and current operations of The Gentlemen. PRODAFT said its findings match the same persona with &amp;#8220;high confidence,&amp;#8221; and found the administrator (Zeta88/Hastalamuerte) supplies affiliates with initial access directly, primarily Fortinet SSL-VPN credentials obtained through brute-force attacks or sourced from the group&amp;#8217;s own leak database. They also discovered the administrator is using AI to develop and maintain the ransomware and associated tooling, as well as to assist with post-exploitation activity.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73768</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>79127650004</category><category>Alexander Andreevich Yapaev</category><category>bu4vs@mail.ru</category><category>Constella Intelligence</category><category>Epieos</category><category>Flashpoint</category><category>Hastalamuerte</category><category>hastalamuerte1488@protonmail.com</category><category>Intel 471</category><category>SantaMuerte</category><category>The Gentlemen ransomware</category></item><item><title>Wrongful Arrest Exposes Failures in One of the Oldest Police Face-Recognition Tools in the US</title><link>https://www.wired.com/story/wrongful-arrest-tests-one-of-the-oldest-police-face-recognition-tools-in-the-us/</link><description>The ACLU is suing two Florida police departments over the arrest of a Fort Myers man in a child-abduction case, saying officers treated a flawed face-recognition match as a near-certain ID.</description><guid isPermaLink="false">6a29601a2286375b80444c6d</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>surveillance</category><category>face recognition</category><category>Police</category><category>Crime</category><category>algorithms</category><category>machine learning</category><category>Face Palm</category></item><item><title>Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws</title><link>https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</link><description>&lt;p&gt;Microsoft’s June Patch Tuesday fixed about 200 CVEs, including public zero-days and Critical Windows flaws tied to patching pressure.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/"&gt;Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</guid><category>Cybersecurity</category><category>Data Management</category><category>International</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>ai security</category><category>bitlocker</category><category>cve</category><category>cybersecurity</category><category>dhcp client</category><category>enterprise security</category><category>greenplasma</category><category>http.sys</category><category>june patch tuesday</category><category>Microsoft Defender</category><category>patch management</category><category>patch tuesday</category><category>vulnerabilities</category><category>windows</category><category>yellowkey</category><category>zero day</category><category>zero day initiative</category></item><item><title>NSO Group Hacking WhatsApp Despite Court Order</title><link>https://www.schneier.com/blog/archives/2026/06/nso-group-hacking-whatsapp-despite-court-order.html</link><description>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</description><content:encoded>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72158</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>phishing</category><category>spyware</category><category>WhatsApp</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>Amnesty International Warns That World Cup Fans Face Potential Human Rights Violations</title><link>https://www.wired.com/story/amnesty-international-world-cup-human-rights/</link><description>The organization claims that the FIFA tournament could have impacts on the rights of local people and visiting soccer fans in all three host countries.</description><guid isPermaLink="false">6a1071b6fd645eb2ef4b226d</guid><category>Security</category><category>Security / Privacy</category><category>Sports</category><category>World Cup 2026</category><category>security</category><category>immigration</category></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/"&gt;Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</guid><category>Cybersecurity</category><category>Data Management</category><category>International</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>ai security</category><category>bitlocker</category><category>cve</category><category>cybersecurity</category><category>dhcp client</category><category>enterprise security</category><category>greenplasma</category><category>http.sys</category><category>june patch tuesday</category><category>Microsoft Defender</category><category>patch management</category><category>patch tuesday</category><category>vulnerabilities</category><category>windows</category><category>yellowkey</category><category>zero day</category><category>zero day initiative</category></item><item><title>NSO Group Hacking WhatsApp Despite Court Order</title><link>https://www.schneier.com/blog/archives/2026/06/nso-group-hacking-whatsapp-despite-court-order.html</link><description>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</description><content:encoded>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72158</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>phishing</category><category>spyware</category><category>WhatsApp</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>Amnesty International Warns That World Cup Fans Face Potential Human Rights Violations</title><link>https://www.wired.com/story/amnesty-international-world-cup-human-rights/</link><description>The organization claims that the FIFA tournament could have impacts on the rights of local people and visiting soccer fans in all three host countries.</description><guid isPermaLink="false">6a1071b6fd645eb2ef4b226d</guid><category>Security</category><category>Security / Privacy</category><category>Sports</category><category>World Cup 2026</category><category>security</category><category>immigration</category></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
 &lt;p&gt;The software giant said in &lt;a href="https://www.microsoft.com/en-us/msrc/blog/2026/05/a-note-on-patch-tuesday" rel="noopener" target="_blank"&gt;a blog post&lt;/a&gt; last month that both its engineers and the security community are increasing using artificial intelligence tools to find bugs, meaning this month&amp;#8217;s heavy Patch Tuesday may start to become the norm, said &lt;strong&gt;Satnam Narang&lt;/strong&gt;, senior staff research engineer at &lt;strong&gt;Tenable&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Some surveys put AI usage among security professionals generally at 90%, so it’s unsurprising that this volume of patches may be the norm,&amp;#8221; Narang said. &amp;#8220;Pandora’s proverbial box has been opened, and as more advanced AI models become available, we expect the norm to continue upward across the board, not just for Patch Tuesday.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;June&amp;#8217;s zero-day bugs include &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2026-49160" rel="noopener" target="_blank"&gt;CVE-2026-49160&lt;/a&gt;, a denial of service vulnerability affecting a range of web servers, including Microsoft &lt;strong&gt;Internet Information Services&lt;/strong&gt; (IIS). Microsoft says the flaw was reported by OpenAI&amp;#8217;s Codex.&lt;/p&gt;
@@ -5908,183 +6444,7 @@ On the API surface, we run a positive security model through &lt;a href="https:/
 
 
 
-&lt;p&gt;&lt;em&gt;In the next article in this series, we look at how the ROC handles the question that sits underneath all of this: not just which vulnerabilities are dangerous in theory, but which ones are actually exploitable in your environment today.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40589</guid><category>Product and Tech</category><category>Qualys Insights</category><category>Mythos</category><category>ROC</category></item><item><title>Updating the taxonomy of failure modes in agentic AI systems: What a year of red teaming taught us</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/</link><description>&lt;p&gt;A surge in real-world attacks against agentic AI systems is reshaping how we think about risk. Based on 12 months of red teaming, this update introduces seven new failure modes, from supply chain compromise to goal hijacking, and the practical mitigations teams need now.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/"&gt;Updating the taxonomy of failure modes in agentic AI systems: What a year of red teaming taught us &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-26b2d3d8-7f8b-436c-9c4e-39cff0b0f4d6"&gt;
-	&lt;button class="btn btn-collapse" type="button"&gt;
-		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
-		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
-
-		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
-			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-26b2d3d8-7f8b-436c-9c4e-39cff0b0f4d6"&gt;
-		&lt;div class="table-of-contents-block__content"&gt;
-			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#why-the-taxonomy-needed-updating"&gt;Why the Taxonomy Needed Updating&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#seven-new-failure-modes"&gt;Seven new failure modes&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#operational-findings-what-red-teaming-showed"&gt;Operational findings: What red teaming showed&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#new-mitigations"&gt;New mitigations&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#what-to-do-this-quarter"&gt;What to do this quarter&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
-&lt;/aside&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;When the Microsoft AI Red Team&amp;nbsp;published the &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf" rel="noopener noreferrer" target="_blank"&gt;Taxonomy of Failure Modes in Agentic AI Systems&lt;/a&gt; in April 2025, the goal was a shared vocabulary for a threat landscape that did not fit existing frameworks. The v1.0 taxonomy was largely forward-looking, built on practitioner interviews, cross-company threat modeling, and our own early operational experience. It identified novel failure modes unique to agentic systems (agent compromise, injection, impersonation, flow manipulation) alongside existing failure modes materially amplified in agentic contexts (memory poisoning, cross-domain prompt injection, human-in-the-loop bypass).&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Twelve months later, &lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf" id="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf" rel="noopener noreferrer" target="_blank" type="link"&gt;the evidence base has shifted enough to warrant a v2.0&lt;/a&gt;. The update adds seven new failure mode categories, expands the mitigations section, and grounds the framework in 12 months of red team engagements against deployed agentic systems.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-the-taxonomy-needed-updating"&gt;&lt;strong&gt;Why the Taxonomy Needed Updating&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Four developments drove the revision.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Open-source agentic frameworks went mainstream faster than the security community was ready for.&lt;/strong&gt; OpenClaw, launched in January 2026, accumulated over 336,000 GitHub stars and spawned more than 2,100 agents within 48 hours of release. A security audit conducted shortly after launch identified 512 vulnerabilities including CVE-2026-25253, a one-click RCE via WebSocket hijacking. Over 1,800 exposed instances were leaking API keys and credentials within the first week, and 336 malicious plugins were found in the skills marketplace, including credential stealers masquerading as trading bots.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;The MCP ecosystem matured — and accumulated vulnerabilities at scale.&lt;/strong&gt; The Model Context Protocol became the de facto standard for connecting models to external tools. In 2025, 99 CVEs were published for MCP-related software, and tool poisoning moved from theoretical risk to live attack surface.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Computer-use agents moved from research to production.&lt;/strong&gt; Agents that observe and interact with graphical interfaces introduce attack surfaces with no analogue in earlier AI security work, and expose previously human-targeted attack patterns to LLMs. The original taxonomy lacked dedicated coverage for this capability class; operational experience made clear it requires its own category.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Twelve months of red team operations provided empirical grounding.&lt;/strong&gt; The v1.0 taxonomy was forward-looking. The v2.0 update is grounded in patterns observed across real engagements with findings that confirmed some predictions, falsified others, and surfaced failure modes that were not anticipated.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="seven-new-failure-modes"&gt;&lt;strong&gt;Seven new failure modes&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;1. Agentic Supply Chain Compromise.&lt;/strong&gt; Agentic systems consume plugin registries, MCP servers, prompt templates, and third-party tool integrations, each a new supply chain ingestion point. Unlike traditional supply chain compromise, which delivers malicious code, a compromised agentic supply chain component injects natural-language instructions that alter agent behavior without touching any binary. This is a novel failure mode: the attack surface did not exist before agents began consuming natural-language tool definitions from third-party registries.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;2. Goal Hijacking.&lt;/strong&gt; The original taxonomy covered agent compromise but did not sufficiently distinguish the mechanism of compromise from the strategic objective of redirecting the agent&amp;#8217;s goal state. Goal hijacking captures a specific pattern, when adversarial instructions that appear aligned with legitimate task completion silently redirecting the agent&amp;#8217;s terminal goal, without fully compromising the underlying agent.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;3. Inter-Agent Trust Escalation.&lt;/strong&gt; Multi-agent architectures involve delegation chains where orchestrators pass tasks to other agents. This entry addresses privilege escalation that becomes possible when a compromised agent asserts false identity or inflates claimed permissions to an orchestrator that does not independently verify them. The pattern mirrors confused deputy problems in traditional software, but the confusion is induced through natural language rather than system calls.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;4. Computer Use Agent (CUA) Visual Attack.&lt;/strong&gt; Agents operating through graphical interfaces can be manipulated through visual content that appears innocuous to humans but carries adversarial instructions for the agent. Attack patterns include hidden text rendered at non-human-readable scale, UI elements positioned outside the visible viewport, and images embedding prompt injection in content the agent is instructed to interpret. This failure mode has no meaningful precedent in v1.0.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;5. Session Context Contamination.&lt;/strong&gt; Agentic sessions often span extended, multi-step interactions with context accumulating from prior steps. Session context contamination occurs when an adversary introduces data early in a session that biases the agent&amp;#8217;s reasoning in subsequent steps, without triggering safety controls at any individual step.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;6. MCP / Plugin Abuse.&lt;/strong&gt; The original taxonomy&amp;#8217;s coverage of function compromise predated standardization around MCP and plugin protocols. This entry captures attack surfaces specific to those protocols: tool description poisoning, server-side instruction injection, cross-server instruction override (a malicious server overriding behavior of trusted servers), and abuse of protocol-level trust assumptions.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;7. Capability / Architecture Disclosure.&lt;/strong&gt; This failure mode occurs when an agent reveals internal implementation details such as tool names and schemas, system-prompt structure, memory interfaces, or consent/HitL trigger logic, either on direct request or via paths such as XPIA. In single-turn chat, prompt leakage is mostly reputational. In agentic systems, it exposes operational primitives and turns black-box probing into a white-box exploit path.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="operational-findings-what-red-teaming-showed"&gt;&lt;strong&gt;Operational findings: What red teaming showed&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Twelve months of engagements against deployed agentic systems produced several consistent patterns.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;HitL bypass was the most consistently exploited failure mode, at very high frequency.&lt;/strong&gt; Red teamers achieved bypass through consent fatigue, manipulation of probabilistic invocation, and incremental escalation chains where no individual step clearly warranted review but the compound outcome did. Most significantly, several engagements demonstrated zero-click end-to-end chains starting from an external input with no human interaction beyond the initial agent invocation, achieving high-impact outcomes such as exfiltration or lateral movement.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;XPIA and memory poisoning were observed at high frequency and frequently combined.&lt;/strong&gt; Cross-domain prompt injection delivered via external content remained the most reliable initial access vector. Memory poisoning via XPIA, where injected instructions seed the agent&amp;#8217;s persistent memory for later retrieval, requires only a single successful injection, which the agent then propagates across subsequent sessions.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Session context contamination and incremental escalation were highly effective and difficult to detect.&lt;/strong&gt; Neither the contaminating input nor any individual escalation step is clearly anomalous in isolation. Detection requires behavioral analysis across the full session, something most systems did not have.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Capability disclosure was a key enabler of follow-on attack paths.&lt;/strong&gt; In many of our highest-impact attack chains, execution was predicated on extracting specific architecture or capability details from the system. This often required only asking the system directly, but it consistently exposed inconsistencies in guardrails and opened attack paths that would otherwise have required external reconnaissance.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="new-mitigations"&gt;&lt;strong&gt;New mitigations&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Supply chain security for agentic components.&lt;/strong&gt; Treat every external component an agent can consume as part of the software supply chain. SBOM generation for agent deployments inclusive of tool dependencies; signature and provenance verification for MCP servers and plugins before installation; registry scanning for hidden instructions in tool descriptions; version pinning with change monitoring for all external tool definitions.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Zero-trust inter-agent architecture.&lt;/strong&gt; For high-risk scenarios, agent identity should be cryptographically established, not assumed from position in a workflow. Every inter-agent message should carry a verifiable identity claim. Orchestrators should not grant elevated permissions to sub-agents based on self-asserted role.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Consent architecture hardening.&lt;/strong&gt; HitL controls must resist the specific patterns observed in red team operations: compound action decomposition before approval presentation, semantic summarization of agent-constructed descriptions to prevent description laundering, tiered approval requirements that scale with action reversibility and blast radius, deterministic HitL invocation, and anomaly detection on approval request frequency and pattern.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Adversarial session hardening.&lt;/strong&gt; Mitigating session context contamination requires treating the agent&amp;#8217;s accumulated context as a security-relevant data structure. Controls include context provenance tracking, structured separation between trusted system context and untrusted retrieved content, session integrity monitoring for anomalous accumulation patterns, and bounded session contexts that limit how much external content can influence a session&amp;#8217;s reasoning.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="what-to-do-this-quarter"&gt;What to do this quarter&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;If you operate or defend an agentic system, the v2.0 additions translate to four concrete actions:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Inventory your supply chain.&lt;/strong&gt; Generate an SBOM for every deployed agent that includes plugins, MCP servers, prompt templates, and tool descriptions alongside code dependencies. Pin versions; treat natural-language tool descriptions as code.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Verify agent identity cryptographically, not positionally.&lt;/strong&gt; Issue attestable credentials at provisioning. Reject self-asserted role claims at orchestrator handoffs.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Add the seven new categories to your red-team coverage matrix.&lt;/strong&gt; Treat CUA visual attacks, session context contamination, capability disclosure, and goal hijacking as mandatory test classes for any agent that touches production data or external surfaces.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Audit human-in-the-loop UX as a security control.&lt;/strong&gt; Decompose compound actions, summarize approval prompts from the underlying tool calls (not from the agent&amp;#8217;s own description), tier approvals by reversibility, and monitor approval frequency for consent-fatigue exploitation signals.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;If you are building agentic systems, the updated taxonomy is a threat modeling tool, not a compliance checklist. Take each failure mode category and ask whether it can occur in your system, under what conditions, and whether you have a control that would detect or prevent it.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;For red teamers:&lt;/strong&gt; the seven new categories should be mandatory coverage areas. Zero-click HitL bypass chains, inter-agent trust escalation, and session context contamination will not be surfaced by model-level evaluation alone. They require system-level testing and multi-step attack chains evaluated across complete task flows.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;For security engineers:&lt;/strong&gt; supply chain and zero-trust mitigations are architectural decisions, and difficult to retrofit. Building SBOM generation, tool provenance verification, and inter-agent authentication into your architecture from the start costs substantially less than adding them after deployment.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The taxonomy is a living document. The failure modes added in v2.0 are the ones that twelve months of operational data made compelling enough to include. As agentic systems acquire new capabilities — persistent cross-session memory at scale, autonomous agent spawning, physical environment interaction — the failure mode surface will continue to expand. We will continue to update the taxonomy as the evidence base develops.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf" id="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf" rel="noopener noreferrer" target="_blank" type="link"&gt;The updated whitepaper is available now&lt;/a&gt;. We welcome engagement from practitioners whose operational experience identifies failure modes or attack patterns not yet reflected in the taxonomy.&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/"&gt;Updating the taxonomy of failure modes in agentic AI systems: What a year of red teaming taught us &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147942</guid><category>Frontier AI models</category></item><item><title>Meta Silently Added Face-Recognition Code for Its Smart Glasses to Millions of Phones</title><link>https://www.wired.com/story/meta-smart-glasses-face-recognition-nametag-connections/</link><description>Code reviewed by WIRED uncovered an unreleased face-recognition system embedded in Meta’s smart glasses platform. It’s designed to identify people via biometric data stored on users’ phones.</description><guid isPermaLink="false">6a1f050535f3784ad24ced04</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Business / Social Media</category><category>Meta</category><category>privacy</category><category>face recognition</category><category>Facebook</category><category>Instagram</category><category>smart glasses</category><category>surveillance</category><category>About Face</category></item><item><title>xAI Asks Court to Strip Alleged Grok Deepfake Nudes Victims of Anonymity</title><link>https://www.wired.com/story/xai-asks-court-to-strip-alleged-grok-deepfake-nudes-victims-of-anonymity/</link><description>Four people suing Elon Musk's AI firm under pseudonyms due to the risks of being identified may face a difficult choice: Reveal your real names, or drop the lawsuit.</description><guid isPermaLink="false">6a1ef111f6b7a42d15eceb24</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Business / Artificial Intelligence</category><category>Business / Social Media</category><category>artificial intelligence</category><category>privacy</category><category>Elon Musk</category><category>machine learning</category><category>Deepfakes</category><category>xAI</category><category>X</category><category>SpaceX</category><category>Over Exposure</category></item><item><title>Stop Patching at Human Speed: Peer-to-Peer (P2P) Distribution Closes the Remediation Gap Before Attackers Strike</title><link>https://blog.qualys.com/category/product-tech</link><description>Executive Summary Knowing what’s exploitable is only half the battle. P2P patch distribution turns your endpoints into a delivery network, cutting patch propagation by up to 92%, reducing WAN bandwidth by 99%+, and helping close critical vulnerabilities before attackers can move. Available now in Qualys Cloud Agent for Windows 6.5. The Remediation Gap is Widening [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;In the next article in this series, we look at how the ROC handles the question that sits underneath all of this: not just which vulnerabilities are dangerous in theory, but which ones are actually exploitable in your environment today.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40589</guid><category>Product and Tech</category><category>Qualys Insights</category><category>Mythos</category><category>ROC</category></item><item><title>Meta Silently Added Face-Recognition Code for Its Smart Glasses to Millions of Phones</title><link>https://www.wired.com/story/meta-smart-glasses-face-recognition-nametag-connections/</link><description>Code reviewed by WIRED uncovered an unreleased face-recognition system embedded in Meta’s smart glasses platform. It’s designed to identify people via biometric data stored on users’ phones.</description><guid isPermaLink="false">6a1f050535f3784ad24ced04</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Business / Social Media</category><category>Meta</category><category>privacy</category><category>face recognition</category><category>Facebook</category><category>Instagram</category><category>smart glasses</category><category>surveillance</category><category>About Face</category></item><item><title>xAI Asks Court to Strip Alleged Grok Deepfake Nudes Victims of Anonymity</title><link>https://www.wired.com/story/xai-asks-court-to-strip-alleged-grok-deepfake-nudes-victims-of-anonymity/</link><description>Four people suing Elon Musk's AI firm under pseudonyms due to the risks of being identified may face a difficult choice: Reveal your real names, or drop the lawsuit.</description><guid isPermaLink="false">6a1ef111f6b7a42d15eceb24</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>Business / Artificial Intelligence</category><category>Business / Social Media</category><category>artificial intelligence</category><category>privacy</category><category>Elon Musk</category><category>machine learning</category><category>Deepfakes</category><category>xAI</category><category>X</category><category>SpaceX</category><category>Over Exposure</category></item><item><title>Stop Patching at Human Speed: Peer-to-Peer (P2P) Distribution Closes the Remediation Gap Before Attackers Strike</title><link>https://blog.qualys.com/category/product-tech</link><description>Executive Summary Knowing what’s exploitable is only half the battle. P2P patch distribution turns your endpoints into a delivery network, cutting patch propagation by up to 92%, reducing WAN bandwidth by 99%+, and helping close critical vulnerabilities before attackers can move. Available now in Qualys Cloud Agent for Windows 6.5. The Remediation Gap is Widening [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
 
 &lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
   &lt;h4 style="color: #ed2e26;"&gt;Executive Summary&lt;/h4&gt;
@@ -7896,7 +8256,7 @@ qphu2urfykunh5l42retl4aqw6xnfjkyjvcy6gjqrs&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt; established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf"&gt;BOD 22-01 Fact Sheet&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24988</guid></item><item><title>Android Is Fighting Phone Scams With a New Feature to Prove Who’s Calling</title><link>https://www.wired.com/story/android-is-fighting-phone-scams-with-a-new-feature-to-prove-whos-calling/</link><description>Available for Android 12 and later, the anti-scam feature is baked into Google Dialer, which sends a silent “confirmation signal” to ensure whoever’s calling you is who they appear to be.</description><guid isPermaLink="false">6a1df82698d38dd18285b14f</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Google</category><category>Android</category><category>phones</category><category>Apps</category><category>privacy</category><category>scams</category><category>Crime</category><category>Spam</category><category>Call Back</category></item><item><title>The HazyBeacon Protocol – How Malware Weaponizes Amazon Web Services (AWS) Lambda Function URLs</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways The Rise of Cloud-Native Command and Control (C2) Command and control (C2) infrastructure traditionally lived outside the victim environment. Malware beaconed to attacker-operated servers hosted on rented VPS infrastructure or compromised websites, and defenders focused on identifying those endpoints through IP reputation, domain intelligence, and network blocking. Cloud computing has started to blur [&amp;#8230;]</description><content:encoded>&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;Key Takeaways&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24988</guid></item><item><title>The HazyBeacon Protocol – How Malware Weaponizes Amazon Web Services (AWS) Lambda Function URLs</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways The Rise of Cloud-Native Command and Control (C2) Command and control (C2) infrastructure traditionally lived outside the victim environment. Malware beaconed to attacker-operated servers hosted on rented VPS infrastructure or compromised websites, and defenders focused on identifying those endpoints through IP reputation, domain intelligence, and network blocking. Cloud computing has started to blur [&amp;#8230;]</description><content:encoded>&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;Key Takeaways&lt;/strong&gt;&lt;/h4&gt;
 
 
 
@@ -14518,7 +14878,7 @@ rule clean_fast16_patchtarget {
 &lt;td&gt;FIRESTARTER is a Linux ELF designed to execute on Cisco Firepower and Secure Firewall devices, serving as a C2 channel for remote access and control.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description><guid isPermaLink="false">/node/24749</guid></item><item><title>Voter Disenfranchisement: A Privacy Issue</title><link>http://privacyinternational.org/long-read/5762/voter-disenfranchisement-privacy-issue</link><guid isPermaLink="false">5762 at http://privacyinternational.org</guid></item><item><title>Top 5 Disaster Recovery Companies in 2026</title><link>https://www.techrepublic.com/article/draas-providers/</link><description>&lt;p&gt;This is a comprehensive list of the top Disaster Recovery as a Service providers. Use this guide to compare and choose the best solution for you.&lt;/p&gt;
+&lt;/table&gt;</description><guid isPermaLink="false">/node/24749</guid></item><item><title>Top 5 Disaster Recovery Companies in 2026</title><link>https://www.techrepublic.com/article/draas-providers/</link><description>&lt;p&gt;This is a comprehensive list of the top Disaster Recovery as a Service providers. Use this guide to compare and choose the best solution for you.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/draas-providers/"&gt;Top 5 Disaster Recovery Companies in 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=3966485</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>Acronis</category><category>arcserve</category><category>disaster recovery as a service</category><category>kamatera</category><category>microsoft azure</category><category>unitrends</category><category>zerto</category></item><item><title>March 2026 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2026/04/16/march-2026-cyber-attacks-statistics/</link><description>After the cyber attacks timelines, it’s time to publish the statistics for March 2026 where I collected and analyzed 282 events: a sharp increase compared to the 176 events of the previous month. In March 2026, Cyber Crime continued to lead the Motivations chart with 64%, ahead of Cyber Espionage at number two with 15%. Hacktivism took over the third position with 6%, ahead of Cyber Warfare with 3%.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45365</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>March</category><category>Phishing</category><category>Statistics</category></item><item><title>UK gov's Mythos AI tests help separate cybersecurity threat from hype</title><link>https://arstechnica.com/ai/2026/04/uk-govs-mythos-ai-tests-help-separate-cybersecurity-threat-from-hype/</link><description>New model is the first AI system to complete a difficult multistep infiltration challenge.</description><content:encoded>&lt;p&gt;Last week, &lt;a href="https://red.anthropic.com/2026/mythos-preview/"&gt;Anthropic announced&lt;/a&gt; it was &lt;a href="https://arstechnica.com/ai/2026/04/anthropic-limits-access-to-mythos-its-new-cybersecurity-ai-model/"&gt;restricting the initial release of its Mythos Preview model&lt;/a&gt; to "a limited group of critical industry partners," giving them time to prepare for a model that it said is "strikingly capable at computer security tasks." Now, the UK government's &lt;a href="https://www.aisi.gov.uk/about"&gt;AI Security Institute&lt;/a&gt; (AISI) has published &lt;a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities"&gt;an initial evaluation of the model's cyberattack capabilities&lt;/a&gt; that adds some independent public verification to those Anthropic reports.&lt;/p&gt;
 &lt;p&gt;AISI's findings show that Mythos isn't significantly different from other recent frontier models in tests of individual cybersecurity-related tasks. But Mythos could set itself apart from previous models through its ability to effectively chain these tasks into the multistep series of attacks necessary to fully infiltrate some systems.&lt;/p&gt;
 &lt;h2&gt;"The Last Ones" finally falls&lt;/h2&gt;
