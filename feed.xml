@@ -1,5 +1,747 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 17 Jun 2026 21:59:23 +0000</lastBuildDate><item><title>Google to use UK and EU user IP addresses for ad personalization</title><link>https://www.bleepingcomputer.com/news/security/google-to-use-uk-and-eu-user-ip-addresses-for-ad-personalization/</link><description>From August 3, 2026, Google will use IP addresses from UK, EEA and Switzerland users for ad measurement and personalization. It lands as the ICO weighs new consent rules, and years after Google itself called using such signals to identify devices "wrong." [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/google-to-use-uk-and-eu-user-ip-addresses-for-ad-personalization/</guid><category>Security</category></item><item><title>Beyond the benchmark: Advancing security at AI speed</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/17/beyond-the-benchmark-advancing-security-at-ai-speed/</link><description>&lt;p&gt;Read how Microsoft Security has advanced its agentic vulnerability detection system, codename MDASH, integrating into real-world workflows across Windows, Azure, and identity systems.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 18 Jun 2026 03:59:26 +0000</lastBuildDate><item><title>ISC Stormcast For Thursday, June 18th, 2026 https://isc.sans.edu/podcastdetail/9978, (Thu, Jun 18th)</title><link>https://isc.sans.edu/diary/rss/33088</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33088</guid></item><item><title>The Behavior of Coordinated SSH Brute Force Attacks over the last three months &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33086</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Adam Nason, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program]&lt;/p&gt;
+
+&lt;p&gt;Brute force SSH attacks are an ever-present threat on the internet today. We examine probing behavior over the last three months to identify coordinated and opportunistic attacks by threat actors. A DShield Honeypot has quietly collected and logged the behavior of these threat actors to develop a clearer picture of their malicious intentions. During the log collection period, several significant cyber and geopolitical events occurred. We will take a closer look at these behaviors by analyzing their timing and cross-referencing them with external factors that align with their attack patterns. Can an increase or change in SSH brute force botnet activity be observed during these volatile times?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;Infrastructure Setup and Data Collection Framework &amp;ndash; Home Lab&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 14px;"&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;bull; Raspberry Pi 4 Model B&lt;br /&gt;
+&amp;bull; Network Equipment &amp;ndash; Isolated from personal home network&lt;br /&gt;
+&amp;nbsp; o UniFi Security Gateway Pro&lt;br /&gt;
+&amp;nbsp; o UniFi 24 Port Switch&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 14px;"&gt;Data Ingestion&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&amp;bull; RaspberryOS running on Raspberry Pi&lt;br /&gt;
+&amp;bull; DShield Honeypot Software&lt;br /&gt;
+&amp;nbsp; o Logs Collected: 17 Feb 2026 through 26 May 2026&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 14px;"&gt;&lt;strong&gt;Software Tools&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;bull; Elasticsearch, Logstash, Kabana (ELK)&lt;br /&gt;
+&amp;bull; Microsoft VS Code (JSON and Python)&lt;br /&gt;
+&amp;bull; Microsoft Excel&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;Data Analysis of Honeypot Logs&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 14px;"&gt;&lt;strong&gt;Scanning Volume and Timeline Overview&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The cowrie honeypot logs recorded over 20 million SSH brute-force attempts over the past 100 days. Investigation into the scanning trends appears to be closely correlated with Chinese botnets, major law enforcement actions, geopolitical events, and critical cybersecurity advisories released in the first half of 2026. As shown in Figure 1: Daily Brute Force Probing Totals, the timeline shows extended periods of high-volume traffic, with abrupt spikes and drops that seem to align with external events.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic1.png" style="width: 331px; height: 125px;" /&gt;&lt;br /&gt;
+Table 1: &lt;em&gt;Overview of SSH data collected&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic2.png" style="width: 546px; height: 347px;" /&gt;&lt;br /&gt;
+Figure 1: &lt;em&gt;Daily Brute Force Probing Totals&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Notable events within the brute force scan timeline&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;February 17 &amp;ndash; 24 (Initial Baseline)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first week of running the honeypot produced what can be considered a quiet baseline of standard background scanning activity. During this period, between 200 and 400 attempts were captured each day.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;February 25 &amp;ndash; 28 (Sudden Surge)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Following a quiet start, a spike of over 2100% attempts was observed by the honeypot. It was during this period that CISA published Emergency Directive 26-03 (CISA, 2026), related to Cisco&amp;rsquo;s software-defined wide-area network, which led to opportunistic attacks against unpatched systems. Additional probing was observed during this period, which can also be attributed to the rising conflict between Iran, Israel, and the United States (Al Jazeera, 2026).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;March 1 &amp;ndash; 8 (Activity Peaks)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Scanning observations peaked this week, with over 300,000 events collected on March 8th (Radauskas, 2026). This is as tensions continue to rise between Iran, Israel, and the United States, and both advanced persistent threats and opportunistic botnets are becoming more active (Reuters, 2026).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;March 9 &amp;ndash; April 14 (Sustained Attacks)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The honeypot continues to collect and log a high volume of activity during this period, with daily probes remaining above 50,000, often exceeding 100,000 (Le Poidevin, 2026). The periodic spikes and dips tend to lean towards automated attack campaigns.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;April 15 (Rapid Decline)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Attack observations plummet to just over 23,000 attempts logged by the honeypot.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;April 16 &amp;ndash; May 14 (Attack Rebounds)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With news of new vulnerabilities (CISA, 2026), and tensions growing with the Iran-United States ceasefire, logged scans start to rise again. A second spike is observed on May 2nd with 244,344 probes in a single day. This comes just after 24 hours following a major Linux vulnerability that was published by CISA (CISA, 2026)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;May 15 &amp;ndash; 23 (Extended Decline)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Daily log observations drop nearly 95%, as the ceasefire extends (Madhani et al., 2026), and opportunistic threat actors lose interest as the Iran, Israel, and United States war continues to drag on with minimal active military engagements.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Top 10 Identified Probing IPs (Patterns, Clusters, and Campaign Data)&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;From February 2026 through May 2026, the top ten observed IP addresses (Table 2) appeared to have strong geographic and Autonomous System Number (ASN) clustering. Both DigitalOcean (ASN &amp;ndash; AS14061) and M247 (ASN &amp;ndash; AS9009) show activity from multiple countries (Table 3). Furthermore, synchronized scanning bursts can be observed using identical SSH client fingerprints and version strings, occurring within minutes of each other across different countries.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic3.png" style="width: 610px; height: 416px;" /&gt;&lt;br /&gt;
+Table 2: &lt;em&gt;Top Ten Probing IPs, with Country and ASN&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic4.png" style="width: 611px; height: 200px;" /&gt;&lt;br /&gt;
+Table 3: &lt;em&gt;Country Clustering of IPs and ASN&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A closer review of the data shows an example of what appears to be synchronized scanning. Over the course of 53 seconds, two attacks are observed from both the United States and Ukraine. Of note, both attacks exhibit the same HASSH fingerprint. HASSH is a fingerprinting standard developed by the Detection Cloud team at Salesforce and is used to detect attacks with higher granularity than a simple IP address can (Reardon, 2022). Seeing the same HASSH, SSH Version, from two different ASNs and countries does point to a high likelihood of a coordinated attack.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic5.png" style="width: 687px; height: 731px;" /&gt;&lt;br /&gt;
+Table 4: &lt;em&gt;Clustered attack within 53-seconds&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Further review of the collected honeypot logs shows that 702,706 events use the exact same HASSH fingerprint (03a80b21afa810682a776a7d42e5e6fb) and SSH version, indicating the use of a single managed attack toolkit that has been deployed globally (SSHwatch, 2025).&lt;/p&gt;
+
+&lt;p&gt;Finally, a detailed review of the logs shows evidence of a botnet quota assignment (Table 5). These are throttled scan rates, which are tell-tale indicators of a botnet-driven SSH campaign. Reviewing the logs over such extended periods shows a low variation and high uniform attack rates, which point to a controller assigning quotas or workloads to the botnet zombies under its control. Automating a scan in this type of organization has been shown to be a characteristic of these types of programmed botnet operations (Sing et al., 2024 p. 1731-1750).&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Adam_Nason_pic6.png" style="width: 528px; height: 226px;" /&gt;&lt;br /&gt;
+Table 5: &lt;em&gt;Attack Rate Analysis of IPs showing Automated Campaigns&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Reduce your Attack Surface&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;As we have seen above, networks are under constant attack, which seems to follow the ebb and flow of external events on digital cyberspace. However, there are several steps you can take to reduce your attack surface, most of which require little effort. Strategies like IP blocks, geo-blocking, and changing default values can go a long way in preventing a potential compromise.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 14px;"&gt;&lt;strong&gt;Prevention&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;bull; While not specifically noted in this paper, a majority of SSH brute force login attempts observed targeted the user &amp;lsquo;root&amp;rsquo;. Disabling &amp;lsquo;root&amp;rsquo; user login would effectively make all those attack attempts obsolete.&lt;br /&gt;
+&amp;bull; Enforce Multi-Factor Authentication (MFA).&lt;br /&gt;
+&amp;bull; Use private keys for SSH, provided they are properly protected, rotated, and audited.&lt;br /&gt;
+&amp;bull; Properly hardened jump boxes to reduce exposure and enable session monitoring with Security Information and Event Management (SIEM) systems.&lt;br /&gt;
+(Hartman, 2026)&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 14px;"&gt;&lt;strong&gt;Detection&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;bull; Centralized SIEM Log Collection&lt;br /&gt;
+&amp;bull; Deploy rules to alert to brute force patterns in platforms like Snort or Suricata. This can include &amp;lsquo;SYN Flood Attacks&amp;rsquo; against port 22 (or your SSH port if you change the default value).&lt;br /&gt;
+(Hartman, 2026)&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Over 20 million SSH brute force attempts were collected by my DShield honeypot over nearly 100 days. This data was compared with several major cybersecurity advisories, changing geopolitical tensions, and law enforcement activities, which uncovered a close alignment. The top probing IPs showed clear signs of SSH botnet attack campaigns when evaluating the log data for attack timing, rates, HASSH fingerprints, and SSH client identification. These findings help to illustrate the adaptability and persistence of threat actors as they respond to capitalize on external events, highlighting the underlying need of all connected devices to be aware not only of cybersecurity-related advisories but also of the activities taking place across the globe. Some of the simplest security measures would have stopped many of these attacks in their tracks, raising the persistent need to continue to remind users to change default settings (usernames and ports) and increase the use of MFA.&lt;/p&gt;
+
+&lt;p&gt;Have you observed similar activities in your honeypot or within your organization? Feel free to share your findings and experiences in the comments below or consider joining the SANS Internet Storm Center and contributing data to their global network of sensors and honeypots.&lt;/p&gt;
+
+&lt;p&gt;[1] Al Jazeera. (2026, February 28). US, Israel bomb Iran: A timeline of talks and threats leading up to attacks. https://www.aljazeera.com/news/2026/2/28/us-israel-bomb-iran-a-timeline-of-talks-and-threats-leading-up-to-attacks#:~:text=US%2C%20Israel%20bomb%20Iran%3A,since%20the%20June%202025&lt;br /&gt;
+[2] CISA. (2026, February 25). ED 26-03: Mitigate vulnerabilities in Cisco SD-WAN systems. Cybersecurity and Infrastructure Security Agency CISA. https://www.cisa.gov/news-events/directives/ed-26-03-mitigate-vulnerabilities-cisco-sd-wan-systems&lt;br /&gt;
+[3] CISA. (2026, May 1). CISA adds one known exploited vulnerability to catalog. Cybersecurity and Infrastructure Security Agency CISA. https://www.cisa.gov/news-events/alerts/2026/05/01/cisa-adds-one-known-exploited-vulnerability-catalog&lt;br /&gt;
+[4] CISA. (2026, April 20). CISA adds eight known exploited vulnerabilities to catalog. Cybersecurity and Infrastructure Security Agency CISA. https://cisa.gov/news-events/alerts/2026/04/20/cisa-adds-eight-known-exploited-vulnerabilities-catalog&lt;br /&gt;
+[5] Hartman, K. G. (2026, February 13). Securing SSH keys in cloud environments: Practical guidance for security, forensics, and legal accountability. SANS Institute. https://www.sans.org/blog/securing-ssh-keys-cloud-environments-practical-guidance-security-forensics-legal-accountability&lt;br /&gt;
+[6] Le Poidevin, O. (2026, March 9). UAE envoy to UN urges de-escalation of US-Israeli war with Iran. reuters.com. https://www.reuters.com/world/middle-east/uae-envoy-un-urges-de-escalation-us-israeli-war-with-iran-2026-03-09/#:~:text=UAE%20envoy%20to%20UN,and%20a%20return%20to&lt;br /&gt;
+[7] Madhani, A., Gambrell, J., Price, M., &amp;amp; Metz, S. (2026, May 29). US and Iranian negotiators reach tentative deal to extend ceasefire and start new nuclear talks. AP News. https://apnews.com/article/iran-us-war-oil-may-28-2026-8f5ed2813ba63df7ae9ccbe991688d29&lt;br /&gt;
+[8] Radauskas, G. (2026, March 3). Wild pack without a leader: pro-Iranian hackers already active in wake of US-Israeli strikes. Cybernews. https://cybernews.com/security/iran-war-cyberattacks-hacking/&lt;br /&gt;
+[9] Reardon, B. (2022, April 14). Open sourcing HASSH. Salesforce Engineering Blog. https://engineering.salesforce.com/open-sourcing-hassh-abed3ae5044c/&lt;br /&gt;
+[10] Reuters. (2026, February 28). Global reaction to US, Israeli attacks on Iran. reuters.com. https://www.reuters.com/business/aerospace-defense/global-reaction-israeli-us-attacks-iran-2026-02-28/#:~:text=Global%20reaction%20to%20US%2C,into%20a%20renewed%20military&lt;br /&gt;
+[11] Singh, S. K., Gautam, S., Cartier, C., Patil, S., &amp;amp; Ricci, R. (2024). Where The Wild Things Are: Brute-Force SSH Attacks In The Wild And How To Stop Them. USENIX Association, 1731-1750. https://www.usenix.org/conference/nsdi24/presentation/singh-sachin&lt;br /&gt;
+[12] SSHwatch. (2025, April 28). SSH honeypots: Detecting and understanding attack patterns. https://www.sshwatch.com/ssh-honeypots-detecting-and-understanding-attack-patterns/#:~:text=Distributed%20credential%20partitioning%2C%20wordlist,logs%20with%20tools%20like&lt;br /&gt;
+[13] https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/p&gt;
+
+&lt;p&gt;Note: To ensure full transparency and academic integrity, generative A.I. software (Grammarly) was used for grammar and spelling checks. No further use of generative A.I. was used in the creation of this writing.&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/bruneaug/"&gt;My GitHub Page&lt;/a&gt;&lt;br /&gt;
+Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
+gbruneau at isc dot sans dot edu&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33086</guid></item><item><title>Leak confirms OpenAI is testing a ChatGPT for Science subscription</title><link>https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-openai-is-testing-a-chatgpt-for-science-subscription/</link><description>OpenAI appears to be testing a new subscription and experience for science use cases, but it's unclear if it'll be available to everyone regardless of their background. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-openai-is-testing-a-chatgpt-for-science-subscription/</guid><category>Artificial Intelligence</category><category>Technology</category></item><item><title>Crypto Clipper uses Tor and worm-like propagation for persistence and control</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/17/crypto-clipper-uses-tor-worm-like-propagation-for-persistence-control/</link><description>&lt;p&gt;Microsoft Threat Intelligence analyzed a cryptocurrency clipper campaign that combines clipboard theft, wallet replacement, Tor-based communications, and worm-like propagation. Beyond stealing cryptocurrency transactions, the malware establishes persistent access and enables follow-on activity through a lightweight backdoor capability.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/crypto-clipper-uses-tor-worm-like-propagation-for-persistence-control/"&gt;Crypto Clipper uses Tor and worm-like propagation for persistence and control&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-a2dbed47-fe1a-4a39-83f6-89fb40e3eaf6"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-a2dbed47-fe1a-4a39-83f6-89fb40e3eaf6"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#references"&gt;References &lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence and Microsoft Defender Experts identified a Windows-based cryptocurrency clipper that has affected users since February of 2026. Clipper malware relies on stealing clipboard data and parsing it for valuable assets.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The clipper in this campaign relies on Windows Script Host and ActiveX-driven logic to launch a bundled Tor proxy and poll a hidden-service C2 server. It carries out high-frequency clipboard theft, screenshot exfiltration, and wallet-address substitution.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The execution of this clipper is notable because it does not depend on a traditional installer or exposed IP-based C2 infrastructure. Instead, it deploys a portable Tor client, routes traffic through a local SOCKS5 proxy, and blends data theft with remote code execution, turning a financially motivated stealer into a lightweight backdoor.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For defenders, the strongest signals are behavioral: script interpreters spawning suspicious child processes, localhost:9050 proxy usage, screen-capture commands in PowerShell, and signs of clipboard inspection or crypto-address replacement.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender for Endpoint detects multiple components of this threat such as &lt;em&gt;Suspicious JavaScript process&lt;/em&gt; and &lt;em&gt;Possible data exfiltration using Curl&lt;/em&gt;. Additionally, Microsoft Defender Antivirus detects this crypto clipper as &lt;em&gt;Trojan: Win32/CryptoBandits.A&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Since February 2026, malicious shortcut (.lnk) payloads have infected devices with a cryptocurrency clipper. This malware comprises two components that it deploys on the compromised system: a worm component that ensures propagation and a clipper/stealer component that harvests and exfiltrates cryptocurrency wallet information. &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The worm functionality ensures propagation by creating additional malicious shortcuts of legitimate files it identifies on the device. It also delivers file-based payloads and excludes them from Defender scanning. It deploys scheduled tasks for execution and persistence for both the worm component and the stealer component. &amp;nbsp;Figure 1 presents a high-level execution flow of the two components.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The clipper runs as a script-based payload that interacts with the operating system through WScript and ActiveXObject. It includes an anti-analysis check that queries running processes and exits if Task Manager is detected. If the environment passes this gate, the malware launches a renamed Tor binary named ugate.exe in a hidden window, waits about 60 seconds for Tor to bootstrap, generates a victim GUID, and registers the infected device with a hidden-service C2.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After registration, the malware enters a continuous loop. It polls the C2 for instructions and monitors the clipboard roughly every 500 milliseconds, extracting seed phrases and private keys that match wallet-related patterns. It also hijacks cryptocurrency addresses by replacing copied wallet values with attacker-controlled alternatives and uploads screenshots through Tor. If the C2 returns an EVAL response, the malware executes attacker-supplied code at runtime.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148179 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-21.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1: High level execution flow.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="behaviors-and-methodologies"&gt;Behaviors and methodologies&lt;/h3&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="initial-access"&gt;Initial access&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Initial access occurs from malicious .lnk files. In instances we analyzed, these .lnk shortcuts were distributed on USB storage devices. The .lnk shortcut stages a worm component in the form of an executable. The malicious script checks for an existing malicious payload and stops if the device is already infected. If the payload is not present, the malware fetches the payload from the C2 through Tor. The Figure below illustrates the functions that stage and decrypt the initial payload.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148181 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-22.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2: Initial payload delivery.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The .lnk payload scans the USB device for common document files like .doc, .xlsx, .pdf, hides the original files, and creates additional .lnk shortcut files with the same file names. The shortcut files are crafted with arguments to link to the worm payload. The end user is not aware that they are launching an executable when opening the .lnk files.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148182 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-23.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3: Worm staged via additional shortcuts.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="execution"&gt;Execution&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once a user clicks on one of the shortcuts, the staged worm payload runs. It excludes staging folders and Windows binaries used in the execution of the stealer component. The malware then drops decrypted payloads, including two malicious JavaScript files, into the subfolder under the &amp;#8220;C:\Users\Public\Documents&amp;#8221; folder.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A five-character naming convention is used both for the subfolder and the scripts&amp;#8217; names.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The figure below illustrates an instance with files dropped under a &amp;#8221; C:\Users\Public\Documents\omoho&amp;#8221; folder path:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148183 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-24.webp" /&gt;&lt;/figure&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148184 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-25.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4: JavaScript payload delivered following a Defender AV exclusion.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The worm component also establishes persistence by creating two indefinite scheduled tasks: one responsible for spreading itself to a freshly inserted uncompromised USB storage device, and another for the stealer activity.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="defense-evasion"&gt;Defense evasion&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware employs multi-layered obfuscation, with all components encrypted and only decrypted at runtime. Installation is handled by a Python script that is itself obfuscated using PyArmor and packaged into a standalone executable via PyInstaller. In addition, the two JavaScript payloads are each protected with dual-layer obfuscation, further increasing analysis complexity. This design significantly reduces static visibility while maintaining flexible runtime behavior.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The sample also incorporates a basic anti-analysis check by querying the Win32_Process WMI class and terminating execution if Task Manager is detected. Although simplistic, this mechanism can hinder manual inspection and slow initial triage efforts.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The bundled Tor client is central to the operation. By routing communication over localhost:9050 and resolving &amp;#8220;.onion&amp;#8221; destination domains inside Tor, the malware reduces DNS visibility, obscures the final C2 destination, and complicates destination-based blocking. This design gives the operator anonymity benefits while keeping the malware compact and self-contained.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="command-and-control"&gt;Command and control&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The command and control over a Tor-routed domain routes network traffic through local IP address 127.0.0.1 on port 9050. The tunneled domain appears in the initiating process command line. The C2 domains use the following endpoints and actions across different execution stages.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;C2 Domain: &amp;lt;domain&gt;.onion&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Endpoints:
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;/route.php : Beacon and command retrieval&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;/recvf.php : File upload (screenshots)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;/stub.php: Payload download&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Communication:
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Protocol: HTTP over Tor (SOCKS5 proxy at localhost:9050)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Method: curl with POST requests&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Authentication: GUID + GEIP (geolocation)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Actions Sent to C2:
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;GUID : Heartbeat beacon&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;SEED : Exfiltrated seed phrase&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;PKEY : Exfiltrated private key&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;REPL : Address replacement notification&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;GOOD : (legacy/fallback action)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Commands from C2:
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;GUID : Acknowledge/refresh victim GUID&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;EVAL : Execute arbitrary JScript code (remote code execution)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148186 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-26.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5: C2 endpoints specifications.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A file named &amp;#8220;cfile&amp;#8221; is created on the infected system as an output for payload hosted on the C2 domain.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware sample we analyzed also provided a function called checkC2Command. The function has an EVAL method, which would allow any payload placed in the cfile to be executed on the victim&amp;#8217;s system.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148187 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-27.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6: cfile download from a C2 domain.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148188 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-28.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7: CheckC2Command function.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="collection"&gt;Collection&lt;/h4&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="seed"&gt;Seed&lt;/h5&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Clipboard theft focuses on high-value financial artifacts. The malware detects 12 or 24-word BIP39 seed phrases in clipboard data. It saves the seed to local file (GOOD path) as a backup and exfiltrates it to the C2 domain via Tor. It retries network transmission until it is acknowledged and deletes local backup after successful transmission. It also takes five screenshots (ten seconds apart) and uploads them asynchronously. The screenshots help the threat actor gain additional context on the end user’s wallet and balances.&lt;/p&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="private-key-extraction"&gt;Private Key extraction&lt;/h5&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The crypto clipper also detects cryptocurrency keys for both Ethereum and Bitcoin WIF. Once the captured keys are saved and exfiltrated, the malware captures screenshots of the user’s screen for a full context. The captured values are validated against a word list.&lt;/p&gt;
+
+
+
+&lt;h5 class="wp-block-heading" id="address-replacement"&gt;Address replacement&lt;/h5&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The stealer also probes for cryptocurrency addresses and replaces them with attacker’s addresses. The malware checks that the address has alphanumeric values.&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;For a Bitcoin legacy address which starts with &amp;#8220;1&amp;#8221; and has a length of 32-36 values, the address is replaced with an address that matches the first two characters.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;For a Bitcoin P2SH address which starts with a &amp;#8220;3&amp;#8221; and has a length of 32-36 values, the stealer replaces the address with one matching the original address on the first two characters.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;For a Bitcoin taproot address which starts with &amp;#8220;bc1p&amp;#8221; and has a length of 40-64 characters, the stealer replaces it with one matching the last character.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;For a Bitcoin Bech32 address which starts with &amp;#8220;bc1q&amp;#8221; and has a length of 40-64 characters, the stealer replaces only the last character.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;For a Tron address which starts with &amp;#8220;T&amp;#8221; and has exactly 34 characters, the stealer replaces the address with one that matches the first two characters.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;For a Monero address which starts with a &amp;#8220;4&amp;#8221; or a &amp;#8220;8&amp;#8221; and has exactly 95 characters, the stealer replaces the address with a single address.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following shows an example of address replacement:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148190 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-29.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8: Function used to replace a BTC P2SH wallet address.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This malware family shows how lightweight, script-based stealers can deliver outsized impact when paired with anonymized communications and runtime tasking. The combination of Tor-routed C2, clipboard targeting, screenshot capture, and remote code execution gives attackers both immediate monetization paths and continued control over compromised devices.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Organizations should focus on hardening script execution paths, monitoring local SOCKS proxy abuse, and using behavioral hunting to connect script activity with network, clipboard, and process signals. That combination offers the best chance of surfacing this class of threat before financial loss or broader follow-on activity occurs.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Defenders should prioritize behavioral detections over static signatures. Investigate systems where WScript, CScript, or related script engines launch curl, cmd.exe, PowerShell, or unexpected executables. localhost:9050 network activity, especially when coupled with suspicious scripting behavior, is also valuable context for triage.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Where operationally feasible, reduce abuse of script-based interpreters and review Attack Surface Reduction rules that block obfuscated scripts and suspicious child-process chains. Review detections for PowerShell-based screen capture and examine devices for indicators of clipboard inspection or wallet-address replacement.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Recommended actions&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Disable AutoRun/AutoPlay for all removable media&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Block .lnk execution from removable drives via GPO&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Restrict unnecessary use of wscript.exe, cscript.exe, and similar script hosts where possible.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Review and enable relevant Attack Surface Reduction rules, especially those focused on obfuscated script execution and suspicious child-process behavior.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Investigate script-to-network chains involving curl, PowerShell, or cmd.exe.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Hunt for local SOCKS5 proxy activity on localhost:9050.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Review clipboard-related and screen-capture behaviors on devices handling sensitive financial workflows.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;Initial Access/Execution&lt;/td&gt;&lt;td&gt;Malicious .lnk delivers malware components &amp;nbsp;&lt;/td&gt;&lt;td&gt;EDR Suspicious behavior by cmd.exe was observedSuspicious Python library load &amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;Execution&lt;/td&gt;&lt;td&gt;&amp;nbsp;WScript / ActiveXObject execution and runtime tasking&amp;nbsp;&lt;/td&gt;&lt;td&gt;EDR Suspicious JavaScript processSuspicious Python library loadSuspicious behavior by cmd.exe was observed &amp;nbsp; AV Contebrew malware was prevented Behavior:Win64/PyPowJs.STA &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Discovery&lt;/td&gt;&lt;td&gt;Task Manager check used as an anti-analysis gate&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;Persistence&lt;/td&gt;&lt;td&gt;&amp;nbsp;Scheduled tasks are created to run the JavaScript payload wrapped in a XML file.&lt;/td&gt;&lt;td&gt;EDR Suspicious Task Scheduler activity &amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Shuffled strings and decoder functions conceal commands and APIs&amp;nbsp; Task Manager if detected, the malware execution is halted&lt;/td&gt;&lt;td&gt;Behavior:Win64/ProcessExclusion.ST; Behavior:Win64/PathExclusion.STA Behavior:Win64/PathExclusion.STB &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Collection &amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp; Clipboard theft targets seed phrases, keys, and wallet addresses &amp;nbsp; PowerShell screenshot capture supports operational visibility&lt;/td&gt;&lt;td&gt;AV: &lt;br /&gt;Trojan:Win32/CryptoBandits.A Trojan:Win32/CryptoBandits.B Trojan:JS/CryptoBandits.A Trojan:JS/CryptoBandits.B    &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Control&lt;/td&gt;&lt;td&gt;Traffic routed through Tor via local SOCKS5 proxying&amp;nbsp;&lt;/td&gt;&lt;td&gt;EDR Possible data exfiltration using curlBehavior:Win64/CurlOnion.STA &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Exfiltration&lt;/td&gt;&lt;td&gt;Data posted using Curl through Tor via local SOCKS5 proxying&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;EDR Possible data exfiltration using curl&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot  &lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to &lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts" rel="noreferrer noopener" target="_blank"&gt;create their own prompts&lt;/a&gt; or run the following &lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks" rel="noreferrer noopener" target="_blank"&gt;prebuilt promptbooks&lt;/a&gt; to automate incident response or investigation tasks related to this threat:  &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Incident investigation  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Microsoft User analysis  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat actor profile  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat Intelligence 360 report based on MDTI article  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Vulnerability impact assessment  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel.  &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use the following reports in Microsoft products to get the most up-to-date information about the threat actor, malicious activity, and techniques discussed in this blog. These reports provide intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="advanced-hunting"&gt;Advanced hunting&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="microsoft-defender-customers-can-run-the-following-queries-to-find-related-activity-in-their-networks"&gt;Microsoft Defender customers can run the following queries to find related activity in their networks:&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Execution launched from scheduled tasks&lt;/strong&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where FileName =="schtasks.exe"
+| where ProcessCommandLine matches regex
+@"(?i)schtasks\s+/create\s+/tn\s+[a-z]{4,6}\s+/xml\s+C:\\Users\\Public\\Documents\\[a-z]{4,6}\\[a-z]{4,6}\.xml\s+/f"
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Local Tor proxy activity (localhost:9050)&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceNetworkEvents
+| where ActionType =="ConnectionSuccess"
+| where InitiatingProcessCommandLine has_all ("curl","socks5-hostname",".onion")
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Tor-routed curl execution&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where FileName =~ "curl.exe"
+| where ProcessCommandLine has_all ("--socks5-hostname", "localhost:9050")
+| project Timestamp, DeviceName, InitiatingProcessFileName, ProcessCommandLine
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="mitre-att-ck-techniques-observed"&gt;MITRE ATT&amp;amp;CK Techniques observed&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This threat&amp;nbsp;has exhibited use of the following attack techniques. For standard industry documentation about these techniques, refer to the&amp;nbsp;&lt;a href="https://attack.mitre.org/"&gt;MITRE ATT&amp;amp;CK framework&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Initial Access&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1091 Replication Through Removable Media&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Execution&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1059 Command and Scripting Interpreter | EVAL-driven remote code execution from server tasking&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Discovery&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1057 Process Discovery | Task Manager check used as an anti-analysis gate&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Persistence&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1053.005 Scheduled Task/Job | Scheduled Task&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Defense evasion&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1027 | Shuffled strings and decoder functions conceal commands and APIs&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Collection&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1115 Clipboard Data | Clipboard theft targets seed phrases, keys, and wallet addresses&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;T1113 Screen Capture | PowerShell screenshot capture supports operational visibility&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Command and Control&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1090 Proxy | Traffic routed through Tor via local SOCKS5 proxying&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Exfiltration&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;T1048.002 Exfiltration Over Alternative Protocol&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;7630debd35cac6b7d58c4427695579b3e3a8b1cc462f523234cd6c698882a68c&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;a7abf1d9d6686af1cefcd60b17a312e7eb8cfe267def1ec34aeab6128c811630&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;23c1e673f315dafa14b73034a90dd3d393a984451ff6601b8be8142be6487b43&lt;/td&gt;&lt;td&gt;SHA-256&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cf9fc891ea5ca5ecd8113ef3e69f6f52ff538b6cccbdaa9559106fc72bc6da30&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;100407796028bf3649752d9d2a67a0e4394d752eb8de86daa42920e814f3fae8&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d14b80cbd1a19d4ad0473a0661297f8fdf598e81ff6c4ab24e212dcad2e54b3f&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9d90f54ae36c6c5435d5b8bed40faf54cc91f6db28574a6310b5ffaeb0362e96&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;67fc5cf395e28294bbb91ed0e954fdf2e80ebd9119022a115a42c286dc8bacf5&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;0020d23b0f9c5e6851a7f737af73fd143175ee47054931166369edd93338538a&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;35a6bc44b176a050fd6824904b7604f0f45b0fdfa26bf9500b9e05973b387cfd&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;c824630154ac4fdfce94ded01f037c305eab51e9bef3f493c60ff3184a640502&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d43bf94f0cb0ab97c88113b7e07d1a4024d1610617b5ad05882b1dbab89e15ba&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;b2777b73a4c33ac6a409d475057843be6b5d32262ef28a1f1ff5bb52e3834c5f&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;7787a9a7d8ae393aa32f257d083903c4dc9b97a1e5b0458c4cd480d4f3cb5b05&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f3b54984caca95fd496bcfe5d7db1611b08d2f5b7d250b43b430e5d76393f9e0&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;20db98af3037b197c8a846dbf17b87fc6f049c3e0d9a188f9b9a74d3916dd5e1&lt;/td&gt;&lt;td&gt;SHA-256 &amp;nbsp;&lt;/td&gt;&lt;td&gt;Crypto Clipper Worm &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ugate.exe &amp;nbsp;&lt;/td&gt;&lt;td&gt;Filename&lt;/td&gt;&lt;td&gt;Portable Tor binary &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;cgky6bn6ux5wvlybtmm3z255igt52ljml2ngnc5qp3cnw5jlglamisad.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;gfoqsewps57xcyxoedle2gd53o6jne6y5nq5eh25muksqwzutzq7b3ad.onion&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;he5vnov645txpcv57el2theky2elesn24ebvgwfoewlpftksxp4fnxad.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;lyhizqy2js2eh6ufngkbzntouiikdek5zsdj3qwa22b4z6knpqorgiad.onion&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;j3bv7g27oramhbxxuv6gl3dcyfmf44qnvju3offdyrap7hurfprq74qd.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;shinypogk4jjniry5qi7247tznop6mxdrdte2k6pdu5cyo43vdzmrwid.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;7goms4byw26kkbaanz5a5u5234gusot7rp5imzc3ozh66wwcvmcudjid.onion&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;wt26llpl5k6gok3vnaxmucwgzv2wk3l7nuibbh25clghrtus3p5ctsid.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ijzn3sicrcy7guixkzjkib4ukbiilwc3xhnmby4mcbccnsd7j2rekvqd.onion &amp;nbsp;&lt;/td&gt;&lt;td&gt;Domain &amp;nbsp;&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&amp;nbsp;&lt;/h2&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2022/05/17/in-hot-pursuit-of-cryware-defending-hot-wallets-from-attacks/#clipping-and-switching" rel="noopener noreferrer" target="_blank"&gt;https://www.microsoft.com/en-us/security/blog/2022/05/17/in-hot-pursuit-of-cryware-defending-hot-wallets-from-attacks/#clipping-and-switching&lt;/a&gt;. Microsoft (published 2022-05-17)&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://gbhackers.com/ssh-over-tor-tunnel/"&gt;https://gbhackers.com/ssh-over-tor-tunnel/.&lt;/a&gt; Ghbhackers(published 2026-04-28)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="learn-more"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on&amp;nbsp;&lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;,&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the&amp;nbsp;&lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://eurppc-word-edit.officeapps.live.com/we/%E2%80%A2%09https:/learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-agent-builder" rel="noreferrer noopener" target="_blank"&gt;how to build and customize agents with Copilot Studio Agent Builder&lt;/a&gt; &lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt;  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest &lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/real-time-agent-protection-during-runtime" rel="noreferrer noopener" target="_blank"&gt;Protect your agents in real-time during runtime (Preview)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/crypto-clipper-uses-tor-worm-like-propagation-for-persistence-control/"&gt;Crypto Clipper uses Tor and worm-like propagation for persistence and control&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148177</guid></item><item><title>Google to use UK and EU user IP addresses for ad personalization</title><link>https://www.bleepingcomputer.com/news/security/google-to-use-uk-and-eu-user-ip-addresses-for-ad-personalization/</link><description>From August 3, 2026, Google will use IP addresses from UK, EEA and Switzerland users for ad measurement and personalization. It lands as the ICO weighs new consent rules, and years after Google itself called using such signals to identify devices "wrong." [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/google-to-use-uk-and-eu-user-ip-addresses-for-ad-personalization/</guid><category>Security</category></item><item><title>Beyond the benchmark: Advancing security at AI speed</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/17/beyond-the-benchmark-advancing-security-at-ai-speed/</link><description>&lt;p&gt;Read how Microsoft Security has advanced its agentic vulnerability detection system, codename MDASH, integrating into real-world workflows across Windows, Azure, and identity systems.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/beyond-the-benchmark-advancing-security-at-ai-speed/"&gt;Beyond the benchmark: Advancing security at AI speed &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-a215783f-b7a9-449c-9ebc-25754b771718"&gt;
 	&lt;button class="btn btn-collapse" type="button"&gt;
 		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
@@ -1462,7 +2204,7 @@ exit 0
 &lt;p&gt;That longstanding directive requires a detailed explanation of risks and benefits as well as &lt;a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/algorithmic-impact-assessment.html#:~:text=consultation%20approach%20with%20federal%20colleagues%2C%20clients%20or%20interest%20groups%20that%20represent%20clients%20or%20other%20partners"&gt;consultation&lt;/a&gt; with certain stakeholders from the conception of the AI use case. The Canadian system could be improved; it could require a public comment period and an obligation for agencies to respond substantively to feedback before engaging in sensitive uses of AI.&lt;/p&gt;
 &lt;p&gt;AI offers real potential to improve the efficacy, efficiency and accessibility of government. But, equally, there is legitimate reason for public concern and distrust that can only be addressed through transparency and dialog. The US should adopt, at the federal and state level, algorithmic impact risk assessment procedures and public comment processes to facilitate a safe, trusted, equitable transformation of government agencies to take advantage of modern technology.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;This essay was written with Nathan E. Sanders, and originally appeared in &lt;a href="https://www.theguardian.com/commentisfree/2026/jun/15/ai-use-by-the-us-government-is-ballooning-and-the-lack-of-transparency-is-troubling"&gt;The Guardian&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72194</guid><category>Uncategorized</category><category>AI</category><category>democracy</category><category>laws</category><category>LLM</category><category>regulation</category><category>transparency</category></item><item><title>CISA orders feds to patch max severity Joomla plugin flaw by Friday</title><link>https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</link><description>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered federal agencies to patch a maximum-severity flaw in the Widget Factory Joomla Content Editor (JCE) plugin that is being actively exploited in the wild. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/</guid><category>Security</category></item><item><title>7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art</title><link>https://www.techrepublic.com/article/best-ai-art-generators/</link><description>&lt;p&gt;This is a comprehensive list of the best AI art generators. Explore the advanced technology that transforms imagination into stunning artworks.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-ai-art-generators/"&gt;7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4133860</guid><category>Artificial Intelligence</category><category>Innovation</category><category>Software</category><category>Top Products</category><category>ai</category><category>ai art generators</category><category>artificial intelligence</category><category>crayon</category><category>dalle 2</category><category>deepai</category><category>jasper art</category><category>midjourney</category><category>nightcafe</category><category>runway</category></item><item><title>Microsoft working on Defender patch for RoguePlanet zero-day</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</link><description>Microsoft confirmed that it's working on a security patch for a Defender zero-day vulnerability named "RoguePlanet," disclosed one week ago. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</guid><category>Microsoft</category><category>Security</category></item><item><title>Kodak confirms data breach claimed by ShinyHunters extortion gang</title><link>https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</link><description>Kodak has confirmed that it's working with external cybersecurity experts to investigate a security breach after hackers gained access to some of the company's data. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</guid><category>Security</category></item><item><title>ISC Stormcast For Wednesday, June 17th, 2026 https://isc.sans.edu/podcastdetail/9976, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33082</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33082</guid></item><item><title>Malicious JetBrains Marketplace plugins steal AI API keys from developers</title><link>https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</link><description>At least 15 malicious plugins found on the JetBrains Marketplace were designed to steal AI API keys from developers. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</guid><category>Security</category></item><item><title>Leak Exposes Members of Peter Thiel’s Secretive ‘Dialog’ Society</title><link>https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/</link><description>More than 200 of the world's elites registered for a retreat whose agenda runs from panels on cult-building and sex to prepping for World War III. An associated app offers matchmaking.</description><guid isPermaLink="false">6a31687d64340aad9268452b</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>politics</category><category>surveillance</category><category>cybersecurity</category><category>data</category><category>leaks</category><category>Peter Thiel</category><category>department of defense</category><category>congress</category><category>Immigration and Customs Enforcement</category><category>Group Chat</category></item><item><title>New Rokarolla Android malware targets 217 banking, crypto apps</title><link>https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</link><description>A new Android banking trojan named Rokarolla is targeting 217 banking and cryptocurrency applications using an extensive set of 137 commands. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</guid><category>Security</category><category>Mobile</category></item><item><title>Steam Workshop abused to spread malware via Wallpaper Engine app</title><link>https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</link><description>Threat actors are abusing Steam Workshop, Valve's community hub for downloading game-related content, to push various malware hidden in wallpaper packages. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</guid><category>Security</category></item><item><title>Nvidia Eyes $20B Debt Sale as AI Cash Flow Soars [Update: $25B Secured]</title><link>https://www.techrepublic.com/article/news-nvidia-debt-sale/</link><description>&lt;p&gt;Nvidia’s planned debt sale could top $20 billion, giving enterprise buyers another look at its cash flow, debt profile, and AI financing plans.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-ai-art-generators/"&gt;7 Best AI Art Generators for 2026: Top Tools for Stunning Digital Art&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4133860</guid><category>Artificial Intelligence</category><category>Innovation</category><category>Software</category><category>Top Products</category><category>ai</category><category>ai art generators</category><category>artificial intelligence</category><category>crayon</category><category>dalle 2</category><category>deepai</category><category>jasper art</category><category>midjourney</category><category>nightcafe</category><category>runway</category></item><item><title>Microsoft working on Defender patch for RoguePlanet zero-day</title><link>https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</link><description>Microsoft confirmed that it's working on a security patch for a Defender zero-day vulnerability named "RoguePlanet," disclosed one week ago. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/</guid><category>Microsoft</category><category>Security</category></item><item><title>Kodak confirms data breach claimed by ShinyHunters extortion gang</title><link>https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</link><description>Kodak has confirmed that it's working with external cybersecurity experts to investigate a security breach after hackers gained access to some of the company's data. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/kodak-confirms-data-breach-claimed-by-shinyhunters-extortion-gang/</guid><category>Security</category></item><item><title>ISC Stormcast For Wednesday, June 17th, 2026 https://isc.sans.edu/podcastdetail/9976, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33082</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33082</guid></item><item><title>Threat Actors Abuse claude.ai Shared Chat for ClickFix Malvertising Campaign</title><link>https://www.trendmicro.com/en_us/research/26/f/claudeai-shared-chat-abused-in-malvertising.html</link><description>Cybercriminals hijacked Google Ads searches for popular AI developer tools to funnel over 2,000 victims toward malicious download pages before quietly moving their operation onto claude.ai's own platform, turning the trusted domain into a delivery mechanism for credential-stealing malware.</description><guid isPermaLink="false">urn:uuid:88d648a8-abc9-3b48-3c19-c1a216010c24</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Malware</category><category>Trend Micro Research : Research</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Malicious JetBrains Marketplace plugins steal AI API keys from developers</title><link>https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</link><description>At least 15 malicious plugins found on the JetBrains Marketplace were designed to steal AI API keys from developers. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/</guid><category>Security</category></item><item><title>Leak Exposes Members of Peter Thiel’s Secretive ‘Dialog’ Society</title><link>https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/</link><description>More than 200 of the world's elites registered for a retreat whose agenda runs from panels on cult-building and sex to prepping for World War III. An associated app offers matchmaking.</description><guid isPermaLink="false">6a31687d64340aad9268452b</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>politics</category><category>surveillance</category><category>cybersecurity</category><category>data</category><category>leaks</category><category>Peter Thiel</category><category>department of defense</category><category>congress</category><category>Immigration and Customs Enforcement</category><category>Group Chat</category></item><item><title>New Rokarolla Android malware targets 217 banking, crypto apps</title><link>https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</link><description>A new Android banking trojan named Rokarolla is targeting 217 banking and cryptocurrency applications using an extensive set of 137 commands. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/</guid><category>Security</category><category>Mobile</category></item><item><title>Steam Workshop abused to spread malware via Wallpaper Engine app</title><link>https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</link><description>Threat actors are abusing Steam Workshop, Valve's community hub for downloading game-related content, to push various malware hidden in wallpaper packages. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/</guid><category>Security</category></item><item><title>Nvidia Eyes $20B Debt Sale as AI Cash Flow Soars [Update: $25B Secured]</title><link>https://www.techrepublic.com/article/news-nvidia-debt-sale/</link><description>&lt;p&gt;Nvidia’s planned debt sale could top $20 billion, giving enterprise buyers another look at its cash flow, debt profile, and AI financing plans.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-debt-sale/"&gt;Nvidia Eyes $20B Debt Sale as AI Cash Flow Soars [Update: $25B Secured]&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-nvidia-debt-sale/</guid><category>AI</category><category>Artificial Intelligence</category><category>News</category><category>NVIDIA</category><category>Tech Industry</category><category>Technology</category><category>ai chips</category><category>ai infrastructure</category><category>bond sale</category><category>corporate debt</category><category>enterprise it</category><category>nvidia</category><category>procurement</category><category>vendor risk</category></item><item><title>SpaceX to Acquire Cursor in $60B Stock Deal, Deepening Elon Musk’s AI Empire</title><link>https://www.techrepublic.com/article/news-spacex-cursor-acquisition/</link><description>&lt;p&gt;SpaceX will buy Cursor parent Anysphere in a $60B all-stock deal, giving Elon Musk’s company a major AI coding asset days after its IPO.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-spacex-cursor-acquisition/"&gt;SpaceX to Acquire Cursor in $60B Stock Deal, Deepening Elon Musk’s AI Empire&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-spacex-cursor-acquisition/</guid><category>Artificial Intelligence</category><category>Collaboration</category><category>Innovation</category><category>International</category><category>News</category><category>Tech Industry</category><category>ai acquisition</category><category>ai coding</category><category>ai coding tools</category><category>ai infrastructure</category><category>all-stock deal</category><category>anthropic</category><category>anysphere</category><category>artificial intelligence</category><category>claude code</category><category>cursor</category><category>developer tools</category><category>elon musk</category><category>nasdaq</category><category>openai</category><category>openai codex</category><category>spacex</category><category>spacex ipo</category><category>vibe coding</category><category>xai</category></item><item><title>‘Dangerous’ AI Models Are Coming No Matter What</title><link>https://www.wired.com/story/dangerous-ai-models-are-coming-no-matter-what/</link><description>The US government crackdown on Anthropic’s Claude Fable 5 and Mythos 5 hides a glaring truth: AI models with advanced hacking capabilities will soon be the norm.</description><guid isPermaLink="false">6a301df9a875d61d4130a48b</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / National Security</category><category>Security / Security News</category><category>cybersecurity</category><category>artificial intelligence</category><category>hacking</category><category>security</category><category>vulnerabilities</category><category>Anthropic</category><category>OpenAI</category><category>Thanks, Capitalism</category></item><item><title>Salesforce Makes $3.6B Play for AI Customer Service</title><link>https://www.techrepublic.com/article/news-salesforce-acquires-fin-agentforce-ai-agents/</link><description>&lt;p&gt;Salesforce will buy Fin, formerly Intercom, for about $3.6 billion to expand Agentforce with AI customer service agents and support automation.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-salesforce-acquires-fin-agentforce-ai-agents/"&gt;Salesforce Makes $3.6B Play for AI Customer Service&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4362561</guid><category>Artificial Intelligence</category><category>Business Technology</category><category>Collaboration</category><category>News</category><category>Tech Industry</category><category>agentforce</category><category>agentic ai</category><category>ai acquisition</category><category>ai agents</category><category>artificial intelligence</category><category>crm</category><category>customer service</category><category>customer support</category><category>enterprise ai</category><category>eoghan mccabe</category><category>fin</category><category>intercom</category><category>marc benioff</category><category>salesforce</category><category>software acquisition</category></item><item><title>UK to require ID or face scan before you can make social media accounts</title><link>https://www.bleepingcomputer.com/news/security/uk-to-require-id-or-face-scan-before-you-can-make-social-media-accounts/</link><description>Opening a new social media account in the UK will soon mean proving you're over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security experts warn the age checks are easy to circumvent and create new data-breach risks. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/uk-to-require-id-or-face-scan-before-you-can-make-social-media-accounts/</guid><category>Security</category></item><item><title>ShinyHunters Claims Council of Europe HR Data, Threatens Leak</title><link>https://www.techrepublic.com/article/news-shinyhunters-council-europe-data-theft-claim-emea/</link><description>&lt;p&gt;ShinyHunters claims it stole 297GB of data from the Council of Europe, including payroll and medical records, but the organization has not confirmed a breach.&lt;/p&gt;
@@ -1481,7 +2223,7 @@ exit 0
 &lt;p&gt;Aware of an exploited vulnerability not currently listed in the KEV catalog? Submit for potential addition: &lt;a href="https://cisasurvey.gov1.qualtrics.com/jfe/form/SV_1Zwu52kgK2OYf3w"&gt;KEV Nomination Form&lt;/a&gt;. Potential KEV additions must have a CVE ID, evidence of exploitation, and clear mitigation guidance.&amp;nbsp;&lt;/p&gt;</description><guid isPermaLink="false">/node/25040</guid></item><item><title>At $50, GitMind Turns Info-Overload Into Organized Visual Knowledge</title><link>https://www.techrepublic.com/article/gitmind-lifetime-subscription/</link><description>&lt;p&gt;Here's what GitMind ($50) actually does and why it matters for professionals managing information overload.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/gitmind-lifetime-subscription/"&gt;At $50, GitMind Turns Info-Overload Into Organized Visual Knowledge&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4362492</guid><category>AI</category><category>Artificial Intelligence</category><category>TR Academy</category><category>ai</category><category>Gitmind</category><category>mind mapping</category><category>note taker</category><category>office tool</category><category>productivity tool</category><category>transcription</category><category>visual content</category></item><item><title>Flock Cameras Are Being Used for Stalking</title><link>https://www.schneier.com/blog/archives/2026/06/flock-cameras-are-being-used-for-stalking.html</link><description>&lt;p&gt;There are over a dozen cases around the country where police officers are using the Flock surveillance camera system to obsessively and illegally &lt;a href="https://www.404media.co/cops-keep-getting-arrested-for-using-flock-to-stalk-people/"&gt;stalk people&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://archive.ph/l5KcH"&gt;Alternate link&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;There are over a dozen cases around the country where police officers are using the Flock surveillance camera system to obsessively and illegally &lt;a href="https://www.404media.co/cops-keep-getting-arrested-for-using-flock-to-stalk-people/"&gt;stalk people&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://archive.ph/l5KcH"&gt;Alternate link&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72171</guid><category>Uncategorized</category><category>cameras</category><category>cars</category><category>privacy</category><category>stalking</category><category>surveillance</category></item><item><title>CISA warns of another cPanel plugin flaw exploited in attacks</title><link>https://www.bleepingcomputer.com/news/security/cisa-warns-of-another-actively-exploited-cpanel-plugin-flaw/</link><description>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has given U.S. government agencies three days to secure their servers against an actively exploited vulnerability (CVE-2026-54420) in the LiteSpeed cPanel user-end plugin. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/cisa-warns-of-another-actively-exploited-cpanel-plugin-flaw/</guid><category>Security</category></item><item><title>From a VHDX File to a Remcos RAT, (Tue, Jun 16th)</title><link>https://isc.sans.edu/diary/rss/33080</link><description>&lt;p&gt;Yesterday, a reader reported to us a malicious ZIP archive (SHA256: a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094&amp;#x5b;&lt;a href="https://www.virustotal.com/gui/file/a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094"&gt;1&lt;/a&gt;&amp;#x5d;). Once unzipped, it contains a VHDX file that discloses a malicious JavaScript after being mounted (which is automatic on modern Windows OSs):&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Yesterday, a reader reported to us a malicious ZIP archive (SHA256: a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094[&lt;a href="https://www.virustotal.com/gui/file/a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094"&gt;1&lt;/a&gt;]). Once unzipped, it contains&amp;nbsp;a VHDX file that discloses&amp;nbsp;a malicious JavaScript after being mounted (which is automatic on modern Windows OSs):&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://archive.ph/l5KcH"&gt;Alternate link&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72171</guid><category>Uncategorized</category><category>cameras</category><category>cars</category><category>privacy</category><category>stalking</category><category>surveillance</category></item><item><title>From a VHDX File to a Remcos RAT, (Tue, Jun 16th)</title><link>https://isc.sans.edu/diary/rss/33080</link><description>&lt;p&gt;Yesterday, a reader reported to us a malicious ZIP archive (SHA256: a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094&amp;#x5b;&lt;a href="https://www.virustotal.com/gui/file/a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094"&gt;1&lt;/a&gt;&amp;#x5d;). Once unzipped, it contains a VHDX file that discloses a malicious JavaScript after being mounted (which is automatic on modern Windows OSs):&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Yesterday, a reader reported to us a malicious ZIP archive (SHA256: a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094[&lt;a href="https://www.virustotal.com/gui/file/a0104921a2d37ab87482ac9a9f5c3713479c118846c3e999178e75b81620c094"&gt;1&lt;/a&gt;]). Once unzipped, it contains&amp;nbsp;a VHDX file that discloses&amp;nbsp;a malicious JavaScript after being mounted (which is automatic on modern Windows OSs):&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260616-1.png" style="width: 799px; height: 302px;" /&gt;&lt;/p&gt;
 
@@ -3357,65 +4099,7 @@ def _msgpack_ext_hook(code: int, data: bytes) -&gt; Any:
 &lt;p&gt;But the simplest explanation is that cybercriminals of all nationalities tend to make a number of basic operational security mistakes early in their careers, when they are less savvy and have far less to lose by their carelessness. A review of Hastalamuerte&amp;#8217;s early posts on the crime forums (circa 2019-2020) shows a relatively unsophisticated and low-skilled hacker still trying to learn the ropes and earn a positive reputation on these communities.&lt;/p&gt;
 &lt;p&gt;For example, in June 2020 Hastalamuerte&amp;#8217;s Telegram account joined a multi-month training program (@pntst) to learn how to use popular penetration testing tools, and their candid posts to this hacker training camp show Hastalamuerte struggling to use these tools effectively. A Google-translated record of Hastalmuerte&amp;#8217;s posts to @pntst is &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2026/06/pntst-chat.txt" rel="noopener" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update, June 11, 10:23 a.m. ET:&lt;/strong&gt;  The threat research group &lt;strong&gt;PRODAFT&lt;/strong&gt; has released &lt;a href="https://catalyst.prodaft.com/public/report/inside-the-phantom-mantis-operation/overview#paragraph-1077|172" rel="noopener" target="_blank"&gt;a detailed writeup&lt;/a&gt; on the history and current operations of The Gentlemen. PRODAFT said its findings match the same persona with &amp;#8220;high confidence,&amp;#8221; and found the administrator (Zeta88/Hastalamuerte) supplies affiliates with initial access directly, primarily Fortinet SSL-VPN credentials obtained through brute-force attacks or sourced from the group&amp;#8217;s own leak database. They also discovered the administrator is using AI to develop and maintain the ransomware and associated tooling, as well as to assist with post-exploitation activity.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73768</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>79127650004</category><category>Alexander Andreevich Yapaev</category><category>bu4vs@mail.ru</category><category>Constella Intelligence</category><category>Epieos</category><category>Flashpoint</category><category>Hastalamuerte</category><category>hastalamuerte1488@protonmail.com</category><category>Intel 471</category><category>SantaMuerte</category><category>The Gentlemen ransomware</category></item><item><title>Wrongful Arrest Exposes Failures in One of the Oldest Police Face-Recognition Tools in the US</title><link>https://www.wired.com/story/wrongful-arrest-tests-one-of-the-oldest-police-face-recognition-tools-in-the-us/</link><description>The ACLU is suing two Florida police departments over the arrest of a Fort Myers man in a child-abduction case, saying officers treated a flawed face-recognition match as a near-certain ID.</description><guid isPermaLink="false">6a29601a2286375b80444c6d</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>surveillance</category><category>face recognition</category><category>Police</category><category>Crime</category><category>algorithms</category><category>machine learning</category><category>Face Palm</category></item><item><title>Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws</title><link>https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</link><description>&lt;p&gt;Microsoft’s June Patch Tuesday fixed about 200 CVEs, including public zero-days and Critical Windows flaws tied to patching pressure.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/"&gt;Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</guid><category>Cybersecurity</category><category>Data Management</category><category>International</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>ai security</category><category>bitlocker</category><category>cve</category><category>cybersecurity</category><category>dhcp client</category><category>enterprise security</category><category>greenplasma</category><category>http.sys</category><category>june patch tuesday</category><category>Microsoft Defender</category><category>patch management</category><category>patch tuesday</category><category>vulnerabilities</category><category>windows</category><category>yellowkey</category><category>zero day</category><category>zero day initiative</category></item><item><title>NSO Group Hacking WhatsApp Despite Court Order</title><link>https://www.schneier.com/blog/archives/2026/06/nso-group-hacking-whatsapp-despite-court-order.html</link><description>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</description><content:encoded>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72158</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>phishing</category><category>spyware</category><category>WhatsApp</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>Amnesty International Warns That World Cup Fans Face Potential Human Rights Violations</title><link>https://www.wired.com/story/amnesty-international-world-cup-human-rights/</link><description>The organization claims that the FIFA tournament could have impacts on the rights of local people and visiting soccer fans in all three host countries.</description><guid isPermaLink="false">6a1071b6fd645eb2ef4b226d</guid><category>Security</category><category>Security / Privacy</category><category>Sports</category><category>World Cup 2026</category><category>security</category><category>immigration</category></item><item><title>How has use of framing protection security headers changed in the past 3 years&amp;#x3f;, (Wed, Jun 10th)</title><link>https://isc.sans.edu/diary/rss/33068</link><description>&lt;p&gt;Back in 2023, I wrote a diary&amp;#x5b;&lt;a href="https://isc.sans.edu/diary/29698"&gt;1&lt;/a&gt;&amp;#x5d; discussing how commonly X-Frame-Options and CSP headers containing the frame-ancestors directive were used on 1 million most popular domains on the internet (based on the Tranco list&amp;#x5b;&lt;a href="https://tranco-list.eu/"&gt;2&lt;/a&gt;&amp;#x5d;), and how they were set. Given that three years have passed since then, I thought it might be interesting to repeat the analysis and see what &amp;#xe2;&amp;#x20ac;&amp;#x201c; if anything &amp;#xe2;&amp;#x20ac;&amp;#x201c; has changed in the meantime.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Back in 2023, I wrote a diary[&lt;a href="https://isc.sans.edu/diary/29698"&gt;1&lt;/a&gt;] discussing how commonly X-Frame-Options and CSP headers containing the frame-ancestors directive were used on 1 million most popular domains on the internet (based on the Tranco list[&lt;a href="https://tranco-list.eu/"&gt;2&lt;/a&gt;]), and how they were set. Given that three years have passed since then, I thought it might be interesting to repeat the analysis and see what &amp;ndash; if anything &amp;ndash; has changed in the meantime.&lt;/p&gt;
-
-&lt;p&gt;Before we get to the data, however, let&amp;rsquo;s briefly recap what the headers in question do and why they are important.&lt;/p&gt;
-
-&lt;p&gt;Both headers basically serve the same fundamental purpose &amp;ndash; they inform a browser whether the content of a given web page may be embedded in an iframe or similar object on another web page. Without either of these headers in place, any web page may freely load any other web page in an iframe, which can be quite beneficial in some instances, but also provides a functionality that is commonly abused by phishing actors[&lt;a href="https://isc.sans.edu/diary/29638"&gt;3&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;The most common abuse scenario is related to a generic framing attack, and leads to what is sometimes called an &amp;ldquo;overlay phishing&amp;rdquo;. It is based on an attacker creating a malicious page which loads a legitimate website (usually the official company website of the recipient of the phishing) in a full-screen iframe, then overlays a fake login prompt on top of it. The result is that the victim sees what may appear to be the real login page. Setting either X-Frame-Options or CSP with the frame-ancestors directive on the legitimate site effectively mitigates this approach, because the browser will refuse to load the page inside an iframe in the first place, and all that would be displayed would be a fake login form over a browser message informing the user that a page cannot be loaded (which should make the credential stealing form apper less than trustworthy to most people).&lt;/p&gt;
-
-&lt;p&gt;This is a good reason why these headers are worth implementing on any organization's web site, regardless of how prominent or otherwise &amp;ldquo;interesting&amp;rdquo; the organization might consider itself to be.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;For completeness&amp;rsquo; sake, it should be mentioned that although the two security headers serve a similar purpose, they are not exactly equal. The X-Frame-Options header is the older of the two mechanisms and, while functional, is relatively limited in what it can express. It supports three directives: DENY (the page may not be framed by anyone), SAMEORIGIN (the page may only be framed by pages on the same origin/domain), and ALLOW-FROM (the page may be framed by a specific origin/domain).&lt;/p&gt;
-
-&lt;p&gt;Although the header in general is still widely supported and does its job well, its ALLOW-FROM directive was never universally supported by all browsers and is now considered obsolete[&lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin"&gt;4&lt;/a&gt;].&amp;nbsp;More importantly, however, the X-Frame-Options header as a whole has been basically superseded by the Content Security Policy frame-ancestors directive.&lt;/p&gt;
-
-&lt;p&gt;The CSP frame-ancestors directive offers considerably more flexibility than X-Frame-Options. It supports the same basic use cases (frame-ancestors 'none' being equivalent to DENY, frame-ancestors 'self' being equivalent to SAMEORIGIN), but also enables some additional ones (such as&amp;nbsp; supporting wildcard matching for subdomains etc.). Modern browsers therefore generally treat frame-ancestors as the authoritative directive, ignoring X-Frame-Options entirely when both are present[&lt;a href="https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options"&gt;5&lt;/a&gt;].&amp;nbsp;That said, X-Frame-Options remains relevant for legacy browser compatibility and &amp;ndash; in practice &amp;ndash; both headers can be sent simultaneously without any harm, which is what many HTTP servers actually do.&lt;/p&gt;
-
-&lt;p&gt;With this context in mind, let us look at how the use of these headers has evolved since 2023.&lt;/p&gt;
-
-&lt;p&gt;The data was gathered using the same approach that I used in 2023 &amp;ndash; I used a simple Python script that went through the current Tranco list of the 1 million most popular domains and attempted to connect to each one over HTTPS, recording which security-related headers were present in the response. The script performed no retries on failure, and the following numbers are therefore not completely precise.&amp;nbsp;Nevertheless, based on a few tests, I would estimate the error rate to be significantly less than 0.5%, which I consider sufficient for our purposes of seeing whether and how the use of both &amp;ldquo;framing protection&amp;rdquo; headers has changed over time.&lt;/p&gt;
-
-&lt;p&gt;And as you may see from the following charts, which include both the 2023 and 2026 data for comparison, the numbers have indeed moved in an interesting way over the past three years (and the direction of movement is not entirely consistent across different sample sizes).&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame-or-csp.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame-or-csp.png" style="border-width: 1px; border-style: solid; width: 800px; height: 474px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In the top 1 thousand most popular domains, the overall coverage by either X-Frame-Options or CSP frame-ancestors directive has actually decreased &amp;ndash; from 27.1% in 2023 to 23.1% in 2026. On the other hand, in the top 100 thousand domains, the coverage has increased significantly&amp;nbsp;&amp;ndash; from 20.6% to 37.4%&amp;nbsp;&amp;ndash; and in the full top 1 million domains it has grown from 14.4% to 29.7%. The divergence between the top 1k and the larger samples is somewhat puzzling at first glance, though it likely reflects the fact that the composition of the top 1k list has changed quite a bit over three years, with domains of some security-conscious organizations dropping out of the top 1k and being replaced by domains that don't serve web content in the traditional sense (CDN endpoints, infrastructure domains, API backends, and so on) and therefore don't send security headers at all.&lt;/p&gt;
-
-&lt;p&gt;Looking at the breakdown of specific X-Frame-Options directives in use, SAMEORIGIN remains the most common choice across all sample sizes, which is not surprising, as it is generally the most practical option for most web applications.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-x-frame.png" style="border-width: 1px; border-style: solid; width: 800px; height: 474px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In the top 1 thousand domains, SAMEORIGIN has actually declined (from 19.4% to 15.3%), while in the top 100 thousand and top 1 million, it has increased notably &amp;ndash; from 16.9% to 20.8% and from 12.4% to 19.4% respectively. The DENY directive has seen modest increases across all sample sizes, and the ALLOW-FROM directive remains at negligible levels in the larger samples and is completely absent from the 1k sample.&lt;/p&gt;
-
-&lt;p&gt;When it comes to CSP with the frame-ancestors directive, the numbers tell an encouraging story across all sample sizes. In the top 1k, usage has grown from 7.9% to 9.4%. In the top 100k, it has more than doubled &amp;ndash; from 3.8% to 7.9%. And in the full 1 million sample, the increase is even more dramatic, from 1.9% to 7.1%.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-06-10-csp.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-06-10-csp.png" style="border-width: 1px; border-style: solid; width: 801px; height: 475px;" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This, next to the aforementioned more than doubling of domains that use either CSP frame-ancestors or X-Frame-Options, is one of the two the most positive findings in the entire dataset. As discussed above, CSP frame-ancestors is the currently recommended approach for preventing framing attacks, so its growth relative to X-Frame-Options, as well as in absolute terms, is a welcome trend.&lt;/p&gt;
-
-&lt;p&gt;Looking at the specific values used in the frame-ancestors directive, 'self' remains the most common choice, which is consistent with the 2023 findings. The 'none' directive, which provides the strictest protection by disallowing framing entirely regardless of origin, has seen notable growth in the larger sample sizes &amp;ndash; from 0.43% to 1.29% in the top 100k, and from 0.20% to 2.49% in the top 1 million. This suggests that at least some administrators are becoming more deliberate in their framing policies, choosing to explicitly disallow all framing rather than merely restricting it to the same origin. The use of specific domain(s) in the frame-ancestors value has remained relatively flat or slightly decreased across all sample sizes, which is expected, as this configuration requires more deliberate setup, and is generally only applicable to specific deployment scenarios (e.g. embedded widgets, single sign-on flows etc.).&lt;/p&gt;
-
-&lt;p&gt;To sum up, despite the slight regression in the top 1k, the overall picture that emerges from the 2026 data is noticeably more positive than the 2023 one. Both X-Frame-Options and CSP frame-ancestors are more widely deployed across the 1 million most popular domains &amp;ndash; and one can therefore assume that across the internet as a whole as well &amp;ndash; than they were three years ago. CSP frame-ancestors in particular has seen a very significant growth, which is encouraging.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, even with these improvements, the data still shows that even the majority of the most popular domains on the internet do not use either of these headers at all, leaving their users potentially exposed to framing-based attacks, including the phishing techniques discussed at the beginning of this diary. Given how straightforward these headers are to implement (for most web applications, adding the appropriate response header is a matter of a single line of server configuration), there is clearly still considerable room for improvement across the industry as a whole.&lt;/p&gt;
-
-&lt;p&gt;Then again, this also means that it will be that much more interesting to see where things stand in another two or three years&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/29698"&gt;https://isc.sans.edu/diary/29698&lt;/a&gt;&lt;br /&gt;
-[2] &lt;a href="https://tranco-list.eu/"&gt;https://tranco-list.eu/&lt;/a&gt;&lt;br /&gt;
-[3] &lt;a href="https://isc.sans.edu/diary/29638"&gt;https://isc.sans.edu/diary/29638&lt;/a&gt;&lt;br /&gt;
-[4] &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin"&gt;https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options#allow-from_origin&lt;/a&gt;&lt;br /&gt;
-[5] &lt;a href="https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options"&gt;https://w3c.github.io/webappsec-csp/#frame-ancestors-and-frame-options&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;-----------&lt;br /&gt;
-Jan Kopriva&lt;br /&gt;
-&lt;a href="https://www.linkedin.com/in/jan-kopriva/"&gt;LinkedIn&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33068</guid></item><item><title>ISC Stormcast For Wednesday, June 10th, 2026 https://isc.sans.edu/podcastdetail/9966, (Wed, Jun 10th)</title><link>https://isc.sans.edu/diary/rss/33066</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33066</guid></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/"&gt;Microsoft’s Record-Breaking Patch Tuesday Fixes Over 200 Security Flaws&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-microsoft-june-patch-tuesday-record-breaking/</guid><category>Cybersecurity</category><category>Data Management</category><category>International</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>ai security</category><category>bitlocker</category><category>cve</category><category>cybersecurity</category><category>dhcp client</category><category>enterprise security</category><category>greenplasma</category><category>http.sys</category><category>june patch tuesday</category><category>Microsoft Defender</category><category>patch management</category><category>patch tuesday</category><category>vulnerabilities</category><category>windows</category><category>yellowkey</category><category>zero day</category><category>zero day initiative</category></item><item><title>NSO Group Hacking WhatsApp Despite Court Order</title><link>https://www.schneier.com/blog/archives/2026/06/nso-group-hacking-whatsapp-despite-court-order.html</link><description>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</description><content:encoded>&lt;p&gt;WhatsApp has &lt;a href="https://www.securityweek.com/whatsapp-catches-spyware-firm-nso-defying-no-hacking-court-order/"&gt;caught&lt;/a&gt; the NSO Group phishing its users, in violation of a court order.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72158</guid><category>Uncategorized</category><category>courts</category><category>hacking</category><category>phishing</category><category>spyware</category><category>WhatsApp</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>Amnesty International Warns That World Cup Fans Face Potential Human Rights Violations</title><link>https://www.wired.com/story/amnesty-international-world-cup-human-rights/</link><description>The organization claims that the FIFA tournament could have impacts on the rights of local people and visiting soccer fans in all three host countries.</description><guid isPermaLink="false">6a1071b6fd645eb2ef4b226d</guid><category>Security</category><category>Security / Privacy</category><category>Sports</category><category>World Cup 2026</category><category>security</category><category>immigration</category></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
 &lt;p&gt;The software giant said in &lt;a href="https://www.microsoft.com/en-us/msrc/blog/2026/05/a-note-on-patch-tuesday" rel="noopener" target="_blank"&gt;a blog post&lt;/a&gt; last month that both its engineers and the security community are increasing using artificial intelligence tools to find bugs, meaning this month&amp;#8217;s heavy Patch Tuesday may start to become the norm, said &lt;strong&gt;Satnam Narang&lt;/strong&gt;, senior staff research engineer at &lt;strong&gt;Tenable&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Some surveys put AI usage among security professionals generally at 90%, so it’s unsurprising that this volume of patches may be the norm,&amp;#8221; Narang said. &amp;#8220;Pandora’s proverbial box has been opened, and as more advanced AI models become available, we expect the norm to continue upward across the board, not just for Patch Tuesday.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;June&amp;#8217;s zero-day bugs include &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2026-49160" rel="noopener" target="_blank"&gt;CVE-2026-49160&lt;/a&gt;, a denial of service vulnerability affecting a range of web servers, including Microsoft &lt;strong&gt;Internet Information Services&lt;/strong&gt; (IIS). Microsoft says the flaw was reported by OpenAI&amp;#8217;s Codex.&lt;/p&gt;
@@ -7212,594 +7896,7 @@ qphu2urfykunh5l42retl4aqw6xnfjkyjvcy6gjqrs&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.cisa.gov/binding-operational-directive-22-01"&gt;Binding Operational Directive (BOD) 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities&lt;/a&gt; established the KEV Catalog as a living list of known Common Vulnerabilities and Exposures (CVEs) that carry significant risk to the federal enterprise. BOD 22-01 requires Federal Civilian Executive Branch (FCEB) agencies to remediate identified vulnerabilities by the due date to protect FCEB networks against active threats. See the&amp;nbsp;&lt;a href="https://www.cisa.gov/sites/default/files/publications/Reducing_the_Significant_Risk_of_Known_Exploited_Vulnerabilities_211103.pdf"&gt;BOD 22-01 Fact Sheet&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24988</guid></item><item><title>Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/</link><description>&lt;p&gt;A large-scale npm supply chain attack compromised over 90 versions of @redhat-cloud-services packages, silently infecting CI/CD environments and developer systems. The malicious code steals credentials from GitHub, cloud platforms, and local machines, then spreads like a worm by republishing trusted packages. Discover how the attack works, what data is at risk, and the steps you can take to protect your organization.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/"&gt;Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-4d3b568d-79c0-4ff9-a12f-9eb62bb04ba8"&gt;
-	&lt;button class="btn btn-collapse" type="button"&gt;
-		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
-		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
-
-		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
-			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-4d3b568d-79c0-4ff9-a12f-9eb62bb04ba8"&gt;
-		&lt;div class="table-of-contents-block__content"&gt;
-			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
-&lt;/aside&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence identified a large-scale npm supply chain attack affecting 32 maliciously modified packages across more than 90 versions under the @redhat-cloud-services npm scope. The compromise originated from the upstream RedHatInsights/javascript-clients Continuous Integration and Continuous Delivery (CI/CD) pipeline, allowing attackers to publish trojanized packages through the legitimate GitHub Actions OpenID Connect (OIDC) publishing workflow. As a result, the malicious packages carried authentic provenance signatures while embedding the campaign marker “Miasma: The Spreading Blight.”&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Once installed, the trojanized packages triggered an npm preinstall hook that executed a heavily obfuscated 4.29 MB dropper script. Through multiple layers of obfuscation and encryption, the malware downloaded the Bun JavaScript runtime and launched a secondary payload designed to harvest credentials from GitHub, npm, Amazon Web Service (AWS), Azure, Google Cloud Platform (GCP), HashiCorp Vault, Kubernetes, and developer systems. The malware also attempted to propagate by compromising additional maintainer packages and, in some scenarios, could destroy the maintainer’s home directory.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload operated across Linux, macOS, and Windows by dynamically downloading the correct Bun runtime for each platform, although Linux CI/CD runners appeared to be the primary target. On developer systems, the malware stole Secure Shell (SSH) keys, command-line interface (CLI) credentials, browser and wallet data, while in CI/CD environments it scraped GitHub Actions runner memory for secrets, escalated privileges using passwordless sudo, and republished poisoned packages with forged Supply-chain Levels for Software Artifacts (SLSA) provenance to continue downstream propagation. Microsoft shared its findings with the npm team, leading to the removal of affected repositories and the implementation of additional protections on the @redhat-cloud-services namespace to prevent unauthorized publishing.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147917 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. End-to-end attack chain from the hijacked trusted-publisher flow through credential theft, exfiltration, and worm propagation across maintainers.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;At a high level, the malware payload progresses through 10 phases:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Delivery and execution:&lt;/strong&gt; The infection begins automatically during npm install, where the malicious preinstall hook executes &lt;em&gt;node index.js&lt;/em&gt; without requiring user interaction.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Staged unpacking: &lt;/strong&gt;The payload is unpacked through multiple decoding layers, including several ROT (rotate)-based obfuscation variants followed by AES-128-GCM decryption. The malware then downloads the Bun runtime and detonates the final payload.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Environment gating: &lt;/strong&gt;The malware validates the execution environment before continuing. It terminates execution on systems configured with few regions in locale settings and can optionally restrict execution to CI/CD environments only.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Defense evasion: &lt;/strong&gt;The malware attempts to neutralize security controls&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Credential access: &lt;/strong&gt;The malware harvests secrets and authentication tokens from GitHub, npm, major cloud providers, HashiCorp Vault, and Kubernetes environments, including scraping sensitive data directly from CI runner process memory.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Privilege escalation&lt;/strong&gt;: It installs a passwordless sudo rule to obtain elevated privileges and maintain deeper system control.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Persistence: &lt;/strong&gt;The malware continuously monitors stolen tokens and prepares secondary-stage payload deployment for long-term access.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Exfiltration:&lt;/strong&gt; Stolen data is transmitted using three separate command-and-control (C2) channels, including abuse of GitHub infrastructure as an exfiltration mechanism.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Self-propagation: &lt;/strong&gt;The malware republishes packages owned by the compromised maintainer using forged provenance metadata, effectively allowing the threat to spread like a worm across trusted package ecosystems.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Destructive tripwire:&lt;/strong&gt; If the malware detects interaction with a planted decoy token, it triggers a destructive fail-safe command (&lt;em&gt;rm -rf ~/&lt;/em&gt;) intended to wipe the victim’s home directory.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload replaces the legitimate &lt;em&gt;index.js&lt;/em&gt; with a single-line obfuscated script.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="obfuscation"&gt;Obfuscation&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 0 – Malicious preinstall trigger:&lt;/strong&gt; The attack begins in &lt;em&gt;package.json&lt;/em&gt;, where a weaponized preinstall hook automatically executes during npm install, allowing the malware to run through both direct and transitive dependency installation. The modified packages also replaced the original &lt;em&gt;index.js&lt;/em&gt; while leaving source-map metadata unchanged, indicating probable release-pipeline tampering.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147918 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. The weaponized package.json. The preinstall hook runs the 4.29 MB index.js dropper automatically on install.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 1 – Multi-layer JavaScript obfuscation:&lt;/strong&gt; The 4.29 MB &lt;em&gt;index.js&lt;/em&gt; dropper uses layered obfuscation, beginning with a large character-code array reconstructed at runtime, decoded through a ROT-XX (Caesar cipher) transformation, and dynamically executed via &lt;em&gt;eval()&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147919 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-2.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. The ROT-XX character-code outer wrapper.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 2 – AES-encrypted payloads and Bun runtime abuse:&lt;/strong&gt; The next layer decrypts two AES-128-GCM encrypted blobs: one downloads the Bun runtime from official Bun infrastructure, while the second contains the primary payload. The malware then executes the payload via Bun, creating an unusual process chain (node → shell → bun → payload) designed to evade Node-focused monitoring and detections.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147920 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. AES-128-GCM decryption of the two embedded blobs and the Bun-based second-stage execution.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 3 – Obfuscator.io string-array protection:&lt;/strong&gt; The Bun-executed payload is additionally protected using Obfuscator.io techniques, including rotated string arrays, decoder functions, and hundreds of alias wrappers that conceal nearly every string and identifier from static analysis.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147921 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-4.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. Static resolution of the obfuscator.io string array.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Stage 4 – Custom cryptographic string cipher:&lt;/strong&gt; Sensitive strings remain protected behind a bespoke encryption routine that derives keys using PBKDF2-HMAC-SHA-256 with 200,000 iterations, followed by multiple SHA-256-seeded permutation and XOR stages, significantly complicating reverse engineering and static extraction.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147922 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-5.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. The custom PBKDF2(200,000)+permutation cipher and the recovered plaintext constants.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="credential-theft"&gt;Credential theft&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload targets secrets across multiple providers:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: Validates token/scopes, enumerates repos, reads Actions/org secrets, uses GraphQL for branch/history, and steals ACTIONS_RUNTIME_TOKEN + ACTIONS_ID_TOKEN_REQUEST_TOKEN.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;npm&lt;/strong&gt;: Validates via &lt;em&gt;/-/whoami&lt;/em&gt;, exchanges OIDC token for publish rights, and searches maintainer-owned packages for poisoning targets.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;AWS&lt;/strong&gt;: Pulls Identity and Access Management (IAM) credentials via Instance Metadata Service (IMDS) and Elastic Container Service (ECS) metadata, plus Secrets Manager access.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Azure&lt;/strong&gt;: Collects IMDS OAuth2 tokens for &lt;em&gt;management.azure.com&lt;/em&gt;, &lt;em&gt;graph.microsoft.com&lt;/em&gt;, and Key Vault (&lt;em&gt;*.vault.azure.net&lt;/em&gt;).&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;GCP&lt;/strong&gt;: Harvests &lt;em&gt;metadata.google.internal service-account tokens&lt;/em&gt;, Secret Manager, and Resource Manager access.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;Vault/K8s&lt;/strong&gt;: Probes Vault (127.0.0.1:8200) across many token paths; reads Kubernetes Service Account (SA)&amp;nbsp;token and namespace secrets.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;CI &amp;amp; Local &lt;/strong&gt;: Steals CIRCLE_TOKEN; exfiltrates secrets from &lt;em&gt;SSH/AWS/npm/PyPI/git/env/gcloud/kube/docker&lt;/em&gt;, browser data, and wallet files (&lt;em&gt;*.wallet&lt;/em&gt;, &lt;em&gt;wallet.dat&lt;/em&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-147923 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/06/image-6.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. The multi-platform credential harvester recovered from the decrypted payload.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="runner-memory-scraping"&gt;Runner memory scraping&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload locates the GitHub Actions &lt;em&gt;Runner.Worker&lt;/em&gt; PID using &lt;em&gt;/proc&lt;/em&gt; scanning, then extracts runtime secrets using the following:&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-// Locates Runner.Worker PID via /proc
-'findRunnerWorkerPIDLinux'
-// Scans /proc//cmdline for "Runner.Worker"
- 
-// Extracts secrets from process memory
-tr -d '\0' | grep -aoE '"[^"]+":{"value":"[^"]*","isSecret":true}' | sort -u
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;This activity bypasses normal secret masking by reading secrets directly from runner process memory.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="privilege-escalation"&gt;Privilege escalation&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload performs the following actions to escalate its privileges:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Injects sudoers rule through bind mount: &lt;em&gt;echo &amp;#8216;runner ALL=(ALL) NOPASSWD:ALL&amp;#8217; &amp;gt; /mnt/runner&lt;/em&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Modifies &lt;em&gt;/etc/hosts&lt;/em&gt; for DNS redirection&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-// Injects passwordless sudo via /etc/sudoers.d bind mount at /mnt
-echo 'runner ALL=(ALL) NOPASSWD:ALL' &gt; 
- &amp;&amp; chmod 0440 /mnt/runner
- 
-// Neutralize Security product monitoring 
-sudo sh -c "echo '127.0.0.1 ' &gt;&gt; /etc/hosts"
- 
-// Validates sudo access before operations
-sudo -n true
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="exfiltration"&gt;Exfiltration&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The malware abuses GitHub and victim-owned assets instead of a single easy-to-block C2 endpoint:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Channel A&lt;/strong&gt; (victim-owned repo drop): Creates a public repo in the victim’s GitHub account (&amp;#8220;Miasma: The Spreading Blight&amp;#8221;) and commits stolen credential JSON to &lt;em&gt;results/&amp;lt;timestamp&amp;gt;-&amp;lt;counter&amp;gt;.json&lt;/em&gt;. Repo names are randomized &lt;em&gt;(adjective-creature-&amp;lt;0–99999&amp;gt;)&lt;/em&gt;, spreading indicators.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Channel B&lt;/strong&gt; (code propagation): Injects its own source as &lt;em&gt;.github/setup.js&lt;/em&gt; into non-protected branches across victim-owned repos via Git Data API (blob → tree → commit → ref update). Skips protected/default branches and common bot/release branches; uses &lt;em&gt;chore: update dependencies [skip ci]&lt;/em&gt; with spoofed &lt;em&gt;github-actions@github.com&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Channel C &lt;/strong&gt;(dormant HTTPS sender): Includes a disabled POST path to &lt;em&gt;api.anthropic.com:443/v1/api&lt;/em&gt; (&lt;em&gt;noop: true&lt;/em&gt; in this sample). The same domain is used to validate stolen Anthropic keys (for example, &lt;em&gt;~/.claude.json&lt;/em&gt;), indicating a swappable live exfiltration path.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;C2 is not tied to one account; it rotates across a pool of 16 attacker-controlled GitHub accounts per session. Stolen tokens are double-Base64 encoded in transit, and traffic is masked with &lt;em&gt;python-requests/2.31.0&lt;/em&gt; user-agent spoofing&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="propagation-and-persistence"&gt;Propagation and persistence&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The malware spreads across repositories while maintaining access through credential theft, supply-chain forgery, and destructive safeguards:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Enumerates &lt;em&gt;/user/repos&lt;/em&gt; and &lt;em&gt;/user/orgs&lt;/em&gt; to spread into additional repositories&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Installs Bun runtime, executes second-stage payload using &lt;em&gt;bun run .claude/&lt;/em&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Deploys token monitor for ongoing credential capture&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Forges SLSA provenance attestations through Sigstore (Fulcio or Rekor) to appear legitimate&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Plants a decoy honeytoken (IfYouInvalidateThisTokenItWillNukeTheComputerOfTheOwner); triggering/revoking it can invoke a wiper routine (&lt;em&gt;rm -rf ~/&lt;/em&gt; and &lt;em&gt;~/Documents&lt;/em&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="impact-and-blast-radius"&gt;Impact and blast radius&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This attack has a wide blast radius, affecting packages, credentials, and downstream systems.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Direct compromise of &lt;em&gt;@&lt;/em&gt; redhat-cloud-services packages with broad ecosystem adoption&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Amplification through downstream dependencies into thousands of projects&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Cascading risk: stolen npm tokens enable further package poisoning, stolen GitHub tokens enable repo manipulation, and stolen AWS credentials enable cloud access&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;SLSA provenance forgery erodes trust in supply chain attestation frameworks&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="campaign-scope"&gt;&lt;strong&gt;Campaign scope&lt;/strong&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Our investigation uncovered the following affected packages and versions.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Package (&lt;/strong&gt;&lt;strong&gt;@redhat-cloud-services/…&lt;/strong&gt;&lt;strong&gt;)&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Malicious versions&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;types&lt;/td&gt;&lt;td&gt;3.6.1, 3.6.2, 3.6.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-utilities&lt;/td&gt;&lt;td&gt;7.4.1, 7.4.2, 7.4.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components&lt;/td&gt;&lt;td&gt;7.7.2, 7.7.3, 7.7.5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;rbac-client&lt;/td&gt;&lt;td&gt;9.0.3, 9.0.4, 9.0.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;javascript-clients-shared&lt;/td&gt;&lt;td&gt;2.0.8, 2.0.9, 2.0.11&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-config-utilities&lt;/td&gt;&lt;td&gt;4.11.2, 4.11.3, 4.11.5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-notifications&lt;/td&gt;&lt;td&gt;6.9.2, 6.9.3, 6.9.5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;tsc-transform-imports&lt;/td&gt;&lt;td&gt;1.2.2, 1.2.4, 1.2.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-config&lt;/td&gt;&lt;td&gt;6.11.3, 6.11.4, 6.11.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;eslint-config-redhat-cloud-services&lt;/td&gt;&lt;td&gt;3.2.1, 3.2.2, 3.2.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;host-inventory-client&lt;/td&gt;&lt;td&gt;5.0.3, 5.0.4, 5.0.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;rule-components&lt;/td&gt;&lt;td&gt;4.7.2, 4.7.3, 4.7.5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-remediations&lt;/td&gt;&lt;td&gt;4.9.2, 4.9.3, 4.9.5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-translations&lt;/td&gt;&lt;td&gt;4.4.1, 4.4.2, 4.4.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;vulnerabilities-client&lt;/td&gt;&lt;td&gt;2.1.9, 2.1.11&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-advisor-components&lt;/td&gt;&lt;td&gt;3.8.2, 3.8.4, 3.8.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;entitlements-client&lt;/td&gt;&lt;td&gt;4.0.11, 4.0.12, 4.0.14&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;chrome&lt;/td&gt;&lt;td&gt;2.3.1, 2.3.2, 2.3.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;notifications-client&lt;/td&gt;&lt;td&gt;6.1.4, 6.1.5, 6.1.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;compliance-client&lt;/td&gt;&lt;td&gt;4.0.3, 4.0.4, 4.0.6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sources-client&lt;/td&gt;&lt;td&gt;3.0.10, 3.0.11, 3.0.13&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;integrations-client&lt;/td&gt;&lt;td&gt;6.0.4, 6.0.5, 6.0.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;frontend-components-testing&lt;/td&gt;&lt;td&gt;1.2.1, 1.2.2, 1.2.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;remediations-client&lt;/td&gt;&lt;td&gt;4.0.4, 4.0.5, 4.0.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;insights-client&lt;/td&gt;&lt;td&gt;4.0.4, 4.0.5, 4.0.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;topological-inventory-client&lt;/td&gt;&lt;td&gt;3.0.10, 3.0.11, 3.0.13&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;config-manager-client&lt;/td&gt;&lt;td&gt;5.0.4, 5.0.5, 5.0.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hcc-pf-mcp&lt;/td&gt;&lt;td&gt;0.6.1, 0.6.2, 0.6.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;quickstarts-client&lt;/td&gt;&lt;td&gt;4.0.11, 4.0.12, 4.0.14&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;patch-client&lt;/td&gt;&lt;td&gt;4.0.4, 4.0.5, 4.0.7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hcc-feo-mcp&lt;/td&gt;&lt;td&gt;0.3.1, 0.3.2, 0.3.4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hcc-kessel-mcp&lt;/td&gt;&lt;td&gt;0.3.1, 0.3.2, 0.3.4&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;&lt;strong&gt;Mitigation and protection guidance&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Review dependency trees for direct or transitive usage of affected &lt;em&gt;@&lt;/em&gt; redhat-cloud-services&lt;em&gt; /&lt;/em&gt; packages.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Identify systems that installed or built affected package versions during the suspected exposure window.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Pin known-good package versions where possible and avoid automatic dependency upgrades until validation is complete.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Disable pre- and post-installation script execution by ensuring you run npm install with &lt;em&gt;&amp;#8211;ignore-scripts&lt;/em&gt;.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;While GitHub team has already invalidated all the npm tokens that had write access and 2FA bypass, Microsoft Defender still recommends rotating credentials, tokens, npm access tokens, CI/CD secrets, and cloud credentials that might have been exposed in affected build or developer environments.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Audit organization and personal GitHub account for public repositories with the description “Miasma: The Spreading Blight” or other unexpected repositories created during the exposure window, and revoke any GitHub tokens that might have been implicated.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Audit CI/CD logs for unexpected outbound network connections, script execution, or suspicious package lifecycle activity.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Review npm package lockfiles, build logs, and artifact provenance for evidence of compromised package versions.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/enable-cloud-protection-microsoft-defender-antivirus"&gt;Enable cloud-delivered protection&lt;/a&gt; in Microsoft Defender Antivirus or equivalent antivirus protection.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Use Microsoft Defender XDR to investigate suspicious activity across endpoints, identities, cloud apps, and developer environments. Use Microsoft Defender Vulnerability Management to search for redhat-cloud-services packages across your estate.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;&lt;strong&gt;Microsoft Defender XDR detections&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Customers with provisioned access can also use Microsoft Security Copilot in Microsoft Defender to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;&lt;strong&gt;Microsoft Defender XDR detections&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Initial access / Execution&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Suspicious script execution during npm install or package lifecycle activity&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;&amp;#8211; Trojan:JS/ShaiWorm.DAW!MTB&lt;br /&gt;&amp;#8211; Trojan:JS/ObfusNpmJs&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious Node.js process behavior &amp;#8211; Suspicious installation of Bun runtime&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender XDR&lt;s&gt;:&lt;/s&gt;&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious file creation in temporary directory by node.exe&lt;br /&gt;&amp;#8211; Suspicious Bun execution from Node.js process&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Execution / Defense evasion&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Four-layer obfuscation (ROT XX)&amp;nbsp; → AES-128-GCM → string-array → custom cipher); Bun runtime download and execution to move off Node.js; process lineage &lt;em&gt;node&lt;/em&gt; → &lt;em&gt;sh&lt;/em&gt; → &lt;em&gt;bun&lt;/em&gt; to evade detection&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious usage of Bun runtime &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious installation of Bun runtime&lt;br /&gt;&amp;#8211; Suspicious Node.js process behavior &lt;br /&gt;&amp;#8211; Suspicious script execution via Bun &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious supply-chain compromise activity detected&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Credential access&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Multi-platform harvester targeting GitHub, npm, AWS IMDS/ECS, Azure IMDS, GCP, Vault, K8s, CircleCI; runner process-memory scraping to unmask secrets; anthropic API key theft&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Credential access attempt&lt;br /&gt;&amp;#8211; Kubernetes secrets enumeration indicative of credential access &amp;nbsp; &lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Sha1-Hulud Campaign Detected: Possible command injection to exfiltrate credentials &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Identity&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Anomalous token request patterns &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious enumeration of organizational secrets&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Exfiltration&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Public GitHub repo creation under victim&amp;#8217;s account with stolen credential JSON; Git Data API commits to non-protected branches; domain-sender fallback to (dormant) &lt;em&gt;api.anthropic.com&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Cloud Apps&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious GitHub API activity (repo creation, commit patterns) &amp;nbsp; &lt;br /&gt;&amp;#8211; Unusual data volume in commits &amp;nbsp; &lt;br /&gt;&amp;#8211; Authentication from unusual IP/location &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Impact / Worm propagation&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;npm OIDC token exchange republishing; forged Sigstore/SLSA provenance; self-injection (&lt;em&gt;.github/setup.js&lt;/em&gt;) into victim repos on non-protected branches&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Cloud Apps&lt;/strong&gt; &amp;nbsp; &lt;br /&gt;&amp;#8211; Suspicious npm package republish via OIDC &amp;nbsp; &amp;#8211; Anomalous use of bypass_2fa parameter &amp;nbsp; &lt;br /&gt;&amp;#8211; Packages publish from unusual location/time &amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-threat-analytics"&gt;&lt;strong&gt;Microsoft Defender XDR Threat analytics&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can reference the Threat analytics report for this campaign in the Microsoft Defender portal at &lt;a href="https://security.microsoft.com/threatanalytics3"&gt;https://security.microsoft.com/threatanalytics3&lt;/a&gt; for the latest indicators, recommended actions, and mitigation status across their estate.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="advanced-hunting"&gt;&lt;strong&gt;Advanced hunting&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following KQL queries can be used in Microsoft Defender XDR Advanced Hunting to identify potential exposure to this supply-chain compromise.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Bun execution from temporary directories&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-| where FileName == "bun" or ProcessCommandLine has "bun run"
-| where FolderPath startswith "/tmp/" or FolderPath startswith @"C:\Users\*\AppData\Local\Temp"
-| project Timestamp, DeviceName, InitiatingProcessFileName, 
-    ProcessCommandLine, FolderPath, AccountName
-| sort by Timestamp desc
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Bun execution from temporary directory (&lt;em&gt;CloudProcessEvents&lt;/em&gt;)&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-CloudProcessEvents
-| where Timestamp &gt; ago(7d)
-| where ProcessName =~ "bun"
-   or ProcessCommandLine has "bun run"
-| where FolderPath startswith "/tmp/"
-   or ProcessCommandLine matches regex @"/tmp/[^ ]*bun"
-| project Timestamp, TenantId, AzureResourceId,
-          KubernetesNamespace, KubernetesPodName,
-          ContainerName, ContainerImageName, ContainerId,
-          AccountName,
-          ProcessName, FolderPath, ParentProcessName, ProcessCommandLine,
-          UpperLayer  = tostring(AdditionalFields.UpperLayer),
-          DriftAction = tostring(AdditionalFields.DriftAction),
-          Memfd       = tostring(AdditionalFields.Memfd)
-| sort by Timestamp desc
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Bun download activity&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-CloudProcessEvents
-| where Timestamp &gt; ago(7d)
-| where ProcessName in~ ("curl","wget")
-| where ProcessCommandLine matches regex
-        @"https?://[^\s""']*?(github\.com/oven-sh/bun/releases|release-assets\.githubusercontent\.com/[^\s""']*?bun-(linux|darwin|windows)|/bun-(linux|darwin|windows)-(x64|aarch64|arm64)\.zip)"
-| extend BunUrl = extract(
-        @"(https?://[^\s""']*?(?:github\.com/oven-sh/bun/releases|release-assets\.githubusercontent\.com/[^\s""']*?bun-(?:linux|darwin|windows)|/bun-(?:linux|darwin|windows)-(?:x64|aarch64|arm64)\.zip)[^\s""']*)",
-        1, ProcessCommandLine),
-         OutputPath = extract(@"-[oO]\s+[""']?(\S+?)[""']?(\s|$)", 1, ProcessCommandLine)
-| project Timestamp, TenantId, AzureResourceId,
-          KubernetesNamespace, KubernetesPodName,
-          ContainerImageName, ContainerId,
-          ProcessName, ParentProcessName, ParentProcessId,
-          BunUrl, OutputPath, ProcessCommandLine,
-          UpperLayer = tostring(AdditionalFields.UpperLayer)
-| sort by Timestamp desc
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;npm → Node → Bun process chain&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-| where InitiatingProcessFileName in ("node", "node.exe")
-| where FileName == "bun" or FileName == "bun.exe"
-| join kind=inner (
-    DeviceProcessEvents
-    | where InitiatingProcessFileName in ("npm", "npm.cmd")
-    | where FileName in ("node", "node.exe")
-) on DeviceId, $left.InitiatingProcessId == $right.ProcessId
-| project Timestamp, DeviceName, AccountName,
-    NpmCommandLine = ProcessCommandLine1,
-    BunCommandLine = ProcessCommandLine
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Cloud metadata endpoint access from build processes&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceNetworkEvents
-| where RemoteIP in ("169.254.169.254", "169.254.170.2")
-| where InitiatingProcessFileName in ("node", "node.exe", "bun", "bun.exe")
-| project Timestamp, DeviceName, RemoteIP, RemoteUrl,
-    InitiatingProcessFileName, InitiatingProcessCommandLine
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;GitHub repository creation activity&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-CloudAppEvents
-| where ActionType == "CreateRepository" or RawEventName == "repo.create"
-| where Application == "GitHub"
-| where AccountType == "ServiceAccount" or ActorType has "Integration"
-| project Timestamp, AccountDisplayName, ActionType, RawEventName,
-    IPAddress, City, CountryCode
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Process memory access (runner scraping)&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-| where FileName == "grep"
-| where ProcessCommandLine has_all ("value", "isSecret\":true")
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;npm token enumeration&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceNetworkEvents
-| where RemoteUrl has "registry.npmjs.org/-/npm/v1/tokens"
-    or RemoteUrl has "registry.npmjs.org/-/whoami"
-| project Timestamp, DeviceName, RemoteUrl,
-    InitiatingProcessFileName, InitiatingProcessCommandLine
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Linux CI runner detection (process tree)&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-# For Linux runners not managed by Defender, use these shell commands:
-# Detect: npm preinstall spawning bun from /tmp
-ps aux | grep -E '/tmp/b-[a-z0-9]+/bun'
-# Detect: payload writes to /tmp/p*.js
-inotifywait -m /tmp -e create | grep '^/tmp/p.*\.js$'
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;&lt;strong&gt;Indicators of compromise (IOC)&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;@ redhat-cloud-services&lt;/td&gt;&lt;td&gt;Package scope&lt;/td&gt;&lt;td&gt;&amp;nbsp; All packages maintained by the @redhat-cloud-service account were compromised.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Index.js&lt;/td&gt;&lt;td&gt;File name&lt;/td&gt;&lt;td&gt;Malicious script or dropped file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;396cac9e457ec54ff6d3f6311cb5cc1da8054d019ce3ffa1de5741506c7a4ea4&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;Index.js (from redhat-cloud-services/remediations-client)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d8d170af3de17bb9b217c52aaaffdf9395f35ef015a57ef676e406c121e5e223&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;index.js (from @redhat-cloud-services/frontend-components-advisor-components-3.8.2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f0641e053e81f0d01fa46db35a83e0a34494886503086866d956d14e81fd3e1c&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;index.js (from @redhat-cloud-services/hcc-kessel-mcp-0.3.4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;d5a97614d5319ce9c8e01fa0b4eb06fb5b9e54fa13b23d718174a1546444123b&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;index.js (from @redhat-cloud-services/frontend-components-testing-1.2.4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;f88258e21592084a2f93a572ade8f9b91c0cd0e242f5cf6121ed7bad0f7bdd1f&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;index.js (from @redhat-cloud-services/frontend-components-notifications-6.9.3)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;25e121e3b7d300c0d0075b33e5eca39a3e6a659fb9cfee52b70ef71686628f1b&lt;/td&gt;&lt;td&gt;Sha256&lt;/td&gt;&lt;td&gt;index.js (from @redhat-cloud-services/chrome-2.3.4)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph" id="learn-more"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on&amp;nbsp;&lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;,&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the&amp;nbsp;&lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest&amp;nbsp;&lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/real-time-agent-protection-during-runtime" rel="noreferrer noopener" target="_blank"&gt;Protect your agents in real-time during runtime (Preview)&lt;/a&gt;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://eurppc-word-edit.officeapps.live.com/we/%E2%80%A2%09https:/learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-agent-builder" rel="noreferrer noopener" target="_blank"&gt;how to build and customize agents with Copilot Studio Agent Builder&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/"&gt;Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=147916</guid><category>Credential theft</category><category>npm</category></item><item><title>Android Is Fighting Phone Scams With a New Feature to Prove Who’s Calling</title><link>https://www.wired.com/story/android-is-fighting-phone-scams-with-a-new-feature-to-prove-whos-calling/</link><description>Available for Android 12 and later, the anti-scam feature is baked into Google Dialer, which sends a silent “confirmation signal” to ensure whoever’s calling you is who they appear to be.</description><guid isPermaLink="false">6a1df82698d38dd18285b14f</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Google</category><category>Android</category><category>phones</category><category>Apps</category><category>privacy</category><category>scams</category><category>Crime</category><category>Spam</category><category>Call Back</category></item><item><title>The HazyBeacon Protocol – How Malware Weaponizes Amazon Web Services (AWS) Lambda Function URLs</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways The Rise of Cloud-Native Command and Control (C2) Command and control (C2) infrastructure traditionally lived outside the victim environment. Malware beaconed to attacker-operated servers hosted on rented VPS infrastructure or compromised websites, and defenders focused on identifying those endpoints through IP reputation, domain intelligence, and network blocking. Cloud computing has started to blur [&amp;#8230;]</description><content:encoded>&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;Key Takeaways&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;Although BOD 22-01 only applies to FCEB agencies, CISA strongly urges all organizations to reduce their exposure to cyberattacks by prioritizing timely remediation of&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;KEV Catalog vulnerabilities&lt;/a&gt; as part of their vulnerability management practice. CISA will continue to add vulnerabilities to the catalog that meet the&amp;nbsp;&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities"&gt;specified criteria&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">/node/24988</guid></item><item><title>Android Is Fighting Phone Scams With a New Feature to Prove Who’s Calling</title><link>https://www.wired.com/story/android-is-fighting-phone-scams-with-a-new-feature-to-prove-whos-calling/</link><description>Available for Android 12 and later, the anti-scam feature is baked into Google Dialer, which sends a silent “confirmation signal” to ensure whoever’s calling you is who they appear to be.</description><guid isPermaLink="false">6a1df82698d38dd18285b14f</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Security / Privacy</category><category>Security / Security News</category><category>Google</category><category>Android</category><category>phones</category><category>Apps</category><category>privacy</category><category>scams</category><category>Crime</category><category>Spam</category><category>Call Back</category></item><item><title>The HazyBeacon Protocol – How Malware Weaponizes Amazon Web Services (AWS) Lambda Function URLs</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways The Rise of Cloud-Native Command and Control (C2) Command and control (C2) infrastructure traditionally lived outside the victim environment. Malware beaconed to attacker-operated servers hosted on rented VPS infrastructure or compromised websites, and defenders focused on identifying those endpoints through IP reputation, domain intelligence, and network blocking. Cloud computing has started to blur [&amp;#8230;]</description><content:encoded>&lt;h4 class="wp-block-heading"&gt;&lt;strong&gt;Key Takeaways&lt;/strong&gt;&lt;/h4&gt;
 
 
 
@@ -16122,7 +16219,7 @@ impl UserKeysObject {
         
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;p&gt;We started this as an experiment: could Matrix run on Workers? It can—and the approach can work for other stateful protocols, too.&lt;/p&gt;&lt;p&gt;By mapping traditional stateful components to Cloudflare’s primitives — Postgres to D1, Redis to KV, mutexes to Durable Objects — we can see  that complex applications don't need complex infrastructure. We stripped away the operating system, the database management, and the network configuration, leaving only the application logic and the data itself.&lt;/p&gt;&lt;p&gt;Workers offers the sovereignty of owning your data, without the burden of owning the infrastructure.&lt;/p&gt;&lt;p&gt;I have been experimenting with the implementation and am excited for any contributions from others interested in this kind of service. &lt;/p&gt;&lt;p&gt;Ready to build powerful, real-time applications on Workers? Get started with&lt;a href="https://developers.cloudflare.com/workers/"&gt; &lt;u&gt;Cloudflare Workers&lt;/u&gt;&lt;/a&gt; and explore&lt;a href="https://developers.cloudflare.com/durable-objects/"&gt; &lt;u&gt;Durable Objects&lt;/u&gt;&lt;/a&gt; for your own stateful edge applications. Join our&lt;a href="https://discord.cloudflare.com"&gt; &lt;u&gt;Discord community&lt;/u&gt;&lt;/a&gt; to connect with other developers building at the edge.&lt;/p&gt;</content:encoded><guid isPermaLink="false">6VOVAMNwIZ18hMaUlC6aqp</guid><category>Cloudflare Workers</category><category>Durable Objects</category><category>D1</category><category>Cloudflare Workers KV</category><category>R2</category><category>Security</category><category>Developer Platform</category><category>Developers</category><category>Rust</category><category>WebAssembly</category><category>Post-Quantum</category><category>Encryption</category></item><item><title>Celebrating Data Privacy Week with NIST’s Privacy Engineering Program</title><link>https://www.nist.gov/blogs/cybersecurity-insights/celebrating-data-privacy-week-nists-privacy-engineering-program</link><description>Grab your party hats – it’s Data Privacy Week! Data Privacy Week is a global initiative led by the National Cybersecurity Alliance to spread awareness about online privacy and empower individuals and businesses to respect privacy, safeguard data, and enable trust. In celebration of this week, the NIST Privacy Engineering Program is reflecting on recent work and looking ahead to what’s coming in the new year. Throughout 2026, we plan to continue collaborating with our privacy stakeholder community to develop and advance privacy risk management guidelines to help organizations of all sizes</description><guid isPermaLink="false">https://www.nist.gov/node/1905096</guid></item><item><title>PeckBirdy: A Versatile Script Framework for LOLBins Exploitation Used by China-aligned Threat Groups</title><link>https://www.trendmicro.com/en_us/research/26/a/peckbirdy-script-framework.html</link><description>PeckBirdy is a sophisticated JScript-based C&amp;amp;C framework used by China-aligned APT groups to exploit LOLBins across multiple environments, delivering advanced backdoors to target gambling industries and Asian government entities.</description><guid isPermaLink="false">urn:uuid:5265919b-48a6-cabb-22d6-2dfda1459765</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Embracing Choice in Cybersecurity: TrendAI Vision One™ and SentinelOne Integration</title><link>https://www.trendmicro.com/en_us/research/26/a/embracing-choice-in-cybersecurity.html</link><description>Discover how the TrendAI Vision One and SentinelOne integration exemplifies our commitment to endpoint flexibility.</description><guid isPermaLink="false">urn:uuid:19f1c700-cf5b-ffbd-7bb6-ff5b2c17ee3e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Pwn2Own: Researchers Earn $1 Million for 76 Zero-Days</title><link>https://www.trendmicro.com/en_us/research/26/a/pwn2own-researchers-earn-1-million-for-76-zero-days.html</link><description>Discover how TrendAI Zero Day Initiative (ZDI) identified critical vulnerabilities across connected vehicles, EV chargers, and automotive systems.</description><guid isPermaLink="false">urn:uuid:8c265779-825d-3330-61c0-2f0a444cae15</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Connected Car</category></item><item><title>Watering Hole Attack Targets EmEditor Users with Information-Stealing Malware</title><link>https://www.trendmicro.com/en_us/research/26/a/watering-hole-attack-targets-emeditor-users.html</link><description>TrendAI™ Research provides a technical analysis of a compromised EmEditor installer used to deliver multistage malware that performs a range of malicious actions.</description><guid isPermaLink="false">urn:uuid:a6da7eaa-2589-b04f-79b9-e465a0e571b0</guid><category>Trend Micro Research : Research</category><category>Trend Micro Research : Cyber Risk</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category></item><item><title>Millions of people imperiled through sign-in links sent by SMS</title><link>https://arstechnica.com/security/2026/01/millions-of-people-imperiled-through-sign-in-links-sent-by-sms/</link><description>Even well-known services with millions of users are exposing sensitive data.</description><content:encoded>&lt;p&gt;Websites that authenticate users through links and codes sent in text messages are imperiling the privacy of millions of people, leaving them vulnerable to scams, identity theft, and other crimes, recently published research has found.&lt;/p&gt;
+    &lt;p&gt;We started this as an experiment: could Matrix run on Workers? It can—and the approach can work for other stateful protocols, too.&lt;/p&gt;&lt;p&gt;By mapping traditional stateful components to Cloudflare’s primitives — Postgres to D1, Redis to KV, mutexes to Durable Objects — we can see  that complex applications don't need complex infrastructure. We stripped away the operating system, the database management, and the network configuration, leaving only the application logic and the data itself.&lt;/p&gt;&lt;p&gt;Workers offers the sovereignty of owning your data, without the burden of owning the infrastructure.&lt;/p&gt;&lt;p&gt;I have been experimenting with the implementation and am excited for any contributions from others interested in this kind of service. &lt;/p&gt;&lt;p&gt;Ready to build powerful, real-time applications on Workers? Get started with&lt;a href="https://developers.cloudflare.com/workers/"&gt; &lt;u&gt;Cloudflare Workers&lt;/u&gt;&lt;/a&gt; and explore&lt;a href="https://developers.cloudflare.com/durable-objects/"&gt; &lt;u&gt;Durable Objects&lt;/u&gt;&lt;/a&gt; for your own stateful edge applications. Join our&lt;a href="https://discord.cloudflare.com"&gt; &lt;u&gt;Discord community&lt;/u&gt;&lt;/a&gt; to connect with other developers building at the edge.&lt;/p&gt;</content:encoded><guid isPermaLink="false">6VOVAMNwIZ18hMaUlC6aqp</guid><category>Cloudflare Workers</category><category>Durable Objects</category><category>D1</category><category>Cloudflare Workers KV</category><category>R2</category><category>Security</category><category>Developer Platform</category><category>Developers</category><category>Rust</category><category>WebAssembly</category><category>Post-Quantum</category><category>Encryption</category></item><item><title>Celebrating Data Privacy Week with NIST’s Privacy Engineering Program</title><link>https://www.nist.gov/blogs/cybersecurity-insights/celebrating-data-privacy-week-nists-privacy-engineering-program</link><description>Grab your party hats – it’s Data Privacy Week! Data Privacy Week is a global initiative led by the National Cybersecurity Alliance to spread awareness about online privacy and empower individuals and businesses to respect privacy, safeguard data, and enable trust. In celebration of this week, the NIST Privacy Engineering Program is reflecting on recent work and looking ahead to what’s coming in the new year. Throughout 2026, we plan to continue collaborating with our privacy stakeholder community to develop and advance privacy risk management guidelines to help organizations of all sizes</description><guid isPermaLink="false">https://www.nist.gov/node/1905096</guid></item><item><title>PeckBirdy: A Versatile Script Framework for LOLBins Exploitation Used by China-aligned Threat Groups</title><link>https://www.trendmicro.com/en_us/research/26/a/peckbirdy-script-framework.html</link><description>PeckBirdy is a sophisticated JScript-based C&amp;amp;C framework used by China-aligned APT groups to exploit LOLBins across multiple environments, delivering advanced backdoors to target gambling industries and Asian government entities.</description><guid isPermaLink="false">urn:uuid:5265919b-48a6-cabb-22d6-2dfda1459765</guid><category>Trend Micro Research : APT &amp; Targeted Attacks</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Research</category></item><item><title>Embracing Choice in Cybersecurity: TrendAI Vision One™ and SentinelOne Integration</title><link>https://www.trendmicro.com/en_us/research/26/a/embracing-choice-in-cybersecurity.html</link><description>Discover how the TrendAI Vision One and SentinelOne integration exemplifies our commitment to endpoint flexibility.</description><guid isPermaLink="false">urn:uuid:19f1c700-cf5b-ffbd-7bb6-ff5b2c17ee3e</guid><category>Trend Micro Research : Cloud</category><category>Trend Micro Research : Exploits &amp; Vulnerabilities</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Compliance &amp; Risks</category><category>Trend Micro Research : Endpoints</category><category>Trend Micro Research : Network</category><category>Trend Micro Research : Security Strategies</category><category>Trend Micro Research : Articles, News, Reports</category></item><item><title>Pwn2Own: Researchers Earn $1 Million for 76 Zero-Days</title><link>https://www.trendmicro.com/en_us/research/26/a/pwn2own-researchers-earn-1-million-for-76-zero-days.html</link><description>Discover how TrendAI Zero Day Initiative (ZDI) identified critical vulnerabilities across connected vehicles, EV chargers, and automotive systems.</description><guid isPermaLink="false">urn:uuid:8c265779-825d-3330-61c0-2f0a444cae15</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Cyber Threats</category><category>Trend Micro Research : Connected Car</category></item><item><title>Millions of people imperiled through sign-in links sent by SMS</title><link>https://arstechnica.com/security/2026/01/millions-of-people-imperiled-through-sign-in-links-sent-by-sms/</link><description>Even well-known services with millions of users are exposing sensitive data.</description><content:encoded>&lt;p&gt;Websites that authenticate users through links and codes sent in text messages are imperiling the privacy of millions of people, leaving them vulnerable to scams, identity theft, and other crimes, recently published research has found.&lt;/p&gt;
 &lt;p&gt;The links are sent to people seeking a range of services, including those offering insurance quotes, job listings, and referrals for pet sitters and tutors. To eliminate the hassle of collecting usernames and passwords—and for users to create and enter them—many such services instead require users to provide a cell phone number when signing up for an account. The services then send authentication links or passcodes by SMS when the users want to log in.&lt;/p&gt;
 &lt;h2&gt;Easy to execute at scale&lt;/h2&gt;
 &lt;p&gt;A &lt;a href="https://arxiv.org/abs/2601.09232"&gt;paper&lt;/a&gt; published last week has found more than 700 endpoints delivering such texts on behalf of more than 175 services that put user security and privacy at risk. One practice that jeopardizes users is the use of links that are easily enumerated, meaning scammers can guess them by simply modifying the security token, which usually appears at the right of a URL. By incrementing or randomly guessing the token—for instance, by first changing 123 to 124 or ABC to ABD and so on—the researchers were able to access accounts belonging to other users. From there, the researchers could view personal details, such as partially completed insurance applications.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/security/2026/01/millions-of-people-imperiled-through-sign-in-links-sent-by-sms/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
