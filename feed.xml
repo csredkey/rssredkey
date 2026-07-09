@@ -1,8 +1,130 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 08 Jul 2026 21:59:19 +0000</lastBuildDate><item><title>Mount Royal University confirms breach as hackers claim attack</title><link>https://www.bleepingcomputer.com/news/security/mount-royal-university-confirms-breach-as-hackers-claim-attack/</link><description>Mount Royal University in Calgary says hackers stole and then deleted data from its file storage systems after breaching the university's network. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mount-royal-university-confirms-breach-as-hackers-claim-attack/</guid><category>Security</category><category>Education</category></item><item><title>Fake Paysafe, Skrill SDKs on NPM and PyPi steal credentials</title><link>https://www.bleepingcomputer.com/news/security/fake-paysafe-skrill-sdks-on-npm-and-pypi-steal-credentials/</link><description>Malicious packages on the Node Package Manager (npm) and the Python Package Index (PyPI) delivered stealer malware to developers and users of Paysafe, Skrill, and Neteller payment applications. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fake-paysafe-skrill-sdks-on-npm-and-pypi-steal-credentials/</guid><category>Security</category></item><item><title>New AI Hiring Data Undercuts the Case for Hiring Freezes in Australia</title><link>https://www.techrepublic.com/article/ai-hiring-data-undercuts-hiring-freezes-autralia-apac/</link><description>&lt;p&gt;New US data links heavy AI investment to job growth, not cuts — challenging Australian firms pairing AI budgets with hiring freezes.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 09 Jul 2026 03:59:22 +0000</lastBuildDate><item><title>ISC Stormcast For Thursday, July 9th, 2026 https://isc.sans.edu/podcastdetail/10000, (Thu, Jul 9th)</title><link>https://isc.sans.edu/diary/rss/33140</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33140</guid></item><item><title>&amp;#x5f;HELP&amp;#x5f;ME&amp;#x5f;ESCAPE&amp;#x5f;FROM&amp;#x5f;BELARUS&amp;#x5f;PLEASE&amp;#x5f; &amp;#x5b;Guest Diary&amp;#x5d;, (Tue, Jul 7th)</title><link>https://isc.sans.edu/diary/rss/33130</link><description>&lt;p&gt;&amp;#x5b;This is a Guest Diary by Jason Callahan, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program&amp;#x5d;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;[This is a Guest Diary by Jason Callahan, an ISC intern as part of the &lt;a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/"&gt;SANS.edu&lt;/a&gt; BACS program]&lt;/p&gt;
+
+&lt;p&gt;Every so often a honeypot hit comes along that is less about the exploit and more about the intent behind it. While reviewing DShield logs I ran into a scanning bot that caught my eye: a URI string that appeared to be a plea for help.&lt;/p&gt;
+
+&lt;p&gt;On 2026-06-06 my DShield honeypot logged back-to-back HTTP requests from the same source IP hitting two different ports with both carrying an identical, oddly formatted request path:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Jason_Callahan_pic1(1).png" style="width: 836px; height: 229px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The request path itself&lt;span style="font-family: Courier New,Courier,monospace;"&gt; /?_HELP_ME_ESCAPE_FROM_BELARUS_PLEASE_&lt;/span&gt; is not a known exploit path, it appeared to be a plain-text message in the URL. Searching my logs for that particular string returned around a dozen similar HTTP requests over a 2 months period. These came from various IPs from around the globe with no discernible pattern which pointed to a self-propagating bot rather than a single attacker.&lt;/p&gt;
+
+&lt;p&gt;Further research showed that this bot was first reported to ISC in May 2026. The number of reports peaked shortly after the first report before a sharp drop and has remained steady since. [&lt;a href="https://isc.sans.edu/weblogs/urlhistory.html?url=Lz9fSEVMUF9NRV9FU0NBUEVfRlJPTV9CRUxBUlVTX1BMRUFTRV8="&gt;1&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/Jason_Callahan_pic2.png" style="width: 624px; height: 269px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was unable to locate much more information about this bot other than a reddit thread on &lt;a href="https://www.reddit.com/r/selfhosted/comments/1tbrkcv/found_some_strange_get_requests_in_my_traefik/"&gt;r/selfhosted&lt;/a&gt; describing the same requests hitting a Traefik reverse proxy. According to that thread, the user emailed the address embedded in the User-Agent and received a reply pointing to a page on a free web-hosting service. The page is a static HTML document with no scripts and it lays out what the bot is &amp;amp; why it exists.&lt;/p&gt;
+
+&lt;p&gt;The author, who identifies himself only as &amp;ldquo;Alex,&amp;rdquo; claims to be based in Belarus and writes that the bot is intentionally limited: no exploits, no command-and-control, no persistence. In his words, paraphrased and summarized from the page:&lt;/p&gt;
+
+&lt;p&gt;&amp;bull; The bot scans random IP addresses for open HTTP ports (80, 8000, 8080) and SSH ports (22, 2222).&lt;br /&gt;
+&amp;bull; If it finds an open HTTP port it sends a single request (GET, CONNECT, or HEAD)&lt;br /&gt;
+&amp;bull; If it finds an open SSH port it attempts a brute force with a small, fixed list of default credential pairs (admin:admin, root:root, etc.)&lt;br /&gt;
+&amp;bull; It runs fully autonomously with no C2 channel; discovered IP/credential pairs are reported back to a loader only.&lt;br /&gt;
+&amp;bull; It does not establish persistence, typically running from /tmp, and it is designed to self-terminate roughly six months after release.&lt;br /&gt;
+&amp;bull; The stated purpose is to draw attention to conditions in Belarus. They describe it as a &amp;ldquo;performance piece,&amp;rdquo; saying they are not seeking funding and only asking for non-financial help leaving the country (job leads, advice, connections).&lt;/p&gt;
+
+&lt;p&gt;Disregarding the origin and supposed intent of the bot, this is a straightforward scan-and-brute-force bot and it should be treated like any other hitting a honeypot. The HTTP request is reconnaissance/fingerprinting that tells the operator a host is alive and reachable on that port. The risk is on the SSH side: any host reachable on TCP 22/2222 that still uses a default or weak credential pair is exposed, regardless of the creator&amp;rsquo;s stated intentions.&lt;/p&gt;
+
+&lt;p&gt;I want to give some healthy skepticism here rather than take the linked page at face value. I have no way to verify the age, location, or motive claimed on that page, whether the page itself is the full extent of the bot's behavior, or whether the &amp;ldquo;self-terminate after six months&amp;rdquo; and &amp;ldquo;no persistence&amp;rdquo; claims hold up under closer reverse engineering. Sob stories and appeals to sympathy are also a known social-engineering lever, and a URI designed to make analysts pause and read a web page rather than immediately blocklist an IP is an effective way to buy a scanner some goodwill. None of that changes the defensive posture: treat it as an untrusted, credential-guessing scanner.&lt;/p&gt;
+
+&lt;p&gt;[1] https://isc.sans.edu/weblogs/urlhistory.html?url=Lz9fSEVMUF9NRV9FU0NBUEVfRlJPTV9CRUxBUlVTX1BMRUFTRV8=&lt;br /&gt;
+[2] https://isc.sans.edu/honeypot.html&lt;br /&gt;
+[3]&amp;nbsp;https://www.sans.edu/cyber-security-programs/bachelors-degree/&lt;/p&gt;
+
+&lt;p&gt;Disclosure: Claude was used for grammar and polish checks. No further use of generative A.I. was used in the creation of this post.&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Guy Bruneau &lt;a href="http://www.ipss.ca/"&gt;IPSS Inc.&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/bruneaug/"&gt;My GitHub Page&lt;/a&gt;&lt;br /&gt;
+Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;br /&gt;
+gbruneau at isc dot sans dot edu&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33130</guid></item><item><title>When AI-Accelerated Discovery Outruns Patching, Exploitability Proof Decides What Gets Fixed First</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Why Qualys joined the Athena coalition, and what it means for how you prioritize risk. Qualys is proud to have joined Athena, the industry coalition Chainguard launched to coordinate the defense of open source software. It’s a cause we strongly support, because the problem Athena is working to solve is the same one the Qualys [&amp;#8230;]</description><content:encoded>&lt;h3 class="wp-block-heading"&gt;Why Qualys joined the Athena coalition, and what it means for how you prioritize risk.&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Qualys is proud to have joined &lt;a href="https://www.prnewswire.com/news-releases/chainguard-adds-new-members-to-athena-coalition-as-coordinated-open-source-defense-scales-302818937.html" rel="noreferrer noopener" target="_blank"&gt;Athena, the industry coalition Chainguard launched&lt;/a&gt; to coordinate the defense of open source software. It’s a cause we strongly support, because the problem Athena is working to solve is the same one the &lt;a href="https://www.qualys.com/tru" rel="noreferrer noopener" target="_blank"&gt;Qualys Threat Research Unit&lt;/a&gt; (TRU) has been measuring for the past four years. And the piece we bring to the table is the one thing most security teams tell us they are missing.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For customers, this is not about another vulnerability feed. It is about knowing which exposures can actually be exploited, which controls are already working, and which fixes must move first. Athena makes the ecosystem faster at finding and fixing. Qualys helps customers understand which of those findings can hurt them and what to do about them first.&lt;/p&gt;
+
+
+
+&lt;span id="more-40993"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="the-volume-problem-is-now-a-velocity-problem"&gt;&lt;strong&gt;The volume problem is now a velocity problem&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Frontier AI models are finding novel vulnerabilities in open source at machine speed. In its first three weeks, Athena processed tens of thousands of findings, 42 percent of them critical or high severity. The real exposure is larger than that 42 percent suggests, because the same models that find individual bugs can chain a medium-severity authentication bypass with a medium-severity file write and arrive at unauthenticated remote code execution that no single CVSS score would have flagged. Our research has documented well over a hundred exploit chains observed in real-world attacks, and in several of the most heavily exploited ones, the vulnerability that unlocks the whole path scores below 7.0 on its own.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Meanwhile, the defender&amp;#8217;s clock has run out. &lt;a href="https://cloud.google.com/security/resources/m-trends"&gt;Mandiant&amp;#8217;s M-Trends&lt;/a&gt; data puts the mean time-to-exploit at negative seven days, meaning vulnerabilities are being weaponized before a patch exists. &lt;a href="https://www.qualys.com/forms/whitepapers/the-broken-physics-of-remediation"&gt;Our own analysis&lt;/a&gt; of more than a billion CISA KEV remediation records across 10,000+ organizations shows the problem clearly: from 2022 to 2025, closed vulnerability events grew 6.5x, from roughly 73 million to 473 million. But outcomes did not improve. The share of critical KEV vulnerabilities still open at Day 7 rose from 56 percent to 63 percent. Teams are closing more issues than ever, but the backlog is compounding faster than the current model can absorb.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;More findings do not automatically mean better security. If discovery accelerates and nothing else changes, the backlog is what accelerates.&lt;/p&gt;
+
+
+
+
+
+
+&lt;h2 class="wp-block-heading" id="severity-is-not-exploitability"&gt;&lt;strong&gt;Severity is not exploitability&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The uncomfortable fact underneath the backlog is that fewer than one percent of vulnerabilities labeled critical are ever actually exploited in the wild. Most of what fills a remediation queue is theoretical. The version matches a CVE, so the scanner flags it. Whether the vulnerable code path is reachable, whether the service is exposed, whether a WAF or segmentation already blocks the vector, whether it chains with anything else the environment holds, none of that is in the score.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Teams end up spending engineering cycles on vulnerabilities that were never exploitable, while the small fraction that are genuinely exploitable wait in the same queue. And a growing share of real exposure never enters the queue at all because it has no CVE. Seven percent of Athena&amp;#8217;s early findings sit in packages more than five years old, many of them silently fixed upstream with no identifier for a scanner to key on. Attackers do not wait for CVEs. Defenders should not depend on them either. This is a gap we have been closing for years, which is why Qualys today ships more than 17,000 detection signatures for vulnerabilities that have no CVE assigned.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The question a security leader needs answered is not whether a version is vulnerable in theory. It is whether an attacker can exploit it in this environment right now, and what to do about it before a patch is available or can be deployed.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-qualys-brings-to-the-coalition"&gt;&lt;strong&gt;What Qualys brings to the coalition&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Answering that question is what &lt;a href="https://www.qualys.com/apps/truconfirm" rel="noreferrer noopener" target="_blank"&gt;Qualys TruConfirm&lt;/a&gt; was built for, and it is why we are joining Athena as a cyber partner. As Athena’s disclosure process advances, Qualys can help convert early vulnerability intelligence into validated customer action through safe exploitability validation, exposure context, and prioritization.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;TruConfirm confirms whether a vulnerability is actually exploitable on a specific asset by exercising the same path an attacker would, but with a benign, non-destructive action in place of a payload. A controlled callback. A cryptographic hash the target can only produce if the injected code ran. A read-only response signature. The goal is controlled proof without disruptive payloads, persistent changes, or unnecessary production impact. The result is proof, rather than probability, that a remediation team can act on without revalidating, and an auditor can inspect.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Proof is what turns a coalition-scale feed into a customer-scale decision. When Athena surfaces a vulnerability under embargo, our customers do not get another alert. They get a confirmed answer. Either this is exploitable on these assets, with the compensating control that holds until the patch lands, or this is present but not reachable and can wait. When Athena publishes an OSV record for a silent fix that never got a CVE, our customers see whether they are actually running the exposed version and whether the path to it is open, instead of being blind because their tooling only speaks CVE.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="validation-is-the-bridge"&gt;&lt;strong&gt;Validation is the bridge&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Validation does not replace patching. It sequences and prioritizes patching. When time-to-exploit is negative, and patch deployment still takes weeks, the only defensible posture is to know precisely which exposures are live, apply the compensating control that buys time, patch on a schedule the business can absorb, and then verify the exposure is actually closed. Find, validate, prioritize, remediate, verify. Validation is the step that turns the other four from a list of tickets into a ranked plan a CISO can stand behind.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Athena makes the ecosystem faster at finding and fixing. Qualys makes customers faster at validating, prioritizing, and acting. Coordinated defense needs both. Intelligence without environmental context is another feed to triage. Intelligence validated against your environment becomes a decision.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;We will have more to share as the first live wave of the cyber partner program runs. If you want to understand how safe exploitability validation works under the hood, the&amp;nbsp;&lt;a href="https://assets.qualys.com/asset/aaf17046-a0ff-4794-a82a-21d88bc67cb6/Qualys-White-Paper-TruConfirm-Technical.pdf" rel="noreferrer noopener" target="_blank"&gt;TruConfirm technical architecture paper&lt;/a&gt;&amp;nbsp;walks through the detection phases and safety principles in detail. If you want the data behind the remediation gap,&amp;nbsp;&lt;a href="https://www.qualys.com/forms/whitepapers/the-broken-physics-of-remediation" rel="noreferrer noopener" target="_blank"&gt;The Broken Physics of Remediation&amp;nbsp;&lt;/a&gt;is the full study. The era of treating every scanner finding as equally urgent is over. The next advantage belongs to teams that can prove real exploitability, focus remediation where it matters most, and reduce exposure before attackers&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40993</guid><category>Qualys Insights</category><category>athena</category><category>chainguard</category><category>TruConfirm</category></item><item><title>Mount Royal University confirms breach as hackers claim attack</title><link>https://www.bleepingcomputer.com/news/security/mount-royal-university-confirms-breach-as-hackers-claim-attack/</link><description>Mount Royal University in Calgary says hackers stole and then deleted data from its file storage systems after breaching the university's network. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mount-royal-university-confirms-breach-as-hackers-claim-attack/</guid><category>Security</category><category>Education</category></item><item><title>Fake Paysafe, Skrill SDKs on NPM and PyPi steal credentials</title><link>https://www.bleepingcomputer.com/news/security/fake-paysafe-skrill-sdks-on-npm-and-pypi-steal-credentials/</link><description>Malicious packages on the Node Package Manager (npm) and the Python Package Index (PyPI) delivered stealer malware to developers and users of Paysafe, Skrill, and Neteller payment applications. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/fake-paysafe-skrill-sdks-on-npm-and-pypi-steal-credentials/</guid><category>Security</category></item><item><title>AI Boom Could Make Cheap Android Phones More Expensive</title><link>https://www.techrepublic.com/article/news-budget-android-phones-memory-prices-ai/</link><description>&lt;p&gt;Rising DRAM and NAND prices are forcing Android phone makers to cut specs, raise prices, and rethink budget smartphones, according to Omdia.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-budget-android-phones-memory-prices-ai/"&gt;AI Boom Could Make Cheap Android Phones More Expensive&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4364572</guid><category>Android</category><category>Artificial Intelligence</category><category>Hardware</category><category>Mobile</category><category>News</category><category>Sales</category><category>Smartphones</category><category>Tech Industry</category><category>devices</category><category>dram</category><category>memory Prices</category><category>mobile</category><category>nand</category><category>omdia</category><category>smartphone market</category></item><item><title>New AI Hiring Data Undercuts the Case for Hiring Freezes in Australia</title><link>https://www.techrepublic.com/article/ai-hiring-data-undercuts-hiring-freezes-autralia-apac/</link><description>&lt;p&gt;New US data links heavy AI investment to job growth, not cuts — challenging Australian firms pairing AI budgets with hiring freezes.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/ai-hiring-data-undercuts-hiring-freezes-autralia-apac/"&gt;New AI Hiring Data Undercuts the Case for Hiring Freezes in Australia&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/ai-hiring-data-undercuts-hiring-freezes-autralia-apac/</guid><category>Artificial Intelligence</category></item><item><title>The AI Security Gap No One’s Watching in Australian Enterprises</title><link>https://www.techrepublic.com/article/ai-security-gap-australia-apac/</link><description>&lt;p&gt;New global security research shows exactly how unmonitored AI agent permissions get exploited inside the enterprise — and Australian identity governance, built around human employees, isn't set up to catch it.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/ai-security-gap-australia-apac/"&gt;The AI Security Gap No One&amp;#8217;s Watching in Australian Enterprises&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4364561</guid><category>Artificial Intelligence</category><category>Australia</category></item><item><title>Hackers exploit Roundcube flaw to spy on academic researchers</title><link>https://www.bleepingcomputer.com/news/security/hackers-exploit-roundcube-flaw-to-spy-on-academic-researchers/</link><description>A China-linked threat cluster has been exploiting vulnerable Roundcube servers at U.S. and Canadian universities to steal credentials and deploy backdoor malware. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/hackers-exploit-roundcube-flaw-to-spy-on-academic-researchers/</guid><category>Security</category><category>Education</category></item><item><title>Windows 11 Cleanup Guide: 9 Ways to Make Your PC Feel Faster</title><link>https://www.techrepublic.com/article/news-windows-11-cleanup-guide/</link><description>&lt;p&gt;Make Windows 11 feel faster with nine cleanup tips for startup apps, storage, background processes, updates, malware scans, and more.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-windows-11-cleanup-guide/"&gt;Windows 11 Cleanup Guide: 9 Ways to Make Your PC Feel Faster&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-windows-11-cleanup-guide/</guid><category>Applications</category><category>Cybersecurity</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>Microsoft Defender</category><category>operating systems</category><category>pc performance</category><category>productivity</category><category>storage sense</category><category>Windows 11</category><category>windows tips</category></item><item><title>Meta’s Muse Image Explained: What to Know About the New AI Image Model</title><link>https://www.techrepublic.com/article/news-meta-muse-image-explained/</link><description>&lt;p&gt;Meta Muse Image brings AI image generation to Instagram, WhatsApp, and Meta AI. Here’s what users should know about features and privacy.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-windows-11-cleanup-guide/"&gt;Windows 11 Cleanup Guide: 9 Ways to Make Your PC Feel Faster&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-windows-11-cleanup-guide/</guid><category>Applications</category><category>Cybersecurity</category><category>Microsoft</category><category>News</category><category>Security</category><category>Software</category><category>Windows</category><category>featured</category><category>Microsoft Defender</category><category>operating systems</category><category>pc performance</category><category>productivity</category><category>storage sense</category><category>Windows 11</category><category>windows tips</category></item><item><title>Meta’s Muse Image Explained: What to Know About the New AI Image Model</title><link>https://www.techrepublic.com/article/news-meta-muse-image-explained/</link><description>&lt;p&gt;Meta Muse Image brings AI image generation to Instagram, WhatsApp, and Meta AI. Here’s what users should know about features and privacy.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-meta-muse-image-explained/"&gt;Meta’s Muse Image Explained: What to Know About the New AI Image Model&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-meta-muse-image-explained/</guid><category>Applications</category><category>Artificial Intelligence</category><category>Chatbots</category><category>Innovation</category><category>International</category><category>Meta</category><category>News</category><category>Social Media</category><category>Tech Industry</category><category>ai image generator</category><category>ai privacy</category><category>artificial intelligence</category><category>generative ai</category><category>instagram</category><category>Meta AI</category><category>muse image</category><category>whatsapp</category></item><item><title>OpenAI’s New GPT-5.6 Is Coming Sooner Than You Think</title><link>https://www.techrepublic.com/article/news-openai-gpt-5-6-us-security-review/</link><description>&lt;p&gt;OpenAI is set to launch GPT-5.6 after a US security review, raising new questions for enterprise AI access, safeguards, and governance.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-openai-gpt-5-6-us-security-review/"&gt;OpenAI&amp;#8217;s New GPT-5.6 Is Coming Sooner Than You Think&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-openai-gpt-5-6-us-security-review/</guid><category>AI</category><category>Artificial Intelligence</category><category>Big Data</category><category>Developer</category><category>Innovation</category><category>News</category><category>Security</category><category>Tech Industry</category><category>ai models</category><category>ai security</category><category>anthropic</category><category>chatgpt</category><category>developers</category><category>enterprise ai</category><category>GPT-5.6</category><category>openai</category></item><item><title>FortiBleed: Credential Reuse, Legacy Hashes, and the Risk of Internet-Exposed FortiGate Devices</title><link>https://blog.qualys.com/category/vulnerabilities-threat-research</link><description>Key Takeaways FortiBleed refers to June 2026 public reporting of large-scale credential exposure and abuse targeting internet-reachable FortiGate management and SSL-VPN gateways driven by credential reuse and brute-force, not a single new zero-day. Risk is highest for internet-exposed FortiGate devices without MFA, with reused or legacy-hashed credentials, or prior exposure to known-exploited Fortinet CVEs. A [&amp;#8230;]</description><content:encoded>&lt;div style="background-color: #f7f8fc; padding: 36px 28px; margin: 30px 0;"&gt;
   &lt;h3 style="margin: 0 0 22px; color: #ed1c24; font-size: 24px; font-weight: 700; line-height: 1.3;"&gt;
@@ -3214,8 +3336,7 @@ Client:  -c -ti &amp;lt;tunnel_ip|domain&gt; -tp &amp;lt;tunnel_port&gt; [-ll &a
 &lt;p&gt;The company gives police officers the ability to search that data as well, to &amp;#8220;build stronger cases with less information upfront.&amp;#8221; That includes being able to locate multiple vehicles law enforcement officials believe are moving together and what Flock calls a &amp;#8220;multi geo search.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;This kind of thing is older than AI; I wrote about it in my 2014 book &lt;i&gt;Beyond Fear&lt;/i&gt;. Edward Snowden revealed that the NSA was using cell phone location data to track phones that were habitually near each other.&lt;/p&gt;
 &lt;p&gt;As bad as Flock is, remember that anyone with broad access to cell phone location data can do the same thing.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72238</guid><category>Uncategorized</category><category>cameras</category><category>cars</category><category>cell phones</category><category>geolocation</category><category>identification</category><category>privacy</category><category>surveillance</category></item><item><title>EU Politicians Investigated Pegasus Spyware. Then It Ended Up on One of Their Phones</title><link>https://www.wired.com/story/eu-politicians-investigated-pegasus-spyware-then-it-ended-up-on-one-of-their-phones/</link><description>“It is a direct attack on the rule of law,” says one European Parliament member of the new findings from Citizen Lab.</description><guid isPermaLink="false">6a46573cf1efb2d48b1933ec</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>cybersecurity</category><category>hacking</category><category>malware</category><category>Europe</category><category>Compromised</category></item><item><title>5 Things Google’s Nano Banana 2 Lite Reveals About the Future of AI Images</title><link>https://www.techrepublic.com/article/news-google-nano-banana-2-lite-ai-image-generation/</link><description>&lt;p&gt;Google’s Nano Banana 2 Lite shows how faster, cheaper AI image generation could reshape creative workflows and business tools.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-google-nano-banana-2-lite-ai-image-generation/"&gt;5 Things Google’s Nano Banana 2 Lite Reveals About the Future of AI Images&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-google-nano-banana-2-lite-ai-image-generation/</guid><category>Applications</category><category>Artificial Intelligence</category><category>Chatbots</category><category>Google</category><category>Innovation</category><category>News</category><category>Tech Industry</category><category>ai image generation</category><category>ai tools</category><category>Business Technology</category><category>gemini</category><category>generative ai</category><category>google ai</category><category>nano banana 2 lite</category></item><item><title>The Smartwatch Blood Sugar Revolution, Explained</title><link>https://www.techrepublic.com/article/news-smartwatch-blood-sugar-revolution-explained/</link><description>&lt;p&gt;Smartwatches may transform blood sugar tracking, but today’s advances depend on CGMs, AI, and regulated health tech integrations.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-smartwatch-blood-sugar-revolution-explained/"&gt;The Smartwatch Blood Sugar Revolution, Explained&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4364104</guid><category>AI</category><category>Apple</category><category>Artificial Intelligence</category><category>Hardware</category><category>Innovation</category><category>News</category><category>Samsung</category><category>Tech Industry</category><category>Wearable Tech</category><category>Apple Watch</category><category>artificial intelligence</category><category>continuous glucose monitors</category><category>dexcom</category><category>editors picks</category><category>glucose monitoring</category><category>health tech</category><category>smartwatches</category><category>wearables</category></item><item><title>FBI Seizes NetNut Proxy Platform, Popa Botnet</title><link>https://krebsonsecurity.com/2026/07/fbi-seizes-netnut-proxy-platform-popa-botnet/</link><description>The Federal Bureau of Investigation (FBI) said today it worked with industry partners to seize hundreds of domains associated with NetNut, a sprawling residential proxy service operated by the publicly-traded Israeli company Alarum Technologies [NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the Popa botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.</description><content:encoded>&lt;p&gt;The &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) said today it worked with industry partners to seize hundreds of domains associated with &lt;strong&gt;NetNut&lt;/strong&gt;, a sprawling residential proxy service operated by the publicly-traded Israeli company &lt;strong&gt;Alarum Technologies &lt;/strong&gt;[NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the &lt;strong&gt;Popa&lt;/strong&gt; botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-google-nano-banana-2-lite-ai-image-generation/"&gt;5 Things Google’s Nano Banana 2 Lite Reveals About the Future of AI Images&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-google-nano-banana-2-lite-ai-image-generation/</guid><category>Applications</category><category>Artificial Intelligence</category><category>Chatbots</category><category>Google</category><category>Innovation</category><category>News</category><category>Tech Industry</category><category>ai image generation</category><category>ai tools</category><category>Business Technology</category><category>gemini</category><category>generative ai</category><category>google ai</category><category>nano banana 2 lite</category></item><item><title>FBI Seizes NetNut Proxy Platform, Popa Botnet</title><link>https://krebsonsecurity.com/2026/07/fbi-seizes-netnut-proxy-platform-popa-botnet/</link><description>The Federal Bureau of Investigation (FBI) said today it worked with industry partners to seize hundreds of domains associated with NetNut, a sprawling residential proxy service operated by the publicly-traded Israeli company Alarum Technologies [NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the Popa botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.</description><content:encoded>&lt;p&gt;The &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) said today it worked with industry partners to seize hundreds of domains associated with &lt;strong&gt;NetNut&lt;/strong&gt;, a sprawling residential proxy service operated by the publicly-traded Israeli company &lt;strong&gt;Alarum Technologies &lt;/strong&gt;[NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the &lt;strong&gt;Popa&lt;/strong&gt; botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_73926" style="width: 757px;"&gt;&lt;img alt="" class=" wp-image-73926" height="415" src="https://krebsonsecurity.com/wp-content/uploads/2026/07/netnutseizure.png" width="747" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73926"&gt;The NetNut homepage today was replaced by this seizure banner from the FBI.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;On June 19, three different security firms &lt;a href="https://krebsonsecurity.com/2026/06/popa-botnet-linked-to-publicly-traded-israeli-firm/" rel="noopener" target="_blank"&gt;issued similar findings&lt;/a&gt;: That NetNut is a residential proxy network which populates a botnet called Popa, and distributes software for devices commonly found in homes, such as smart TVs and streaming boxes. NetNut&amp;#8217;s software turns those systems into always-on residential proxy nodes that are rented to others, who predominantly use them to relay abusive and intrusive Internet traffic, such as mass content scraping, advertising fraud, and account takeover activity.&lt;/p&gt;
 &lt;p&gt;Earlier today, NetNut&amp;#8217;s homepage was replaced with a seizure notice from the FBI and the &lt;strong&gt;Internal Revenue Service Criminal Investigation&lt;/strong&gt; division. The seizure notice thanked &lt;strong&gt;Google&lt;/strong&gt;, &lt;strong&gt;Lumen&lt;/strong&gt;, &lt;strong&gt;Shadowserver&lt;/strong&gt; and other industry partners for their help in dismantling hundreds of domains tied to the Popa botnet, which experts say has long been synonymous with NetNut&amp;#8217;s residential proxy infrastructure.&lt;/p&gt;
@@ -4276,7 +4397,7 @@ Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
 &lt;a href="https://raw.githubusercontent.com/xme/pgp/refs/heads/main/public.key"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33118</guid></item><item><title>ISC Stormcast For Wednesday, July 1st, 2026 https://isc.sans.edu/podcastdetail/9990, (Wed, Jul 1st)</title><link>https://isc.sans.edu/diary/rss/33116</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33116</guid></item><item><title>Accelerating the quantum-safe timeline</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/30/microsoft-advances-quantum-safe-security-as-the-risk-timeline-shifts/</link><description>&lt;p&gt;We’re accelerating quantum-safe readiness—and sharing what organizations can do now to transition earlier and with confidence.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33118</guid></item><item><title>Accelerating the quantum-safe timeline</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/30/microsoft-advances-quantum-safe-security-as-the-risk-timeline-shifts/</link><description>&lt;p&gt;We’re accelerating quantum-safe readiness—and sharing what organizations can do now to transition earlier and with confidence.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/30/microsoft-advances-quantum-safe-security-as-the-risk-timeline-shifts/"&gt;Accelerating the quantum-safe timeline&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;h2 class="wp-block-heading" id="the-quantum-safe-timeline-has-changed"&gt;The quantum-safe timeline has changed&lt;/h2&gt;
 
 
@@ -4830,284 +4951,7 @@ Senior ISC Handler - Freelance Cyber Security Consultant&lt;br /&gt;
 &lt;blockquote&gt;&lt;p&gt;In contrast with older tools restricted to a few dozen preset searches, these new tools allow an almost unlimited range of enquiries by enabling language-based searches on video.&lt;/p&gt;
 &lt;p&gt;That lets intelligence officers hunt through massive streams of videos using simple search terms, such as two men handing a bag to each other; a person who has changed their appearance, or has changed clothes multiple times in a day; or a vehicle that has recently been painted over, or has driven past the same spot several times in a short period.&lt;/p&gt;
 &lt;p&gt;&amp;#8220;This is the holy grail of surveillance,&amp;#8221; said a European official whose country uses the technology on its cities. &amp;#8220;We are able to look for behaviour, not objects ­ it has created a world of new possibilities.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72228</guid><category>Uncategorized</category><category>AI</category><category>behavioral detection</category><category>cameras</category><category>privacy</category><category>surveillance</category></item><item><title>Verifiable Digital Credential Presentment</title><link>https://www.nist.gov/blogs/cybersecurity-insights/verifiable-digital-credential-presentment</link><description>This blog post is #4 in our series on Verifiable Digital Credentials (VDCs). Our other posts can be found via Post #1, Post #2, and Post #3. In earlier posts, we discussed how verifiable digital credentials (VDCs) are issued and compared the underlying credential formats (ISO/IEC “mdoc” vs. W3C Verifiable Credentials). In this post, we turn to the other side of the story: presentation; that is, how a holder shows their VDC to a verifier at runtime in both in-person and online contexts. We’ll again explore the mobile driver’s license (mDL) use case, consider the differences between ISO/IEC</description><guid isPermaLink="false">https://www.nist.gov/node/1915391</guid></item><item><title>6 Best VPNs for Australia in 2026</title><link>https://www.techrepublic.com/article/best-vpns-australia/</link><description>&lt;p&gt;What's the best VPN to use in Australia? Discover the pricing, features, pros and cons of our recommended VPNs for Australia.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-vpns-australia/"&gt;6 Best VPNs for Australia in 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4240817</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>VPN</category><category>VPN Australia</category></item><item><title>June 2026 Apple Updates, (Tue, Jun 30th)</title><link>https://isc.sans.edu/diary/rss/33114</link><description>&lt;p&gt;Apple released updates for iOS/iPadOS, macOS, and Safari on Monday. There have been no updates for other Apple operating systems (visionOS, watchOS, tvOS). Usually, Apple updates all products at the same time.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Apple released updates for iOS/iPadOS, macOS, and Safari on Monday. There have been no updates for other Apple operating systems (visionOS, watchOS, tvOS). Usually, Apple updates all products at the same time.&lt;/p&gt;
-
-&lt;p&gt;Most of the vulnerabilities affect the web browser (WebKit, libxslt, WebRTC, and Web Extension). Only four of the vulnerabilities are not directly related to web content: Three Kernel issues and one vulnerability in the IOGPUFamily.&lt;/p&gt;
-
-&lt;p&gt;None of the vulnerabilities is labeled as &amp;quot;exploited&amp;quot;.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;table class="datatable"&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;iOS 26.5.2 and iPadOS 26.5.2&lt;/th&gt;
-			&lt;th&gt;macOS Tahoe 26.5.2&lt;/th&gt;
-			&lt;th&gt;Safari 26.5.2&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-39868:&lt;/b&gt; An app may be able to cause unexpected system termination or corrupt kernel memory.&lt;br /&gt;
-			Affects Kernel&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43676:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43700:&lt;/b&gt; Processing maliciously crafted web content may disclose sensitive user information.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43701:&lt;/b&gt; A malicious website may be able to process restricted web content outside the sandbox.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43703:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected process crash.&lt;br /&gt;
-			Affects libxslt&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43704:&lt;/b&gt; A malicious web extension may be able to cause an unexpected process crash.&lt;br /&gt;
-			Affects Web Extensions&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43705:&lt;/b&gt; Processing maliciously crafted web content may lead to memory corruption.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43706:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected process crash.&lt;br /&gt;
-			Affects libxslt&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43707:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected process crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43708:&lt;/b&gt; A malicious website may exfiltrate data cross-origin.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43712:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected process crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43713:&lt;/b&gt; Visiting a website may leak sensitive data.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43715:&lt;/b&gt; Processing maliciously crafted web content may lead to memory corruption.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43716:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43718:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebRTC&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43720:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebKit Canvas&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43721:&lt;/b&gt; A malicious website may be able to silently hijack clipboard data.&lt;br /&gt;
-			Affects WebKit Storage&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43722:&lt;/b&gt; An app may be able to leak sensitive kernel state.&lt;br /&gt;
-			Affects Kernel&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43724:&lt;/b&gt; An app may be able to cause unexpected system termination or write kernel memory.&lt;br /&gt;
-			Affects Kernel&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43725:&lt;/b&gt; A malicious website may be able to process restricted web content outside the sandbox.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43727:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43732:&lt;/b&gt; Processing maliciously crafted web content may disclose sensitive user information.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43735:&lt;/b&gt; A malicious website may exfiltrate data cross-origin.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43740:&lt;/b&gt; Processing maliciously crafted web content may result in the disclosure of process memory.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43742:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected process crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43743:&lt;/b&gt; An app may be able to cause unexpected system termination.&lt;br /&gt;
-			Affects IOGPUFamily&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43745:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebKit&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td align="center" colspan="3"&gt;&lt;b&gt;CVE-2026-43746:&lt;/b&gt; Processing maliciously crafted web content may lead to an unexpected Safari crash.&lt;br /&gt;
-			Affects WebRTC&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-			&lt;td&gt;x&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;--&lt;br /&gt;
-Johannes B. Ullrich, Ph.D. , Dean of Research, &lt;a href="https://sans.edu"&gt;SANS.edu&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jbu.me/164"&gt;Twitter&lt;/a&gt;|&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33114</guid></item><item><title>Meta Contractors Posed as Teens to Prompt Rival Chatbots About Suicide, Sex, and Drugs</title><link>https://www.wired.com/story/meta-contractors-pretending-to-be-teens-chatbot-testing/</link><description>Hundreds of contractors working on a project for Meta pretended to be kids in order to see how other chatbots like Gemini and ChatGPT would respond to high-risk subjects, WIRED found.</description><guid isPermaLink="false">6a42907b9625c74448e07c65</guid><category>Security</category><category>Security / Security News</category><category>Meta</category><category>chatbots</category><category>Safety</category><category>Google Gemini</category><category>ChatGPT</category><category>OpenAI</category><category>artificial intelligence</category><category>AI Safety</category></item><item><title>Chromium extension uses AI‑related branding to redirect browser search</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/29/chromium-extension-uses-airelated-branding-redirect-browser-search/</link><description>&lt;p&gt;A malicious Chromium-based extension that spoofs the AI-powered answer engine Perplexity AI redirects browser search traffic using MV3 APIs and intermediary infrastructure.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/best-vpns-australia/"&gt;6 Best VPNs for Australia in 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4240817</guid><category>Cloud Security</category><category>Security</category><category>Top Products</category><category>VPN</category><category>VPN Australia</category></item><item><title>Meta Contractors Posed as Teens to Prompt Rival Chatbots About Suicide, Sex, and Drugs</title><link>https://www.wired.com/story/meta-contractors-pretending-to-be-teens-chatbot-testing/</link><description>Hundreds of contractors working on a project for Meta pretended to be kids in order to see how other chatbots like Gemini and ChatGPT would respond to high-risk subjects, WIRED found.</description><guid isPermaLink="false">6a42907b9625c74448e07c65</guid><category>Security</category><category>Security / Security News</category><category>Meta</category><category>chatbots</category><category>Safety</category><category>Google Gemini</category><category>ChatGPT</category><category>OpenAI</category><category>artificial intelligence</category><category>AI Safety</category></item><item><title>Chromium extension uses AI‑related branding to redirect browser search</title><link>https://www.microsoft.com/en-us/security/blog/2026/06/29/chromium-extension-uses-airelated-branding-redirect-browser-search/</link><description>&lt;p&gt;A malicious Chromium-based extension that spoofs the AI-powered answer engine Perplexity AI redirects browser search traffic using MV3 APIs and intermediary infrastructure.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/06/29/chromium-extension-uses-airelated-branding-redirect-browser-search/"&gt;Chromium extension uses AI‑related branding to redirect browser search&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-9b97e8e3-4b2f-4bf0-978f-057adc2c91a1"&gt;
 	&lt;button class="btn btn-collapse" type="button"&gt;
 		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
@@ -10053,211 +9897,7 @@ def _msgpack_ext_hook(code: int, data: bytes) -&gt; Any:
 &lt;/ul&gt;
 &lt;h2&gt;About LABScon&lt;/h2&gt;
 &lt;p&gt;This presentation was featured live at LABScon 2025, an immersive 3-day conference bringing together the world’s top cybersecurity minds, hosted by SentinelOne’s research arm, SentinelLABS.&lt;/p&gt;
-&lt;p&gt;Keep up with all the latest on &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon&lt;/a&gt; here.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=140638</guid><category>keynote</category><category>LABScon25</category></item><item><title>May 2026 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2026/06/11/may-2026-cyber-attacks-statistics/</link><description>During May 2026 I collected 165 events: Cyber Crime accounted for 73.8% of events, Malware remained the dominant weapon (48.8%) and Information &amp;#038; Communication was hit the most (37.6%)</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45728</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>May</category><category>Statistics</category></item><item><title>How Federal Agencies Can Activate a Risk Operations Center (ROC) to Meet CISA BOD 26-04</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary Recognizing the ability of Frontier AI models to discover and exploit vulnerabilities at unprecedented speed and scale, CISA&amp;#8217;s Binding Operational Directive (BOD) 26-04 marks a significant shift in federal vulnerability management. The directive introduces aggressive mandates, requiring federal civilian agencies to remediate high-risk vulnerabilities, specifically those that are publicly exposed, on the KEV [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
-
-&lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
-  &lt;h4 style="color: #ed2e26;"&gt;Executive Summary&lt;/h4&gt;
-
-  &lt;p&gt;
-    &lt;em&gt;Recognizing the ability of Frontier AI models to discover and exploit vulnerabilities at unprecedented speed and scale, CISA&amp;#8217;s Binding Operational Directive (BOD) 26-04 marks a significant shift in federal vulnerability management. The directive introduces aggressive mandates, requiring federal civilian agencies to remediate high-risk vulnerabilities, specifically those that are publicly exposed, on the KEV catalog, able to be automated, and grant full system control within a strict 3-day SLA, while making forensic triage mandatory before patching. Rather than prioritizing remediation based on patch availability, the directive requires agencies to focus on risk-informed, evidence-based decision-making, accounting for exploitability, exposure, and mission impact. This shift reflects a new operational reality: modern threats, accelerated by advances in AI, are compressing vulnerability exploitation timelines from weeks to hours. Traditional patch-centric models can no longer keep pace. To meet these requirements, agencies must move beyond siloed tools and linear workflows toward a continuous, integrated operating model. A Risk Operations Center (ROC) enables this transformation by unifying detection, prioritization, validation, and remediation into a closed loop focused on measurable risk reduction. Qualys VMDR, ETM, and TruRisk Eliminate, delivered via a unified risk management platform, will empower teams to achieve this goal in the most efficient way and keep the mission moving forward.&lt;/em&gt;
-  &lt;/p&gt;
-&lt;/section&gt;
-
-&lt;hr /&gt;
-
-
-
-&lt;figure class="wp-block-image size-full q-image-no-shadow."&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/Screenshot.1.png"&gt;&lt;img alt="" class="wp-image-40694" height="1212" src="https://blog.qualys.com/wp-content/uploads/2026/06/Screenshot.1.png" width="2228" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;On June 10, 2026, CISA announced &lt;a href="https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk" rel="noreferrer noopener" target="_blank"&gt;BOD 26-04&lt;/a&gt;, revising how federal agencies handle vulnerability management. This formally transitions federal agencies away from blanket patching strategies toward &lt;strong&gt;risk-based vulnerability management&lt;/strong&gt;. Instead of treating all vulnerabilities equally, agencies must evaluate exposures based on:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Internet exposure&lt;/li&gt;
-
-
-
-&lt;li&gt;Known Exploited Vulnerabilities (KEV) alignment&lt;/li&gt;
-
-
-
-&lt;li&gt;Real-world exploitability&lt;/li&gt;
-
-
-
-&lt;li&gt;Asset criticality and mission impact&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;BOD 26-04 was shaped in direct response to the change to the threat landscape created by rapidly evolving AI models, advanced systems now capable of identifying and exploiting software vulnerabilities at speeds that leave traditional patch cycles far behind. This approach acknowledges another key reality, where only a small fraction of vulnerabilities are actively exploited at any given time, and prioritization must reflect that.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The directive forces federal agencies, suppliers, and software providers to categorize vulnerabilities based on context, risk, and asset exposure. Under this framework, the highest-risk threats demand mitigation within 72 hours, and agencies can no longer blindly deploy a patch. They are required to complete forensic triage to ensure that threat actors have not already established persistence on the system. Meeting these requirements will provide challenges if relying on legacy, point-in-time scanning tools that lack unified asset context, forensic capabilities, and automated ticketing mechanisms.&lt;/p&gt;
-
-
-
-&lt;span id="more-40663"&gt;&lt;/span&gt;
-
-
-
-
-
-
-
-
-&lt;h2 class="wp-block-heading" id="why-traditional-models-fall-short"&gt;Why Traditional Models Fall Short&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Vulnerability disclosures have nearly doubled in three years, from&amp;nbsp;roughly 26,000&amp;nbsp;in 2022 to&amp;nbsp;nearly 50,000&amp;nbsp;in 2025, and early 2026 data&amp;nbsp;shows&amp;nbsp;the pace accelerating further. This sustained growth has mathematically broken the patch-everything model: no security team can scale headcount as fast as disclosures multiply. Vulnerability volume is no longer a workload problem;&amp;nbsp;it&amp;#8217;s&amp;nbsp;a strategy problem. Organizations that&amp;nbsp;haven&amp;#8217;t&amp;nbsp;shifted from comprehensive patching to risk-based prioritization and confirmation (exploitability, asset criticality, threat intelligence) are already&amp;nbsp;operating&amp;nbsp;beyond capacity, accumulating invisible security debt at compounding rates.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex"&gt;
-&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/monthly_patterns_light-1-scaled.png"&gt;&lt;img alt="" class="wp-image-40685" height="729" src="https://blog.qualys.com/wp-content/uploads/2026/06/monthly_patterns_light-1-1070x729.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/annual_cve_totals_light-1-1-scaled.png"&gt;&lt;img alt="" class="wp-image-40684" height="755" src="https://blog.qualys.com/wp-content/uploads/2026/06/annual_cve_totals_light-1-1-1070x755.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
-&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Legacy vulnerability management programs were designed for a different threat landscape, one where exploitation timelines allowed for structured patch cycles and manual triage. Today, those assumptions no longer hold as we continue to see vulnerability volumes grow exponentially, exploitation increasingly automated and AI-assisted, and attackers prioritize exposed and reachable assets, not CVSS scores. Attempting to remediate all vulnerabilities equally is not only inefficient, but it also diverts resources away from the exposures that pose the greatest risk to mission operations. To align with BOD 26-04, agencies need an operating model that continuously answers a single question: &lt;strong&gt;What risk matters most right now, and how quickly can we reduce it?&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Why Whack-a-Mole Remediation Fails&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The gap between median and average days to close a vulnerability is not statistical noise, it is a structural signal of failure in manual remediation. At Qualys, we refer to this as &amp;nbsp;the “Manual Tax,” the compounding cost of assets that human-driven processes simply cannot reach at speed. The data is consistent. For Spring4Shell, the average closure time &amp;nbsp;is 5.4× the median; for SpoolFool, 4.8×. The pattern is consistent. While dashboards report the MTTR and signal of progress, the long tail, forgotten servers, deferred patches, shadow IT, silently extends actual exposure by months. This is the “whack-a-mole trap,” teams close the visible tickets fast enough to look defensible, while the assets they can&amp;#8217;t patch remain exploitable well beyond any reasonable threat window. Closing this gap demands autonomous remediation operating at machine speed.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large q-image-no-shadow"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/Saeed.image3_.png"&gt;&lt;img alt="" class="wp-image-40695" height="684" src="https://blog.qualys.com/wp-content/uploads/2026/06/Saeed.image3_-1070x684.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="introducing-the-federal-risk-operations-center-roc"&gt;Introducing the Federal Risk Operations Center (ROC)&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;BOD 26-04 gives agencies the policy mandate to make the operational shift and a new standard that prioritizes defensible, auditable risk reduction over activity-based metrics such as patch counts or scan coverage. This is a big leap for federal agencies, and Qualys offers the framework to make that shift happen through the Risk Operations Center (ROC).&lt;/p&gt;
-
-
-
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The scale of modern vulnerability data makes prioritization essential. In recent years, tens of thousands of vulnerabilities have been disclosed annually, yet only a small percentage are actively weaponized. A ROC approach applies context to prioritize risk, including:&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li&gt;Threat intelligence and KEV alignment&lt;/li&gt;
-
-
-
-&lt;li&gt;Asset exposure and reachability&lt;/li&gt;
-
-
-
-&lt;li&gt;Business and mission criticality&lt;/li&gt;
-
-
-
-&lt;li&gt;Environmental and compensating controls&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;By layering these factors, agencies can move from broad vulnerability queues to precise, mission-relevant remediation targets. Critically, this prioritization is strengthened through exploitability validation, confirming which exposures are actually reachable and actionable in the agency’s environment. This reduces noise and enables teams to focus on evidence-based risk rather than theoretical risk.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="aligning-the-roc-model-to-bod-26-04"&gt;Aligning the ROC Model to BOD 26-04&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The ROC framework directly supports the core objectives of BOD 26-04:&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table is-style-stripes"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;BOD Requirement&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;ROC Capability&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Risk-based prioritization&lt;/td&gt;&lt;td&gt;Context-driven, exploitability-aware triage&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Focus on KEV and active threats&lt;/td&gt;&lt;td&gt;Integrated threat intelligence and validation&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Continuous assessment&lt;/td&gt;&lt;td&gt;Real-time detection and monitoring&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Demonstrable risk reduction&lt;/td&gt;&lt;td&gt;Verified remediation and validation loops&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Operational efficiency&lt;/td&gt;&lt;td&gt;Automation and workflow integration&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;By aligning operations to these principles, agencies can quickly make realistic leaps with their IT and security roadmaps to move beyond compliance and achieve &lt;strong&gt;sustainable, mission-aligned cybersecurity outcomes&lt;/strong&gt;.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-40696" height="581" src="https://blog.qualys.com/wp-content/uploads/2026/06/Federal.ROC_-1070x581.png" width="1070" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The ROC is intended to prioritize the risks that matter most with several steps, as noted above, and Qualys powers the ROC with several core capabilities:&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="hyper-prioritization-with-qualys-etm"&gt;Hyper-Prioritization with Qualys ETM&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In 2025 alone, 48,172 CVEs were published, yet only 0.74% were actively weaponized. Attempting to patch everything burns finite engineering cycles, creates staff fatigue, and continues to drive a false sense of security. BOD 26-04 acknowledges this directly, designed to surface that not all patches are created equal when evaluated against context from your environment. The only scalable answer is hyper-prioritization, shrinking the problem from everything that looks scary to the specific exposures exploitable on your assets right now.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://www.qualys.com/apps/enterprise-trurisk-management" rel="noreferrer noopener" target="_blank"&gt;Qualys ETM&lt;/a&gt; operationalizes this through &lt;a href="https://blog.qualys.com/product-tech/2024/10/09/announcing-trurisk-2-0-unleashing-next-level-precision-in-cyber-risk-management" rel="noreferrer noopener" target="_blank"&gt;TruRisk&lt;/a&gt; and &lt;a href="https://blog.qualys.com/product-tech/2026/03/23/from-vision-to-real-time-threat-intelligence-trulens-for-etm" rel="noreferrer noopener" target="_blank"&gt;TruLens&lt;/a&gt;, layering threat, business, and environmental context to convert undifferentiated noise into ranked, mission-relevant queues. The final filter is exploitability validation via &lt;a href="https://blog.qualys.com/product-tech/2026/03/23/meet-agent-val-closing-the-validation-gap-in-exposure-management-at-machine-speed-with-agentic-ai" rel="noreferrer noopener" target="_blank"&gt;Agent Val&lt;/a&gt; and &lt;a href="https://www.qualys.com/apps/truconfirm" rel="noreferrer noopener" target="_blank"&gt;TruConfirm&lt;/a&gt;, which safely deploys modified payloads against live production assets to prove exploitability. In the last 12 months, this approach has achieved a 99.9% noise reduction across more than 8 million production-safe validations.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/Hyper.prioritization.png"&gt;&lt;img alt="" class="wp-image-40697" height="1216" src="https://blog.qualys.com/wp-content/uploads/2026/06/Hyper.prioritization.png" width="2242" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="autonomous-remediation-with-trurisk-eliminate"&gt;Autonomous Remediation with TruRisk Eliminate&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Once vulnerabilities are validated, the challenge shifts to remediation throughput. Under BOD 26-04, agencies can no longer afford remediation as a downstream process competing for manual patch approvals. &lt;a href="https://www.qualys.com/apps/trurisk-eliminate" rel="noreferrer noopener" target="_blank"&gt;TruRisk Eliminate&lt;/a&gt; automates this workflow through four safeguards: AI-powered patch reliability scores, phased deployment waves, robust rollback, and patchless mitigation support. Over the last year, it has deployed 150 million patches, 40 million of them fully autonomously, with a rollback rate under 0.1%.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Post-remediation, Agent Val and TruConfirm continuously revalidate to prove attack paths are closed. This loop shrinks the &lt;strong&gt;&lt;em&gt;Average Window of Exposure&lt;/em&gt;&lt;/strong&gt; from 67 days to under 18, shifting the success metric from ticket closure to confirmed risk reduction, which is precisely the outcome BOD 26-04 is designed to drive.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-full q-image-no-shadow"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/06/Screenshot-2026-06-26-at-3.34.42-PM.png"&gt;&lt;img alt="" class="wp-image-40785" height="1254" src="https://blog.qualys.com/wp-content/uploads/2026/06/Screenshot-2026-06-26-at-3.34.42-PM.png" width="2266" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="ai-speed-detection-with-qualys-vmdr"&gt;AI-Speed Detection with Qualys VMDR&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Prioritization and remediation are only as effective as the detection signal feeding them. &lt;a href="https://www.qualys.com/apps/vulnerability-management-detection-response" rel="noreferrer noopener" target="_blank"&gt;Qualys VMDR&lt;/a&gt; delivers Six Sigma–level detection accuracy with median zero-day signature response times measured in hours, ensuring that when a vulnerability transitions to actively exploited, that state change is immediately visible across the agency&amp;#8217;s environment.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Upcoming releases will push signature generation &lt;strong&gt;from hours to minutes&lt;/strong&gt;, with AI-based noise filtering to ensure speed doesn&amp;#8217;t sacrifice fidelity. TruConfirm coverage is also expanding to cloud, containers, identity, and misconfigurations, so that validated exploitability applies to every asset type, not just traditional endpoints.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="conclusion"&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;BOD 26-04 formalizes what mature federal security programs have already recognized. Blanket patching cannot keep pace when frontier AI models are compressing weaponization windows to hours or less. CISA&amp;#8217;s directive asks agencies to move to a model that is fine-grained, asset-aware, and risk-calibrated, where remediation decisions are driven by evidence rather than volume. The path to compliance runs through a closed loop where detection feeds prioritization, prioritization feeds validated exploitability, and validated exploitability feeds autonomous remediation.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That loop is what a Risk Operations Center, powered by Qualys, delivers. VMDR for AI-speed detection, TruRisk and TruLens for KEV-aligned prioritization, TruConfirm for exploit validation, and TruRisk Eliminate for autonomous remediation.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=40663</guid><category>Product and Tech</category><category>Qualys Insights</category><category>CISA BOD 26-04</category><category>Federal Agencies</category><category>PubSec</category></item><item><title>India Brings Its AI Pitch to VivaTech 2026</title><link>https://www.techrepublic.com/article/news-india-vivatech-ai-pitch/</link><description>&lt;p&gt;India’s VivaTech 2026 role gives its AI strategy a global stage as enterprises across APAC weigh regional AI partnerships, infrastructure control, and dependence on foreign chips and cloud platforms.&lt;/p&gt;
+&lt;p&gt;Keep up with all the latest on &lt;a href="https://www.labscon.io/" rel="noopener noreferrer" target="_blank"&gt;LABScon&lt;/a&gt; here.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.sentinelone.com/?post_type=labs&amp;p=140638</guid><category>keynote</category><category>LABScon25</category></item><item><title>May 2026 Cyber Attacks Statistics</title><link>https://www.hackmageddon.com/2026/06/11/may-2026-cyber-attacks-statistics/</link><description>During May 2026 I collected 165 events: Cyber Crime accounted for 73.8% of events, Malware remained the dominant weapon (48.8%) and Information &amp;#038; Communication was hit the most (37.6%)</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=45728</guid><category>Cyber Attacks Statistics</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>Hacktivism</category><category>Malware</category><category>May</category><category>Statistics</category></item><item><title>India Brings Its AI Pitch to VivaTech 2026</title><link>https://www.techrepublic.com/article/news-india-vivatech-ai-pitch/</link><description>&lt;p&gt;India’s VivaTech 2026 role gives its AI strategy a global stage as enterprises across APAC weigh regional AI partnerships, infrastructure control, and dependence on foreign chips and cloud platforms.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-india-vivatech-ai-pitch/"&gt;India Brings Its AI Pitch to VivaTech 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-india-vivatech-ai-pitch/</guid><category>APAC</category><category>Artificial Intelligence</category><category>Cloud Infrastructure</category><category>Data Centers</category><category>Digital Transformation</category><category>Enterprise Technology</category><category>India</category><category>IT Leadership</category><category>News</category><category>Startups</category><category>ai</category><category>apac</category><category>artificial intelligence</category><category>cloud infrastructure</category><category>data centers</category><category>digital transformation</category><category>enterprise technology</category><category>it leadership</category><category>startups</category></item><item><title>Who Runs the Ransomware Group ‘The Gentlemen?’</title><link>https://krebsonsecurity.com/2026/06/who-runs-the-ransomware-group-the-gentlemen/</link><description>A cybercrime group known as The Gentlemen has emerged as the second most active ransomware gang by victim count, rapidly attracting a talented pool of hackers through an aggressive recruitment strategy that promises affiliates 90 percent of any ransom paid by victims. This post examines clues pointing to a real life identity for the administrator of The Gentlemen ransomware group.</description><content:encoded>&lt;p&gt;A cybercrime group known as &lt;strong&gt;The Gentlemen&lt;/strong&gt; has emerged as the second most active ransomware gang by victim count, rapidly attracting a talented pool of hackers through an aggressive recruitment strategy that promises affiliates 90 percent of any ransom paid by victims. This post examines clues pointing to a real life identity for the administrator of The Gentlemen ransomware group.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_73785" style="width: 757px;"&gt;&lt;img alt="" class=" wp-image-73785" height="492" src="https://krebsonsecurity.com/wp-content/uploads/2026/06/thegentlemen.png" width="747" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73785"&gt;A graphic created and shared by The Gentlemen ransomware group administrator Hastalamuerte on Breachforums in May 2026. Credit: ke-la.com.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Experts at the security firm &lt;strong&gt;Check Point Software&lt;/strong&gt; have been closely covering exploits of The Gentlemen, a so-called &amp;#8220;ransomware-as-a-service&amp;#8221; (RaaS) offering that pays affiliates handsomely to help spread the group&amp;#8217;s malware.&lt;/p&gt;
