@@ -1,5 +1,280 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 28 Aug 2026 03:59:35 +0000</lastBuildDate><item><title>ISC Stormcast For Friday, August 28th, 2026 https://isc.sans.edu/podcastdetail/10072, (Fri, Aug 28th)</title><link>https://isc.sans.edu/diary/rss/33294</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33294</guid></item><item><title>Nearly 700 rogue AI agents coordinated in the Hugging Face attack</title><link>https://www.bleepingcomputer.com/news/security/nearly-700-rogue-ai-agents-coordinated-in-the-hugging-face-attack/</link><description>New details about the July attack on Hugging Face reveal that hundreds of AI agents driven by OpenAI's internal IM1 model coordinated the compromise through an unauthorized message board. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/nearly-700-rogue-ai-agents-coordinated-in-the-hugging-face-attack/</guid><category>Security</category><category>Artificial Intelligence</category></item><item><title>Bill Gates Says Some Jobs Should Be Off-Limits to AI</title><link>https://www.techrepublic.com/article/news-bill-gates-jobs-off-limits-ai/</link><description>&lt;p&gt;Bill Gates argues some jobs should remain human as AI advances, proposing “Human Reserved” roles and new taxes intended to curb worker displacement.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 28 Aug 2026 09:59:31 +0000</lastBuildDate><item><title>Windows 11 KB5120998 update released with 35 changes and fixes</title><link>https://www.bleepingcomputer.com/news/security/windows-11-kb5120998-update-released-with-35-changes-and-fixes/</link><description>Microsoft released the KB5120998 preview cumulative update for Windows 11 versions 25H2 and 24H2, which comes with 35 changes, including improvements to the Start menu, taskbar, and Windows search. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/windows-11-kb5120998-update-released-with-35-changes-and-fixes/</guid><category>Security</category></item><item><title>How an Atlanta Suburb Ended Up Sharing Flock Data With More Than 2,000 Organizations</title><link>https://www.wired.com/story/how-an-atlanta-suburb-ended-up-sharing-flock-data-with-more-than-2000-organizations/</link><description>Alpharetta, Georgia, cops share data with thousands of Flock users, ranging from federal agencies to a fish and wildlife commission. The reasons why show how vast—and invasive—the network has become.</description><guid isPermaLink="false">6a7b85354b2f87696aad922b</guid><category>Security</category><category>Security / Privacy</category><category>Freedom of Information Act</category><category>privacy</category><category>surveillance</category><category>Police</category><category>immigration</category><category>Immigration and Customs Enforcement</category><category>Flock</category><category>politics</category><category>Network Effect</category></item><item><title>Some Malicious PE Stats, (Thu, Aug 27th)</title><link>https://isc.sans.edu/diary/rss/33292</link><description>&lt;p&gt;During my last FOR610 session, a student asked me if I had some statistics in mind about the compilers used to generate malicious PE files&amp;#x3f; A couple of months ago, I shared some stats about the trend in 64bits VS. 32bits malware&amp;#x5b;&lt;a href="https://isc.sans.edu/diary/2026&amp;#x2b;64Bits&amp;#x2b;Malware&amp;#x2b;Trend/32718"&gt;1&lt;/a&gt;&amp;#x5d;. Can we go a bit further&amp;#x3f; I (vibe-)coded a Python script based on the pefile library&amp;#x5b;&lt;a href="https://github.com/erocarrera/pefile"&gt;2&lt;/a&gt;&amp;#x5d; to extract some info from the PE headers. Indeed, the PE file format contains a lot of metadata&amp;#x21; They can be accessed using a lot of tools, like Detect It Easy:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;During my last FOR610 session, a student asked me if I had some statistics in mind about the compilers used to generate malicious PE files? A couple of months ago, I shared some stats about the trend in 64bits VS. 32bits malware[&lt;a href="https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718"&gt;1&lt;/a&gt;]. Can we go a bit further? I (vibe-)coded a Python script based on the pefile library[&lt;a href="https://github.com/erocarrera/pefile"&gt;2&lt;/a&gt;] to extract some info from the PE headers. Indeed, the PE file format contains a lot of metadata! They can be accessed using a lot of tools, like Detect It Easy:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260828-1.png" style="width: 700px; height: 457px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;Note&lt;/u&gt;: When you assess a PE file, a&amp;nbsp;gold rule to follow is to never trust what you see because these metadata can be tempered!&lt;/p&gt;
+
+&lt;p&gt;I tried to detect the compiler using three techniques:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;The &amp;quot;Rich Header&amp;quot; is a block of data containing useful information (but undocumented by Microsoft). It's an XOR-obfuscated block that the Microsoft linker embeds between the DOS stub and the NT headers of&amp;nbsp;PE files built with the MSVC toolchain. It records the @comp.id (product id + build number) and use-count of every object file that went into the link, which lets you fingerprint the exact compiler/linker/assembler build used, as well as,&amp;nbsp;even the count of source files. pefile is able to handle these data smoothly.&lt;/li&gt;
+	&lt;li&gt;The .NET CLR header (IMAGE_COR20_HEADER) + CLR metadata root, for managed (C#/VB.NET/F#) binaries. This gives the CLR runtime version and the embedded metadata version string (e.g. &amp;quot;v4.0.30319&amp;quot;). This&amp;nbsp;is manually parsed per the public ECMA-335 spec (there's no MSVC Rich Header in managed-only PEs).&lt;/li&gt;
+	&lt;li&gt;A light heuristic string scan for common non-Microsoft compiler signatures (GCC/MinGW, Clang/LLVM, Delphi/Borland, Free Pascal, Go, Rust), since none of those toolchains write a Rich Header. Just because strings are always easy to process and may reveal juicy information!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As said above, there is no&amp;nbsp;official Microsoft documentation for the Rich Header, and no single authoritative mapping of every product-id -&amp;gt; tool/version exists. But they are community references that helps!&amp;nbsp;The well-known &amp;quot;comp_id.txt&amp;quot; is one of them and constantly updated[&lt;a href="https://github.com/dishather/richprint/blob/master/comp_id.txt"&gt;3&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;Now that we have a tool, where can we find fresh meat? Malware Bazaar is a good candidate because it is pretty popular and get new samples daily. They allow (but don't abuse) to download&amp;nbsp;their data set for free! The first step was to download all the archive they offer[&lt;a href="https://bazaar.abuse.ch/export/"&gt;4&lt;/a&gt;]. I downloaded a total of 1.3 TB of ZIP archives, one archive per day from&amp;nbsp;2020-02-24 to 2026-07-08.&lt;/p&gt;
+
+&lt;p&gt;Because PE files can be embedded into other files and to avoid using to much storage, I rewrote the script:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;To unzip files in memory and avoid touching the disk&lt;/li&gt;
+	&lt;li&gt;To perform a recursive scan up to 3 levels&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are the stats I gathered after &amp;ldquo;a few days&amp;rdquo; of processing!&lt;/p&gt;
+
+&lt;p&gt;High level stats&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Total scanned files&lt;/td&gt;
+			&lt;td&gt;23.501.548&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Not PE&lt;/td&gt;
+			&lt;td&gt;22.580.068&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Valid PE&lt;/td&gt;
+			&lt;td&gt;690.689&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Encrypted or unreadable&lt;/td&gt;
+			&lt;td&gt;227.755&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Invalid PE&lt;/td&gt;
+			&lt;td&gt;1.508&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;ZIP Bomb&lt;/td&gt;
+			&lt;td&gt;951&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Invalid ZIP&lt;/td&gt;
+			&lt;td&gt;519&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Error&lt;/td&gt;
+			&lt;td&gt;36&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Skipped Nested ZIP (&amp;gt; 3 levels)&lt;/td&gt;
+			&lt;td&gt;19&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;File Too Large&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;About the architecture:&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;32 Bits (or other architecture)&lt;/td&gt;
+			&lt;td&gt;565.179&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;64 Bits&lt;/td&gt;
+			&lt;td&gt;125.510&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Interesting, this confirms my previous research: 32 bits PE file remain popular.&lt;/p&gt;
+
+&lt;p&gt;Rich Header:&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Rich Header Present&lt;/td&gt;
+			&lt;td&gt;371.103&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;No Rich Header (Maybe stripping, a non-MSVC toolchain, tempeing,...)&lt;/td&gt;
+			&lt;td&gt;319.586&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Top-10 linker versions:&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 48.0&lt;/td&gt;
+			&lt;td&gt;102.307&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 6.0&lt;/td&gt;
+			&lt;td&gt;91.788&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 9.0&lt;/td&gt;
+			&lt;td&gt;62.070&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 8.0&lt;/td&gt;
+			&lt;td&gt;47.829&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 2.25&lt;/td&gt;
+			&lt;td&gt;36.673&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 10.0&lt;/td&gt;
+			&lt;td&gt;36.549&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 14.0&lt;/td&gt;
+			&lt;td&gt;29.786&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 11.0&lt;/td&gt;
+			&lt;td&gt;25.784&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 14.29&lt;/td&gt;
+			&lt;td&gt;24.655&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;linker 80.0&lt;/td&gt;
+			&lt;td&gt;22.691&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Top MSVC Rich Header compiler builds (useful for clustering samples built in the same environment/campaign):&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 26213&lt;/td&gt;
+			&lt;td&gt;19.603&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 24213&lt;/td&gt;
+			&lt;td&gt;15.389&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 30034&lt;/td&gt;
+			&lt;td&gt;14.325&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 26706&lt;/td&gt;
+			&lt;td&gt;7.755&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 24215&lt;/td&gt;
+			&lt;td&gt;5.253&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 32533&lt;/td&gt;
+			&lt;td&gt;5.033&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 33030&lt;/td&gt;
+			&lt;td&gt;4.442&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 31823&lt;/td&gt;
+			&lt;td&gt;3.738&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 25834&lt;/td&gt;
+			&lt;td&gt;3.530&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;build 27412&lt;/td&gt;
+			&lt;td&gt;3.294&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Finally, and the most interesting status, what tools are used by attackers?&lt;/p&gt;
+
+&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+			&lt;p&gt;Unidentified (no Rich Header, no signature match)&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+			&lt;p&gt;272.439&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+			&lt;p&gt;39.4%&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Microsoft toolchain (Rich Header present, no recognized C/C++ entry)&lt;/td&gt;
+			&lt;td&gt;216173&lt;/td&gt;
+			&lt;td&gt;31.3%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Borland C++/Delphi&lt;/td&gt;
+			&lt;td&gt;20172&lt;/td&gt;
+			&lt;td&gt;2.9%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Microsoft Visual C/C++ (Rich Header, compiler build 26213)&lt;/td&gt;
+			&lt;td&gt;19603&lt;/td&gt;
+			&lt;td&gt;2.8%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;GCC / MinGW&lt;/td&gt;
+			&lt;td&gt;13804&lt;/td&gt;
+			&lt;td&gt;2.0%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Go&lt;/td&gt;
+			&lt;td&gt;6254&lt;/td&gt;
+			&lt;td&gt;0.9%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Embarcadero/Borland Delphi&lt;/td&gt;
+			&lt;td&gt;6174&lt;/td&gt;
+			&lt;td&gt;0.9%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Rust&lt;/td&gt;
+			&lt;td&gt;1329&lt;/td&gt;
+			&lt;td&gt;0.2%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Clang/LLVM&lt;/td&gt;
+			&lt;td&gt;91&lt;/td&gt;
+			&lt;td&gt;0.0%&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Free Pascal (FPC)&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+			&lt;td&gt;0.0%&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Interesting to see that arising programming languages like Go or Rust remain exotic in the data set! I expected more popularity!&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718"&gt;https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href="https://github.com/erocarrera/pefile"&gt;https://github.com/erocarrera/pefile&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href="https://github.com/dishather/richprint/blob/master/comp_id.txt"&gt;https://github.com/dishather/richprint/blob/master/comp_id.txt&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href="https://bazaar.abuse.ch/export/"&gt;https://bazaar.abuse.ch/export/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
+Senior ISC Handler | SANS Principal Instructor | Freelance Consultant&lt;br /&gt;
+&lt;a href="https://xameco.be"&gt;Xameco&lt;/a&gt; | &lt;a href="https://xameco.be/pgpkey.txt"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33292</guid></item><item><title>AI IR Overlay – Incident Response Specification for AI Agents</title><link>https://www.darknet.org.uk/2026/08/ai-ir-overlay-incident-response-specification-for-ai-agents/</link><description>AI IR Overlay specifies containment for agents using valid credentials, with a working kill-switch contract and an admitted gap when no SOC is staffed.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=479469</guid><category>GenAI</category><category>ai security</category><category>genai</category><category>incident response</category><category>nist</category><category>owasp</category></item><item><title>ISC Stormcast For Friday, August 28th, 2026 https://isc.sans.edu/podcastdetail/10072, (Fri, Aug 28th)</title><link>https://isc.sans.edu/diary/rss/33294</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33294</guid></item><item><title>Nearly 700 rogue AI agents coordinated in the Hugging Face attack</title><link>https://www.bleepingcomputer.com/news/security/nearly-700-rogue-ai-agents-coordinated-in-the-hugging-face-attack/</link><description>New details about the July attack on Hugging Face reveal that hundreds of AI agents driven by OpenAI's internal IM1 model coordinated the compromise through an unauthorized message board. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/nearly-700-rogue-ai-agents-coordinated-in-the-hugging-face-attack/</guid><category>Security</category><category>Artificial Intelligence</category></item><item><title>Bill Gates Says Some Jobs Should Be Off-Limits to AI</title><link>https://www.techrepublic.com/article/news-bill-gates-jobs-off-limits-ai/</link><description>&lt;p&gt;Bill Gates argues some jobs should remain human as AI advances, proposing “Human Reserved” roles and new taxes intended to curb worker displacement.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-bill-gates-jobs-off-limits-ai/"&gt;Bill Gates Says Some Jobs Should Be Off-Limits to AI&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-bill-gates-jobs-off-limits-ai/</guid><category>AI Regulation</category><category>Artificial Intelligence</category><category>Automation</category><category>Bill Gates</category><category>Technology</category><category>ai jobs</category><category>ai regulation</category><category>artificial intelligence</category><category>automation</category><category>bill gates</category><category>future of work</category><category>human reserved</category><category>job displacement</category></item><item><title>A Georgia Cop Used Flock to Track 2 Other Cops: His Ex and Her Friend</title><link>https://www.wired.com/story/a-georgia-cop-used-flock-to-track-2-other-cops-his-ex-and-her-friend/</link><description>After an affair with a fellow police officer ended, a Georgia cop used Flock to track her movements—and those of a man whose vehicle often showed up near hers, internal investigation records show.</description><guid isPermaLink="false">6a8c94bfdc189f02e9641b90</guid><category>Security</category><category>Security / Privacy</category><category>Flock</category><category>privacy</category><category>surveillance</category><category>Police</category><category>artificial intelligence</category><category>Freedom of Information Act</category><category>Keeping Tabs</category></item><item><title>PCI DSS 4.0.1: Application Requirements You’re Being Assessed On in 2026</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways Since March 31, 2025, all 51 former “best practice” requirements in PCI DSS 4.0 have been fully scored. Every 2026 assessment covers them. A large share of the new weight sits in the PCI DSS 4.0.1 application requirements, concentrated in Requirements 6 and 11: inventory of custom applications and APIs, continuous protection of [&amp;#8230;]</description><content:encoded>&lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
 &lt;h3 style="color: #ed2e26;"&gt;Key Takeaways&lt;/h3&gt;
 &lt;ul&gt;
@@ -1509,7 +1784,7 @@ Rob VandenBrink&lt;br /&gt;
 rob@coherentsecurity.com&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33284</guid></item><item><title>Boston Scientific says cyberattack disrupted operations globally</title><link>https://www.bleepingcomputer.com/news/security/boston-scientific-says-cyberattack-disrupted-operations-globally/</link><description>Medical technology company Boston Scientific has been targeted in a cyberattack that disrupted some of its IT systems, causing operational disruptions globally. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/boston-scientific-says-cyberattack-disrupted-operations-globally/</guid><category>Security</category></item><item><title>Beyond Patching: What IT Teams Need to Know About Unpatchable Exposures</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary Most IT teams still operate under a false binary: patch or accept risk. That assumption creates unnecessary operational pressure. Patchless remediation is real and production-proven. Mitigate, Uninstall, Run Custom Scripts, Isolate; close exposure when no reliable patch exists. Same-day exposure neutralization becomes possible for CISA KEV items without emergency change control or restart [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33284</guid></item><item><title>Beyond Patching: What IT Teams Need to Know About Unpatchable Exposures</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary Most IT teams still operate under a false binary: patch or accept risk. That assumption creates unnecessary operational pressure. Patchless remediation is real and production-proven. Mitigate, Uninstall, Run Custom Scripts, Isolate; close exposure when no reliable patch exists. Same-day exposure neutralization becomes possible for CISA KEV items without emergency change control or restart [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
 
 &lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
   &lt;h4 style="color: #ed2e26;"&gt;Executive Summary&lt;/h4&gt;
@@ -2669,51 +2944,7 @@ Senior handler&lt;br /&gt;
 &lt;li&gt;Attempts to plant and prompt-inject malicious code. The agent tried to insert malicious instructions where it reasoned that other automated AI systems might pick them up and execute them. Prompt-injections are hidden instructions designed to manipulate AI coding assistants.
 &lt;li&gt;Collaboration between independent agents being assessed simultaneously. One agent left public messages on GitHub offering collaboration with other agents working on the same challenge. It also provided instructions to reuse accounts and artefacts it had left behind, which were discovered and used by subsequent agents.&lt;/ol&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;What&amp;#8217;s especially interesting about this technical report is that, unlike what we&amp;#8217;ve been getting from OpenAI and Anthropic, we can see the exact prompt. It&amp;#8217;s in Appendix B. And reading it, it seems that the models didn&amp;#8217;t break any rules&amp;#8212;they found loopholes in the rules. They behaved like a genie.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72487</guid><category>Uncategorized</category><category>AI</category><category>cybersecurity</category><category>loopholes</category></item><item><title>Who Got Missed in the MFA Rollout&amp;#x3f; More Powershell &amp;#x2b; Graph &amp;#x2b; Entra scripting&amp;#x21;, (Fri, Aug 21st)</title><link>https://isc.sans.edu/diary/rss/33272</link><description>&lt;p&gt;In every MFA rollout, there will come a time where you think you are closing in on "done", and some automation to list what&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s left would be handy.  Something quicker than scrolling through the web interface through thousands of accounts ...&lt;br /&gt;&amp;#xd; This is that method.&lt;br /&gt;&amp;#xd; Also, remember when we discussed yesterday about the beta graph commands in the &lt;span&gt;Microsoft.Graph.Beta &lt;/span&gt;library&amp;#x3f;  We&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;ll use one of those beta commands here&amp;#x21;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;In every MFA rollout, there will come a time where you think you are closing in on &amp;quot;done&amp;quot;, and some automation to list what's left would be handy.&amp;nbsp; Something quicker than scrolling through the web interface through thousands of accounts ...&lt;br /&gt;
-This is that method.&lt;br /&gt;
-Also, remember when we discussed yesterday about the beta graph commands in the&amp;nbsp;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;Microsoft.Graph.Beta &lt;/span&gt;library?&amp;nbsp; We'll use one of those beta commands here!&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;# import, if it's not already there&lt;br /&gt;
-Import-Module -Name Microsoft.Graph.Beta.Reports&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;# with the necessary auditing scope&lt;br /&gt;
-Connect-MgGraph -Scopes &amp;quot;AuditLog.Read.All&amp;quot;, &amp;quot;User.Read.All&amp;quot;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;$AllMFADetails = Get-MgBetaReportAuthenticationMethodUserRegistrationDetail -All&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;# We're only interested in users who are NOT yet registered for MFA&lt;br /&gt;
-$NonMFAUsers = $AllMFAdetails | Where-Object { $_.IsMfaRegistered -eq $false }&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;$t = foreach ($User in $NonMFAUsers) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp;# user by user, collect account details (primary if it's enabled)&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp;# then construct the userobj record&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp;# note the join adds the object to the list&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;$UserObj = Get-MgUser -UserId $User.Id -Select Id, AccountEnabled&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;[PSCustomObject]@{&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;quot;UserPrincipalName&amp;quot;&amp;nbsp; &amp;nbsp;= $User.UserPrincipalName&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;quot;DisplayName&amp;quot;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;= $User.UserDisplayName&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;quot;AccountEnabled&amp;quot;&amp;nbsp; &amp;nbsp; &amp;nbsp; = $UserObj.AccountEnabled&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;quot;MethodsRegistered&amp;quot;&amp;nbsp; &amp;nbsp;= ($User.UserPreferredMethodForSignIn -join &amp;quot;, &amp;quot;)&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp;}&lt;br /&gt;
-&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;$t | Out-GridView -Title &amp;quot;NON-MFA Users&amp;quot;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that the last two columns are for MFA methods, so they'll be blank, but we'll use those in a sec.&lt;br /&gt;
-I'm not displaying the output in this case, as it's essentially a list of actual user accounts.&lt;/p&gt;
-
-&lt;p&gt;You can also modify this a bit, for instance if you were tightening up your MFA setup, because your auditor told you to root out folks using SMS for MFA for instance, this is definitely the command set to use.&amp;nbsp; You'd want &lt;span style="font-family: Courier New,Courier,monospace;"&gt;$_.IsMfaRegistered -eq $true&lt;/span&gt;, but then look for &amp;quot;SMS&amp;quot; in the Methods registered or Default MFA columns.&amp;nbsp; Surprisingly in this last check I saw a number of folks with &amp;quot;voiceMobile&amp;quot; (ie a voice callback) as their primary MFA.&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Give this a try, let us know in the comments if you find some unexpected folks who skated by the MFA login policy requirements ....&lt;/p&gt;
-
-&lt;p&gt;===============&lt;br /&gt;
-Rob VandenBrink&lt;br /&gt;
-rob@coherentsecurity.com&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33272</guid></item><item><title>Microsoft Removes WMIC From Windows 11 Beta: What Users Need to Do Now</title><link>https://www.techrepublic.com/article/news-microsoft-removes-wmic-windows-11-beta/</link><description>&lt;p&gt;Microsoft removed WMIC from a Windows 11 Beta build. Learn what the change means for security, legacy scripts, and supported replacement tools.&lt;/p&gt;
+&lt;p&gt;What&amp;#8217;s especially interesting about this technical report is that, unlike what we&amp;#8217;ve been getting from OpenAI and Anthropic, we can see the exact prompt. It&amp;#8217;s in Appendix B. And reading it, it seems that the models didn&amp;#8217;t break any rules&amp;#8212;they found loopholes in the rules. They behaved like a genie.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72487</guid><category>Uncategorized</category><category>AI</category><category>cybersecurity</category><category>loopholes</category></item><item><title>Microsoft Removes WMIC From Windows 11 Beta: What Users Need to Do Now</title><link>https://www.techrepublic.com/article/news-microsoft-removes-wmic-windows-11-beta/</link><description>&lt;p&gt;Microsoft removed WMIC from a Windows 11 Beta build. Learn what the change means for security, legacy scripts, and supported replacement tools.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-microsoft-removes-wmic-windows-11-beta/"&gt;Microsoft Removes WMIC From Windows 11 Beta: What Users Need to Do Now&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-microsoft-removes-wmic-windows-11-beta/</guid><category>Cybersecurity</category><category>Microsoft</category><category>Software</category><category>Windows</category><category>cybersecurity</category><category>it automation</category><category>powershell</category><category>Windows 11</category><category>windows management instrumentation</category><category>windows security</category><category>wmic</category></item><item><title>China Is Strapping ‘Digital Bombs’ to Civilian Infrastructure—Is the US Ready?</title><link>https://www.wired.com/story/china-is-strapping-digital-bombs-to-civilian-infrastructure-is-the-us-ready/</link><description>This week on “Uncanny Valley,” Andy Greenberg discusses sitting in on a war game simulating a cyberattack from the Chinese hacking group Volt Typhoon</description><guid isPermaLink="false">6a8609544518d27679a9b1e1</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>Uncanny Valley Podcast</category><category>podcasts</category><category>security</category><category>cyberattacks</category><category>cybersecurity</category><category>China</category><category>hacking</category><category>cybersecurity hacking</category><category>insurance</category><category>water</category><category>Uncanny Valley</category></item><item><title>Amazon’s Order Email Privacy Change Creates a Potential Phishing Trade-Off</title><link>https://www.techrepublic.com/article/news-amazon-order-email-privacy-phishing-trade-off/</link><description>&lt;p&gt;Amazon’s less-detailed order emails protect purchase data but may make phishing harder to spot. Learn how to verify order messages safely online.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-amazon-order-email-privacy-phishing-trade-off/"&gt;Amazon’s Order Email Privacy Change Creates a Potential Phishing Trade-Off&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-amazon-order-email-privacy-phishing-trade-off/</guid><category>Amazon</category><category>Cybersecurity</category><category>Data Privacy</category><category>Phishing</category><category>Security</category><category>amazon security</category><category>artificial intelligence</category><category>cybersecurity</category><category>data privacy</category><category>email security</category><category>online shopping</category><category>phishing</category></item><item><title>Detailed Timeline of OpenAI’s Cyberattack on Hugging Face</title><link>https://www.schneier.com/blog/archives/2026/08/detailed-timeline-of-openais-cyberattack-on-hugging-face.html</link><description>&lt;p&gt;OpenAI &lt;a href="https://www.youtube.com/watch?v=87DyyMV0kCY"&gt;presented&lt;/a&gt; details of its AI&amp;#8217;s model&amp;#8217;s cyberattack on Hugging Face at Black Hat last week. Simon Willison &lt;a href="https://simonwillison.net/2026/Aug/7/openai-timeline/#atom-everything"&gt;details&lt;/a&gt; the timeline. It&amp;#8217;s really interesting to read through&amp;#8212;and really impressive cyberoffense work.&lt;/p&gt;</description><content:encoded>&lt;p&gt;OpenAI &lt;a href="https://www.youtube.com/watch?v=87DyyMV0kCY"&gt;presented&lt;/a&gt; details of its AI&amp;#8217;s model&amp;#8217;s cyberattack on Hugging Face at Black Hat last week. Simon Willison &lt;a href="https://simonwillison.net/2026/Aug/7/openai-timeline/#atom-everything"&gt;details&lt;/a&gt; the timeline. It&amp;#8217;s really interesting to read through&amp;#8212;and really impressive cyberoffense work.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.schneier.com/?p=72490</guid><category>Uncategorized</category><category>AI</category><category>cyberattack</category><category>video</category></item><item><title>Windows 11 Hotpatching Explained: How Much Does It Really Reduce Reboots?</title><link>https://www.techrepublic.com/article/news-windows-11-hotpatching-reboots/</link><description>&lt;p&gt;Windows 11 hotpatching can install security updates without reboots. Learn who qualifies, how the update cycle works, and what IT teams should expect.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-windows-11-hotpatching-reboots/"&gt;Windows 11 Hotpatching Explained: How Much Does It Really Reduce Reboots?&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4370399</guid><category>Cybersecurity</category><category>Microsoft</category><category>News</category><category>Operating Systems</category><category>Security</category><category>Windows</category><category>cybersecurity</category><category>hotpatch</category><category>microsoft intune</category><category>patch management</category><category>Windows 11</category><category>windows autopatch</category><category>windows update</category></item><item><title>BTR Reforged: Weaponizing Defender’s Remediation Driver as a Kernel Operation Primitive</title><link>https://research.checkpoint.com/2026/btr-reforged-weaponizing-defenders-remediation-driver-as-a-kernel-operation-primitive/</link><description>&lt;p&gt;Research by: Jiří Vinopal (@vinopaljiri) Abstract What if a trusted security component could be repurposed into an attacker-controlled kernel primitive? What if a signed Microsoft remediation driver could be instructed to execute arbitrary file and registry operations from Ring 0 &amp;#8211; without exploits, vulnerabilities, or memory corruption? In this publication, we present the first full [&amp;#8230;]&lt;/p&gt;
@@ -9670,7 +9901,7 @@ ALTER TABLE kv_tmp RENAME TO _cf_KV;                 -- not checked → now KV&l
 
 &lt;li&gt;no public link, Cloudflare coordinated-disclosure correspondence. Cloudflare confirmed there are no MPK protection keys on the tcmalloc allocations.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/when-agentic-glue-melts/"&gt;When Agentic Glue Melts: Exploiting Cloudflare Code Mode and Workers&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=33303</guid><category>AI Research</category><category>Check Point Research Publications</category></item><item><title>Hackers Stalked Me by Hijacking a Smartwatch for Kids</title><link>https://www.wired.com/story/hackers-stalked-me-by-hijacking-a-smartwatch-for-kids/</link><description>Security researchers tracked and eavesdropped on a WIRED reporter using vulnerabilities in a pink plastic smartwatch. It’s just one piece of a deeply insecure supply chain of GPS-enabled gadgets.</description><guid isPermaLink="false">6a6b740e74c2aa7d3b40f499</guid><category>Security</category><category>Security / Cyberattacks and Hacks</category><category>GPS</category><category>surveillance</category><category>hacks</category><category>privacy</category><category>security</category><category>cybersecurity</category><category>smartwatch</category><category>black hat</category><category>DefCon</category><category>Watch Out</category></item><item><title>Canadian Man Pleads Guilty in Snowflake Extortions</title><link>https://krebsonsecurity.com/2026/08/canadian-man-pleads-guilty-in-snowflake-extortions/</link><description>A 26-year-old Canadian man once described as one of the most consequential cybercrime threat actors of 2024 has pleaded guilty to computer fraud and conspiracy to hack and extort more than 165 organizations that used the cloud data storage provider Snowflake. Connor Riley Moucka, of Kitchener, Ontario, also admitted to stealing call and text history records of more than 100 million AT&amp;#038;T customers.</description><content:encoded>&lt;p&gt;A 26-year-old Canadian man once described as one of the most consequential cybercrime threat actors of 2024 has pleaded guilty to computer fraud and conspiracy to hack and extort more than 165 organizations that used the cloud provider &lt;strong&gt;Snowflake&lt;/strong&gt;. &lt;strong&gt;Connor Riley Moucka&lt;/strong&gt;, of Kitchener, Ontario, also admitted to stealing call and text history records of more than 100 million AT&amp;amp;T customers.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/when-agentic-glue-melts/"&gt;When Agentic Glue Melts: Exploiting Cloudflare Code Mode and Workers&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://research.checkpoint.com/?p=33303</guid><category>AI Research</category><category>Check Point Research Publications</category></item><item><title>Canadian Man Pleads Guilty in Snowflake Extortions</title><link>https://krebsonsecurity.com/2026/08/canadian-man-pleads-guilty-in-snowflake-extortions/</link><description>A 26-year-old Canadian man once described as one of the most consequential cybercrime threat actors of 2024 has pleaded guilty to computer fraud and conspiracy to hack and extort more than 165 organizations that used the cloud data storage provider Snowflake. Connor Riley Moucka, of Kitchener, Ontario, also admitted to stealing call and text history records of more than 100 million AT&amp;#038;T customers.</description><content:encoded>&lt;p&gt;A 26-year-old Canadian man once described as one of the most consequential cybercrime threat actors of 2024 has pleaded guilty to computer fraud and conspiracy to hack and extort more than 165 organizations that used the cloud provider &lt;strong&gt;Snowflake&lt;/strong&gt;. &lt;strong&gt;Connor Riley Moucka&lt;/strong&gt;, of Kitchener, Ontario, also admitted to stealing call and text history records of more than 100 million AT&amp;amp;T customers.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_69625" style="width: 759px;"&gt;&lt;img alt="" class="wp-image-69625" height="575" src="https://krebsonsecurity.com/wp-content/uploads/2024/11/moucka-surveillance.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-69625"&gt;A surveillance photo of Connor Riley Moucka, a.k.a. “Judische” and “Waifu,” dated Oct 21, 2024, 9 days before Moucka’s arrest. This image was included in an affidavit filed by an investigator with the Royal Canadian Mounted Police (RCMP).&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;The U.S. Justice Department said between February and October 2024, Moucka and co-conspirators used stolen login credentials to steal cloud-hosted data belonging to at least 165 customers of a U.S.-based software-as-a-service company.&lt;/p&gt;
 &lt;p&gt;The hackers targeted stolen credentials for Snowflake customer accounts that did not enforce multi-factor authentication, and extorted or attempted to extort a host of well-known companies, including TicketMaster, Lending Tree, Advance Auto Parts and Neiman Marcus. Snowflake responded to the data thefts by increasing password complexity requirements and enforcing multi-factor authentication.&lt;/p&gt;
@@ -13375,7 +13606,7 @@ persist_enable
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-google-ai-funding-lovable/"&gt;Nvidia and Google Back $6.6B AI Startup Lovable&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4341401</guid><category>Artificial Intelligence</category><category>EU</category><category>Europe</category><category>European Union</category><category>Google</category><category>Innovation</category><category>International</category><category>News</category><category>Start-Ups</category><category>Startups</category><category>ai</category><category>Lovable</category><category>nvidia</category><category>startup</category><category>Sweden</category><category>vibe coding</category></item><item><title>Google will end dark web reports that alerted users to leaked data</title><link>https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/</link><description>Google says the reports lacked "helpful next steps."</description><content:encoded>&lt;p&gt;Google began offering "dark web reports" a while back, but the company has just announced the feature will be going away very soon. In an email to users of the service, Google says it will stop telling you about dark web data leaks in February. This probably won't negatively impact your security or privacy because, as Google points out in its latest email, there's really nothing you can do about the dark web.&lt;/p&gt;
 &lt;p&gt;The dark web reports launched in March 2023 as a perk for Google One subscribers. The reports were expanded to general access in 2024. Now, barely a year later, Google has decided it doesn't see the value in this type of alert for users. Dark web reports provide a list of partially redacted user data retrieved from shadowy forums and sites where such information is bought and sold. However, that's all it is—a list.&lt;/p&gt;
 &lt;p&gt;The dark web consists of so-called hidden services hosted inside the Tor network. You need a special browser or connection tools in order to access Tor hidden services, and its largely anonymous nature has made it a favorite hangout for online criminals. If a company with your personal data has been hacked, that data probably lives &lt;a href="https://arstechnica.com/information-technology/2019/10/data-for-a-whopping-26-million-stolen-payment-cards-leaked-in-hack-of-fraud-bazaar/"&gt;somewhere on the dark web&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/</guid><category>Google</category><category>Tech</category><category>dark web</category><category>data leaks</category><category>google</category><category>privacy</category><category>security</category></item><item><title>A NICE Retrospective on Shaping Cybersecurity’s Future</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nice-retrospective-shaping-cybersecuritys-future</link><description>Rodney Petersen has served as the Director of NICE at the National Institute for Standards and Technology (NIST) for the past eleven years where his focus has been on advancing cybersecurity education and workforce development. He will be retiring from federal government service at the end of the 2025 calendar year. Prior to his role at NIST, he has worked in various technology policy and leadership roles with EDUCAUSE and the University of Maryland. The NICE program, led by the National Institute of Standards and Technology (NIST) in the U.S. Department of Commerce, has its origins in the</description><guid isPermaLink="false">https://www.nist.gov/node/1900071</guid></item><item><title>Systemic Ransomware Events in 2025 – How Jaguar Land Rover Showed What a Category 3 Supply Chain Breach Looks Like</title><link>https://www.darknet.org.uk/2025/11/systemic-ransomware-events-in-2025-how-jaguar-land-rover-showed-what-a-category-3-supply-chain-breach-looks-like/</link><description>Systemic ransomware events in 2025, how Jaguar Land Rover’s shutdown exposed Category 3 supply chain risk, with lessons from Toyota, Nissan and Ferrari.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176624</guid><category>Hacking News</category></item><item><title>SmbCrawler – SMB Share Discovery and Secret-Hunting</title><link>https://www.darknet.org.uk/2025/11/smbcrawler-smb-share-discovery-and-secret-hunting/</link><description>SmbCrawler is a credentialed SMB share crawler for red teams that discovers misconfigured shares and hunts secrets across Windows networks.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176644</guid><category>Hacking Tools</category></item><item><title>Heisenberg Dependency Health Check – GitHub Action for Supply Chain Risk</title><link>https://www.darknet.org.uk/2025/11/heisenberg-dependency-health-check-github-action-for-supply-chain-risk/</link><description>Heisenberg Dependency Health Check is a GitHub Action that flags risky or newly introduced dependencies in pull requests using supply-chain signals.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176630</guid><category>Countermeasures</category><category>github action security</category><category>hacking github actions</category></item><item><title>Dark Web Search Engines for Security Research: Monitoring, APIs and IOC Hunting</title><link>https://www.darknet.org.uk/2025/11/dark-web-search-engines-in-2025-enterprise-monitoring-apis-and-ioc-hunting/</link><description>Compare public dark web search engines with enterprise monitoring platforms, APIs and IOC workflows for credentials, threats, brands and leaked data.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176614</guid><category>Dark Web</category><category>IOC hunting</category><category>osint</category><category>threat intelligence</category></item><item><title>mcp-scan – Real-Time Guardrail Monitoring and Dynamic Proxy for MCP Servers</title><link>https://www.darknet.org.uk/2025/11/mcp-scan-real-time-guardrail-monitoring-and-dynamic-proxy-for-mcp-servers/</link><description>mcp-scan is a dynamic proxy and guardrail monitor for MCP servers, providing real-time traffic inspection and enforcement for agents and tools.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176636</guid><category>GenAI</category><category>hacking mcp</category><category>mcp security</category><category>mcp security scanner</category></item><item><title>Initial Access Brokers (IAB) in 2025 – From Dark Web Listings to Supply Chain Ransomware Events</title><link>https://www.darknet.org.uk/2025/11/initial-access-brokers-iab-in-2025-from-dark-web-listings-to-supply-chain-ransomware-events/</link><description>Initial access brokers in 2025, how dark web access listings feed ransomware supply chain events like JLR, and what CISOs can do to detect and disrupt them</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176607</guid><category>Dark Web</category></item><item><title>Reconnoitre – Open-Source Reconnaissance and Service Enumeration Tool</title><link>https://www.darknet.org.uk/2025/11/reconnoitre-open-source-reconnaissance-and-service-enumeration-tool/</link><description>Reconnoitre automates network reconnaissance and service enumeration for penetration testers and red teams using structured, repeatable workflows.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176540</guid><category>Hacking Tools</category><category>oscp</category><category>recon tool</category><category>service enum</category></item><item><title>Leaker reveals which Pixels are vulnerable to Cellebrite phone hacking</title><link>https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/</link><description>Cellebrite can apparently extract data from most Pixel phones, unless they're running GrapheneOS.</description><content:encoded>&lt;p&gt;Despite being a vast repository of personal information, smartphones used to have little by way of security. That has thankfully changed, but companies like Cellebrite offer law enforcement tools that can &lt;a href="https://arstechnica.com/security/2025/02/android-0-day-sold-by-cellebrite-exploited-to-hack-serbian-students-phone/"&gt;bypass security on some devices&lt;/a&gt;. The company keeps the specifics quiet, but an anonymous individual recently logged in to a Cellebrite briefing and came away with a list of which of Google's Pixel phones are vulnerable to Cellebrite phone hacking.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/gadgets/2025/12/google-is-shutting-down-dark-web-reports-in-january-because-they-werent-helpful/</guid><category>Google</category><category>Tech</category><category>dark web</category><category>data leaks</category><category>google</category><category>privacy</category><category>security</category></item><item><title>A NICE Retrospective on Shaping Cybersecurity’s Future</title><link>https://www.nist.gov/blogs/cybersecurity-insights/nice-retrospective-shaping-cybersecuritys-future</link><description>Rodney Petersen has served as the Director of NICE at the National Institute for Standards and Technology (NIST) for the past eleven years where his focus has been on advancing cybersecurity education and workforce development. He will be retiring from federal government service at the end of the 2025 calendar year. Prior to his role at NIST, he has worked in various technology policy and leadership roles with EDUCAUSE and the University of Maryland. The NICE program, led by the National Institute of Standards and Technology (NIST) in the U.S. Department of Commerce, has its origins in the</description><guid isPermaLink="false">https://www.nist.gov/node/1900071</guid></item><item><title>Systemic Ransomware Events in 2025 – How Jaguar Land Rover Showed What a Category 3 Supply Chain Breach Looks Like</title><link>https://www.darknet.org.uk/2025/11/systemic-ransomware-events-in-2025-how-jaguar-land-rover-showed-what-a-category-3-supply-chain-breach-looks-like/</link><description>Systemic ransomware events in 2025, how Jaguar Land Rover’s shutdown exposed Category 3 supply chain risk, with lessons from Toyota, Nissan and Ferrari.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176624</guid><category>Hacking News</category></item><item><title>SmbCrawler – SMB Share Discovery and Secret-Hunting</title><link>https://www.darknet.org.uk/2025/11/smbcrawler-smb-share-discovery-and-secret-hunting/</link><description>SmbCrawler is a credentialed SMB share crawler for red teams that discovers misconfigured shares and hunts secrets across Windows networks.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176644</guid><category>Hacking Tools</category></item><item><title>Heisenberg Dependency Health Check – GitHub Action for Supply Chain Risk</title><link>https://www.darknet.org.uk/2025/11/heisenberg-dependency-health-check-github-action-for-supply-chain-risk/</link><description>Heisenberg Dependency Health Check is a GitHub Action that flags risky or newly introduced dependencies in pull requests using supply-chain signals.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176630</guid><category>Countermeasures</category><category>github action security</category><category>hacking github actions</category></item><item><title>Dark Web Search Engines for Security Research: Monitoring, APIs and IOC Hunting</title><link>https://www.darknet.org.uk/2025/11/dark-web-search-engines-in-2025-enterprise-monitoring-apis-and-ioc-hunting/</link><description>Compare public dark web search engines with enterprise monitoring platforms, APIs and IOC workflows for credentials, threats, brands and leaked data.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176614</guid><category>Dark Web</category><category>IOC hunting</category><category>osint</category><category>threat intelligence</category></item><item><title>mcp-scan – Real-Time Guardrail Monitoring and Dynamic Proxy for MCP Servers</title><link>https://www.darknet.org.uk/2025/11/mcp-scan-real-time-guardrail-monitoring-and-dynamic-proxy-for-mcp-servers/</link><description>mcp-scan is a dynamic proxy and guardrail monitor for MCP servers, providing real-time traffic inspection and enforcement for agents and tools.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176636</guid><category>GenAI</category><category>hacking mcp</category><category>mcp security</category><category>mcp security scanner</category></item><item><title>Initial Access Brokers (IAB) in 2025 – From Dark Web Listings to Supply Chain Ransomware Events</title><link>https://www.darknet.org.uk/2025/11/initial-access-brokers-iab-in-2025-from-dark-web-listings-to-supply-chain-ransomware-events/</link><description>Initial access brokers in 2025, how dark web access listings feed ransomware supply chain events like JLR, and what CISOs can do to detect and disrupt them</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=176607</guid><category>Dark Web</category></item><item><title>Leaker reveals which Pixels are vulnerable to Cellebrite phone hacking</title><link>https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/</link><description>Cellebrite can apparently extract data from most Pixel phones, unless they're running GrapheneOS.</description><content:encoded>&lt;p&gt;Despite being a vast repository of personal information, smartphones used to have little by way of security. That has thankfully changed, but companies like Cellebrite offer law enforcement tools that can &lt;a href="https://arstechnica.com/security/2025/02/android-0-day-sold-by-cellebrite-exploited-to-hack-serbian-students-phone/"&gt;bypass security on some devices&lt;/a&gt;. The company keeps the specifics quiet, but an anonymous individual recently logged in to a Cellebrite briefing and came away with a list of which of Google's Pixel phones are vulnerable to Cellebrite phone hacking.&lt;/p&gt;
 &lt;p&gt;This person, who goes by the handle rogueFed, posted screenshots from the recent Microsoft Teams meeting to the &lt;a href="https://discuss.grapheneos.org/d/27698-new-cellebrite-capability-obtained-in-teams-meeting"&gt;GrapheneOS forums&lt;/a&gt; (spotted by &lt;a href="https://www.404media.co/someone-snuck-into-a-cellebrite-microsoft-teams-call-and-leaked-phone-unlocking-details/"&gt;404 Media&lt;/a&gt;). GrapheneOS is an Android-based operating system that can be installed on select phones, including Pixels. It ships with enhanced security features and no Google services. Because of its popularity among the security-conscious, Cellebrite apparently felt the need to include it in its matrix of Pixel phone support.&lt;/p&gt;
 &lt;p&gt;The screenshot includes data on the Pixel 6, Pixel 7, Pixel 8, and Pixel 9 family. It does not list the &lt;a href="https://arstechnica.com/gadgets/2025/08/google-pixel-10-series-review-dont-call-it-an-android/"&gt;Pixel 10 series&lt;/a&gt;, which launched just a few months ago. The phone support is split up into three different conditions: before first unlock, after first unlock, and unlocked. The before first unlock (BFU) state means the phone has not been unlocked since restarting, so all data is encrypted. This is traditionally the most secure state for a phone. In the after first unlock (AFU) state, data extraction is easier. And naturally, an unlocked phone is open season on your data.&lt;/p&gt;&lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/"&gt;Read full article&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/#comments"&gt;Comments&lt;/a&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://arstechnica.com/gadgets/2025/10/leaker-reveals-which-pixels-are-vulnerable-to-cellebrite-phone-hacking/</guid><category>Google</category><category>Tech</category><category>Cellebrite</category><category>google</category><category>security</category><category>smartphones</category></item><item><title>Safety Monitoring Platform RAIDS AI Makes Beta Launch</title><link>https://www.techrepublic.com/article/news-raids-ai-beta-launch/</link><description>&lt;p&gt;The company’s platform is built to identify and alert users to rogue AI activity, tackling increasing concerns over the reliability and accountability of such systems.&lt;/p&gt;
