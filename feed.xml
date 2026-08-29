@@ -1,5 +1,685 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 29 Aug 2026 03:59:21 +0000</lastBuildDate><item><title>McKesson discloses breach after ShinyHunters claims patient data theft</title><link>https://www.bleepingcomputer.com/news/security/mckesson-discloses-breach-after-shinyhunters-claims-patient-data-theft/</link><description>Healthcare and pharmaceutical distribution giant McKesson has disclosed a cybersecurity incident involving unauthorized access to third-party applications and data theft, with the ShinyHunters extortion group claiming it stole 284 million patient data records. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mckesson-discloses-breach-after-shinyhunters-claims-patient-data-theft/</guid><category>Security</category><category>Healthcare</category></item><item><title>Friday Squid Blogging: Truckload of Squid Spills in Rhode Island</title><link>https://www.schneier.com/blog/archives/2026/08/friday-squid-blogging-truckload-of-squid-spills-in-rhode-island.html</link><description>&lt;p&gt;&lt;a href="https://www.huffpost.com/entry/squid-spill-rhode-island-street_n_6a863090e4b0e9f1dd275d79"&gt;Ugh&lt;/a&gt;:&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 29 Aug 2026 09:59:19 +0000</lastBuildDate><item><title>TerminalFix campaign deploys a reverse tunnel through multistage intrusion</title><link>https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/</link><description>&lt;p&gt;Microsoft Threat Intelligence provides analysis of a ClickFix campaign that uses fake CAPTCHA prompts, DLL sideloading, and a reverse tunnel, with detections and hunting guidance.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/"&gt;TerminalFix campaign deploys a reverse tunnel through multistage intrusion&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-370d8b63-0266-4944-b0de-d35597edafcd"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-370d8b63-0266-4944-b0de-d35597edafcd"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence has observed a TerminalFix campaign, a variant of ClickFix, targeting organizations across multiple industries. The campaign uses compromised websites to display a fake Cloudflare CAPTCHA verification overlay that tricks users into copying and executing a malicious PowerShell command. While traditional ClickFix campaigns direct victims to the Windows Run dialog, TerminalFix campaigns apply the same technique but direct users to Windows Terminal or PowerShell instead, increasing the likelihood that complex, multi-line scripts execute successfully. Unlike earlier ClickFix variants that typically deliver a single infostealer, this TerminalFix campaign deploys a sophisticated multi-stage attack chain that combines DLL sideloading, steganographic payload extraction, extensive Active Directory reconnaissance, and a custom reverse-tunnel implant &amp;#8211; giving the attacker persistent, network-level proxy access through the compromised host.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once executed, the PowerShell command masquerades as a Cloudflare verification process while downloading a ZIP archive containing a legitimate binary (&lt;em&gt;LockScreenContentServer.exe&lt;/em&gt;) and a malicious DLL (&lt;em&gt;dui70.dll&lt;/em&gt;) used for sideloading. The sideloaded DLL drives an elaborate second stage: downloading payloads concealed inside PNG images using steganography, establishing dual persistence through Registry Run keys and scheduled tasks, conducting thorough domain reconnaissance—including domain trust enumeration, domain admin discovery, Active Directory user description harvesting, and targeted server ping sweeps—and ultimately deploying a Python-based reverse-tunnel C2 implant that tunnels arbitrary TCP traffic back through an encrypted WebSocket channel to attacker infrastructure.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This type of intrusion is particularly dangerous because it provides attackers with direct access to an organization’s internal network through the reverse tunnel. The observed reconnaissance and reverse-tunnel capability could enable an attacker to identify and reach additional systems from a compromised host. Microsoft did not observe the downstream actions described below in the analyzed chain. Organizations should treat affected devices as potential network pivot points and investigate for lateral movement and credential exposure. In the hands-on-keyboard phase that typically follows, attackers leverage this access to escalate privileges, disable security controls, exfiltrate sensitive data, and deploy ransomware across the organization. The combination of stealth techniques (DLL sideloading, steganography, hidden folders) and persistent network access make this TerminalFix campaign a serious threat to enterprise environments.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In this blog, we share our detailed analysis of the TerminalFix attack chain &amp;#8211; from initial compromise through network tunneling—along with indicators of compromise, detection details, and hunting guidance to help defenders identify and respond to this threat.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The TerminalFix campaign follows a multi-stage attack chain that progresses from social engineering through payload delivery, persistence, reconnaissance, and ultimately network tunneling:&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;1. Initial access via compromised website&lt;/strong&gt; &amp;#8211; A compromised website displays a fake Cloudflare Turnstile CAPTCHA verification overlay. The user is instructed to copy and paste a &amp;#8220;verification&amp;#8221; command.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;2. PowerShell execution&lt;/strong&gt; &amp;#8211; The pasted command runs a disguised PowerShell script that downloads a ZIP archive from attacker infrastructure, extracts it to &lt;em&gt;C:\ProgramData&lt;/em&gt;, and silently launches a batch file.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;3. DLL sideloading&lt;/strong&gt; — The batch file executes &lt;em&gt;LockScreenContentServer.exe&lt;/em&gt;, a signed legitimate binary, which automatically loads the co-located malicious &lt;em&gt;dui70.dll&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;4. Steganographic payload retrieval&lt;/strong&gt; &amp;#8211; The sideloaded DLL executes PowerShell that downloads PNG images from attacker domains, extracts embedded executables and DLL fragments hidden within pixel data, and reassembles them on disk.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;5. Persistence&lt;/strong&gt; &amp;#8211; The malware establishes persistence through both &lt;em&gt;HKCU\&amp;#8230;\Run&lt;/em&gt; registry keys and scheduled tasks that re-execute &lt;em&gt;LockScreenContentServer.exe&lt;/em&gt; every 60 minutes.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;6. Reconnaissance &lt;/strong&gt;&amp;#8211; Extensive domain discovery is performed: domain trust enumeration, domain admin group membership, Active Directory computer and user enumeration, targeted server pinging, and system information collection in both English and Spanish locales.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;7. Command execution loop&lt;/strong&gt; &amp;#8211; A persistent PowerShell file-watch loop monitors a text file for new commands, executes them via Invoke-Expression, and writes results to an output file-, creating a primitive but effective asynchronous command shell.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;8. Reverse tunnel deployment &lt;/strong&gt;&amp;#8211; A Python runtime and a custom client.py tunneling implant are downloaded and launched via pythonw.exe with no visible window, establishing a reverse WebSocket tunnel to  &lt;em&gt;gitnow[.]dev:&lt;a&gt;443&lt;/a&gt;&lt;/em&gt;  that gives the attacker full SOCKS-style TCP proxy access through the victim&amp;#8217;s network.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="attack-chain"&gt;Attack chain&lt;/h3&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149221 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-35.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. TerminalFix attack chain overview.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="1-initial-access-fake-captcha-and-the-terminalfix-lure"&gt;&lt;strong&gt;1. Initial access: Fake CAPTCHA and the TerminalFix lure&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The attack begins when a user visits a compromised website that displays a fake Cloudflare Turnstile verification overlay. The original page is briefly displayed before being replaced by a convincing Cloudflare Turnstile verification overlay. This overlay spoofs the Cloudflare CAPTCHA interface, complete with the Cloudflare logo, &amp;#8220;Verify you are human&amp;#8221; checkbox, and a spinner animation, tricking users into believing they must complete a verification step to access the site.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149222 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-36.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Fake Cloudflare Turnstile verification displayed on a compromised website.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When the user interacts with the fake verification prompt, a malicious PowerShell command is silently copied to their clipboard. The on-screen instructions then guide the user to open Windows Terminal or PowerShell and paste the command. The command is carefully crafted to appear legitimate by printing reassuring Cloudflare-themed status messages in color-coded terminal output:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149223 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-37.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Defanged initial PowerShell command copied to the user&amp;#8217;s clipboard by the ClickFix lure.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The command performs the following actions:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Clears the terminal and prints a fake &amp;#8220;Starting Cloudflare verification&amp;#8230;&amp;#8221; message in cyan color formatted&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Downloads a ZIP archive from the attacker&amp;#8217;s infrastructure using a custom User-Agent header&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Extracts the archive to &lt;em&gt;C:\ProgramData\f47f2a8c21c9df4e&lt;/em&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Launches a batch file (&lt;em&gt;1.bat&lt;/em&gt;) that executes &lt;em&gt;LockScreenContentServer.exe&lt;/em&gt; silently in the background&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Prints a convincing “I am not a robot – Cloudflare ID: f47f2a8c21c9df4e” confirmation message in green text&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="2-payload-delivery-dll-sideloading-via-lockscreencontentserver-exe"&gt;&lt;strong&gt;2. Payload delivery: DLL sideloading via &lt;/strong&gt;&lt;strong&gt;&lt;em&gt;LockScreenContentServer.exe&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The downloaded ZIP archive (SHA-256: 18c2090e8a0ae0568af9b87e59eaf8270f23d2909600ed9db91a9444fd8b278f) contains two files:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;File&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Purpose&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;LockScreenContentServer.exe&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Legitimate signed Windows executable&lt;/td&gt;&lt;td&gt;Sideloading host; loads &lt;em&gt;dui70.dll&lt;/em&gt; from its working directory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;dui70.dll&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;td&gt;Masquerading DLL claiming to be &amp;#8220;Windows DirectUI Engine&amp;#8221; (unsigned, forged future timestamp 2104)&lt;/td&gt;&lt;td&gt;Malicious payload; executes second-stage PowerShell upon sideloading&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;LockScreenContentServer.exe&lt;/em&gt; is a legitimate, signed binary that has a static import dependency on &lt;em&gt;dui70.dll&lt;/em&gt;, the Windows DirectUI Engine.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Here is the example view of LockScreenContentServer application importing &lt;em&gt;dui70.dll&lt;/em&gt; function:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149224 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-38.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Example list of imports from dui70.dll&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The attacker abuses this dependency by dropping a malicious &lt;em&gt;dui70.dll&lt;/em&gt; alongside the executable. Because the Windows loader resolves the application directory before the &lt;em&gt;System32&lt;/em&gt; directory, the planted DLL is loaded in place of the legitimate one, a technique known as DLL sideloading (T1574.001). Execution therefore begins inside a trusted, signed process, allowing the attacker to inherit its reputation and evade controls that key on process identity.&lt;br /&gt;&lt;br /&gt;The malicious &lt;em&gt;dui70.dll&lt;/em&gt; embeds a heavily obfuscated payload in its resource section. On load, the DLL&amp;#8217;s initialization path retrieves this resource, decodes it entirely in memory, and transfers execution to it, staging the next phase of the infection without ever writing the decoded payload to disk (Figures 5 and 6).&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149225 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-39.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. Loading a malicious resource (dui70.dll code path).&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149226 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-40.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. Heavily obfuscated malicious resource from dui70.dll&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="3-second-stage-delivery-steganography-and-image-based-payload-extraction"&gt;&lt;strong&gt;3. Second-stage delivery: Steganography and image-based payload extraction&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once sideloaded, the malicious DLL launches an elaborate PowerShell script that retrieves additional payloads concealed within PNG image files, a technique known as steganography. The script downloads three images from attacker-controlled domains, extracts binary data encoded in pixel values, and reassembles the components on disk.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="content-domains"&gt;&lt;strong&gt;Content domains&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The script uses a failover mechanism across two domains:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149227 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-42.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. Attacker content delivery domains with failover.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="steganographic-extraction"&gt;&lt;strong&gt;Steganographic extraction&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;Extract-RawFileFromImage&lt;/em&gt; function reads each pixel&amp;#8217;s RGBA channels and reconstructs an embedded binary. The first 8 bytes encode the payload length as a 64-bit integer, and the remaining bytes contain the file data:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149228 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-43.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8. Steganographic extraction function &amp;mdash; payload hidden within pixel channel data.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The script downloads three images via POST requests to the content domains, extracts the executable from the first image, extracts two halves of the DLL from the second and third images, and concatenates the DLL fragments:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149229 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-44.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9. Payload extraction from three images and DLL reassembly.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Encoding payload data in PNG files can make file type and content inspection more difficult. Splitting the DLL across two images further obscures the complete payload in transit, the payloads aren&amp;#8217;t recognizable as executables in transit, and splitting the DLL across two images further complicates detection. After extraction, the source images are deleted to reduce forensic artifacts.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="4-persistence-mechanisms"&gt;&lt;strong&gt;4. Persistence mechanisms&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt; The TerminalFix campaign establishes redundant persistence through two independent mechanisms, ensuring the payload survives reboots and re-executes on a recurring schedule. The dropped batch script takes the payload path as a command-line argument, validates that the file exists, and then configures both mechanisms under the same masquerading name &lt;em&gt;LockScreenContentServer_MuODG5yBM&lt;/em&gt; chosen to blend in with the legitimate Windows Lock Screen component abused earlier in the chain.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="registry-run-key"&gt;&lt;strong&gt;Registry Run key&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware creates a Run key entry with a randomized service-like name:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149230 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-45.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10. Registry Run key persistence [T1547.001].&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="scheduled-task"&gt;&lt;strong&gt;Scheduled task&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A scheduled task ensures the malware re-executes every 60 minutes:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149231 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-46.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11. Scheduled task persistence at 60-minute intervals [T1053.005].&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="folder-hiding"&gt;&lt;strong&gt;Folder hiding&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware directory is hidden using system and hidden file attributes:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full is-resized"&gt;&lt;img alt="" class="wp-image-149232 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-47.webp" style="width: 680px; height: auto;" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 12. Directory hiding via attrib [T1564.001].&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="5-reconnaissance-and-domain-discovery"&gt;&lt;strong&gt;5. Reconnaissance and domain discovery&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After establishing persistence, the sideloaded malware conducts extensive reconnaissance of the victim&amp;#8217;s environment. This activity is consistent with a hands-on-keyboard operator or an automated pre-assessment script designed to evaluate whether the compromised host is a valuable target &amp;#8211; particularly whether it is domain-joined and near high-value infrastructure.&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="system-information-collection"&gt;System information collection&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The attacker collects system metadata and the script includes English, Spanish, and German locale variants, indicating an attempt to operate across systems configured in multiple languages:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149233 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-48.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 13. Bilingual system information enumeration.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="active-directory-enumeration"&gt;Active Directory enumeration&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware performs domain trust discovery, domain admin enumeration, and Active Directory user and computer searches:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149234 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-49.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 14. Active Directory enumeration including user description harvesting.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="infrastructure-probing"&gt;Infrastructure probing&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware systematically pings named servers to map the internal network topology:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149235 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-50.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 15. Automated Windows Server enumeration via ADSI combined with targeted ping sweep.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The observed names correspond to common infrastructure roles, including domain controllers, databases, backup, gateways, and mail systems. This probing could help an attacker identify accessible target systems for follow-on activity.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="6-asynchronous-command-execution-loop"&gt;&lt;strong&gt;6. Asynchronous command execution loop&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The malware deploys a persistent PowerShell file-watch loop that creates an asynchronous command-and-control channel through the local filesystem. This mechanism monitors a &amp;#8220;watch&amp;#8221; file for changes, executes its contents via Invoke-Expression, and writes results to an output file:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149236 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-51.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 16. File-watch command execution loop &amp;#8211; a primitive but effective asynchronous C2 channel.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This loop provides the attacker with a way to execute arbitrary PowerShell commands by writing them to the watched text file. The output is captured to a separate file, which the attacker can read back through the reverse tunnel. This decoupled execution model allows the attacker to issue commands asynchronously and retrieve results at their convenience.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="7-reverse-tunnel-deployment-the-custom-python-based-tunneling-implant"&gt;&lt;strong&gt;7. Reverse tunnel deployment: The custom Python-based tunneling implant&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="the-most-significant-post-compromise-capability-observed-is-the-deployment-of-a-custom-python-based-reverse-tunnel-implant-the-attacker-brings-their-own-interpreter-an-unmodified-signed-embeddable-python-runtime-pulled-directly-from-the-official-python-org-distribution-the-malicious-logic-lives-entirely-in-the-accompanying-client-py-giving-the-operator-a-portable-cross-version-tolerant-execution-environment-that-inherits-the-trust-of-a-legitimate-open-source-runtime"&gt;The most significant post-compromise capability observed is the deployment of a custom Python-based reverse-tunnel implant. The attacker brings their own interpreter: an unmodified, signed embeddable Python runtime pulled directly from the official python.org distribution. The malicious logic lives entirely in the accompanying client.py, giving the operator a portable, cross-version-tolerant execution environment that inherits the trust of a legitimate open-source runtime.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The deployment is orchestrated in PowerShell. It removes any prior install directory, extracts the implant kit, downloads the embeddable Python 3.14.5 archive over TLS 1.2, unpacks it into the same directory, and launches the tunnel with no visible window via pythonw.exe:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149237 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-52.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 17. Python runtime deployment and custom tunnel implant launch.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="tunneling-implant-analysis"&gt;&lt;strong&gt;Tunneling implant analysis&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt; The client.py script is a compact but full-featured reverse tunnel. It dials outbound to the C2 over TLS/443, upgrades the session to a WebSocket, and uses that channel to relay arbitrary TCP connections on behalf of the operator. On the wire, the traffic is indistinguishable from an ordinary encrypted web session to a single destination&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Capability&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;TLS WebSocket tunnel&lt;/td&gt;&lt;td&gt;Connects outbound over TLS port 443, upgrades to WebSocket at /tunnel endpoint. Certificate verification is always disabled (CERT_NONE).&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Arbitrary TCP proxying&lt;/td&gt;&lt;td&gt;SOCKS5-style address parsing (IPv4/IPv6/hostname) allows the C2 server to instruct the implant to connect to any internal host and port.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;User-Agent rotation&lt;/td&gt;&lt;td&gt;Randomly selects from four realistic browser UA strings (Chrome, Firefox, Safari) per connection.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Remote shutdown&lt;/td&gt;&lt;td&gt;C2 server can remotely terminate the implant via MSG_SHUTDOWN; uses &lt;em&gt;os._exit()&lt;/em&gt; to bypass Python cleanup.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stream multiplexing&lt;/td&gt;&lt;td&gt;Custom 7-byte binary protocol header (type + stream ID + length) multiplexes many tunneled connections over one WebSocket.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The tunnel carries a lightweight custom protocol with eight message types spanning implant identification, connection setup, data relay, keepalive, and remote termination:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149238 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-53.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 18. custom tunnel protocol message types.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Turning the victim into a network pivot: &lt;/strong&gt;The implant&amp;#8217;s SOCKS5-style address parsing enables the C2 server to reach any host visible from the victim&amp;#8217;s network. Combined with the reconnaissance data gathered earlier (domain controllers, SQL servers, backup servers, gateway), this turns the compromised machine into a full network pivot point:&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149239 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-54.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 19. Custom implant&amp;#8217;s arbitrary TCP connection capability.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The choice to launch with &lt;em&gt;pythonw.exe&lt;/em&gt; (no visible window Python interpreter) means no console window is visible to the user. Combined with &lt;em&gt;DEBUG = False&lt;/em&gt; by default and all logging going to stderr, the implant operates completely silently.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Restrict PowerShell and Run dialog execution &amp;#8211; Use AppLocker, &lt;a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/appcontrol"&gt;Application Control for Windows&lt;/a&gt;, or Group Policy to restrict PowerShell execution for standard users. &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Consider blocking or auditing the Windows Run dialog (Win+R) where it is not required for daily work.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Monitor for DLL sideloading indicators — Alert on LockScreenContentServer.exe executing from non-standard paths (anything other than C:\Windows\SystemApps). Use the LockScreenContentServer.exe sideloading from non-standard paths advanced hunting query provided below to identify this activity across your environment.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Educate users about ClickFix tactics &amp;#8211; Train employees to recognize fake CAPTCHA verification pages that instruct them to paste commands into Terminal or the Run dialog.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Investigate affected hosts thoroughly &amp;#8211; Organizations that find indicators of this campaign should assume the attacker has network-level access through the compromised host. Credential rotation should be prioritized for any credentials accessible from the affected machine, including domain admin accounts if the host was domain-joined.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Check your Microsoft 365 email filtering settings to ensure spoofed emails, spam, and emails with malware are blocked. Use &lt;a href="https://learn.microsoft.com/defender-office-365/mdo-about"&gt;Microsoft Defender for Office 365&lt;/a&gt; for enhanced phishing protection and coverage against new threats and polymorphic variants. Configure Defender for Office 365 to &lt;a href="https://learn.microsoft.com/defender-office-365/safe-links-about"&gt;recheck links on click&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/defender-office-365/zero-hour-auto-purge"&gt;delete sent mail&lt;/a&gt; in response to newly acquired threat intelligence. Turn on &lt;a href="https://learn.microsoft.com/defender-office-365/safe-attachments-about"&gt;safe attachments policies&lt;/a&gt; to check attachments to inbound email.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Consider using &lt;a href="https://learn.microsoft.com/deployedge/microsoft-edge-for-business"&gt;enterprise-managed browsers&lt;/a&gt;, which provide multiple security features including security update requirements and &lt;a href="https://learn.microsoft.com/deployedge/microsoft-edge-for-business-config-recommendations"&gt;data compliance policies&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Block web pages from automatically running Flash plugins.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enable &lt;a href="https://learn.microsoft.com/defender-endpoint/network-protection"&gt;network protection&lt;/a&gt; and &lt;a href="https://learn.microsoft.com/defender-endpoint/web-protection-overview"&gt;web protection&lt;/a&gt; in Microsoft Defender for Endpoint to safeguard against malicious sites and internet-based threats.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Encourage users to use Microsoft Edge and other web browsers that support &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/web-protection-overview?ocid=magicti_ta_learndoc"&gt;Microsoft Defender SmartScreen&lt;/a&gt;, which identifies and blocks malicious websites, including phishing sites, scam sites, and sites that host malware.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Turn on &lt;a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/configure-block-at-first-sight-microsoft-defender-antivirus?ocid=magicti_ta_learndoc"&gt;cloud-delivered protection&lt;/a&gt; in Microsoft Defender Antivirus, or the equivalent for your antivirus product, to cover rapidly evolving attacker tools and techniques. Cloud-based machine learning protections block a majority of new and unknown variants.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enable PowerShell &lt;a href="https://learn.microsoft.com/en-us/powershell/scripting/security/security-features?view=powershell-7.5"&gt;script block logging&lt;/a&gt; to detect and analyze obfuscated or encoded commands, providing visibility into malicious script execution that might otherwise evade traditional logging.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Enforce use of PowerShell &lt;a href="https://learn.microsoft.com/en-us/powershell/scripting/security/app-control/application-control?view=powershell-7.6"&gt;Constrained Language Mode&lt;/a&gt; where possible, in addition to use of &lt;a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5"&gt;execution policies&lt;/a&gt; such as setting &lt;em&gt;AllSigned&lt;/em&gt; or &lt;em&gt;RemoteSigned &lt;/em&gt;to help reduce the risk of malicious execution by ensuring only trusted, signed scripts are executed, adding a layer of control.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Use Group Policy to deploy hardening configurations throughout your environment, if certain features are not necessary:&lt;ul&gt;&lt;li&gt;Create an &lt;a href="https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/appcontrol-and-applocker-overview"&gt;App Control policy&lt;/a&gt; that prohibits the launch of native Windows binaries from &lt;em&gt;Run&lt;/em&gt;. This can be accomplished by defining a rule based on the specific process that is launching binaries like PowerShell.&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/windows/terminal/group-policy"&gt;Configure Windows Terminal&lt;/a&gt; access and settings &lt;a href="https://learn.microsoft.com/windows/terminal/customize-settings/interaction"&gt;to warn users when the text they’re pasting contains multiple lines&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Microsoft Defender XDR customers can also implement the following &lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-implement"&gt;attack surface reduction rules&lt;/a&gt; to harden an environment against PowerShell techniques used by threat actors:&lt;ul&gt;&lt;li&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block executable files from running unless they meet a prevalence, age, or trusted list criterion&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference"&gt;Block JavaScript or VBScript from launching downloaded executable content&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed Activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Initial Access / Execution&lt;/td&gt;&lt;td&gt;User pastes ClickFix/TerminalFix PowerShell cmdlets from clipboard after interacting with fake Cloudflare CAPTCHA&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Trojan:Win32/ClickFix.*&lt;br /&gt;&amp;#8211; Trojan:Win32/TermFix.*&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Possible initial access from an emerging threat &lt;br /&gt;&amp;#8211; Possible ClickFix activity &lt;br /&gt;&amp;#8211; Potential initial access led to ransomware attempt&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;LockScreenContentServer.exe DLL sideloading of malicious dui70.dll&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Trojan:Win32/Posilod.* &lt;br /&gt;&amp;#8211; Trojan:Win64/DLLHijack.DAB!MTB   &lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;br /&gt;&lt;/strong&gt;&amp;#8211; An executable file loaded an unexpected DLL file&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence&lt;/td&gt;&lt;td&gt;Persistence through Registry Run key and Scheduled task&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Anomaly detected in ASEP registry&lt;br /&gt;&amp;#8211; Suspicious Scheduled Task Process Launched &lt;br /&gt;&amp;#8211; Suspicious scheduled task&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Discovery&lt;/td&gt;&lt;td&gt;Domain enumeration via nltest, net group, ADSI searcher&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;&amp;#8211; Suspicious LDAP query &lt;br /&gt;&amp;#8211; Suspicious Active Directory enumeration &lt;br /&gt;&amp;#8211; Possible hands-on-keyboard pre-ransom activity &lt;br /&gt;&amp;#8211; Anomalous account lookups &lt;br /&gt;&amp;#8211; Possible hands-on-keyboard pre-ransom activity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Control&lt;/td&gt;&lt;td&gt;Outbound TLS WebSocket tunnel to gitnow[.]dev on port 443&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus &lt;/strong&gt;&lt;br /&gt;&amp;#8211; Trojan:Python/Indigo.SA   &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt;– Possibly malicious use of proxy or tunneling tool&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to create their own prompts or run prebuilt promptbooks to automate investigation and response tasks related to this threat. Useful promptbooks for this activity include Incident investigation, Microsoft User analysis, Threat actor profile, Threat Intelligence 360 report based on MDTI intelligence, and Vulnerability impact assessment. Some promptbooks require access to Microsoft Defender XDR, Microsoft Sentinel, or related Microsoft security plugins.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For this campaign, Security Copilot can help analysts summarize affected devices running LockScreenContentServer.exe from non-standard locations, trace the PowerShell steganography extraction chain, and build containment and credential rotation plans for affected domain-joined endpoints.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use &lt;a href="https://security.microsoft.com/threatanalytics3/836a0db2-ad2b-4016-922e-f96d50518767" rel="noopener noreferrer" target="_blank"&gt;Microsoft Defender XDR Threat analytics and related Microsoft threat intelligence reporting&lt;/a&gt; to stay current on the malicious activity, indicators, detection coverage, and recommended response actions associated with this compromise. These reports provide investigation context, protection guidance, and updated intelligence that security teams can use to prevent, mitigate, or respond to related activity in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="advanced-hunting-queries"&gt;Advanced hunting queries&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can run the following advanced hunting queries to find related activity in their networks:&lt;/p&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="clickfix-powershell-execution-which-executes-payload"&gt;&lt;strong&gt;ClickFix PowerShell execution which executes payload&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "powershell.exe"
+| where FileName =~ "cmd.exe" and ProcessCommandLine has_all (@"\ProgramData\", "1.bat", "LockScreenContentServer.exe")
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;LockScreenContentServer.exe sideloading from non-standard paths&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceImageLoadEvents
+| where InitiatingProcessFileName =~ "LockScreenContentServer.exe"
+| where FileName =~ "dui70.dll"
+| extend path = tostring(parse_path(FolderPath).DirectoryPath)
+| where path =~ InitiatingProcessFolderPath
+| where not(path has_any (@"\Windows\System32", @"\Windows\SysWOW64", @"\winsxs\", @"\program files", @"\Windows Defender\", @"\Microsoft Security Client\", @"\Program Files\Windows", @"\Program Files\Microsoft", @"\ProgramData\Microsoft\", @"\Microsoft\Windows", @"\amd64_windows-defender-service", @"\Microsoft Defender for Endpoint\"))
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Custom reverse tunnel implant execution&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where FileName in~ ("pythonw.exe", "python.exe")
+| where ProcessCommandLine has_all ("client.py", "--server", "--uuid", “cert.pem”, “gitnow.dev”)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Outbound connections to known C2 domains&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceNetworkEvents
+| where RemoteUrl has_any ("gitnow.dev", "bestsocialmedianewspapper.com",
+                            "offlineupdater.com")
+| project Timestamp, DeviceName, RemoteUrl, RemotePort,
+          InitiatingProcessFileName
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="mitre-att-ck-techniques-observed"&gt;MITRE ATT&amp;amp;CK Techniques observed&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following MITRE ATT&amp;amp;CK mappings reflect behaviors observed during this activity.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Initial Access&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1189 Drive-by Compromise&lt;/strong&gt; | A compromised website delivers a fake CAPTCHA overlay.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Execution&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1059.001 Command and Scripting Interpreter: PowerShell&lt;/strong&gt; | A malicious PowerShell command is pasted by the user into Terminal.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1204.002 User Execution: Malicious File&lt;/strong&gt; | The user pastes and executes a clipboard-hijacked command.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Persistence&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1547.001 Boot or Logon Autostart Execution: Registry Run Keys&lt;/strong&gt; | An HKCU Run key is set to execute LockScreenContentServer.exe.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1053.005 Scheduled Task/Job: Scheduled Task&lt;/strong&gt; | A scheduled task is created to execute every 60 minutes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Defense Evasion&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1574.002 Hijack Execution Flow: DLL Side-Loading&lt;/strong&gt; | Malicious dui70.dll is side-loaded by the legitimate LockScreenContentServer.exe.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1027.003 Obfuscated Files or Information: Steganography&lt;/strong&gt; | Payloads are hidden in PNG image RGBA pixel data.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1564.001 Hide Artifacts: Hidden Files and Directories&lt;/strong&gt; | The attrib +h +s command is applied to the payload directory.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1036.005 Masquerading: Match Legitimate Name or Location&lt;/strong&gt; | The DLL is named dui70.dll to match the legitimate Microsoft DUI framework.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Discovery&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1018 Remote System Discovery&lt;/strong&gt; | An ADSI query identifies Windows Server computers and performs a ping sweep.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1069.002 Permission Groups Discovery: Domain Groups&lt;/strong&gt; | The net group &amp;#8220;domain admins&amp;#8221; /domain command is used for enumeration.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1482 Domain Trust Discovery&lt;/strong&gt; | nltest /domain_trusts and /dclist: are used for domain enumeration.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1087.002 Account Discovery: Domain Account&lt;/strong&gt; | An ADSI searcher enumerates user descriptions.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1082 System Information Discovery&lt;/strong&gt; | systeminfo is used with multilingual findstr filters.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Command and Control&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1572 Protocol Tunneling&lt;/strong&gt; | A reverse WebSocket tunnel communicates over TLS with gitnow[.]dev:443.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1071.001 Application Layer Protocol: Web Protocols&lt;/strong&gt; | Command-and-control communication occurs over HTTPS/WebSocket.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;strong&gt;T1105 Ingress Tool Transfer&lt;/strong&gt; | A Python runtime and implant kit are downloaded and extracted.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="indicators-of-compromise-iocs"&gt;Indicators of Compromise (IOCs)&lt;/h3&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="file-indicators"&gt;&lt;strong&gt;File indicators&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;18c2090e8a0ae0568af9b87e59eaf8270f23d2909600ed9db91a9444fd8b278f&lt;/td&gt;&lt;td&gt;Initial ZIP archive (verify_pkg.zip)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;b8d107800403b9197e5b7609ceacd8e4cac1b0f9a1d156e6dacd6c3f7794b36a&lt;/td&gt;&lt;td&gt;Custom tunnel implant (client.py)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ba77feed86bcda49308746421bdc684a432dd5d68c363975b2a3c6831bda3f07&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;026478003fe354134c03acf6890e7d3b153ba08a836eca42350db48f213872ab&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;032b529fac61e550f5dc9489686f519b82d64625fa05a8d9ecf8ba8be9b2ad22&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;df8221a933b38284ebdcb8bffc2df62123c9f5b5f421dd0b070e13e668b3eabf&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;eb1b4be34d05b394fb74efdeb95faecd1d1963be6ecc1b9db2b4757b491f01f0&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;5d43abf5c36ea203176d3300ff14af27b4be81810ad2679b3a62b255e3d6e1c8&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9a7b4dcd51d9251c177d323d6aaecdfc86674f69bc1af048dc872926d22aaa24&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;342df92235c9dec81203b837addaa38bb85b64b4a48fe71b5303ca86d991991e&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ededeacf30e493dd632d477fe770ba419aa2848f685ea049381a0a8d2cc3e84d&lt;/td&gt;&lt;td&gt;Malicious DLL (dui70.dll)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h4 class="wp-block-heading" id="network-indicators"&gt;&lt;strong&gt;Network indicators&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;gitnow[.]dev&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;C2 server for custom reverse tunnel implant (port 443)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;bestsocialmedianewspapper[.]com&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Steganographic image hosting / payload delivery&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;offlineupdater[.]com&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Steganographic image hosting / failover&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hxxps://linked-log[.]com/&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;td&gt;Compromised website&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.   &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt;  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest &lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/"&gt;TerminalFix campaign deploys a reverse tunnel through multistage intrusion&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=149220</guid><category>ClickFix</category></item><item><title>McKesson discloses breach after ShinyHunters claims patient data theft</title><link>https://www.bleepingcomputer.com/news/security/mckesson-discloses-breach-after-shinyhunters-claims-patient-data-theft/</link><description>Healthcare and pharmaceutical distribution giant McKesson has disclosed a cybersecurity incident involving unauthorized access to third-party applications and data theft, with the ShinyHunters extortion group claiming it stole 284 million patient data records. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/mckesson-discloses-breach-after-shinyhunters-claims-patient-data-theft/</guid><category>Security</category><category>Healthcare</category></item><item><title>Friday Squid Blogging: Truckload of Squid Spills in Rhode Island</title><link>https://www.schneier.com/blog/archives/2026/08/friday-squid-blogging-truckload-of-squid-spills-in-rhode-island.html</link><description>&lt;p&gt;&lt;a href="https://www.huffpost.com/entry/squid-spill-rhode-island-street_n_6a863090e4b0e9f1dd275d79"&gt;Ugh&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;A tractor-trailer rollover sent a truckload of squid spilling into a Rhode Island roadway, leaving a stench as they sat in the road for hours in the summer heat. Local authorities have dubbed it the &amp;#8220;Squidpocalypse of &amp;#8217;26.&amp;#8221;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;That would be &lt;a href="https://www.theguardian.com/us-news/2026/aug/19/squid-spill-rhode-island-highway"&gt;twenty tons&lt;/a&gt; of squid.&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
@@ -10614,425 +11294,7 @@ DeviceNetworkEvents
 
 &lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest&amp;nbsp;&lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/"&gt;From open lures to cloaked gates: How a macOS ClickFix campaign learned to hide&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148855</guid><category>ClickFix</category></item><item><title>ChainDrop supply chain compromise: Anatomy of a self-propagating worm</title><link>https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/</link><description>&lt;p&gt;A credential-stealing worm hidden in more than 400 compromised npm packages automatically spread across software ecosystems by republishing malicious updates. This analysis details the attack chain, affected environments, and practical guidance for detection, hunting, and remediation.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/"&gt;ChainDrop supply chain compromise: Anatomy of a self-propagating worm&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-8cdbf74b-263c-4ae1-abf8-7ece1dc3950c"&gt;
-	&lt;button class="btn btn-collapse" type="button"&gt;
-		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
-		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
-
-		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
-			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-8cdbf74b-263c-4ae1-abf8-7ece1dc3950c"&gt;
-		&lt;div class="table-of-contents-block__content"&gt;
-			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#advanced-hunting-queries"&gt;Advanced hunting queries&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
-&lt;/aside&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Threat Intelligence identified a large-scale npm supply chain attack affecting more than 400 packages across multiple unrelated publishers, including packages associated with major enterprise software ecosystems such as keyv, flat-cache, cache-manager, and others. The malicious releases contain a Mini Shai-Hulud variant, a self-propagating credential-stealing worm delivered through a large, heavily obfuscated Bun-based JavaScript payload. The malware typically executes automatically through an npm preinstall lifecycle hook before package installation completes.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Once executed, the malware searches developer workstations and continuous integration and continuous delivery (CI/CD) environments for npm, GitHub, cloud, and infrastructure credentials. It uses recovered identities to authenticate to npm, GitHub, Amazon Web Services (AWS), Kubernetes, and HashiCorp Vault, enabling it to enumerate packages, repositories, workflow secrets, cloud parameters, and secret-store values. Collected data is encrypted and transmitted through an attacker-controlled HTTPS endpoint, with GitHub repositories serving as a fallback exfiltration channel.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload’s most significant capability is automated propagation. After obtaining an npm publishing token, it enumerates packages available to the compromised identity, downloads their latest tarballs, inserts the malware and setup loader, adds a preinstall hook, increments the patch version, and republishes the modified packages. The malware can also use stolen GitHub credentials to inject Claude and Visual Studio Code configuration files into repositories, establishing persistence and creating an additional developer-to-developer infection path.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In this blog, we’re sharing our analysis of this supply chain attack, along with protection, detection, amd hunting guidance. Organizations that installed an affected package with lifecycle scripts enabled should treat the associated developer workstation or build runner as potentially compromised. Investigations should prioritize credentials accessible to the affected identity, unauthorized npm releases, unexpected repository or workflow modifications, suspicious cloud and secret-store access, and artifacts produced by affected build systems. Organizations should revoke and rotate exposed credentials from a known-clean environment and rebuild affected systems and downstream artifacts from trusted sources.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The campaign appeared as a rapid sequence of unauthorized patch releases across more than 400 npm packages maintained by otherwise unrelated publishers. Many malicious versions had no corresponding source-code commit, pull request, tag, or legitimate release, indicating that the attackers modified and published package tarballs directly rather than compromising each public source repository.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Affected releases typically added a preinstall lifecycle script that launched a malicious file,&amp;nbsp;setup.mjs, contained within the package, which launched the large, obfuscated Bun JavaScript bundle included in the package. Because npm runs preinstall&amp;nbsp;scripts before installation completes, the payload could execute on developer workstations and build runners before application tests or conventional security checks began.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;After execution, the malware performs the following actions:&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Determines whether it is running on a developer workstation or in a CI/CD environment. On workstations, it detaches itself to continue after installation; on CI/CD systems, it remains in the active job to access workflow secrets, runner credentials, and OpenID Connect (OIDC) publishing permissions. Both paths could support further package or repository propagation when suitable credentials are found.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Collects credentials from local files, environment variables, command-line tools, and GitHub Actions runner memory.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Authenticates to npm, GitHub, AWS, Kubernetes, and HashiCorp Vault to enumerate additional accessible resources and secrets.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Encrypts and exfiltrates collected data through an HTTPS channel, using GitHub repositories as a fallback.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Uses recovered npm publishing access to modify and republish additional packages.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Uses GitHub credentials to inject files into Claude and Visual Studio Code configurations across repository branches for persistence.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload’s &amp;nbsp;package-propagation routine downloads each publisher’s latest release, inserts itself, increments the patch version, and publishes the resulting archive. This mechanism can rapidly transform one compromised npm identity into many malicious package releases.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-148999 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. Attack chain.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;0. Initial publisher access&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Evidence points towards stolen maintainer credentials as the attack vector for initial compromise.&amp;nbsp;Later propagation used stolen npm publishing tokens and, in targeted workflows, GitHub Actions OIDC publishing access.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;1. Payload startup and background execution&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&amp;nbsp;The malicious npm package uses a lifecycle hook to launch its bundle.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;During preflight, the payload checks the environment, exits on Russian-language systems, avoids duplicate instances, and starts a detached copy in the background on developer systems.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149000 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2. Platform identification and execution.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In CI environments, the payload remains attached so it can access credentials available to the active build job.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;2. Initial credential discovery&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload first collects information that is immediately available from the local system, shell, and GitHub Actions runner.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149001 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-2.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Credential discovery.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The shell collector attempts to obtain the GitHub CLI token and captures the values of all process environment variables. The filesystem collector searches credential files, shell histories, cloud configuration, Secure Shell (SSH) keys, and other sensitive locations.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;3. Cloud and secret store enumeration&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The recovered code then creates dedicated collectors for cloud and infrastructure services.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149002 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Credential enumeration.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These modules do not merely scan files for token patterns; they use available credentials to call service APIs, verify access, and retrieve additional secrets permitted to those identities.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The following snippet shows the authentication attempt made using the found credentials:&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149003 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-4.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 5. Credential validation.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;. GitHub credential theft and &lt;/strong&gt;&lt;strong&gt;enumeration&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Discovered GitHub tokens are validated before being used for additional collection or repository access.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149004 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-5.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 6. GitHub credential collector.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload checks token scopes, enumerates writable repositories, and identifies repositories where workflow execution could expose additional secrets.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;strong&gt;. GitHub Actions OIDC abuse&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload also contains a targeted publishing path for GitHub Actions workflows configured as npm trusted publishers.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149005 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-6.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 7. Re-publishing package using GitHub OIDC token.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Packages published through this route can carry valid provenance because the publication originates from a legitimate workflow identity.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;7. Exfiltration and fallback&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Collected results are serialized as JSON, gzip-compressed, and encrypted with a randomly generated AES-256-GCM using a randomly generated 32-byte key and 12-byte initialization vector (IV). The AES key is then encrypted with the attacker’s RSA public key using RSA-OAEP-SHA256.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload first attempts delivery through an attacker-controlled dynamic HTTPS endpoint. The active domain can change through on-chain contract (0xE1f2395ee43e45A1556EC6438a88c31B83493103, selector 0x53ed5143) or, as a fallback, from a cryptographically verified signed GitHub commit (Signed fallback marker: thebeautifulmarchoftime). If that channel is unavailable, it creates a public GitHub repository with the description &lt;em&gt;Shai-Hulud: Here We Go Again&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Encrypted results are committed as files such as: &lt;em&gt;results-&amp;lt;timestamp&amp;gt;-&amp;lt;counter&amp;gt;.json&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;At the time of analysis, the live contract returns &lt;em&gt;npm-cache[.]com&lt;/em&gt;. Earlier candidates include &lt;em&gt;pypi-get[.]com&lt;/em&gt; and &lt;em&gt;js-mirror[.]com&lt;/em&gt;.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149006 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-7.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 8. Exfiltrating stolen information.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;In one fallback path, a stolen GitHub token is added separately using double Base64 encoding. This token field is encoded, not encrypted.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;8. Repository persistence and secondary spread&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The payload can use stolen GitHub credentials to inject the malware and supporting setup files into eligible repository branches. The recovered code targets Claude and Visual Studio Code configuration paths, including .&lt;em&gt;claude/settings.json&lt;/em&gt;, &lt;em&gt;.claude/setup.mjs&lt;/em&gt;, &lt;em&gt;.vscode/tasks.json&lt;/em&gt;, and &lt;em&gt;.vscode/setup.mjs&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These changes create a secondary infection route: future Claude or Visual Studio Code activity can restart the payload even after the original npm installation has completed. In a conditional GitHub fallback path, the payload also attempts to install a token-monitor component that maintains credential access and contains a destructive handler if the monitored token is revoked.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149007 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-8.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 9. Injecting the malicious code into development ecosystems.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;9. Worm behavior: Package modification and publication&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The npm tokens found in collected data are checked for package-write permission and two-factor authentication (2FA)-bypass capability.&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149008 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-9.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 10. Republishing the package using stolen NPM token.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149009 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/image-10.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 11. Malicious update to existing package and republishing.&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The propagation routine downloads a package’s latest tarball, copies the current malware bundle into it, adds a loader, and replaces its lifecycle scripts. This creates the worm-like propagation pattern: one stolen token can produce malicious patch releases across every package available to that publisher. This also explains why malicious releases frequently appeared as an otherwise ordinary patch-version increment without corresponding source commits or pull requests.&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat.&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Update npm CLI to &lt;a href="https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/" rel="noopener noreferrer" target="_blank"&gt;npm CLI v 12&lt;/a&gt; and use the npm CLI &lt;a href="https://docs.npmjs.com/cli/v11/using-npm/config" rel="noopener noreferrer" target="_blank"&gt;min-release-age&lt;/a&gt; feature.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Review dependency trees, lockfiles, artifact repositories, and CI caches for the five compromised versions, including transitive references.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Pin known-good package versions.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Purge npm and yarn caches on affected developer endpoints and build hosts, especially if the compromised tarballs were written into shared CI caches.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Rotate credentials and secrets from a clean host if a build system or workstation imported a compromised version, because second-stage execution can expose tokens and compromise build integrity.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Ensure that Microsoft Defender Antivirus cloud-delivered protection, Microsoft Defender for Endpoint telemetry, Microsoft Defender for Containers, and Microsoft Defender XDR investigation workflows are enabled across developer and CI assets.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Organizations that produce software artifacts should also review their own release hardening because this incident appears consistent with CI/CD pipeline abuse through GitHub Actions OIDC publishing. Defenders should review token scopes, workflow approvals, protected environments, release provenance, and anomaly detection around automated package publication. Supply chain response cannot stop at host triage; it must also include verification that the release process itself has not been subverted.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;After remediation, validate recovery deliberately. Rebuild affected projects from a known-good dependency baseline, confirm that compromised hashes are absent from package caches and artifact stores, and review endpoint telemetry for any lingering NodeJS directory artifacts such as &lt;em&gt;Math_Symbol.js&lt;/em&gt;, &lt;em&gt;Math_init.js&lt;/em&gt;,&amp;nbsp; or names similar to &lt;em&gt;math_&amp;lt;guid&amp;gt;.js&lt;/em&gt;, or suspicious node child processes. For development organizations that share base images or golden build runners, rebuild those images as well so future jobs do not silently inherit poisoned caches or post-compromise persistence.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/h2&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;54dc7ea54a1317cca0e890a2770630cf7fa6c97813e0cb9d2caa93012b350668 &amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;em&gt;setup.mjs&lt;/em&gt; (npm tarball preinstall loader)&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;fd3ca4007b225fdf8de7af4345a19179d5efa8c4bb9205f88cda806e5684b1eb &amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;em&gt;setup.mjs&lt;/em&gt; (&lt;em&gt;.claude&lt;/em&gt; and &lt;em&gt;.vscode&lt;/em&gt; repository loader) &lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;9fc2570b7cef51c1b8df116d144d11ff4096357be7d2c4c6367cfc2509cf1bcc&lt;/td&gt;&lt;td&gt;&lt;em&gt;Math_*.js&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;npm-cache[.]com&lt;/em&gt;&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;pypi-get[.]com&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;js-mirror[.]com&lt;/em&gt;&lt;em&gt;&lt;/em&gt;&lt;/td&gt;&lt;td&gt;C2 domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;hxxps[:]//npm-cache[.]com:443/router&lt;/em&gt;&lt;/td&gt;&lt;td&gt;C2 URL&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed activity&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Initial access / Execution&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Malicious files embedded in compromised npm packages execute the embedded payload automatically through a malicious preinstall lifecycle hook.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;– Trojan:NPM/ShaiLoader.BY &lt;br /&gt;– Trojan:NPM/MalBun.A &lt;br /&gt;– Trojan:NPM/ShaiWorm.DAY!MTB&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt; &lt;br /&gt;– Suspicious Node.js process behavior &lt;br /&gt;– Suspicious Node.js script execution&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Execution / Defense evasion&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;The preinstall loader launches a heavily obfuscated Bun-based JavaScript payload designed to hinder analysis and evade Node.js-focused monitoring.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender Antivirus&lt;/strong&gt; &lt;br /&gt;– Behavior:Linux/SuspBunActivity.A &lt;br /&gt;– Behavior:Win32/SuspBunActivity.A&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&amp;nbsp;&lt;br /&gt;– Suspicious usage of Bun runtime&lt;br /&gt;– Suspicious installation of Bun runtime&lt;br /&gt;– Suspicious Node.js process behavior&lt;br /&gt;– Suspicious script execution via Bun &lt;br /&gt;– Suspicious Node.js script execution &lt;strong&gt;&amp;nbsp;&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt; &lt;br /&gt;– Suspicious npm supply-chain compromise activity detected&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Credential access / Collection&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;The malware searches developer workstations and CI/CD environments for npm, GitHub, cloud, Kubernetes, and secrets.&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender for Endpoint&lt;/strong&gt;&lt;br /&gt; – Credential access attempt &lt;br /&gt;– Suspicious cloud credential access &lt;br /&gt;– Enumeration of files with sensitive data &lt;br /&gt;– Suspicious access of sensitive files &amp;nbsp; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Microsoft Defender for Cloud&lt;/strong&gt; &lt;br /&gt;– Sha1-Hulud Campaign Detected: Possible command injection to exfiltrate credentials&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="advanced-hunting-queries"&gt;Advanced hunting queries&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can run the following &lt;a href="https://learn.microsoft.com/defender-xdr/advanced-hunting-overview"&gt;advanced hunting&lt;/a&gt; queries to find related activity in their networks:&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Execution of the preinstall script&lt;/strong&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-    | where Timestamp &gt; ago(3d)
-    | where FileName in~ ("node", "node.exe")
-    | where ProcessCommandLine in~ ("node setup.mjs", "node  setup.mjs")
-
-CloudProcessEvents
-    | where Timestamp &gt; ago(3d)
-    | where FileName in~ ("node", "node.exe")
-    | where ProcessCommandLine in~ ("node setup.mjs", "node  setup.mjs")
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Execution of second-stage JavaScript using Bun runtime&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-    | where Timestamp &gt; ago(3d)
-    | where InitiatingProcessFileName in~ ("node", "node.exe")
-    | where InitiatingProcessCommandLine in~ ("node setup.mjs", "node  setup.mjs")
-    | where FileName in~ ("bun", "bun.exe")
-    | where FolderPath contains "bun-dl-" or ProcessCommandLine has "node_modules"
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Malicious JavaScript from malicious packages&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceFileEvents
-| where Timestamp &gt; ago(3d)
-| where SHA256 in~ ("9fc2570b7cef51c1b8df116d144d11ff4096357be7d2c4c6367cfc2509cf1bcc", "fd3ca4007b225fdf8de7af4345a19179d5efa8c4bb9205f88cda806e5684b1eb", "54dc7ea54a1317cca0e890a2770630cf7fa6c97813e0cb9d2caa93012b350668")
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Credential access by malicious JavaScript&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
-DeviceProcessEvents
-   | where Timestamp &gt; ago(3d)
-   | where ProcessCommandLine has_any ('gh auth token', 'gcloud config config-helper', 'az account get-access-token', "azd auth token")
-   | where InitiatingProcessFileName in~ ("bun", "bun.exe")
-   | where InitiatingProcessFolderPath contains "bun-dl-" or InitiatingProcessCommandLine has "node_modules"
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to create their own prompts or run prebuilt promptbooks to automate investigation and response tasks related to this threat. Useful promptbooks for this activity include Incident investigation, Microsoft User analysis, Threat actor profile, Threat Intelligence 360 report based on MDTI intelligence, and Vulnerability impact assessment. Some promptbooks require access to Microsoft Defender XDR, Microsoft Sentinel, or related Microsoft security plugins.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For this campaign, Security Copilot can help analysts summarize affected devices, pivot from the package hashes to endpoint evidence, identify hosts that communicated with the IPFS path or C2 infrastructure, and build remediation actions such as cache purge, credential rotation, and containment sequencing for impacted developer systems and build runners.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Microsoft customers can use Microsoft Defender XDR Threat analytics and related Microsoft threat intelligence reporting to stay current on the malicious activity, indicators, detection coverage, and recommended response actions associated with this compromise. These reports provide investigation context, protection guidance, and updated intelligence that security teams can use to prevent, mitigate, or respond to related activity in customer environments.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;As with other active supply-chain investigations, defenders should monitor for updated intelligence on package status, additional affected versions, infrastructure changes, and newly surfaced post-compromise tradecraft. Microsoft will continue to incorporate validated indicators and detections into Microsoft security products as the investigation evolves.&lt;em&gt;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the&amp;nbsp;&lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on&amp;nbsp;&lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;,&amp;nbsp;&lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and&amp;nbsp;&lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the&amp;nbsp;&lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.  &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt; &amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest&amp;nbsp;&lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt;&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/"&gt;ChainDrop supply chain compromise: Anatomy of a self-propagating worm&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148998</guid><category>npm</category><category>Supply chain attack</category></item><item><title>Querying ONYPHE from Python in 2026: pyonyphe 3.0</title><link>https://sebdraven.medium.com/querying-onyphe-from-python-in-2026-pyonyphe-3-0-f29aa96186ba?source=rss-11d98531eebe------2</link><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</description><content:encoded>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</content:encoded><guid isPermaLink="false">https://medium.com/p/f29aa96186ba</guid></item><item><title>5 Best Microsoft 365 Backup Solutions for 2026</title><link>https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/</link><description>&lt;p&gt;Looking for the best Microsoft 365 backup solutions in 2026? Compare pricing, workload coverage, retention, security, and recovery options for your business.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/"&gt;From open lures to cloaked gates: How a macOS ClickFix campaign learned to hide&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=148855</guid><category>ClickFix</category></item><item><title>Querying ONYPHE from Python in 2026: pyonyphe 3.0</title><link>https://sebdraven.medium.com/querying-onyphe-from-python-in-2026-pyonyphe-3-0-f29aa96186ba?source=rss-11d98531eebe------2</link><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</description><content:encoded>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</content:encoded><guid isPermaLink="false">https://medium.com/p/f29aa96186ba</guid></item><item><title>5 Best Microsoft 365 Backup Solutions for 2026</title><link>https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/</link><description>&lt;p&gt;Looking for the best Microsoft 365 backup solutions in 2026? Compare pricing, workload coverage, retention, security, and recovery options for your business.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/"&gt;5 Best Microsoft 365 Backup Solutions for 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4368188</guid><category>Cloud Security</category><category>Microsoft</category><category>backup and recovery</category><category>cloud backup</category><category>data protection</category><category>data recovery</category><category>disaster recovery</category><category>Microsoft 365</category><category>ransomware</category><category>SaaS Backup</category></item><item><title>3rd August – Threat Intelligence Report</title><link>https://research.checkpoint.com/2026/3rd-august-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 27th July, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES Minnesota IT Services has confirmed coordinated cyberattacks affecting more than 30 community water utilities across the state. The incidents briefly disrupted a treatment plant in Braham and affected industrial control systems. Officials reported [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/3rd-august-threat-intelligence-report/"&gt;3rd August – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 27th July, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2026/08/Threat_Intelligence_News_2026-08-03.pdf"&gt;Threat Intelligence Bulletin.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
