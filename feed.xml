@@ -1,5 +1,724 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 01 Sep 2026 21:59:20 +0000</lastBuildDate><item><title>Guildma (Astaroth) malware infection from Brazilian Portuguese email, (Tue, Sep 1st)</title><link>https://isc.sans.edu/diary/rss/33300</link><description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Wed, 02 Sep 2026 03:59:27 +0000</lastBuildDate><item><title>ISC Stormcast For Wednesday, September 2nd, 2026 https://isc.sans.edu/podcastdetail/10078, (Wed, Sep 2nd)</title><link>https://isc.sans.edu/diary/rss/33304</link><description>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</description><content:encoded>(c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33304</guid></item><item><title>Counterfeit installers to system compromise: Tracking a deceptive software download campaign</title><link>https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/</link><description>&lt;p&gt;An active campaign is impersonating legitimate software vendors to deliver malware through look-alike download pages and regenerated installer archives. Microsoft Defender Experts shares observed attack techniques, Defender XDR detections, indicators of compromise, and practical mitigations to help organizations identify, block, and respond to this threat.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/"&gt;Counterfeit installers to system compromise: Tracking a deceptive software download campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-59ff56f1-58f2-4a93-a788-cf54d4a7c861"&gt;
+	&lt;button class="btn btn-collapse" type="button"&gt;
+		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
+		&lt;span class="table-of-contents-block__current"&gt;&lt;/span&gt;
+
+		&lt;svg class="table-of-contents-block__arrow" fill="none" height="11" viewBox="0 0 18 11" width="18" xmlns="http://www.w3.org/2000/svg"&gt;
+			&lt;path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor"&gt;
+		&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;div class="table-of-contents-block__collapse-wrapper collapse show" id="accordion-collapse-59ff56f1-58f2-4a93-a788-cf54d4a7c861"&gt;
+		&lt;div class="table-of-contents-block__content"&gt;
+			&lt;ol class="table-of-contents-block__list"&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#attack-chain-overview"&gt;Attack chain overview&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#campaign-scope-and-targeting"&gt;Campaign scope and targeting&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#references"&gt;References&lt;/a&gt;&lt;/li&gt;&lt;li class="table-of-contents-block__list-item"&gt;&lt;a class="table-of-contents-block__list-item-link" href="https://www.microsoft.com/en-us/security/blog/feed/#learn-more"&gt;Learn more&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;span class="table-of-contents-block__progress-bar"&gt;&lt;/span&gt;
+&lt;/aside&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender Experts is tracking an active malware campaign that uses counterfeit software-download websites to impersonate trusted vendors and distribute malicious installers. The campaign has targeted users looking to download popular software and has resulted in compromises across multiple organizations and industries, primarily affecting China-based operations of multinational organizations and Chinese-speaking users. Microsoft has observed victims across healthcare, manufacturing, gaming, technology, logistics, government, and education sectors.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Once executed, the malicious installers deploy malware that establishes persistence, attempts to weaken security protections, and communicates with attacker-controlled infrastructure. Microsoft assesses with moderate confidence that this activity is consistent with the publicly reported Silver Fox (also known as Yinhu, 银狐) fake software campaign but has not attributed it to a nation-state actor. Microsoft Defender detected and disrupted activity across multiple stages of the attack, including automated containment through attack disruption. Organizations should prioritize preventing downloads from untrusted software sources and ensure protections such as SmartScreen, network protection, tamper protection, and Microsoft Defender XDR are enabled to help identify, block, and respond to related activity.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="attack-chain-overview"&gt;Attack chain overview&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The campaign follows a consistent attack chain from a spoofed vendor download page to a self-protecting, persistent implant. The stages below trace that chain — initial access, delivery, execution, persistence, privilege escalation, defense evasion, and command and control.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-149253 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/09/image-458x1024.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 1. Diagram showing the campaign attack chain from spoofed download page to archive delivery, execution, persistence, defense evasion, and command-and-control.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="campaign-scope-and-targeting"&gt;Campaign scope and targeting&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft observed affected devices predominantly associated with China-based operations and Chinese-speaking users, consistent with the Chinese-language lure content and the &lt;em&gt;.com.cn &lt;/em&gt;and&lt;em&gt; .hl.cn&lt;/em&gt; infrastructure. Confirmed activity spans medical devices and healthcare, manufacturing, gaming, technology, logistics, government, and higher education across multiple organizations and industries.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="initial-access-spoofed-software-download-sites"&gt;Initial access: spoofed software-download sites&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The entry point is a fraudulent software-download website that spoofs a legitimate vendor. In one case, endpoint telemetry captured a device navigating to the fake Razer page &lt;em&gt;pc-razerzone[.]com[.]cn&lt;/em&gt; and downloading &lt;em&gt;app_setup.6653004.zip&lt;/em&gt; from the delivery host &lt;em&gt;gehie246[.]com/712down&lt;/em&gt;; two content-distinct copies of the same-named archive were written within roughly 69 seconds — a direct observation of server-side payload regeneration.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Across the estate, &lt;em&gt;FileOriginReferrerUrl&lt;/em&gt; telemetry ties each downloaded archive to the impersonation page that served it and to rotating delivery hosts (&lt;em&gt;yimxg25tiy[.]com/73inst&lt;/em&gt;, &lt;em&gt;cc8ttkv35b[.]com/7qinst&lt;/em&gt;, &lt;em&gt;n7b8t85zsg[.]com/ins711&lt;/em&gt;) and a suspected attacker-controlled Alibaba Cloud Object Storage Service (OSS) bucket. The lure domains predominantly use &lt;em&gt;.com.cn&lt;/em&gt;, &lt;em&gt;.hl.cn&lt;/em&gt;, and &lt;em&gt;.cn&lt;/em&gt; and embed the impersonated brand name.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="delivery-a-dynamically-generated-installer-archive"&gt;Delivery: a dynamically generated installer archive&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following examples illustrate how look-alike domains routed users to the same delivery infrastructure while preserving brand-specific lure pages.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;When the user selects the download control, Microsoft Edge retrieves a malicious installer archive from a small set of dedicated delivery domains.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+pc-razerzone[.]com[.]cn  (spoofed Razer download site)   →   www[.]gehie246[.]com/712down   →   app_setup.6653004.zip   →   stage-one loader
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;A defining characteristic is that the archive keeps the same filename while its hash changes on every download — a strong indicator the payload is generated server-side, per request. Microsoft observed families of same-named archives (&lt;em&gt;app_setup.*&lt;/em&gt;, &lt;em&gt;zinst.*&lt;/em&gt;, &lt;em&gt;zintall.*&lt;/em&gt;, &lt;em&gt;intsoft.*&lt;/em&gt;, &lt;em&gt;innstll.*&lt;/em&gt;) whose contents differ across downloads while the delivery URL stays constant; the full validated hash set is in the indicators of compromise below.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+kaspersky-lab[.]hl[.]cn     →   hxxp://www.gehie246[.]com/712down
+pc-razerzone[.]com[.]cn     →   hxxp://www.gehie246[.]com/712down
+calibre-ebook[.]com[.]cn    →   hxxp://www.gehie246[.]com/712down
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="brand-impersonation-infrastructure"&gt;Brand-impersonation infrastructure&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The campaign runs a large, uniform set of vendor look-alike pages on &lt;em&gt;.com.cn&lt;/em&gt; and &lt;em&gt;.hl.cn&lt;/em&gt; domains, each cloning the real product&amp;#8217;s branding and presenting a prominent &lt;strong&gt;&amp;#8220;Download now&amp;#8221;&lt;/strong&gt; button. All funnel to the same delivery and payload infrastructure.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Impersonated brand&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Spoofed domain (defanged)&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Category&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Razer (Synapse driver)&lt;/td&gt;&lt;td&gt;pc-razerzone[.]com[.]cn&lt;/td&gt;&lt;td&gt;Peripherals / drivers&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Microsoft Edge&lt;/td&gt;&lt;td&gt;app-microsoft-edge[.]com[.]cn&lt;/td&gt;&lt;td&gt;Browser&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Kaspersky&lt;/td&gt;&lt;td&gt;kaspersky-lab[.]hl[.]cn&lt;/td&gt;&lt;td&gt;Security software&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Sejda PDF&lt;/td&gt;&lt;td&gt;sejda[.]hl[.]cn&lt;/td&gt;&lt;td&gt;Productivity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;NetEase Youdao Dictionary&lt;/td&gt;&lt;td&gt;translate-youdao[.]hl[.]cn&lt;/td&gt;&lt;td&gt;Translation&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;DiskGenius&lt;/td&gt;&lt;td&gt;zh-diskgenius[.]com[.]cn&lt;/td&gt;&lt;td&gt;Disk utility&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Baidu Netdisk (Pan)&lt;/td&gt;&lt;td&gt;baidu-pan[.]com[.]cn&lt;/td&gt;&lt;td&gt;Cloud storage&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;oCam Screen Recorder&lt;/td&gt;&lt;td&gt;ocam-pc[.]com[.]cn&lt;/td&gt;&lt;td&gt;Screen capture&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;draw.io&lt;/td&gt;&lt;td&gt;cn-drawio[.]com[.]cn&lt;/td&gt;&lt;td&gt;Diagramming&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;SteelSeries&lt;/td&gt;&lt;td&gt;steelseries-cn[.]com[.]cn&lt;/td&gt;&lt;td&gt;Peripherals&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Sogou&lt;/td&gt;&lt;td&gt;gw-sogou[.]com[.]cn&lt;/td&gt;&lt;td&gt;Input method&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Calibre&lt;/td&gt;&lt;td&gt;calibre-ebook[.]com[.]cn&lt;/td&gt;&lt;td&gt;E-book&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;MindMaster (typosquat)&lt;/td&gt;&lt;td&gt;mindmoster[.]com[.]cn&lt;/td&gt;&lt;td&gt;Mind-mapping&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Others&lt;/td&gt;&lt;td&gt;pc-codex, jinshan-cibapc, zh-tbtool, web-tbtool, zh-doubaosrf, ieway-cn (all [.]com[.]cn / [.]hl[.]cn)&lt;/td&gt;&lt;td&gt;Various utilities&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Although these domains impersonate unrelated vendors, they are not independently hosted. Infrastructure enrichment, corroborated by Microsoft telemetry where the two overlap, resolves them into two groupings. Six domains resolve within AS132839, spread across four unrelated netblocks and three registered country codes, and share a common pair of nameservers. Two further domains resolve within AS8796 in a single /21, using a different nameserver pair. One additional domain is served through a content delivery network (CDN), concealing its origin. Because hosting and Domain Name System (DNS) are frequently bundled by the same reseller, these are best read as two consistent procurement channels rather than two independent corroborating signals.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The practical implication for defenders is that netblock- and geography-based grouping will miss these relationships, while Autonomous System Number (ASN)-level analysis surfaces them.The autonomous system remains constant even where the address space and registered country vary. These are shared commercial hosting and DNS providers carrying substantial unrelated tenancy, so the ASN and nameserver should be treated as hunting pivots, not blocklist entries.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The following capture shows a representative impersonation page served by the campaign. The pages are high-fidelity clones of a legitimate vendor&amp;#8217;s site with a prominent download call-to-action.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149254 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/09/image-1.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 2b. Counterfeit Microsoft Edge download page hosted on the look-alike domain app-microsoft-edge[.]com[.]cn, with a prominent download button.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="execution-a-wrapped-installer-drops-a-randomized-stage-one-payload"&gt;Execution: a wrapped installer drops a randomized stage-one payload&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The wrapper installer creates a randomized executable path while reusing stable payload content, making names unreliable but behavior and hashes useful for detection.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Opening the archive yields a wrapper installer whose name follows a generated pattern (for example, &lt;em&gt;a_instapp83353001.exe&lt;/em&gt; or &lt;em&gt;ainst8663586104.exe&lt;/em&gt;).&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Executing the wrapper creates and launches a stage-one payload at a randomized path under a world-writable or system location; the directory and file names are randomized, but the payload content is stable. The same stage-one 256-bit Secure Hash Algorithm (SHA-256) (676a2a7b94ca…) was observed under many names and paths.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+C:\Users\Public\sE94yD\aLcUaw.exe        (SHA-256 676a2a7b94ca…  stage-one)
+C:\Users\Public\nvdPX5\2b3L5i.exe        (SHA-256 676a2a7b94ca…  stage-one)
+C:\Program Files (x86)\i3LH90\ErNGxW.exe (SHA-256 6d6ba2bc9ad4…  later-stage)
+C:\Program Files (x86)\Q8Maj\7EIr6VA.exe (SHA-256 6d6ba2bc9ad4…  later-stage)
+C:\ProgramData\zsMmvukD\beuv4Mie.exe     (SHA-256 c6100166e2d3…  persistent)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The end-to-end chain is visible as a parent-to-child process tree: &lt;em&gt;msedge.exe&lt;/em&gt; writes the archive, an archiving tool (&lt;em&gt;7zFM.exe&lt;/em&gt;, &lt;em&gt;360zip.exe&lt;/em&gt;, or &lt;em&gt;WinRAR.exe&lt;/em&gt;) extracts it, the bundled wrapper runs, and the wrapper launches the randomized stage-one payload.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+msedge.exe                               downloads app_setup.6653004.zip
+  └─ 7zFM.exe / 360zip.exe / WinRAR.exe  (user opens the downloaded archive)
+       └─ a_instapp83353001.exe           (wrapper installer bundled in the archive)
+            └─ C:\Users\Public\yZ6A88\9bEELI.exe  (stage-one payload, randomized)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;Payloads are masqueraded; Microsoft confirmed the masquerade through file metadata on the later-stage payload (SHA-256 6d6ba2bc…), staged at &lt;em&gt;C:\Program Files (x86)\&amp;lt;random&amp;gt;\&lt;/em&gt;. The binary&amp;#8217;s version resource declares CompanyName: &amp;#8220;Speech Processing Solutions GmbH&amp;#8221;, FileDescription: &amp;#8220;Philips Speech Driver Client Configuration&amp;#8221;, OriginalFileName: PhilipsSpeechDriverConfiguration.exe, and ProductVersion: 4.7.471.07,while executing from a randomized directory under a randomized file name. The same resource retains an unfilled build-template placeholder, ProductName: &amp;#8220;TODO: &amp;lt;Product name&amp;gt;&amp;#8221;, indicating the version information was fabricated for the payload rather than inherited from genuine vendor software. Microsoft also observed &lt;em&gt;svchost.exe&lt;/em&gt; executing from a non-system path (&lt;em&gt;D:\hellothere\svchost.exe&lt;/em&gt;) rather than &lt;em&gt;C:\Windows\System32&lt;/em&gt;.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+FileName                                      XPSPLOG.dll
+FolderPath                                    C:\Program Files (x86)\72q1o6\XPSPLOG.dll
+InitiatingProcessFileName                     40gK5T.exe
+InitiatingProcessFolderPath                   C:\Program Files (x86)\72q1o6\40gK5T.exe
+InitiatingProcessSHA256                       6d6ba2bc9ad414837826f7278bc3e0116f1aeda02d0c2284ed65819f5d9180a8
+InitiatingProcessCommandLine                  "40gK5T.exe"
+ 
+InitiatingProcessVersionInfoCompanyName       Speech Processing Solutions GmbH
+InitiatingProcessVersionInfoFileDescription   Philips Speech Driver Client Configuration
+InitiatingProcessVersionInfoOriginalFileName  PhilipsSpeechDriverConfiguration.exe
+InitiatingProcessVersionInfoProductVersion    4.7.471.07
+InitiatingProcessVersionInfoProductName       TODO: 
+ 
+InitiatingProcessParentFileName               svchost.exe
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;A payload staged under &lt;em&gt;C:\ProgramData\&amp;lt;random&amp;gt;\&lt;/em&gt; (SHA-256 c6100166…) carries the version metadata of the Indigo Rose TrueUpdate Client (OriginalFileName: tu_rt.exe, ProductVersion: 3.8.0.0) and exhibits that product&amp;#8217;s runtime behavior, writing _ir_tu2_temp_* artifacts to the user&amp;#8217;s temp directory on each execution. Dropped by the later-stage payload and launched repeatedly by the Task Scheduler service, it connects to an attacker-controlled Alibaba Cloud OSS bucket over Transport Layer Security (TLS) and writes a further payload to a second randomized &lt;em&gt;C:\ProgramData\&lt;/em&gt; directory — a legitimate update mechanism repurposed for payload delivery.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+00:24:43  ErNGxW.exe (6d6ba2bc…) creates C:\ProgramData\zsMmvukD\beuv4Mie.exe (c6100166…)
+00:24:43  beuv4Mie.exe executes   ← parent: svchost.exe -k netsvcs -p -s Schedule
+00:24:44  beuv4Mie.exe → ConnectionSuccess | upitem.oss-cn-hangzhou.aliyuncs.com | 443
+00:24:44  beuv4Mie.exe creates C:\ProgramData\uwMUCYBN\SaYC4Mga.exe (f33d160d…)
+02:12:22  beuv4Mie.exe creates …\Temp\_ir_tu2_temp_4      ← TrueUpdate runtime artifact
+02:44:20  beuv4Mie.exe re-executes (scheduled task) → _ir_tu2_temp_5
+02:59:00  … _temp_6    03:15:54 … _temp_7    08:02:52 … _temp_8
+08:32:20  … _temp_9    08:38:51 … _temp_11
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Wrapper installer&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Stage-one payload created&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;a_instapp83353001.exe&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;C:\Users\Public\yZ6A88\9bEELI.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;z_instapp83351010.exe&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;C:\Users\Public\Y93eny\Ge86Zr.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;ainstaller-86533003.exe&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;C:\Users\Public\Mmzm0e\Lrrhwp.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;ainst8663586104.exe&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;C:\Users\Public\YJMvsB\BcQVw7.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="alternate-execution-vector-windows-installer-msiexec"&gt;Alternate execution vector: Windows Installer (msiexec)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In parallel with the wrapped-installer chain, Microsoft observed a second execution vector that uses the Windows Installer service. The installer performs its intended function; what the campaign gains is execution under a signed, trusted Windows component. The extracted installer invokes &lt;em&gt;msiexec.exe&lt;/em&gt; in embedded mode, which writes and launches a randomized executable into a world-writable &lt;em&gt;C:\Users\Public\&amp;lt;random&amp;gt;\&lt;/em&gt; directory, the same masquerade pattern as the wrapper chain, but delivered through &lt;em&gt;msiexec.exe&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+msiexec.exe -Embedding  E Global\MSI0000
+  └─ C:\Users\Public\\.exe   (payload, randomized path/name)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The behavior is consistent and repeated: more than twenty distinct payload names were written this way, spawned by a range of parents including &lt;em&gt;msedge.exe&lt;/em&gt;, &lt;em&gt;explorer.exe&lt;/em&gt;, and &lt;em&gt;svchost.exe&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="persistence-and-recurring-execution-disguised-scheduled-tasks"&gt;Persistence and recurring execution: disguised scheduled tasks&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Persistence and recurring execution are achieved through scheduled tasks whose display names imitate routine IT or productivity jobs (for example “Deadline Mission Target” and “Hierarchy Tools Smooth Inventory”), each launching a specific payload staged under &lt;em&gt;C:\ProgramData\&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Each task launches a specific payload:&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Scheduled task name&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Payload launched&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;\Deadline Mission Target&lt;/td&gt;&lt;td&gt;&lt;em&gt;7fYptijy.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;\Hierarchy Tools Smooth Inventory&lt;/td&gt;&lt;td&gt;&lt;em&gt;beuv4Mie.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;\Empowering Status Tools productivity Ahead&lt;/td&gt;&lt;td&gt;&lt;em&gt;SaYC4Mga.exe&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;\5nboF&lt;/td&gt;&lt;td&gt;&lt;em&gt;aLcUaw.exe&lt;/em&gt; (stage-one)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The persistent payloads are staged in locations such as &lt;em&gt;C:\ProgramData\7fYptijy.exe&lt;/em&gt;, &lt;em&gt;C:\ProgramData\zsMmvukD\beuv4Mie.exe&lt;/em&gt;, and &lt;em&gt;C:\ProgramData\uwMUCYBN\SaYC4Mga.exe&lt;/em&gt;. Because the payloads are launched by the Task Scheduler service (parented to &lt;em&gt;svchost.exe -k netsvcs -p -s Schedule&lt;/em&gt;) and multiple staggered tasks run per device, affected hosts exhibit a characteristic ~60-second re-execution cadence.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="privilege-escalation-system-scheduled-task-and-process-injection"&gt;Privilege escalation: SYSTEM scheduled task and process injection&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To perform privileged actions such as writing Microsoft Defender exclusions, the malware creates a short-lived scheduled task that runs as SYSTEM (&lt;em&gt;SCHTASKS /Create &amp;#8230; /RL HIGHEST /RU &amp;#8220;SYSTEM&amp;#8221;&lt;/em&gt;), executes the privileged action, then immediately runs and deletes the task&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+SCHTASKS /Create /F /TN "Task1" /SC ONCE /ST 00:00 /RL HIGHEST /RU "SYSTEM"
+  /TR "cmd.exe /c reg add \"HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions\Paths\"
+       /v \"C:\Program Files (x86)\NPq6k16Om\" /t REG_DWORD /d 0 /f"
+SCHTASKS /Run /TN "Task1"    &amp;    SCHTASKS /Delete /TN "Task1" /F
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The &lt;em&gt;/RL HIGHEST /RU &amp;#8220;SYSTEM&amp;#8221;&lt;/em&gt; combination elevates the exclusion write to SYSTEM, and the create-run-delete sequence minimizes the footprint of the helper task.  Process injection was also observed. A persistent campaign payload (SHA-256 1bd3662d…), launched from &lt;em&gt;C:\ProgramData\&lt;/em&gt; by the Task Scheduler service, created a remote thread in a legitimate user application moments after that application started — executing payload code inside the context of a trusted process. Microsoft Defender detected the activity as &lt;em&gt;A process was injected with potentially malicious code&lt;/em&gt;.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+ActionType                       CreateRemoteThreadApiCall
+InitiatingProcessFileName        .exe
+InitiatingProcessFolderPath      C:\ProgramData\.exe
+InitiatingProcessSHA256          1bd3662d784840e410d2d3c0a1040277f7f549089447359f01e05c2559cb1f17
+InitiatingProcessCommandLine     ".exe"
+InitiatingProcessCreationTime    2026-07-13 02:44:20.887
+InitiatingProcessParentFileName  svchost.exe
+FileName                         .exe      (target process)
+ProcessCommandLine               ".exe" -autorun
+ProcessCreationTime              2026-07-13 02:44:37.568
+AdditionalFields                 {"IntegrityLevel":8192}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The sequence below shows a single execution cycle end to end: the Task Scheduler service launches the payload, the payload immediately attempts command-and-control on two non-standard ports — both blocked at the host firewall — and, seventeen seconds later, injects into a user application within milliseconds of that application starting.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+02:44:20.887   PROC     .exe started            parent: svchost.exe (Task Scheduler)
+02:44:21.971   NETWORK  outbound to 47.239.232[.]245:8050    → FirewallOutboundConnectionBlocked
+02:44:24.860   NETWORK  outbound to 47.243.218[.]255:28300   → FirewallOutboundConnectionBlocked
+02:44:37.568   PROC     target application starts (-autorun)
+02:44:37.604   INJECT   CreateRemoteThreadApiCall  .exe → target application   
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="defense-evasion-disabling-host-protections"&gt;Defense evasion: disabling host protections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Follow-on payloads take a layered approach to weakening the host. They add sweeping Microsoft Defender path exclusions via PowerShell (&lt;em&gt;Add-MpPreference -ExclusionPath&lt;/em&gt;) and the SYSTEM scheduled-task registry write;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+powershell.exe Add-MpPreference -ExclusionPath 'C:\ProgramData','C:\Users','C:\Program Files (x86)','C:\' -Force
+powershell.exe -c if (Get-Process -Name HAhahahah) {} else {
+  Add-MpPreference -ExclusionPath $env:localappdata,'C:\','C:\ProgramData',
+   'C:\ProgramData\7b3St9HS','C:\ProgramData\7b3St9HS\27s7ihjC.exe' -ExclusionExtension '.dat' -Force }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;delete volume shadow copies (&lt;em&gt;vssadmin delete shadows /all /quiet&lt;/em&gt;) to inhibit recovery;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+cmd.exe /c vssadmin delete shadows /all /quiet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;harden payload directories with icacls so standard users cannot remove the files;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+icacls "C:\Program Files (x86)\NPq6k16Om\xo7Tj9xQ.exe" /grant:r Administrators:(OI)(CI)F /grant:r SYSTEM:(OI)(CI)F
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;and neutralize Windows Update by stopping and disabling wuauserv, UsoSvc, uhssvc, and WaaSMedicSvc, renaming update dynamic-link libraries (DLLs), and deleting the SoftwareDistribution cache.&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+for %i in (wuauserv UsoSvc uhssvc WaaSMedicSvc) do (
+   net stop %i &amp; sc config %i start= disabled &amp; sc failure %i reset= 0 actions= "" )
+for %i in (WaaSMedicSvc wuaueng) do ( takeown /f C:\Windows\System32\%i.dll &amp;
+   icacls …\%i.dll /grant *S-1-1-0:F &amp; rename …\%i.dll %i_BAK.dll &amp;
+   icacls …\%i_BAK.dll /setowner "NT SERVICE\TrustedInstaller" &amp; icacls …\%i_BAK.dll /remove *S-1-1-0 )
+reg add "HKLM\…\Services\WaaSMedicSvc" /v Start /t REG_DWORD /d 4 /f
+reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 1 /f
+erase /f /s /q c:\windows\softwaredistribution\*.*  &amp;  rmdir /s /q c:\windows\softwaredistribution
+powershell -Command Get-ScheduledTask -TaskPath '\Microsoft\Windows\WindowsUpdate\*' | Disable-ScheduledTask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;A malicious Windows Defender Application Control policy was written to the code-integrity store on multiple devices; Microsoft Defender Antivirus detected the tamper behavior as &lt;em&gt;Behavior:Win32/MpTamperGpDisableAVFriendly.A&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="command-and-control-c2"&gt;Command and control (C2)&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A later-stage networking payload establishes command-and-control over application-layer protocols on non-standard ports — observed ports include 5090, 7031, 7032, 7088–7090, 8050, 28290, and 28300.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Initiating payload&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;C2 endpoint (defanged)&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Result&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;40gK5T.exe, RhT9aQ.exe (Program Files (x86))&lt;/td&gt;&lt;td&gt;103.156.25[.]35:7031&lt;/td&gt;&lt;td&gt;Connection failed&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Multiple &lt;em&gt;C:\ProgramData\&lt;/em&gt; payloads&lt;/td&gt;&lt;td&gt;103.183.3[.]162:5090  (oijfwe[.]net)&lt;/td&gt;&lt;td&gt;Connection failed&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stage-one / persistent payloads&lt;/td&gt;&lt;td&gt;Alibaba Cloud object storage over TLS (443)&lt;/td&gt;&lt;td&gt;Connection succeeded&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;C2 endpoints comprise a set of six-character [.]net domains (iualef, oijfwe, euioxu, czijbh, wfmwsj, tbdqxq) and IP-and-port endpoints; a primary hub was observed on 202.95.14[.]237 (AS152194, CTG Server Limited). Payloads were observed beaconing to these endpoints with both successful and failed callbacks; the dedicated [.]net and IP-and-port C2 was intermittently unreachable while the same payloads still completed TLS connections to cloud object storage, consistent with a dedicated C2 tier that was often down while cloud-hosted staging remained live.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="detection-and-disruption"&gt;Detection and disruption&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt; In observed environments, Microsoft Defender surfaced alerts across multiple stages and, where criteria were met, Attack Disruption engaged to contain affected devices and accounts. &lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Representative alerts include &lt;em&gt;Modification attempt in Microsoft Defender Antivirus exclusion list&lt;/em&gt;, &lt;em&gt;Compromised device (attack disruption)&lt;/em&gt;, &lt;em&gt;A process was injected with potentially malicious code&lt;/em&gt;, &lt;em&gt;Potential C2 connection behavior&lt;/em&gt;, &lt;em&gt;Suspicious Task Scheduler activity&lt;/em&gt;, and &lt;em&gt;Compromised account conducting hands-on-keyboard attack&lt;/em&gt;. The campaign is not purely automated. In a subset of environments, the automated execution was accompanied by interactive, hands-on-keyboard activity, which attack disruption engaged to contain.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender also blocked the attempted Server Message Block (SMB) lateral movement to additional hosts (&lt;em&gt;Lateral movement using SMB remote file access blocked on multiple devices&lt;/em&gt;) and detected the C2 connection behavior; the campaign&amp;#8217;s C2 endpoints are included in the blocked indicator set.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Attack disruption contained the device and account; full eradication of persistence still required responder action.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Stage&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Microsoft Defender coverage&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Fake-download landing and delivery domains&lt;/td&gt;&lt;td&gt;Microsoft Defender SmartScreen, Network Protection, Web content filtering&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Malicious ZIP and stage-one execution (including msiexec proxy execution)&lt;/td&gt;&lt;td&gt;Microsoft Defender Antivirus (behavioral + cloud-delivered protection); Microsoft Defender for Endpoint&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defender tampering &amp;amp; exclusion writes&lt;/td&gt;&lt;td&gt;Tamper Protection; &lt;em&gt;Modification attempt in exclusion list&lt;/em&gt; alerts; &lt;em&gt;Behavior:Win32/MpTamperGpDisableAVFriendly.A&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; Persistence, privilege escalation, and injection&lt;/td&gt;&lt;td&gt; Microsoft Defender for Endpoint — &amp;#8220;Suspicious Task Scheduler activity&amp;#8221;; &amp;#8220;A process was injected with potentially malicious code&amp;#8221;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and control, lateral movement, and hands-on-keyboard&lt;/td&gt;&lt;td&gt;Microsoft Defender XDR — &amp;#8220;Potential C2 connection behavior&amp;#8221;; &amp;#8220;Lateral movement using SMB remote file access blocked on multiple devices&amp;#8221;; &amp;#8220;Compromised account conducting hands-on-keyboard attack&amp;#8221;; Network protection (C2 block); Attack disruption (automatic containment)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="mitigation-and-protection-guidance"&gt;Mitigation and protection guidance&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft recommends the following mitigations to reduce the impact of this threat. Check the recommendations card for the deployment status of monitored mitigations.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="campaign-specific-recommendations"&gt;Campaign-specific recommendations&lt;/h3&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Enforce Tamper Protection. It blocks exclusion and registry writes to Microsoft Defender even when the payload runs as SYSTEM — directly countering the throwaway SYSTEM scheduled-task technique this campaign relies on.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Hunt behavior, not file names. File names and hashes rotate on every download; pivot on the &lt;em&gt;C:\Users\Public\&amp;lt;random&amp;gt;\&amp;lt;random&amp;gt;.exe&lt;/em&gt; and &lt;em&gt;C:\Program Files (x86)\&amp;lt;random&amp;gt;\&amp;lt;random&amp;gt;.exe&lt;/em&gt; drop pattern, the Philips-Speech masquerade, and the stable stage-one and networking payload hashes.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Alert on the tamper sequence. A SYSTEM scheduled task writing &lt;em&gt;HKLM\&amp;#8230;\Windows Defender\Exclusions\Paths&lt;/em&gt; then self-deleting, &lt;em&gt;vssadmin delete shadows /all /quiet&lt;/em&gt;, and disabling wuauserv, UsoSvc, WaaSMedicSvc and uhssvc are high-fidelity signals.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Treat look-alike download archives as malicious in web and mail flow. Block ZIPs named &lt;em&gt;app_setup.*&lt;/em&gt;, &lt;em&gt;zinst.*&lt;/em&gt;, &lt;em&gt;zintall.*&lt;/em&gt;, &lt;em&gt;intsoft.*&lt;/em&gt;, and &lt;em&gt;innstll.*&lt;/em&gt; served from &lt;em&gt;*.com.cn&lt;/em&gt; or &lt;em&gt;*.hl.cn&lt;/em&gt; brand-look-alike domains and the /712down, /73inst, /7qinst, and /ins711 delivery endpoints.&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Correlate download referrers. Use FileOriginUrl and FileOriginReferrerUrl to catch landing-page to delivery-host pairs even after individual domains rotate, and block the C2 IP:port set and .net C2 domains.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-hardening-recommendations"&gt;Microsoft Defender XDR hardening recommendations&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can turn on attack surface reduction rules to prevent several of the infection vectors of this threat. These rules, which can be configured by any user, offer significant hardening against targeted attacks. In observed attacks, Microsoft customers who had the following rules turned on could mitigate the attack in the initial stages and prevent hands-on-keyboard activity:&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference#block-executable-files-from-running-unless-they-meet-a-prevalence-age-or-trusted-list-criterion" rel="noreferrer noopener" target="_blank"&gt;Block executable files from running unless they meet a prevalence, age, or trusted list criterion&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference#block-execution-of-potentially-obfuscated-scripts" rel="noreferrer noopener" target="_blank"&gt;Block execution of potentially obfuscated scripts&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference#block-use-of-copied-or-impersonated-system-tools" rel="noreferrer noopener" target="_blank"&gt;Block use of copied or impersonated system tools&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference#use-advanced-protection-against-ransomware" rel="noreferrer noopener" target="_blank"&gt;Use advanced protection against ransomware&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-defender-xdr-detections"&gt;Microsoft Defender XDR detections&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can refer to the list of applicable detections below. Microsoft Defender XDR coordinates detection, prevention, investigation, and response across endpoints, identities, email, and apps to provide integrated protection against attacks like the threat discussed in this blog.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Customers with provisioned access can also use &lt;a href="https://learn.microsoft.com/en-us/defender-xdr/security-copilot-in-microsoft-365-defender"&gt;Microsoft Security Copilot in Microsoft Defender&lt;/a&gt; to investigate and respond to incidents, hunt for threats, and protect their organization with relevant threat intelligence.&lt;/p&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149255 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/09/image-2.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 3. Diagram mapping attacker activity stages to Microsoft Defender protections including SmartScreen, Defender Antivirus, endpoint detection and response (EDR) detections, Network Protection, and Attack Disruption.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="microsoft-security-copilot"&gt;Microsoft Security Copilot  &lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Security Copilot customers can use the standalone experience to &lt;a href="https://learn.microsoft.com/copilot/security/prompting-security-copilot#create-your-own-prompts" rel="noreferrer noopener" target="_blank"&gt;create their own prompts&lt;/a&gt; or run the following &lt;a href="https://learn.microsoft.com/copilot/security/using-promptbooks" rel="noreferrer noopener" target="_blank"&gt;prebuilt promptbooks&lt;/a&gt; to automate incident response or investigation tasks related to this threat:  &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Incident investigation  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Microsoft User analysis  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat actor profile  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Threat Intelligence 360 report based on MDTI article  &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Vulnerability impact assessment  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These promptbooks can help analysts summarize affected entities, review alert timelines, and pivot on the IOCs included in this blog. Note that some promptbooks require access to plugins for Microsoft products such as Microsoft Defender XDR or Microsoft Sentinel. &lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="threat-intelligence-reports"&gt;Threat intelligence reports&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR customers can use &lt;a href="https://learn.microsoft.com/defender-xdr/threat-analytics" rel="noreferrer noopener" target="_blank"&gt;threat analytics&lt;/a&gt; reports in the Defender portal (requires license for at least one Defender XDR product) to get the most up-to-date information about the malicious activity and techniques discussed in this blog. These reports provide the intelligence, protection information, and recommended actions to prevent, mitigate, or respond to associated threats found in customer environments.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="advanced-hunting"&gt;Advanced hunting&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Microsoft Defender XDR and Microsoft Sentinel customers can run the following queries. . The behavior-based queries continue to work even as filenames, hashes, and domains rotate.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Campaign payloads and loaders Surfaces execution or creation of the campaign&amp;#8217;s stable stage-one, later-stage, persistent, networking, and loader binaries by SHA-256.&lt;/strong&gt;&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+let campaignSha256 = dynamic([
+  "676a2a7b94ca2f8ec76352ee656e4d075bb342bd7ad6efbc7c19c060001eace7", // stage-one
+  "6d6ba2bc9ad414837826f7278bc3e0116f1aeda02d0c2284ed65819f5d9180a8", // later-stage
+  "c4100ad39d8db98f063feb6c3b6c8e9a9f9d9bf25a1e0233f43b058ff8a7dbdf", // networking
+  "1bd3662d784840e410d2d3c0a1040277f7f549089447359f01e05c2559cb1f17", // persistent
+  "c6100166e2d3b40388980f7674712ef39e937ac04925ca5d370415399ed73faf", // TrueUpdate loader
+  "f33d160d757e4b39019fdef21cf90cafb501b800ca0d4039366bc30856e3d81b", // persistent/networking
+  "e4fe2dee8f0bb132fa15fc686d1f93df39530a2d3a8d3a1f3a605a057c04e7b3"  // supporting DLL
+]);
+union
+  (DeviceProcessEvents | where SHA256 in (campaignSha256)),
+  (DeviceFileEvents    | where SHA256 in (campaignSha256))
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Randomized payload drop pattern Finds executables dropped into randomized folders under world-writable or system locations — the campaign&amp;#8217;s stable staging behavior regardless of filename.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where FolderPath matches regex @"(?i)^C:\\(Users\\Public|ProgramData|Program Files \(x86\))\\[A-Za-z0-9]{4,10}\\[A-Za-z0-9]{4,10}\.exe$"
+| where InitiatingProcessFileName in~ ("msiexec.exe","explorer.exe","svchost.exe","cmd.exe","7zFM.exe","360zip.exe","WinRAR.exe")
+| project Timestamp, DeviceName, AccountName, FolderPath, FileName, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Microsoft Defender exclusion tampering Detects the SYSTEM scheduled-task and PowerShell routines that write sweeping Microsoft Defender path exclusions.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where ProcessCommandLine has @"Windows Defender\Exclusions\Paths"
+     or ProcessCommandLine has "Add-MpPreference -ExclusionPath"
+     or (ProcessCommandLine has "SCHTASKS" and ProcessCommandLine has "SYSTEM" and ProcessCommandLine has "Exclusions")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, ProcessCommandLine
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Recovery inhibition and Windows Update neutralization Surfaces shadow-copy deletion and the routine that stops, disables, or renames Windows Update service components.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where ProcessCommandLine has "vssadmin delete shadows"
+     or (ProcessCommandLine has_all ("sc","config","disabled") and ProcessCommandLine has_any ("wuauserv","UsoSvc","uhssvc","WaaSMedicSvc"))
+     or ProcessCommandLine has "NoAutoUpdate"
+     or (ProcessCommandLine has "rename" and ProcessCommandLine has_any ("wuaueng","WaaSMedicSvc"))
+| project Timestamp, DeviceName, InitiatingProcessFileName, ProcessCommandLine
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Windows Installer (msiexec) embedded-mode execution Catches the parallel delivery vector where msiexec launches a randomized payload from a world-writable path.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "msiexec.exe"
+| where InitiatingProcessCommandLine has "-Embedding" and InitiatingProcessCommandLine has @"Global\MSI0000"
+| where FolderPath has @"C:\Users\Public\"
+| project Timestamp, DeviceName, FileName, FolderPath, SHA256, InitiatingProcessCommandLine
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Disguised scheduled-task execution Flags payloads relaunched by the Task Scheduler service from user-writable directories (the ~60-second re-execution loop).&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+DeviceProcessEvents
+| where InitiatingProcessCommandLine has "netsvcs" and InitiatingProcessCommandLine has "Schedule"
+| where FolderPath matches regex @"(?i)^C:\\(Users\\Public|ProgramData|Program Files \(x86\))\\"
+| where FileName endswith ".exe"
+| project Timestamp, DeviceName, FileName, FolderPath, SHA256, InitiatingProcessFileName
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Command-and-control connections Matches callbacks to the campaign&amp;#8217;s C2 IP:port set and six-character .net C2 domains.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+let c2ip    = dynamic(["202.95.14.237","47.239.232.245","161.248.87.157","103.156.25.35","103.183.3.162","43.99.100.248","47.239.175.163","47.86.205.97","47.243.218.255"]);
+let c2ports = dynamic([5090,7031,7032,7088,7089,7090,8050,28290,28300]);
+let c2dom   = dynamic(["iualef.net","euioxu.net","czijbh.net","wfmwsj.net","tbdqxq.net","oijfwe.net"]);
+DeviceNetworkEvents
+| where (RemoteIP in (c2ip) and RemotePort in (c2ports)) or (RemoteUrl has_any (c2dom))
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessSHA256, RemoteIP, RemotePort, RemoteUrl, ActionType
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Malicious delivery domains and download endpoints Identifies connections to the dedicated delivery domains and the /712down, /73inst, /7qinst, /ins711 download paths.&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;div class="wp-block-syntaxhighlighter-code "&gt;&lt;pre class="brush: plain; auto-links: false; gutter: false; title: ; quick-code: false; notranslate"&gt;
+let deliveryHosts = dynamic(["gehie246.com","yimxg25tiy.com","cc8ttkv35b.com","n7b8t85zsg.com","bxfh.tzcdq.cn","tmsq.tzcdq.cn","mebx78e02.com","qwjre1487.com"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (deliveryHosts) or RemoteUrl has_any ("/712down","/73inst","/7qinst","/ins711")
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteUrl, RemoteIP, ActionType
+| order by Timestamp desc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 class="wp-block-heading" id="mitre-att-ck-techniques-observed"&gt;MITRE ATT&amp;amp;CK techniques observed&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This threat has exhibited use of the following attack techniques. For standard industry documentation about these techniques, refer to the &lt;a href="https://attack.mitre.org/"&gt;MITRE ATT&amp;amp;CK framework&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table class="has-fixed-layout"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tactic&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Technique&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;ID&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Observed in this campaign&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Resource Development&lt;/td&gt;&lt;td&gt;Acquire Infrastructure: Domains / Web Services&lt;/td&gt;&lt;td&gt;T1583.001 / T1583.006&lt;/td&gt;&lt;td&gt;Registered look-alike .com.cn / .hl.cn brand domains, dedicated delivery hosts, and abused cloud object storage.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;User Execution: Malicious File&lt;/td&gt;&lt;td&gt;T1204.002&lt;/td&gt;&lt;td&gt;Victims run a counterfeit installer downloaded from a spoofed vendor page.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;Command and Scripting Interpreter: PowerShell / Windows Command Shell&lt;/td&gt;&lt;td&gt;T1059.001 / T1059.003&lt;/td&gt;&lt;td&gt;PowerShell and cmd routines write Defender exclusions, delete shadow copies, and disable Windows Update.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Execution&lt;/td&gt;&lt;td&gt;System Binary Proxy Execution: Msiexec&lt;/td&gt;&lt;td&gt;T1218.007&lt;/td&gt;&lt;td&gt;msiexec.exe -Embedding launches a randomized payload under a trusted, signed Windows binary.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Persistence / Privilege Escalation&lt;/td&gt;&lt;td&gt;Scheduled Task/Job: Scheduled Task&lt;/td&gt;&lt;td&gt;T1053.005&lt;/td&gt;&lt;td&gt;Disguised scheduled tasks provide ~60-second recurring execution and SYSTEM privilege escalation.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Impair Defenses: Disable or Modify Tools&lt;/td&gt;&lt;td&gt;T1562.001&lt;/td&gt;&lt;td&gt;Broad Add-MpPreference exclusions and registry exclusion writes weaken Microsoft Defender.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Masquerading: Match Legitimate Name or Location&lt;/td&gt;&lt;td&gt;T1036.005&lt;/td&gt;&lt;td&gt;Payloads impersonate a Philips Speech driver and run svchost.exe from non-system paths.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Hijack Execution Flow: DLL Side-Loading&lt;/td&gt;&lt;td&gt;T1574.002&lt;/td&gt;&lt;td&gt;Payloads load a malicious library from their own directory — XPSPLOG.dll with the later-stage payload, UxEnhance64.dll with the stage-one payload.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Process Injection&lt;/td&gt;&lt;td&gt;T1055&lt;/td&gt;&lt;td&gt;Payload code is injected into the context of another process.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;File and Directory Permissions Modification&lt;/td&gt;&lt;td&gt;T1222.001&lt;/td&gt;&lt;td&gt;icacls strips inheritance and hardens payload directories against removal.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Defense Evasion&lt;/td&gt;&lt;td&gt;Modify Registry&lt;/td&gt;&lt;td&gt;T1112&lt;/td&gt;&lt;td&gt;Registry keys are set for Defender exclusions and Windows Update policy.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lateral Movement&lt;/td&gt;&lt;td&gt;Remote Services: SMB/Windows Admin Shares&lt;/td&gt;&lt;td&gt;T1021.002&lt;/td&gt;&lt;td&gt;Attempted SMB remote file access to additional hosts.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Impact&lt;/td&gt;&lt;td&gt;Inhibit System Recovery&lt;/td&gt;&lt;td&gt;T1490&lt;/td&gt;&lt;td&gt;vssadmin delete shadows /all /quiet removes volume shadow copies.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Impact&lt;/td&gt;&lt;td&gt;Service Stop&lt;/td&gt;&lt;td&gt;T1489&lt;/td&gt;&lt;td&gt;Stops and disables wuauserv / UsoSvc / WaaSMedicSvc to neutralize Windows Update.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Control&lt;/td&gt;&lt;td&gt;Ingress Tool Transfer&lt;/td&gt;&lt;td&gt;T1105&lt;/td&gt;&lt;td&gt;A repurposed updater runtime retrieves content from attacker-controlled cloud object storage and writes a further payload to disk.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Command and Control&lt;/td&gt;&lt;td&gt;Application Layer Protocol / Non-Standard Port&lt;/td&gt;&lt;td&gt;T1071 / T1571&lt;/td&gt;&lt;td&gt;C2 over application-layer protocols on non-standard ports (5090, 7031–7090, 8050, 28290/28300).&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 class="wp-block-heading" id="indicators-of-compromise-ioc"&gt;Indicators of compromise (IOC)&lt;/h3&gt;
+
+
+&lt;figure class="wp-block-image size-full"&gt;&lt;img alt="" class="wp-image-149256 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/09/image-3.webp" /&gt;&lt;figcaption class="wp-element-caption"&gt;Figure 4. Deceptive software download campaign: infrastructure relationships.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;figure class="wp-block-table"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Campaign Layer&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Indicator&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lure / Impersonation&lt;/td&gt;&lt;td&gt;pc-razerzone[.]com[.]cn&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lure / Impersonation&lt;/td&gt;&lt;td&gt;app-microsoft-edge[.]com[.]cn&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Lure / Impersonation&lt;/td&gt;&lt;td&gt;kaspersky-lab[.]hl[.]cn&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Delivery&lt;/td&gt;&lt;td&gt;hxxps://www.gehie246[.]com/712down&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Delivery&lt;/td&gt;&lt;td&gt;gehie246[.]com&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cloud Staging&lt;/td&gt;&lt;td&gt;newopt001.oss-cn-hongkong.aliyuncs[.]com/innstll.1.0.61.zip&lt;/td&gt;&lt;td&gt;URL&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;C2 Domain&lt;/td&gt;&lt;td&gt;iualef[.]net&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;C2 Domain&lt;/td&gt;&lt;td&gt;oijfwe[.]net&lt;/td&gt;&lt;td&gt;Domain&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;C2 Endpoint&lt;/td&gt;&lt;td&gt;202.95.14[.]237:5090&lt;/td&gt;&lt;td&gt;IP:Port&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;C2 Endpoint&lt;/td&gt;&lt;td&gt;103.183.3[.]162:5090&lt;/td&gt;&lt;td&gt;IP:Port&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Payload&lt;/td&gt;&lt;td&gt;676a2a7b94ca&amp;#8230;&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Payload&lt;/td&gt;&lt;td&gt;c6100166e2d3&amp;#8230;&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Payload&lt;/td&gt;&lt;td&gt;c4100ad39d8d&amp;#8230;&lt;/td&gt;&lt;td&gt;SHA256&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="references"&gt;References&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="references"&gt;Prior reporting and OSINT sources — Silver Fox (also known as Yinhu, 银狐)&lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://github.com/0xDanielLopez/TweetFeed/blob/master/week.csv"&gt;TweetFeed community indicator feed — weekly IOC export&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://otx.alienvault.com/pulse/6a36fe5a3c1568785b59c4d7"&gt;AlienVault OTX pulse — campaign delivery infrastructure and C2 indicators&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://bazaar.abuse.ch/sample/aea879a0689d4f0510d63043570474978bf51013a2d5b5d9154ec1238d8b2da5"&gt;MalwareBazaar — campaign payload sample (aea879a0…)&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://bazaar.abuse.ch/sample/6dacf28164ad873fe98c5d583e73531cded11dfcb2955146b1adc333b3510002"&gt;MalwareBazaar — campaign payload sample (6dacf281…)&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://github.com/Lingggao/LGSRC"&gt;LGSRC public indicator repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="learn-more"&gt;Learn more&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="learn-more"&gt;For the latest security research from the Microsoft Threat Intelligence community, check out the &lt;a href="https://aka.ms/threatintelblog" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence Blog&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To get notified about new publications and to join discussions on social media, follow us on &lt;a href="https://www.linkedin.com/showcase/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://x.com/MsftSecIntel" rel="noreferrer noopener" target="_blank"&gt;X (formerly Twitter)&lt;/a&gt;, and &lt;a href="https://bsky.app/profile/threatintel.microsoft.com" rel="noreferrer noopener" target="_blank"&gt;Bluesky&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To hear stories and insights from the Microsoft Threat Intelligence community about the ever-evolving threat landscape, listen to the &lt;a href="https://thecyberwire.com/podcasts/microsoft-threat-intelligence" rel="noreferrer noopener" target="_blank"&gt;Microsoft Threat Intelligence podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Review our documentation to learn more about our real-time protection capabilities and see how to enable them within your organization.   &lt;/p&gt;
+
+
+
+&lt;ul class="wp-block-list"&gt;
+&lt;li class="wp-block-list-item"&gt;Evaluate your AI readiness with our latest &lt;a href="https://microsoft.github.io/zerotrustassessment/" rel="noreferrer noopener" target="_blank"&gt;Zero Trust for AI workshop&lt;/a&gt;.&lt;a id="_msocom_1"&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft 365 Copilot AI security documentation&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;&lt;a href="https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/" rel="noreferrer noopener" target="_blank"&gt;How Microsoft discovers and mitigates evolving attacks against AI guardrails&lt;/a&gt; &lt;/li&gt;
+
+
+
+&lt;li class="wp-block-list-item"&gt;Learn more about &lt;a href="https://learn.microsoft.com/en-us/defender-cloud-apps/ai-agent-protection" rel="noreferrer noopener" target="_blank"&gt;securing Copilot Studio agents with Microsoft Defender&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/"&gt;Counterfeit installers to system compromise: Tracking a deceptive software download campaign&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=149252</guid><category>Malware</category></item><item><title>FBI Probes Service Selling 153M+ Drivers Licenses</title><link>https://krebsonsecurity.com/2026/09/fbi-probes-service-selling-153m-drivers-licenses/</link><description>A new identity theft service launched on the dark web this week is selling digital scans of more than 153 million drivers licenses from people in the United States and Canada. Based on interviews with individuals whose licenses are available for purchase on this service, it appears to be siphoning images collected by a widely-used identity verification company based in Louisiana. KrebsOnSecurity also has learned that the New Orleans field office of the Federal Bureau of Investigation (FBI) today launched an official inquiry into the source of the images.</description><content:encoded>&lt;p&gt;A new identity theft service launched on the dark web this week is selling digital scans of more than 153 million drivers licenses from people in the United States and Canada. Based on interviews with individuals whose licenses are available for purchase on this service, it appears to be siphoning images collected by a widely-used identity verification company based in Louisiana. KrebsOnSecurity also has learned that the New Orleans field office of the &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) today launched an official inquiry into the source of the images.&lt;/p&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_74234" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-74234" height="434" src="https://krebsonsecurity.com/wp-content/uploads/2026/09/nexus-phegseth.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-74234"&gt;A record available at this identity theft service that includes the drivers license for U.S. Defense Secretary Pete Hegseth, who is one of several high-ranking U.S. government officials whose drivers licenses can be found for sale.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;On Monday, Aug. 31, a source alerted KrebsOnSecurity to a service advertised by a new user on the Russian cybercrime forum &lt;strong&gt;Exploit&lt;/strong&gt;, offering access to digital scans of identity documents on more than 170 million people in North America. The source brought it to my attention because the proprietor of this identity theft service offered my Virginia drivers license as a free sample in their initial sales thread on Exploit.&lt;/p&gt;
+&lt;p&gt;The service, dubbed &lt;strong&gt;Nexus&lt;/strong&gt;, claims to have more than 153 million drivers licenses for people in the United States and Canada, as well as more than 10 million identification cards; more than three million travel documents and/or international IDs; and at least 579,000 medical cards.&lt;/p&gt;
+&lt;p&gt;A quick look around Nexus finds they are likely not exaggerating about that 153 million number: Running a blank search in Nexus (with no search parameters entered) returns approximately 11.5 million pages of results, with roughly 15 results displayed per page. It includes documents from people in both Canada and the United States, but the bulk of these records are on Americans: searching for just Canadian drivers licenses returns approximately 1.1 million results, with the largest concentration from Ontario (473,673 records).&lt;/p&gt;
+&lt;p&gt;Curiously, the identity records include not only drivers licenses but also marijuana dispensary cards. Some of the records list their &amp;#8220;source&amp;#8221; as &amp;#8220;CDL,&amp;#8221; presumably short for &amp;#8220;commercial drivers license.&amp;#8221; Other records carry the source notation of &amp;#8220;CAC,&amp;#8221; which may refer to Common Access Cards, government issued identity cards that grant physical access to government buildings and secure rooms.&lt;/p&gt;
+&lt;p&gt;The people behind Nexus claim the license images are coming from an active breach at &amp;#8220;a major identity verification company&amp;#8221; whose customers include multiple Fortune 500 companies.&lt;/p&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_74241" style="width: 564px;"&gt;&lt;img alt="" class="size-full wp-image-74241" height="491" src="https://krebsonsecurity.com/wp-content/uploads/2026/09/nexus-totals.png" width="554" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-74241"&gt;The record totals listed by the Nexus identity theft service. The number of drivers license records increased by nearly 400,000 in the span of just 24 hours.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;&amp;#8220;We have been continuously exfiltrating new data for over a year into our private database,&amp;#8221; the service enthused in its introductory post on Exploit. &amp;#8220;Records are available to preview before purchase with pertinent information redacted. Customer photos are displayed if available.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;Indeed, over the past 24 hours, the number of drivers license records listed as available in Nexus has increased by nearly 400,000, suggesting that freshly stolen license data is being harvested and uploaded to this service on a semi-regular basis.&lt;/p&gt;
+&lt;p&gt;The record that features my drivers license includes six image files &amp;#8212; three pairs of photos of the license&amp;#8217;s front and back &amp;#8212; a basic image scan &amp;#8212; as well as infrared and ultraviolet versions of the same images. A date and timestamp is appended to each image file, and the timestamp on my license scan corresponds to a date in June 2025 when I took a flight to the midwest United States to attend a family funeral.&lt;/p&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_74235" style="width: 760px;"&gt;&lt;img alt="" class=" wp-image-74235" height="532" src="https://krebsonsecurity.com/wp-content/uploads/2026/09/nexus-bk.png" width="750" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-74235"&gt;Some of the 153 million+ license scans &amp;#8212; including mine &amp;#8212; feature six image files with date and timestamps appended to the filenames. Not all records include photos, and some that do feature photos do not display the associated filenames.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Intent on discovering the source of this data, KrebsOnSecurity asked more than a dozen friends and family members for permission to search for their licenses in this service. Each person whose license could be found (nine of them) confirmed having traveled on or very close to the dates in the timestamps attached to their images. It is unclear what timezone these timestamps are in, but from reviewing car rental records shared by several people who helped with this research, it appears the timezone is set to Greenwich Mean Time (GMT).&lt;/p&gt;
+&lt;p&gt;At first, I thought the source of the data might have something to do with airports. However, that theory went out the window when it became apparent there were no passports in this data set. Also, only some of those who helped with this research said they showed their drivers license at the airport on the day of their travel. One person whose license was in Nexus hadn&amp;#8217;t flown at all recently, but was renting a car from &lt;strong&gt;Hertz&lt;/strong&gt; for several months around the date of their timestamp.&lt;/p&gt;
+&lt;p&gt;Two of those who agreed to help are federal employees who said they shared other forms of government identification when passing through airport security. However, those individuals each said they shared their state-issued drivers licenses later that day when renting vehicles at their respective destinations, and that both rented their cars from Hertz.&lt;/p&gt;
+&lt;p&gt;After finding a note in my calendar for the day of my June 2025 flight reminding me to bring my passport, I remembered that I also never actually shared my drivers license when I went through security at Reagan National Airport on that day because I did not yet have a Real ID, a security-enhanced drivers license that is now required by the Transportation Security Administration (TSA) for all domestic travel. Instead, I showed the TSA agent my government-issued U.S. passport.&lt;/p&gt;
+&lt;p&gt;Here&amp;#8217;s where it gets interesting: I was able to find my mother&amp;#8217;s drivers license in this service as well, and the timestamps for her images are just a few seconds apart from mine. That&amp;#8217;s notable because we both handed our licenses to the Hertz rental car representative at the same time.&lt;span id="more-74231"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;According to my mom, the only place she gave her drivers license to that day was the rental car company, and if memory serves that is also true for me. I don&amp;#8217;t recall if the rental car representative inserted our licenses into any kind of machine, but I remember they held onto them for several minutes behind the counter while we were signing various forms. KrebsOnSecurity sought comment from Hertz and will update this story in the event they reply.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Zach Edwards&lt;/strong&gt; is a well-known security and privacy researcher who recently launched a service called &lt;a href="https://krebsonsecurity.com/2026/08/whos-tracking-you-use-this-new-service-to-find-out/" rel="noopener" target="_blank"&gt;DecryptAds&lt;/a&gt; to help people better understand how online advertisers are tracking them. A scan of Edwards&amp;#8217;s drivers license is available for purchase on this identity theft service, and Edwards said the timestamp on his record corresponds to the middle of a trip last month to Las Vegas for the annual DEFCON security conference.&lt;/p&gt;
+&lt;p&gt;Edwards told KrebsOnSecurity that although he did not rent a car in Vegas, he did hand over his license at the TSA checkpoint, at a marijuana dispensary in Vegas, and at his hotel (the Aria). But he said the only one of those three that for sure scanned his ID in some kind of device was the dispensary.&lt;/p&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_74250" style="width: 600px;"&gt;&lt;img alt="" class="size-full wp-image-74250" height="786" src="https://krebsonsecurity.com/wp-content/uploads/2026/09/planet13.png" width="590" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-74250"&gt;To enter Planet13&amp;#8217;s weed dispensary in Las Vegas, one must pass through a red telephone booth. Image: Zach Edwards.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Edwards said the dispensary he visited that day was &lt;strong&gt;Planet13&lt;/strong&gt;, a multi-state chain with stores in California, Florida, Illinois and Nevada. In 2022, the New Orleans-based identity provider &lt;strong&gt;idscan.net&lt;/strong&gt; published &lt;a href="https://idscan.net/press-release/planet-13-partners-with-idscan-net/?srsltid=AfmBOooFV0QbsE8UCJBUhGP8mbYCl7j4iKJljXTf4NZA5n79ey00b5Qo" rel="noopener" target="_blank"&gt;a press release&lt;/a&gt; announcing an exclusive identity verification agreement with Planet13&amp;#8217;s dispensaries nationally. IDScan says it processes ID verification for more than 1,000 marijuana dispensaries in 19 U.S. states.&lt;/p&gt;
+&lt;p&gt;The &amp;#8220;trust&amp;#8221; page of idscan.net states that the company provides identity verification services for numerous big brands, including Hertz, &lt;strong&gt;Target&lt;/strong&gt;, &lt;strong&gt;Fedex&lt;/strong&gt;, &lt;strong&gt;Motorola Solutions&lt;/strong&gt;, the financial services giant &lt;strong&gt;Jack Henry&lt;/strong&gt;, and &lt;strong&gt;Caesars Entertainment&lt;/strong&gt;. And as idscan.net&amp;#8217;s own &lt;a href="https://idscan.net/press-release/2025-id-fraud-report/" rel="noopener" target="_blank"&gt;documentation states&lt;/a&gt;, the technology scans IDs with both infrared and ultraviolet light. Idscan.net says the company&amp;#8217;s systems and technology perform more than 21 million verifications monthly, at more than 20,000 locations around the world.&lt;/p&gt;
+&lt;div class="wp-caption aligncenter" id="attachment_74242" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-74242" height="314" src="https://krebsonsecurity.com/wp-content/uploads/2026/09/idscan-partners.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-74242"&gt;Image: idscan.net.&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Contacted by KrebsOnSecurity, idscan.net said it was investigating the matter, but the company has not yet shared an official statement or a substantive reply to specific questions sent via email.&lt;/p&gt;
+&lt;p&gt;&amp;#8220;At this point I&amp;#8217;m not able to share any additional information, but the updates you have provided have been welcome, and helpful to our team&amp;#8217;s investigation,&amp;#8221; wrote &lt;strong&gt;Jillian Kossman&lt;/strong&gt;, a marketing and operations leader at idscan.net.&lt;/p&gt;
+&lt;p&gt;During the course of my research for this story, word apparently got around to the FBI that I was poking at the apparent source of this new identity theft service&amp;#8217;s data. Probably they were tipped off when I shared with a trusted source that Nexus also is selling the drivers license information for the assistant director of the FBI (I did not find FBI Director Kash Patel&amp;#8217;s license in Nexus).&lt;/p&gt;
+&lt;p&gt;Earlier this afternoon, I was added to a conference call with a half-dozen FBI agents, including senior leaders from the agency&amp;#8217;s cyber division. During that call, the FBI shared that earlier today their New Orleans field office opened an official investigation into an apparent breach involving idscan.net.&lt;/p&gt;
+&lt;p&gt;Edwards said that as more in-person and online experiences require sharing drivers licenses, vendors who collect this sensitive data need to be held to a higher standard.&lt;/p&gt;
+&lt;p&gt;&amp;#8220;This episode should further strengthen the resolve for people who are fighting back against online ID schemes which are requiring countless providers to ask for drivers licenses in order to access services under the guise of protecting kids,&amp;#8221; Edwards told KrebsOnSecurity. &amp;#8220;These systems are putting sensitive data into more and more 3rd party vendors, and we don’t have nearly the oversight to ensure they are safe.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Larry Baldwin&lt;/strong&gt; is principal intelligence researcher at the cybersecurity firm &lt;a href="https://www.cybera.io" rel="noopener" target="_blank"&gt;Cybera&lt;/a&gt;. Baldwin said a front and back scan of his drivers license available at Nexus contains timestamps that correspond to the date of a car rental from Hertz on a recent vacation.&lt;/p&gt;
+&lt;p&gt;Baldwin said the Nexus identity theft service presents multiple serious security and privacy threats, noting that state-issued drivers licenses are commonly used as proof of one&amp;#8217;s identity when opening new lines of credit. Baldwin said the service could also dangerously expose many people who do not wish to be found but who cannot meaningfully change their appearance (or at least not enough to fool today&amp;#8217;s AI-based image matching tools).&lt;/p&gt;
+&lt;p&gt;This category of people, he said, includes those fleeing domestic violence, and even people who have been assigned a whole new life and identity as part of the federal government&amp;#8217;s witness protection program, which is generally reserved for criminal defendants in racketeering and conspiracy investigations who agree to cooperate with federal authorities.&lt;/p&gt;
+&lt;p&gt;“Just when it seems like we’re making some headway in improving authentication controls through drivers license verification systems, this happens and the very thing those improvements are dependent on are compromised,” Baldwin said.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update, 8:56 p.m. ET:&lt;/strong&gt; Shortly after this story was published, the Nexus identity theft service website vanished from the darkweb, replacing its login page with a plain text message that reads, &amp;#8220;This service is no longer available.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is a potentially fast-moving story. Any changes or updates will be noted here along with a timestamp.&lt;/em&gt;&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=74231</guid><category>A Little Sunshine</category><category>Data Breaches</category><category>The Coming Storm</category><category>Web Fraud 2.0</category><category>Cybera</category><category>DecryptAds</category><category>exploit</category><category>Hertz</category><category>idscan.net</category><category>Jillian Kossman</category><category>Larry Baldwin</category><category>Nexus</category><category>Planet13</category><category>Zach Edwards</category></item><item><title>Guildma (Astaroth) malware infection from Brazilian Portuguese email, (Tue, Sep 1st)</title><link>https://isc.sans.edu/diary/rss/33300</link><description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;On Monday 2026-08-31, I used a link from a malicious Brazilian Portuguese email to infect a Windows host in my lab. This was a&amp;nbsp;&lt;a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.astaroth"&gt;Guildma (Astaroth)&lt;/a&gt; malware infection.&lt;/p&gt;
 
@@ -6250,91 +6969,7 @@ DeviceNetworkEvents
 
 
 &lt;p class="wp-block-paragraph"&gt;&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/26/when-ai-infrastructure-becomes-target-securing-gateways-control-points/"&gt;When AI infrastructure becomes the target: Securing gateways and control points&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=149182</guid><category>Malware</category></item><item><title>Who Has Admin Rights in your Entra ID Directory&amp;#x3f;, (Wed, Aug 26th)</title><link>https://isc.sans.edu/diary/rss/33284</link><description>&lt;p&gt;A common thing that folks should "worry" about in Entra (or any platform really) is "who has rights to administer"&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;x3f&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; Who can delete or change key things, or modify them in ways that might not be obvious (accidentally or on purpose).&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; Yes, we trust our people, but if they&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;ve moved on to other roles or to other organizations, they change from "our people" to "used to be our people".&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&lt;br /&gt;&amp;#xd; Also, it&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s common to have too many admins.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; For instance, entry level support folks might need rights to change passwords, but they likely shouldn&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;t have rights to change your intune policies or be global admins.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; The "too many admins" question is a common one that auditors will zero in on.&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; This is &amp;#x23&amp;#x3b;4 on the CIS Critical Controls v7 as "Control of Admin Privileges".&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b; In version 8 of the list it&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;39&amp;#x3b;s now at &amp;#x23&amp;#x3b;6 under "Access Control Management"&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xc2&amp;#x3b;&amp;&amp;#x23&amp;#x3b;x26&amp;#x3b;&amp;#x23&amp;#x3b;xa0&amp;#x3b;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;A common thing that folks should &amp;quot;worry&amp;quot; about in Entra (or any platform really) is &amp;quot;who has rights to administer&amp;quot;?&amp;nbsp; Who can delete or change key things, or modify them in ways that might not be obvious (accidentally or on purpose).&amp;nbsp; Yes, we trust our people, but if they've moved on to other roles or to other organizations, they change from &amp;quot;our people&amp;quot; to &amp;quot;used to be our people&amp;quot;.&amp;nbsp;&amp;nbsp;&lt;br /&gt;
-Also, it's common to have too many admins.&amp;nbsp; For instance, entry level support folks might need rights to change passwords, but they likely shouldn't have rights to change your intune policies or be global admins.&amp;nbsp; The &amp;quot;too many admins&amp;quot; question is a common one that auditors will zero in on.&amp;nbsp; This is #4 on the CIS Critical Controls v7 as &amp;quot;Control of Admin Privileges&amp;quot;.&amp;nbsp; In version 8 of the list it's now at #6 under &amp;quot;Access Control Management&amp;quot;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-Let's dig into your Entra ID Directory, you might find some surprises in your admin list.&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-size: 11px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;# first, as always connect to the directory&lt;br /&gt;
-Connect-MgGraph -Scopes &amp;quot;Directory.Read.All&amp;quot;, &amp;quot;RoleManagement.Read.All&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-size: 11px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;# Get the list of activated directory roles and the count of members&lt;br /&gt;
-$roles = Get-MgDirectoryRole&lt;br /&gt;
-foreach ($role in $roles) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; $members = Get-MgDirectoryRoleMember -DirectoryRoleId $role.Id&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; [PSCustomObject]@{&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; RoleName&amp;nbsp; &amp;nbsp; &amp;nbsp;= $role.DisplayName&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; MemberCount&amp;nbsp; = $members.Count&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; }&lt;br /&gt;
-}&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-size: 11px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;RoleName&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; MemberCount&lt;br /&gt;
---------&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; -----------&lt;br /&gt;
-Privileged Authentication Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Global Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 5&lt;br /&gt;
-Password Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 1&lt;br /&gt;
-Application Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Service Support Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Purview Workload Content Writer&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;1&lt;br /&gt;
-User Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 0&lt;br /&gt;
-SharePoint Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 0&lt;br /&gt;
-Intune Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 3&lt;br /&gt;
-Purview Workload Content Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 1&lt;br /&gt;
-Azure AD Joined Device Local Adminis...&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;1&lt;br /&gt;
-Helpdesk Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 0&lt;br /&gt;
-Office Apps Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;2&lt;br /&gt;
-Directory Readers&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Billing Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Cloud Application Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Directory Synchronization Accounts&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 1&lt;br /&gt;
-Directory Writers&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Exchange Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 0&lt;br /&gt;
-Authentication Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 2&lt;br /&gt;
-Groups Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 0&lt;br /&gt;
-Privileged Role Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-License Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;br /&gt;
-Conditional Access Administrator&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 3&lt;br /&gt;
-Global Reader&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;1&lt;br /&gt;
-Device Managers&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;0&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;So this output is OK for a stranger that is looking for a &amp;quot;how many is too many&amp;quot; sort of output.&amp;nbsp; But if you are administering this directory, what you really want is the actual list - you want to know who the people in the list are, and compare that to your understanding of the roles that folks have in your organization.&amp;nbsp; You are not looking for the answer to &amp;quot;does it look about right?&amp;quot;, you are looking for the details &amp;quot;is it actually right?&amp;quot;.&amp;nbsp; A (really) common finding is to have &amp;quot;that auditor from 3 years ago&amp;quot; still in the list with a &amp;quot;Global Reader&amp;quot; or even &amp;quot;Global Administrator&amp;quot; role. You may also have management or even PMs that aren't as technical as they once were with admin rights, and the power of a collosal accidental delete (though that can be a regular AD issue as well).&amp;nbsp; In this case, that &amp;quot;Global Reader&amp;quot; line above is a shiny, flashing beacon saying &amp;quot;LOOK HERE&amp;quot;.&amp;nbsp; Let's list the individual user accounts and what roles they have in Entra:&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&lt;span style="font-size: 11px;"&gt;# init the list to zero&lt;br /&gt;
-$adminslist = @()&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&lt;span style="font-size: 11px;"&gt;# get the roles&lt;br /&gt;
-$roles = Get-MgDirectoryRole&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&lt;span style="font-size: 11px;"&gt;# Cycle through each role and get admin list&lt;br /&gt;
-$adminslist = foreach ($role in $roles) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; $members = Get-MgDirectoryRoleMember -DirectoryRoleId $role.Id&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; foreach($m in $members) {&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; $adminuser&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; = get-mguser -userid $m.id&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; $adminusername&amp;nbsp; &amp;nbsp; = $adminuser.displayname&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; $adminuseraccount = $adminuser.userprincipalname&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; [PSCustomObject]@{&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; RoleName&amp;nbsp; &amp;nbsp; = $role.DisplayName&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; UserAccount = $adminuseraccount&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; UserName&amp;nbsp; &amp;nbsp; = $adminusername&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;br /&gt;
-&amp;nbsp; &amp;nbsp; &amp;nbsp;}&lt;br /&gt;
-}&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-size: 11px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;$adminslist | out-gridview&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p style="margin-left: 40px;"&gt;&lt;span style="font-size: 11px;"&gt;&lt;span style="font-family: Courier New,Courier,monospace;"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/adminslist.png" style="width: 800px; height: 228px;" /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Like changing passwords or keys (or planting a tree), the best time to do this is in the past, but TODAY is the second-best time to look at who has admin rights to key things like your Entra or AD directories.&amp;nbsp; Check your list for Entra, let us know in the comments if you found anything unexpected?&amp;nbsp; ( Anonymized of course)&lt;/p&gt;
-
-&lt;p&gt;===============&lt;br /&gt;
-Rob VandenBrink&lt;br /&gt;
-rob@coherentsecurity.com&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33284</guid></item><item><title>Beyond Patching: What IT Teams Need to Know About Unpatchable Exposures</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary Most IT teams still operate under a false binary: patch or accept risk. That assumption creates unnecessary operational pressure. Patchless remediation is real and production-proven. Mitigate, Uninstall, Run Custom Scripts, Isolate; close exposure when no reliable patch exists. Same-day exposure neutralization becomes possible for CISA KEV items without emergency change control or restart [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/26/when-ai-infrastructure-becomes-target-securing-gateways-control-points/"&gt;When AI infrastructure becomes the target: Securing gateways and control points&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=149182</guid><category>Malware</category></item><item><title>Beyond Patching: What IT Teams Need to Know About Unpatchable Exposures</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Executive Summary Most IT teams still operate under a false binary: patch or accept risk. That assumption creates unnecessary operational pressure. Patchless remediation is real and production-proven. Mitigate, Uninstall, Run Custom Scripts, Isolate; close exposure when no reliable patch exists. Same-day exposure neutralization becomes possible for CISA KEV items without emergency change control or restart [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
 
 &lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
   &lt;h4 style="color: #ed2e26;"&gt;Executive Summary&lt;/h4&gt;
@@ -14366,240 +15001,7 @@ ALTER TABLE kv_tmp RENAME TO _cf_KV;                 -- not checked → now KV&l
 &lt;p&gt;Sources close to the investigation said Binns, also known as &amp;#8220;&lt;strong&gt;IRDev&lt;/strong&gt;&amp;#8221; and &amp;#8220;&lt;strong&gt;IntelSecrets&lt;/strong&gt;,&amp;#8221; was until recently incarcerated in a Turkish prison, but that he has since been released and has resurfaced online. Those sources said Binns also recently obtained Turkish citizenship, and under Turkish law a citizen cannot be extradited to a foreign country.&lt;/p&gt;
 &lt;div class="wp-caption aligncenter" id="attachment_68097" style="width: 568px;"&gt;&lt;img alt="" class="size-full wp-image-68097" height="399" src="https://krebsonsecurity.com/wp-content/uploads/2024/07/binnspassport.png" width="558" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-68097"&gt;An image of a passport that Binns shared in an email to KrebsOnSecurity in Feb. 2023.&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;Moucka pleaded guilty to four criminal counts, including computer fraud, wire fraud, aggravated identity theft, and conspiracy. He is slated to be sentenced on Oct. 27 and faces a mandatory minimum penalty of two years in prison on the aggravated identity theft count, as well as a maximum penalty of 30 years in prison on the remaining counts. Ultimately, it will be up the federal judge how much time Moucka actually serves for his extensive cybercriminal rap sheet.&lt;/p&gt;
-&lt;p&gt;For an interview with Moucka prior to his arrest and a deeper look at Binns, see &lt;a href="https://krebsonsecurity.com/2024/11/canadian-man-arrested-in-snowflake-data-extortions/" rel="noopener" target="_blank"&gt;our original report on Moucka&amp;#8217;s arrest&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=74093</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>Cameron John Wagenius</category><category>Connor Riley Moucka</category><category>IntelSecrets</category><category>IRDev</category><category>John Erin Binns</category><category>Judische</category><category>Snowflake</category><category>Waifu</category></item><item><title>16-31 July 2026 Cyber Attacks Timeline Infographic</title><link>https://www.hackmageddon.com/2026/08/06/16-31-july-2026-cyber-attacks-timeline-infographic/</link><description>103 confirmed cyber incidents reported between 15 and 31 July 2026 — including attacker motivations, top techniques, initial access vectors, hardest-hit sectors, and targeted countries, all in one interactive HACKMAGEDDON timeline.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=46168</guid><category>Infographics</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>H2</category><category>Hacktivism</category><category>July</category><category>Timeline</category></item><item><title>16-31 July 2026 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2026/08/06/16-31-july-2026-cyber-attacks-timeline/</link><description>103 confirmed cyber incidents reported between 15 and 31 July 2026 — including attacker motivations, top techniques, initial access vectors, hardest-hit sectors, and targeted countries, all in one interactive HACKMAGEDDON timeline.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=46160</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>H2</category><category>Hacktivism</category><category>July</category><category>Timeline</category></item><item><title>​​Microsoft named a Leader in the KuppingerCole Leadership Compass for Cloud Native Application Protection Platforms (CNAPP)</title><link>https://www.microsoft.com/en-us/security/blog/2026/08/05/microsoft-named-a-leader-in-the-kuppingercole-leadership-compass-for-cloud-native-application-protection-platforms-cnapp/</link><description>&lt;p&gt;Learn why KuppingerCole named Microsoft a Leader in its Leadership Compass: Cloud Native Application Protection Platforms report.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/05/microsoft-named-a-leader-in-the-kuppingercole-leadership-compass-for-cloud-native-application-protection-platforms-cnapp/"&gt;​​Microsoft named a Leader in the KuppingerCole Leadership Compass for Cloud Native Application Protection Platforms (CNAPP)&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;As organizations adopt AI, they must secure both cloud and AI environments through a unified security control plane as their attack surface expands. Because modern applications and AI workloads are built and run in the cloud, security teams must understand which exposures matter most, prioritize what can truly be exploited, and reduce risk across cloud infrastructure, applications, identities, data, and AI systems in one place.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Modern IT estates now span multiple clouds and on-premises systems, with architectures built on containers, Kubernetes, serverless functions, microservices, APIs, and AI-powered workloads. This increases both the volume and the interconnectedness of security signals. The challenge is no longer identifying individual risks, but determining how misconfigurations, identities, and data exposures combine to create real attack paths, and which of these are most critical to fix at the source.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;KuppingerCole&amp;#8217;s &lt;em&gt;&lt;a href="https://www.kuppingercole.com/research/lc81068/cloud-native-application-protection-platforms-cnapp" rel="noopener noreferrer" target="_blank"&gt;Leadership Compass: Cloud Native Application Protection Platforms (CNAPP)&lt;/a&gt;&lt;/em&gt; reflects this shift. The report describes how CNAPP is evolving from a consolidation of cloud security tools into the security foundation for AI-native enterprises, combining cloud security, AI security posture management, runtime protection, attack path analysis, cloud detection and response, and agentic AI operations into unified platforms.&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.kuppingercole.com/research/lc81068/cloud-native-application-protection-platforms-cnapp" rel="noopener noreferrer" target="_blank"&gt;Read the full report&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Within this evolving market, KuppingerCole names Microsoft a Leader across all four of its Leadership categories: Overall, Product, Innovation, and Market. In the report&amp;#8217;s words:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&amp;#8220;Microsoft earns its Overall Leadership with its Defender for Cloud that is redefining the CNAPP market by extending cloud security beyond infrastructure protection and into a unified security platform for cloud, data, identity, AI, and security operations, supported by one of the industry&amp;#8217;s most advanced agentic AI ecosystems.&amp;#8221;&amp;nbsp;&lt;/p&gt;
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="Graphic of the KuppingerCole Leadership Compass showing Microsoft in the under right quadrant to indicate it is an overall leader. " class="wp-image-149025 webp-format" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/08/CombinedLeadershipFull-712x1024.webp" /&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That recognition reflects where the category is heading: toward platforms that unify cloud and AI security into one operational view of risk.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="why-cnapp-is-being-redefined"&gt;&lt;strong&gt;Why CNAPP is being redefined&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;KuppingerCole makes a clear point: &lt;a href="https://www.microsoft.com/en-us/security/business/security-101/what-is-cnapp" rel="noopener noreferrer" target="_blank"&gt;CNAPP &lt;/a&gt;is no longer about posture or visibility alone. It is becoming the operational foundation for securing AI-powered applications, services, and business processes, across the full software lifecycle from cloud infrastructure to the AI systems running on top of it. &lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Modern environments introduce complexity across:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Multicloud and hybrid infrastructure.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Rapid development and continuous deployment.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Containers, serverless, microservices, and APIs.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;AI models, agents, pipelines, and machine identities.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;This complexity exposes the limits of traditional, siloed tools, where cloud posture, workload protection, AI security, and the security operations center (SOC) each live in their own console. Organizations now need platforms that can:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Correlate posture, runtime, identity, data, application, and AI signals.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Prioritize risk based on exploitability, not severity alone.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Integrate security across development, cloud operations, and the SOC.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Bring AI systems into the same risk model as the rest of the cloud.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Runtime intelligence is now central to this shift. Across the platforms KuppingerCole evaluated, 94% detect active exploitation of the complex attack paths they surface, moving teams from long lists of findings to the exposures threat actors can actually use.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="what-distinguishes-leading-platforms"&gt;&lt;strong&gt;What distinguishes leading platforms&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;KuppingerCole evaluates providers on product strength, innovation, and market presence, and, more importantly, on how effectively they help organizations manage real risk across cloud and AI. Several themes define the next generation of platforms:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;AI security posture management that governs models, pipelines, and AI-specific attack paths.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Agentic AI that investigates, validates exposures, and helps remediate, not just detect.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Runtime-driven risk prioritization focused on what is exploitable in production.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Security graphs and attack path analysis across identity, data, network, workload, and AI.&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Convergence of CNAPP with cloud detection and response, integrated with the SOC.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Taken together, these capabilities represent a move from fragmented visibility to connected, contextual risk management that spans cloud and AI in a single fabric.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="how-microsoft-helps-organizations-manage-real-risk"&gt;&lt;strong&gt;How Microsoft helps organizations manage real risk&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="1-connect-cross-domain-signals-to-prioritize-real-attack-paths"&gt;&lt;strong&gt;1. Connect cross-domain signals to prioritize real attack paths&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Most security tools surface large volumes of findings, but isolated findings do not reflect how cyberattacks actually happen. &lt;a href="https://www.microsoft.com/en-us/security/business/cloud-security/microsoft-defender-cloud" rel="noopener noreferrer" target="_blank"&gt;Microsoft Defender for Cloud&lt;/a&gt; uses the Cloud Security Graph and risk-based, multicloud attack path analysis to correlate posture, identity (human and non-human), data, network, and workload signals and identify which risks are truly exploitable. A misconfigured storage resource may look low priority on its own. Exposed to the internet, combined with excessive permissions, and connected to sensitive data, it becomes part of a clear attack path. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;What this means:&lt;/strong&gt; Security teams can prioritize real attack paths instead of individual findings, helping reduce alert fatigue and improve remediation speed and precision. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-75"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/cloud-security/microsoft-defender-cloud" rel="noopener noreferrer" target="_blank"&gt;&lt;strong&gt;Get started with Microsoft Defender for Cloud&lt;/strong&gt;&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="2-secure-ai-as-part-of-cloud-risk-and-use-ai-to-run-security"&gt;&lt;strong&gt;2. Secure AI as part of cloud risk, and use AI to run security&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Defender for Cloud brings AI security posture management into the same model as the rest of the cloud, helping organizations validate AI deployment configurations, access controls, model provenance, approved model usage, and identify potential shadow AI risks within supported environments. Through &lt;a href="https://www.microsoft.com/en-us/security/business/ai-machine-learning/microsoft-security-copilot" rel="noopener noreferrer" target="_blank"&gt;Microsoft Security Copilot&lt;/a&gt; and a growing set of specialized security agents, the platform also helps teams investigate, prioritize, guide remediation, and automate workflows. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;What this means:&lt;/strong&gt; Organizations can govern AI as part of cloud risk rather than in a separate silo, and shift AI from flagging risk to actively helping resolve it.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading" id="3-reduce-complexity-from-code-to-cloud-to-soc"&gt;&lt;strong&gt;3. Reduce complexity from code to cloud to SOC&lt;/strong&gt;&amp;nbsp;&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;As environments scale, fragmented tools make it difficult to understand how risks connect and where to focus first. Defender for Cloud connects code and infrastructure definitions, assesses cloud configurations, protect workloads at runtime, monitor applications and APIs, govern identities, correlate threats across the broader digital estate, and use AI to accelerate investigation and remediation across multicloud and hybrid environments.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;What this means:&lt;/strong&gt; Security teams can investigate faster, prioritize more consistently, and respond more quickly across fragmented cloud and application environments.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="what-this-signals-for-security-leaders"&gt;&lt;strong&gt;What this signals for security leaders&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The Leadership Compass offers a signal for where cloud security is headed: toward platforms that connect context across cloud, application, and AI environments so teams can prioritize the risks most likely to be exploited and reduce exposure faster. Security leaders should now ask:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Can the platform correlate signals across identity, endpoints, data, cloud, runtime, and applications?&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Does it see AI models, agents, and pipelines as part of cloud risk, or is AI a separate tool?&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Can it prioritize risk based on exploitability, not just severity?&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Does AI help the team investigate and remediate, or only detect?&amp;nbsp;&lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Can it scale across multicloud and AI environments and reach into the SOC?&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These are the capabilities that define the next generation of cloud-native application protection.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="bottom-line"&gt;&lt;strong&gt;Bottom line&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;KuppingerCole&amp;#8217;s 2026 CNAPP Leadership Compass reinforces a clear shift: CNAPP is becoming the control plane for managing risk across cloud, identity, data, applications, and AI. Microsoft&amp;#8217;s recognition as a Leader across all four Leadership categories reflects this shift, bringing posture, runtime, identity, data, application, and AI signals into a connected platform that helps organizations prioritize and reduce risk continuously. &amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex"&gt;
-&lt;div class="wp-block-button has-custom-width wp-block-button__width-50"&gt;&lt;a class="wp-block-button__link wp-element-button" href="https://www.kuppingercole.com/research/lc81068/cloud-native-application-protection-platforms-cnapp" rel="noopener noreferrer" target="_blank"&gt;Get the full report&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="learn-more"&gt;&lt;strong&gt;Learn more&lt;/strong&gt;&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;ul class="wp-block-list"&gt;
-&lt;li class="wp-block-list-item"&gt;Read &lt;a href="https://www.kuppingercole.com/research/lc81068/cloud-native-application-protection-platforms-cnapp" rel="noopener noreferrer" target="_blank"&gt;KuppingerCole&amp;#8217;s &lt;em&gt;Leadership Compass: Cloud Native Application Protection Platforms (CNAPP)&lt;/em&gt;&lt;/a&gt;  to see how leading vendors are evaluated and how the category is shifting toward securing the AI-native enterprise. &lt;/li&gt;
-
-
-
-&lt;li class="wp-block-list-item"&gt;Explore &lt;a href="https://www.microsoft.com/en-us/security/business/solutions/cloud-security" rel="noreferrer noopener" target="_blank"&gt;Microsoft cloud security solutions&lt;/a&gt; to see how unified posture management, risk prioritization, and protection across cloud and AI can help reduce risk.&amp;nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;To learn more about Microsoft Security solutions, visit our &lt;a href="https://www.microsoft.com/en-us/security/business" rel="noreferrer noopener" target="_blank"&gt;website.&lt;/a&gt; Bookmark the &lt;a href="https://www.microsoft.com/security/blog/" rel="noreferrer noopener" target="_blank"&gt;Security blog&lt;/a&gt; to keep up with our expert coverage on security matters. Also, follow us on LinkedIn (&lt;a href="https://www.linkedin.com/showcase/microsoft-security/" rel="noreferrer noopener" target="_blank"&gt;Microsoft Security&lt;/a&gt;) and X (&lt;a href="https://twitter.com/@MSFTSecurity" rel="noreferrer noopener" target="_blank"&gt;@MSFTSecurity&lt;/a&gt;) for the latest news and updates on cybersecurity.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/05/microsoft-named-a-leader-in-the-kuppingercole-leadership-compass-for-cloud-native-application-protection-platforms-cnapp/"&gt;​​Microsoft named a Leader in the KuppingerCole Leadership Compass for Cloud Native Application Protection Platforms (CNAPP)&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title>Querying ONYPHE from Python in 2026: pyonyphe 3.0</title><link>https://sebdraven.medium.com/querying-onyphe-from-python-in-2026-pyonyphe-3-0-f29aa96186ba?source=rss-11d98531eebe------2</link><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</description><content:encoded>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</content:encoded><guid isPermaLink="false">https://medium.com/p/f29aa96186ba</guid></item><item><title>5 Best Microsoft 365 Backup Solutions for 2026</title><link>https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/</link><description>&lt;p&gt;Looking for the best Microsoft 365 backup solutions in 2026? Compare pricing, workload coverage, retention, security, and recovery options for your business.&lt;/p&gt;
+&lt;p&gt;For an interview with Moucka prior to his arrest and a deeper look at Binns, see &lt;a href="https://krebsonsecurity.com/2024/11/canadian-man-arrested-in-snowflake-data-extortions/" rel="noopener" target="_blank"&gt;our original report on Moucka&amp;#8217;s arrest&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=74093</guid><category>Breadcrumbs</category><category>Ne'er-Do-Well News</category><category>Ransomware</category><category>Cameron John Wagenius</category><category>Connor Riley Moucka</category><category>IntelSecrets</category><category>IRDev</category><category>John Erin Binns</category><category>Judische</category><category>Snowflake</category><category>Waifu</category></item><item><title>16-31 July 2026 Cyber Attacks Timeline Infographic</title><link>https://www.hackmageddon.com/2026/08/06/16-31-july-2026-cyber-attacks-timeline-infographic/</link><description>103 confirmed cyber incidents reported between 15 and 31 July 2026 — including attacker motivations, top techniques, initial access vectors, hardest-hit sectors, and targeted countries, all in one interactive HACKMAGEDDON timeline.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=46168</guid><category>Infographics</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>H2</category><category>Hacktivism</category><category>July</category><category>Timeline</category></item><item><title>16-31 July 2026 Cyber Attacks Timeline</title><link>https://www.hackmageddon.com/2026/08/06/16-31-july-2026-cyber-attacks-timeline/</link><description>103 confirmed cyber incidents reported between 15 and 31 July 2026 — including attacker motivations, top techniques, initial access vectors, hardest-hit sectors, and targeted countries, all in one interactive HACKMAGEDDON timeline.</description><guid isPermaLink="false">https://www.hackmageddon.com/?p=46160</guid><category>Cyber Attacks Timelines</category><category>Security</category><category>2026</category><category>Cyber Attacks</category><category>Cyber Crime</category><category>Cyber Espionage</category><category>Cyber Warfare</category><category>H2</category><category>Hacktivism</category><category>July</category><category>Timeline</category></item><item><title>Querying ONYPHE from Python in 2026: pyonyphe 3.0</title><link>https://sebdraven.medium.com/querying-onyphe-from-python-in-2026-pyonyphe-3-0-f29aa96186ba?source=rss-11d98531eebe------2</link><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</description><content:encoded>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ItMfuAMDg_x048exqw5Qig.png" /&gt;&lt;/figure&gt;&lt;p&gt;The Python client for Onyphe had been sitting on a 2.x release for a while. It worked, but it was showing its age: a setup.py, a requirements.txt with a single line in it, no tests, no CI, no type hints, and a synchronous-only surface built on requests.&lt;/p&gt;&lt;p&gt;pyonyphe 3.0 is a full rewrite. Same API, same search engine behind it, but the client itself is a different animal — typed end to end, sync and async, with a CLI, a container image, and an MCP server for people who want to point an assistant at Onyphe.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;br /&gt;uv run pyonyphe --help&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;The library&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Two clients, identical surface. Pick the one that matches your program:&lt;/p&gt;&lt;pre&gt;from pyonyphe import Onyphe&lt;br /&gt;&lt;br /&gt;with Onyphe() as api:  # key read from ONYPHE_API_KEY&lt;br /&gt;    page = api.search(&amp;quot;category:datascan product:Nginx country:FR&amp;quot;)&lt;br /&gt;    print(page.total, &amp;quot;results&amp;quot;)&lt;br /&gt;&lt;br /&gt;    for hit in api.search_iter(&amp;quot;domain:example.com&amp;quot;, max_results=500):&lt;br /&gt;        print(hit[&amp;quot;ip&amp;quot;], hit.get(&amp;quot;port&amp;quot;))&lt;br /&gt;&lt;br /&gt;    for doc in api.export(&amp;quot;category:vulnscan domain:example.com&amp;quot;):&lt;br /&gt;        ...&lt;/pre&gt;&lt;p&gt;And the async one, which mirrors it method for method:&lt;/p&gt;&lt;pre&gt;from pyonyphe import AsyncOnyphe&lt;br /&gt;import asyncio&lt;br /&gt;&lt;br /&gt;async def main() -&amp;gt; None:&lt;br /&gt;    async with AsyncOnyphe() as api:&lt;br /&gt;        page = await api.search(&amp;quot;protocol:rdp&amp;quot;)&lt;br /&gt;        async for hit in api.export(&amp;quot;domain:example.com&amp;quot;):&lt;br /&gt;            print(hit[&amp;quot;ip&amp;quot;])&lt;br /&gt;&lt;br /&gt;asyncio.run(main())&lt;/pre&gt;&lt;p&gt;That symmetry is deliberate. Porting a script from one to the other is a matter&lt;/p&gt;&lt;p&gt;of adding &lt;em&gt;await&lt;/em&gt; and swapping the import — you don’t relearn an API because you moved into an event loop.&lt;/p&gt;&lt;p&gt;Note &lt;em&gt;search_iter&lt;/em&gt; above. Pagination is handled for you: it walks pages until it&lt;/p&gt;&lt;p&gt;runs out of results or hits &lt;em&gt;max_results&lt;/em&gt;, whichever comes first. Retries with exponential backoff are built in too, and &lt;em&gt;Retry-After&lt;/em&gt; is honoured rather than ignored — which matters when you are burning through an export and the API asks you politely to slow down.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;API coverage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;APIv2 is covered: User, Search, Export, Summary, Simple, Simple Best, the Bulk variants, Discovery and Alert.&lt;/p&gt;&lt;p&gt;There is also a &lt;em&gt;request()&lt;/em&gt; escape hatch. ONYPHE ships new endpoints faster than&lt;/p&gt;&lt;p&gt;any client library gets updated, and rather than have you wait for a release, you&lt;/p&gt;&lt;p&gt;can call anything the API exposes and still get the client’s authentication,&lt;/p&gt;&lt;p&gt;retries and error handling for free.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;The CLI&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Every one of those endpoints is reachable from the shell, with table, JSON or NDJSON output:&lt;/p&gt;&lt;pre&gt;uv run pyonyphe user&lt;br /&gt;uv run pyonyphe search 'protocol:rdp country:FR' --size 5&lt;br /&gt;uv run pyonyphe search 'domain:example.com' --all --format ndjson -o results.ndjson&lt;br /&gt;uv run pyonyphe export 'category:vulnscan domain:example.com' -o export.ndjson&lt;br /&gt;uv run pyonyphe summary ip 8.8.8.8&lt;br /&gt;uv run pyonyphe simple whois 8.8.8.8 --best&lt;br /&gt;uv run pyonyphe resolve example.com&lt;br /&gt;uv run pyonyphe bulk simple datascan ips.txt -o out.ndjson&lt;br /&gt;uv run pyonyphe alert list&lt;/pre&gt;&lt;p&gt;Example for search:&lt;/p&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*IswMt4jCcRIJ0HjbFNh8gg.png" /&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rHuiQFskFREmhh9M4STcpA.png" /&gt;&lt;/figure&gt;&lt;p&gt;NDJSON is the format that matters here. One document per line means the output&lt;/p&gt;&lt;p&gt;pipes straight into &lt;strong&gt;&lt;em&gt;jq&lt;/em&gt;&lt;/strong&gt;, into a file that you replay later, or into whatever&lt;/p&gt;&lt;p&gt;ingests your data downstream — no streaming JSON parser required.&lt;/p&gt;&lt;p&gt;The API key resolves in a defined order: the &lt;em&gt;api_key=&lt;/em&gt; argument (or — &lt;em&gt;api-key&lt;/em&gt;)&lt;/p&gt;&lt;p&gt;then &lt;em&gt;ONYPHE_API_KEY&lt;/em&gt;, then `&lt;strong&gt;&lt;em&gt;~/.config/pyonyphe/config.toml&lt;/em&gt;&lt;/strong&gt;, then ~/&lt;strong&gt;&lt;em&gt;.onyphe.ini&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;That last one is the file the official &lt;em&gt;ONYPHE CLI&lt;/em&gt; already uses, so if you have&lt;/p&gt;&lt;p&gt;that installed, pyonyphe picks up your key with no configuration at all.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The CLI ships as a container image, built for &lt;strong&gt;linux/amd64&lt;/strong&gt; and l&lt;strong&gt;inux/arm64&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  search 'category:datascan product:Nginx country:FR' --size 5&lt;/pre&gt;&lt;p&gt;It runs as an unprivileged user and its working directory is `/work`, so mount&lt;/p&gt;&lt;p&gt;there to feed it an asset list or collect an export:&lt;/p&gt;&lt;pre&gt;docker run --rm -e ONYPHE_API_KEY -v &amp;quot;$PWD:/work&amp;quot; ghcr.io/onyphe/pyonyphe:latest \&lt;br /&gt;  bulk simple datascan ips.txt -o datascan.ndjson&lt;/pre&gt;&lt;p&gt;Tags: &lt;em&gt;latest&lt;/em&gt; and the semver ones on each release, plus &lt;em&gt;main&lt;/em&gt; and `&lt;em&gt;ha-&amp;lt;commit&amp;gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;on every push to the default branch, if you want to pin to an exact build.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;An MCP server&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;This is the part I find most interesting, and it is an optional extra so it costs&lt;/p&gt;&lt;p&gt;nothing to those who don’t want it:&lt;/p&gt;&lt;pre&gt;uv add 'pyonyphe[mcp]'&lt;br /&gt;ONYPHE_API_KEY=… uv run pyonyphe-mcp&lt;/pre&gt;&lt;p&gt;Four read-only tools — &lt;strong&gt;&lt;em&gt;search&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;summary&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;resolve&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;user&lt;/em&gt;&lt;/strong&gt; — which is enough&lt;/p&gt;&lt;p&gt;to let an assistant pivot through infrastructure while you ask questions in plain language.&lt;/p&gt;&lt;p&gt;The constraints are the point. Page sizes are clamped and fields are truncated,&lt;/p&gt;&lt;p&gt;deliberately, because two failure modes are real when you hand an API to a model:&lt;/p&gt;&lt;p&gt;it drains your credits with an unbounded export, or it drowns its own context window in a single oversized response. Read-only closes off the third one. If you are going to give a model access to a paid search engine, the guardrails belong in the server, not in the prompt.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Under the hood&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For the curious: &lt;strong&gt;&lt;em&gt;httpx&lt;/em&gt;&lt;/strong&gt; for transport, sync and async from the same dependency.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Ruff&lt;/em&gt;&lt;/strong&gt; for lint and format, &lt;strong&gt;&lt;em&gt;ty&lt;/em&gt;&lt;/strong&gt; for type checking, &lt;strong&gt;&lt;em&gt;zizmor&lt;/em&gt;&lt;/strong&gt; auditing the CI&lt;/p&gt;&lt;p&gt;workflows themselves. Actions pinned by SHA, minimal permissions, no persisted&lt;/p&gt;&lt;p&gt;credentials. Releases publish to PyPI through trusted publishing, so the artifacts&lt;/p&gt;&lt;p&gt;carry attestations you can verify.&lt;/p&gt;&lt;p&gt;Python 3.10 through 3.14, MIT licensed.&lt;/p&gt;&lt;pre&gt;uv add pyonyphe&lt;/pre&gt;&lt;p&gt;Issues and pull requests: &lt;a href="https://github.com/onyphe/pyonyphe"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f29aa96186ba" width="1" /&gt;</content:encoded><guid isPermaLink="false">https://medium.com/p/f29aa96186ba</guid></item><item><title>5 Best Microsoft 365 Backup Solutions for 2026</title><link>https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/</link><description>&lt;p&gt;Looking for the best Microsoft 365 backup solutions in 2026? Compare pricing, workload coverage, retention, security, and recovery options for your business.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-best-microsoft-365-backup-solutions/"&gt;5 Best Microsoft 365 Backup Solutions for 2026&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4368188</guid><category>Cloud Security</category><category>Microsoft</category><category>backup and recovery</category><category>cloud backup</category><category>data protection</category><category>data recovery</category><category>disaster recovery</category><category>Microsoft 365</category><category>ransomware</category><category>SaaS Backup</category></item><item><title>3rd August – Threat Intelligence Report</title><link>https://research.checkpoint.com/2026/3rd-august-threat-intelligence-report/</link><description>&lt;p&gt;For the latest discoveries in cyber research for the week of 27th July, please download our Threat Intelligence Bulletin. TOP ATTACKS AND BREACHES Minnesota IT Services has confirmed coordinated cyberattacks affecting more than 30 community water utilities across the state. The incidents briefly disrupted a treatment plant in Braham and affected industrial control systems. Officials reported [&amp;#8230;]&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://research.checkpoint.com/2026/3rd-august-threat-intelligence-report/"&gt;3rd August – Threat Intelligence Report&lt;/a&gt; appeared first on &lt;a href="https://research.checkpoint.com"&gt;Check Point Research&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;p&gt;For the latest discoveries in cyber research for the week of 27th July, please download our &lt;a href="https://research.checkpoint.com/wp-content/uploads/2026/08/Threat_Intelligence_News_2026-08-03.pdf"&gt;Threat Intelligence Bulletin.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TOP ATTACKS AND BREACHES&lt;/strong&gt;&lt;/p&gt;
@@ -15487,31 +15889,7 @@ ALTER TABLE kv_tmp RENAME TO _cf_KV;                 -- not checked → now KV&l
 &lt;p&gt;Wohl claims IRIS C2 has approximately 40 employees, although he said none of them are allowed to list their employment on LinkedIn for operational security reasons. In May, the author of the IRIS C2 account on X said that his girlfriend had no idea what he did for a living. But if IRIS C2 has any other employees, they may be similarly unaware of Mr. Wohl&amp;#8217;s history of outright fabrications &amp;#8212; or even his real name.&lt;/p&gt;
 &lt;p&gt;In September 2024, &lt;strong&gt;Politico&lt;/strong&gt; &lt;a href="https://www.politico.com/news/2024/09/02/jacob-wohl-jack-burkman-ai-lobbying-pseudonyms-00176917" rel="noopener" target="_blank"&gt;reported&lt;/a&gt; that Burkman and Wohl were bragging about big companies supposedly buying services from their now-defunct company &lt;strong&gt;LobbyMatic&lt;/strong&gt;, which claimed to use artificial intelligence to assist in political lobbying efforts. However, Politico found the pair were running the company using pseudonyms, with Wohl reportedly adopting the name &amp;#8220;Jay Klein&amp;#8221; and Burkman using the moniker &amp;#8220;Bill Sanders.&amp;#8221; Politico reported that two of the former LobbyMatic employees resigned after learning of their true identities, while other employees only learned after they had left the company.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update, July 9, 9:44 a.m. ET:&lt;/strong&gt; Several readers pointed our attention to &lt;a href="https://www.citationneeded.news/issue-103/" rel="noopener" target="_blank"&gt;a March 31 publication&lt;/a&gt; from journalist &lt;strong&gt;Molly White&lt;/strong&gt;, which reported that Burkman and Wohl were paid a $300,000 retainer by a Canadian cryptocurrency fraudster &lt;a href="https://www.justice.gov/opa/pr/canadian-man-charged-65m-cryptocurrency-hacking-schemes" rel="noopener" target="_blank"&gt;wanted by the United States&lt;/a&gt; and several other countries for allegedly stealing $65 million from the crypto platforms KyberSwap and Indexed Finance. According to that report, the two were hired to pursue a &amp;#8220;presidential pardon to avert a miscarriage of justice&amp;#8221; on behalf of the accused hacker, who has not yet been convicted.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73834</guid><category>A Little Sunshine</category><category>Latest Warnings</category><category>Ne'er-Do-Well News</category><category>Calvexa Group LLC</category><category>IRIS C2</category><category>Jack Burkman</category><category>Jacob Wohl</category><category>LobbyMatic</category></item><item><title>Azure CLI Password Spray Attack Exposes Microsoft 365 MFA Gap</title><link>https://www.techrepublic.com/article/news-azure-cli-mfa-gap/</link><description>&lt;p&gt;A password spray campaign targeting Azure CLI sign-ins exposed how narrow Conditional Access policies can leave Microsoft 365 accounts vulnerable even when MFA is enabled.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-azure-cli-mfa-gap/"&gt;Azure CLI Password Spray Attack Exposes Microsoft 365 MFA Gap&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-azure-cli-mfa-gap/</guid><category>Cloud</category><category>Cloud Security</category><category>Cybersecurity</category><category>Data Security</category><category>News</category><category>Security</category><category>Azure CLI</category><category>cloud security</category><category>Conditional Access</category><category>mfa</category><category>Microsoft 365</category><category>Microsoft Entra ID</category><category>password spray</category><category>ROPC</category></item><item><title>FBI Seizes NetNut Proxy Platform, Popa Botnet</title><link>https://krebsonsecurity.com/2026/07/fbi-seizes-netnut-proxy-platform-popa-botnet/</link><description>The Federal Bureau of Investigation (FBI) said today it worked with industry partners to seize hundreds of domains associated with NetNut, a sprawling residential proxy service operated by the publicly-traded Israeli company Alarum Technologies [NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the Popa botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.</description><content:encoded>&lt;p&gt;The &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) said today it worked with industry partners to seize hundreds of domains associated with &lt;strong&gt;NetNut&lt;/strong&gt;, a sprawling residential proxy service operated by the publicly-traded Israeli company &lt;strong&gt;Alarum Technologies &lt;/strong&gt;[NASDAQ: ALAR]. The action comes roughly two weeks after KrebsOnSecurity published findings from multiple security firms connecting NetNut to the &lt;strong&gt;Popa&lt;/strong&gt; botnet, a collection of at least two million devices that have been compromised by malicious software with little or no consent from victims.&lt;/p&gt;
-&lt;div class="wp-caption aligncenter" id="attachment_73926" style="width: 757px;"&gt;&lt;img alt="" class=" wp-image-73926" height="415" src="https://krebsonsecurity.com/wp-content/uploads/2026/07/netnutseizure.png" width="747" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73926"&gt;The NetNut homepage today was replaced by this seizure banner from the FBI.&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;On June 19, three different security firms &lt;a href="https://krebsonsecurity.com/2026/06/popa-botnet-linked-to-publicly-traded-israeli-firm/" rel="noopener" target="_blank"&gt;issued similar findings&lt;/a&gt;: That NetNut is a residential proxy network which populates a botnet called Popa, and distributes software for devices commonly found in homes, such as smart TVs and streaming boxes. NetNut&amp;#8217;s software turns those systems into always-on residential proxy nodes that are rented to others, who predominantly use them to relay abusive and intrusive Internet traffic, such as mass content scraping, advertising fraud, and account takeover activity.&lt;/p&gt;
-&lt;p&gt;Earlier today, NetNut&amp;#8217;s homepage was replaced with a seizure notice from the FBI and the &lt;strong&gt;Internal Revenue Service Criminal Investigation&lt;/strong&gt; division. The seizure notice thanked &lt;strong&gt;Google&lt;/strong&gt;, &lt;strong&gt;Lumen&lt;/strong&gt;, &lt;strong&gt;Shadowserver&lt;/strong&gt; and other industry partners for their help in dismantling hundreds of domains tied to the Popa botnet, which experts say has long been synonymous with NetNut&amp;#8217;s residential proxy infrastructure.&lt;/p&gt;
-&lt;p&gt;In a blog post published today, the &lt;strong&gt;Google&lt;/strong&gt; &lt;strong&gt;Threat Intelligence Group&lt;/strong&gt; (GTIG) said NetNut&amp;#8217;s proxy network is widely resold and white-labeled by a number of third-party proxy providers, and that its services are heavily sought out by cybercriminals seeking to obfuscate the source of their malicious traffic. The GTIG said that in a single week during June 2026, they observed 316 distinct clusters of threat actors using suspected NetNut exit nodes, including cybercriminal and espionage groups.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;These bad actors can use NetNut to mask their origin IP address when accessing victim environments, accessing their own infrastructure, and conducting password spray attacks,&amp;#8221; Google&amp;#8217;s GTIG &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/google-continued-disruption-residential-proxy-networks" rel="noopener" target="_blank"&gt;wrote&lt;/a&gt;. &amp;#8220;Furthermore, when a consumer device becomes an exit node, unauthorized network traffic passes through it. This means bad actors can access other private devices on the same home network, effectively exposing them to Internet threats.&amp;#8221;&lt;/p&gt;
-&lt;p&gt;Google said it disabled Google accounts and services used by NetNut for malware command and control, and that it shared technical intelligence on NetNut&amp;#8217;s software development kits (SDKs) and backend infrastructure with platform providers, law enforcement and research firms. The company also disabled apps known to bundle NetNut&amp;#8217;s various SDKs.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Omer Weiss&lt;/strong&gt;, legal counsel for NetNut parent Alarum Technologies, said the company was aware of the FBI seizure and cooperating with investigators.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;Alarum takes this matter seriously and will fully cooperate with law enforcement to ensure any misuse of its infrastructure is thoroughly investigated and those responsible are held to account,&amp;#8221; Weiss said in a written statement.&lt;br /&gt;
-&lt;span id="more-73923"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Benjamin Brundage&lt;/strong&gt; is founder of the proxy tracking service &lt;strong&gt;Synthient&lt;/strong&gt;, one of the companies that &lt;a href="https://synthient.com/blog/popa-from-sourcing-to-distribution" rel="noopener" target="_blank"&gt;published evidence last month&lt;/a&gt; linking the Popa botnet to NetNut and Alarum Technologies. Brundage said the domain seizures appear to have disrupted both the Popa botnet and the NetNut proxy network that rides on top of it.&lt;/p&gt;
-&lt;p&gt;Brundage said NetNut&amp;#8217;s apparent demise is likely to be a great disadvantage for the cybercrime community, which was already reeling from &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/disrupting-largest-residential-proxy-network" rel="noopener" target="_blank"&gt;legal actions by Google&lt;/a&gt; earlier this year that seized infrastructure for NetNut&amp;#8217;s biggest competitor &amp;#8212; &lt;a href="https://krebsonsecurity.com/tag/ipidea/" rel="noopener" target="_blank"&gt;IPIDEA&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;I think this takedown is going to have a big impact, because NetNut gained significant popularity after the IPIDEA takedown,&amp;#8221; he said. &amp;#8220;Also NetNut has been incredibly common among resellers, and they were on par with IPIDEA in terms of their daily traffic, quality, size, price per gigabyte, all of it.&amp;#8221;&lt;/p&gt;
-&lt;div class="wp-caption aligncenter" id="attachment_73938" style="width: 759px;"&gt;&lt;img alt="" class=" wp-image-73938" height="374" src="https://krebsonsecurity.com/wp-content/uploads/2026/07/netnut-popa-blacklotus.png" width="749" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73938"&gt;NetNut&amp;#8217;s infrastructure, in a nutshell. Image: Black Lotus Labs, Lumen.&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;The NetNut and Popa botnet takedown may have another added benefit, Brundage said: Lessening the impact of large distributed denial-of-service botnets that have been built on the backs of poorly configured residential proxy services. In January, Synthient &lt;a href="https://krebsonsecurity.com/2026/01/the-kimwolf-botnet-is-stalking-your-local-network/" rel="noopener" target="_blank"&gt;revealed&lt;/a&gt; how cybercriminals had built the world&amp;#8217;s largest DDoS botnet (Kimwolf) by tunneling through IPIDEA proxy connections into the local networks of TV box owners, and infecting other Android-based devices behind the victim&amp;#8217;s firewall.&lt;/p&gt;
-&lt;p&gt;While many of the bigger proxy providers took steps to block this activity, resellers of the major proxy networks have been far slower to respond to the threat, Brundage said.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;In terms of all these TV box devices getting compromised from the proxy network, it will have an impact on the DDoS botnets out there,&amp;#8221; he said.&lt;/p&gt;
-&lt;p&gt;For its part, Google reckons today&amp;#8217;s actions have caused &amp;#8220;significant degradation to NetNut’s proxy network and its business operations, reducing the available pool of devices for the proxy operator by millions.&amp;#8221; But the company warns that proxy networks can rebuild themselves by effectively reselling other proxy services, as IPIDEA has done over the past few months.&lt;/p&gt;
-&lt;p&gt;&amp;#8220;Google has high confidence that many popular residential proxy brands are in fact whitelabeling the NetNut botnet,&amp;#8221; the GTIG report concludes. &amp;#8220;While we expect this disruption to have a larger ripple effect across the residential proxy ecosystem, observations after the disruption of IPIDEA proved that individual networks can appear resilient. What we have observed is that when faced with the degradation of their own botnet, proxy operators begin buying capacity from their competitors, effectively becoming a reseller. We recognize that creating a lasting disruption in this fluid ecosystem means we must scale our efforts to target the infrastructure of several interconnected providers.&amp;#8221;&lt;/p&gt;
-&lt;p&gt;As KrebsOnSecurity has warned repeatedly, most of the no-name TV streaming boxes for sale on the major e-commerce websites either come &lt;a href="https://krebsonsecurity.com/2025/11/is-your-android-tv-streaming-box-part-of-a-botnet/" rel="noopener" target="_blank"&gt;pre-installed with residential proxy software&lt;/a&gt;, or require the installation of proxy SDKs in order to use the device for its stated purpose (streaming pirated movies, sporting events and TV shows). Google&amp;#8217;s advice here is sound: When it comes to TV boxes, stick to name brands from reputable manufacturers, and then be sparing and judicious with any apps you choose to install.&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://krebsonsecurity.com/2025/11/is-your-android-tv-streaming-box-part-of-a-botnet/" rel="noopener" target="_blank"&gt;sketchy TV boxes&lt;/a&gt; that are being commandeered by the Popa botnet and other threats all come with or require the user to install unofficial Android operating systems that do not operate within the confines of Google&amp;#8217;s Official Play Protect store. Google says consumers can confirm whether or not a device is built with the official Android TV OS and Play Protect certification by following &lt;a href="https://support.google.com/googleplay/answer/7165974" rel="noopener" target="_blank"&gt;these instructions&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Even people without TV streaming boxes can find their smart TVs enrolled in residential proxy networks, just by installing one of thousands of apps available for download on &lt;strong&gt;Samsung&lt;/strong&gt; and &lt;strong&gt;LG&lt;/strong&gt; smart TVs. In &lt;a href="https://spur.us/blog/smart-tv-apps-residential-proxy-sdks" rel="noopener" target="_blank"&gt;a report&lt;/a&gt; released last month, the proxy tracking company &lt;strong&gt;Spur&lt;/strong&gt; found 42 percent of apps available for download via the webOS operating system on LG smart TVs include SDKs that turn one&amp;#8217;s television into an always-on residential proxy node. More than a quarter of the apps made for Samsung’s &lt;strong&gt;Tizen&lt;/strong&gt; operating system had similar residential proxy components, Spur found.&lt;/p&gt;
-&lt;div class="wp-caption aligncenter" id="attachment_73849" style="width: 758px;"&gt;&lt;img alt="" class=" wp-image-73849" height="305" src="https://krebsonsecurity.com/wp-content/uploads/2026/06/spur-tvproxy.png" width="748" /&gt;&lt;p class="wp-caption-text" id="caption-attachment-73849"&gt;Image: Spur.us.&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Update, 4:24 p.m. ET:&lt;/strong&gt; Included a statement shared post-publication from an attorney representing NetNut parent Alarum Technologies.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update, July 8, 2:34 p.m. ET:&lt;/strong&gt; The website for Alarum Technologies &amp;#8212; alarum[.]io &amp;#8212; now also features a seizure notice from the FBI. The company&amp;#8217;s stock has taken a beating since the FBI action, and is currently trading at $2.62 a share, a roughly 67 percent decline over the past week.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://krebsonsecurity.com/?p=73923</guid><category>A Little Sunshine</category><category>Ne'er-Do-Well News</category><category>Web Fraud 2.0</category><category>Alarum Technologies Ltd</category><category>Benjamin Brundage</category><category>fbi</category><category>google</category><category>Google Threat Intelligence Group</category><category>Internal Revenue Service Criminal Investigation</category><category>IPidea</category><category>LG</category><category>Lumen</category><category>NetNut</category><category>Popa botnet</category><category>Samsung</category><category>Shadowserver</category><category>Synthient</category></item><item><title>Context Engineering | Compaction &amp; Agent Memory for Automated Malware Analysis</title><link>https://www.sentinelone.com/labs/context-engineering-compaction-agent-memory-for-automated-malware-analysis/</link><description>Compaction cut input tokens 86% across long-running agent evals with no quality loss. Context discipline matters as much as model selection.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-azure-cli-mfa-gap/"&gt;Azure CLI Password Spray Attack Exposes Microsoft 365 MFA Gap&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-azure-cli-mfa-gap/</guid><category>Cloud</category><category>Cloud Security</category><category>Cybersecurity</category><category>Data Security</category><category>News</category><category>Security</category><category>Azure CLI</category><category>cloud security</category><category>Conditional Access</category><category>mfa</category><category>Microsoft 365</category><category>Microsoft Entra ID</category><category>password spray</category><category>ROPC</category></item><item><title>Context Engineering | Compaction &amp; Agent Memory for Automated Malware Analysis</title><link>https://www.sentinelone.com/labs/context-engineering-compaction-agent-memory-for-automated-malware-analysis/</link><description>Compaction cut input tokens 86% across long-running agent evals with no quality loss. Context discipline matters as much as model selection.</description><content:encoded>&lt;h2&gt;Executive Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Compaction is a context-management pattern used across agent systems to compress prior context into a denser working state for long-running tasks.&lt;/li&gt;
 &lt;li&gt;SentinelLABS evaluated OpenAI’s native Responses API implementation against our automated malware analysis evaluation harness to measure real-world impact on task quality and cost.&lt;/li&gt;
