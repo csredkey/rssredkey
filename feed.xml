@@ -1,5 +1,78 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 04 Sep 2026 21:59:23 +0000</lastBuildDate><item><title>Friday Squid Blogging: Squid on a Stick at the New York State Fair</title><link>https://www.schneier.com/blog/archives/2026/09/friday-squid-blogging-squid-on-a-stick-at-the-new-york-state-fair.html</link><description>&lt;p&gt;Looks &lt;a href="https://www.syracuse.com/statefair/2026/08/day-2-at-the-nys-fair-todays-handpicked-menu-starts-with-a-whole-squid-on-a-stick-and-gets-messier.html"&gt;tasty&lt;/a&gt;.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 05 Sep 2026 03:59:21 +0000</lastBuildDate><item><title>numbat - AI agent observability, (Fri, Sep 4th)</title><link>https://isc.sans.edu/diary/rss/33312</link><description>&lt;p&gt;&lt;img alt="numbat logo" src="https://isc.sans.edu/diaryimages/images/numbat&amp;amp;#x5f&amp;#x3b;logo&amp;amp;#x5f&amp;#x3b;small.png" /&gt;&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;&lt;img alt="numbat logo" src="https://isc.sans.edu/diaryimages/images/numbat_logo_small.png" style="width: 250px; height: 281px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Enterprises face an unmanaged crisis of AI agent and MCP server sprawl, characterized by rapid, decentralized proliferation of autonomous agents, protocol connections operating with excessive privilege, opaque execution paths, and identity blind spots.&lt;br /&gt;
+Absent agent-aware governance, modern enterprises struggle to prevent, detect, or contain multi-hop autonomous exploits, leaving environments vulnerable to lateral movement, shadow collaboration, and unauthorized data exfiltration.&lt;br /&gt;
+More succinctly, in light of the recent OpenAI/Hugging Face incident, monitoring clearly lags behind agent capability. The tooling to observe what agents are actually doing, in real time, is not yet standard practice, even at the labs building the agents.&lt;br /&gt;
+To that end, Perplexity AI&amp;rsquo;s open source&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat"&gt;numbat&lt;/a&gt;&amp;nbsp;offers excellent observability and visibility to supported desktop, CLI, IDE, and gateway agents through local hooks and plugins, OTLP/HTTP logs, and on-disk session artifacts.[1]&lt;/p&gt;
+
+&lt;p&gt;Crafted as a Go binary, numbat works seemlessly on macOS, Linux, or Windows. You can download a static binary or install with Go.&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat"&gt;Read&lt;/a&gt;&amp;nbsp;for all features, requirements, configurations, and options. Getting up and running is nearly instant so I&amp;rsquo;ll focus exclusively on usage. Note that if you install via Go, the numbat binary is then found under&amp;nbsp;&lt;code&gt;/go/bin&lt;/code&gt;.&lt;br /&gt;
+As a regular user of Anthropic, OpenAI, and Google AI offerings, I expected to learn immediate insights, but I was a bit taken aback by the number agents installed on my system. Initial discovery is as easy as&amp;nbsp;&lt;code&gt;./numbat agents&lt;/code&gt;, my insightful result seen in&amp;nbsp;&lt;strong&gt;Figure 1&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="numbat agents" src="https://isc.sans.edu/diaryimages/images/numbat-agents.png" style="width: 650px; height: 140px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Figure 1:&lt;/strong&gt;&amp;nbsp;numbat agent enumeration&lt;/p&gt;
+
+&lt;p&gt;A full breakdown of agents is provided, their available configs, what artifacts are available, if a hook is available, whether or not said hook is wired, and the steps necessary to do so. As you can see I&amp;rsquo;m already hooked for Claude and Gemini, but I did so as follows:&lt;/p&gt;
+
+&lt;pre tabindex="0"&gt;
+&lt;code&gt;./numbat hook install --agent claude --emit all  
+./numbat hook install --agent gemini --emit all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agent enumeration is great, but with the hook in, the real value proposition emerges. While hooks start in monitor-only mode, the&amp;nbsp;&lt;code&gt;--emit all&lt;/code&gt;&amp;nbsp;function writes events, findings, indicators, and applicable enforcement decisions to&amp;nbsp;&lt;code&gt;~/.numbat/records.ndjson&lt;/code&gt;&amp;nbsp;by default.&lt;br /&gt;
+As such, detection rules come to bear; they are many, and effective. Refer to the built-in&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat/blob/main/docs/rule-catalog.md"&gt;rule catalog&lt;/a&gt;&amp;nbsp;for detected behaviors. Detectors are defined categorically, including secrets, exfiltration, integrity, execution, reconnaissance, privilege, lateral movement, impact, source control, tampering, persistence, and sequences. Run&amp;nbsp;&lt;code&gt;numbat rules list&lt;/code&gt;&amp;nbsp;for the full listing.&lt;br /&gt;
+After review of said catalog, I opted to test a specific detector and chose an easy one to stimulate:&amp;nbsp;&lt;code&gt;recon.network_sweep&lt;/code&gt;&amp;nbsp;where &amp;ldquo;a named scanner is given an explicit scan or target-list option and a network range.&amp;rdquo; Easy enough with a quick prompt via ClaudeCode, as seen in&amp;nbsp;&lt;strong&gt;Figure 2&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="claude nmap" src="https://isc.sans.edu/diaryimages/images/claude-nmap.png" style="width: 650px; height: 309px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Figure 2:&lt;/strong&gt;&amp;nbsp;ClaudeCode nmap scan&lt;/p&gt;
+
+&lt;p&gt;Sure, an nmap scan isn&amp;rsquo;t exactly the most invasive or adversarial act one could imagine but it does qualify as something you&amp;rsquo;re not likely to want having an agent swarm unleashing on your enterprise unabated. So much so that Mitre ATT&amp;amp;CK tags Network Service Discovery as technique&amp;nbsp;&lt;a href="https://attack.mitre.org/techniques/T1046/"&gt;T1046&lt;/a&gt;&amp;nbsp;which, in turn, is conveyed via the&amp;nbsp;&lt;code&gt;recon.network_sweep&lt;/code&gt;&amp;nbsp;rule and written as a finding, when triggered, to&amp;nbsp;&lt;code&gt;~/.numbat/records.ndjson&lt;/code&gt;&amp;nbsp;if you&amp;rsquo;re using default installation.&lt;br /&gt;
+I&amp;rsquo;m a big fan of&amp;nbsp;&lt;a href="https://jqlang.org/"&gt;jq&lt;/a&gt;&amp;nbsp;to render JSON as human readable:&amp;nbsp;&lt;code&gt;jq . ~/.numbat/records.ndjson&lt;/code&gt;&lt;br /&gt;
+The result is a number of related artifacts written to the records file as seen in &lt;strong&gt;Figure 3&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="numbat recon rule" src="https://isc.sans.edu/diaryimages/images/numbat-recon-rule.png" style="width: 650px; height: 317px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Figure 3:&lt;/strong&gt;&amp;nbsp;numbat recon finding&lt;/p&gt;
+
+&lt;p&gt;Logically, there may be behaviors or actions you&amp;rsquo;d also like to block or prevent. numbat rules can be set to enforce as defined in numbat&amp;rsquo;s&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat/blob/main/docs/enforcement.md"&gt;enforcement documentation&lt;/a&gt;. Specifically, &amp;ldquo;to enforce a shipped detection selectively, copy its complete YAML file from the matching release&amp;rsquo;s shipped catalog into a controlled operator rules directory, keep the same id, set&amp;nbsp;&lt;code&gt;enforce: true&lt;/code&gt;, and bump the rule version. Validate the effective catalog, then deploy the same directory with the hook&amp;rdquo;:&lt;/p&gt;
+
+&lt;pre tabindex="0"&gt;
+&lt;code&gt;numbat rules check --rules-dir /opt/numbat/rules  
+numbat hook install --agent claude --managed --rules-dir /opt/numbat/rules --enforce
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Additionally, an investigation may be required, under certain circumstances, should inappropriate or unauthorized activity be detected.&lt;br /&gt;
+Your IR team will appreciate the investigation packaging inherent to numbat.&lt;br /&gt;
+Create a case ID, write to an output file, build the case artifacts, including a manifest file with SHA256 hashes for integrity matching, and verify the manifest.&lt;/p&gt;
+
+&lt;pre tabindex="0"&gt;
+&lt;code&gt;numbat scan --case-id inv-03SEP2026 --emit all --output file --output-file investigations.ndjson
+numbat case build inv-03SEP2026 --from investigations.ndjson -o inv-03SEP2026.numbat
+numbat case verify inv-03SEP2026.numbat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result is a folder named for the case ID that includes events.ndjson, findings.ndjson, and the .numbat manifest file. The findings are complete and accurate, and as they pertain to my misbehavorior with nmap, robust in their evidence collection, as seen in&amp;nbsp;&lt;strong&gt;Figure 4&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="numbat findings" src="https://isc.sans.edu/diaryimages/images/numbat-findings.png" style="width: 650px; height: 546px;" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Figure 4:&lt;/strong&gt;&amp;nbsp;numbat investigation finding (snippet)&lt;/p&gt;
+
+&lt;p&gt;All good investigators love their timelines. numbat offers a tidy timeliner, called as simply as&amp;nbsp;&lt;code&gt;numbat timeline --agent claude&lt;/code&gt;.&amp;nbsp;&lt;code&gt;timeline&lt;/code&gt;&amp;nbsp;is a read-only view that groups events by source_agent, source_type, and session_id where each chronological step retains its evidence reference.&lt;/p&gt;
+
+&lt;p&gt;Consider the&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat/blob/main/docs/cli.md"&gt;CLI reference&lt;/a&gt;&amp;nbsp;required reading for your immediate use.&lt;br /&gt;
+Recognize that I&amp;rsquo;ve not covered a number of excellent additional features including all the&amp;nbsp;&lt;a href="https://github.com/perplexityai/numbat/blob/main/docs/deployment.md"&gt;Deployment&lt;/a&gt;&amp;nbsp;options.&lt;br /&gt;
+These include local use as well as&amp;nbsp;&lt;em&gt;Live OTLP/HTTP capture&lt;/em&gt;&amp;nbsp;(&lt;code&gt;numbat collect&lt;/code&gt;) and&amp;nbsp;&lt;em&gt;Async HTTP delivery with no external shipper&lt;/em&gt;&amp;nbsp;(&lt;code&gt;numbat ship&lt;/code&gt;).&lt;br /&gt;
+Importantly, there are managed configuration (MDM) opportunities for fleet deployments, including a small guided MDM pilot. The options are many, and the flexibility is welcome.&lt;br /&gt;
+numbat is a really solid offering from the Perplexity crew, and I thoroughly enjoyed the opportunity to investigate the use cases. I see enterprise utilization and deployment opportunities here for sure.&lt;/p&gt;
+
+&lt;p&gt;Cheers&amp;hellip;until next time.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://holisticinfosec.io/" target="_blank"&gt;Russ McRee&lt;/a&gt;&amp;nbsp;|&amp;nbsp;&lt;a href="https://bsky.app/profile/holisticinfosec.bsky.social" target="_blank"&gt;@holisticinfosec&lt;/a&gt;&amp;nbsp;|&amp;nbsp;&lt;a href="https://infosec.exchange/@holisticinfosec"&gt;infosec.exchange/@holisticinfosec&lt;/a&gt;&amp;nbsp;|&amp;nbsp;&lt;a href="https://www.linkedin.com/in/russmcree/"&gt;LinkedIn.com/in/russmcree&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33312</guid></item><item><title>Friday Squid Blogging: Squid on a Stick at the New York State Fair</title><link>https://www.schneier.com/blog/archives/2026/09/friday-squid-blogging-squid-on-a-stick-at-the-new-york-state-fair.html</link><description>&lt;p&gt;Looks &lt;a href="https://www.syracuse.com/statefair/2026/08/day-2-at-the-nys-fair-todays-handpicked-menu-starts-with-a-whole-squid-on-a-stick-and-gets-messier.html"&gt;tasty&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.schneier.com/blog/archives/2024/06/new-blog-moderation-policy.html"&gt;Blog moderation policy.&lt;/a&gt;&lt;/p&gt;</description><content:encoded>&lt;p&gt;Looks &lt;a href="https://www.syracuse.com/statefair/2026/08/day-2-at-the-nys-fair-todays-handpicked-menu-starts-with-a-whole-squid-on-a-stick-and-gets-messier.html"&gt;tasty&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
@@ -8364,282 +8437,7 @@ DeviceNetworkEvents
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/"&gt;TerminalFix campaign deploys a reverse tunnel through multistage intrusion&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=149220</guid><category>ClickFix</category></item><item><title>What the 49ers and Giants Teach IT Pros About AI Social Engineering</title><link>https://www.techrepublic.com/article/news-nfl-49ers-giants-ai-social-engineering/</link><description>&lt;p&gt;NFL technology executives share how AI-driven social engineering makes attacks faster and more convincing, offering practical strategies for IT leaders to build non-punitive, multi-channel defenses.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nfl-49ers-giants-ai-social-engineering/"&gt;What the 49ers and Giants Teach IT Pros About AI Social Engineering&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-nfl-49ers-giants-ai-social-engineering/</guid><category>Artificial Intelligence</category><category>Cybersecurity</category><category>Phishing</category><category>Social Engineering</category><category>Technology</category><category>artificial intelligence</category><category>cybersecurity</category><category>deepfakes</category><category>identity security</category><category>new york giants</category><category>phishing</category><category>san francisco 49ers</category><category>social engineering</category></item><item><title>Microsoft Teams Has Become a Haven for Scammers in China</title><link>https://www.wired.com/story/microsoft-teams-is-becoming-a-haven-for-chinese-scammers/</link><description>Fraudsters are exploiting enterprise chat apps like Teams and Webex to trick Chinese victims into transferring large sums of money, fueling a wave of complaints.</description><guid isPermaLink="false">6a90607f1baac5299c0c472c</guid><category>Business</category><category>Business / Social Media</category><category>Security</category><category>Security / Security News</category><category>Made in China</category><category>China</category><category>Microsoft</category><category>scams</category><category>content moderation</category></item><item><title>AI Expansion Meets Security Crises, Costs, and Public Resistance in Tech This Week</title><link>https://www.techrepublic.com/article/ai-expansion-meets-security-crises-costs-and-public-resistance-in-tech-this-week/</link><description>&lt;p&gt;See what you missed in Daily Tech Insider from August 24–28.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/ai-expansion-meets-security-crises-costs-and-public-resistance-in-tech-this-week/"&gt;AI Expansion Meets Security Crises, Costs, and Public Resistance in Tech This Week&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4371210</guid><category>AI</category><category>AI Governance &amp; Policy</category><category>ai infrastructure</category><category>Amazon</category><category>Android</category><category>Apple</category><category>Cybersecurity</category><category>Data Centers</category><category>Enterprise Software</category><category>Ethics in AI</category><category>Google</category><category>Government IT</category><category>Meta</category><category>NVIDIA</category><category>OpenAI</category><category>Privacy</category><category>Robotics</category><category>Weekly Roundup</category><category>ai agent costs</category><category>ai workforce</category><category>android malware</category><category>creator rights</category><category>critical infrastructure cyberattacks</category><category>Daily Tech Insider</category><category>data center opposition</category><category>enterprise ai pricing</category><category>Newsletter Roundup</category><category>nvidia hugging face</category><category>openai custom chip</category></item><item><title>Cyberattack on Three UK Airports Exposes Data of 8.7 Million Customers</title><link>https://www.techrepublic.com/article/news-uk-airport-cyberattack-8-7-million-customers-emea/</link><description>&lt;p&gt;A cyberattack on Manchester Airports Group exposed information belonging to about 8.7 million customers across three UK airports.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-uk-airport-cyberattack-8-7-million-customers-emea/"&gt;Cyberattack on Three UK Airports Exposes Data of 8.7 Million Customers&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-uk-airport-cyberattack-8-7-million-customers-emea/</guid><category>Cybersecurity</category><category>EMEA</category><category>Infrastructure</category><category>News</category><category>Privacy</category><category>Security</category><category>cyberattack</category><category>cybersecurity</category><category>data breach</category><category>east midlands airport</category><category>london stansted airport</category><category>manchester airport</category><category>manchester airports group</category><category>phishing</category></item><item><title>How an Atlanta Suburb Ended Up Sharing Flock Data With More Than 2,000 Organizations</title><link>https://www.wired.com/story/how-an-atlanta-suburb-ended-up-sharing-flock-data-with-more-than-2000-organizations/</link><description>Alpharetta, Georgia, cops share data with thousands of Flock users, ranging from federal agencies to a fish and wildlife commission. The reasons why show how vast—and invasive—the network has become.</description><guid isPermaLink="false">6a7b85354b2f87696aad922b</guid><category>Security</category><category>Security / Privacy</category><category>Freedom of Information Act</category><category>privacy</category><category>surveillance</category><category>Police</category><category>immigration</category><category>Immigration and Customs Enforcement</category><category>Flock</category><category>politics</category><category>Network Effect</category></item><item><title>Some Malicious PE Stats, (Thu, Aug 27th)</title><link>https://isc.sans.edu/diary/rss/33292</link><description>&lt;p&gt;During my last FOR610 session, a student asked me if I had some statistics in mind about the compilers used to generate malicious PE files&amp;#x3f; A couple of months ago, I shared some stats about the trend in 64bits VS. 32bits malware&amp;#x5b;&lt;a href="https://isc.sans.edu/diary/2026&amp;#x2b;64Bits&amp;#x2b;Malware&amp;#x2b;Trend/32718"&gt;1&lt;/a&gt;&amp;#x5d;. Can we go a bit further&amp;#x3f; I (vibe-)coded a Python script based on the pefile library&amp;#x5b;&lt;a href="https://github.com/erocarrera/pefile"&gt;2&lt;/a&gt;&amp;#x5d; to extract some info from the PE headers. Indeed, the PE file format contains a lot of metadata&amp;#x21; They can be accessed using a lot of tools, like Detect It Easy:&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;During my last FOR610 session, a student asked me if I had some statistics in mind about the compilers used to generate malicious PE files? A couple of months ago, I shared some stats about the trend in 64bits VS. 32bits malware[&lt;a href="https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718"&gt;1&lt;/a&gt;]. Can we go a bit further? I (vibe-)coded a Python script based on the pefile library[&lt;a href="https://github.com/erocarrera/pefile"&gt;2&lt;/a&gt;] to extract some info from the PE headers. Indeed, the PE file format contains a lot of metadata! They can be accessed using a lot of tools, like Detect It Easy:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/isc-20260828-1.png" style="width: 700px; height: 457px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;u&gt;Note&lt;/u&gt;: When you assess a PE file, a&amp;nbsp;gold rule to follow is to never trust what you see because these metadata can be tempered!&lt;/p&gt;
-
-&lt;p&gt;I tried to detect the compiler using three techniques:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;The &amp;quot;Rich Header&amp;quot; is a block of data containing useful information (but undocumented by Microsoft). It's an XOR-obfuscated block that the Microsoft linker embeds between the DOS stub and the NT headers of&amp;nbsp;PE files built with the MSVC toolchain. It records the @comp.id (product id + build number) and use-count of every object file that went into the link, which lets you fingerprint the exact compiler/linker/assembler build used, as well as,&amp;nbsp;even the count of source files. pefile is able to handle these data smoothly.&lt;/li&gt;
-	&lt;li&gt;The .NET CLR header (IMAGE_COR20_HEADER) + CLR metadata root, for managed (C#/VB.NET/F#) binaries. This gives the CLR runtime version and the embedded metadata version string (e.g. &amp;quot;v4.0.30319&amp;quot;). This&amp;nbsp;is manually parsed per the public ECMA-335 spec (there's no MSVC Rich Header in managed-only PEs).&lt;/li&gt;
-	&lt;li&gt;A light heuristic string scan for common non-Microsoft compiler signatures (GCC/MinGW, Clang/LLVM, Delphi/Borland, Free Pascal, Go, Rust), since none of those toolchains write a Rich Header. Just because strings are always easy to process and may reveal juicy information!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As said above, there is no&amp;nbsp;official Microsoft documentation for the Rich Header, and no single authoritative mapping of every product-id -&amp;gt; tool/version exists. But they are community references that helps!&amp;nbsp;The well-known &amp;quot;comp_id.txt&amp;quot; is one of them and constantly updated[&lt;a href="https://github.com/dishather/richprint/blob/master/comp_id.txt"&gt;3&lt;/a&gt;].&lt;/p&gt;
-
-&lt;p&gt;Now that we have a tool, where can we find fresh meat? Malware Bazaar is a good candidate because it is pretty popular and get new samples daily. They allow (but don't abuse) to download&amp;nbsp;their data set for free! The first step was to download all the archive they offer[&lt;a href="https://bazaar.abuse.ch/export/"&gt;4&lt;/a&gt;]. I downloaded a total of 1.3 TB of ZIP archives, one archive per day from&amp;nbsp;2020-02-24 to 2026-07-08.&lt;/p&gt;
-
-&lt;p&gt;Because PE files can be embedded into other files and to avoid using to much storage, I rewrote the script:&lt;/p&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;To unzip files in memory and avoid touching the disk&lt;/li&gt;
-	&lt;li&gt;To perform a recursive scan up to 3 levels&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here are the stats I gathered after &amp;ldquo;a few days&amp;rdquo; of processing!&lt;/p&gt;
-
-&lt;p&gt;High level stats&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Total scanned files&lt;/td&gt;
-			&lt;td&gt;23.501.548&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Not PE&lt;/td&gt;
-			&lt;td&gt;22.580.068&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Valid PE&lt;/td&gt;
-			&lt;td&gt;690.689&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Encrypted or unreadable&lt;/td&gt;
-			&lt;td&gt;227.755&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Invalid PE&lt;/td&gt;
-			&lt;td&gt;1.508&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;ZIP Bomb&lt;/td&gt;
-			&lt;td&gt;951&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Invalid ZIP&lt;/td&gt;
-			&lt;td&gt;519&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Error&lt;/td&gt;
-			&lt;td&gt;36&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Skipped Nested ZIP (&amp;gt; 3 levels)&lt;/td&gt;
-			&lt;td&gt;19&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;File Too Large&lt;/td&gt;
-			&lt;td&gt;3&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;About the architecture:&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;32 Bits (or other architecture)&lt;/td&gt;
-			&lt;td&gt;565.179&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;64 Bits&lt;/td&gt;
-			&lt;td&gt;125.510&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Interesting, this confirms my previous research: 32 bits PE file remain popular.&lt;/p&gt;
-
-&lt;p&gt;Rich Header:&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Rich Header Present&lt;/td&gt;
-			&lt;td&gt;371.103&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;No Rich Header (Maybe stripping, a non-MSVC toolchain, tempeing,...)&lt;/td&gt;
-			&lt;td&gt;319.586&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Top-10 linker versions:&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 48.0&lt;/td&gt;
-			&lt;td&gt;102.307&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 6.0&lt;/td&gt;
-			&lt;td&gt;91.788&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 9.0&lt;/td&gt;
-			&lt;td&gt;62.070&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 8.0&lt;/td&gt;
-			&lt;td&gt;47.829&amp;nbsp;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 2.25&lt;/td&gt;
-			&lt;td&gt;36.673&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 10.0&lt;/td&gt;
-			&lt;td&gt;36.549&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 14.0&lt;/td&gt;
-			&lt;td&gt;29.786&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 11.0&lt;/td&gt;
-			&lt;td&gt;25.784&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 14.29&lt;/td&gt;
-			&lt;td&gt;24.655&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;linker 80.0&lt;/td&gt;
-			&lt;td&gt;22.691&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Top MSVC Rich Header compiler builds (useful for clustering samples built in the same environment/campaign):&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 26213&lt;/td&gt;
-			&lt;td&gt;19.603&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 24213&lt;/td&gt;
-			&lt;td&gt;15.389&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 30034&lt;/td&gt;
-			&lt;td&gt;14.325&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 26706&lt;/td&gt;
-			&lt;td&gt;7.755&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 24215&lt;/td&gt;
-			&lt;td&gt;5.253&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 32533&lt;/td&gt;
-			&lt;td&gt;5.033&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 33030&lt;/td&gt;
-			&lt;td&gt;4.442&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 31823&lt;/td&gt;
-			&lt;td&gt;3.738&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 25834&lt;/td&gt;
-			&lt;td&gt;3.530&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;build 27412&lt;/td&gt;
-			&lt;td&gt;3.294&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Finally, and the most interesting status, what tools are used by attackers?&lt;/p&gt;
-
-&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;
-			&lt;p&gt;Unidentified (no Rich Header, no signature match)&lt;/p&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-			&lt;p&gt;272.439&lt;/p&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-			&lt;p&gt;39.4%&lt;/p&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Microsoft toolchain (Rich Header present, no recognized C/C++ entry)&lt;/td&gt;
-			&lt;td&gt;216173&lt;/td&gt;
-			&lt;td&gt;31.3%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Borland C++/Delphi&lt;/td&gt;
-			&lt;td&gt;20172&lt;/td&gt;
-			&lt;td&gt;2.9%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Microsoft Visual C/C++ (Rich Header, compiler build 26213)&lt;/td&gt;
-			&lt;td&gt;19603&lt;/td&gt;
-			&lt;td&gt;2.8%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;GCC / MinGW&lt;/td&gt;
-			&lt;td&gt;13804&lt;/td&gt;
-			&lt;td&gt;2.0%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Go&lt;/td&gt;
-			&lt;td&gt;6254&lt;/td&gt;
-			&lt;td&gt;0.9%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Embarcadero/Borland Delphi&lt;/td&gt;
-			&lt;td&gt;6174&lt;/td&gt;
-			&lt;td&gt;0.9%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Rust&lt;/td&gt;
-			&lt;td&gt;1329&lt;/td&gt;
-			&lt;td&gt;0.2%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Clang/LLVM&lt;/td&gt;
-			&lt;td&gt;91&lt;/td&gt;
-			&lt;td&gt;0.0%&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Free Pascal (FPC)&lt;/td&gt;
-			&lt;td&gt;1&lt;/td&gt;
-			&lt;td&gt;0.0%&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Interesting to see that arising programming languages like Go or Rust remain exotic in the data set! I expected more popularity!&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href="https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718"&gt;https://isc.sans.edu/diary/2026+64Bits+Malware+Trend/32718&lt;/a&gt;&lt;br /&gt;
-[2] &lt;a href="https://github.com/erocarrera/pefile"&gt;https://github.com/erocarrera/pefile&lt;/a&gt;&lt;br /&gt;
-[3] &lt;a href="https://github.com/dishather/richprint/blob/master/comp_id.txt"&gt;https://github.com/dishather/richprint/blob/master/comp_id.txt&lt;/a&gt;&lt;br /&gt;
-[4] &lt;a href="https://bazaar.abuse.ch/export/"&gt;https://bazaar.abuse.ch/export/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Xavier Mertens (@xme)&lt;br /&gt;
-Senior ISC Handler | SANS Principal Instructor | Freelance Consultant&lt;br /&gt;
-&lt;a href="https://xameco.be"&gt;Xameco&lt;/a&gt; | &lt;a href="https://xameco.be/pgpkey.txt"&gt;PGP Key&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33292</guid></item><item><title>AI IR Overlay – Incident Response Specification for AI Agents</title><link>https://www.darknet.org.uk/2026/08/ai-ir-overlay-incident-response-specification-for-ai-agents/</link><description>AI IR Overlay specifies containment for agents using valid credentials, with a working kill-switch contract and an admitted gap when no SOC is staffed.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=479469</guid><category>GenAI</category><category>ai security</category><category>genai</category><category>incident response</category><category>nist</category><category>owasp</category></item><item><title>A Georgia Cop Used Flock to Track 2 Other Cops: His Ex and Her Friend</title><link>https://www.wired.com/story/a-georgia-cop-used-flock-to-track-2-other-cops-his-ex-and-her-friend/</link><description>After an affair with a fellow police officer ended, a Georgia cop used Flock to track her movements—and those of a man whose vehicle often showed up near hers, internal investigation records show.</description><guid isPermaLink="false">6a8c94bfdc189f02e9641b90</guid><category>Security</category><category>Security / Privacy</category><category>Flock</category><category>privacy</category><category>surveillance</category><category>Police</category><category>artificial intelligence</category><category>Freedom of Information Act</category><category>Keeping Tabs</category></item><item><title>PCI DSS 4.0.1: Application Requirements You’re Being Assessed On in 2026</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways Since March 31, 2025, all 51 former “best practice” requirements in PCI DSS 4.0 have been fully scored. Every 2026 assessment covers them. A large share of the new weight sits in the PCI DSS 4.0.1 application requirements, concentrated in Requirements 6 and 11: inventory of custom applications and APIs, continuous protection of [&amp;#8230;]</description><content:encoded>&lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
+&lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-uk-airport-cyberattack-8-7-million-customers-emea/"&gt;Cyberattack on Three UK Airports Exposes Data of 8.7 Million Customers&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-uk-airport-cyberattack-8-7-million-customers-emea/</guid><category>Cybersecurity</category><category>EMEA</category><category>Infrastructure</category><category>News</category><category>Privacy</category><category>Security</category><category>cyberattack</category><category>cybersecurity</category><category>data breach</category><category>east midlands airport</category><category>london stansted airport</category><category>manchester airport</category><category>manchester airports group</category><category>phishing</category></item><item><title>How an Atlanta Suburb Ended Up Sharing Flock Data With More Than 2,000 Organizations</title><link>https://www.wired.com/story/how-an-atlanta-suburb-ended-up-sharing-flock-data-with-more-than-2000-organizations/</link><description>Alpharetta, Georgia, cops share data with thousands of Flock users, ranging from federal agencies to a fish and wildlife commission. The reasons why show how vast—and invasive—the network has become.</description><guid isPermaLink="false">6a7b85354b2f87696aad922b</guid><category>Security</category><category>Security / Privacy</category><category>Freedom of Information Act</category><category>privacy</category><category>surveillance</category><category>Police</category><category>immigration</category><category>Immigration and Customs Enforcement</category><category>Flock</category><category>politics</category><category>Network Effect</category></item><item><title>AI IR Overlay – Incident Response Specification for AI Agents</title><link>https://www.darknet.org.uk/2026/08/ai-ir-overlay-incident-response-specification-for-ai-agents/</link><description>AI IR Overlay specifies containment for agents using valid credentials, with a working kill-switch contract and an admitted gap when no SOC is staffed.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=479469</guid><category>GenAI</category><category>ai security</category><category>genai</category><category>incident response</category><category>nist</category><category>owasp</category></item><item><title>A Georgia Cop Used Flock to Track 2 Other Cops: His Ex and Her Friend</title><link>https://www.wired.com/story/a-georgia-cop-used-flock-to-track-2-other-cops-his-ex-and-her-friend/</link><description>After an affair with a fellow police officer ended, a Georgia cop used Flock to track her movements—and those of a man whose vehicle often showed up near hers, internal investigation records show.</description><guid isPermaLink="false">6a8c94bfdc189f02e9641b90</guid><category>Security</category><category>Security / Privacy</category><category>Flock</category><category>privacy</category><category>surveillance</category><category>Police</category><category>artificial intelligence</category><category>Freedom of Information Act</category><category>Keeping Tabs</category></item><item><title>PCI DSS 4.0.1: Application Requirements You’re Being Assessed On in 2026</title><link>https://blog.qualys.com/category/qualys-insights</link><description>Key Takeaways Since March 31, 2025, all 51 former “best practice” requirements in PCI DSS 4.0 have been fully scored. Every 2026 assessment covers them. A large share of the new weight sits in the PCI DSS 4.0.1 application requirements, concentrated in Requirements 6 and 11: inventory of custom applications and APIs, continuous protection of [&amp;#8230;]</description><content:encoded>&lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
 &lt;h3 style="color: #ed2e26;"&gt;Key Takeaways&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span&gt;Since March 31, 2025, all 51 former “best practice” requirements in PCI DSS 4.0 have been fully scored. Every 2026 assessment covers them.&lt;/span&gt;&lt;/li&gt;
