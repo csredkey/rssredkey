@@ -1,5 +1,43 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 10 Oct 2026 03:59:23 +0000</lastBuildDate><item><title>FBI Arrests Founder of Ransomware Negotiation Firm</title><link>https://krebsonsecurity.com/2026/10/fbi-arrests-founder-of-ransomware-negotiation-firm/</link><description>Agents with the Federal Bureau of Investigation (FBI) on Thursday arrested the co-founder of a Canadian cybersecurity firm in connection with an investigation into the ShinyHunters hacking group that recently relieved the FBI of sensitive data on thousands of agents, multiple sources tell KrebsOnSecurity.</description><content:encoded>&lt;p&gt;Agents with the &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) on Thursday arrested the co-founder of a Canadian cybersecurity firm in connection with an investigation into the &lt;strong&gt;ShinyHunters&lt;/strong&gt; hacking group that recently relieved the FBI of sensitive data on thousands of agents, multiple sources tell KrebsOnSecurity.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 10 Oct 2026 09:59:36 +0000</lastBuildDate><item><title>Why TLP should not replace your internal information classification, (Sat, Oct 10th)</title><link>https://isc.sans.edu/diary/rss/33414</link><description>&lt;p&gt;The Traffic Light Protocol (TLP)&amp;#x5b;&lt;a href="https://www.first.org/tlp/"&gt;1&lt;/a&gt;&amp;#x5d;, which is now in its second incarnation, is a wonderful standard that enables one to easily communicate whether information may be shared further (and if so, how far).&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;The Traffic Light Protocol (TLP)[&lt;a href="https://www.first.org/tlp/"&gt;1&lt;/a&gt;], which is now in its second incarnation, is a wonderful standard that enables one to easily communicate whether information may be shared further (and if so, how far).&lt;/p&gt;
+
+&lt;p&gt;That being said, I've noticed a somewhat unfortunate trend in a number of organizations that try to fit TLP into a niche it was never supposed to occupy by attempting to use its labels as a replacement for traditional internal information classification schemes.&lt;/p&gt;
+
+&lt;p&gt;At first glance, this may seem quite reasonable. After all, TLP is a well-known standard, and it defines a simple set of labels for restricting the sharing of information (as you can see in the following table). And since most organizational classification schemes also consist of only a few levels, why not use TLP instead of maintaining a separate set of labels?&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://isc.sans.edu/diaryimages/images/26-10-10-tlpv2.png"&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/26-10-10-tlpv2.png" style="border-width: 1px; border-style: solid; width: 801px; height: 427px;" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, there are several reasons why this might not be the best idea.&lt;/p&gt;
+
+&lt;p&gt;The first is that TLP was never intended to be used in this way. In fact, the official TLP 2.0 standard explicitly states that &amp;ldquo;TLP is not a formal classification scheme&amp;rdquo; and that it was not designed to define information handling or encryption rules. Its purpose is to specify with whom information may be shared, not how it should be protected. While these two aspects are certainly related, they are far from being interchangeable.&lt;/p&gt;
+
+&lt;p&gt;An internal information classification scheme may, for example, define requirements for encryption, storage, access control or retention of information with different sensitivity levels. None of these requirements can be inferred from a TLP label alone.&lt;/p&gt;
+
+&lt;p&gt;For example, an organization may allow documents classified as &amp;quot;Sensitive&amp;quot; to be sent to customers, but only in encrypted e-mails or on encrypted USB drives. Even if a TLP label permits sharing with the intended recipients, it doesn't say anything about these requirements. To express them using TLP alone, the organization would have to add its own information handling rules to the labels &amp;ndash; effectively creating a custom classification scheme.&lt;/p&gt;
+
+&lt;p&gt;Also &amp;ndash; and perhaps more importantly &amp;ndash; the sharing restrictions defined by TLP don't necessarily correspond to what one might expect from similarly named internal classification levels.&lt;/p&gt;
+
+&lt;p&gt;Consider, for example, an organization that uses TLP:GREEN to mark documents intended for internal use. According to the actual TLP definition, however, information marked with this label may be shared within a relevant community (which, unless otherwise specified, means the cybersecurity/defense community). If such a document were shared with an external security partner, the recipient might therefore quite legitimately distribute it further, even though this was never the intention of the original organization.&lt;/p&gt;
+
+&lt;p&gt;A similar problem may arise with TLP:AMBER, which permits sharing not only within the recipient's organization, but also with its clients on a need-to-know basis when necessary to protect them. And while TLP:AMBER+STRICT removes the latter possibility, neither designation necessarily corresponds to what an organization might consider &amp;quot;Confidential&amp;quot; information. TLP:RED, on the other hand, prohibits any further sharing beyond the original recipients without permission from the source, which would make it rather impractical for many types of internal documents.&lt;/p&gt;
+
+&lt;p&gt;A related problem arises when TLP labels are assigned according to how sensitive a document is considered to be, rather than who should be able to receive it. A network diagram might, for example, be marked TLP:RED simply because someone considers it &amp;quot;Highly Confidential&amp;quot;, even though several teams or external contractors might need access to it. In such a case, the label would either make legitimate sharing unnecessarily difficult or end up being routinely ignored.&lt;/p&gt;
+
+&lt;p&gt;Of course, organizations can define additional restrictions or their own interpretations of these labels. However, doing so effectively means creating a custom classification scheme which only looks like TLP, and which may consequently lead to misunderstandings whenever information is exchanged with anyone who follows the actual standard.&lt;/p&gt;
+
+&lt;p&gt;This is not to say that TLP shouldn't be used within organizations. It certainly has its place there, especially when it comes to sharing threat intelligence and other security-related information. Nevertheless, it should complement an internal information classification scheme, rather than replace it.&lt;/p&gt;
+
+&lt;p&gt;After all, the main reason for using standardized labels is to make it easier for everyone to understand what they are allowed to do with specific information. And using the same labels to mean different things depending on who reads them seems like a rather good way to achieve the exact opposite...&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href="https://www.first.org/tlp/"&gt;https://www.first.org/tlp/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;-----------&lt;br /&gt;
+Jan Kopriva&lt;br /&gt;
+&lt;a href="https://www.linkedin.com/in/jan-kopriva/"&gt;LinkedIn&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://www.nettles.cz/"&gt;Nettles Consulting&lt;/a&gt;&lt;/p&gt;
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33414</guid></item><item><title>FBI Arrests Founder of Ransomware Negotiation Firm</title><link>https://krebsonsecurity.com/2026/10/fbi-arrests-founder-of-ransomware-negotiation-firm/</link><description>Agents with the Federal Bureau of Investigation (FBI) on Thursday arrested the co-founder of a Canadian cybersecurity firm in connection with an investigation into the ShinyHunters hacking group that recently relieved the FBI of sensitive data on thousands of agents, multiple sources tell KrebsOnSecurity.</description><content:encoded>&lt;p&gt;Agents with the &lt;strong&gt;Federal Bureau of Investigation&lt;/strong&gt; (FBI) on Thursday arrested the co-founder of a Canadian cybersecurity firm in connection with an investigation into the &lt;strong&gt;ShinyHunters&lt;/strong&gt; hacking group that recently relieved the FBI of sensitive data on thousands of agents, multiple sources tell KrebsOnSecurity.&lt;/p&gt;
 &lt;p&gt;The New York Times &lt;a href="https://www.nytimes.com/2026/10/09/us/politics/fbi-hack-shinyhunters-arrest.html" rel="noopener" target="_blank"&gt;reported today&lt;/a&gt; that the FBI has arrested a Canadian man in Pennsylvania on suspicion of assisting ShinyHunters. The Times story did not identify the man, nor did &lt;a href="https://x.com/FBIDirectorKash/status/2108566367011999780?s=46&amp;amp;t=jxLTOF6G9gZnhmWqh93ZrA" rel="noopener" target="_blank"&gt;a statement&lt;/a&gt; on Twitter/X about the arrest from &lt;strong&gt;FBI Director Kash Patel&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;One source close to the investigation told KrebsOnSecurity the Canadian person arrested this week was visiting Pennsylvania for a cyber insurance conference, and that the suspect&amp;#8217;s company specialized in handling ransomware negotiations with cybercrime groups. Another shared that control over the ShinyHunters investigation has been centralized at an FBI field office in Texas.&lt;/p&gt;
 &lt;p&gt;An online search reveals the &lt;a href="https://netdiligence.com/conferences/cyber-risk-summit-philadelphia-2026/speakers" rel="noopener" target="_blank"&gt;Cyber Risk Summit&lt;/a&gt; was held at the Loews Philadelphia Hotel between Oct. 5 and Oct. 7. The conference had several sponsors, but according to the summit&amp;#8217;s website its &lt;a href="https://netdiligence.com/conferences/cyber-risk-summit-philadelphia-2026/sponsors" rel="noopener" target="_blank"&gt;biggest sponsor&lt;/a&gt; was a Canadian security company called &lt;strong&gt;Cypfer&lt;/strong&gt;.&lt;/p&gt;
@@ -1328,73 +1366,7 @@ Twitter: &lt;a href="https://twitter.com/guybruneau"&gt;GuyBruneau&lt;/a&gt;&lt;
 gbruneau at isc dot sans dot edu&lt;/p&gt;
 
  
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33396</guid></item><item><title>User Agent Strings Curiosities, (Sun, Oct 4th)</title><link>https://isc.sans.edu/diary/rss/33394</link><description>&lt;p&gt;Sometimes I have to smile, or my interest is triggered, when I review new User Agent Strings in the honeypot logs.&lt;/p&gt;&amp;#xd;</description><content:encoded>&lt;p&gt;Sometimes I have to smile, or my interest is triggered, when I review new User Agent Strings in the honeypot logs.&lt;/p&gt;
-
-&lt;p&gt;Like when I see an &amp;quot;authorized&amp;quot; scan:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_16-45-29.png" style="width: 351px; height: 101px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Or when I'm owned for the umpteenth&amp;nbsp;time:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_16-43-50.png" style="width: 121px; height: 79px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I regularly see URLs or email addresses for when you want to know more, or get in touch, with the persons behind a scanner:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_16-50-13.png" style="width: 1061px; height: 1045px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;(around the end of this list, you'll see the Belarus email address we &lt;a href="https://isc.sans.edu/diary/HELPMEESCAPEFROMBELARUSPLEASE+Guest+Diary/33130"&gt;wrote about recently&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Many variants of masscan:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_16-54-10.png" style="width: 333px; height: 167px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Even a KGB variant.&lt;/p&gt;
-
-&lt;p&gt;As you can guess, &amp;quot;scan&amp;quot; is a popular word to include in your UAS:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_16-57-47.png" style="width: 1057px; height: 1045px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And some wordplays are thrown in:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-03-28.png" style="width: 557px; height: 79px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And they do not shy away from discrediting:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-01-45.png" style="width: 99px; height: 33px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Sometime complete lists of User Agent Strings are used: the scanner will select a new UAS for each request. They don't always sanitize these list, as you can see with these weird &amp;quot;User Agent Strings&amp;quot;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-07-45.png" style="width: 255px; height: 185px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;These lines actually appear in &lt;a href="https://gist.github.com/alexanderldavis/93e5c8dc779dfb27b835ec98bebca0cd"&gt;this repository of User Agent Strings&lt;/a&gt;, to separate them in groups:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-12-18.png" style="width: 647px; height: 237px;" /&gt;&lt;br type="_moz" /&gt;
-And because of a lack of quality control, these separator lines also get used as UAS in a request.&lt;/p&gt;
-
-&lt;p&gt;Of course, there are also attempts to exploit the parsing of a User Agent String. Shellshock may be more than 10 years old, I still see it in User Agent Strings:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-15-14.png" style="width: 1057px; height: 449px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And sometimes I think: &amp;quot;Huh, are they scanning for this too?&amp;quot;. Like the last one:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="" src="https://isc.sans.edu/diaryimages/images/2026-10-03_17-21-26.png" style="width: 153px; height: 57px;" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Scanning for servers that stream GPS correction data via the &lt;a href="https://en.wikipedia.org/wiki/Networked_Transport_of_RTCM_via_Internet_Protocol"&gt;NTRIP protocol&lt;/a&gt; (a NTRIP header was also included in this request).&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Didier Stevens&lt;br /&gt;
-Senior handler&lt;br /&gt;
-&lt;a href="http://blog.DidierStevens.com"&gt;blog.DidierStevens.com&lt;/a&gt;&lt;/p&gt;
-
- 
- (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33394</guid></item><item><title>Muse Creates Detailed Profiles of All Your Friends and Family</title><link>https://www.wired.com/story/muse-creates-detailed-profiles-of-all-your-friends-and-family/</link><description>Millions have downloaded Meta’s AI agent Muse. But getting it to do your bidding comes with privacy costs.</description><guid isPermaLink="false">6abc27c619638e7270d13469</guid><category>Security</category><category>Security / Privacy</category><category>agentic AI</category><category>chatbots</category><category>virtual assistant</category><category>Kernel Panic</category><category>Meta</category><category>Muse</category><category>artificial intelligence</category><category>security</category><category>privacy</category><category>data privacy</category></item><item><title>Friday Squid Blogging: EU is Trying to Fight Unregulated Squid Fishing</title><link>https://www.schneier.com/blog/archives/2026/10/friday-squid-blogging-eu-is-trying-to-fight-unregulated-squid-fishing.html</link><description>&lt;p&gt;The EU is &lt;a href="https://thefishingdaily.com/latest-news/eu-outlines-measures-to-tackle-unregulated-squid-fishing/"&gt;recommending&lt;/a&gt; import controls to combat unregulated squid fishing in the Southwest Atlantic. I&amp;#8217;m not optimistic.&lt;/p&gt;
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.</content:encoded><guid isPermaLink="false">https://isc.sans.edu/diary/rss/33396</guid></item><item><title>Muse Creates Detailed Profiles of All Your Friends and Family</title><link>https://www.wired.com/story/muse-creates-detailed-profiles-of-all-your-friends-and-family/</link><description>Millions have downloaded Meta’s AI agent Muse. But getting it to do your bidding comes with privacy costs.</description><guid isPermaLink="false">6abc27c619638e7270d13469</guid><category>Security</category><category>Security / Privacy</category><category>agentic AI</category><category>chatbots</category><category>virtual assistant</category><category>Kernel Panic</category><category>Meta</category><category>Muse</category><category>artificial intelligence</category><category>security</category><category>privacy</category><category>data privacy</category></item><item><title>Friday Squid Blogging: EU is Trying to Fight Unregulated Squid Fishing</title><link>https://www.schneier.com/blog/archives/2026/10/friday-squid-blogging-eu-is-trying-to-fight-unregulated-squid-fishing.html</link><description>&lt;p&gt;The EU is &lt;a href="https://thefishingdaily.com/latest-news/eu-outlines-measures-to-tackle-unregulated-squid-fishing/"&gt;recommending&lt;/a&gt; import controls to combat unregulated squid fishing in the Southwest Atlantic. I&amp;#8217;m not optimistic.&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.schneier.com/blog/archives/2024/06/new-blog-moderation-policy.html"&gt;Blog moderation policy.&lt;/a&gt;&lt;/p&gt;</description><content:encoded>&lt;p&gt;The EU is &lt;a href="https://thefishingdaily.com/latest-news/eu-outlines-measures-to-tackle-unregulated-squid-fishing/"&gt;recommending&lt;/a&gt; import controls to combat unregulated squid fishing in the Southwest Atlantic. I&amp;#8217;m not optimistic.&lt;/p&gt;
 &lt;p&gt;As usual, you can also use this squid post to talk about the security stories in the news that I haven&amp;#8217;t covered.&lt;/p&gt;
