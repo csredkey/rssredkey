@@ -1,5 +1,236 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 26 Nov 2026 04:59:19 +0000</lastBuildDate><item><title>Palo Alto Networks warns of Fragnesia flaw exploited in PAN-OS attacks</title><link>https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/</link><description>Threat actors are chaining exploits for the PHP2Shell and Fragnesia vulnerabilities to target Palo Alto Networks devices with management interfaces exposed to the internet. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/</guid><category>Security</category></item><item><title>1Password customer data stolen after employee GitHub account breach</title><link>https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/</link><description>1Password has disclosed a data breach after a an employee's corporate GitHub account was hacked and used to deploy malicious code to the company's backend services to steal customer data. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/</guid><category>Security</category></item><item><title>Nvidia 621.40 Targets SSD-Writing Bug: Which GPUs Are Affected?</title><link>https://www.techrepublic.com/article/news-nvidia-621-40-ssd-write-bug-fix-affected-gpus/</link><description>&lt;p&gt;Nvidia's 621.40 driver includes another fix for excessive SSD writes after its earlier hotfix left some users reporting problems. Here's which GPUs have reports and how to check your system.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RedKey RSS Feed</title><link>https://redkey.tech/feed.xml</link><description>All The Cyber Things.</description><atom:link href="https://redkey.tech/feed.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 26 Nov 2026 10:59:17 +0000</lastBuildDate><item><title>What Two Million Canary Prompts Reveal About AI Supply Chain Security</title><link>https://blog.qualys.com/category/product-tech</link><description>Executive Summary To evaluate the security of the AI supply chain, Dragos seeded approximately two million AI prompts with canary URLs and credentials. The investigation revealed that prompt data was stolen from at least three AI hosting providers and from the system of a Chinese AI lab, which accessed secret URLs from prompts marked for [&amp;#8230;]</description><content:encoded>&lt;hr /&gt;
+
+&lt;section style="background-color: #f7f8fb; padding: 16px 18px;"&gt;
+  &lt;h4 style="color: #ed2e26;"&gt;Executive Summary&lt;/h4&gt;
+
+  &lt;p&gt;
+    &lt;em&gt;
+To evaluate the security of the AI supply chain, Dragos seeded approximately two million AI prompts with canary URLs and credentials. The investigation revealed that prompt data was stolen from at least three AI hosting providers and from the system of a Chinese AI lab, which accessed secret URLs from prompts marked for zero data retention. No security team can audit the providers its prompts pass through, whether they are foreign or domestic. Every team can test its own side: the models it calls and what goes into each prompt. Qualys TotalAI maps the models and AI services in use, red-teams any model with a chat completion endpoint (including foreign models), and detects secrets before they reach a prompt.
+&lt;/em&gt;&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;hr /&gt;
+
+
+
+&lt;span id="more-44221"&gt;&lt;/span&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="inside-the-canary-experiment"&gt;Inside the Canary Experiment&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In a&amp;nbsp;&lt;a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" rel="noopener" target="_blank"&gt;study published on November 19, 2026&lt;/a&gt;, a team from Dragos, led by Chief Research Officer HD Moore, sent approximately two million prompts to popular AI services from July through November, tracing around 2,000 request routes. Each prompt carried canary tokens: unique URLs and live AWS keys linked to empty accounts that were fully monitored. If a URL was accessed, it indicated that the system had read the prompt; if a key was used, it showed that someone had stolen a credential.&amp;nbsp;&lt;/p&gt;
+
+
+&lt;div class="wp-block-image"&gt;
+&lt;figure class="aligncenter size-large is-resized"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/11/qualys-dragos-prompt-trip.png"&gt;&lt;img alt="Dragos Canary Study in Nov’26" class="wp-image-44285" height="631" src="https://blog.qualys.com/wp-content/uploads/2026/11/qualys-dragos-prompt-trip-1070x631.png" style="width: 736px; height: auto;" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;h2 class="wp-block-heading" id="what-the-dragos-canary-study-exposed"&gt;What the Dragos Canary Study Exposed&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Breached Providers&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Attackers have stolen prompt data from at least three AI hosting providers, and Dragos reports that these providers were unaware of the breaches until they were notified. In the largest breach, every canary request Dragos sent during several late-October windows was stolen. This included requests that the provider had rejected before any models had a chance to run. Attackers tested the AWS keys, listed S3 buckets, searched Secrets Manager and Parameter Store, attempted to enable Amazon Bedrock models, create Bedrock API keys, and add IAM users. One adversary later used ARTEX, an LLM-driven penetration testing framework, to confirm that the keys were active.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Leaky Routes&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;AI routers forward requests to pools of hosting providers, and every hop can access the full prompt. A Zero Data Retention (ZDR) setting is intended to ensure that the service an application calls does not retain prompts or responses, yet Dragos found ZDR-marked requests stolen or scraped further down the route. They also discovered instances of marketplace sellers logging prompts and a router quietly forwarding some traffic to these marketplaces.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;A Foreign Lab Reading Flagged Prompts&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A Chinese AI lab&amp;#8217;s systems fetched secret URLs from more than half of the prompts sent to its models, including about two-thirds of those marked ZDR; U.S. resellers of its models triggered the same scraper. In a later statement, the lab said an internal security monitoring process extracted and probed the URLs, and that it has disabled that process for forwarded API traffic.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="providers-cannot-be-audited-the-customer-side-can-be-tested"&gt;Providers Cannot Be Audited. The Customer Side Can Be Tested. &lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Every finding turned on one fact: whatever sits in a prompt, from a live credential to customer data or source code, can be seen by every hop on the route. A credential turns that exposure into an intrusion. No model test can show what a provider&amp;#8217;s infrastructure does with a request. Security teams can only test their own systems, and &lt;a href="https://www.qualys.com/totalai" rel="noopener" target="_blank"&gt;Qualys TotalAI&lt;/a&gt; answers four questions about this.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;1. Which Models and Routes Are in Use?&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Qualys TotalAI leverages existing Qualys sensors. Cloud Agents and scanners can fingerprint AI software and GPUs, cloud connectors map managed AI services, Container Security covers AI workloads, and a browser plug-in shows workforce AI  usage.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Qualys Container Runtime Security adds evidence about where containerized AI applications connect. Security teams can correlate DNS and outbound TCP events from monitored workloads to track direct connections to AI routers or provider endpoints outside their approved list. For requests routed through a provider, they can use router or gateway records to identify the reported inference provider. Qualys TotalAI enhances this visibility by testing supported model endpoints for sensitive information disclosures.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Self-hosting, which Dragos recommends where affordable, takes third parties off the route but makes the model server the target. Qualys detects known vulnerabilities and default credentials in servers such as Ollama, vLLM and LiteLLM, and AI detection and response (AI-DR)¹, an extension of Qualys EDR to AI assets, is designed to catch attacks on that infrastructure as they happen.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;2. Do The AI Models In Use Leak Their Context?&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Red-team tests show what a model gives away under attack. TotalAI evaluates &lt;a href="https://blog.qualys.com/product-tech/2025/12/11/totalai-ai-security-onboarding-and-risk-insights" rel="noopener" target="_blank"&gt;any model with a chat completion endpoint&lt;/a&gt;, including foreign models, against 300+ attack scenarios mapped to &lt;a href="https://genai.owasp.org/llm-top-10/" rel="noopener" target="_blank"&gt;OWASP&lt;/a&gt;, &lt;a href="https://atlas.mitre.org/" rel="noopener" target="_blank"&gt;MITRE ATLAS&lt;/a&gt;, and the EU AI Act, including 21 sensitive information disclosure checks. A model that discloses a real credential from its system prompt, retrieved documents or tool output proves it sat in the model&amp;#8217;s context, where every hop could see it. When a test fails, automated guardrail remediation¹ is designed to push the fix into Amazon Bedrock Guardrails.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;3. Can a Secret Reach the Prompt?&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Guardrails control what a model repeats, not what it was sent: in the largest breach, attackers stole some requests rejected before any model ran. The test that matters is whether a secret can reach the prompt at all, and that starts where secrets live. Qualys scanning detects exposed secrets in container images, CI/CD pipelines, and code repositories. This leak class was responsible for a provider notice in November, where an AI coding agent committed a credential to a public repository. TotalAI MCP scans test the servers that agents source context from for credential exposure. Additionally, MCP tool-call tracing¹ is designed to show what each tool call passes into an agent&amp;#8217;s context. Secrets also enter at run time, pasted by users or returned by tools, where static scans cannot see them. Policy-based runtime controls with inline blocking¹ are designed to block or redact secrets before a request exits the organization. A key that never reaches the first hop cannot be stolen further down the route.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;4. What Can a Stolen Key Reach?&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;a href="https://blog.qualys.com/product-tech/2026/07/27/the-sub-10-minute-cloud-takeover-how-exposed-iam-keys-misconfiguration-and-ai-are-rewriting-the-rules-of-cloud-breaches" rel="noopener" target="_blank"&gt;Qualys analysis of a 2026 intrusion&lt;/a&gt;&amp;nbsp;traced an exposed AWS key to a complete cloud takeover in under ten minutes.&amp;nbsp;&lt;a href="https://docs.qualys.com/en/cloudview/latest/cloud_entity_entitlement_management/ciem.htm" rel="noopener" target="_blank"&gt;TotalCloud CIEM&lt;/a&gt;&amp;nbsp;shows what each cloud identity can access and flags excess privileges. Its posture checks cover AI services such as Amazon Bedrock, SageMaker, and Azure OpenAI. TruRisk Insights AI attack paths¹ are designed to connect exposed endpoints, excess permissions, and sensitive data into one prioritized path.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="what-to-do-this-week"&gt;What to Do This Week&lt;/h2&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;&lt;strong&gt;Map the models and routes in use.&lt;/strong&gt; Flag any connection to a router or provider that no one approved, as well as any self-hosted model server that can be reached without authentication.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Test the models in use, including foreign ones,&lt;/strong&gt;&amp;nbsp;after every change to a model or prompt.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Find secrets in code, images, and agent context.&lt;/strong&gt; Remove them before an agent can load them.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Rotate secrets&lt;/strong&gt; in prompts covered by any provider or router notice, and give agents short-lived, least-privilege keys.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Hunt for the indicators.&lt;/strong&gt; Search CloudTrail for ARTEX user agents &lt;code&gt;artex-agent&lt;/code&gt; and &lt;code&gt;artex-judge-r121&lt;/code&gt;, Bedrock enablement, new Bedrock API keys, and new IAM users.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Dragos also recommends pinning providers and verifying Zero Data Retention on every hop.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="test-the-models-no-one-can-audit"&gt;Test the Models No One Can Audit&lt;/h2&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The Dragos study found no new class of vulnerability: exposed credentials and broken privacy promises, moving through a supply chain customers can barely see. No team can audit the provider side. Every team can test the models it calls and keep secrets out of the prompt.&lt;/p&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="has-text-align-center wp-block-paragraph"&gt;&lt;strong&gt;Learn how to map your AI in use, test its models, and catch secrets before they reach a prompt.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/free-trial-new/totalai" style="background-color: #ed2e26;"&gt;Start Your 30-Day Free Trial&lt;/a&gt;&lt;/div&gt;
+
+
+
+&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Organizations already running Qualys Cloud Agents have a first AI inventory waiting, with no separate AI security agent to deploy.&lt;/p&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="key-takeaways"&gt;Key Takeaways&lt;/h2&gt;
+
+
+
+&lt;ol class="wp-block-list" start="1"&gt;
+&lt;li&gt;Treat any secret that has appeared in a prompt as exposed.&lt;/li&gt;
+
+
+
+&lt;li&gt;A privacy flag is a promise from one hop, but a prompt crosses several.&lt;/li&gt;
+
+
+
+&lt;li&gt;Providers cannot be audited from outside, but models can be tested and the first hop mapped.&lt;/li&gt;
+
+
+
+&lt;li&gt;Test whether a secret can reach the prompt.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 class="wp-block-heading" id="frequently-asked-questions-faqs"&gt;Frequently Asked Questions (FAQs)&lt;/h2&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;What did the Dragos canary study find?&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;From July through November 2026, Dragos sent about two million prompts carrying canary URLs and AWS keys to AI services. It found prompt data stolen from at least three AI hosting providers, marketplace sellers logging prompts, and a Chinese AI lab&amp;#8217;s systems fetching secret URLs from prompts marked for zero data retention.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Can security teams test AI models they do not host?&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Yes, for model behavior: TotalAI tests any model with a chat completion endpoint, including foreign models. What a provider&amp;#8217;s infrastructure does with a request is outside what any model test can see.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;Does Zero Data Retention protect AI prompts?&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Zero Data Retention (ZDR) protects a prompt only at the hop that honors it. In the Dragos study, ZDR-flagged requests were stolen inside breached providers, and their secret URLs fetched downstream. Security teams should verify the route as well as the settings, including what each hop&amp;#8217;s retention terms exempt from.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;What is AI supply chain security?&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;AI supply chain security means controlling every service that handles an organization&amp;#8217;s AI traffic: models, routers, inference providers, and the agents that build each prompt.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;strong&gt;How should organizations secure self-hosted AI models?&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Treat model servers such as Ollama, vLLM and LiteLLM like any other exposed service: patch known vulnerabilities, remove default credentials and require authentication on every API. Qualys publishes detections for specific issues with Ollama, vLLM, and LiteLLM.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph" id="footnote-1"&gt;¹ Features expected to be available by the end of Q4 2026. Product features, functionality, and release dates may change at any time at Qualys&amp;#8217;s sole discretion.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=44221</guid><category>Product and Tech</category><category>AI Red Teaming</category><category>AI Supply Chain</category><category>AI Supply Chain Security</category><category>Dragos Canary Study</category><category>TotalAI</category></item><item><title>Palo Alto Networks warns of Fragnesia flaw exploited in PAN-OS attacks</title><link>https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/</link><description>Threat actors are chaining exploits for the PHP2Shell and Fragnesia vulnerabilities to target Palo Alto Networks devices with management interfaces exposed to the internet. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/</guid><category>Security</category></item><item><title>1Password customer data stolen after employee GitHub account breach</title><link>https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/</link><description>1Password has disclosed a data breach after a an employee's corporate GitHub account was hacked and used to deploy malicious code to the company's backend services to steal customer data. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/</guid><category>Security</category></item><item><title>Nvidia 621.40 Targets SSD-Writing Bug: Which GPUs Are Affected?</title><link>https://www.techrepublic.com/article/news-nvidia-621-40-ssd-write-bug-fix-affected-gpus/</link><description>&lt;p&gt;Nvidia's 621.40 driver includes another fix for excessive SSD writes after its earlier hotfix left some users reporting problems. Here's which GPUs have reports and how to check your system.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-nvidia-621-40-ssd-write-bug-fix-affected-gpus/"&gt;Nvidia 621.40 Targets SSD-Writing Bug: Which GPUs Are Affected?&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-nvidia-621-40-ssd-write-bug-fix-affected-gpus/</guid><category>Artificial Intelligence</category><category>Hardware</category><category>News</category><category>NVIDIA</category><category>GeForce</category><category>GPU drivers</category><category>nvidia</category><category>nvidia drivers</category><category>pc gaming</category><category>RTX Graphics Cards</category><category>ssd</category><category>Windows 11</category></item><item><title>Italy and Switzerland warn of autonomous AI-driven cyberattacks</title><link>https://www.bleepingcomputer.com/news/security/italy-and-switzerland-warn-of-autonomous-ai-driven-cyberattacks/</link><description>Swiss and Italian cybersecurity agencies are warning about automated cyberattacks powered by AI agents targeting organizations in the critical infrastructure sector. [...]</description><guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/italy-and-switzerland-warn-of-autonomous-ai-driven-cyberattacks/</guid><category>Security</category><category>Artificial Intelligence</category></item><item><title>Google Search Can Now Access Your Wallet Data: How Personal Intelligence Works</title><link>https://www.techrepublic.com/article/news-google-search-wallet-data-personal-intelligence/</link><description>&lt;p&gt;Google Search can now use connected Wallet data to personalize financial advice. Here's how to enable the feature, what Google does with your information, and which privacy settings to review.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-google-search-wallet-data-personal-intelligence/"&gt;Google Search Can Now Access Your Wallet Data: How Personal Intelligence Works&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/?p=4382635</guid><category>Artificial Intelligence</category><category>Google</category><category>News</category><category>Security</category><category>ai mode</category><category>data privacy</category><category>gemini</category><category>google ai</category><category>google search</category><category>Google Wallet</category><category>personal intelligence</category></item><item><title>Claude Turns Artifacts Into Desktop Apps: What Changes on Mac and Windows</title><link>https://www.techrepublic.com/article/news-claude-artifacts-desktop-apps/</link><description>&lt;p&gt;Claude can turn artifacts into Mac and Windows apps. Learn what permissions they can request, what IT can control, and how to run a pilot with limited access.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.techrepublic.com/article/news-claude-artifacts-desktop-apps/"&gt;Claude Turns Artifacts Into Desktop Apps: What Changes on Mac and Windows&lt;/a&gt; appeared first on &lt;a href="https://www.techrepublic.com"&gt;TechRepublic&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://www.techrepublic.com/article/news-claude-artifacts-desktop-apps/</guid><category>Anthropic</category><category>Apple</category><category>Applications</category><category>Artificial Intelligence</category><category>Developer</category><category>News</category><category>Windows</category><category>anthropic</category><category>App Permissions</category><category>claude</category><category>claude artifacts</category><category>desktop apps</category><category>device management</category><category>macos</category><category>windows</category></item><item><title>What defenders need to know about ARTEX, the agentic AI framework threat actors abuse</title><link>https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/</link><description>&lt;p&gt;The AI-powered penetration testing framework ARTEX has been abused by threat actors like Storm-0940, Storm-3358, Onyx Sleet, Pearl Sleet, Crystal Typhoon, and Salt Typhoon to accelerate their existing workflows related to network reconnaissance, credential attacks, and web application exploitation.&lt;/p&gt;
@@ -6159,149 +6390,7 @@ or software:(
 
 
 &lt;p class="wp-block-paragraph"&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;a href="https://www.nist.gov/super-intelligence/si-agent-standards-initiative" rel="noopener noreferrer" target="_blank"&gt;SI Agent Standards Initiative | NIST&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/"&gt;Security for the agentic era, powered by Microsoft Perception &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150973</guid></item><item><title>Run Your Qualys Program by Conversation, Inside Google Cloud’s Gemini Enterprise</title><link>https://blog.qualys.com/category/product-tech</link><description>Qualys ROCky for Gemini Enterprise, now available on Google Cloud Marketplace, allows you to ask your vulnerability, asset, and risk questions, get an answer ranked by real risk, and act on it, without leaving Gemini Enterprise.&amp;#160; With the introduction of frontier AI models, vulnerabilities are now being discovered and weaponized at machine speed. Unfortunately, most [&amp;#8230;]</description><content:encoded>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Qualys ROCky for Gemini Enterprise,&lt;/strong&gt; &lt;strong&gt;now available on Google Cloud Marketplace, allows&lt;/strong&gt;&lt;strong&gt; you to ask your vulnerability, asset, and risk questions, get an answer ranked by real risk, and act on it, without leaving Gemini Enterprise.&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;With the introduction of frontier AI models, vulnerabilities are now being discovered and weaponized at machine speed. Unfortunately, most security teams still triage at human speed. A typical enterprise carries thousands of open findings and can fix only a small fraction of them, yet leadership still expects a straight answer to a simple question: Are we keeping up? Getting that answer usually means exporting a scan, building a spreadsheet, and losing an afternoon.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Today, we are live with &lt;strong&gt;Qualys ROCky for Gemini Enterprise&lt;/strong&gt;. It puts your Qualys vulnerability, asset, and risk data one question away, right inside Gemini Enterprise, and it can even take the next step in the process for you, with a person in control of any changes to an asset. &lt;/p&gt;
-
-
-
-&lt;span id="more-43084"&gt;&lt;/span&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="your-program-by-conversation"&gt;Your Program, By Conversation&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The agent turns interactions with the Qualys Enterprise TruRisk Platform into a conversation. Four things it does well:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list" start="1"&gt;
-&lt;li&gt;&lt;strong&gt;Ask about your data.&lt;/strong&gt; “Which of my internet-facing hosts is the biggest risk?” “Are we exposed to Log4Shell?” “What is tied to ransomware?” Whatever your risk management question, you get an answer from your subscription in seconds, in plain language, rather than a raw export.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="2"&gt;
-&lt;li&gt;&lt;strong&gt;Prioritize by real risk.&lt;/strong&gt; Ask what to fix first, and the agent returns a worklist ranked by the Qualys Enterprise TruRisk score. It surfaces the handful of vulnerabilities that are actively exploited, listed in the Cybersecurity and Infrastructure Security Agency (CISA) Known Exploited Vulnerabilities (KEV) catalog, or associated with ransomware, and it explains why each one matters. Half a day of specialist triage becomes a two-minute, defensible decision.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="3"&gt;
-&lt;li&gt;&lt;strong&gt;Remediate with confirmation.&lt;/strong&gt; When you are ready to act, the agent stages a patch job in TruRisk Eliminate and shows exactly what will deploy, patch stability, and to how many assets. Nothing changes a host until you explicitly say yes. You go from finding to fixing in the same conversation, with a clear record of who approved what.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="4"&gt;
-&lt;li&gt;&lt;strong&gt;Prove you are keeping up.&lt;/strong&gt; Ask for your mean time to remediate, how your open CISA KEV backlog is aging, or how current your scan data is, and the agent answers on demand, in the terms boards and auditors expect.&amp;nbsp;&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/11/Screenshot-2026-09-28-at-14.11.19.png"&gt;&lt;img alt="" class="wp-image-43716" height="897" src="https://blog.qualys.com/wp-content/uploads/2026/11/Screenshot-2026-09-28-at-14.11.19-1070x897.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;br /&gt;&lt;em&gt;Qualys ROCky for Gemini Enterprise answering “What should we fix first?” against live Qualys data: a worklist ranked by risk, with CISA KEV, weaponized-exploit, and malware context and the affected hosts for each fix&lt;/em&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="a-day-in-the-life"&gt;A Day in the Life&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;An overdue critical patch shows up on a Windows fleet. A security lead asks the agent, “What is our exposure and what should we do?” The agent names the vulnerability, shows the affected hosts ranked by risk, and recommends the patch. The lead says, “Stage it for my Windows hosts.” The agent stages the job, shows the target set, and waits. The lead confirms, the job deploys, and a follow-up question confirms it completed. One conversation, start to finish.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/11/Screenshot-2026-09-28-at-10.38.18.png"&gt;&lt;img alt="" class="wp-image-43717" height="1023" src="https://blog.qualys.com/wp-content/uploads/2026/11/Screenshot-2026-09-28-at-10.38.18-1070x1023.png" width="1070" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;em&gt;Qualys ROCky for Gemini Enterprise summarizes critical exposure against live Qualys data: open detections broken down by severity, with the affected hosts listed below.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="confirmed-before-anything-changes"&gt;Confirmed Before Anything Changes&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;An agent that can read your security data and act on your hosts has to earn trust before it earns adoption. Three principles are built in from the start.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image"&gt;&lt;a href="https://blog.qualys.com/wp-content/uploads/2026/10/sc3-2-scaled.jpg"&gt;&lt;img alt="" class="wp-image-43447" height="1228" src="https://blog.qualys.com/wp-content/uploads/2026/10/sc3-2-scaled.jpg" width="2560" /&gt;&lt;/a&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The agent stages a patch in Gemini Enterprise and stops for a decision: “This job is currently disabled, and no changes have been deployed to your hosts.&lt;em&gt; Do you want to deploy this patch now?” Nothing changes a host until a person confirms.&lt;/em&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ol class="wp-block-list" start="1"&gt;
-&lt;li&gt;&lt;strong&gt;Every request runs under the signed-in user’s own Qualys entitlements.&lt;/strong&gt; People see exactly what they are allowed to see in Qualys, and nothing more. The agent does not pool all users behind one shared account, and one customer’s data is never visible to another.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="2"&gt;
-&lt;li&gt;&lt;strong&gt;Actions are confirmation-gated.&lt;/strong&gt; The only steps that change a host are staging and deploying a patch job, and deploying always requires an explicit, single-use confirmation. The agent moves at machine speed on the reading and the ranking, and it stops for human validation on anything that changes a host.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;ol class="wp-block-list" start="3"&gt;
-&lt;li&gt;&lt;strong&gt;Your data stays in your control.&lt;/strong&gt; Answers are computed against your Qualys subscription through the same Qualys APIs your teams already rely on. There is no separate copy of your risk data to manage.&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="where-it-runs"&gt;Where It Runs&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Qualys ROCky runs inside Gemini Enterprise and is available on Google Cloud Marketplace, so your teams can reach it in the environment they already work in, with the sign-in and controls your organization already manages.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;“Bringing Qualys ROCky to Google Cloud Marketplace will help customers quickly deploy, manage, and grow the conversational AI assistant on Google Cloud’s trusted, global infrastructure,” said Dai Vu, Managing Director, Marketplace &amp;amp; ISV GTM Programs at Google Cloud. “Qualys can now securely scale and support enterprises using Qualys ROCky to manage and patch vulnerabilities through natural language queries within Gemini Enterprise.”&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;h2 class="wp-block-heading" id="see-it-for-yourself"&gt;See It for Yourself&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;No team has time to fix everything. ROCky helps your team spend its hours on the risk that can actually hurt the business, and prove the program is working while it does. It brings the Qualys TruRisk platform to where your teams already work, and keeps a person in control of every change.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Qualys customers&lt;/strong&gt;: Find &amp;nbsp;Qualys ROCky on Google Cloud Marketplace, or contact your Qualys representative to see it run against your own environment.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;
-
-
-
-&lt;p class="has-text-align-center wp-block-paragraph"&gt;&lt;strong&gt;New to Qualys? Get a complimentary trial of any of our products or use cases.&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;div class="wp-block-button is-style-fill" style="margin: 0 auto 1em; text-align: center;"&gt;&lt;a class="wp-block-button__link has-white-color has-text-color has-background" href="https://www.qualys.com/free-trial-new" style="background-color: #ed2e26;"&gt;Sign Up&lt;/a&gt;&lt;/div&gt;
-
-
-
-&lt;hr class="wp-block-separator has-alpha-channel-opacity" /&gt;</content:encoded><guid isPermaLink="false">https://blog.qualys.com/?p=43084</guid><category>Product and Tech</category><category>Agentic AI</category><category>AI Agents</category><category>Conversational AI</category><category>Cyber Risk Management</category><category>Gemini Enterprise</category><category>Google Cloud</category><category>patch management</category><category>Qualys Integrations</category><category>Qualys ROCky</category><category>Risk Prioritization</category><category>trurisk</category><category>vulnerability management</category></item><item><title>httpx – ProjectDiscovery’s HTTP Toolkit for Probing Live Hosts</title><link>https://www.darknet.org.uk/2026/11/httpx-projectdiscovery-http-probing-toolkit/</link><description>Install ProjectDiscovery's httpx 1.12.0, tell it apart from Kali's httpx-toolkit and Python's httpx, and probe subfinder output for live web servers.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=551097</guid><category>Hacking Tools</category><category>go</category><category>httpx</category><category>Kali Linux</category><category>ProjectDiscovery</category><category>reconnaissance</category><category>subdomain enumeration</category><category>subfinder</category><category>web recon</category></item><item><title>The risks of device code authentication for AI coding agents</title><link>https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/</link><description>&lt;p&gt;Lab research shows how device code phishing, a technique that applies to any device-flow client, can extend to AI coding agents, using GitHub Copilot CLI as an illustrative example.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/"&gt;Security for the agentic era, powered by Microsoft Perception &lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</content:encoded><guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150973</guid></item><item><title>httpx – ProjectDiscovery’s HTTP Toolkit for Probing Live Hosts</title><link>https://www.darknet.org.uk/2026/11/httpx-projectdiscovery-http-probing-toolkit/</link><description>Install ProjectDiscovery's httpx 1.12.0, tell it apart from Kali's httpx-toolkit and Python's httpx, and probe subfinder output for live web servers.</description><guid isPermaLink="false">https://www.darknet.org.uk/?p=551097</guid><category>Hacking Tools</category><category>go</category><category>httpx</category><category>Kali Linux</category><category>ProjectDiscovery</category><category>reconnaissance</category><category>subdomain enumeration</category><category>subfinder</category><category>web recon</category></item><item><title>The risks of device code authentication for AI coding agents</title><link>https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/</link><description>&lt;p&gt;Lab research shows how device code phishing, a technique that applies to any device-flow client, can extend to AI coding agents, using GitHub Copilot CLI as an illustrative example.&lt;/p&gt;
 &lt;p&gt;The post &lt;a href="https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"&gt;The risks of device code authentication for AI coding agents&lt;/a&gt; appeared first on &lt;a href="https://www.microsoft.com/en-us/security/blog"&gt;Microsoft Security Blog&lt;/a&gt;.&lt;/p&gt;</description><content:encoded>&lt;aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-3161c206-c43d-4bd2-a2c8-ef43a40c393e"&gt;
 	&lt;button class="btn btn-collapse" type="button"&gt;
 		&lt;span class="table-of-contents-block__label"&gt;In this article&lt;/span&gt;
